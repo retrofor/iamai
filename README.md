@@ -12,8 +12,8 @@
   <a style="text-decoration:none" href="https://github.com/retrofor/retro/releases" target="_blank">
     <img src="https://img.shields.io/github/release/retrofor/retro.svg?label=Latest%20version" alt="Latest version" />
   </a>
-  <a style="text-decoration:none" href="https://retrofor.dev" target="_blank">
-    <img src="https://img.shields.io/badge/Website-retrofor.dev-blue" alt="Website" />
+  <a style="text-decoration:none" href="https://retrofor.space" target="_blank">
+    <img src="https://img.shields.io/badge/Website-retrofor.space-blue" alt="Website" />
   </a>
 </p>
 
