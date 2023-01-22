@@ -17,12 +17,27 @@
   </a>
 </p>
 
+
 ## Introduction
 Cross-platform robot framework, mainly used for machine learning.
-## Contributors
 
+## 🚀 Features
+- 🎪 [**Interactive docs & demos**](https://vueuse.org)
+- 🕶 **Seamless migration**: Works for **both** Vue 3 and 2
+- ⚡ **Fully tree shakeable**: Only take what you want, [bundle size](https://vueuse.org/export-size)
+- 🦾 **Type Strong**: Written in [TypeScript](https://www.typescriptlang.org/), with [TS Docs](https://github.com/microsoft/tsdoc)
+- 🔋 **SSR Friendly**
+- 🌎 **No bundler required**: Usable via CDN
+- 🔩 **Flexible**: Configurable event filters and targets
+- 🔌 **Optional [Add-ons](https://vueuse.org/add-ons)**: Router, Firebase, RxJS, etc.
+
+## 🪴 Project Activity
 ![Alt](https://repobeats.axiom.co/api/embed/7ad18e8d174da010f3b88ffd05899635faec7dbc.svg "Repobeats analytics image")
 
+## 👨‍🚀 Contributors
 <a href="https://github.com/retrofor/retro/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=retrofor/retro" />
 </a>
+
+## 📄 License
+[GNU 3.0](https://github.com/retrofor/retro/blob/main/LICENSE) © 2023-PRESENT [简律纯](https://github.com/HsiangNianian)
