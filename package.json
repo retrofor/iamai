@@ -1,0 +1,11 @@
+{
+    "name": "vuepress-deploy-demo",
+    "scripts": {
+        "dev": "vuepress dev blog",
+        "build": "vuepress build blog"
+    },
+    "devDependencies": {
+        "@vuepress/theme-blog": "^2.1.0",
+        "vuepress": "^1.3.0"
+    }
+}
