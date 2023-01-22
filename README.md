@@ -40,4 +40,4 @@ Cross-platform robot framework, mainly used for machine learning.
 </a>
 
 ## 📄 License
-[GNU 3.0](https://github.com/retrofor/retro/blob/main/LICENSE) © 2023-PRESENT [简律纯](https://github.com/HsiangNianian)
+[GNU GPLv3.0](https://github.com/retrofor/retro/blob/main/LICENSE) © 2023-PRESENT [简律纯](https://github.com/HsiangNianian)
