@@ -12,8 +12,8 @@
   <a style="text-decoration:none" href="https://github.com/retrofor/retro/releases" target="_blank">
     <img src="https://img.shields.io/github/release/retrofor/retro.svg?label=Latest%20version" alt="Latest version" />
   </a>
-  <a style="text-decoration:none" href="https://retro.dev" target="_blank">
-    <img src="https://img.shields.io/badge/Website-retro.dev-blue" alt="Website" />
+  <a style="text-decoration:none" href="https://retrofor.dev" target="_blank">
+    <img src="https://img.shields.io/badge/Website-retrofor.dev-blue" alt="Website" />
   </a>
 </p>
 
@@ -22,14 +22,13 @@
 Cross-platform robot framework, mainly used for machine learning.
 
 ## 🚀 Features
-- 🎪 [**Interactive docs & demos**](https://vueuse.org)
-- 🕶 **Seamless migration**: Works for **both** Vue 3 and 2
-- ⚡ **Fully tree shakeable**: Only take what you want, [bundle size](https://vueuse.org/export-size)
-- 🦾 **Type Strong**: Written in [TypeScript](https://www.typescriptlang.org/), with [TS Docs](https://github.com/microsoft/tsdoc)
+- 🎪 [**Interactive docs & demos**](https://retrofor.dev)
+- 🕶 **Seamless migration**: Works for **both** Rasa and GPT
+- ⚡ **Fully tree shakeable**: Only take what you want, [bundle size](https://retrofor.dev/export-size)
 - 🔋 **SSR Friendly**
 - 🌎 **No bundler required**: Usable via CDN
 - 🔩 **Flexible**: Configurable event filters and targets
-- 🔌 **Optional [Add-ons](https://vueuse.org/add-ons)**: Router, Firebase, RxJS, etc.
+- 🔌 **Optional [Add-ons](https://retrofor.dev/add-ons)**: Router, etc.
 
 ## 🪴 Project Activity
 ![Alt](https://repobeats.axiom.co/api/embed/7ad18e8d174da010f3b88ffd05899635faec7dbc.svg "Repobeats analytics image")
