@@ -11,8 +11,8 @@ jobs:
       uses: jenkey2011/vuepress-deploy@v2.0.0
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        TARGET_REPO: jenkey2011/vuepress-deploy-demo-target
-        TARGET_BRANCH: custom_branch
+        TARGET_REPO: retrofor/retro
+        TARGET_BRANCH: main
         BUILD_SCRIPT: yarn && yarn build
-        BUILD_DIR: blog/.vuepress/dist/
+        BUILD_DIR: site/.vuepress/dist/
         COMMIT_MESSAGE:  Auto deploy by the Vuepress-deploy
