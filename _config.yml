@@ -6,7 +6,7 @@ description: AI/ML, thoughts?
 logo: 119327113.png
 
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://retrofor.space/" # the base hostname & protocol for your site
+url: "https://retrofor.space" # the base hostname & protocol for your site
 
 social_links:
   twitter: HsiangNianian
