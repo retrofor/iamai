@@ -1,4 +1,4 @@
-<img width="128" align="center" src="/119327113.png"></p>
+<p align="center"><img width="128" src="/119327113.png"></p>
 <h1 align="center">
   retro
 </h1>
