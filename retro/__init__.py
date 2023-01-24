@@ -1,4 +1,4 @@
-name = "retro"
+name = "retrofor_wut"
 
 from . import main
-from . imoort adapter
+from . import adapter
