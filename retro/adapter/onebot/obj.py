@@ -169,4 +169,4 @@ class Notice:
     send_time = 1672502400  # 操作时间戳
     group_id = 100001  # 统一来源群ID
     self_id = 10001  # 统一机器人ID
-    notice_type = 
+    notice_type = string
