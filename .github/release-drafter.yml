@@ -12,6 +12,7 @@ categories:
       - 'bug'
       - '类型:bug'
   - title: '🔝 Dependencies'
+    labels: 
       - 'dependencies'
   - title: '🧰 Maintenance'
     label: 'chore'
