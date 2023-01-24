@@ -17,11 +17,8 @@
   </a>
   <br>
   <a href="https://pypi.python.org/pypi/retro">
-
     <img src="https://img.shields.io/pypi/v/retro" alt="pypi">
-
   </a>
-
   <img src="https://img.shields.io/badge/python-3.8+-blue" alt="python">
 </p>
 
