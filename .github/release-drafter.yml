@@ -10,6 +10,7 @@ categories:
       - 'fix'
       - 'bugfix'
       - 'bug'
+      - '类型:bug'
   - title: '🧰 Maintenance'
     label: 'chore'
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
