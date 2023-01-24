@@ -35,6 +35,15 @@ Cross-platform robot framework, mainly used for machine learning.
 - 🔩 **Flexible**: Configurable event filters and targets
 - 🔌 **Optional [Add-ons](https://retrofor.dev/add-ons)**: Router, etc.
 
+## ❗ Usage
+```python
+import bot
+from obj import Message, group_info, friend_info, Notice
+
+Bot = bot.Bot('ws://127.0.0.1:6700')
+Bot.run()
+```
+
 ## 🪴 Project Activity
 ![Alt](https://repobeats.axiom.co/api/embed/6eda7bc8b6b17ae671f6c5fe6a73ceb4afb341aa.svg "Repobeats analytics image")
 
