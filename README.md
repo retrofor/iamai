@@ -35,6 +35,11 @@ Cross-platform robot framework, mainly used for machine learning.
 - 🔩 **Flexible**: Configurable event filters and targets
 - 🔌 **Optional [Add-ons](https://retrofor.dev/add-ons)**: Router, etc.
 
+## ⬇️ Install
+```sh
+pip install -i https://test.pypi.org/simple/ retrofor-wut
+```
+
 ## ❗ Usage
 ```python
 import bot
@@ -53,4 +58,4 @@ Bot.run()
 </a>
 
 ## 📄 License
-[GNU GPLv3.0](https://github.com/retrofor/retrofor_wut/blob/main/LICENSE) © 2023-PRESENT [简律纯](https://github.com/HsiangNianian)
+[MIT](https://github.com/retrofor/retrofor_wut/blob/main/LICENSE) © 2023-PRESENT [简律纯](https://github.com/HsiangNianian)
