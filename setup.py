@@ -5,9 +5,9 @@ with open("README.md", "rb") as fh:
 
 setuptools.setup(
     name='retrofor_wut',
-    version='3.0.6',
+    version='3.0.5',
     url='https://github.com/retrofor/retrofor_wut',
-    license='GNU GENERAL PUBLIC LICENSE V3 (GPLV3),
+    license='GPLV3',
     author='简律纯',
     author_email='HsiangNianian@outlook.com',
     description='Python codes to Flowcharts.',
