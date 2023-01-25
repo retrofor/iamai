@@ -34,9 +34,15 @@ Cross-platform robot framework, mainly used for machine learning.
 - 🔌 **Optional [Add-ons](https://retrofor.dev/add-ons)**: Router, etc.
 
 ## ⬇️ Install
-```sh
-pip install -i https://test.pypi.org/simple/ retrofor-wut
-```
+ - STABLE VERSION
+   ```sh
+   pip install retrofor-wut
+   ```
+or you can also install for TEST.
+ - TEST VERSION
+   ```sh
+   pip install -i https://test.pypi.org/simple/ retrofor-wut
+   ```
 
 ## ❗ Usage
 ```python
