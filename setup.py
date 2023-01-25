@@ -17,7 +17,7 @@ setuptools.setup(
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Environment :: Console",
-        "LICENSE :: OSI APPROVED :: MIT LICENSE",
+        "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
         "Topic :: Software Development :: Code Generators",
         "Topic :: Utilities",
