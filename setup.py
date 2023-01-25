@@ -7,7 +7,7 @@ setuptools.setup(
     name='retrofor_wut',
     version='3.0.5',
     url='https://github.com/retrofor/retrofor_wut',
-    license='GPLV3',
+    license='MIT',
     author='简律纯',
     author_email='HsiangNianian@outlook.com',
     description='Python codes to Flowcharts.',
@@ -17,7 +17,7 @@ setuptools.setup(
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Environment :: Console",
-        "LICENSE :: OSI APPROVED :: GNU GENERAL PUBLIC LICENSE V3 (GPLV3)",
+        "LICENSE :: OSI APPROVED :: MIT License",
         "Programming Language :: Python :: 3",
         "Topic :: Software Development :: Code Generators",
         "Topic :: Utilities",
