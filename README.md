@@ -18,6 +18,12 @@
     <img src="https://img.shields.io/pypi/v/retrofor_wut" alt="pypi">
   </a>
   <img src="https://img.shields.io/badge/python-3.8+-blue" alt="python">
+  <br>
+  <img src="https://img.shields.io/github/forks/retrofor/retrofor_wut?style=social" >
+  <img src="https://img.shields.io/github/stars/retrofor/retrofor_wut?style=social" >
+  <img src="https://img.shields.io/github/watchers/retrofor/retrofor_wut?style=social" >
+  <br>
+  <img src="https://img.shields.io/github/license/retrofor/retrofor_wut" >
 </p>
 
 
