@@ -23,8 +23,15 @@
   <br>
   <img src="https://img.shields.io/github/forks/retrofor/retrofor_wut?style=social" >
   <img src="https://img.shields.io/github/stars/retrofor/retrofor_wut?style=social" >
-  <img src="https://img.shields.io/github/watchers/retrofor/retrofor_wut?style=social" >
   <br>
+  <img src="https://img.shields.io/github/watchers/retrofor/retrofor_wut?style=social" >
+  <img src="https://img.shields.io/github/search/retrofor/retrofor_wut/goto?style=social" >
+  <br>
+  <img src="https://img.shields.io/github/repo-size/retrofor/retrofor_wut?style=social" >
+  <img src="https://img.shields.io/github/languages/top/retrofor/retrofor_wut?style=social" >
+  <br>
+  <img src="https://img.shields.io/tokei/lines/github/retrofor/retrofor_wut?style=social" >
+  <img src="https://img.shields.io/github/commit-activity/m/retrofor/retrofor_wut?style=social" >
 </p>
 
 
