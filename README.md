@@ -30,8 +30,8 @@
   <img src="https://img.shields.io/github/repo-size/retrofor/retrofor_wut?style=social" >
   <img src="https://img.shields.io/github/languages/top/retrofor/retrofor_wut?style=social" >
   <br>
-  <img src="https://img.shields.io/tokei/lines/github/retrofor/retrofor_wut?style=social" >
-  <img src="https://img.shields.io/github/commit-activity/m/retrofor/retrofor_wut?style=social" >
+  <img src="https://img.shields.io/tokei/lines/github/retrofor/retrofor_wut?style=for-the-badge" >
+  <img src="https://img.shields.io/github/commit-activity/m/retrofor/retrofor_wut?style=for-the-badge" >
 </p>
 
 
