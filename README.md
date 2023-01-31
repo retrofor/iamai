@@ -7,8 +7,8 @@
 </p>
 <p align="center">
   <img src="https://img.shields.io/tokei/lines/github/retrofor/retrofor_wut?style=for-the-badge" >
-  
-  <br>
+
+<br>
   <img src="https://img.shields.io/github/commit-activity/m/retrofor/retrofor_wut?style=for-the-badge" >
   <br>
   <img src="https://img.shields.io/github/license/retrofor/retrofor_wut" >
@@ -37,11 +37,12 @@
   <br>
 </p>
 
-
 ## Introduction
+
 Cross-platform robot framework, mainly used for machine learning.
 
 ## 🚀 Features
+
 - 🎪 [**Interactive docs & demos**](https://retrofor.dev)
 - 🕶 **Seamless migration**: Works for **both** Rasa and GPT
 - ⚡ **Fully tree shakeable**: Only take what you want, [bundle size](https://retrofor.dev/export-size)
@@ -51,32 +52,40 @@ Cross-platform robot framework, mainly used for machine learning.
 - 🔌 **Optional [Add-ons](https://retrofor.dev/add-ons)**: Router, etc.
 
 ## ⬇️ Install
- - STABLE VERSION
-   ```sh
-   pip install retrofor-wut
-   ```
+
+- STABLE VERSION
+  ```sh
+  pip install retrofor-wut
+  ```
+
 or you can also install for TEST.
- - TEST VERSION
-   ```sh
-   pip install -i https://test.pypi.org/simple/ retrofor-wut
-   ```
+
+- TEST VERSION
+  ```sh
+  pip install -i https://test.pypi.org/simple/ retrofor-wut
+  ```
 
 ## ❗ Usage
-```python
-import bot
-from obj import Message, group_info, friend_info, Notice
 
-Bot = bot.Bot('ws://127.0.0.1:6700')
-Bot.run()
+```python
+from retrofor_wut import Bot
+
+bot = Bot()
+bot.load_adapters("retrofor_wut.adapter.cqhttp")
+
+bot.run()
 ```
 
 ## 🪴 Project Activity
+
 ![Alt](https://repobeats.axiom.co/api/embed/6eda7bc8b6b17ae671f6c5fe6a73ceb4afb341aa.svg "Repobeats analytics image")
 
 ## 👨‍🚀 Contributors
+
 <a href="https://github.com/retrofor/retrofor_wut/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=retrofor/retrofor_wut" />
 </a>
 
 ## 📄 License
+
 [MIT](https://github.com/retrofor/retrofor_wut/blob/main/LICENSE) © 2023-PRESENT [简律纯](https://github.com/HsiangNianian)
