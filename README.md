@@ -6,7 +6,7 @@
   Cross-platform robot framework, mainly used for ML.
 </p>
 <p align="center">
-  <img src="https://img.shields.io/tokei/lines/github/retrofor/retrofor_wut?style=for-the-badge" >
+  <img src="https://img.shields.io/sourcegraph/rrc/github.com/retrofor/retrofor_wut?style=for-the-badge" >
 
 <br>
   <img src="https://img.shields.io/github/commit-activity/m/retrofor/retrofor_wut?style=for-the-badge" >
