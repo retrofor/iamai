@@ -10,10 +10,11 @@ setuptools.setup(
     license='MIT',
     author='简律纯',
     author_email='HsiangNianian@outlook.com',
-    description='Python codes to Flowcharts.',
+    description='Cross-platform robot framework, mainly used for machine learning.',
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(),
+
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Framework :: AsyncIO",
