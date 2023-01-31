@@ -5,7 +5,7 @@ with open("README.md", "rb") as fh:
 
 setuptools.setup(
     name='retrofor_wut',
-    version='3.0.7',
+    version='4.0.0',
     url='https://github.com/retrofor/retrofor_wut',
     license='MIT',
     author='简律纯',
@@ -16,12 +16,15 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     classifiers=[
         "Development Status :: 3 - Alpha",
+        "Framework :: AsyncIO",
+        "Framework :: Robot Framework",
+        "Framework :: Robot Framework :: Library",
         "Environment :: Console",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
         "Topic :: Software Development :: Code Generators",
-        "Topic :: Utilities",
+        "Topic :: Communications :: Chat",
     ],
     python_requires='>=3.8',
-    install_requires=['astunparse', 'chardet'],
+    install_requires=['flask','pydantic','loguru','aiohttp','tomli','typing-extensions'],
 )
