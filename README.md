@@ -6,7 +6,7 @@
   Cross-platform robot framework, mainly used for ML.
 </p>
 <p align="center">
-  <a style="text-decoration:none" href="https://www.codacy.com/gh/retrofor/retrofor_wut/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=retrofor/retrofor_wut&amp;utm_campaign=Badge_Gradee" target="_blank">
+  <a style="text-decoration:none" href="https://www.codacy.com/gh/retrofor/retrofor_wut/dashboard?utm_source=github.com&utm_medium=referral&utm_content=retrofor/retrofor_wut&utm_campaign=Badge_Gradee" target="_blank">
     <img src="https://app.codacy.com/project/badge/Grade/f3611d85db764236b65fac956bdb53df" alt="Codacy Badge" />
   </a>
   <br>
@@ -46,19 +46,18 @@
   <img src="https://img.shields.io/github/languages/top/retrofor/retrofor_wut?style=social" >
 </p>
 
-## Introduction
+## 📘 Introduction
 
 Cross-platform robot framework, mainly used for machine learning.
 
 ## 🚀 Features
 
-- 🎪 [**Interactive docs & demos**](https://retrofor.dev)
-- 🕶 **Seamless migration**: Works for **both** Rasa and GPT
-- ⚡ **Fully tree shakeable**: Only take what you want, [bundle size](https://retrofor.dev/export-size)
-- 🔋 **SSR Friendly**
-- 🌎 **No bundler required**: Usable via CDN
+- 🎪 **Interactive [docs](https://doc.retrofor.space) &amp; [demos](https://doc.retrofor.space/demos)**
+- 🕶 **Seamless migration**: Works for **both** [Rasa]() and [GPT]() and more...
+- ⚡ **Fully tree shakeable**: Only take what you want, [bundle size](https://doc.retrofor.space/export-size)
 - 🔩 **Flexible**: Configurable event filters and targets
-- 🔌 **Optional [Add-ons](https://retrofor.dev/add-ons)**: Router, etc.
+- 🔌 **Optional [Add-ons](https://doc.retrofor.space/add-ons)**: [Apscheduler](https://doc.retrofor.space/add-ons/apscheduler), etc.
+- 👍 **Cross-platform**: [Onebot](https://doc.retrofor.space/adapters/onebot), [Wechat](https://doc.retrofor.space/adapters/wechat), [Twitter](https://doc.retrofor.space/adapters/twitter), [Bilibili](https://doc.retrofor.space/adapters/bilibili), [Github](https://doc.retrofor.space/adapters/github)
 
 ## ⬇️ Install
 
@@ -85,7 +84,7 @@ bot.load_adapters("retrofor_wut.adapter.cqhttp")
 bot.run()
 ```
 
-## 🪴 Project Activity
+## ✨ Project Activity
 
 ![Alt](https://repobeats.axiom.co/api/embed/6eda7bc8b6b17ae671f6c5fe6a73ceb4afb341aa.svg "Repobeats analytics image")
 
