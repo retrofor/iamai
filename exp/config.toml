@@ -1,0 +1,6 @@
+[bot]
+plugin_dirs = ["plugins"]
+adapters = ["retrofor_wut.adapter.cqhttp"]
+
+[bot.log]
+verbose_exception = true

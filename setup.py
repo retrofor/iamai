@@ -27,5 +27,5 @@ setuptools.setup(
         "Topic :: Communications :: Chat",
     ],
     python_requires='>=3.8',
-    install_requires=['flask','pydantic','loguru','aiohttp','tomli','typing-extensions','pydantic'],
+    install_requires=['flask','pydantic','loguru','aiohttp','tomli','typing-extensions','pydantic','watchfiles'],
 )

@@ -1,0 +1,17 @@
+[
+  {
+    "rule": "hello",
+    "message": "你好！"
+  },
+  {
+    "rule": "test",
+    "message": [
+      {
+        "type": "text",
+        "data": {
+          "text": "测试"
+        }
+      }
+    ]
+  }
+]
