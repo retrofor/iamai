@@ -1,6 +1,6 @@
-"""retrofor_wut 日志。
+"""iamai 日志。
 
-retrofor_wut 使用 [loguru](https://github.com/Delgan/loguru) 来记录日志信息。
+iamai 使用 [loguru](https://github.com/Delgan/loguru) 来记录日志信息。
 自定义 logger 请参考 [loguru](https://github.com/Delgan/loguru) 文档。
 """
 from loguru import logger as _logger

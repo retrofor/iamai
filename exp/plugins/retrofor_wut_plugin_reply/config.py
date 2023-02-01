@@ -1,4 +1,4 @@
-from plugins.retrofor_wut_plugin_base import CommandPluginConfig
+from plugins.iamai_plugin_base import CommandPluginConfig
 
 
 class Config(CommandPluginConfig):

@@ -1,6 +1,6 @@
-"""retrofor_wut 配置。
+"""iamai 配置。
 
-retrofor_wut 使用 [pydantic](https://pydantic-docs.helpmanual.io/) 来读取配置。
+iamai 使用 [pydantic](https://pydantic-docs.helpmanual.io/) 来读取配置。
 """
 from typing import Set, Union
 
@@ -17,7 +17,7 @@ __all__ = [
 
 
 class ConfigModel(BaseModel):
-    """retrofor_wut 配置模型。
+    """iamai 配置模型。
 
     Attributes:
         __config_name__: 配置名称。
@@ -30,7 +30,7 @@ class ConfigModel(BaseModel):
 
 
 class LogConfig(ConfigModel):
-    """retrofor_wut 日志相关设置。
+    """iamai 日志相关设置。
 
     Attributes:
         level: 日志级别。
@@ -48,7 +48,7 @@ class BotConfig(ConfigModel):
         plugins: 将被加载的插件列表，将被 `Bot` 类的 `load_plugins()` 方法加载。
         plugin_dirs: 将被加载的插件目录列表，将被 `Bot` 类的 `load_plugins_from_dirs()` 方法加载。
         adapters: 将被加载的适配器列表，将依次被 `Bot` 类的 `load_adapters()` 方法加载。
-        log: retrofor_wut 日志相关设置。
+        log: iamai 日志相关设置。
     """
 
     plugins: Set[str] = Field(default_factory=set)
@@ -66,10 +66,10 @@ class AdapterConfig(ConfigModel):
 
 
 class MainConfig(ConfigModel):
-    """retrofor_wut 配置。
+    """iamai 配置。
 
     Attributes:
-        bot: retrofor_wut 的主要配置。
+        bot: iamai 的主要配置。
     """
 
     bot: BotConfig = BotConfig()

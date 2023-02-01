@@ -1,7 +1,7 @@
 [bot]
 plugins=[]
 plugin_dirs = ["plugins"]
-adapters = ["retrofor_wut.adapter.cqhttp"]
+adapters = ["iamai.adapter.cqhttp"]
 
 [bot.log]
 verbose_exception = true

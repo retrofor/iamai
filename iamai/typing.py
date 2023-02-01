@@ -1,18 +1,18 @@
-"""retrofor_wut 类型提示支持。
+"""iamai 类型提示支持。
 
-此模块定义了部分 retrofor_wut 使用的类型。
+此模块定义了部分 iamai 使用的类型。
 """
 
 from typing import TYPE_CHECKING, TypeVar, Callable, NoReturn, Awaitable
 
-from retrofor_wut.message import T_MS, T_Message, T_MessageSegment
+from iamai.message import T_MS, T_Message, T_MessageSegment
 
 if TYPE_CHECKING:
-    from retrofor_wut.bot import Bot  # noqa
-    from retrofor_wut.event import Event  # noqa
-    from retrofor_wut.plugin import Plugin  # noqa
-    from retrofor_wut.adapter import Adapter  # noqa
-    from retrofor_wut.config import ConfigModel  # noqa
+    from iamai.bot import Bot  # noqa
+    from iamai.event import Event  # noqa
+    from iamai.plugin import Plugin  # noqa
+    from iamai.adapter import Adapter  # noqa
+    from iamai.config import ConfigModel  # noqa
 
 __all__ = [
     "T_State",

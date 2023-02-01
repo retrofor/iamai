@@ -1,6 +1,6 @@
 from typing import Set, Optional
 
-from retrofor_wut import ConfigModel
+from iamai import ConfigModel
 
 
 class BasePluginConfig(ConfigModel):

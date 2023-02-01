@@ -1,9 +1,9 @@
 import re
 import random
 
-from retrofor_wut.log import logger
+from iamai.log import logger
 
-from plugins.retrofor_wut_plugin_base import CommandPluginBase
+from plugins.iamai_plugin_base import CommandPluginBase
 
 from .config import Config
 

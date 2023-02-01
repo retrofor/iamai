@@ -1,4 +1,4 @@
-"""retrofor_wut 事件。
+"""iamai 事件。
 
 事件类的基类。适配器开发者应实现此事件类基类的子类。
 """
@@ -7,9 +7,9 @@ from typing import Any, Generic, Optional
 
 from pydantic import BaseModel, PrivateAttr
 
-from retrofor_wut.message import Message
-from retrofor_wut.typing import T_Adapter
-from retrofor_wut.utils import DataclassEncoder
+from iamai.message import Message
+from iamai.typing import T_Adapter
+from iamai.utils import DataclassEncoder
 
 __all__ = ["Event"]
 

@@ -1,12 +1,12 @@
 <p align="center"><img width="128" src="https://doc.retrofor.space/img/retro.png"></p>
 <h1 align="center">
-  retrofor_wut
+  iamai
 </h1>
 <p align="center">
   Cross-platform robot framework, mainly used for ML.
 </p>
 <p align="center">
-  <a style="text-decoration:none" href="https://www.codacy.com/gh/retrofor/retrofor_wut/dashboard?utm_source=github.com&utm_medium=referral&utm_content=retrofor/retrofor_wut&utm_campaign=Badge_Gradee" target="_blank">
+  <a style="text-decoration:none" href="https://www.codacy.com/gh/retrofor/iamai/dashboard?utm_source=github.com&utm_medium=referral&utm_content=retrofor/iamai&utm_campaign=Badge_Gradee" target="_blank">
     <img src="https://app.codacy.com/project/badge/Grade/f3611d85db764236b65fac956bdb53df" alt="Codacy Badge" />
   </a>
   <br>
@@ -31,19 +31,19 @@
     <img src="https://img.shields.io/badge/Website-doc.retrofor.space-green?style=flat-square" alt="Website" />
   </a>
   <br>
-  <a href="https://pypi.python.org/pypi/retrofor_wut">
-    <img src="https://img.shields.io/pypi/v/retrofor_wut?style=flat-square" alt="pypi">
+  <a href="https://pypi.python.org/pypi/iamai">
+    <img src="https://img.shields.io/pypi/v/iamai?style=flat-square" alt="pypi">
   </a>
   <img src="https://img.shields.io/badge/python-3.8+-blue?style=flat-square" alt="python">
   <br>
-  <img src="https://img.shields.io/github/forks/retrofor/retrofor_wut?style=social" >
-  <img src="https://img.shields.io/github/stars/retrofor/retrofor_wut?style=social" >
+  <img src="https://img.shields.io/github/forks/retrofor/iamai?style=social" >
+  <img src="https://img.shields.io/github/stars/retrofor/iamai?style=social" >
   <br>
-  <img src="https://img.shields.io/github/watchers/retrofor/retrofor_wut?style=social" >
-  <img src="https://img.shields.io/github/search/retrofor/retrofor_wut/goto?style=social" >
+  <img src="https://img.shields.io/github/watchers/retrofor/iamai?style=social" >
+  <img src="https://img.shields.io/github/search/retrofor/iamai/goto?style=social" >
   <br>
-  <img src="https://img.shields.io/github/repo-size/retrofor/retrofor_wut?style=social" >
-  <img src="https://img.shields.io/github/languages/top/retrofor/retrofor_wut?style=social" >
+  <img src="https://img.shields.io/github/repo-size/retrofor/iamai?style=social" >
+  <img src="https://img.shields.io/github/languages/top/retrofor/iamai?style=social" >
 </p>
 
 ## 📘 Introduction
@@ -76,10 +76,10 @@ or you can also install for TEST.
 ## ❗ Usage
 
 ```python
-from retrofor_wut import Bot
+from iamai import Bot
 
 bot = Bot()
-bot.load_adapters("retrofor_wut.adapter.cqhttp")
+bot.load_adapters("iamai.adapter.cqhttp")
 
 bot.run()
 ```
@@ -90,10 +90,10 @@ bot.run()
 
 ## 👨‍🚀 Contributors
 
-<a href="https://github.com/retrofor/retrofor_wut/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=retrofor/retrofor_wut" />
+<a href="https://github.com/retrofor/iamai/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=retrofor/iamai" />
 </a>
 
 ## 📄 License
 
-[MIT](https://github.com/retrofor/retrofor_wut/blob/main/LICENSE) © 2023-PRESENT [简律纯](https://github.com/HsiangNianian)
+[MIT](https://github.com/retrofor/iamai/blob/main/LICENSE) © 2023-PRESENT [简律纯](https://github.com/HsiangNianian)

@@ -1,4 +1,4 @@
-"""retrofor_wut 协议适配器。
+"""iamai 协议适配器。
 
 所有协议适配器都必须继承自 `Adapter` 基类。
 """
@@ -7,17 +7,17 @@ import asyncio
 from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING, Type, Union, Generic, Callable, Optional, Awaitable
 
-from retrofor_wut.config import ConfigModel
-from retrofor_wut.log import error_or_exception
-from retrofor_wut.typing import T_Event, T_Config
-from retrofor_wut.utils import is_config_class, sync_func_wrapper
+from iamai.config import ConfigModel
+from iamai.log import error_or_exception
+from iamai.typing import T_Event, T_Config
+from iamai.utils import is_config_class, sync_func_wrapper
 
 if TYPE_CHECKING:
-    from retrofor_wut.bot import Bot
+    from iamai.bot import Bot
 
 __all__ = ["Adapter"]
 
-if os.getenv("retrofor_wut_DEV") == "1":
+if os.getenv("iamai_DEV") == "1":
     # 当处于开发环境时，使用 pkg_resources 风格的命名空间包
     __import__("pkg_resources").declare_namespace(__name__)
 
@@ -63,21 +63,21 @@ class Adapter(Generic[T_Event, T_Config], ABC):
     async def run(self):
         """适配器运行方法，适配器开发者必须实现该方法。
 
-        适配器运行过程中保持保持运行，当此方法结束后，retrofor_wut 不会自动重新启动适配器。
+        适配器运行过程中保持保持运行，当此方法结束后，iamai 不会自动重新启动适配器。
         """
         raise NotImplementedError
 
     async def startup(self):
         """在适配器开始运行前运行的方法，用于初始化适配器。
 
-        retrofor_wut 依次运行并等待所有适配器的 `startup()` 方法，待运行完毕后再创建 `run()` 任务。
+        iamai 依次运行并等待所有适配器的 `startup()` 方法，待运行完毕后再创建 `run()` 任务。
         """
         pass
 
     async def shutdown(self):
         """在适配器结束运行时运行的方法，用于安全地关闭适配器。
 
-        retrofor_wut 在接收到系统的结束信号后依次运行并等待所有适配器的 `shutdown()` 方法。
+        iamai 在接收到系统的结束信号后依次运行并等待所有适配器的 `shutdown()` 方法。
         当强制退出时此方法可能未被执行。
         """
         pass
