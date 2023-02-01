@@ -28,7 +28,7 @@
   </a>
   <br>
   <a style="text-decoration:none" href="https://retrofor.space" target="_blank">
-    <img src="https://img.shields.io/badge/Website-retrofor.space-green?style=flat-square" alt="Website" />
+    <img src="https://img.shields.io/badge/Website-doc.retrofor.space-green?style=flat-square" alt="Website" />
   </a>
   <br>
   <a href="https://pypi.python.org/pypi/retrofor_wut">
