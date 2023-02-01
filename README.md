@@ -27,8 +27,8 @@
     <img src="https://img.shields.io/badge/-Telegram-26A5E4?style=flat-square&logo=telegram&logoColor=white">
   </a>
   <br>
-  <a style="text-decoration:none" href="https://retrofor.space" target="_blank">
-    <img src="https://img.shields.io/badge/Website-doc.retrofor.space-green?style=flat-square" alt="Website" />
+  <a style="text-decoration:none" href="https://iamai.retrofor.space" target="_blank">
+    <img src="https://img.shields.io/badge/Website-iamai.retrofor.space-green?style=flat-square" alt="Website" />
   </a>
   <br>
   <a href="https://pypi.python.org/pypi/iamai">
@@ -52,25 +52,25 @@ Cross-platform robot framework, mainly used for machine learning.
 
 ## 🚀 Features
 
-- 🎪 **Interactive [docs](https://doc.retrofor.space) &amp; [demos](https://doc.retrofor.space/demos)**
+- 🎪 **Interactive [docs](https://iamai.retrofor.space) &amp; [demos](https://iamai.retrofor.space/demos)**
 - 🕶 **Seamless migration**: Works for **both** [Rasa]() and [GPT]() and more...
-- ⚡ **Fully tree shakeable**: Only take what you want, [bundle size](https://doc.retrofor.space/export-size)
+- ⚡ **Fully tree shakeable**: Only take what you want, [bundle size](https://iamai.retrofor.space/export-size)
 - 🔩 **Flexible**: Configurable event filters and targets
-- 🔌 **Optional [Add-ons](https://doc.retrofor.space/add-ons)**: [Apscheduler](https://doc.retrofor.space/add-ons/apscheduler), etc.
-- 👍 **Cross-platform**: [Onebot](https://doc.retrofor.space/adapters/onebot), [Wechat](https://doc.retrofor.space/adapters/wechat), [Twitter](https://doc.retrofor.space/adapters/twitter), [Bilibili](https://doc.retrofor.space/adapters/bilibili), [Github](https://doc.retrofor.space/adapters/github), etc.
+- 🔌 **Optional [Add-ons](https://iamai.retrofor.space/add-ons)**: [Apscheduler](https://iamai.retrofor.space/add-ons/apscheduler), etc.
+- 👍 **Cross-platform**: [Onebot](https://iamai.retrofor.space/adapters/onebot), [Wechat](https://iamai.retrofor.space/adapters/wechat), [Twitter](https://iamai.retrofor.space/adapters/twitter), [Bilibili](https://iamai.retrofor.space/adapters/bilibili), [Github](https://iamai.retrofor.space/adapters/github), etc.
 
 ## ⬇️ Install
 
 - STABLE VERSION
   ```sh
-  pip install retrofor-wut
+  pip install iamai
   ```
 
 or you can also install for TEST.
 
 - TEST VERSION
   ```sh
-  pip install -i https://test.pypi.org/simple/ retrofor-wut
+  pip install -i https://test.pypi.org/simple/ iamai
   ```
 
 ## ❗ Usage
