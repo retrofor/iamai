@@ -1,4 +1,4 @@
-from retrofor_wut import Plugin
+from iamai import Plugin
 
 
 class Echo(Plugin):

@@ -4,9 +4,9 @@ with open("README.md", "rb") as fh:
     long_description = fh.read().decode("utf-8")
 
 setuptools.setup(
-    name='retrofor_wut',
-    version='4.0.2',
-    url='https://github.com/retrofor/retrofor_wut',
+    name='iamai',
+    version='5.0.0',
+    url='https://github.com/retrofor/iamai',
     license='MIT',
     author='简律纯',
     author_email='HsiangNianian@outlook.com',
