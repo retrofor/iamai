@@ -57,7 +57,7 @@ Cross-platform robot framework, mainly used for machine learning.
 - ⚡ **Fully tree shakeable**: Only take what you want, [bundle size](https://doc.retrofor.space/export-size)
 - 🔩 **Flexible**: Configurable event filters and targets
 - 🔌 **Optional [Add-ons](https://doc.retrofor.space/add-ons)**: [Apscheduler](https://doc.retrofor.space/add-ons/apscheduler), etc.
-- 👍 **Cross-platform**: [Onebot](https://doc.retrofor.space/adapters/onebot), [Wechat](https://doc.retrofor.space/adapters/wechat), [Twitter](https://doc.retrofor.space/adapters/twitter), [Bilibili](https://doc.retrofor.space/adapters/bilibili), [Github](https://doc.retrofor.space/adapters/github)
+- 👍 **Cross-platform**: [Onebot](https://doc.retrofor.space/adapters/onebot), [Wechat](https://doc.retrofor.space/adapters/wechat), [Twitter](https://doc.retrofor.space/adapters/twitter), [Bilibili](https://doc.retrofor.space/adapters/bilibili), [Github](https://doc.retrofor.space/adapters/github), etc.
 
 ## ⬇️ Install
 
