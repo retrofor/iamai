@@ -5,7 +5,7 @@ with open("README.md", "rb") as fh:
 
 setuptools.setup(
     name='retrofor_wut',
-    version='4.0.0',
+    version='4.0.2',
     url='https://github.com/retrofor/retrofor_wut',
     license='MIT',
     author='简律纯',
