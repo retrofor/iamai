@@ -6,3 +6,4 @@ aiohttp==3.8.3
 typing-extensions==4.4.0
 pydantic==1.10.4
 watchfiles==0.18.1
+apscheduler==3.10.0
