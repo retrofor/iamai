@@ -8,9 +8,9 @@
     "archive": "yarn workspace iamai docusaurus docs:version",
     "build": "yarn workspace website build",
     "build:plugin": "cross-env BASE_URL='/website/' yarn workspace iamai build",
-    "start": "yarn iamai nonebot start",
-    "serve": "yarn iamai nonebot serve",
-    "clear": "yarn iamai nonebot clear",
+    "start": "yarn workspace iamai start",
+    "serve": "yarn workspace iamai serve",
+    "clear": "yarn workspace iamai clear",
     "prettier": "prettier --config ./.prettierrc --write \"./website/\""
   },
   "devDependencies": {
