@@ -15,8 +15,8 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
-#       - name: Setup Python Environment
-#         uses: ./.github/actions/setup-python
+       - name: Setup Python Environment
+         uses: ./.github/actions/setup-python
 
       - name: Setup Node Environment
         uses: ./.github/actions/setup-node
