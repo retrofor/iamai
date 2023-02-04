@@ -126,6 +126,8 @@ const config = {
             label: 'Tutorial',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
+          {to: '/adapter', label: 'Adapter', position: 'left'},
+          {to: '/model', label: 'Model', position: 'left'},
           {
             type: 'localeDropdown',
             position: 'right',
