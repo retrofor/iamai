@@ -1,0 +1,62 @@
+name: Lighthouse Report
+
+on:
+  pull_request_target:
+    branches:
+      - main
+      - docusaurus-v**
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  lighthouse-report:
+    permissions:
+      pull-requests: write # for marocchino/sticky-pull-request-comment
+    name: Lighthouse Report
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3
+      - name: Wait for the Netlify Preview
+        uses: jakepartusch/wait-for-netlify-action@f1e137043864b9ab9034ae3a5adc1c108e3f1a48 # v1
+        id: netlify
+        with:
+          site_name: docusaurus-2
+          max_timeout: 600
+      - name: Audit URLs using Lighthouse
+        id: lighthouse_audit
+        uses: treosh/lighthouse-ci-action@e0fe113967eee84b631d526ed18ce001f35fe9e9 # 9.3.1
+        with:
+          urls: |
+            https://deploy-preview-$PR_NUMBER--docusaurus-2.netlify.app/
+            https://deploy-preview-$PR_NUMBER--docusaurus-2.netlify.app/docs/installation
+          configPath: ./.github/workflows/lighthouserc.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number}}
+      - name: Format lighthouse score
+        id: format_lighthouse_score
+        uses: actions/github-script@98814c53be79b1d30f795b907e553d8679345975 # v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const results = ${{ steps.lighthouse_audit.outputs.manifest }}
+            const links = ${{ steps.lighthouse_audit.outputs.links }}
+            const createLighthouseReport = (await import(`${process.env.GITHUB_WORKSPACE}/admin/scripts/formatLighthouseReport.js`)).default;
+            const comment = createLighthouseReport({ results, links });
+            core.setOutput("comment", comment);
+
+      - name: Add Lighthouse stats as comment
+        id: comment_to_pr
+        uses: marocchino/sticky-pull-request-comment@fcf6fe9e4a0409cd9316a5011435be0f3327f1e1 # v2.2.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          number: ${{ github.event.pull_request.number }}
+          header: lighthouse
+          message: ${{ steps.format_lighthouse_score.outputs.comment }}

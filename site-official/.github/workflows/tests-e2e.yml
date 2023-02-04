@@ -1,0 +1,187 @@
+name: E2E Tests
+
+on:
+  push:
+    branches:
+      - main
+      - docusaurus-v**
+    paths:
+      - package.json
+      - yarn.lock
+      - jest.config.mjs
+      - packages/**
+      - tsconfig.json
+  pull_request:
+    branches:
+      - main
+      - docusaurus-v**
+    paths:
+      - package.json
+      - yarn.lock
+      - jest.config.mjs
+      - packages/**
+      - tsconfig.json
+      - admin/verdaccio.yaml
+      - .github/workflows/tests-e2e.yml
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  yarn-v1:
+    name: E2E — Yarn v1
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ['16.14', '16', '18']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: yarn
+      - name: Installation
+        run: yarn
+      - name: Generate test-website project against main branch
+        run: yarn test:build:website -s
+      - name: Install test-website project with Yarn v1
+        run: yarn install
+        working-directory: ../test-website
+        env:
+          npm_config_registry: http://localhost:4873
+      - name: Start test-website project
+        run: yarn start --no-open
+        working-directory: ../test-website
+        env:
+          E2E_TEST: true
+      - name: Build test-website project
+        run: yarn build
+        working-directory: ../test-website
+
+  yarn-berry:
+    name: E2E — Yarn Berry
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        nodeLinker: [pnp, node-modules]
+        variant: [-s, -st]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3
+      - name: Use Node.js 16
+        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3
+        with:
+          node-version: '16'
+          cache: yarn
+      - name: Installation
+        run: yarn
+      - name: Generate test-website project with ${{ matrix.variant }} against main branch
+        run: yarn test:build:website ${{ matrix.variant }}
+      - name: Install test-website project with Yarn Berry and nodeLinker = ${{ matrix.nodeLinker }}
+        run: |
+          yarn set version berry
+
+          yarn config set nodeLinker ${{ matrix.nodeLinker }}
+          yarn config set npmRegistryServer http://localhost:4873
+          yarn config set unsafeHttpWhitelist --json '["localhost"]'
+          yarn config set enableGlobalCache true
+
+          # Make PnP as strict as possible
+          # https://yarnpkg.com/features/pnp#fallback-mode
+          yarn config set pnpFallbackMode none
+
+          yarn install
+        working-directory: ../test-website
+        env:
+          YARN_ENABLE_IMMUTABLE_INSTALLS: false # Yarn berry should create the lockfile, despite CI env
+      - name: Install missing dependencies
+        if: matrix.variant == '-st' && matrix.nodeLinker == 'pnp'
+        run: |
+          # These dependencies are referenced in the init project, not by our packages
+          yarn add @docusaurus/theme-classic @docusaurus/types @types/node
+          yarn config set packageExtensions --json '{ "unified@^9.2.2": { "dependencies": { "@types/unist": "^2.0.6" } } }'
+        working-directory: ../test-website
+      - name: Start test-website project
+        run: yarn start --no-open
+        working-directory: ../test-website
+        env:
+          E2E_TEST: true
+      - name: Type check
+        # TODO: there're some lingering issues with PnP + tsc. Enable tsc in PnP later.
+        if: matrix.variant == '-st' && matrix.nodeLinker != 'pnp'
+        run: yarn typecheck
+        working-directory: ../test-website
+      - name: Build test-website project
+        run: yarn build
+        working-directory: ../test-website
+
+  npm:
+    name: E2E — npm
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3
+      - name: Use Node.js 16
+        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3
+        with:
+          node-version: '16'
+          cache: yarn
+      - name: Installation
+        run: yarn
+      - name: Generate test-website project against main branch
+        run: yarn test:build:website -s
+      - name: Install test-website project with npm
+        run: npm install
+        working-directory: ../test-website
+        env:
+          npm_config_registry: http://localhost:4873
+      - name: Start test-website project
+        run: npm run start -- --no-open
+        working-directory: ../test-website
+        env:
+          E2E_TEST: true
+      - name: Build test-website project
+        run: npm run build
+        working-directory: ../test-website
+
+  pnpm:
+    name: E2E — pnpm
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3
+      - name: Use Node.js 16
+        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3
+        with:
+          node-version: '16'
+          cache: yarn
+      - name: Installation
+        run: yarn
+      - name: Generate test-website project against main branch
+        run: yarn test:build:website -s
+      - name: Install test-website project with pnpm
+        run: |
+          npm install -g pnpm
+          # Fix some peer dependencies errors
+          pnpm add @algolia/client-search @types/react@17 typescript
+        working-directory: ../test-website
+        env:
+          npm_config_registry: http://localhost:4873
+      - name: Start test-website project
+        run: pnpm start --no-open
+        working-directory: ../test-website
+        env:
+          E2E_TEST: true
+      - name: Build test-website project
+        run: pnpm run build
+        working-directory: ../test-website
