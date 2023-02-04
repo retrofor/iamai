@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'IAMAI | retrofor',
+  title: 'IAMAI',
   tagline: 'Cross-platform robot framework, mainly used for ML',
   favicon: 'img/retro.ico',
 
@@ -113,7 +113,7 @@ const config = {
       
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'I AM AI',
+        title: 'retrofor?',
         logo: {
           alt: 'logo',
           src: 'img/logo.svg',
@@ -176,7 +176,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © 2022-${new Date().getFullYear()} , I AM AI. Built with Docusaurus.`,
+        copyright: `Copyright © 2022-${new Date().getFullYear()} , retrofor.`,
       },
       prism: {
         theme: lightCodeTheme,
