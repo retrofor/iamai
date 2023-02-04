@@ -61,13 +61,13 @@ jobs:
 #       - name: Build API Doc
 #         uses: ./.github/actions/build-api-doc
 
-      - name: change dir
-        run: |
-            cd ./website
-            ls 
+#       - name: change dir
+#         run: |
+#             cd ./website
+#             ls 
         
       - name: Build Doc
-        run: yarn workspace ./website build
+        run: yarn workspace website build
 
       - name: Get Branch Name
         run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
