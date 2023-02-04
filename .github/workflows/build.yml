@@ -67,7 +67,7 @@ jobs:
             ls 
         
       - name: Build Doc
-        run: npm run build
+        run: docusaurus build
 
       - name: Get Branch Name
         run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
