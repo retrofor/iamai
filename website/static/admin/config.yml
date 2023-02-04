@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: retrofor/retrofor.github.io # Path to your GitHub repository
+  repo: retrofor/iamai # Path to your GitHub repository
   # optional, defaults to master
   # branch: main
 publish_mode: editorial_workflow
