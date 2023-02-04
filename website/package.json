@@ -6,7 +6,7 @@
   ],
   "scripts": {
     "archive": "yarn workspace iamai docusaurus docs:version",
-    "build": "yarn workspace website build",
+    "build": "yarn build",
     "build:plugin": "cross-env BASE_URL='/website/' yarn workspace iamai build",
     "start": "yarn workspace iamai start",
     "serve": "yarn workspace iamai serve",
