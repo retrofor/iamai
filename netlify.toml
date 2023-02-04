@@ -3,3 +3,7 @@
   # This is where we will look for package.json/.nvmrc/etc.
   # If not set, defaults to the root directory.
   base = "website/"
+
+[[plugins]]
+  # Installs the Lighthouse Build Plugin for all deploy contexts
+  package = "@netlify/plugin-lighthouse"
