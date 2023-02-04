@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'retrofor',
+  title: 'IAMAI | retrofor',
   tagline: 'Cross-platform robot framework, mainly used for ML',
   favicon: 'img/retro.ico',
 
@@ -19,7 +19,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'retrofor', // Usually your GitHub org/user name.
-  projectName: 'retro', // Usually your repo name.
+  projectName: 'iamai', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -51,14 +51,14 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/retrofor/iamai/tree/main/website/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/retrofor/iamai/tree/main/website/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -83,18 +83,18 @@ const config = {
 //       },
       algolia: {
         // Algolia 提供的应用 ID
-        appId: '7E3QLV-E2Z5M',
+        appId: '93ADZ3VAOB',
   
         //  公开 API 密钥：提交它没有危险
-        apiKey: 'bf7211c161e8205da2f933a02534105a',
+        apiKey: '47fa7610cea0b76aa428d0a28d7a5491',
   
-        indexName: 'doc.retrofor.space-2',
+        indexName: 'iamai.retrofor.space',
   
         // 可选：见下文
         contextualSearch: true,
   
         // 可选：声明哪些域名需要用 window.location 型的导航而不是 history.push。 适用于 Algolia 配置会爬取多个文档站点，而我们想要用 window.location.href 在它们之间跳转时。
-        externalUrlRegex: 'external\\.com|domain\\.com',
+        // externalUrlRegex: 'external\\.com|domain\\.com',
   
         // Optional: Replace parts of the item URLs from Algolia. Useful when using the same search index for multiple deployments using a different baseUrl. You can use regexp or string in the `from` param. For example: localhost:3000 vs myCompany.com/docs
         replaceSearchResultPathname: {
@@ -113,9 +113,9 @@ const config = {
       
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'My Site',
+        title: 'I AM AI',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'logo',
           src: 'img/logo.svg',
         },
         items: [
@@ -131,7 +131,7 @@ const config = {
             position: 'right',
           },
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/retrofor/iamai',
             label: 'GitHub',
             position: 'right',
           },
@@ -153,16 +153,12 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
                 label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                href: 'https://discordapp.com/invite/retrofor',
               },
               {
                 label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                href: 'https://twitter.com/HsiangNianian',
               },
             ],
           },
@@ -174,13 +170,13 @@ const config = {
                 to: '/blog',
               },
               {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                label: 'Organization',
+                href: 'https://github.com/retrofor',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © 2022-${new Date().getFullYear()} , I AM AI. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
