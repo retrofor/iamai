@@ -1,7 +1,20 @@
 {
-  "dependencies": {
-    "@cmfcmf/docusaurus-search-local": "^0.11.0",
-    "@docusaurus/theme-live-codeblock": "^2.3.1",
-    "@docusaurus/theme-search-algolia": "^2.3.1"
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "website"
+  ],
+  "scripts": {
+    "archive": "yarn workspace iamai docusaurus docs:version",
+    "build": "yarn workspace website build",
+    "build:plugin": "cross-env BASE_URL='/website/' yarn workspace iamai build",
+    "start": "yarn workspace iamai start",
+    "serve": "yarn workspace iamai serve",
+    "clear": "yarn workspace iamai clear",
+    "prettier": "prettier --config ./.prettierrc --write \"./website/\""
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "prettier": "^2.5.0"
   }
 }
