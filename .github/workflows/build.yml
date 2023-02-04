@@ -49,14 +49,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup Python Environment
-        uses: ./.github/actions/setup-python
+#       - name: Setup Python Environment
+#         uses: ./.github/actions/setup-python
 
       - name: Setup Node Environment
         uses: ./.github/actions/setup-node
 
-      - name: Build API Doc
-        uses: ./.github/actions/build-api-doc
+#       - name: Build API Doc
+#         uses: ./.github/actions/build-api-doc
 
       - name: Build Doc
         run: yarn build
