@@ -69,18 +69,18 @@ const config = {
   
   // plugins: ['@docusaurus/theme-live-codeblock'],
 
-  themes: ['@docusaurus/theme-live-codeblock'],
+//   themes: ['@docusaurus/theme-live-codeblock'],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      liveCodeBlock: {
-        /**
-         * 实时效果显示的位置，在编辑器上方还是下方。
-         * 可为："top" | "bottom"
-         */
-        playgroundPosition: 'bottom',
-      },
+//       liveCodeBlock: {
+//         /**
+//          * 实时效果显示的位置，在编辑器上方还是下方。
+//          * 可为："top" | "bottom"
+//          */
+//         playgroundPosition: 'bottom',
+//       },
       algolia: {
         // Algolia 提供的应用 ID
         appId: '7E3QLV-E2Z5M',
