@@ -62,7 +62,9 @@ jobs:
 #         uses: ./.github/actions/build-api-doc
 
       - name: change dir
-        run: cd website
+        run: |
+            cd ./website
+            ls 
         
       - name: Build Doc
         run: npm run build
