@@ -6,7 +6,7 @@ on:
     branches-ignore: [edit]
     # Remove the line above to run when pushing to master
   pull_request:
-    branches: [master]
+    branches: [main]
 
 ###############
 # Set the Job #

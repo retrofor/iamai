@@ -1,0 +1,143 @@
+backend:
+  name: github
+  repo: retrofor/retrofor.github.io # Path to your GitHub repository
+  # optional, defaults to master
+  # branch: main
+publish_mode: editorial_workflow
+media_folder: "static/img/post" # 存放图片的文件夹
+public_folder: "/img/post" # 上传图片的src属性会以该路径开头
+collections:
+  - name: "opt" # 定义该collection的路径
+    label: "blog" # 后台显示的名字
+    folder: "blog"
+    create: true # 允许创建新文件
+    slug: "{{slug}}" # 文件名字模版，{{slug}} 取自title
+    fields: # 定义front matter的显示与数据类型
+      - { label: "Title", name: "title", widget: "string" }
+      - {
+          label: "Authors",
+          name: "authors",
+          widget: "string",
+          default: "Hsiang_Nianian",
+        }
+      - { label: "Type", name: "type", widget: "string", default: "post" }
+      - { label: "Categories", name: "categories", widget: "list" }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - { label: "Series", name: "series", widget: "list", required: false }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - {
+          label: "Lastmod",
+          name: "lastmod",
+          widget: "date",
+          default: "",
+          required: false,
+          format: "YYYY-MM-DD",
+        }
+      - {
+          label: "Description",
+          name: "description",
+          widget: "text",
+          required: false,
+        }
+      - {
+          label: "Featured Image",
+          name: "featured",
+          widget: "image",
+          required: false,
+        }
+      - {
+          label: "Featured Alt",
+          name: "featuredalt",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Featured Path",
+          name: "featuredpath",
+          widget: "string",
+          default: "img/post",
+          required: false,
+        }
+      - { label: "Slug", name: "slug", widget: "string", required: false }
+      - {
+          label: "Draft",
+          name: "draft",
+          widget: "boolean",
+          default: false,
+          required: false,
+        }
+      - {
+          label: "Show TOC",
+          name: "showtoc",
+          widget: "boolean",
+          default: true,
+          required: false,
+        }
+      - { label: "Post Content", name: "body", widget: "markdown" }
+  - name: "opt-2" # 定义该collection的路径
+    label: "docs" # 后台显示的名字
+    folder: "docs"
+    create: true # 允许创建新文件
+    slug: "{{slug}}" # 文件名字模版，{{slug}} 取自title
+    fields: # 定义front matter的显示与数据类型
+      - { label: "Title", name: "title", widget: "string" }
+      - {
+          label: "Authors",
+          name: "authors",
+          widget: "string",
+          default: "Hsiang_Nianian",
+        }
+      - { label: "Type", name: "type", widget: "string", default: "post" }
+      - { label: "Categories", name: "categories", widget: "list" }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - { label: "Series", name: "series", widget: "list", required: false }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - {
+          label: "Lastmod",
+          name: "lastmod",
+          widget: "date",
+          default: "",
+          required: false,
+          format: "YYYY-MM-DD",
+        }
+      - {
+          label: "Description",
+          name: "description",
+          widget: "text",
+          required: false,
+        }
+      - {
+          label: "Featured Image",
+          name: "featured",
+          widget: "image",
+          required: false,
+        }
+      - {
+          label: "Featured Alt",
+          name: "featuredalt",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Featured Path",
+          name: "featuredpath",
+          widget: "string",
+          default: "img/post",
+          required: false,
+        }
+      - { label: "Slug", name: "slug", widget: "string", required: false }
+      - {
+          label: "Draft",
+          name: "draft",
+          widget: "boolean",
+          default: false,
+          required: false,
+        }
+      - {
+          label: "Show TOC",
+          name: "showtoc",
+          widget: "boolean",
+          default: true,
+          required: false,
+        }
+      - { label: "Post Content", name: "body", widget: "markdown" }
