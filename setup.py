@@ -5,11 +5,11 @@ with open("README.md", "rb") as fh:
 
 setuptools.setup(
     name='iamai',
-    version='5.0.0',
+    version='5.0.2',
     url='https://github.com/retrofor/iamai',
     license='MIT',
     author='简律纯',
-    author_email='HsiangNianian@outlook.com',
+    author_email='admin@jyunko.cn',
     description='Cross-platform robot framework, mainly used for machine learning.',
     long_description=long_description,
     long_description_content_type="text/markdown",
