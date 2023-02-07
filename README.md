@@ -14,7 +14,7 @@
   </a>
 </p>
 <p align="center">
-  Adapters we support↓
+  Adapters we support
 </p>
 <p align="center">
   <a style="text-decoration:none" href="https://onebot.dev" target="_blank">
@@ -35,7 +35,7 @@
   </a>
 </p>
 <p align="center">
-  Analyse↓
+  data below
 </p>
 <p align="center">
   <a style="text-decoration:none" href="https://iamai.retrofor.space" target="_blank">
