@@ -10,7 +10,7 @@ repos:
     rev: v2.1.3
     hooks:
       - id: pycln
-        args: [--config, pyproject.toml]
+        args: [--config, setup.py]
 
   - repo: https://github.com/pycqa/isort
     rev: 5.12.0
