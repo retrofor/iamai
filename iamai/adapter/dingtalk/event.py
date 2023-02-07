@@ -1,13 +1,13 @@
 """DingTalk 适配器事件。"""
 import time
-from typing import TYPE_CHECKING, Any, Dict, List, Union, Literal, Optional
+from typing import TYPE_CHECKING, Any, Dict, List, Literal, Optional, Union
 
-from pydantic import Field, BaseModel, validator
+from pydantic import BaseModel, Field, validator
 
 from iamai.event import Event
 
-from .message import DingTalkMessage
 from .exceptions import WebhookExpiredError
+from .message import DingTalkMessage
 
 if TYPE_CHECKING:
     from . import DingTalkAdapter  # noqa

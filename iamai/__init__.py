@@ -10,8 +10,8 @@
 """
 name = "iamai"
 
+from iamai.adapter import Adapter
 from iamai.bot import Bot
+from iamai.config import ConfigModel
 from iamai.event import Event
 from iamai.plugin import Plugin
-from iamai.adapter import Adapter
-from iamai.config import ConfigModel

@@ -2,11 +2,11 @@
 import inspect
 from typing import Type
 
-from .mate import *
-from .notice import *
-from .message import *
-from .request import *
 from .base import T_MiraiEvent
+from .mate import *
+from .message import *
+from .notice import *
+from .request import *
 
 _mirai_events = {
     name: model

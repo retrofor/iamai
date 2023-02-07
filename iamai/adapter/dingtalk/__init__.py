@@ -3,22 +3,22 @@
 本适配器适配了钉钉企业自建机器人协议。
 协议详情请参考: [钉钉开放平台](https://developers.dingtalk.com/document/robots/robot-overview) 。
 """
-import hmac
-import time
 import base64
 import hashlib
-from typing import Any, Dict, Union, Literal
+import hmac
+import time
+from typing import Any, Dict, Literal, Union
 
 import aiohttp
 from aiohttp import web
 
 from iamai.adapter import Adapter
-from iamai.log import logger, error_or_exception
+from iamai.log import error_or_exception, logger
 
 from .config import Config
 from .event import DingTalkEvent
-from .message import DingTalkMessage
 from .exceptions import ApiTimeout, NetworkError
+from .message import DingTalkMessage
 
 __all__ = ["DingTalkAdapter"]
 
