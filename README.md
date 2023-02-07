@@ -3,7 +3,7 @@
   iamai
 </h1>
 <p align="center">
-  Cross-platform robot framework, mainly used for ML.
+  Cross-platform robot framework, mainly used for ML
 </p>
 <p align="center">
   <a style="text-decoration:none" href="https://www.codacy.com/gh/retrofor/iamai/dashboard?utm_source=github.com&utm_medium=referral&utm_content=retrofor/iamai&utm_campaign=Badge_Gradee" target="_blank">
@@ -12,6 +12,16 @@
   <a style="text-decoration:none" href="https://app.netlify.com/sites/iamai-retrofor-space/deploys" target="_blank">
     <img src="https://api.netlify.com/api/v1/badges/c37c65c2-3c25-40b0-8314-cf86bfe59f55/deploy-status" alt="Site Deploy" />
   </a>
+  <br>
+  <a style="text-decoration:none" href="https://iamai.retrofor.space" target="_blank">
+    <img src="https://img.shields.io/badge/Website-iamai.retrofor.space-green?style=flat-square" alt="Website" />
+  </a>
+  <br>
+  <a href="https://pypi.python.org/pypi/iamai">
+    <img src="https://img.shields.io/pypi/v/iamai?style=flat-square" alt="pypi">
+  </a>
+  <img src="https://img.shields.io/badge/python-3.8+-blue?style=flat-square" alt="python">
+  <br>
 </p>
 <p align="center">
   Adapters we support
@@ -38,15 +48,6 @@
   data below
 </p>
 <p align="center">
-  <a style="text-decoration:none" href="https://iamai.retrofor.space" target="_blank">
-    <img src="https://img.shields.io/badge/Website-iamai.retrofor.space-green?style=flat-square" alt="Website" />
-  </a>
-  <br>
-  <a href="https://pypi.python.org/pypi/iamai">
-    <img src="https://img.shields.io/pypi/v/iamai?style=flat-square" alt="pypi">
-  </a>
-  <img src="https://img.shields.io/badge/python-3.8+-blue?style=flat-square" alt="python">
-  <br>
   <img src="https://img.shields.io/github/forks/retrofor/iamai?style=social" >
   <img src="https://img.shields.io/github/stars/retrofor/iamai?style=social" >
   <br>
