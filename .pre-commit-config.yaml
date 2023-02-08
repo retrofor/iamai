@@ -45,11 +45,11 @@ repos:
         # * review only changed lines:
         # * omit the summary
         args: [--diff=git diff HEAD, --no-summary]
-No
-exclude: |
-  (?x)^(
-    etc|
-    .*?/migrations|
-    bmiss/settings/instance.*|
-    .*?proto.*
-  )
+
+#exclude: |
+#  (?x)^(
+#    etc|
+#    .*?/migrations|
+#    bmiss/settings/instance.*|
+#    .*?proto.*
+#  )
