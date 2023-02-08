@@ -12,7 +12,8 @@ from functools import partial
 from importlib.abc import MetaPathFinder
 from importlib.machinery import PathFinder
 from types import ModuleType
-from typing import Any, Callable, Coroutine, Iterable, List, Tuple, Type, TypeVar
+from typing import (Any, Callable, Coroutine, Iterable, List, Tuple, Type,
+                    TypeVar)
 
 from typing_extensions import ParamSpec
 
