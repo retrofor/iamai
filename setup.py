@@ -4,17 +4,16 @@ with open("README.md", "rb") as fh:
     long_description = fh.read().decode("utf-8")
 
 setuptools.setup(
-    name='iamai',
-    version='5.0.2',
-    url='https://github.com/retrofor/iamai',
-    license='MIT',
-    author='简律纯',
-    author_email='admin@jyunko.cn',
-    description='Cross-platform robot framework, mainly used for machine learning.',
+    name="iamai",
+    version="5.0.2",
+    url="https://github.com/retrofor/iamai",
+    license="MIT",
+    author="简律纯",
+    author_email="admin@jyunko.cn",
+    description="Cross-platform robot framework, mainly used for machine learning.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(),
-
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Framework :: AsyncIO",
@@ -26,6 +25,15 @@ setuptools.setup(
         "Topic :: Software Development :: Code Generators",
         "Topic :: Communications :: Chat",
     ],
-    python_requires='>=3.8',
-    install_requires=['flask','pydantic','loguru','aiohttp','tomli','typing-extensions','pydantic','watchfiles'],
+    python_requires=">=3.8",
+    install_requires=[
+        "flask",
+        "pydantic",
+        "loguru",
+        "aiohttp",
+        "tomli",
+        "typing-extensions",
+        "pydantic",
+        "watchfiles",
+    ],
 )
