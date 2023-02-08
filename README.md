@@ -22,7 +22,7 @@
   </a>
   <img src="https://img.shields.io/badge/python-3.8+-blue?style=flat-square" alt="python">
   <br>
-  <img src="https://results.pre-commit.ci/latest/github/retrofor/iamai/main.svg">
+  <img src="https://results.pre-commit.ci/badge/github/retrofor/iamai/main.svg">
 </p>
 <p align="center">
   Adapters we support
