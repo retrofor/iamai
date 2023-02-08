@@ -18,13 +18,8 @@ from iamai.log import error_or_exception, logger
 from iamai.utils import DataclassEncoder
 
 from .config import Config
-from .event import (
-    BotEvent,
-    CommandExecutedEvent,
-    MateEvent,
-    MiraiEvent,
-    get_event_class,
-)
+from .event import (BotEvent, CommandExecutedEvent, MateEvent, MiraiEvent,
+                    get_event_class)
 from .exceptions import ActionFailed, ApiTimeout, NetworkError
 from .message import MiraiMessage
 

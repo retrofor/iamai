@@ -18,23 +18,14 @@ from pydantic import ValidationError, create_model
 
 from iamai.adapter import Adapter
 from iamai.config import AdapterConfig, ConfigModel, MainConfig, PluginConfig
-from iamai.exceptions import (
-    GetEventTimeout,
-    LoadModuleError,
-    SkipException,
-    StopException,
-)
+from iamai.exceptions import (GetEventTimeout, LoadModuleError, SkipException,
+                              StopException)
 from iamai.log import error_or_exception, logger
 from iamai.plugin import Plugin, PluginLoadType
 from iamai.typing import T_AdapterHook, T_BotHook, T_Event, T_EventHook
-from iamai.utils import (
-    ModulePathFinder,
-    get_classes_from_dir,
-    get_classes_from_module_name,
-    is_config_class,
-    samefile,
-    sync_func_wrapper,
-)
+from iamai.utils import (ModulePathFinder, get_classes_from_dir,
+                         get_classes_from_module_name, is_config_class,
+                         samefile, sync_func_wrapper)
 
 try:
     import tomllib  # noqa

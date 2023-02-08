@@ -5,7 +5,8 @@
 import asyncio
 import os
 from abc import ABC, abstractmethod
-from typing import TYPE_CHECKING, Awaitable, Callable, Generic, Optional, Type, Union
+from typing import (TYPE_CHECKING, Awaitable, Callable, Generic, Optional,
+                    Type, Union)
 
 from iamai.config import ConfigModel
 from iamai.log import error_or_exception
