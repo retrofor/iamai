@@ -20,10 +20,10 @@ repos:
     hooks:
       - id: flake8
 
-  - repo: https://github.com/psf/black
-    rev: 21.6b0
-    hooks:
-      - id: black
+#  - repo: https://github.com/psf/black
+#    rev: 21.6b0
+#    hooks:
+#      - id: black
 
   - repo: https://github.com/pycqa/isort
     rev: 5.12.0
