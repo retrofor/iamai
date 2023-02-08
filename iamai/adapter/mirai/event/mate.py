@@ -1,6 +1,6 @@
 from typing import Any, List, Literal, Optional
 
-from .base import FriendInfo, GroupMemberInfo, MiraiEvent
+from .base import FriendInfo, MiraiEvent, GroupMemberInfo
 
 
 class MateEvent(MiraiEvent):

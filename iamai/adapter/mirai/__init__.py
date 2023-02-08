@@ -4,24 +4,29 @@
 本适配器支持 mirai-api-http 的 Websocket Adapter 模式和 Reverse Websocket Adapter 模式。
 协议详情请参考: [mirai-api-http](https://github.com/project-mirai/mirai-api-http) 。
 """
-import asyncio
-import json
 import sys
+import json
 import time
+import asyncio
 from functools import partial
 from typing import TYPE_CHECKING, Any, Dict, Literal, Optional
 
 import aiohttp
 
-from iamai.adapter.utils import WebSocketAdapter
-from iamai.log import error_or_exception, logger
 from iamai.utils import DataclassEncoder
+from iamai.adapter.utils import WebSocketAdapter
+from iamai.log import logger, error_or_exception
 
 from .config import Config
-from .event import (BotEvent, CommandExecutedEvent, MateEvent, MiraiEvent,
-                    get_event_class)
-from .exceptions import ActionFailed, ApiTimeout, NetworkError
 from .message import MiraiMessage
+from .exceptions import ApiTimeout, ActionFailed, NetworkError
+from .event import (
+    BotEvent,
+    MateEvent,
+    MiraiEvent,
+    CommandExecutedEvent,
+    get_event_class,
+)
 
 if TYPE_CHECKING:
     from .message import T_MiraiMSG
