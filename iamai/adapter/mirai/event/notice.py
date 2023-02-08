@@ -3,12 +3,12 @@ from typing import Literal
 from pydantic import create_model
 
 from .base import (
-    Subject,
-    GroupInfo,
     FriendInfo,
+    GroupInfo,
+    GroupMemberInfo,
     MiraiEvent,
     Permission,
-    GroupMemberInfo,
+    Subject,
 )
 
 
