@@ -2,15 +2,14 @@
 
 所有协议适配器都必须继承自 `Adapter` 基类。
 """
-import asyncio
 import os
+import asyncio
 from abc import ABC, abstractmethod
-from typing import (TYPE_CHECKING, Awaitable, Callable, Generic, Optional,
-                    Type, Union)
+from typing import TYPE_CHECKING, Type, Union, Generic, Callable, Optional, Awaitable
 
 from iamai.config import ConfigModel
 from iamai.log import error_or_exception
-from iamai.typing import T_Config, T_Event
+from iamai.typing import T_Event, T_Config
 from iamai.utils import is_config_class, sync_func_wrapper
 
 if TYPE_CHECKING:

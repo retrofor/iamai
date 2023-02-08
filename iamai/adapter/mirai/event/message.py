@@ -1,7 +1,7 @@
 from typing import TYPE_CHECKING, Any, Dict, Literal
 
 from ..message import MiraiMessage
-from .base import FriendInfo, GroupMemberInfo, MiraiEvent, OtherClientSender
+from .base import FriendInfo, MiraiEvent, GroupMemberInfo, OtherClientSender
 
 if TYPE_CHECKING:
     from ..message import T_MiraiMSG

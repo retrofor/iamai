@@ -1,5 +1,5 @@
 """CQHTTP 适配器消息。"""
-from typing import Iterable, Literal, Mapping, Optional, Type, Union
+from typing import Type, Union, Literal, Mapping, Iterable, Optional
 
 from iamai.message import Message, MessageSegment
 

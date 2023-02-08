@@ -2,8 +2,14 @@ from typing import Literal
 
 from pydantic import create_model
 
-from .base import (FriendInfo, GroupInfo, GroupMemberInfo, MiraiEvent,
-                   Permission, Subject)
+from .base import (
+    Subject,
+    GroupInfo,
+    FriendInfo,
+    MiraiEvent,
+    Permission,
+    GroupMemberInfo,
+)
 
 
 class NoticeEvent(MiraiEvent):
