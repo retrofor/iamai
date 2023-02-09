@@ -12,6 +12,9 @@ backend:
     uploadMedia: ✨{{author-login}} Upload “{{path}}”
     deleteMedia: 🐱‍{{author-login}} Delete “{{path}}”
     openAuthoring: '{{author-login}}: {{message}}'
+  accept_roles: #optional - accepts all users if left out
+    - admin
+    - editor
 publish_mode: editorial_workflow
 media_folder: "/website/static/img/post" # 存放图片的文件夹
 public_folder: "/website/img/post" # 上传图片的src属性会以该路径开头
