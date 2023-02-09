@@ -37,7 +37,7 @@ logo_url: https://iamai.retrofor.space/img/logo.png
 collections:
   - name: "opt" # 定义该collection的路径
     label: "blog" # 后台显示的名字
-    folder: "blog"
+    folder: "website/blog"
     create: true # 允许创建新文件
     nested:
       depth: 100 # max depth to show in the collection tree
@@ -107,7 +107,7 @@ collections:
       - { label: "Post Content", name: "body", widget: "markdown" }
   - name: "opt-2" # 定义该collection的路径
     label: "docs" # 后台显示的名字
-    folder: "docs"
+    folder: "website/docs"
     create: true # 允许创建新文件
     nested:
       depth: 100 # max depth to show in the collection tree
