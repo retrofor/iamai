@@ -4,7 +4,7 @@ backend:
   # optional, defaults to master
   branch: main
 #   use_graphql: true
-#   squash_merges: true
+  squash_merges: true
   commit_messages:
     create: ✨{{author-login}} Create {{collection}} “{{slug}}”
     update: 🐱‍🏍{{author-login}} Update {{collection}} “{{slug}}”
