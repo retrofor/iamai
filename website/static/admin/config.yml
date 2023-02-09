@@ -4,8 +4,8 @@ backend:
   # optional, defaults to master
   branch: main
 publish_mode: editorial_workflow
-media_folder: "static/img/post" # 存放图片的文件夹
-public_folder: "/img/post" # 上传图片的src属性会以该路径开头
+media_folder: "/website/static/img/post" # 存放图片的文件夹
+public_folder: "/website/img/post" # 上传图片的src属性会以该路径开头
 collections:
   - name: "opt" # 定义该collection的路径
     label: "blog" # 后台显示的名字
