@@ -27,19 +27,19 @@ const config = {
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
-//   i18n: {
-//     defaultLocale: "en",
-//     locales: ["en", "zh-Hans"],
-//     localeConfigs: {
-//       en: {
-//         htmlLang: "en-GB",
-//       },
-//       // 如果你不需要覆盖默认值，你可以忽略这个语言（比如 zh-Hans）
-//       fa: {
-//         direction: "rtl",
-//       },
-//     },
-//   },
+  //   i18n: {
+  //     defaultLocale: "en",
+  //     locales: ["en", "zh-Hans"],
+  //     localeConfigs: {
+  //       en: {
+  //         htmlLang: "en-GB",
+  //       },
+  //       // 如果你不需要覆盖默认值，你可以忽略这个语言（比如 zh-Hans）
+  //       fa: {
+  //         direction: "rtl",
+  //       },
+  //     },
+  //   },
 
   presets: [
     [
@@ -124,10 +124,10 @@ const config = {
             label: "Tutorial",
           },
           { to: "/blog", label: "Blog", position: "left" },
-//           {
-//             type: "localeDropdown",
-//             position: "right",
-//           },
+          //           {
+          //             type: "localeDropdown",
+          //             position: "right",
+          //           },
           {
             href: "https://github.com/retrofor/iamai",
             label: "GitHub",
