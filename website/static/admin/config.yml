@@ -36,7 +36,7 @@ collections:
     label: "blog" # 后台显示的名字
     folder: "blog"
     create: true # 允许创建新文件
-     nested:
+    nested:
       depth: 100 # max depth to show in the collection tree
       summary: '{{title}}' # optional summary for a tree node, defaults to the inferred title field
     slug: "{{slug}}" # 文件名字模版，{{slug}} 取自title
@@ -106,7 +106,7 @@ collections:
     label: "docs" # 后台显示的名字
     folder: "docs"
     create: true # 允许创建新文件
-     nested:
+    nested:
       depth: 100 # max depth to show in the collection tree
       summary: '{{title}}' # optional summary for a tree node, defaults to the inferred title field
     slug: "{{slug}}" # 文件名字模版，{{slug}} 取自title
