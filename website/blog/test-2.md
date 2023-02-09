@@ -11,13 +11,12 @@ lastmod: 2023-02-09
 description: vaka
 featured: /website/img/post/logo.png
 featuredpath: img/post
-slug: ""
+slug: test
 draft: false
 showtoc: true
 ---
 
 w﻿uuuuuuuuuuuuuuuuuuuuuuuhuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu!
 
-# t﻿his is the second test blog.
-
+# t﻿his is the second test blog. 
 s﻿dasdasd
