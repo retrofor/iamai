@@ -3,14 +3,42 @@ backend:
   repo: retrofor/iamai # Path to your GitHub repository
   # optional, defaults to master
   branch: main
+  use_graphql: true
+  squash_merges: true
+  commit_messages:
+    create: ✨{{author-login}} Create {{collection}} “{{slug}}”
+    update: 🐱‍🏍{{author-login}} Update {{collection}} “{{slug}}”
+    delete: 🐱‍👤{{author-login}} Delete {{collection}} “{{slug}}”
+    uploadMedia: ✨{{author-login}} Upload “{{path}}”
+    deleteMedia: 🐱‍{{author-login}} Delete “{{path}}”
+    openAuthoring: '{{author-login}}: {{message}}'
 publish_mode: editorial_workflow
 media_folder: "/website/static/img/post" # 存放图片的文件夹
 public_folder: "/website/img/post" # 上传图片的src属性会以该路径开头
+logo_url: https://iamai.retrofor.space/img/retro.ico]
+
+# i18n:
+#   # Required and can be one of multiple_folders, multiple_files or single_file
+#   # multiple_folders - persists files in `<folder>/<locale>/<slug>.<extension>`
+#   # multiple_files - persists files in `<folder>/<slug>.<locale>.<extension>`
+#   # single_file - persists a single file in `<folder>/<slug>.<extension>`
+#   structure: multiple_folders
+
+#   # Required - a list of locales to show in the editor UI
+#   locales: [en, zh]
+
+#   # Optional, defaults to the first item in locales.
+#   # The locale to be used for fields validation and as a baseline for the entry.
+#   default_locale: en
+
 collections:
   - name: "opt" # 定义该collection的路径
     label: "blog" # 后台显示的名字
     folder: "blog"
     create: true # 允许创建新文件
+     nested:
+      depth: 100 # max depth to show in the collection tree
+      summary: '{{title}}' # optional summary for a tree node, defaults to the inferred title field
     slug: "{{slug}}" # 文件名字模版，{{slug}} 取自title
     fields: # 定义front matter的显示与数据类型
       - { label: "Title", name: "title", widget: "string" }
@@ -78,6 +106,9 @@ collections:
     label: "docs" # 后台显示的名字
     folder: "docs"
     create: true # 允许创建新文件
+     nested:
+      depth: 100 # max depth to show in the collection tree
+      summary: '{{title}}' # optional summary for a tree node, defaults to the inferred title field
     slug: "{{slug}}" # 文件名字模版，{{slug}} 取自title
     fields: # 定义front matter的显示与数据类型
       - { label: "Title", name: "title", widget: "string" }
