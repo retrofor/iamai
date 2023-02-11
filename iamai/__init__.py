@@ -8,6 +8,8 @@
 - `Adapter` => [`iamai.adapter.Adapter`](./adapter/#Adapter)
 - `ConfigModel` => [`iamai.config.ConfigModel`](./config#ConfigModel)
 """
+
+
 name = "iamai"
 
 from iamai.bot import Bot

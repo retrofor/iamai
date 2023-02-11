@@ -111,9 +111,9 @@ class Bot:
             hot_reload: 热重载。
                 启用后将自动检查 `plugin_dir` 中的插件文件更新，并在更新时自动重新加载。
         """
-        self.config = MainConfig()
+        self.config = MainConfig() #type: ignore
         self.plugins_priority_dict = defaultdict(list)
-        self.plugin_state = defaultdict(type(None))
+        self.plugin_state = defaultdict(type(None)) #type: ignore
         self.global_state = {}
 
         self.adapters = []
