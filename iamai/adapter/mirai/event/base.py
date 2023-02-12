@@ -1,7 +1,8 @@
 from typing import TYPE_CHECKING, Literal, TypeVar
 
-from iamai.event import Event
 from pydantic import BaseModel
+
+from iamai.event import Event
 
 if TYPE_CHECKING:
     from .. import MiraiAdapter  # noqa
