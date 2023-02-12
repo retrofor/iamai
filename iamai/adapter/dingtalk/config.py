@@ -1,5 +1,5 @@
 """DingTalk 适配器配置。"""
-from iamai.config import ConfigModel
+from IamAI.config import ConfigModel
 
 
 class Config(ConfigModel):

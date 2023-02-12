@@ -1,19 +1,19 @@
-"""iamai
+"""IamAI
 简单的 Python 异步多后端机器人框架
 
 本模块从子模块导入了以下内容：
-- `Bot` => [`iamai.bot.Bot`](./bot#Bot)
-- `Event` => [`iamai.event.Event`](./event#Event)
-- `Plugin` => [`iamai.plugin.Plugin`](./plugin#Plugin)
-- `Adapter` => [`iamai.adapter.Adapter`](./adapter/#Adapter)
-- `ConfigModel` => [`iamai.config.ConfigModel`](./config#ConfigModel)
+- `Bot` => [`IamAI.bot.Bot`](./bot#Bot)
+- `Event` => [`IamAI.event.Event`](./event#Event)
+- `Plugin` => [`IamAI.plugin.Plugin`](./plugin#Plugin)
+- `Adapter` => [`IamAI.adapter.Adapter`](./adapter/#Adapter)
+- `ConfigModel` => [`IamAI.config.ConfigModel`](./config#ConfigModel)
 """
 
 
-name = "iamai"
+name = "IamAI"
 
-from iamai.bot import Bot
-from iamai.event import Event
-from iamai.plugin import Plugin
-from iamai.adapter import Adapter
-from iamai.config import ConfigModel
+from IamAI.bot import Bot
+from IamAI.event import Event
+from IamAI.plugin import Plugin
+from IamAI.adapter import Adapter
+from IamAI.config import ConfigModel

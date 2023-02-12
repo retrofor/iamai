@@ -1,18 +1,18 @@
-"""iamai 类型提示支持。
+"""IamAI 类型提示支持。
 
-此模块定义了部分 iamai 使用的类型。
+此模块定义了部分 IamAI 使用的类型。
 """
 
 from typing import TYPE_CHECKING, TypeVar, Callable, NoReturn, Awaitable
 
-from iamai.message import T_MS, T_Message, T_MessageSegment
+from IamAI.message import T_MS, T_Message, T_MessageSegment
 
 if TYPE_CHECKING:
-    from iamai.bot import Bot  # noqa
-    from iamai.event import Event  # noqa
-    from iamai.plugin import Plugin  # noqa
-    from iamai.adapter import Adapter  # noqa
-    from iamai.config import ConfigModel  # noqa
+    from IamAI.bot import Bot  # noqa
+    from IamAI.event import Event  # noqa
+    from IamAI.plugin import Plugin  # noqa
+    from IamAI.adapter import Adapter  # noqa
+    from IamAI.config import ConfigModel  # noqa
 
 __all__ = [
     "T_State",

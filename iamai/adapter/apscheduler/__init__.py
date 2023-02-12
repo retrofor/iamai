@@ -11,9 +11,9 @@ from typing import Any, Dict, Type
 from apscheduler.job import Job
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
-from iamai.plugin import Plugin
-from iamai.adapter import Adapter
-from iamai.log import logger, error_or_exception
+from IamAI.plugin import Plugin
+from IamAI.adapter import Adapter
+from IamAI.log import logger, error_or_exception
 
 from .config import Config
 from .event import APSchedulerEvent

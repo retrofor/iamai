@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING, Any, Dict, List, Union, Literal, Optional
 
 from pydantic import Field, BaseModel, validator
 
-from iamai.event import Event
+from IamAI.event import Event
 
 from .message import DingTalkMessage
 from .exceptions import WebhookExpiredError
