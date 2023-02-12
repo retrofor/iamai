@@ -1,5 +1,6 @@
 from ...IamAI import Plugin
 
+
 class Echo(Plugin):
     async def handle(self) -> None:
         await self.event.reply(self.event.message.replace("echo ", ""))

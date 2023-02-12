@@ -8,12 +8,11 @@ import inspect
 from functools import wraps
 from typing import Any, Dict, Type
 
-from apscheduler.job import Job
-from apscheduler.schedulers.asyncio import AsyncIOScheduler
-
 from IamAI.plugin import Plugin
+from apscheduler.job import Job
 from IamAI.adapter import Adapter
 from IamAI.log import logger, error_or_exception
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 from .config import Config
 from .event import APSchedulerEvent

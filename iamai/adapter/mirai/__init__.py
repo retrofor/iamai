@@ -12,7 +12,6 @@ from functools import partial
 from typing import TYPE_CHECKING, Any, Dict, Literal, Optional
 
 import aiohttp
-
 from IamAI.utils import DataclassEncoder
 from IamAI.adapter.utils import WebSocketAdapter
 from IamAI.log import logger, error_or_exception

@@ -2,9 +2,8 @@
 import inspect
 from typing import TYPE_CHECKING, Any, Dict, Type, Literal, TypeVar, Optional
 
-from pydantic import Field, BaseModel
-
 from IamAI.event import Event
+from pydantic import Field, BaseModel
 
 from .message import CQHTTPMessage
 
@@ -145,7 +144,7 @@ class PrivateMessageEventSelf(MessageEvent):
         return await self.adapter.send_private_msg(
             user_id=self.user_id, message=CQHTTPMessage(msg)
         )
-        
+
 class PrivateMessageEvent(MessageEvent):
     """私聊消息"""
 

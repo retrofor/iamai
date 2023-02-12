@@ -14,11 +14,10 @@ from itertools import chain
 from collections import defaultdict
 from typing import Any, Dict, List, Type, Union, Callable, Optional, Awaitable
 
-from pydantic import ValidationError, create_model
-
 from IamAI.adapter import Adapter
 from IamAI.plugin import Plugin, PluginLoadType
 from IamAI.log import logger, error_or_exception
+from pydantic import ValidationError, create_model
 from IamAI.typing import T_Event, T_BotHook, T_EventHook, T_AdapterHook
 from IamAI.config import MainConfig, ConfigModel, PluginConfig, AdapterConfig
 from IamAI.exceptions import (
@@ -737,7 +736,7 @@ class Bot:
                     f'Load adapter "{adapter_}" failed:',
                     e,
                     self.config.bot.log.verbose_exception,
-                ) 
+                )
             else:
                 self.adapters.append(adapter_object)
                 logger.info(

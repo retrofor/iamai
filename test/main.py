@@ -1,4 +1,5 @@
 import sys
+
 sys.path.insert(0, '../IamAI')
 
 from IamAI import Bot
