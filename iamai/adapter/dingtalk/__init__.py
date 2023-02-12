@@ -11,7 +11,6 @@ from typing import Any, Dict, Union, Literal
 
 import aiohttp
 from aiohttp import web
-
 from IamAI.adapter import Adapter
 from IamAI.log import logger, error_or_exception
 
