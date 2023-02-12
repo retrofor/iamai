@@ -1,5 +1,4 @@
-from iamai import Plugin
-
+from ...iamai import Plugin
 
 class Echo(Plugin):
     async def handle(self) -> None:
