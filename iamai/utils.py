@@ -15,7 +15,7 @@ from importlib.abc import MetaPathFinder
 from importlib.machinery import PathFinder
 from typing import Any, List, Type, Tuple, TypeVar, Callable, Iterable, Coroutine
 
-from iamai.config import ConfigModel
+from IamAI.config import ConfigModel
 
 __all__ = [
     "ModulePathFinder",
@@ -34,7 +34,7 @@ _R = TypeVar("_R")
 
 
 class ModulePathFinder(MetaPathFinder):
-    """用于查找 iamai 组件的元路径查找器。"""
+    """用于查找 IamAI 组件的元路径查找器。"""
 
     path: List[str] = []
 

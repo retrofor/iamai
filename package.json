@@ -5,12 +5,12 @@
     "website"
   ],
   "scripts": {
-    "archive": "yarn workspace iamai docusaurus docs:version",
+    "archive": "yarn workspace IamAI docusaurus docs:version",
     "build": "yarn workspace website build",
-    "build:plugin": "cross-env BASE_URL='/website/' yarn workspace iamai build",
-    "start": "yarn workspace iamai start",
-    "serve": "yarn workspace iamai serve",
-    "clear": "yarn workspace iamai clear",
+    "build:plugin": "cross-env BASE_URL='/website/' yarn workspace IamAI build",
+    "start": "yarn workspace IamAI start",
+    "serve": "yarn workspace IamAI serve",
+    "clear": "yarn workspace IamAI clear",
     "prettier": "prettier --config ./.prettierrc --write \"./website/\""
   },
   "devDependencies": {

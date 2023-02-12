@@ -4,8 +4,8 @@
 """
 from asyncio import Condition
 
-from iamai.event import Event
-from iamai.adapter import Adapter
+from IamAI.event import Event
+from IamAI.adapter import Adapter
 
 
 class TestAdapterEvent(Event["TestAdapter"]):

@@ -1,5 +1,5 @@
 """DingTalk 适配器异常。"""
-from iamai.exceptions import AdapterException
+from IamAI.exceptions import AdapterException
 
 
 class DingTalkException(AdapterException):

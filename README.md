@@ -1,28 +1,28 @@
-<p align="center"><img width="128" src="https://iamai.retrofor.space/img/retro.png"></p>
+<p align="center"><img width="128" src="https://IamAI.retrofor.space/img/retro.png"></p>
 <h1 align="center">
-  iamai
+  IamAI
 </h1>
 <p align="center">
   Cross-platform robot framework, mainly used for ML
 </p>
 <p align="center">
-  <a style="text-decoration:none" href="https://www.codacy.com/gh/retrofor/iamai/dashboard?utm_source=github.com&utm_medium=referral&utm_content=retrofor/iamai&utm_campaign=Badge_Gradee" target="_blank">
+  <a style="text-decoration:none" href="https://www.codacy.com/gh/retrofor/IamAI/dashboard?utm_source=github.com&utm_medium=referral&utm_content=retrofor/IamAI&utm_campaign=Badge_Gradee" target="_blank">
     <img src="https://app.codacy.com/project/badge/Grade/f3611d85db764236b65fac956bdb53df" alt="Codacy Badge" />
   </a>
-  <a style="text-decoration:none" href="https://app.netlify.com/sites/iamai-retrofor-space/deploys" target="_blank">
+  <a style="text-decoration:none" href="https://app.netlify.com/sites/IamAI-retrofor-space/deploys" target="_blank">
     <img src="https://api.netlify.com/api/v1/badges/c37c65c2-3c25-40b0-8314-cf86bfe59f55/deploy-status" alt="Site Deploy" />
   </a>
   <br>
-  <a style="text-decoration:none" href="https://iamai.retrofor.space" target="_blank">
-    <img src="https://img.shields.io/badge/Website-iamai.retrofor.space-green?style=flat-square" alt="Website" />
+  <a style="text-decoration:none" href="https://IamAI.retrofor.space" target="_blank">
+    <img src="https://img.shields.io/badge/Website-IamAI.retrofor.space-green?style=flat-square" alt="Website" />
   </a>
   <br>
-  <a href="https://pypi.python.org/pypi/iamai">
-    <img src="https://img.shields.io/pypi/v/iamai?style=flat-square" alt="pypi">
+  <a href="https://pypi.python.org/pypi/IamAI">
+    <img src="https://img.shields.io/pypi/v/IamAI?style=flat-square" alt="pypi">
   </a>
   <img src="https://img.shields.io/badge/python-3.8+-blue?style=flat-square" alt="python">
   <br>
-  <img src="https://results.pre-commit.ci/badge/github/retrofor/iamai/main.svg">
+  <img src="https://results.pre-commit.ci/badge/github/retrofor/IamAI/main.svg">
 </p>
 <p align="center">
   Adapters we support
@@ -49,14 +49,14 @@
   data below
 </p>
 <p align="center">
-  <img src="https://img.shields.io/github/forks/retrofor/iamai?style=social" >
-  <img src="https://img.shields.io/github/stars/retrofor/iamai?style=social" >
+  <img src="https://img.shields.io/github/forks/retrofor/IamAI?style=social" >
+  <img src="https://img.shields.io/github/stars/retrofor/IamAI?style=social" >
   <br>
-  <img src="https://img.shields.io/github/watchers/retrofor/iamai?style=social" >
-  <img src="https://img.shields.io/github/search/retrofor/iamai/goto?style=social" >
+  <img src="https://img.shields.io/github/watchers/retrofor/IamAI?style=social" >
+  <img src="https://img.shields.io/github/search/retrofor/IamAI/goto?style=social" >
   <br>
-  <img src="https://img.shields.io/github/repo-size/retrofor/iamai?style=social" >
-  <img src="https://img.shields.io/github/languages/top/retrofor/iamai?style=social" >
+  <img src="https://img.shields.io/github/repo-size/retrofor/IamAI?style=social" >
+  <img src="https://img.shields.io/github/languages/top/retrofor/IamAI?style=social" >
 </p>
 
 ## 📘 Introduction
@@ -65,36 +65,36 @@ Cross-platform robot framework, mainly used for machine learning.
 
 ## 🚀 Features
 
-- 🎪 **Interactive [docs](https://iamai.retrofor.space) &amp; [demos](https://iamai.retrofor.space/demos)**
+- 🎪 **Interactive [docs](https://IamAI.retrofor.space) &amp; [demos](https://IamAI.retrofor.space/demos)**
 - 🕶 **Seamless migration**: Works for **both** [Rasa]() and [GPT]() and more...
-- ⚡ **Fully tree shakeable**: Only take what you want, [bundle size](https://iamai.retrofor.space/export-size)
+- ⚡ **Fully tree shakeable**: Only take what you want, [bundle size](https://IamAI.retrofor.space/export-size)
 - 🔩 **Flexible**: Configurable event filters and targets
-- 🔌 **Optional [Add-ons](https://iamai.retrofor.space/add-ons)**: [Apscheduler](https://iamai.retrofor.space/add-ons/apscheduler), etc.
-- 👍 **Cross-platform**: [Onebot](https://iamai.retrofor.space/adapters/onebot), [Wechat](https://iamai.retrofor.space/adapters/wechat), [Twitter](https://iamai.retrofor.space/adapters/twitter), [Bilibili](https://iamai.retrofor.space/adapters/bilibili), [Github](https://iamai.retrofor.space/adapters/github), etc.
+- 🔌 **Optional [Add-ons](https://IamAI.retrofor.space/add-ons)**: [Apscheduler](https://IamAI.retrofor.space/add-ons/apscheduler), etc.
+- 👍 **Cross-platform**: [Onebot](https://IamAI.retrofor.space/adapters/onebot), [Wechat](https://IamAI.retrofor.space/adapters/wechat), [Twitter](https://IamAI.retrofor.space/adapters/twitter), [Bilibili](https://IamAI.retrofor.space/adapters/bilibili), [Github](https://IamAI.retrofor.space/adapters/github), etc.
 
-<p align="center"><img width="512" src="https://iamai.retrofor.space/img/logo.png"></p>
+<p align="center"><img width="512" src="https://IamAI.retrofor.space/img/logo.png"></p>
 
 ## ⬇️ Install
 
 - STABLE VERSION
   ```sh
-  pip install iamai
+  pip install IamAI
   ```
 
 or you can also install for TEST.
 
 - TEST VERSION
   ```sh
-  pip install -i https://test.pypi.org/simple/ iamai
+  pip install -i https://test.pypi.org/simple/ IamAI
   ```
 
 ## ❗ Usage
 
 ```python
-from iamai import Bot
+from IamAI import Bot
 
 bot = Bot()
-bot.load_adapters("iamai.adapter.cqhttp")
+bot.load_adapters("IamAI.adapter.cqhttp")
 
 bot.run()
 ```
@@ -103,9 +103,9 @@ bot.run()
 
 > choices below.
 
-- <https://iamai.retrofor.space> _(recommend)_
-- <https://iamai-retrofor-space.netlify.app>
-- ~~<https://retrofor.github.io/iamai>~~
+- <https://IamAI.retrofor.space> _(recommend)_
+- <https://IamAI-retrofor-space.netlify.app>
+- ~~<https://retrofor.github.io/IamAI>~~
 
 ## ✨ Project Activity
 
@@ -113,10 +113,10 @@ bot.run()
 
 ## 👨‍🚀 Contributors
 
-<a href="https://github.com/retrofor/iamai/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=retrofor/iamai" />
+<a href="https://github.com/retrofor/IamAI/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=retrofor/IamAI" />
 </a>
 
 ## 📄 License
 
-[MIT](https://github.com/retrofor/iamai/blob/main/LICENSE) © 2023-PRESENT [简律纯](https://github.com/HsiangNianian)
+[MIT](https://github.com/retrofor/IamAI/blob/main/LICENSE) © 2023-PRESENT [简律纯](https://github.com/HsiangNianian)

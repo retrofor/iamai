@@ -6,12 +6,12 @@ from typing import TYPE_CHECKING, Union
 
 from aiohttp import web
 
-from iamai.event import Event
-from iamai.adapter.utils import HttpServerAdapter
-from iamai.message import Message, MessageSegment
+from IamAI.event import Event
+from IamAI.adapter.utils import HttpServerAdapter
+from IamAI.message import Message, MessageSegment
 
 if TYPE_CHECKING:
-    from iamai.message import T_Message, T_MessageSegment
+    from IamAI.message import T_Message, T_MessageSegment
 
 
 class HttpServerTestEvent(Event["HttpServerTestAdapter"]):

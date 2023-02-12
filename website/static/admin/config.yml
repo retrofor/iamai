@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: retrofor/iamai # Path to your GitHub repository
+  repo: retrofor/IamAI # Path to your GitHub repository
   # optional, defaults to master
   branch: main
   #   use_graphql: true
@@ -18,7 +18,7 @@ backend:
 publish_mode: editorial_workflow
 media_folder: "/website/static/img/post" # 存放图片的文件夹
 public_folder: "/website/img/post" # 上传图片的src属性会以该路径开头
-logo_url: https://iamai.retrofor.space/img/logo.png
+logo_url: https://IamAI.retrofor.space/img/logo.png
 
 # i18n:
 #   # Required and can be one of multiple_folders, multiple_files or single_file

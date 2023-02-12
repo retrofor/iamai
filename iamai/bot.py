@@ -1,6 +1,6 @@
-"""iamai 机器人对象。
+"""IamAI 机器人对象。
 
-iamai 的基础模块，每一个 iamai 机器人即是一个 `Bot` 实例。
+IamAI 的基础模块，每一个 IamAI 机器人即是一个 `Bot` 实例。
 """
 import os
 import sys
@@ -16,18 +16,18 @@ from typing import Any, Dict, List, Type, Union, Callable, Optional, Awaitable
 
 from pydantic import ValidationError, create_model
 
-from iamai.adapter import Adapter
-from iamai.plugin import Plugin, PluginLoadType
-from iamai.log import logger, error_or_exception
-from iamai.typing import T_Event, T_BotHook, T_EventHook, T_AdapterHook
-from iamai.config import MainConfig, ConfigModel, PluginConfig, AdapterConfig
-from iamai.exceptions import (
+from IamAI.adapter import Adapter
+from IamAI.plugin import Plugin, PluginLoadType
+from IamAI.log import logger, error_or_exception
+from IamAI.typing import T_Event, T_BotHook, T_EventHook, T_AdapterHook
+from IamAI.config import MainConfig, ConfigModel, PluginConfig, AdapterConfig
+from IamAI.exceptions import (
     SkipException,
     StopException,
     GetEventTimeout,
     LoadModuleError,
 )
-from iamai.utils import (
+from IamAI.utils import (
     ModulePathFinder,
     samefile,
     is_config_class,
@@ -50,7 +50,7 @@ HANDLED_SIGNALS = (
 
 
 class Bot:
-    """iamai 机器人对象，定义了机器人的基本方法。
+    """IamAI 机器人对象，定义了机器人的基本方法。
         读取并储存配置 `Config`，加载适配器 `Adapter` 和插件 `Plugin`，并进行事件分发。
 
     Attributes:
@@ -101,7 +101,7 @@ class Bot:
         config_dict: Optional[Dict] = None,
         hot_reload: bool = False,
     ):
-        """初始化 iamai ，读取配置文件，创建配置，加载适配器和插件。
+        """初始化 IamAI ，读取配置文件，创建配置，加载适配器和插件。
 
         Args:
             config_file: 配置文件，如不指定则使用默认的 `config.toml`。
@@ -144,7 +144,7 @@ class Bot:
         return list(chain(*self.plugins_priority_dict.values()))
 
     def run(self):
-        """运行 iamai，监听并拦截系统退出信号，更新机器人配置。"""
+        """运行 IamAI，监听并拦截系统退出信号，更新机器人配置。"""
         self._restart_flag = True
         while self._restart_flag:
             self._restart_flag = False
@@ -155,13 +155,13 @@ class Bot:
                 self._load_adapters(*self._extend_adapters)
 
     def restart(self):
-        """退出并重新运行 iamai。"""
-        logger.info("Restarting iamai...")
+        """退出并重新运行 IamAI。"""
+        logger.info("Restarting IamAI...")
         self._restart_flag = True
         self.should_exit.set()
 
     async def _run(self):
-        """运行 iamai。"""
+        """运行 IamAI。"""
         self.should_exit = asyncio.Event()
         self._condition = asyncio.Condition()
 
@@ -186,8 +186,8 @@ class Bot:
         self._load_adapters(*self.config.bot.adapters)
         self._update_config()
 
-        # 启动 iamai
-        logger.info("Running iamai...")
+        # 启动 IamAI
+        logger.info("Running IamAI...")
 
         hot_reload_task = None
         if self._hot_reload:
@@ -401,9 +401,9 @@ class Bot:
 
     def _handle_exit(self, *args):  # noqa
         """当机器人收到退出信号时，根据情况进行处理。"""
-        logger.info("Stopping iamai...")
+        logger.info("Stopping IamAI...")
         if self.should_exit.is_set():
-            logger.warning("Force Exit iamai...")
+            logger.warning("Force Exit IamAI...")
             sys.exit()
         else:
             self.should_exit.set()

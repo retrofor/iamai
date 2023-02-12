@@ -4,9 +4,9 @@ with open("README.md", "rb") as fh:
     long_description = fh.read().decode("utf-8")
 
 setuptools.setup(
-    name="iamai",
+    name="IamAI",
     version="5.0.2",
-    url="https://github.com/retrofor/iamai",
+    url="https://github.com/retrofor/IamAI",
     license="MIT",
     author="简律纯",
     author_email="admin@jyunko.cn",
