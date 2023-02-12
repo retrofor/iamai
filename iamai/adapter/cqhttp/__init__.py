@@ -212,5 +212,9 @@ class CQHTTPAdapter(WebSocketAdapter[CQHTTPEvent, Config]):
             return await self.send_group_msg(
                 group_id=id_, message=CQHTTPMessage(message_)
             )
+        elif message_type == "group_self":
+            return await self.send_group_msg(
+                group_id=id_, message=CQHTTPMessage(message_)
+            )
         else:
-            raise TypeError('message_type must be "private" or "group"')
+            raise TypeError('message_type must be "private" or "group" or "group_self')
