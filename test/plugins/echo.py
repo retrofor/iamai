@@ -1,4 +1,4 @@
-from ...IamAI import Plugin
+from ...iamai import Plugin
 
 
 class Echo(Plugin):

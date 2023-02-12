@@ -1,7 +1,7 @@
 """APScheduler 适配器配置。"""
 from typing import Any, Dict
 
-from IamAI.config import ConfigModel
+from iamai.config import ConfigModel
 
 
 class Config(ConfigModel):

@@ -1,7 +1,7 @@
 """DingTalk 适配器消息。"""
 from typing import Any, Dict, List, Optional
 
-from IamAI.message import MessageSegment
+from iamai.message import MessageSegment
 
 __all__ = ["DingTalkMessage"]
 

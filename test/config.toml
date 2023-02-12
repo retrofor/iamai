@@ -1,7 +1,7 @@
 [bot]
 plugins = []
 plugin_dirs = ["plugins"]
-adapters = ["IamAI.adapter.cqhttp"]
+adapters = ["iamai.adapter.cqhttp"]
 
 [adapter.cqhttp]
 adapter_type = "reverse-ws"

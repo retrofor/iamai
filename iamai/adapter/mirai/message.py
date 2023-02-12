@@ -2,8 +2,8 @@
 import json
 from typing import Any, Dict, List, Type, Union, Mapping, Iterable, Optional
 
-from IamAI.utils import DataclassEncoder
-from IamAI.message import Message, MessageSegment
+from iamai.utils import DataclassEncoder
+from iamai.message import Message, MessageSegment
 
 __all__ = ["T_MiraiMSG", "MiraiMessage", "MiraiMessageSegment"]
 

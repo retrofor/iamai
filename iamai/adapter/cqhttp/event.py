@@ -2,7 +2,7 @@
 import inspect
 from typing import TYPE_CHECKING, Any, Dict, Type, Literal, TypeVar, Optional
 
-from IamAI.event import Event
+from iamai.event import Event
 from pydantic import Field, BaseModel
 
 from .message import CQHTTPMessage

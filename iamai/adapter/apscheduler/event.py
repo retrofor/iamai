@@ -1,8 +1,8 @@
 """APScheduler 适配器事件。"""
 from typing import TYPE_CHECKING, Any, Dict, Type
 
-from IamAI.event import Event
-from IamAI.plugin import Plugin
+from iamai.event import Event
+from iamai.plugin import Plugin
 
 if TYPE_CHECKING:
     from apscheduler.job import Job

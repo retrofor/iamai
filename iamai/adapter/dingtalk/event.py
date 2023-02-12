@@ -2,7 +2,7 @@
 import time
 from typing import TYPE_CHECKING, Any, Dict, List, Union, Literal, Optional
 
-from IamAI.event import Event
+from iamai.event import Event
 from pydantic import Field, BaseModel, validator
 
 from .message import DingTalkMessage

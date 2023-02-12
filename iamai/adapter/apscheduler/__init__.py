@@ -8,10 +8,10 @@ import inspect
 from functools import wraps
 from typing import Any, Dict, Type
 
-from IamAI.plugin import Plugin
+from iamai.plugin import Plugin
 from apscheduler.job import Job
-from IamAI.adapter import Adapter
-from IamAI.log import logger, error_or_exception
+from iamai.adapter import Adapter
+from iamai.log import logger, error_or_exception
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 from .config import Config

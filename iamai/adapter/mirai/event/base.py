@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING, Literal, TypeVar
 
-from IamAI.event import Event
+from iamai.event import Event
 from pydantic import BaseModel
 
 if TYPE_CHECKING:

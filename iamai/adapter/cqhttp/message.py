@@ -1,7 +1,7 @@
 """CQHTTP 适配器消息。"""
 from typing import Type, Union, Literal, Mapping, Iterable, Optional
 
-from IamAI.message import Message, MessageSegment
+from iamai.message import Message, MessageSegment
 
 __all__ = ["T_CQMSG", "CQHTTPMessage", "CQHTTPMessageSegment", "escape"]
 

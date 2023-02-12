@@ -1,13 +1,13 @@
-"""IamAI 事件。
+"""iamai 事件。
 
 事件类的基类。适配器开发者应实现此事件类基类的子类。
 """
 from abc import ABC
 from typing import Any, Generic, Optional
 
-from IamAI.message import Message
-from IamAI.typing import T_Adapter
-from IamAI.utils import DataclassEncoder
+from iamai.message import Message
+from iamai.typing import T_Adapter
+from iamai.utils import DataclassEncoder
 from pydantic import BaseModel, PrivateAttr
 
 __all__ = ["Event"]

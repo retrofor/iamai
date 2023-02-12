@@ -6,12 +6,12 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "IamAI",
+  title: "iamai",
   tagline: "Cross-platform robot framework, mainly used for ML",
   favicon: "img/retro.ico",
 
   // Set the production url of your site here
-  url: "https://IamAI.retrofor.space",
+  url: "https://iamai.retrofor.space",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
@@ -19,7 +19,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "retrofor", // Usually your GitHub org/user name.
-  projectName: "IamAI", // Usually your repo name.
+  projectName: "iamai", // Usually your repo name.
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -50,13 +50,13 @@ const config = {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/retrofor/IamAI/tree/main/website/",
+          editUrl: "https://github.com/retrofor/iamai/tree/main/website/",
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/retrofor/IamAI/tree/main/website/",
+          editUrl: "https://github.com/retrofor/iamai/tree/main/website/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -86,7 +86,7 @@ const config = {
         //  公开 API 密钥：提交它没有危险
         apiKey: "47fa7610cea0b76aa428d0a28d7a5491",
 
-        indexName: "IamAI.retrofor.space",
+        indexName: "iamai.retrofor.space",
 
         // 可选：见下文
         contextualSearch: true,
@@ -129,7 +129,7 @@ const config = {
           //             position: "right",
           //           },
           {
-            href: "https://github.com/retrofor/IamAI",
+            href: "https://github.com/retrofor/iamai",
             label: "GitHub",
             position: "right",
           },

@@ -1,7 +1,7 @@
 """Mirai 适配器配置。"""
 from typing import Literal
 
-from IamAI.config import ConfigModel
+from iamai.config import ConfigModel
 
 
 class Config(ConfigModel):

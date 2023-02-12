@@ -11,9 +11,9 @@ from functools import partial
 from typing import TYPE_CHECKING, Any, Dict, Literal
 
 import aiohttp
-from IamAI.utils import DataclassEncoder
-from IamAI.adapter.utils import WebSocketAdapter
-from IamAI.log import logger, error_or_exception
+from iamai.utils import DataclassEncoder
+from iamai.adapter.utils import WebSocketAdapter
+from iamai.log import logger, error_or_exception
 
 from .config import Config
 from .message import CQHTTPMessage

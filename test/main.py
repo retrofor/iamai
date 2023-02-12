@@ -1,10 +1,10 @@
 import sys
 
-sys.path.insert(0, '../IamAI')
+sys.path.insert(0, '../iamai')
 
-from IamAI import Bot
+from iamai import Bot
 
 bot = Bot(hot_reload=True)
-bot.load_adapters("IamAI.adapter.cqhttp")
+bot.load_adapters("iamai.adapter.cqhttp")
 
 bot.run()
