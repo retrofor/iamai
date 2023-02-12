@@ -5,7 +5,7 @@ with open("README.md", "rb") as fh:
 
 setuptools.setup(
     name="iamai",
-    version="5.0.4",
+    version="5.0.5",
     url="https://github.com/retrofor/iamai",
     license="MIT",
     author="简律纯",
