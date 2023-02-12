@@ -27,7 +27,6 @@ T_MessageSegment = TypeVar("T_MessageSegment", bound="MessageSegment")
 # 可以转化为 MessageSegment 的类型
 T_MS = Union[T_MessageSegment, str, Mapping]
 
-
 class Message(List[T_MessageSegment]):
     """消息。
 
