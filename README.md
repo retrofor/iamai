@@ -61,7 +61,7 @@
 
 ## 📘 Introduction
 
-Cross-platform robot framework, mainly used for machine learning.
+A Cross-platform robot framework, mainly used for machine learning.
 
 ## 🚀 Features
 
