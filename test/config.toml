@@ -1,5 +1,5 @@
 [bot]
-plugins = []
+plugins = [""]
 plugin_dirs = ["plugins"]
 adapters = ["iamai.adapter.cqhttp"]
 
@@ -9,3 +9,4 @@ host = "127.0.0.1"
 port = 8080
 url = "/cqhttp/ws"
 api_timeout = 100
+debug = true

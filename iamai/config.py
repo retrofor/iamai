@@ -64,7 +64,9 @@ class PluginConfig(ConfigModel):
 class AdapterConfig(ConfigModel):
     """适配器配置。"""
 
-
+class DebugConfig(ConfigModel):
+    """是否打印事件配置。"""
+    
 class MainConfig(ConfigModel):
     """iamai 配置。
 
@@ -75,6 +77,7 @@ class MainConfig(ConfigModel):
     bot: BotConfig = BotConfig()
     plugin: PluginConfig = PluginConfig()
     adapter: AdapterConfig = AdapterConfig()
+    debug: DebugConfig = DebugConfig()
 
     class Config:
         extra = Extra.allow

@@ -2,8 +2,9 @@
 import inspect
 from typing import TYPE_CHECKING, Any, Dict, Type, Literal, TypeVar, Optional
 
-from iamai.event import Event
 from pydantic import Field, BaseModel
+
+from iamai.event import Event
 
 from .message import CQHTTPMessage
 
@@ -56,46 +57,11 @@ class CQHTTPEvent(Event["CQHTTPAdapter"]):
     self_id: int
     post_type: Literal["message", "message_sent", "notice", "request", "meta_event"]
 
-    @property
-    def to_me(self) -> bool:
-        """当前事件的 user_id 是否等于 self_id。"""
-        return getattr(self, "user_id") == self.self_id
+    # @property
+    # def to_me(self) -> bool:
+    #     """当前事件的 user_id 是否等于 self_id。"""
+    #     return getattr(self, "user_id") == self.self_id
 
-class MessageEventSelf(CQHTTPEvent):
-    """自身消息事件"""
-
-    __event__ = "message_sent"
-    post_type: Literal["message_sent"]
-    message_type: Literal["private", "group"]
-    sub_type: str
-    message_id: int
-    user_id: int
-    message: CQHTTPMessage
-    raw_message: str
-    font: int
-    sender: Sender
-
-    def __repr__(self) -> str:
-        return f'Event<{self.type}>: "{self.message}"'
-
-    def get_plain_text(self) -> str:
-        """获取消息的纯文本内容。
-
-        Returns:
-            消息的纯文本内容。
-        """
-        return self.message.get_plain_text()
-
-    async def reply(self, msg: "T_CQMSG") -> Dict[str, Any]:
-        """回复消息。
-
-        Args:
-            msg: 回复消息的内容，同 `call_api()` 方法。
-
-        Returns:
-            API 请求响应。
-        """
-        raise NotImplementedError
 
 class MessageEvent(CQHTTPEvent):
     """消息事件"""
@@ -133,17 +99,41 @@ class MessageEvent(CQHTTPEvent):
         """
         raise NotImplementedError
 
-class PrivateMessageEventSelf(MessageEvent):
-    """自身私聊消息"""
+class MessageSentEvent(CQHTTPEvent):
+    """自身消息事件"""
 
-    __event__ = "message_self.private"
-    message_type: Literal["private"]
-    sub_type: Literal["friend", "group", "group_self", "other"]
+    __event__ = "message_sent"
+    post_type: Literal["message_sent"]
+    message_type: Literal["private", "group"]
+    sub_type: str
+    message_id: int
+    user_id: int
+    message: CQHTTPMessage
+    raw_message: str
+    font: int
+    sender: Sender
+
+    def __repr__(self) -> str:
+        return f'Event<{self.type}>: "{self.message}"'
+
+    def get_plain_text(self) -> str:
+        """获取消息的纯文本内容。
+
+        Returns:
+            消息的纯文本内容。
+        """
+        return self.message.get_plain_text()
 
     async def reply(self, msg: "T_CQMSG") -> Dict[str, Any]:
-        return await self.adapter.send_private_msg(
-            user_id=self.user_id, message=CQHTTPMessage(msg)
-        )
+        """回复消息。
+
+        Args:
+            msg: 回复消息的内容，同 `call_api()` 方法。
+
+        Returns:
+            API 请求响应。
+        """
+        raise NotImplementedError
 
 class PrivateMessageEvent(MessageEvent):
     """私聊消息"""
@@ -157,7 +147,18 @@ class PrivateMessageEvent(MessageEvent):
             user_id=self.user_id, message=CQHTTPMessage(msg)
         )
 
+class PrivateMessageSentEvent(MessageSentEvent):
+    """自身私聊消息"""
 
+    __event__ = "message_sent.private"
+    message_type: Literal["private"]
+    sub_type: Literal["friend", "group", "group_self", "other"]
+
+    async def reply(self, msg: "T_CQMSG") -> Dict[str, Any]:
+        return await self.adapter.send_private_msg(
+            user_id=self.user_id, message=CQHTTPMessage(msg)
+        )
+        
 class GroupMessageEvent(MessageEvent):
     """群消息"""
 
@@ -424,8 +425,8 @@ def get_event_class(
         对应的事件类。
     """
     if sub_type is None:
-        return _cqhttp_events[".".join((post_type, event_type))] #type: ignore
+        return _cqhttp_events[".".join((post_type, event_type))]
     return (
         _cqhttp_events.get(".".join((post_type, event_type, sub_type)))
         or _cqhttp_events[".".join((post_type, event_type))]
-    ) #type: ignore
+    )
