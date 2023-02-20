@@ -186,7 +186,7 @@ class GroupMessageSentEvent(MessageSentEvent):
         return await self.adapter.send_group_msg(
             group_id=self.group_id, message=CQHTTPMessage(msg)
         )
-        
+
 class NoticeEvent(CQHTTPEvent):
     """通知事件"""
 
