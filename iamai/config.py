@@ -66,7 +66,7 @@ class AdapterConfig(ConfigModel):
 
 class DebugConfig(ConfigModel):
     """是否打印事件配置。"""
-    
+
 class MainConfig(ConfigModel):
     """iamai 配置。
 

@@ -158,7 +158,7 @@ class PrivateMessageSentEvent(MessageSentEvent):
         return await self.adapter.send_private_msg(
             user_id=self.user_id, message=CQHTTPMessage(msg)
         )
-        
+
 class GroupMessageEvent(MessageEvent):
     """群消息"""
 
