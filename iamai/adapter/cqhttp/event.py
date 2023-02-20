@@ -57,10 +57,10 @@ class CQHTTPEvent(Event["CQHTTPAdapter"]):
     self_id: int
     post_type: Literal["message", "message_sent", "notice", "request", "meta_event"]
 
-    # @property
-    # def to_me(self) -> bool:
-    #     """当前事件的 user_id 是否等于 self_id。"""
-    #     return getattr(self, "user_id") == self.self_id
+    @property
+    def to_me(self) -> bool:
+        """当前事件的 user_id 是否等于 self_id。"""
+        return getattr(self, "user_id") == self.self_id
 
 
 class MessageEvent(CQHTTPEvent):
@@ -151,7 +151,7 @@ class PrivateMessageSentEvent(MessageSentEvent):
     """自身私聊消息"""
 
     __event__ = "message_sent.private"
-    message_type: Literal["private"]
+    message_type: Literal["private", "group"]
     sub_type: Literal["friend", "group", "group_self", "other"]
 
     async def reply(self, msg: "T_CQMSG") -> Dict[str, Any]:
@@ -173,7 +173,20 @@ class GroupMessageEvent(MessageEvent):
             group_id=self.group_id, message=CQHTTPMessage(msg)
         )
 
+class GroupMessageSentEvent(MessageSentEvent):
+    """自身群消息"""
 
+    __event__ = "message_sent.group"
+    message_type: Literal["group"]
+    sub_type: Literal["normal", "anonymous", "notice"]
+    group_id: int
+    anonymous: Optional[Anonymous] = None
+
+    async def reply(self, msg: "T_CQMSG") -> Dict[str, Any]:
+        return await self.adapter.send_group_msg(
+            group_id=self.group_id, message=CQHTTPMessage(msg)
+        )
+        
 class NoticeEvent(CQHTTPEvent):
     """通知事件"""
 
