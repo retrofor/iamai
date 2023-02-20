@@ -85,7 +85,11 @@ class CQHTTPAdapter(WebSocketAdapter[CQHTTPEvent, Config]):
                     self.bot.config.bot.log.verbose_exception,
                 )
                 return
-
+            
+            # 便于检查事件类型
+            if self.config.debug:
+                logger.info(msg_dict)
+            
             if "post_type" in msg_dict:
                 await self.handle_cqhttp_event(msg_dict)
             else:
@@ -109,8 +113,14 @@ class CQHTTPAdapter(WebSocketAdapter[CQHTTPEvent, Config]):
         Args:
             msg: 接收到的信息。
         """
-        post_type = msg.get("post_type")
-        event_type = msg.get(post_type + "_type")
+        post_type = msg.get("post_type") 
+        
+        # message_sent 自身消息处理
+        if post_type == "message_sent":
+            event_type = msg.get("message_type")
+        else:
+            event_type = msg.get(post_type + "_type")
+            
         sub_type = msg.get("sub_type", None)
         event_class = get_event_class(post_type, event_type, sub_type)
 
@@ -212,9 +222,5 @@ class CQHTTPAdapter(WebSocketAdapter[CQHTTPEvent, Config]):
             return await self.send_group_msg(
                 group_id=id_, message=CQHTTPMessage(message_)
             )
-        elif message_type == "group_self":
-            return await self.send_group_msg(
-                group_id=id_, message=CQHTTPMessage(message_)
-            )
         else:
-            raise TypeError('message_type must be "private" or "group" or "group_self')
+            raise TypeError('message_type must be "private" or "group"')

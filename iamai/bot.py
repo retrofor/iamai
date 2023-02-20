@@ -111,9 +111,9 @@ class Bot:
             hot_reload: 热重载。
                 启用后将自动检查 `plugin_dir` 中的插件文件更新，并在更新时自动重新加载。
         """
-        self.config = MainConfig() #type: ignore
+        self.config = MainConfig()
         self.plugins_priority_dict = defaultdict(list)
-        self.plugin_state = defaultdict(type(None)) #type: ignore
+        self.plugin_state = defaultdict(type(None))
         self.global_state = {}
 
         self.adapters = []
@@ -675,14 +675,14 @@ class Bot:
         self._extend_plugins.extend(plugins)
         return self._load_plugins(*plugins)
 
-    def _load_plugins_from_dirs(self, *dirs: Path): #type: ignore
+    def _load_plugins_from_dirs(self, *dirs: Path):
         """从目录中加载插件，以 `_` 开头的模块中的插件不会被导入。路径可以是相对路径或绝对路径。
 
         Args:
             *dirs: 储存包含插件的模块的模块路径。
                 例如：`pathlib.Path("path/of/plugins/")` 。
         """
-        dirs = list(map(lambda x: str(x.resolve()), dirs)) #type: list
+        dirs = list(map(lambda x: str(x.resolve()), dirs))
         logger.info(f'Loading plugins from dirs "{", ".join(map(str, dirs))}"')
         self._module_path_finder.path.extend(dirs)
         for plugin_class, module in get_classes_from_dir(dirs, Plugin):
@@ -727,12 +727,12 @@ class Bot:
                         raise LoadModuleError(
                             f"More then one Adapter class in the {adapter_} module"
                         )
-                    adapter_object = adapter_classes[0][0](self) #type: ignore
+                    adapter_object = adapter_classes[0][0](self)
                 else:
                     raise LoadModuleError(
                         f"Type error: {adapter_} can not be loaded as adapter"
                     )
-            except Exception as e: #type: ignore
+            except Exception as e:
                 error_or_exception(
                     f'Load adapter "{adapter_}" failed:',
                     e,
