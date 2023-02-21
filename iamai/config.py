@@ -77,7 +77,6 @@ class MainConfig(ConfigModel):
     bot: BotConfig = BotConfig()
     plugin: PluginConfig = PluginConfig()
     adapter: AdapterConfig = AdapterConfig()
-    debug: DebugConfig = DebugConfig()
 
     class Config:
         extra = Extra.allow
