@@ -1,6 +1,8 @@
-import random
 import re
+import random
+
 from iamai import Plugin
+
 
 class Roll(Plugin):
     async def handle(self) -> None:
@@ -17,7 +19,7 @@ class Roll(Plugin):
                 return ValList,sum(ValList) # type: ignore
             else:
                 return PrintList,sum(ValList)+num*Enhans  # type: ignore
-        
+
         numList = re.findall(r'r(\d+)?d?(\d+)?\+?(\d+)?',self.event.message.get_plain_text())
         try:
             RangeNum = int(numList[0][1])
@@ -45,4 +47,3 @@ class Roll(Plugin):
             return self.event.message.startswith("r")
         else:
             return False
-
