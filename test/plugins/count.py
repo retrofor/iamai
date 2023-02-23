@@ -1,5 +1,7 @@
-from iamai import Plugin
 import onedice
+
+from iamai import Plugin
+
 
 class Count(Plugin):
     async def handle(self) -> None:
@@ -15,4 +17,3 @@ class Count(Plugin):
             return self.event.message.get_plain_text() == "count"
         else:
             return False
-
