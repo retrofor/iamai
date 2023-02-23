@@ -682,10 +682,10 @@ class Bot:
             *dirs: 储存包含插件的模块的模块路径。
                 例如：`pathlib.Path("path/of/plugins/")` 。
         """
-        dirs = list(map(lambda x: str(x.resolve()), dirs))
+        dirs = list(map(lambda x: str(x.resolve()), dirs)) # type: ignore        
         logger.info(f'Loading plugins from dirs "{", ".join(map(str, dirs))}"')
-        self._module_path_finder.path.extend(dirs)
-        for plugin_class, module in get_classes_from_dir(dirs, Plugin):
+        self._module_path_finder.path.extend(dirs) # type: ignore 
+        for plugin_class, module in get_classes_from_dir(dirs, Plugin): # type: ignore 
             self._load_plugin_class(plugin_class, PluginLoadType.DIR, module.__file__)
 
     def load_plugins_from_dirs(self, *dirs: Path):
@@ -727,7 +727,7 @@ class Bot:
                         raise LoadModuleError(
                             f"More then one Adapter class in the {adapter_} module"
                         )
-                    adapter_object = adapter_classes[0][0](self)
+                    adapter_object = adapter_classes[0][0](self) # type: ignore 
                 else:
                     raise LoadModuleError(
                         f"Type error: {adapter_} can not be loaded as adapter"
@@ -737,7 +737,7 @@ class Bot:
                     f'Load adapter "{adapter_}" failed:',
                     e,
                     self.config.bot.log.verbose_exception,
-                )
+                ) 
             else:
                 self.adapters.append(adapter_object)
                 logger.info(

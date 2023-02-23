@@ -35,5 +35,6 @@ setuptools.setup(
         "typing-extensions",
         "pydantic",
         "watchfiles",
+        "onedice",
     ],
 )
