@@ -1130,7 +1130,7 @@ name = "markupsafe"
 version = "2.1.2"
 description = "Safely add untrusted strings to HTML/XML markup."
 category = "main"
-optional = false
+optional = true
 python-versions = ">=3.7"
 files = [
     {file = "MarkupSafe-2.1.2-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:665a36ae6f8f20a4676b53224e33d456a6f5a72657d9c83c2aa00765072f31f7"},
@@ -1325,6 +1325,18 @@ files = [
 
 [package.dependencies]
 prompt-toolkit = ">=3.0.19,<4.0.0"
+
+[[package]]
+name = "onedice"
+version = "1.0.5"
+description = "OneDice offical standard library for Python"
+category = "main"
+optional = true
+python-versions = "*"
+files = [
+    {file = "onedice-1.0.5-py3-none-any.whl", hash = "sha256:254fd72c9552328ea60aab9298b9b69ff68ec44a3006788d941b715a1d5d58b6"},
+    {file = "onedice-1.0.5.tar.gz", hash = "sha256:03f3b8c8fa1cd71243e874de7eb389206373bd804ee9059e1f5b9ca134643eed"},
+]
 
 [[package]]
 name = "packaging"
@@ -1893,14 +1905,14 @@ test = ["black (>=22.3.0,<23.0.0)", "coverage (>=6.2,<7.0)", "isort (>=5.0.6,<6.
 
 [[package]]
 name = "typing-extensions"
-version = "4.4.0"
+version = "4.5.0"
 description = "Backported and Experimental Type Hints for Python 3.7+"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "typing_extensions-4.4.0-py3-none-any.whl", hash = "sha256:16fa4864408f655d35ec496218b85f79b3437c829e93320c7c9215ccfd92489e"},
-    {file = "typing_extensions-4.4.0.tar.gz", hash = "sha256:1511434bb92bf8dd198c12b1cc812e800d4181cfcb867674e0f8279cc93087aa"},
+    {file = "typing_extensions-4.5.0-py3-none-any.whl", hash = "sha256:fb33085c39dd998ac16d1431ebc293a8b3eedd00fd4a32de0ff79002c19511b4"},
+    {file = "typing_extensions-4.5.0.tar.gz", hash = "sha256:5cb5f4a79139d699607b3ef622a1dedafa84e115ab0024e0d9c044a9479ca7cb"},
 ]
 
 [[package]]
@@ -2138,7 +2150,7 @@ name = "werkzeug"
 version = "2.2.3"
 description = "The comprehensive WSGI web application library."
 category = "main"
-optional = false
+optional = true
 python-versions = ">=3.7"
 files = [
     {file = "Werkzeug-2.2.3-py3-none-any.whl", hash = "sha256:56433961bc1f12533306c624f3be5e744389ac61d722175d543e1751285da612"},
@@ -2296,4 +2308,4 @@ websockets = ["websockets"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "ab1e05b5e6f3d94c24067966df0e51b6e54c2b7cfaba70f27648f459a62754bb"
+content-hash = "f550b3e8b1f231cc9b5a6609caa5e0da77274ed70f6e5a06df4b9d15f9d3a208"
