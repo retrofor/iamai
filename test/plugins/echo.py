@@ -15,6 +15,7 @@
 
 import random
 
+
 def roll_dice(num=1,RangeNum=100,Enhans=0) -> 'list|int' : # type: ignore
             DiceList = [y for x in range(1,num+1) for y in range(1,RangeNum+1)] # 存储num个骰子的1~6数字
             IndexList = [random.randint(0,len(DiceList)-1) for i in range(num)] # 键值索引
@@ -28,5 +29,5 @@ def roll_dice(num=1,RangeNum=100,Enhans=0) -> 'list|int' : # type: ignore
                 return ValList,sum(ValList) # type: ignore
             else:
                 return PrintList,sum(ValList)  # type: ignore
-            
+
 print(roll_dice(5,4,2))
