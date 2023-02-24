@@ -1,5 +1,5 @@
 from iamai import Plugin
-import onedice
+
 
 class Count(Plugin):
     async def handle(self) -> None:
