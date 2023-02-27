@@ -15,4 +15,3 @@ class Count(Plugin):
             return self.event.message.get_plain_text() == "count"
         else:
             return False
-
