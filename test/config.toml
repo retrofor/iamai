@@ -14,3 +14,8 @@ url = "/cqhttp/ws"
 api_timeout = 100
 debug = false
 
+[adapter.github]
+host = "127.0.0.1"
+port = 3000
+path = "/webhook"
+debug = false
