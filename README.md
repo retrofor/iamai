@@ -3,7 +3,7 @@
   iamai
 </h1>
 <p align="center">
-  Cross-platform robot framework, mainly used for ML.
+  Cross-platform robot framework, mainly used for ML/DL
 </p>
 <p align="center">
   <a style="text-decoration:none" href="https://www.codacy.com/gh/retrofor/iamai/dashboard?utm_source=github.com&utm_medium=referral&utm_content=retrofor/iamai&utm_campaign=Badge_Gradee" target="_blank">
@@ -25,7 +25,7 @@
   <img src="https://results.pre-commit.ci/badge/github/retrofor/iamai/main.svg">
 </p>
 <p align="center">
-  Adapters we support
+  Adapters we support.
 </p>
 <p align="center">
   <a style="text-decoration:none" href="https://onebot.dev" target="_blank">
