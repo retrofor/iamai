@@ -46,7 +46,7 @@
   </a>
 </p>
 <p align="center">
-  data below~
+  data below
 </p>
 <p align="center">
   <img src="https://img.shields.io/github/forks/retrofor/iamai?style=social" >
