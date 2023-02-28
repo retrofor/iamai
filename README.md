@@ -25,7 +25,7 @@
   <img src="https://results.pre-commit.ci/badge/github/retrofor/iamai/main.svg">
 </p>
 <p align="center">
-  Adapters we support
+  Adapters we support.
 </p>
 <p align="center">
   <a style="text-decoration:none" href="https://onebot.dev" target="_blank">
