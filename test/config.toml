@@ -1,5 +1,3 @@
-nick = "纯子"
-
 [bot]
 plugins = [""]
 plugin_dirs = ["plugins"]

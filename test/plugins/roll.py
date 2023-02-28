@@ -41,8 +41,8 @@ class Roll(Plugin):
     async def rule(self) -> bool:
         if self.event.adapter.name != "cqhttp":
             return False
-        if self.event.type == "message_sent" or self.event.type == "message":
-            return self.event.message.startswith("r")
+        if self.event.type == "message_sent": # or self.event.type == "message":
+            return self.event.message.startswith("!!r")
         else:
             return False
 
