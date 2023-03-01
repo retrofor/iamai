@@ -105,7 +105,7 @@ bot.run()
 
 - <https://iamai.retrofor.space> _(recommend)_
 - <https://iamai-retrofor-space.netlify.app>
-- ~~<https://retrofor.github.io/iamai>~~
+- ~~<https://retrofor.github.io>~~
 
 ## ✨ Project Activity
 
