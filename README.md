@@ -3,7 +3,7 @@
   iamai
 </h1>
 <p align="center">
-  Cross-platform robot framework, mainly used for ML/DL
+  Cross-platform robot framework, mainly used for ML/DL.
 </p>
 <p align="center">
   <a style="text-decoration:none" href="https://www.codacy.com/gh/retrofor/iamai/dashboard?utm_source=github.com&utm_medium=referral&utm_content=retrofor/iamai&utm_campaign=Badge_Gradee" target="_blank">
@@ -46,7 +46,7 @@
   </a>
 </p>
 <p align="center">
-  data below~
+  data below
 </p>
 <p align="center">
   <img src="https://img.shields.io/github/forks/retrofor/iamai?style=social" >
