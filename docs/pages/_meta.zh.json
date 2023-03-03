@@ -3,9 +3,19 @@
     "title": "主页",
     "type": "page"
   },
-  "start": {
+  "Start": {
     "title": "开始",
-    "type": "page"
+    "type": "page",
+    "items": {
+      "first-step": {
+        "title": "启程",
+        "href": "/first-step"
+      },
+      "further": {
+        "title": "深入",
+        "href": "/further"
+      }
+    }
   },
   "adapters": {
     "title": "协议端",

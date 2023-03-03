@@ -3,9 +3,19 @@
     "title": "Home",
     "type": "page"
   },
-  "start": {
+  "Start": {
     "title": "Start",
-    "type": "page"
+    "type": "page",
+    "items": {
+      "first-step": {
+        "title": "first step",
+        "href": "/first-step"
+      },
+      "further": {
+        "title": "further",
+        "href": "/further"
+      }
+    }
   },
   "adapters": {
     "title": "Adapters",
