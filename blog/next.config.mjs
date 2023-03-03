@@ -1,13 +1,11 @@
 import nextra from 'nextra'
 
 const withNextra = nextra({
-  theme: 'nextra-theme-docs',
-  themeConfig: './src/theme.config.js',
+  theme: 'nextra-theme-blog',
+  themeConfig: './theme.config.jsx',
   staticImage: true,
-  latex: true,
-  flexsearch: {
-    codeblock: false
-  }
+  defaultShowCopyCode: true,
+  readingTime: true
 })
 
 export default withNextra({
