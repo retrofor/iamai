@@ -43,14 +43,14 @@ const logo = (
 
 const config: DocsThemeConfig = {
   project: {
-    link: 'https://github.com/retrofor/iamai'
+    link: 'https://github.com/shuding/nextra'
   },
-  docsRepositoryBase: 'https://github.com/retrofor/iamai/tree/main/docs',
+  docsRepositoryBase: 'https://github.com/shuding/nextra/tree/main/docs',
   useNextSeoProps() {
     const { asPath } = useRouter()
     if (asPath !== '/') {
       return {
-        titleTemplate: '%s – IamAI'
+        titleTemplate: '%s – Nextra'
       }
     }
   },
@@ -60,8 +60,8 @@ const config: DocsThemeConfig = {
     const { route } = useRouter()
     const socialCard =
       route === '/' || !title
-        ? 'https://iamai.retrofor.space/og.jpeg'
-        : `https://iamai.retrofor.space/api/og?title=${title}`
+        ? 'https://nextra.site/og.jpeg'
+        : `https://nextra.site/api/og?title=${title}`
 
     return (
       <>
@@ -104,14 +104,14 @@ const config: DocsThemeConfig = {
       </>
     )
   },
-  banner: {
-    key: '2.0-release',
-    text: (
-      <a href="https://iamai.retrofor.space" target="_blank" rel="noreferrer">
-        🎉 IamAI 2.0 is released. Read more →
-      </a>
-    )
-  },
+  // banner: {
+  //   key: '2.0-release',
+  //   text: (
+  //     <a href="https://nextra.site" target="_blank" rel="noreferrer">
+  //       🎉 Nextra 2.0 is released. Read more →
+  //     </a>
+  //   )
+  // },
   editLink: {
     text: 'Edit this page on GitHub →'
   },
@@ -151,7 +151,7 @@ const config: DocsThemeConfig = {
           </a>
         </div>
         <p className="mt-6 text-xs">
-          © 2022 - {new Date().getFullYear()} The retrofor Project.
+          © {new Date().getFullYear()} The Nextra Project.
         </p>
       </div>
     )

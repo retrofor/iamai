@@ -1,12 +1,12 @@
 {
-  "name": "iamai-docs",
+  "name": "docs",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next",
     "start": "next start",
     "build": "next build"
   },
-  "author": "HsiangNianian",
+  "author": "Shu Ding",
   "license": "MIT",
   "dependencies": {
     "@vercel/og": "^0.2.0",
