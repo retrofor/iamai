@@ -3,19 +3,9 @@
     "title": "Home",
     "type": "page"
   },
-  "Start": {
+  "start": {
     "title": "Start",
-    "type": "page",
-    "items": {
-      "first-step": {
-        "title": "first step",
-        "href": "/first-step"
-      },
-      "further": {
-        "title": "further",
-        "href": "/further"
-      }
-    }
+    "type": "page"
   },
   "adapters": {
     "title": "Adapters",
@@ -23,19 +13,22 @@
     "items": {
       "cqhttp": {
         "title": "cqhttp",
-        "href": "/cqhttp"
+        "href": "/adapters/cqhttp"
       },
       "github": {
         "title": "github",
-        "href": "/github"
+        "href": "/adapters/github"
       }
     }
-  },
-  "---": {
-    "type": "separator"
   },
   "about": {
     "title": "About",
     "type": "page"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "type": "page",
+    "href": "https://example.com/contact",
+    "newWindow": true
   }
 }

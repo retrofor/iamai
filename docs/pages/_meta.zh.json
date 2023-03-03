@@ -3,19 +3,9 @@
     "title": "主页",
     "type": "page"
   },
-  "Start": {
-    "title": "开始",
-    "type": "page",
-    "items": {
-      "first-step": {
-        "title": "启程",
-        "href": "/first-step"
-      },
-      "further": {
-        "title": "深入",
-        "href": "/further"
-      }
-    }
+  "start": {
+      "title": "启程",
+      "type": "page"
   },
   "adapters": {
     "title": "协议端",
@@ -23,19 +13,22 @@
     "items": {
       "cqhttp": {
         "title": "cqhttp",
-        "href": "/cqhttp"
+        "href": "/adapters/cqhttp"
       },
       "github": {
         "title": "github",
-        "href": "/github"
+        "href": "/adapters/github"
       }
     }
-  },
-  "---": {
-    "type": "separator"
   },
   "about": {
     "title": "关于",
     "type": "page"
+  },
+  "contact": {
+    "title": "联系我们",
+    "type": "page",
+    "href": "https://example.com/contact",
+    "newWindow": true
   }
 }
