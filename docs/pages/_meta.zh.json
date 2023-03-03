@@ -1,0 +1,31 @@
+{
+  "index": {
+    "title": "主页",
+    "type": "page"
+  },
+  "start": {
+    "title": "开始",
+    "type": "page"
+  },
+  "adapters": {
+    "title": "协议端",
+    "type": "menu",
+    "items": {
+      "cqhttp": {
+        "title": "cqhttp",
+        "href": "/cqhttp"
+      },
+      "github": {
+        "title": "github",
+        "href": "/github"
+      }
+    }
+  },
+  "---": {
+    "type": "separator"
+  },
+  "about": {
+    "title": "关于",
+    "type": "page"
+  }
+}

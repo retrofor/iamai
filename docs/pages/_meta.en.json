@@ -1,0 +1,31 @@
+{
+  "index": {
+    "title": "Home",
+    "type": "page"
+  },
+  "start": {
+    "title": "Start",
+    "type": "page"
+  },
+  "adapters": {
+    "title": "Adapters",
+    "type": "menu",
+    "items": {
+      "cqhttp": {
+        "title": "cqhttp",
+        "href": "/cqhttp"
+      },
+      "github": {
+        "title": "github",
+        "href": "/github"
+      }
+    }
+  },
+  "---": {
+    "type": "separator"
+  },
+  "about": {
+    "title": "About",
+    "type": "page"
+  }
+}
