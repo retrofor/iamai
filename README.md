@@ -1,4 +1,4 @@
-<p align="center"><img width="128" src="https://iamai.retrofor.space/img/retro.png"></p>
+<p align="center"><img width="128" src="https://iamai.retrofor.space/retro.png"></p>
 <h1 align="center">
   iamai
 </h1>
@@ -6,13 +6,6 @@
   Cross-platform robot framework, mainly used for ML/DL.
 </p>
 <p align="center">
-  <a style="text-decoration:none" href="https://www.codacy.com/gh/retrofor/iamai/dashboard?utm_source=github.com&utm_medium=referral&utm_content=retrofor/iamai&utm_campaign=Badge_Gradee" target="_blank">
-    <img src="https://app.codacy.com/project/badge/Grade/f3611d85db764236b65fac956bdb53df" alt="Codacy Badge" />
-  </a>
-  <a style="text-decoration:none" href="https://app.netlify.com/sites/iamai-retrofor-space/deploys" target="_blank">
-    <img src="https://api.netlify.com/api/v1/badges/c37c65c2-3c25-40b0-8314-cf86bfe59f55/deploy-status" alt="Site Deploy" />
-  </a>
-  <br>
   <a style="text-decoration:none" href="https://iamai.retrofor.space" target="_blank">
     <img src="https://img.shields.io/badge/Website-iamai.retrofor.space-green?style=flat-square" alt="Website" />
   </a>
@@ -23,6 +16,10 @@
   <img src="https://img.shields.io/badge/python-3.8+-blue?style=flat-square" alt="python">
   <br>
   <img src="https://results.pre-commit.ci/badge/github/retrofor/iamai/main.svg">
+  <br>
+    <a style="text-decoration:none" href="https://www.codacy.com/gh/retrofor/iamai/dashboard?utm_source=github.com&utm_medium=referral&utm_content=retrofor/iamai&utm_campaign=Badge_Gradee" target="_blank">
+    <img src="https://app.codacy.com/project/badge/Grade/f3611d85db764236b65fac956bdb53df" alt="Codacy Badge" />
+  </a>
 </p>
 <p align="center">
   Adapters we support.
@@ -72,7 +69,7 @@ A Cross-platform robot framework, mainly used for machine learning.
 - 🔌 **Optional [Add-ons](https://iamai.retrofor.space/add-ons)**: [Apscheduler](https://iamai.retrofor.space/add-ons/apscheduler), etc.
 - 👍 **Cross-platform**: [Onebot](https://iamai.retrofor.space/adapters/onebot), [Wechat](https://iamai.retrofor.space/adapters/wechat), [Twitter](https://iamai.retrofor.space/adapters/twitter), [Bilibili](https://iamai.retrofor.space/adapters/bilibili), [Github](https://iamai.retrofor.space/adapters/github), etc.
 
-<p align="center"><img width="512" src="https://iamai.retrofor.space/img/logo.png"></p>
+<p align="center"><img width="512" src="https://iamai.retrofor.space/logo.png"></p>
 
 ## ⬇️ Install
 
