@@ -3,10 +3,17 @@
   "version": "0.0.1",
   "description": "Nextra docs template",
   "scripts": {
-    "dev": "next dev",
+    "dev": "webpack-dev-server & npm run format & next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "format": "onchange 'src/**/*.js' 'src/**/*.jsx' 'src/**/*.scss' -- prettier --write {{changed}}",
+    "precommit-msg": "echo 'Pre-commit checks.........' && exit 0",
+    "lint": "eslint --ext .js --ext .jsx src"
   },
+  "pre-commit": [
+    "precommit-msg",
+    "lint"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shuding/nextra-docs-template.git"
@@ -28,6 +35,7 @@
   },
   "devDependencies": {
     "@types/node": "18.11.10",
+    "pre-commit": "^1.2.2",
     "typescript": "^4.9.3"
   }
 }
