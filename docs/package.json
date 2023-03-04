@@ -1,7 +1,8 @@
 {
-  "name": "nextra-docs-template",
+  "name": "iamai-docs",
   "version": "0.0.1",
-  "description": "Nextra docs template",
+  "description": "iamai docs",
+  "author": "简律纯 <admin@jyunko.cn>",
   "scripts": {
     "dev": "webpack-dev-server & npm run format & next dev",
     "build": "next build",
