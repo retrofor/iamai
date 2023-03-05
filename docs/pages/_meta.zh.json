@@ -4,8 +4,8 @@
     "type": "page"
   },
   "start": {
-      "title": "启程",
-      "type": "page"
+    "title": "开始",
+    "type": "page"
   },
   "adapters": {
     "title": "协议端",
@@ -24,11 +24,5 @@
   "about": {
     "title": "关于",
     "type": "page"
-  },
-  "contact": {
-    "title": "联系我们",
-    "type": "page",
-    "href": "https://example.com/contact",
-    "newWindow": true
   }
 }

@@ -2,32 +2,23 @@
   "name": "iamai-docs",
   "version": "0.0.1",
   "description": "iamai docs",
-  "author": "简律纯 <admin@jyunko.cn>",
   "scripts": {
-    "dev": "webpack-dev-server & npm run format & next dev",
+    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "format": "onchange 'src/**/*.js' 'src/**/*.jsx' 'src/**/*.scss' -- prettier --write {{changed}}",
-    "precommit-msg": "echo 'Pre-commit checks.........' && exit 0",
-    "lint": "eslint --ext .js --ext .jsx src"
+    "start": "next start"
   },
-  "pre-commit": [
-    "precommit-msg",
-    "lint"
-  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shuding/nextra-docs-template.git"
+    "url": "git+https://github.com/retrofor/iamai.git"
   },
+  "author": "HsiangNianian <admin@jyunko.cn>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shuding/nextra-docs-template/issues"
+    "url": "https://github.com/retrofor/iamai/issues"
   },
-  "homepage": "https://github.com/shuding/nextra-docs-template#readme",
+  "homepage": "https://github.com/retrofor/iamai#readme",
   "dependencies": {
     "next": "^13.0.6",
-    "next-auth": "^4.20.1",
-    "nextjs": "^0.0.3",
     "nextra": "latest",
     "nextra-theme-docs": "latest",
     "react": "^18.2.0",
@@ -35,8 +26,6 @@
   },
   "devDependencies": {
     "@types/node": "18.11.10",
-    "pre-commit": "^1.2.2",
-    "typescript": "^4.9.3",
-    "webpack-cli": "^5.0.1"
+    "typescript": "^4.9.3"
   }
 }

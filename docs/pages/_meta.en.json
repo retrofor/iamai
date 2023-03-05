@@ -24,11 +24,5 @@
   "about": {
     "title": "About",
     "type": "page"
-  },
-  "contact": {
-    "title": "Contact Us",
-    "type": "page",
-    "href": "https://example.com/contact",
-    "newWindow": true
   }
 }

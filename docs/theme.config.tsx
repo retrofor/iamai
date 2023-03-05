@@ -1,6 +1,5 @@
 import React from 'react'
 import { DocsThemeConfig } from 'nextra-theme-docs'
-import { useSSG } from 'nextra/ssg'
 
 const config: DocsThemeConfig = {
   logo: <span>IamAI</span>,
