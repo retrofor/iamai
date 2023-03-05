@@ -5,7 +5,7 @@
 import { useSSG } from 'nextra/ssg'
  
 export const getStaticProps = ({ params }) => {
-  return fetch(`https://api.github.com/repos/shuding/nextra`)
+  return fetch(`https://api.github.com/repos/retrofor/iamai`)
     .then(res => res.json())
     .then(repo => ({
       props: {
