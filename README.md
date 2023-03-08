@@ -143,7 +143,7 @@ generated_text = tokenizer.decode(outputs[0])
 
 ## ✨ Project Activity
 
-![Alt](https://repobeats.axiom.co/api/embed/6eda7bc8b6b17ae671f6c5fe6a73ceb4afb341aa.svg "Repobeats analytics image")
+![Alt](https://repobeats.axiom.co/api/embed/cc9b8bded331c406e68cc0c7c294ef04122d6da2.svg "Repobeats analytics image")
 
 ## 👨‍🚀 Contributors
 
