@@ -131,7 +131,7 @@ generated_text = tokenizer.decode(outputs[0])
 
 要编写一个transformer模型优化器，需要了解优化器的原理，并熟悉transformer模型的结构。
 
-优化器的原理可以参考论文《Attention Is All You Need》，transformer模型的结构可以参考论文《Transformer: A Novel Neural Network Architecture for Language Understanding》，优化器的实现可以参考huggingface的transformers库中的AdamW优化器。
+优化器的原理可以参考论文[《Attention Is All You Need》](https://arxiv.org/abs/1706.03762)，transformer模型的结构可以参考论文[《Transformer: A Novel Neural Network Architecture for Language Understanding》](https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html?m=1)，优化器的实现可以参考huggingface的transformers库中的AdamW优化器。
 
 ## 👀 See the docs
 
