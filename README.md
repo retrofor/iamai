@@ -22,7 +22,7 @@
   </a>
 </p>
 <p align="center">
-  Adapters we support.
+  <-- Adapters -->
 </p>
 <p align="center">
 <!-- onebot -->
@@ -55,7 +55,7 @@
   </a>
 </p>
 <p align="center">
-  data below
+  <-- data below -->
 </p>
 <p align="center">
   <img src="https://img.shields.io/github/forks/retrofor/iamai?style=social" >
@@ -129,8 +129,11 @@ outputs = model.generate(input_ids)
 # 获取生成的文本
 generated_text = tokenizer.decode(outputs[0])
 ```
+你可以使用预制的优化器加快模型调用速度，当然也可以自己编写，但要注意，transformer模型优化器是一种特殊的优化器，它可以用来优化transformer模型的参数，从而提高模型的性能。
 
-你可以使用预制的优化器加快模型调用速度，当然也可以自己编写，但要注意，transformer模型优化器是一种特殊的优化器，它可以用来优化transformer模型的参数，从而提高模型的性能。要编写一个transformer模型优化器，需要了解优化器的原理，并熟悉transformer模型的结构。优化器的原理可以参考论文《Attention Is All You Need》，transformer模型的结构可以参考论文《Transformer: A Novel Neural Network Architecture for Language Understanding》，优化器的实现可以参考huggingface的transformers库中的AdamW优化器。
+要编写一个transformer模型优化器，需要了解优化器的原理，并熟悉transformer模型的结构。
+
+优化器的原理可以参考论文《Attention Is All You Need》，transformer模型的结构可以参考论文《Transformer: A Novel Neural Network Architecture for Language Understanding》，优化器的实现可以参考huggingface的transformers库中的AdamW优化器。
 
 ## 👀 See the docs
 
