@@ -22,7 +22,6 @@
   </a>
 </p>
 <p align="center">
-  Adapters we support.
 </p>
 <p align="center">
 <!-- onebot -->
@@ -55,7 +54,6 @@
   </a>
 </p>
 <p align="center">
-  data below
 </p>
 <p align="center">
   <img src="https://img.shields.io/github/forks/retrofor/iamai?style=social" >
@@ -129,8 +127,11 @@ outputs = model.generate(input_ids)
 # 获取生成的文本
 generated_text = tokenizer.decode(outputs[0])
 ```
+你可以使用预制的优化器加快模型调用速度，当然也可以自己编写，但要注意，transformer模型优化器是一种特殊的优化器，它可以用来优化transformer模型的参数，从而提高模型的性能。
 
-你可以使用预制的优化器加快模型调用速度，当然也可以自己编写，但要注意，transformer模型优化器是一种特殊的优化器，它可以用来优化transformer模型的参数，从而提高模型的性能。要编写一个transformer模型优化器，需要了解优化器的原理，并熟悉transformer模型的结构。优化器的原理可以参考论文《Attention Is All You Need》，transformer模型的结构可以参考论文《Transformer: A Novel Neural Network Architecture for Language Understanding》，优化器的实现可以参考huggingface的transformers库中的AdamW优化器。
+要编写一个transformer模型优化器，需要了解优化器的原理，并熟悉transformer模型的结构。
+
+优化器的原理可以参考论文[《Attention Is All You Need》](https://arxiv.org/abs/1706.03762)，transformer模型的结构可以参考论文[《Transformer: A Novel Neural Network Architecture for Language Understanding》](https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html?m=1)，优化器的实现可以参考huggingface的transformers库中的[AdamW优化器](https://huggingface.co/transformers/v3.0.2/main_classes/optimizer_schedules.html)。
 
 ## 👀 See the docs
 
@@ -142,7 +143,7 @@ generated_text = tokenizer.decode(outputs[0])
 
 ## ✨ Project Activity
 
-![Alt](https://repobeats.axiom.co/api/embed/6eda7bc8b6b17ae671f6c5fe6a73ceb4afb341aa.svg "Repobeats analytics image")
+![Alt](https://repobeats.axiom.co/api/embed/cc9b8bded331c406e68cc0c7c294ef04122d6da2.svg "Repobeats analytics image")
 
 ## 👨‍🚀 Contributors
 

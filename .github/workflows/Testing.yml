@@ -12,6 +12,9 @@ jobs:
     name: Test deployment
     runs-on: ubuntu-latest
     steps:
+      - name: CD Dir
+        run: cd docs
+
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
@@ -20,5 +23,5 @@ jobs:
 
       - name: Install dependencies
         run: yarn install #--frozen-lockfile
-      - name: Test build website
-        run: yarn build
+      - name: Test 
+        run: next build
