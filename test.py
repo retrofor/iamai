@@ -1,12 +1,13 @@
-import openai
+import requests
 
-openai.api_key = "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"
+API_URL = "https://api-inference.huggingface.co/models/facebook/fastspeech2-en-ljspeech"
+headers = {"Authorization": "Bearer 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"}
 
-completion = openai.ChatCompletion.create(
-  model="gpt-3.5-turbo",
-  messages=[
-    {"role": "user", "content": "你好!"}
-  ]
-)
-
-print(completion.choices[0].message)
+def query(payload):
+	response = requests.post(API_URL, headers=headers, json=payload)
+	return response.json()
+	
+output = query({
+	"inputs": "The answer to the universe is 42",
+})
+print(output)
