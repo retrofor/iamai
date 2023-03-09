@@ -2,11 +2,6 @@ from iamai import Plugin
 from iamai.adapter.cqhttp.message import CQHTTPMessageSegment
 
 class BertBase(Plugin):
-    # async def post_request(self,payload):
-    #     async with aiohttp.ClientSession() as session:
-    #         async with session.post(API_URL,headers=headers,json=payload) as response:
-    #             response_data = await response.json()
-    #             return response_data
     async def handle(self) -> None:
         import requests
 
@@ -19,7 +14,6 @@ class BertBase(Plugin):
         image_bytes = query({
             "inputs": self.event.message.get_plain_text().replace("sd>",""),
         })
-        # You can access the image with PIL.Image for example
         import io
         from PIL import Image
         image = Image.open(io.BytesIO(image_bytes))

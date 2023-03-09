@@ -37,7 +37,7 @@ from iamai.utils import (
 )
 
 try:
-    import tomllib  # noqa
+    import tomllib  # type: ignore[module]
 except ModuleNotFoundError:
     import tomli as tomllib
 

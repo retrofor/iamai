@@ -6,9 +6,8 @@
   Cross-platform robot framework, mainly used for ML/DL.
 </p>
 <p align="center">
-  <a style="text-decoration:none" href="https://iamai.retrofor.space" target="_blank">
-    <img src="https://img.shields.io/badge/Website-iamai.retrofor.space-green?style=flat-square" alt="Website" />
-  </a>
+    <img src="https://img.shields.io/badge/docs-20230309-green?style=flat-square" alt="Website" href="https://iamai.retrofor.space" target="_blank"/>
+    <img src="https://img.shields.io/badge/playgroud-live-green?style=flat-square" alt="Website" href="https://playground.retrofor.space/iamai" target="_blank"/>
   <br>
   <a href="https://pypi.python.org/pypi/iamai">
     <img src="https://img.shields.io/pypi/v/iamai?style=flat-square" alt="pypi">
@@ -114,6 +113,8 @@ bot.run()
 
 > then, you need load the transformer and use your models.
 
+**使用transformer(Use from the 🤗/transformers library)**
+
 ```python
 from transformers import AutoModelWithLMHead, AutoTokenizer
 # 加载模型
@@ -132,6 +133,23 @@ generated_text = tokenizer.decode(outputs[0])
 要编写一个transformer模型优化器，需要了解优化器的原理，并熟悉transformer模型的结构。
 
 优化器的原理可以参考论文[《Attention Is All You Need》](https://arxiv.org/abs/1706.03762)，transformer模型的结构可以参考论文[《Transformer: A Novel Neural Network Architecture for Language Understanding》](https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html?m=1)，优化器的实现可以参考huggingface的transformers库中的[AdamW优化器](https://huggingface.co/transformers/v3.0.2/main_classes/optimizer_schedules.html)。
+
+**使用API(Use the Inference API)**
+
+```python
+import requests
+
+API_URL = "https://api-inference.huggingface.co/models/xxx/xxxxx"
+headers = {"Authorization": "Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
+
+def query(payload):
+	response = requests.post(API_URL, headers=headers, json=payload)
+	return response.json()
+	
+output = query({
+	"inputs": "xxx",
+})
+```
 
 ## 👀 See the docs
 
