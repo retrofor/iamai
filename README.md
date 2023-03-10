@@ -128,6 +128,7 @@ outputs = model.generate(input_ids)
 # 获取生成的文本
 generated_text = tokenizer.decode(outputs[0])
 ```
+
 你可以使用预制的优化器加快模型调用速度，当然也可以自己编写，但要注意，transformer模型优化器是一种特殊的优化器，它可以用来优化transformer模型的参数，从而提高模型的性能。
 
 要编写一个transformer模型优化器，需要了解优化器的原理，并熟悉transformer模型的结构。
@@ -145,7 +146,7 @@ headers = {"Authorization": "Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
 def query(payload):
 	response = requests.post(API_URL, headers=headers, json=payload)
 	return response.json()
-	
+
 output = query({
 	"inputs": "xxx",
 })

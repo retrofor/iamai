@@ -1,6 +1,7 @@
 from iamai import Plugin
 from iamai.adapter.cqhttp.message import CQHTTPMessageSegment
 
+
 class BertBase(Plugin):
     async def handle(self) -> None:
         import requests
@@ -15,6 +16,7 @@ class BertBase(Plugin):
             "inputs": self.event.message.get_plain_text().replace("sd>",""),
         })
         import io
+
         from PIL import Image
         image = Image.open(io.BytesIO(image_bytes))
         image.save('s.png')
