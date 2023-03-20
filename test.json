@@ -1,13 +1,13 @@
 {
     "ref": "refs/heads/main",
-    "before": "cde46280a0fb3c8526960dacaebcacf520223ac3",
-    "after": "8b400cc844a7cb90b7d1b97eb157126e11dab2bd",
+    "before": "8b400cc844a7cb90b7d1b97eb157126e11dab2bd",
+    "after": "0e0c842f8f8e901f3cc7af0d149fda9031286ca5",
     "repository": {
         "id": 591881872,
         "node_id": "R_kgDOI0dmkA",
         "name": "iamai",
         "full_name": "retrofor/iamai",
-        "private": False,
+        "private": false,
         "owner": {
             "name": "retrofor",
             "email": "Hsiangnianian@outlook.com",
@@ -28,11 +28,11 @@
             "events_url": "https://api.github.com/users/retrofor/events{/privacy}",
             "received_events_url": "https://api.github.com/users/retrofor/received_events",
             "type": "Organization",
-            "site_admin": False
+            "site_admin": false
         },
         "html_url": "https://github.com/retrofor/iamai",
         "description": "Cross-platform robot framework, mainly used for machine learning | \u8de8\u5e73\u53f0\u673a\u5668\u4eba\u6846\u67b6+\u6df1\u5ea6\u5b66\u4e60\u6846\u67b6",
-        "fork": False,
+        "fork": false,
         "url": "https://github.com/retrofor/iamai",
         "forks_url": "https://api.github.com/repos/retrofor/iamai/forks",
         "keys_url": "https://api.github.com/repos/retrofor/iamai/keys{/key_id}",
@@ -72,7 +72,7 @@
         "deployments_url": "https://api.github.com/repos/retrofor/iamai/deployments",
         "created_at": 1674373376,
         "updated_at": "2023-03-20T06:44:45Z",
-        "pushed_at": 1679295133,
+        "pushed_at": 1679296212,
         "git_url": "git://github.com/retrofor/iamai.git",
         "ssh_url": "git@github.com:retrofor/iamai.git",
         "clone_url": "https://github.com/retrofor/iamai.git",
@@ -82,17 +82,17 @@
         "stargazers_count": 9,
         "watchers_count": 9,
         "language": "Python",
-        "has_issues": True,
-        "has_projects": True,
-        "has_downloads": True,
-        "has_wiki": True,
-        "has_pages": True,
-        "has_discussions": True,
+        "has_issues": true,
+        "has_projects": true,
+        "has_downloads": true,
+        "has_wiki": true,
+        "has_pages": true,
+        "has_discussions": true,
         "forks_count": 3,
         "mirror_url": null,
-        "archived": False,
-        "disabled": False,
-        "open_issues_count": 20,
+        "archived": false,
+        "disabled": false,
+        "open_issues_count": 19,
         "license": {
             "key": "mit",
             "name": "MIT License",
@@ -100,9 +100,9 @@
             "url": "https://api.github.com/licenses/mit",
             "node_id": "MDc6TGljZW5zZTEz"
         },
-        "allow_forking": True,
-        "is_template": False,
-        "web_commit_signoff_required": False,
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
         "topics": [
             "ai",
             "artificial-intelligence",
@@ -117,7 +117,7 @@
         ],
         "visibility": "public",
         "forks": 3,
-        "open_issues": 20,
+        "open_issues": 19,
         "watchers": 9,
         "default_branch": "main",
         "stargazers": 9,
@@ -160,21 +160,21 @@
         "events_url": "https://api.github.com/users/HsiangNianian/events{/privacy}",
         "received_events_url": "https://api.github.com/users/HsiangNianian/received_events",
         "type": "User",
-        "site_admin": False
+        "site_admin": false
     },
-    "created": False,
-    "deleted": False,
-    "forced": False,
+    "created": false,
+    "deleted": false,
+    "forced": false,
     "base_ref": null,
-    "compare": "https://github.com/retrofor/iamai/compare/cde46280a0fb...8b400cc844a7",
+    "compare": "https://github.com/retrofor/iamai/compare/8b400cc844a7...0e0c842f8f8e",
     "commits": [
         {
-            "id": "96baeec49051f1e4bc1df8b34bad1e258786cb17",
-            "tree_id": "170665ad3aeac76c9083ac364055c36f8e575576",
-            "distinct": True,
-            "message": "\u2728\u4e3aGithub\u9002\u914d\u5668\u6dfb\u52a0\u4ecb\u7ecd",
-            "timestamp": "2023-03-20T14:50:14+08:00",
-            "url": "https://github.com/retrofor/iamai/commit/96baeec49051f1e4bc1df8b34bad1e258786cb17",
+            "id": "0e0c842f8f8e901f3cc7af0d149fda9031286ca5",
+            "tree_id": "8cccf707e1abdf634e2344abec16428c05c71ce1",
+            "distinct": true,
+            "message": "\ud83d\udc1bGIthub payload\u6d4b\u8bd5",
+            "timestamp": "2023-03-20T15:10:01+08:00",
+            "url": "https://github.com/retrofor/iamai/commit/0e0c842f8f8e901f3cc7af0d149fda9031286ca5",
             "author": {
                 "name": "\u7b80\u5f8b\u7eaf",
                 "email": "hsiangnianian@outlook.com",
@@ -185,43 +185,22 @@
                 "email": "hsiangnianian@outlook.com",
                 "username": "HsiangNianian"
             },
-            "added": [],
-            "removed": [],
-            "modified": [
-                "iamai/adapter/github/__init.py"
-            ]
-        },
-        {
-            "id": "8b400cc844a7cb90b7d1b97eb157126e11dab2bd",
-            "tree_id": "877050e3b2512b7f02a376d07b51120c7fee6c5e",
-            "distinct": True,
-            "message": "\u2728[Adapter] GIthub\u9002\u914d\u5668\u6dfb\u52a0config\u9879",
-            "timestamp": "2023-03-20T14:52:01+08:00",
-            "url": "https://github.com/retrofor/iamai/commit/8b400cc844a7cb90b7d1b97eb157126e11dab2bd",
-            "author": {
-                "name": "\u7b80\u5f8b\u7eaf",
-                "email": "hsiangnianian@outlook.com",
-                "username": "HsiangNianian"
-            },
-            "committer": {
-                "name": "\u7b80\u5f8b\u7eaf",
-                "email": "hsiangnianian@outlook.com",
-                "username": "HsiangNianian"
-            },
-            "added": [],
-            "removed": [],
-            "modified": [
-                "iamai/adapter/github/config.py"
-            ]
+            "added": [
+                "test.json"
+            ],
+            "removed": [
+                "test.py"
+            ],
+            "modified": []
         }
     ],
     "head_commit": {
-        "id": "8b400cc844a7cb90b7d1b97eb157126e11dab2bd",
-        "tree_id": "877050e3b2512b7f02a376d07b51120c7fee6c5e",
-        "distinct": True,
-        "message": "\u2728[Adapter] GIthub\u9002\u914d\u5668\u6dfb\u52a0config\u9879",
-        "timestamp": "2023-03-20T14:52:01+08:00",
-        "url": "https://github.com/retrofor/iamai/commit/8b400cc844a7cb90b7d1b97eb157126e11dab2bd",
+        "id": "0e0c842f8f8e901f3cc7af0d149fda9031286ca5",
+        "tree_id": "8cccf707e1abdf634e2344abec16428c05c71ce1",
+        "distinct": true,
+        "message": "\ud83d\udc1bGIthub payload\u6d4b\u8bd5",
+        "timestamp": "2023-03-20T15:10:01+08:00",
+        "url": "https://github.com/retrofor/iamai/commit/0e0c842f8f8e901f3cc7af0d149fda9031286ca5",
         "author": {
             "name": "\u7b80\u5f8b\u7eaf",
             "email": "hsiangnianian@outlook.com",
@@ -232,10 +211,12 @@
             "email": "hsiangnianian@outlook.com",
             "username": "HsiangNianian"
         },
-        "added": [],
-        "removed": [],
-        "modified": [
-            "iamai/adapter/github/config.py"
-        ]
+        "added": [
+            "test.json"
+        ],
+        "removed": [
+            "test.py"
+        ],
+        "modified": []
     }
 }
