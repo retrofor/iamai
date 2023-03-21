@@ -45,7 +45,7 @@ pre-commit = "^3.0.0"
 [tool.poetry.group.test.dependencies]
 pytest-cov = "^4.0.0"
 pytest-xdist = "^3.2.0"
-pytest-asyncio = "^0.20.0"
+pytest-asyncio = ">=0.20,<0.22"
 
 [tool.poetry.extras]
 httpx = ["httpx"]
