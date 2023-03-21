@@ -1,8 +1,9 @@
-import collections
-import hashlib
 import hmac
-import logging
 import json
+import hashlib
+import logging
+import collections
+
 import six
 from flask import abort, request
 
@@ -11,7 +12,7 @@ try:
     path = config['settings']['path']
 except:
     path = "/webhook"
-    
+
 class Webhook(object):
     """
     Construct a webhook on the given :code:`app`.
