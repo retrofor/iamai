@@ -3,7 +3,7 @@
   iamai
 </h1>
 <p align="center">
-  Cross-platform robot framework, mainly used for ML/DL.
+  跨平台机器人框架 | 专为ML/DL而生
 </p>
 <p align="center">
     <img src="https://img.shields.io/badge/docs-20230309-green?style=flat-square" alt="Website" href="https://iamai.retrofor.space" target="_blank"/>
@@ -65,40 +65,39 @@
   <img src="https://img.shields.io/github/languages/top/retrofor/iamai?style=social" >
 </p>
 
-## 📘 Introduction
+## 📘 简介
 
-A Cross-platform robot framework, mainly used for machine learning.
+跨平台机器人框架，主要用于机器学习。
 
-## 🚀 Features
+## 🚀 特性
 
-- 🎪 **Interactive [docs](https://iamai.retrofor.space) &amp; [demos](https://iamai.retrofor.space/demos)**
-- 🕶 **Seamless migration**: Works for **both** [Rasa]() and [GPT]() and more...
-- ⚡ **Fully tree shakeable**: Only take what you want, [bundle size](https://iamai.retrofor.space/export-size)
-- 🔩 **Flexible**: Configurable event filters and targets
-- 🔌 **Optional [Add-ons](https://iamai.retrofor.space/add-ons)**: [Apscheduler](https://iamai.retrofor.space/add-ons/apscheduler), etc.
-- 👍 **Cross-platform**: [Onebot](https://iamai.retrofor.space/adapters/onebot), [Wechat](https://iamai.retrofor.space/adapters/wechat), [Twitter](https://iamai.retrofor.space/adapters/twitter), [Bilibili](https://iamai.retrofor.space/adapters/bilibili), [Github](https://iamai.retrofor.space/adapters/github), etc.
+- 🎪 **交互式 [docs](https://iamai.retrofor.space) &amp; [demos](https://iamai.retrofor.space/demos)**。
+- 🕶 **完美缝合**: **同时**适用 [Rasa]() 与 [GPT]() 以及更多模型...
+<!-- - ⚡ **Fully tree shakeable**: Only take what you want, [bundle size](https://iamai.retrofor.space/export-size) -->
+- 🔩 **灵活**: 可配置的事件过滤器和对象。
+- 🔌 **可选 [扩展](https://iamai.retrofor.space/add-ons)**: [Apscheduler](https://iamai.retrofor.space/add-ons/apscheduler) 以及更多...
+- 👍 **跨平台**: [QQ](https://iamai.retrofor.space/adapters/onebot), [微信](https://iamai.retrofor.space/adapters/wechat), [推特](https://iamai.retrofor.space/adapters/twitter), [B站](https://iamai.retrofor.space/adapters/bilibili), [Github](https://iamai.retrofor.space/adapters/github), etc.
 
 <p align="center"><img width="512" src="https://iamai.retrofor.space/logo.png"></p>
 
-## ⬇️ Install
+## ⬇️ 安装
 
-- STABLE VERSION
+- 稳定版本
   ```sh
   pip install iamai
   ```
 
-or you can also install for TEST.
+或者你也可以使用test镜像安装一些用于测试的版本：
 
-- TEST VERSION
+- 测试版本
   ```sh
   pip install -i https://test.pypi.org/simple/ iamai
   ```
 
-## ❗ Usage
+## ❗ 使用
 
 首先你需要有一个适配器与IamAI连接。
 
-> firstly,you need to load an adapter.
 
 ```python
 from iamai import Bot
@@ -110,8 +109,6 @@ bot.run()
 ```
 
 接着导入transformer以及你的模型，
-
-> then, you need load the transformer and use your models.
 
 **使用transformer(Use from the 🤗/transformers library)**
 
@@ -152,24 +149,24 @@ output = query({
 })
 ```
 
-## 👀 See the docs
+## 👀 文档
 
-> choices below.
+> 多个镜像可供选择。
 
-- <https://iamai.retrofor.space> _(recommend)_
+- <https://iamai.retrofor.space> _(推荐)_
 - <https://iamai-docs-git-main-retrofor.vercel.app>
 - ~~<https://iamai-docs-retrofor.vercel.app/>~~
 
-## ✨ Project Activity
+## ✨ 项目公告板
 
 ![Alt](https://repobeats.axiom.co/api/embed/cc9b8bded331c406e68cc0c7c294ef04122d6da2.svg "Repobeats analytics image")
 
-## 👨‍🚀 Contributors
+## 👨‍🚀 贡献者
 
 <a href="https://github.com/retrofor/iamai/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=retrofor/iamai" />
 </a>
 
-## 📄 License
+## 📄 协议
 
 [MIT](https://github.com/retrofor/iamai/blob/main/LICENSE) © 2023-PRESENT [简律纯](https://github.com/HsiangNianian)
