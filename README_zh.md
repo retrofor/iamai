@@ -110,7 +110,7 @@ bot.run()
 
 接着导入transformer以及你的模型，
 
-**使用transformer(Use from the 🤗/transformers library)**
+**使用🤗/transformers 库**
 
 ```python
 from transformers import AutoModelWithLMHead, AutoTokenizer
@@ -132,7 +132,7 @@ generated_text = tokenizer.decode(outputs[0])
 
 优化器的原理可以参考论文[《Attention Is All You Need》](https://arxiv.org/abs/1706.03762)，transformer模型的结构可以参考论文[《Transformer: A Novel Neural Network Architecture for Language Understanding》](https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html?m=1)，优化器的实现可以参考huggingface的transformers库中的[AdamW优化器](https://huggingface.co/transformers/v3.0.2/main_classes/optimizer_schedules.html)。
 
-**使用API(Use the Inference API)**
+**使用Inference API**
 
 ```python
 import requests
@@ -157,7 +157,7 @@ output = query({
 - <https://iamai-docs-git-main-retrofor.vercel.app>
 - ~~<https://iamai-docs-retrofor.vercel.app/>~~
 
-## ✨ 项目公告板
+## ✨ 项目公示板
 
 ![Alt](https://repobeats.axiom.co/api/embed/cc9b8bded331c406e68cc0c7c294ef04122d6da2.svg "Repobeats analytics image")
 
