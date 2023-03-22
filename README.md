@@ -3,6 +3,9 @@
   iamai
 </h1>
 <p align="center">
+  <a href="/README_zh.md">简体中文</a>
+</p>
+<p align="center">
   Cross-platform robot framework, mainly used for ML/DL.
 </p>
 <p align="center">
@@ -96,9 +99,7 @@ or you can also install for TEST.
 
 ## ❗ Usage
 
-首先你需要有一个适配器与IamAI连接。
-
-> firstly,you need to load an adapter.
+firstly,you need to load an adapter.
 
 ```python
 from iamai import Bot
@@ -109,33 +110,31 @@ bot.load_adapters("iamai.adapter.cqhttp")
 bot.run()
 ```
 
-接着导入transformer以及你的模型，
+then, you need load the transformer and use your models.
 
-> then, you need load the transformer and use your models.
-
-**使用transformer(Use from the 🤗/transformers library)**
+**transformer(Use from the 🤗/transformers library)**
 
 ```python
 from transformers import AutoModelWithLMHead, AutoTokenizer
-# 加载模型
+# load models
 model = AutoModelWithLMHead.from_pretrained("gpt2")
-# 加载tokenizer
+# load tokenizer
 tokenizer = AutoTokenizer.from_pretrained("gpt2")
-# 将文本转换为token
+# transfor the text to token
 input_ids = tokenizer.encode("Hello, my name is IamAI!", add_special_tokens=True)
-# 将token输入模型
+# input the token to the models
 outputs = model.generate(input_ids)
-# 获取生成的文本
+# get the text generated
 generated_text = tokenizer.decode(outputs[0])
 ```
 
-你可以使用预制的优化器加快模型调用速度，当然也可以自己编写，但要注意，transformer模型优化器是一种特殊的优化器，它可以用来优化transformer模型的参数，从而提高模型的性能。
+You can use pre-built optimizers to speed up the model inference process, or you can write your own optimizer. However, it's important to note that the transformer model optimizer is a special type of optimizer that is designed specifically for optimizing parameters in transformer models, thereby improving their performance.
 
-要编写一个transformer模型优化器，需要了解优化器的原理，并熟悉transformer模型的结构。
+To write a transformer model optimizer, you need to have an understanding of how optimizers work and be familiar with the structure of transformer models.
 
-优化器的原理可以参考论文[《Attention Is All You Need》](https://arxiv.org/abs/1706.03762)，transformer模型的结构可以参考论文[《Transformer: A Novel Neural Network Architecture for Language Understanding》](https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html?m=1)，优化器的实现可以参考huggingface的transformers库中的[AdamW优化器](https://huggingface.co/transformers/v3.0.2/main_classes/optimizer_schedules.html)。
+The principle of optimizers can be referred to in the paper ["Attention Is All You Need"](https://arxiv.org/abs/1706.03762), and the structure of transformer models can be referred to in the paper ["Transformer: A Novel Neural Network Architecture for Language Understanding"](https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html?m=1). The implementation of optimizers can be referred to in the [AdamW optimizer](https://huggingface.co/transformers/v3.0.2/main_classes/optimizer_schedules.html) in the Hugging Face Transformers library.
 
-**使用API(Use the Inference API)**
+**Use the Inference API**
 
 ```python
 import requests
