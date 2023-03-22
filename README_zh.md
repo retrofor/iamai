@@ -3,6 +3,11 @@
   iamai
 </h1>
 <p align="center">
+  <a href="/README.md">English</a>
+  <a href="/README_jp.md">にほんご</a>
+  <a href="/README_ko.md">한국어</a>
+</p>
+<p align="center">
   跨平台机器人框架 | 专为ML/DL而生
 </p>
 <p align="center">
@@ -73,7 +78,9 @@
 
 - 🎪 **交互式 [docs](https://iamai.retrofor.space) &amp; [demos](https://iamai.retrofor.space/demos)**。
 - 🕶 **完美缝合**: **同时**适用 [Rasa]() 与 [GPT]() 以及更多模型...
+
 <!-- - ⚡ **Fully tree shakeable**: Only take what you want, [bundle size](https://iamai.retrofor.space/export-size) -->
+
 - 🔩 **灵活**: 可配置的事件过滤器和对象。
 - 🔌 **可选 [扩展](https://iamai.retrofor.space/add-ons)**: [Apscheduler](https://iamai.retrofor.space/add-ons/apscheduler) 以及更多...
 - 👍 **跨平台**: [QQ](https://iamai.retrofor.space/adapters/onebot), [微信](https://iamai.retrofor.space/adapters/wechat), [推特](https://iamai.retrofor.space/adapters/twitter), [B站](https://iamai.retrofor.space/adapters/bilibili), [Github](https://iamai.retrofor.space/adapters/github), 以及更多...
@@ -97,7 +104,6 @@
 ## ❗ 使用
 
 首先你需要有一个适配器与IamAI连接。
-
 
 ```python
 from iamai import Bot
@@ -153,9 +159,9 @@ output = query({
 
 > 多个镜像可供选择。
 
-- <https://iamai.retrofor.space> _(推荐)_
-- <https://iamai-docs-git-main-retrofor.vercel.app>
-- ~~<https://iamai-docs-retrofor.vercel.app/>~~
+- [https://iamai.retrofor.space](https://iamai.retrofor.space) _(推荐)_
+- [https://iamai-docs-git-main-retrofor.vercel.app](https://iamai-docs-git-main-retrofor.vercel.app)
+- ~~[https://iamai-docs-retrofor.vercel.app/](https://iamai-docs-retrofor.vercel.app/)~~
 
 ## ✨ 项目公示板
 

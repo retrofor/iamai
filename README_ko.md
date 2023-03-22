@@ -5,10 +5,10 @@
 <p align="center">
   <a href="/README_zh.md">简体中文</a>
   <a href="/README_jp.md">にほんご</a>
-  <a href="/README_ko.md">한국어</a>
+  <a href="/README.md">English</a>
 </p>
 <p align="center">
-  Cross-platform robot framework, mainly used for ML/DL.
+  크로스 플랫폼의 로봇 프레임워크로, 주로 기계 학습/심층 학습에 사용됩니다.
 </p>
 <p align="center">
     <img src="https://img.shields.io/badge/docs-20230309-green?style=flat-square" alt="Website" href="https://iamai.retrofor.space" target="_blank"/>
@@ -70,38 +70,38 @@
   <img src="https://img.shields.io/github/languages/top/retrofor/iamai?style=social" >
 </p>
 
-## 📘 Introduction
+## 📘 소개
 
-A Cross-platform robot framework, mainly used for machine learning.
+기계 학습을 위해 주로 사용되는 크로스 플랫폼 로봇 프레임워크입니다.
 
-## 🚀 Features
+## 🚀 특징
 
-- 🎪 **Interactive [docs](https://iamai.retrofor.space) &amp; [demos](https://iamai.retrofor.space/demos)**
-- 🕶 **Seamless migration**: Works for **both** [Rasa]() and [GPT]() and more...
-- ⚡ **Fully tree shakeable**: Only take what you want, [bundle size](https://iamai.retrofor.space/export-size)
-- 🔩 **Flexible**: Configurable event filters and targets
-- 🔌 **Optional [Add-ons](https://iamai.retrofor.space/add-ons)**: [Apscheduler](https://iamai.retrofor.space/add-ons/apscheduler), etc.
-- 👍 **Cross-platform**: [Onebot](https://iamai.retrofor.space/adapters/onebot), [Wechat](https://iamai.retrofor.space/adapters/wechat), [Twitter](https://iamai.retrofor.space/adapters/twitter), [Bilibili](https://iamai.retrofor.space/adapters/bilibili), [Github](https://iamai.retrofor.space/adapters/github), etc.
+- 🎪 **인터랙티브 [문서](https://iamai.retrofor.space) &amp; [데모](https://iamai.retrofor.space/demos)**
+- 🕶 **원활한 이전 가능**: [Rasa]() 및 [GPT]() 등 모두 지원
+- ⚡ **완전한 트리 쉐이커블**: 필요한 부분만 가져오기, [번들 크기](https://iamai.retrofor.space/export-size)
+- 🔩 **유연성**: 구성 가능한 이벤트 필터 및 대상
+- 🔌 **선택적 [추가 기능](https://iamai.retrofor.space/add-ons)**: [Apscheduler](https://iamai.retrofor.space/add-ons/apscheduler) 등
+- 👍 **크로스 플랫폼**: [Onebot](https://iamai.retrofor.space/adapters/onebot), [Wechat](https://iamai.retrofor.space/adapters/wechat), [Twitter](https://iamai.retrofor.space/adapters/twitter), [Bilibili](https://iamai.retrofor.space/adapters/bilibili), [Github](https://iamai.retrofor.space/adapters/github) 등 다양한 플랫폼 지원
 
 <p align="center"><img width="512" src="https://iamai.retrofor.space/logo.png"></p>
 
-## ⬇️ Install
+## ⬇️ 설치
 
 - STABLE VERSION
   ```sh
   pip install iamai
   ```
 
-or you can also install for TEST.
+또는 TEST 버전을 설치할 수도 있습니다.
 
 - TEST VERSION
   ```sh
   pip install -i https://test.pypi.org/simple/ iamai
   ```
 
-## ❗ Usage
+## ❗ 사용 방법
 
-firstly,you need to load an adapter.
+먼저 어댑터를 로드해야 합니다.
 
 ```python
 from iamai import Bot
@@ -112,31 +112,30 @@ bot.load_adapters("iamai.adapter.cqhttp")
 bot.run()
 ```
 
-then, you need load the transformer and use your models.
-
-**transformer(Use from the 🤗/transformers library)**
+그런 다음, transformer를 로드하고 모델을 사용해야 합니다.
+**transformer(🤗/transformers 라이브러리에서 사용)**
 
 ```python
 from transformers import AutoModelWithLMHead, AutoTokenizer
-# load models
+# 모델 로드
 model = AutoModelWithLMHead.from_pretrained("gpt2")
-# load tokenizer
+# 토크나이저 로드
 tokenizer = AutoTokenizer.from_pretrained("gpt2")
-# transfor the text to token
+# 텍스트를 토큰으로 변환
 input_ids = tokenizer.encode("Hello, my name is IamAI!", add_special_tokens=True)
-# input the token to the models
+# 토큰을 모델에 입력
 outputs = model.generate(input_ids)
-# get the text generated
+# 생성된 텍스트 가져오기
 generated_text = tokenizer.decode(outputs[0])
 ```
 
-You can use pre-built optimizers to speed up the model inference process, or you can write your own optimizer. However, it's important to note that the transformer model optimizer is a special type of optimizer that is designed specifically for optimizing parameters in transformer models, thereby improving their performance.
+모델 추론 과정을 가속화하기 위해 미리 구축된 옵티마이저를 사용할 수도 있고 직접 옵티마이저를 작성할 수도 있습니다. 그러나 transformer 모델 옵티마이저는 transformer 모델의 매개변수를 최적화하기 위해 특별히 설계된 특수한 유형의 옵티마이저이므로 이를 감안해야 합니다.
 
-To write a transformer model optimizer, you need to have an understanding of how optimizers work and be familiar with the structure of transformer models.
+transformer 모델 옵티마이저를 작성하려면 옵티마이저의 작동 방식을 이해하고 transformer 모델의 구조에 익숙해져야 합니다.
 
-The principle of optimizers can be referred to in the paper [&#34;Attention Is All You Need&#34;](https://arxiv.org/abs/1706.03762), and the structure of transformer models can be referred to in the paper [&#34;Transformer: A Novel Neural Network Architecture for Language Understanding&#34;](https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html?m=1). The implementation of optimizers can be referred to in the [AdamW optimizer](https://huggingface.co/transformers/v3.0.2/main_classes/optimizer_schedules.html) in the Hugging Face Transformers library.
+옵티마이저에 대한 원리는 ["Attention Is All You Need"](https://arxiv.org/abs/1706.03762) 논문에 언급되어 있으며 transformer 모델의 구조는 ["Transformer: A Novel Neural Network Architecture for Language Understanding"](https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html?m=1) 논문에 언급되어 있습니다. 옵티마이저의 구현은 Hugging Face Transformers 라이브러리의 [AdamW optimizer](https://huggingface.co/transformers/v3.0.2/main_classes/optimizer_schedules.html)를 참조하면 됩니다.
 
-**Use the Inference API**
+**인퍼런스 API 사용**
 
 ```python
 import requests
@@ -153,24 +152,24 @@ output = query({
 })
 ```
 
-## 👀 See the docs
+## 👀 문서 보기
 
-> choices below.
+> 아래 중 선택하세요.
 
-- [https://iamai.retrofor.space](https://iamai.retrofor.space) _(recommend)_
-- [https://iamai-docs-git-main-retrofor.vercel.app](https://iamai-docs-git-main-retrofor.vercel.app)
-- ~~[https://iamai-docs-retrofor.vercel.app/](https://iamai-docs-retrofor.vercel.app/)~~
+- <https://iamai.retrofor.space> _(추천)_
+- <https://iamai-docs-git-main-retrofor.vercel.app>
+- ~~<https://iamai-docs-retrofor.vercel.app/>~~
 
-## ✨ Project Activity
+## ✨ 프로젝트 활동
 
 ![Alt](https://repobeats.axiom.co/api/embed/cc9b8bded331c406e68cc0c7c294ef04122d6da2.svg "Repobeats analytics image")
 
-## 👨‍🚀 Contributors
+## 👨‍🚀 기여자
 
 <a href="https://github.com/retrofor/iamai/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=retrofor/iamai" />
 </a>
 
-## 📄 License
+## 📄 라이선스
 
 [MIT](https://github.com/retrofor/iamai/blob/main/LICENSE) © 2023-PRESENT [简律纯](https://github.com/HsiangNianian)

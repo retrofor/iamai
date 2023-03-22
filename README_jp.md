@@ -4,11 +4,11 @@
 </h1>
 <p align="center">
   <a href="/README_zh.md">简体中文</a>
-  <a href="/README_jp.md">にほんご</a>
+  <a href="/README.md">English</a>
   <a href="/README_ko.md">한국어</a>
 </p>
 <p align="center">
-  Cross-platform robot framework, mainly used for ML/DL.
+  クロスプラットフォームのロボットフレームワークで、主に機械学習/深層学習に使用されています
 </p>
 <p align="center">
     <img src="https://img.shields.io/badge/docs-20230309-green?style=flat-square" alt="Website" href="https://iamai.retrofor.space" target="_blank"/>
@@ -70,38 +70,38 @@
   <img src="https://img.shields.io/github/languages/top/retrofor/iamai?style=social" >
 </p>
 
-## 📘 Introduction
+## 📘 紹介 (しょうかい)
 
-A Cross-platform robot framework, mainly used for machine learning.
+クロスプラットフォームのロボットフレームワークで、主に機械学習/深層学習に使用されています。
 
-## 🚀 Features
+## 🚀 特徴 (とくちょう)
 
-- 🎪 **Interactive [docs](https://iamai.retrofor.space) &amp; [demos](https://iamai.retrofor.space/demos)**
-- 🕶 **Seamless migration**: Works for **both** [Rasa]() and [GPT]() and more...
-- ⚡ **Fully tree shakeable**: Only take what you want, [bundle size](https://iamai.retrofor.space/export-size)
-- 🔩 **Flexible**: Configurable event filters and targets
-- 🔌 **Optional [Add-ons](https://iamai.retrofor.space/add-ons)**: [Apscheduler](https://iamai.retrofor.space/add-ons/apscheduler), etc.
-- 👍 **Cross-platform**: [Onebot](https://iamai.retrofor.space/adapters/onebot), [Wechat](https://iamai.retrofor.space/adapters/wechat), [Twitter](https://iamai.retrofor.space/adapters/twitter), [Bilibili](https://iamai.retrofor.space/adapters/bilibili), [Github](https://iamai.retrofor.space/adapters/github), etc.
+- 🎪 **インタラクティブ[ドキュメント](https://iamai.retrofor.space)&amp; [デモ](https://iamai.retrofor.space/demos)**
+- 🕶 **シームレスな移行**: [Rasa]() と [GPT]() 両方に対応、他にも…
+- ⚡ **完全にツリーシェイカブル**:必要なものだけを取得し、[バンドルサイズ](https://iamai.retrofor.space/export-size)
+- 🔩 **柔軟性がある**: イベントフィルターとターゲットの設定が可能
+- 🔌 **オプションの[アドオン](https://iamai.retrofor.space/add-ons)**: [Apscheduler](https://iamai.retrofor.space/add-ons/apscheduler)等
+- 👍 **クロスプラットフォーム**: [Onebot](https://iamai.retrofor.space/adapters/onebot), [Wechat](https://iamai.retrofor.space/adapters/wechat), [Twitter](https://iamai.retrofor.space/adapters/twitter), [Bilibili](https://iamai.retrofor.space/adapters/bilibili), [Github](https://iamai.retrofor.space/adapters/github)など
 
 <p align="center"><img width="512" src="https://iamai.retrofor.space/logo.png"></p>
 
-## ⬇️ Install
+## ⬇️ インストール
 
-- STABLE VERSION
+- 安定版
   ```sh
   pip install iamai
   ```
 
-or you can also install for TEST.
+または、テスト用にインストールすることもできます。
 
-- TEST VERSION
+- テストバージョン
   ```sh
   pip install -i https://test.pypi.org/simple/ iamai
   ```
 
-## ❗ Usage
+## ❗ 使用方法
 
-firstly,you need to load an adapter.
+最初に、アダプターをロードする必要があります。
 
 ```python
 from iamai import Bot
@@ -112,31 +112,31 @@ bot.load_adapters("iamai.adapter.cqhttp")
 bot.run()
 ```
 
-then, you need load the transformer and use your models.
+次に、transformerをロードしてモデルを使用する必要があります。
 
-**transformer(Use from the 🤗/transformers library)**
+**transformer(🤗/transformersライブラリから使用)**
 
 ```python
 from transformers import AutoModelWithLMHead, AutoTokenizer
-# load models
+# モデルをロードする
 model = AutoModelWithLMHead.from_pretrained("gpt2")
-# load tokenizer
+# トークナイザーをロードする
 tokenizer = AutoTokenizer.from_pretrained("gpt2")
-# transfor the text to token
-input_ids = tokenizer.encode("Hello, my name is IamAI!", add_special_tokens=True)
-# input the token to the models
+# テキストをトークンに変換する
+input_ids = tokenizer.encode("こんにちは、私の名前はIamAIです！", add_special_tokens=True)
+# トークンをモデルに入力する
 outputs = model.generate(input_ids)
-# get the text generated
+# 生成されたテキストを取得する
 generated_text = tokenizer.decode(outputs[0])
 ```
 
-You can use pre-built optimizers to speed up the model inference process, or you can write your own optimizer. However, it's important to note that the transformer model optimizer is a special type of optimizer that is designed specifically for optimizing parameters in transformer models, thereby improving their performance.
+事前に構築された最適化器を使用してモデル推論プロセスを高速化することができます。また、独自の最適化器を作成することもできます。ただし、transformerモデルの最適化器は、transformerモデルのパラメータを最適化するために特別に設計された特殊な種類の最適化器であることに注意する必要があります。
 
-To write a transformer model optimizer, you need to have an understanding of how optimizers work and be familiar with the structure of transformer models.
+transformerモデルの最適化器を作成するには、最適化器の動作原理を理解し、transformerモデルの構造に精通している必要があります。
 
-The principle of optimizers can be referred to in the paper [&#34;Attention Is All You Need&#34;](https://arxiv.org/abs/1706.03762), and the structure of transformer models can be referred to in the paper [&#34;Transformer: A Novel Neural Network Architecture for Language Understanding&#34;](https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html?m=1). The implementation of optimizers can be referred to in the [AdamW optimizer](https://huggingface.co/transformers/v3.0.2/main_classes/optimizer_schedules.html) in the Hugging Face Transformers library.
+最適化器の原理は、[&#34;Attention Is All You Need&#34;](https://arxiv.org/abs/1706.03762)という論文で参照することができ、transformerモデルの構造は、[&#34;Transformer: A Novel Neural Network Architecture for Language Understanding&#34;](https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html?m=1)という論文で参照することができます。最適化器の実装は、Hugging Face Transformersライブラリの[AdamW optimizer](https://huggingface.co/transformers/v3.0.2/main_classes/optimizer_schedules.html)で参照することができます。
 
-**Use the Inference API**
+**推論APIを使用する**
 
 ```python
 import requests
@@ -153,24 +153,24 @@ output = query({
 })
 ```
 
-## 👀 See the docs
+## 👀 ドキュメントを参照
 
-> choices below.
+> 以下から選択してください。
 
-- [https://iamai.retrofor.space](https://iamai.retrofor.space) _(recommend)_
+- [https://iamai.retrofor.space](https://iamai.retrofor.space) _(お勧め)_
 - [https://iamai-docs-git-main-retrofor.vercel.app](https://iamai-docs-git-main-retrofor.vercel.app)
 - ~~[https://iamai-docs-retrofor.vercel.app/](https://iamai-docs-retrofor.vercel.app/)~~
 
-## ✨ Project Activity
+## ✨ プロジェクトの活動状況
 
 ![Alt](https://repobeats.axiom.co/api/embed/cc9b8bded331c406e68cc0c7c294ef04122d6da2.svg "Repobeats analytics image")
 
-## 👨‍🚀 Contributors
+## 👨‍🚀 貢献者
 
 <a href="https://github.com/retrofor/iamai/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=retrofor/iamai" />
 </a>
 
-## 📄 License
+## 📄 ライセンス
 
 [MIT](https://github.com/retrofor/iamai/blob/main/LICENSE) © 2023-PRESENT [简律纯](https://github.com/HsiangNianian)
