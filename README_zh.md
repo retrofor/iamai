@@ -76,7 +76,7 @@
 <!-- - ⚡ **Fully tree shakeable**: Only take what you want, [bundle size](https://iamai.retrofor.space/export-size) -->
 - 🔩 **灵活**: 可配置的事件过滤器和对象。
 - 🔌 **可选 [扩展](https://iamai.retrofor.space/add-ons)**: [Apscheduler](https://iamai.retrofor.space/add-ons/apscheduler) 以及更多...
-- 👍 **跨平台**: [QQ](https://iamai.retrofor.space/adapters/onebot), [微信](https://iamai.retrofor.space/adapters/wechat), [推特](https://iamai.retrofor.space/adapters/twitter), [B站](https://iamai.retrofor.space/adapters/bilibili), [Github](https://iamai.retrofor.space/adapters/github), etc.
+- 👍 **跨平台**: [QQ](https://iamai.retrofor.space/adapters/onebot), [微信](https://iamai.retrofor.space/adapters/wechat), [推特](https://iamai.retrofor.space/adapters/twitter), [B站](https://iamai.retrofor.space/adapters/bilibili), [Github](https://iamai.retrofor.space/adapters/github), 以及更多...
 
 <p align="center"><img width="512" src="https://iamai.retrofor.space/logo.png"></p>
 
