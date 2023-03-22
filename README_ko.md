@@ -88,6 +88,7 @@
 ## ⬇️ 설치
 
 - STABLE VERSION
+
   ```sh
   pip install iamai
   ```
@@ -95,6 +96,7 @@
 또는 TEST 버전을 설치할 수도 있습니다.
 
 - TEST VERSION
+
   ```sh
   pip install -i https://test.pypi.org/simple/ iamai
   ```
@@ -144,11 +146,11 @@ API_URL = "https://api-inference.huggingface.co/models/xxx/xxxxx"
 headers = {"Authorization": "Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
 
 def query(payload):
-	response = requests.post(API_URL, headers=headers, json=payload)
-	return response.json()
+ response = requests.post(API_URL, headers=headers, json=payload)
+ return response.json()
 
 output = query({
-	"inputs": "xxx",
+ "inputs": "xxx",
 })
 ```
 
