@@ -103,7 +103,7 @@ or you can also install for TEST.
 
 ## ❗ Usage
 
-firstly,you need to load an adapter.
+firstly, you need to load an adapter.
 
 ```python
 from iamai import Bot
