@@ -103,7 +103,7 @@ or you can also install for TEST.
 
 ## ❗ Usage
 
-firstly,you need to load an adapter.
+firstly, you need to load an adapter.
 
 ```python
 from iamai import Bot
@@ -116,7 +116,7 @@ bot.run()
 
 then, you need load the transformer and use your models.
 
-**transformer(Use from the 🤗/transformers library)**
+**Use from the 🤗/transformers library**
 
 ```python
 from transformers import AutoModelWithLMHead, AutoTokenizer
