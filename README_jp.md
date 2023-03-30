@@ -3,6 +3,10 @@
   iamai
 </h1>
 <p align="center">
+  <a href="https://discord.gg/9vG9352RXS"><img alt="Discord" src="https://img.shields.io/discord/1063871387527303188"></a>
+  <a href="https://jq.qq.com/?_wv=1027&k=OOUmgrqx"><img alt="QQ群" src="https://img.shields.io/badge/-QQ群%20761859776-002FA7?style=flat-square&logo=Tencent QQ&logoColor=white"></a>
+</p>
+<p align="center">
   <a href="/README_zh.md">简体中文</a>
   <a href="/README.md">English</a>
   <a href="/README_ko.md">한국어</a>
