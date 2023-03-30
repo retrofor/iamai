@@ -50,8 +50,8 @@ class Device(BaseModel):
     app_id: int
     device_name: str
     device_kind: str
-    
-    
+
+
 class Status(BaseModel):
     online: bool
     good: bool
@@ -205,8 +205,8 @@ class NoticeEvent(CQHTTPEvent):
     __event__ = "notice"
     post_type: Literal["notice"]
     notice_type: str
-    
-    
+
+
 class GroupUploadNoticeEvent(NoticeEvent):
     """群文件上传"""
 
@@ -342,30 +342,30 @@ class GroupCardNotifyEvent(NoticeEvent):
     group_id: int
     user_id: int
     card_new: str
-    card_old: str    
-    
-    
+    card_old: str
+
+
 class ReceiveOfflineFileEvent(NoticeEvent):
     """接收到离线文件"""
-    
+
     __event__ = "notice.offline_file"
     notice_type: Literal["offline_file"]
     user_id: int
     file: OfflineFile
-    
-    
+
+
 class OtherClientStatusEvent(NoticeEvent):
     """其他客户端在线状态变更"""
-    
+
     __event__ = "notice.client_status"
     notice_type: Literal["client_status"]
     client: Device
     online: bool
-    
-    
+
+
 class EssenceEvent(NoticeEvent):
     """精华消息变更"""
-    
+
     __event__ = "notice.essence"
     notice_type: Literal["essence"]
     sub_type: Literal["add", "delete"]
@@ -373,8 +373,8 @@ class EssenceEvent(NoticeEvent):
     sender_id: int
     operator_id: int
     message_id: int
-    
-    
+
+
 class RequestEvent(CQHTTPEvent):
     """请求事件"""
 
