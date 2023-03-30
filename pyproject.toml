@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "iamai"
-version = "3.14"
+version = "3.14.1"
 description = "bot framework."
 authors = ["简律纯 <admin@jyunko.cn>"]
 license = "MIT"
