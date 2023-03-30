@@ -40,6 +40,18 @@ class File(BaseModel):
     busid: int
 
 
+class OfflineFile(BaseModel):
+    name: str
+    size: int
+    url: str
+
+
+class Device(BaseModel):
+    app_id: int
+    device_name: str
+    device_kind: str
+    
+    
 class Status(BaseModel):
     online: bool
     good: bool
@@ -193,8 +205,8 @@ class NoticeEvent(CQHTTPEvent):
     __event__ = "notice"
     post_type: Literal["notice"]
     notice_type: str
-
-
+    
+    
 class GroupUploadNoticeEvent(NoticeEvent):
     """群文件上传"""
 
@@ -312,6 +324,57 @@ class GroupHonorNotifyEvent(NotifyEvent):
     honor_type: Literal["talkative", "performer", "emotion"]
 
 
+class GroupTitleNotifyEvent(NotifyEvent):
+    """群成员头衔变更"""
+
+    __event__ = "notice.notify.title"
+    sub_type: Literal["title"]
+    group_id: int
+    user_id: int
+    title: str
+
+
+class GroupCardNotifyEvent(NoticeEvent):
+    """群成员名片更新"""
+
+    __event__ = "notice.group_card"
+    notice_type: Literal["group_card"]
+    group_id: int
+    user_id: int
+    card_new: str
+    card_old: str    
+    
+    
+class ReceiveOfflineFileEvent(NoticeEvent):
+    """接收到离线文件"""
+    
+    __event__ = "notice.offline_file"
+    notice_type: Literal["offline_file"]
+    user_id: int
+    file: OfflineFile
+    
+    
+class OtherClientStatusEvent(NoticeEvent):
+    """其他客户端在线状态变更"""
+    
+    __event__ = "notice.client_status"
+    notice_type: Literal["client_status"]
+    client: Device
+    online: bool
+    
+    
+class EssenceEvent(NoticeEvent):
+    """精华消息变更"""
+    
+    __event__ = "notice.essence"
+    notice_type: Literal["essence"]
+    sub_type: Literal["add", "delete"]
+    group_id: int
+    sender_id: int
+    operator_id: int
+    message_id: int
+    
+    
 class RequestEvent(CQHTTPEvent):
     """请求事件"""
 
@@ -409,7 +472,7 @@ class LifecycleMetaEvent(MetaEvent):
 
 
 class HeartbeatMetaEvent(MetaEvent):
-    """心跳"""
+    """心跳包"""
 
     __event__ = "meta_event.heartbeat"
     meta_event_type: Literal["heartbeat"]
