@@ -12,7 +12,7 @@ host = "127.0.0.1"
 port = 8080
 url = "/cqhttp/ws"
 api_timeout = 100
-debug = false
+debug = true
 
 [adapter.github]
 host = "127.0.0.1"
