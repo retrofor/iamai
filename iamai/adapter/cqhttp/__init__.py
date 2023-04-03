@@ -78,6 +78,9 @@ class CQHTTPAdapter(WebSocketAdapter[CQHTTPEvent, Config]):
         if msg.type == aiohttp.WSMsgType.TEXT:
             try:
                 msg_dict = msg.json()
+                # 便于检查事件类型
+                if self.config.show_raw:
+                    logger.info(msg_dict)
             except json.JSONDecodeError as e:
                 error_or_exception(
                     "WebSocket message parsing error, not json:",
@@ -86,9 +89,6 @@ class CQHTTPAdapter(WebSocketAdapter[CQHTTPEvent, Config]):
                 )
                 return
 
-            # 便于检查事件类型
-            if self.config.debug:
-                logger.info(msg_dict)
             if "post_type" in msg_dict:
                 await self.handle_cqhttp_event(msg_dict)
             else:
@@ -131,7 +131,7 @@ class CQHTTPAdapter(WebSocketAdapter[CQHTTPEvent, Config]):
                 cqhttp_event.meta_event_type == "lifecycle"
                 and cqhttp_event.sub_type == "connect"
             ):
-                logger.info(
+                logger.success(
                     f"WebSocket connection "
                     f"from CQHTTP Bot {msg.get('self_id')} accepted!"
                 )
