@@ -1,6 +1,6 @@
 """CQHTTP 适配器事件。"""
 import inspect
-from typing import TYPE_CHECKING, Any, Dict, Type, Literal, TypeVar, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Type, Union, Literal, TypeVar, Optional
 
 from pydantic import Field, BaseModel
 
@@ -521,7 +521,7 @@ class GuildMessageEvent(MessageEvent):
         return await self.adapter.send_guild_channel_msg(
             guild_id=self.guild_id,channel_id=self.channel_id, message=CQHTTPMessage(msg)
         )
-        
+
 class GuildMessageReactionUpdated(NoticeEvent):
     """频道消息表情贴更新"""
 
