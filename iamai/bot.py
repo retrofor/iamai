@@ -156,7 +156,7 @@ class Bot:
 
     def restart(self):
         """退出并重新运行 iamai。"""
-        logger.info("Restarting iamai...")
+        logger.warning("Restarting iamai...")
         self._restart_flag = True
         self.should_exit.set()
 
@@ -187,7 +187,7 @@ class Bot:
         self._update_config()
 
         # 启动 iamai
-        logger.info("Running iamai...")
+        logger.warning("Running iamai...")
 
         hot_reload_task = None
         if self._hot_reload:
@@ -245,7 +245,7 @@ class Bot:
             removed_plugins.extend(_removed_plugins)
             for plugin_ in _removed_plugins:
                 plugins.remove(plugin_)
-                logger.info(
+                logger.success(
                     "Succeeded to remove plugin "
                     f'"{plugin_.__name__}" from file "{file}"'
                 )
@@ -262,7 +262,7 @@ class Bot:
             )
             return
 
-        logger.info("Hot reload is working!")
+        logger.success("Hot reload is working!")
         async for changes in awatch(
             *map(
                 lambda x: x.resolve(),
@@ -284,7 +284,7 @@ class Bot:
                     samefile(self._config_file, file)
                     and change_type == change_type.modified
                 ):
-                    logger.info(f'Reload config file "{self._config_file}"')
+                    logger.warning(f'Reload config file "{self._config_file}"')
                     old_config = self.config
                     self._reload_config_dict()
                     if (
@@ -401,9 +401,9 @@ class Bot:
 
     def _handle_exit(self, *args):  # noqa
         """当机器人收到退出信号时，根据情况进行处理。"""
-        logger.info("Stopping iamai...")
+        logger.warning("Stopping iamai...")
         if self.should_exit.is_set():
-            logger.warning("Force Exit iamai...")
+            logger.critical("Force Exit iamai...")
             sys.exit()
         else:
             self.should_exit.set()
@@ -455,7 +455,7 @@ class Bot:
                     try:
                         _plugin = _plugin(current_event)
                         if await _plugin.rule():
-                            logger.info(f"Event will be handled by {_plugin!r}")
+                            logger.warning(f"Event will be handled by {_plugin!r}")
                             try:
                                 await _plugin.handle()
                             finally:
@@ -485,7 +485,7 @@ class Bot:
         for _hook_func in self._event_postprocessor_hooks:
             await _hook_func(current_event)
 
-        logger.info("Event Finished")
+        logger.warning("Event Finished")
 
     async def get(
         self,
@@ -561,7 +561,7 @@ class Bot:
             plugin_class.__plugin_load_type__ = plugin_load_type
             plugin_class.__plugin_file_path__ = plugin_file_path
             self.plugins_priority_dict[priority].append(plugin_class)
-            logger.info(
+            logger.success(
                 f'Succeeded to load plugin "{plugin_class.__name__}" '
                 f'from class "{plugin_class!r}"'
             )
@@ -621,12 +621,12 @@ class Bot:
                         f'The plugin class "{plugin_!r}" must be a subclass of Plugin'
                     )
             elif isinstance(plugin_, str):
-                logger.info(f'Loading plugins from module "{plugin_}"')
+                logger.warning(f'Loading plugins from module "{plugin_}"')
                 self._load_plugins_from_module_name(
                     plugin_, plugin_load_type or PluginLoadType.NAME
                 )
             elif isinstance(plugin_, Path):
-                logger.info(f'Loading plugins from path "{plugin_}"')
+                logger.warning(f'Loading plugins from path "{plugin_}"')
                 if plugin_.is_file():
                     if plugin_.suffix != ".py":
                         logger.error(f'The path "{plugin_}" must endswith ".py"')
@@ -683,7 +683,7 @@ class Bot:
                 例如：`pathlib.Path("path/of/plugins/")` 。
         """
         dirs = list(map(lambda x: str(x.resolve()), dirs)) # type: ignore
-        logger.info(f'Loading plugins from dirs "{", ".join(map(str, dirs))}"')
+        logger.warning(f'Loading plugins from dirs "{", ".join(map(str, dirs))}"')
         self._module_path_finder.path.extend(dirs) # type: ignore
         for plugin_class, module in get_classes_from_dir(dirs, Plugin): # type: ignore
             self._load_plugin_class(plugin_class, PluginLoadType.DIR, module.__file__)
@@ -740,7 +740,7 @@ class Bot:
                 )
             else:
                 self.adapters.append(adapter_object)
-                logger.info(
+                logger.success(
                     f'Succeeded to load adapter "{adapter_object.__class__.__name__}" '
                     f'from "{adapter_}"'
                 )

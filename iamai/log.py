@@ -12,4 +12,4 @@ def error_or_exception(message: str, exception: Exception, verbose: bool):
     if verbose:
         logger.exception(message)
     else:
-        logger.error(f"{message} {exception!r}")
+        logger.critical(f"{message} {exception!r}")
