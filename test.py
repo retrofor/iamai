@@ -1,5 +1,6 @@
-from loguru import logger
 import sys
+
+from loguru import logger
 
 # logger.remove()  # 清除默认输出处理器
 
