@@ -89,7 +89,6 @@ class CQHTTPAdapter(WebSocketAdapter[CQHTTPEvent, Config]):
             # 便于检查事件类型
             if self.config.debug:
                 logger.info(msg_dict)
-
             if "post_type" in msg_dict:
                 await self.handle_cqhttp_event(msg_dict)
             else:
