@@ -1,4 +1,4 @@
-"""CQHTTP 协议适配器。
+"""cqguild 协议适配器。
 
 本适配器适配了 OneBot v11 协议。
 协议详情请参考: [OneBot](https://github.com/howmanybots/onebot/blob/master/README.md) 。
@@ -17,20 +17,20 @@ from iamai.adapter.utils import WebSocketAdapter
 from iamai.log import logger, error_or_exception
 
 from .config import Config
-from .message import CQHTTPMessage
-from .event import CQHTTPEvent, get_event_class
+from .message import CQGuildMessage
+from .event import CQGuildEvent, get_event_class
 from .exceptions import ApiTimeout, ActionFailed, NetworkError, ApiNotAvailable
 
 if TYPE_CHECKING:
     from .message import T_CQMSG
 
-__all__ = ["CQHTTPAdapter"]
+__all__ = ["CQGuildAdapter"]
 
 
-class CQHTTPAdapter(WebSocketAdapter[CQHTTPEvent, Config]):
-    """CQHTTP 协议适配器。"""
+class CQGuildAdapter(WebSocketAdapter[CQGuildEvent, Config]):
+    """CQGuild 协议适配器。"""
 
-    name = "cqhttp"
+    name = "CQGuild"
     Config = Config
 
     _api_response: Dict[Any, Any]
@@ -89,8 +89,9 @@ class CQHTTPAdapter(WebSocketAdapter[CQHTTPEvent, Config]):
             # 便于检查事件类型
             if self.config.debug:
                 logger.info(msg_dict)
+
             if "post_type" in msg_dict:
-                await self.handle_cqhttp_event(msg_dict)
+                await self.handle_CQGuild_event(msg_dict)
             else:
                 async with self._api_response_cond:
                     self._api_response = msg_dict
@@ -106,8 +107,8 @@ class CQHTTPAdapter(WebSocketAdapter[CQHTTPEvent, Config]):
         self._api_id = (self._api_id + 1) % sys.maxsize
         return self._api_id
 
-    async def handle_cqhttp_event(self, msg: Dict[str, Any]):
-        """处理 CQHTTP 事件。
+    async def handle_CQGuild_event(self, msg: Dict[str, Any]):
+        """处理 CQGuild 事件。
 
         Args:
             msg: 接收到的信息。
@@ -115,38 +116,35 @@ class CQHTTPAdapter(WebSocketAdapter[CQHTTPEvent, Config]):
         post_type = msg.get("post_type")
 
         # message_sent 自身消息处理
-        if post_type == "message_sent":
-            event_type = msg.get("message_type")
-        else:
-            event_type = msg.get(post_type + "_type")
+        event_type = msg.get(post_type + "_type")
 
         sub_type = msg.get("sub_type", None)
         event_class = get_event_class(post_type, event_type, sub_type)
 
-        cqhttp_event = event_class(adapter=self, **msg)
+        CQGuild_event = event_class(adapter=self, **msg)
 
-        if cqhttp_event.post_type == "meta_event":
+        if CQGuild_event.post_type == "meta_event":
             # meta_event 不交由插件处理
             if (
-                cqhttp_event.meta_event_type == "lifecycle"
-                and cqhttp_event.sub_type == "connect"
+                CQGuild_event.meta_event_type == "lifecycle"
+                and CQGuild_event.sub_type == "connect"
             ):
                 logger.info(
                     f"WebSocket connection "
-                    f"from CQHTTP Bot {msg.get('self_id')} accepted!"
+                    f"from CQGuild Bot {msg.get('self_id')} accepted!"
                 )
-            elif cqhttp_event.meta_event_type == "heartbeat":
-                if cqhttp_event.status.good and cqhttp_event.status.online:
+            elif CQGuild_event.meta_event_type == "heartbeat":
+                if CQGuild_event.status.good and CQGuild_event.status.online:
                     pass
                 else:
                     logger.error(
-                        f"CQHTTP Bot status is not good: {cqhttp_event.status.dict()}"
+                        f"CQGuild Bot status is not good: {CQGuild_event.status.dict()}"
                     )
         else:
-            await self.handle_event(cqhttp_event)
+            await self.handle_event(CQGuild_event)
 
     async def call_api(self, api: str, **params) -> Dict[str, Any]:
-        """调用 CQHTTP API，协程会等待直到获得 API 响应。
+        """调用 CQGuild API，协程会等待直到获得 API 响应。
 
         Args:
             api: API 名称。
@@ -201,8 +199,8 @@ class CQHTTPAdapter(WebSocketAdapter[CQHTTPEvent, Config]):
 
         Args:
             message_: 消息内容，可以是 str, Mapping, Iterable[Mapping],
-                'CQHTTPMessageSegment', 'CQHTTPMessage'。
-                将使用 `CQHTTPMessage` 进行封装。
+                'CQGuildMessageSegment', 'CQGuildMessage'。
+                将使用 `CQGuildMessage` 进行封装。
             message_type: 消息类型。应该是 private 或者 group。
             id_: 发送对象的 ID ，QQ 号码或者群号码。
 
@@ -215,11 +213,11 @@ class CQHTTPAdapter(WebSocketAdapter[CQHTTPEvent, Config]):
         """
         if message_type == "private":
             return await self.send_private_msg(
-                user_id=id_, message=CQHTTPMessage(message_)
+                user_id=id_, message=CQGuildMessage(message_)
             )
         elif message_type == "group":
             return await self.send_group_msg(
-                group_id=id_, message=CQHTTPMessage(message_)
+                group_id=id_, message=CQGuildMessage(message_)
             )
         else:
             raise TypeError('message_type must be "private" or "group"')

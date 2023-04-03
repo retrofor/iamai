@@ -1,6 +1,6 @@
 """CQHTTP 适配器事件。"""
 import inspect
-from typing import TYPE_CHECKING, Any, Dict, Type, Literal, TypeVar, Optional
+from typing import TYPE_CHECKING, Any, Dict, Type, Literal, TypeVar, Optional, Union
 
 from pydantic import Field, BaseModel
 
@@ -60,6 +60,21 @@ class Status(BaseModel):
         extra = "allow"
 
 
+class ReactionInfo(BaseModel):
+    """当前消息被贴表情列表"""
+
+    emoji_id: Optional[str]
+    emoji_index: Optional[int]
+    emoji_type: Optional[int]
+    emoji_name: Optional[str]
+    count: Optional[int]
+    clicked: Optional[bool]
+
+
+class ChannelInfo(BaseModel):
+    pass
+
+
 class CQHTTPEvent(Event["CQHTTPAdapter"]):
     """CQHTTP 事件基类"""
 
@@ -67,12 +82,14 @@ class CQHTTPEvent(Event["CQHTTPAdapter"]):
     type: Optional[str] = Field(alias="post_type")
     time: int
     self_id: int
-    post_type: Literal["message", "message_sent", "notice", "request", "meta_event"]
+    self_tiny_id: Optional[str]
+    post_type: Literal["message", "message_sent",
+                       "notice", "request", "meta_event"]
 
     @property
     def to_me(self) -> bool:
-        """当前事件的 user_id 是否等于 self_id。"""
-        return getattr(self, "user_id") == self.self_id
+        """当前事件的 user_id 是否等于 self_id 或 self_tiny_id。"""
+        return getattr(self, "user_id") == self.self_id or getattr(self, "user_id") == self.self_tiny_id
 
 
 class MessageEvent(CQHTTPEvent):
@@ -80,14 +97,16 @@ class MessageEvent(CQHTTPEvent):
 
     __event__ = "message"
     post_type: Literal["message"]
-    message_type: Literal["private", "group"]
-    sub_type: str
-    message_id: int
-    user_id: int
+    message_type: Literal["private", "group", "guild"]
+    sub_type: Union[Literal["channel"],str]
+    message_id: Union[str,int]
+    user_id: Union[str,int]
     message: CQHTTPMessage
-    raw_message: str
-    font: int
+    raw_message: Optional[str]
+    font: Optional[int]
     sender: Sender
+    guild_id: Optional[str]
+    channel_id: Optional[str]
 
     def __repr__(self) -> str:
         return f'Event<{self.type}>: "{self.message}"'
@@ -110,6 +129,7 @@ class MessageEvent(CQHTTPEvent):
             API 请求响应。
         """
         raise NotImplementedError
+
 
 class MessageSentEvent(CQHTTPEvent):
     """自身消息事件"""
@@ -147,6 +167,7 @@ class MessageSentEvent(CQHTTPEvent):
         """
         raise NotImplementedError
 
+
 class PrivateMessageEvent(MessageEvent):
     """私聊消息"""
 
@@ -159,6 +180,7 @@ class PrivateMessageEvent(MessageEvent):
             user_id=self.user_id, message=CQHTTPMessage(msg)
         )
 
+
 class PrivateMessageSentEvent(MessageSentEvent):
     """自身私聊消息"""
 
@@ -170,6 +192,7 @@ class PrivateMessageSentEvent(MessageSentEvent):
         return await self.adapter.send_private_msg(
             user_id=self.user_id, message=CQHTTPMessage(msg)
         )
+
 
 class GroupMessageEvent(MessageEvent):
     """群消息"""
@@ -185,6 +208,7 @@ class GroupMessageEvent(MessageEvent):
             group_id=self.group_id, message=CQHTTPMessage(msg)
         )
 
+
 class GroupMessageSentEvent(MessageSentEvent):
     """自身群消息"""
 
@@ -198,6 +222,7 @@ class GroupMessageSentEvent(MessageSentEvent):
         return await self.adapter.send_group_msg(
             group_id=self.group_id, message=CQHTTPMessage(msg)
         )
+
 
 class NoticeEvent(CQHTTPEvent):
     """通知事件"""
@@ -478,6 +503,72 @@ class HeartbeatMetaEvent(MetaEvent):
     meta_event_type: Literal["heartbeat"]
     status: Status
     interval: int
+
+class GuildMessageEvent(MessageEvent):
+    """收到频道消息"""
+
+    __event__ = "message.guild"
+    message_type: Literal["guild"]
+    sub_type: Literal["channel"]
+    guild_id: str
+    channel_id: str
+    user_id: str
+    message_id: str
+    sender: Sender
+    message: CQHTTPMessage
+
+    async def reply(self, msg: "T_CQMSG") -> Dict[str, Any]:
+        return await self.adapter.send_guild_channel_msg(
+            guild_id=self.guild_id,channel_id=self.channel_id, message=CQHTTPMessage(msg)
+        )
+        
+class GuildMessageReactionUpdated(NoticeEvent):
+    """频道消息表情贴更新"""
+
+    __event__ = "notice.message_reactions_updated"
+    notice_type: Literal["message_reactions_updated"]
+    guild_id: str
+    channel_id: str
+    user_id: str
+    message_id: str
+    # current_reactions: ReactionInfo
+
+
+class GuildChannelUpdate(NoticeEvent):
+    """子频道信息更新"""
+
+    __event__ = "notice.channel_updated"
+    notice_type: Literal["channel_updated"]
+    guild_id: str
+    channel_id: str
+    user_id: str
+    operator_id: str
+    old_info: ChannelInfo
+    new_info: ChannelInfo
+
+
+class GuildChannelCreated(NoticeEvent):
+    """子频道创建"""
+
+    __event__ = "notice.channel_created"
+    notice_type: Literal['channel_created']
+    guild_id: str
+    channel_id: str
+    user_id: str
+    operator_id: str
+    channel_info: ChannelInfo
+
+
+class GuildChannelDestoryed(NoticeEvent):
+    """子频道删除"""
+
+    __event__ = "notice.channel_destroyed"
+    notice_type: Literal['channel_destroyed']
+    guild_id: str
+    channel_id: str
+    user_id: str
+    operator_id: str
+    channel_info: ChannelInfo
 
 
 _cqhttp_events = {
