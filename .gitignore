@@ -127,9 +127,16 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-node_modules
 
-# test
-test/
-__pycache__
-*.png
+# Node
+node_modules/
+.temp/
+
+# Project
+.idea
+.vscode
+docs_build/**/*.rst
+docs_build/_build
+/tests/config.json
+/tests/config.toml
+/docs/api/**/*.md

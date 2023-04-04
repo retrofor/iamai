@@ -8,7 +8,6 @@ from abc import ABCMeta, abstractmethod
 
 import aiohttp
 from aiohttp import web
-
 from iamai.adapter import Adapter
 from iamai.typing import T_Event, T_Config
 from iamai.log import logger, error_or_exception

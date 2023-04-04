@@ -1,0 +1,31 @@
+{
+  "name": "iamai",
+  "version": "0.6.1",
+  "description": "A simple asynchronous python chat bot framework.",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/retrofor/iamai.git"
+  },
+  "author": "简律纯 <admin@jyunko.cn>",
+  "homepage": "https://iamai.retrofor.space/",
+  "license": "MIT",
+  "devDependencies": {
+    "conventional-changelog": "^3.1.25",
+    "markdownlint-cli": "^0.31.1",
+    "vitepress": "1.0.0-alpha.50"
+  },
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs",
+    "release": "node .release.js"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@algolia/client-search"
+      ]
+    }
+  }
+}

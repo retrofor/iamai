@@ -14,11 +14,10 @@ from itertools import chain
 from collections import defaultdict
 from typing import Any, Dict, List, Type, Union, Callable, Optional, Awaitable
 
-from pydantic import ValidationError, create_model
-
 from iamai.adapter import Adapter
 from iamai.plugin import Plugin, PluginLoadType
 from iamai.log import logger, error_or_exception
+from pydantic import ValidationError, create_model
 from iamai.typing import T_Event, T_BotHook, T_EventHook, T_AdapterHook
 from iamai.config import MainConfig, ConfigModel, PluginConfig, AdapterConfig
 from iamai.exceptions import (
