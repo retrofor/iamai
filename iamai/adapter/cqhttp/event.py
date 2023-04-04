@@ -2,9 +2,8 @@
 import inspect
 from typing import TYPE_CHECKING, Any, Dict, Type, Union, Literal, TypeVar, Optional
 
-from pydantic import Field, BaseModel
-
 from iamai.event import Event
+from pydantic import Field, BaseModel
 
 from .message import CQHTTPMessage
 
