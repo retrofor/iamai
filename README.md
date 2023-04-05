@@ -87,7 +87,7 @@ A Cross-platform robot framework, mainly used for machine learning.
 - 🔌 **Optional [Add-ons](https://iamai.retrofor.space/add-ons)**: [Apscheduler](https://iamai.retrofor.space/add-ons/apscheduler), etc.
 - 👍 **Cross-platform**: [Onebot](https://iamai.retrofor.space/adapters/onebot), [Wechat](https://iamai.retrofor.space/adapters/wechat), [Twitter](https://iamai.retrofor.space/adapters/twitter), [Bilibili](https://iamai.retrofor.space/adapters/bilibili), [Github](https://iamai.retrofor.space/adapters/github), etc.
 
-<p align="center"><img width="512" src="https://iamai.retrofor.space/logo.png"></p>
+<p align="center"><img width="512" src="https://iamai.retrofor.space/icons/retro_plus.png"></p>
 
 ## ⬇️ Install
 

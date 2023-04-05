@@ -87,7 +87,7 @@
 - 🔌 **オプションの[アドオン](https://iamai.retrofor.space/add-ons)**: [Apscheduler](https://iamai.retrofor.space/add-ons/apscheduler)等
 - 👍 **クロスプラットフォーム**: [Onebot](https://iamai.retrofor.space/adapters/onebot), [Wechat](https://iamai.retrofor.space/adapters/wechat), [Twitter](https://iamai.retrofor.space/adapters/twitter), [Bilibili](https://iamai.retrofor.space/adapters/bilibili), [Github](https://iamai.retrofor.space/adapters/github)など
 
-<p align="center"><img width="512" src="https://iamai.retrofor.space/logo.png"></p>
+<p align="center"><img width="512" src="https://iamai.retrofor.space/icons/retro_plus.png"></p>
 
 ## ⬇️ インストール
 

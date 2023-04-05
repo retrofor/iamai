@@ -87,7 +87,7 @@
 - 🔌 **선택적 [추가 기능](https://iamai.retrofor.space/add-ons)**: [Apscheduler](https://iamai.retrofor.space/add-ons/apscheduler) 등
 - 👍 **크로스 플랫폼**: [Onebot](https://iamai.retrofor.space/adapters/onebot), [Wechat](https://iamai.retrofor.space/adapters/wechat), [Twitter](https://iamai.retrofor.space/adapters/twitter), [Bilibili](https://iamai.retrofor.space/adapters/bilibili), [Github](https://iamai.retrofor.space/adapters/github) 등 다양한 플랫폼 지원
 
-<p align="center"><img width="512" src="https://iamai.retrofor.space/logo.png"></p>
+<p align="center"><img width="512" src="https://iamai.retrofor.space/icons/retro_plus.png"></p>
 
 ## ⬇️ 설치
 
