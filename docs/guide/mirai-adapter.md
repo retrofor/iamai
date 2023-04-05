@@ -88,7 +88,7 @@ from iamai import Plugin
 from iamai.adapter.mirai.message import MiraiMessageSegment
 
 
-class HalloIamai(Plugin):
+class Halloiamai(Plugin):
     async def handle(self) -> None:
         msg = MiraiMessageSegment.plain("Hello, iamai!") + \
               MiraiMessageSegment.image(url="https://www.example.org/1.jpg")

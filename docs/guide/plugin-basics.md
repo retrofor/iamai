@@ -112,7 +112,7 @@ class TestPlugin(Plugin):
 from iamai import Plugin
 
 
-class HalloIamai(Plugin):
+class Halloiamai(Plugin):
     async def handle(self) -> None:
         pass
 
@@ -131,7 +131,7 @@ class HalloIamai(Plugin):
 from iamai import Plugin
 
 
-class HalloIamai(Plugin):
+class Halloiamai(Plugin):
     async def handle(self) -> None:
         pass
 
@@ -166,7 +166,7 @@ iamai 内置的 `Message` 类实现了许多实用的方法，建议所有适配
 from iamai import Plugin
 
 
-class HalloIamai(Plugin):
+class Halloiamai(Plugin):
     async def handle(self) -> None:
         await self.event.reply("Hello, iamai!")
 

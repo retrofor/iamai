@@ -78,7 +78,7 @@ adapters = ["iamai.adapter.cqhttp"]
 from iamai import Plugin
 
 
-class HalloIamai(Plugin):
+class Halloiamai(Plugin):
     async def handle(self) -> None:
         await self.event.reply(f"Hello, I am {self.config.nickname}!")
 

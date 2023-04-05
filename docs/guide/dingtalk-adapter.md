@@ -32,7 +32,7 @@ from iamai import Plugin
 from iamai.adapter.digntalk.message import DingTalkMessage
 
 
-class HalloIamai(Plugin):
+class Halloiamai(Plugin):
     async def handle(self) -> None:
         await self.event.reply(DingTalkMessage.markdown("# hello\n\nHello, iamai!"))
 

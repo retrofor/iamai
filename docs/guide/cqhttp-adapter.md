@@ -76,7 +76,7 @@ from iamai import Plugin
 from iamai.adapter.cqhttp.message import CQHTTPMessageSegment
 
 
-class HalloIamai(Plugin):
+class Halloiamai(Plugin):
     async def handle(self) -> None:
         msg = CQHTTPMessageSegment.text("Hello, iamai!") + \
               CQHTTPMessageSegment.image("https://www.example.org/1.jpg")
