@@ -24,7 +24,7 @@ exclude = ["iamai/__init__.py", "iamai/adapter/__init__.py"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-iamai = "^0.6.0"
+iamai = "^3.14"
 apscheduler = "^3.7"
 
 [tool.poetry.dev-dependencies]
