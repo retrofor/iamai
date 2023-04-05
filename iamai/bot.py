@@ -83,7 +83,8 @@ class Bot:
     _extend_plugins: List[
         Union[Type[Plugin], str, Path]
     ]  # 使用 load_plugins() 方法程序化加载的插件列表
-    _extend_plugin_dirs: List[Path]  # 使用 load_plugins_from_dirs() 方法程序化加载的插件路径列表
+    # 使用 load_plugins_from_dirs() 方法程序化加载的插件路径列表
+    _extend_plugin_dirs: List[Path]
     _extend_adapters: List[str]  # 使用 load_adapter() 方法程序化加载的适配器列表
     _bot_run_hooks: List[T_BotHook]
     _bot_exit_hooks: List[T_BotHook]
@@ -186,7 +187,7 @@ class Bot:
         self._update_config()
 
         # 启动 iamai
-        logger.warning("Running iamai...")
+        logger.info("Running iamai...")
 
         hot_reload_task = None
         if self._hot_reload:
@@ -244,7 +245,7 @@ class Bot:
             removed_plugins.extend(_removed_plugins)
             for plugin_ in _removed_plugins:
                 plugins.remove(plugin_)
-                logger.success(
+                logger.info(
                     "Succeeded to remove plugin "
                     f'"{plugin_.__name__}" from file "{file}"'
                 )
@@ -261,7 +262,7 @@ class Bot:
             )
             return
 
-        logger.success("Hot reload is working!")
+        logger.warning("Hot reload is working!")
         async for changes in awatch(
             *map(
                 lambda x: x.resolve(),
@@ -310,7 +311,8 @@ class Bot:
 
                 if change_type == Change.added:
                     logger.info(f"Hot reload: added file: {file}")
-                    self._load_plugins(Path(file), plugin_load_type=PluginLoadType.DIR)
+                    self._load_plugins(
+                        Path(file), plugin_load_type=PluginLoadType.DIR)
                     self._update_config()
                     continue
                 elif change_type == Change.deleted:
@@ -320,7 +322,8 @@ class Bot:
                 elif change_type == Change.modified:
                     logger.info(f"Hot reload: Modified file: {file}")
                     self._remove_plugin_by_path(file)
-                    self._load_plugins(Path(file), plugin_load_type=PluginLoadType.DIR)
+                    self._load_plugins(
+                        Path(file), plugin_load_type=PluginLoadType.DIR)
                     self._update_config()
 
     def _update_config(self):
@@ -348,12 +351,17 @@ class Bot:
         self.config = create_model(
             "Config",
             plugin=update_config(self.plugins, "PluginConfig", PluginConfig),
-            adapter=update_config(self.adapters, "AdapterConfig", AdapterConfig),
+            adapter=update_config(
+                self.adapters, "AdapterConfig", AdapterConfig),
             __base__=MainConfig,
         )(**self._raw_config_dict)
         # 更新 log 级别
         logger.remove()
-        logger.add(sys.stderr, level=self.config.bot.log.level)
+        logger.add(
+            sys.stderr, 
+            level=self.config.bot.log.level,
+            format='<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> [<level>{level: ^10}</level>] > <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>'
+        )
 
     def _reload_config_dict(self):
         """重新加载配置文件。"""
@@ -454,7 +462,8 @@ class Bot:
                     try:
                         _plugin = _plugin(current_event)
                         if await _plugin.rule():
-                            logger.warning(f"Event will be handled by {_plugin!r}")
+                            logger.warning(
+                                f"Event will be handled by {_plugin!r}")
                             try:
                                 await _plugin.handle()
                             finally:
@@ -488,7 +497,8 @@ class Bot:
 
     async def get(
         self,
-        func: Optional[Callable[[T_Event], Union[bool, Awaitable[bool]]]] = None,
+        func: Optional[Callable[[T_Event],
+                                Union[bool, Awaitable[bool]]]] = None,
         *,
         max_try_times: Optional[int] = None,
         timeout: Optional[Union[int, float]] = None,
@@ -560,7 +570,7 @@ class Bot:
             plugin_class.__plugin_load_type__ = plugin_load_type
             plugin_class.__plugin_file_path__ = plugin_file_path
             self.plugins_priority_dict[priority].append(plugin_class)
-            logger.success(
+            logger.info(
                 f'Succeeded to load plugin "{plugin_class.__name__}" '
                 f'from class "{plugin_class!r}"'
             )
@@ -628,7 +638,8 @@ class Bot:
                 logger.warning(f'Loading plugins from path "{plugin_}"')
                 if plugin_.is_file():
                     if plugin_.suffix != ".py":
-                        logger.error(f'The path "{plugin_}" must endswith ".py"')
+                        logger.error(
+                            f'The path "{plugin_}" must endswith ".py"')
                         return
 
                     plugin_module_name = None
@@ -658,7 +669,8 @@ class Bot:
                 else:
                     logger.error(f'The plugin path "{plugin_}" must be a file')
             else:
-                logger.error(f"Type error: {plugin_} can not be loaded as plugin")
+                logger.error(
+                    f"Type error: {plugin_} can not be loaded as plugin")
 
     def load_plugins(self, *plugins: Union[Type[Plugin], str, Path]):
         """加载插件。
@@ -681,11 +693,14 @@ class Bot:
             *dirs: 储存包含插件的模块的模块路径。
                 例如：`pathlib.Path("path/of/plugins/")` 。
         """
-        dirs = list(map(lambda x: str(x.resolve()), dirs)) # type: ignore
-        logger.warning(f'Loading plugins from dirs "{", ".join(map(str, dirs))}"')
-        self._module_path_finder.path.extend(dirs) # type: ignore
-        for plugin_class, module in get_classes_from_dir(dirs, Plugin): # type: ignore
-            self._load_plugin_class(plugin_class, PluginLoadType.DIR, module.__file__)
+        dirs = list(map(lambda x: str(x.resolve()), dirs))  # type: ignore
+        logger.warning(
+            f'Loading plugins from dirs "{", ".join(map(str, dirs))}"')
+        self._module_path_finder.path.extend(dirs)  # type: ignore
+        # type: ignore
+        for plugin_class, module in get_classes_from_dir(dirs, Plugin):
+            self._load_plugin_class(
+                plugin_class, PluginLoadType.DIR, module.__file__)
 
     def load_plugins_from_dirs(self, *dirs: Path):
         """从目录中加载插件，以 `_` 开头的模块中的插件不会被导入。路径可以是相对路径或绝对路径。
@@ -717,7 +732,8 @@ class Bot:
                             "must be a subclass of Adapter"
                         )
                 elif isinstance(adapter_, str):
-                    adapter_classes = get_classes_from_module_name(adapter_, Adapter)
+                    adapter_classes = get_classes_from_module_name(
+                        adapter_, Adapter)
                     if not adapter_classes:
                         raise LoadModuleError(
                             f"Can not find Adapter class in the {adapter_} module"
@@ -726,7 +742,8 @@ class Bot:
                         raise LoadModuleError(
                             f"More then one Adapter class in the {adapter_} module"
                         )
-                    adapter_object = adapter_classes[0][0](self) # type: ignore
+                    adapter_object = adapter_classes[0][0](
+                        self)  # type: ignore
                 else:
                     raise LoadModuleError(
                         f"Type error: {adapter_} can not be loaded as adapter"
@@ -739,7 +756,7 @@ class Bot:
                 )
             else:
                 self.adapters.append(adapter_object)
-                logger.success(
+                logger.info(
                     f'Succeeded to load adapter "{adapter_object.__class__.__name__}" '
                     f'from "{adapter_}"'
                 )
