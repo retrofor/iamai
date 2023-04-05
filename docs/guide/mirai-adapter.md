@@ -53,7 +53,7 @@ adapterSettings:
 
 编辑 iamai 的配置文件 `config.toml` 。
 
-更多项目请参考 [Mirai 配置](/api/adapter/mirai/config.md) 。
+更多项目请参考 Mirai 配置 。
 
 ### Websocket Adapter 模式
 
@@ -103,7 +103,7 @@ class Halloiamai(Plugin):
 
 ```
 
-更多使用方法请参考 [mirai-api-http 消息段类型](https://docs.mirai.mamoe.net/mirai-api-http/api/MessageType.html) 和 [Mirai 消息](/api/adapter/mirai/message.md) 。
+更多使用方法请参考 [mirai-api-http 消息段类型](https://docs.mirai.mamoe.net/mirai-api-http/api/MessageType.html) 和 Mirai 消息 。
 
 ## 调用 mirai-api-http API
 
