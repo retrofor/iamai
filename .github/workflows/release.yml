@@ -24,26 +24,26 @@ jobs:
       - run: poetry install
         shell: bash
 
-      - run: poetry config pypi-token.pypi "$PYPI_TOKEN"
+      - run: poetry config pypi-token.pypi "$PYPI_API_TOKEN"
         shell: bash
         env:
-          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+          PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
 
       - run: poetry publish --build
         shell: bash
 
       - run: poetry publish --build
         shell: bash
-        working-directory: ./packages/alicebot-adapter-apscheduler
+        working-directory: ./packages/iamai-adapter-apscheduler
 
       - run: poetry publish --build
         shell: bash
-        working-directory: ./packages/alicebot-adapter-cqhttp
+        working-directory: ./packages/iamai-adapter-cqhttp
 
       - run: poetry publish --build
         shell: bash
-        working-directory: ./packages/alicebot-adapter-dingtalk
+        working-directory: ./packages/iamai-adapter-dingtalk
 
       - run: poetry publish --build
         shell: bash
-        working-directory: ./packages/alicebot-adapter-mirai
+        working-directory: ./packages/iamai-adapter-mirai
