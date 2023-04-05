@@ -24,10 +24,10 @@ jobs:
       - run: poetry install
         shell: bash
 
-      - run: poetry config pypi-token.pypi "$PYPI_API_TOKEN"
+      - run: poetry config pypi-token.pypi "$PYPI_TOKEN"
         shell: bash
         env:
-          PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
 
       - run: poetry publish --build
         shell: bash
