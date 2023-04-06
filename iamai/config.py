@@ -64,8 +64,10 @@ class PluginConfig(ConfigModel):
 class AdapterConfig(ConfigModel):
     """适配器配置。"""
 
+
 class DebugConfig(ConfigModel):
     """是否打印事件配置。"""
+
 
 class MainConfig(ConfigModel):
     """iamai 配置。

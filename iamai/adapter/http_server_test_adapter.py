@@ -5,6 +5,7 @@
 from typing import TYPE_CHECKING, Union
 
 from aiohttp import web
+
 from iamai.event import Event
 from iamai.adapter.utils import HttpServerAdapter
 from iamai.message import Message, MessageSegment

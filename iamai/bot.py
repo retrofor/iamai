@@ -14,10 +14,11 @@ from itertools import chain
 from collections import defaultdict
 from typing import Any, Dict, List, Type, Union, Callable, Optional, Awaitable
 
+from pydantic import ValidationError, create_model
+
 from iamai.adapter import Adapter
 from iamai.plugin import Plugin, PluginLoadType
 from iamai.log import logger, error_or_exception
-from pydantic import ValidationError, create_model
 from iamai.typing import T_Event, T_BotHook, T_EventHook, T_AdapterHook
 from iamai.config import MainConfig, ConfigModel, PluginConfig, AdapterConfig
 from iamai.exceptions import (
@@ -311,8 +312,7 @@ class Bot:
 
                 if change_type == Change.added:
                     logger.info(f"Hot reload: added file: {file}")
-                    self._load_plugins(
-                        Path(file), plugin_load_type=PluginLoadType.DIR)
+                    self._load_plugins(Path(file), plugin_load_type=PluginLoadType.DIR)
                     self._update_config()
                     continue
                 elif change_type == Change.deleted:
@@ -322,8 +322,7 @@ class Bot:
                 elif change_type == Change.modified:
                     logger.info(f"Hot reload: Modified file: {file}")
                     self._remove_plugin_by_path(file)
-                    self._load_plugins(
-                        Path(file), plugin_load_type=PluginLoadType.DIR)
+                    self._load_plugins(Path(file), plugin_load_type=PluginLoadType.DIR)
                     self._update_config()
 
     def _update_config(self):
@@ -351,16 +350,15 @@ class Bot:
         self.config = create_model(
             "Config",
             plugin=update_config(self.plugins, "PluginConfig", PluginConfig),
-            adapter=update_config(
-                self.adapters, "AdapterConfig", AdapterConfig),
+            adapter=update_config(self.adapters, "AdapterConfig", AdapterConfig),
             __base__=MainConfig,
         )(**self._raw_config_dict)
         # 更新 log 级别
         logger.remove()
         logger.add(
-            sys.stderr, 
+            sys.stderr,
             level=self.config.bot.log.level,
-            format='<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> [<level>{level: ^10}</level>] > <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>'
+            format="<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> [<level>{level: ^10}</level>] > <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",
         )
 
     def _reload_config_dict(self):
@@ -462,8 +460,7 @@ class Bot:
                     try:
                         _plugin = _plugin(current_event)
                         if await _plugin.rule():
-                            logger.warning(
-                                f"Event will be handled by {_plugin!r}")
+                            logger.warning(f"Event will be handled by {_plugin!r}")
                             try:
                                 await _plugin.handle()
                             finally:
@@ -497,8 +494,7 @@ class Bot:
 
     async def get(
         self,
-        func: Optional[Callable[[T_Event],
-                                Union[bool, Awaitable[bool]]]] = None,
+        func: Optional[Callable[[T_Event], Union[bool, Awaitable[bool]]]] = None,
         *,
         max_try_times: Optional[int] = None,
         timeout: Optional[Union[int, float]] = None,
@@ -638,8 +634,7 @@ class Bot:
                 logger.warning(f'Loading plugins from path "{plugin_}"')
                 if plugin_.is_file():
                     if plugin_.suffix != ".py":
-                        logger.error(
-                            f'The path "{plugin_}" must endswith ".py"')
+                        logger.error(f'The path "{plugin_}" must endswith ".py"')
                         return
 
                     plugin_module_name = None
@@ -669,8 +664,7 @@ class Bot:
                 else:
                     logger.error(f'The plugin path "{plugin_}" must be a file')
             else:
-                logger.error(
-                    f"Type error: {plugin_} can not be loaded as plugin")
+                logger.error(f"Type error: {plugin_} can not be loaded as plugin")
 
     def load_plugins(self, *plugins: Union[Type[Plugin], str, Path]):
         """加载插件。
@@ -694,13 +688,11 @@ class Bot:
                 例如：`pathlib.Path("path/of/plugins/")` 。
         """
         dirs = list(map(lambda x: str(x.resolve()), dirs))  # type: ignore
-        logger.warning(
-            f'Loading plugins from dirs "{", ".join(map(str, dirs))}"')
+        logger.warning(f'Loading plugins from dirs "{", ".join(map(str, dirs))}"')
         self._module_path_finder.path.extend(dirs)  # type: ignore
         # type: ignore
         for plugin_class, module in get_classes_from_dir(dirs, Plugin):
-            self._load_plugin_class(
-                plugin_class, PluginLoadType.DIR, module.__file__)
+            self._load_plugin_class(plugin_class, PluginLoadType.DIR, module.__file__)
 
     def load_plugins_from_dirs(self, *dirs: Path):
         """从目录中加载插件，以 `_` 开头的模块中的插件不会被导入。路径可以是相对路径或绝对路径。
@@ -732,8 +724,7 @@ class Bot:
                             "must be a subclass of Adapter"
                         )
                 elif isinstance(adapter_, str):
-                    adapter_classes = get_classes_from_module_name(
-                        adapter_, Adapter)
+                    adapter_classes = get_classes_from_module_name(adapter_, Adapter)
                     if not adapter_classes:
                         raise LoadModuleError(
                             f"Can not find Adapter class in the {adapter_} module"
@@ -742,8 +733,7 @@ class Bot:
                         raise LoadModuleError(
                             f"More then one Adapter class in the {adapter_} module"
                         )
-                    adapter_object = adapter_classes[0][0](
-                        self)  # type: ignore
+                    adapter_object = adapter_classes[0][0](self)  # type: ignore
                 else:
                     raise LoadModuleError(
                         f"Type error: {adapter_} can not be loaded as adapter"
