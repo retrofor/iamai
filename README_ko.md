@@ -15,8 +15,8 @@
   크로스 플랫폼의 로봇 프레임워크로, 주로 기계 학습/심층 학습에 사용됩니다.
 </p>
 <p align="center">
-    <img src="https://img.shields.io/badge/docs-20230309-green?style=flat-square" alt="Website" href="https://iamai.retrofor.space" target="_blank"/>
-    <img src="https://img.shields.io/badge/playgroud-live-green?style=flat-square" alt="Website" href="https://playground.retrofor.space/iamai" target="_blank"/>
+    <img src="https://img.shields.io/badge/docs-iamai.retrofor.space-yellow?style=flat-square" alt="Website" href="https://iamai.retrofor.space" target="_blank"/>
+    <img src="https://img.shields.io/badge/playgroud-Under construction-cyan?style=flat-square" alt="Website" href="https://playground.retrofor.space/iamai" target="_blank"/>
   <br>
   <a href="https://pypi.python.org/pypi/iamai">
     <img src="https://img.shields.io/pypi/v/iamai?style=flat-square" alt="pypi">
@@ -36,29 +36,29 @@
   <a style="text-decoration:none" href="https://onebot.dev" target="_blank">
     <img src="https://img.shields.io/badge/-Onebot%2011-000020?style=flat-square&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHAAAABwCAMAAADxPgR5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAxQTFRF////29vbr6+vAAAAk1hCcwAAAAR0Uk5T////AEAqqfQAAAKcSURBVHja7NrbctswDATQXfD//zlpO7FlmwAWIOnOtNaTM5JwDMa8E+PNFz7g3waJ24fviyDPgfhz8fHP39cBcBL9KoJbQUxjA2iYqHL3FAnvzhL4GtVNUcoSZe6eSHizBcK5LL7dBr2AUZlev1ARRHCljzRALIEog6H3U6bCIyqIZdAT0eBuJYaGiJaHSjmkYIZd+qSGWAQnIaz2OArVnX6vrItQvbhZJtVGB5qX9wKqCMkb9W7aexfCO/rwQRBzsDIsYx4AOz0nhAtWu7bqkEQBO0Pr+Ftjt5fFCUEbm0Sbgdu8WSgJ5NgH2iu46R/o1UcBXJsFusWF/QUaz3RwJMEgngfaGGdSxJkE/Yg4lOBryBiMwvAhZrVMUUvwqU7F05b5WLaUIN4M4hRocQQRnEedgsn7TZB3UCpRrIJwQfqvGwsg18EnI2uSVNC8t+0QmMXogvbPg/xk+Mnw/6kW/rraUlvqgmFreAA09xW5t0AFlHrQZ3CsgvZm0FbHNKyBmheBKIF2cCA8A600aHPmFtRB1XvMsJAiza7LpPog0UJwccKdzw8rdf8MyN2ePYF896LC5hTzdZqxb6VNXInaupARLDNBWgI8spq4T0Qb5H4vWfPmHo8OyB1ito+AysNNz0oglj1U955sjUN9d41LnrX2D/u7eRwxyOaOpfyevCWbTgDEoilsOnu7zsKhjRCsnD/QzhdkYLBLXjiK4f3UWmcx2M7PO21CKVTH84638NTplt6JIQH0ZwCNuiWAfvuLhdrcOYPVO9eW3A67l7hZtgaY9GZo9AFc6cryjoeFBIWeU+npnk/nLE0OxCHL1eQsc1IciehjpJv5mqCsjeopaH6r15/MrxNnVhu7tmcslay2gO2Z1QfcfX0JMACG41/u0RrI9QAAAABJRU5ErkJggg==&logoColor=white" alt="onebotv11" />
     <!-- github -->
-    <img src="https://img.shields.io/badge/-github-181717?style=flat-square&logo=github&logoColor=white">
+    <!-- <img src="https://img.shields.io/badge/-github-181717?style=flat-square&logo=github&logoColor=white"> -->
     <!-- discord -->
-    <img src="https://img.shields.io/badge/-Discord-5865F2?style=flat-square&logo=Discord&logoColor=white">
-    <br>
+    <!-- <img src="https://img.shields.io/badge/-Discord-5865F2?style=flat-square&logo=Discord&logoColor=white"> -->
+    <!-- <br> -->
     <!-- bilibili live -->
-    <img src="https://img.shields.io/badge/-BiliBili Live-00A1D6?style=flat-square&logo=Bilibili&logoColor=white">
+    <!-- <img src="https://img.shields.io/badge/-BiliBili Live-00A1D6?style=flat-square&logo=Bilibili&logoColor=white"> -->
     <!-- mirai-api-http -->
     <img src="https://img.shields.io/badge/-Mirai%20api%20http%202.3+-00B8AA?style=flat-square">
     <!-- dingtalk -->
     <img src="https://img.shields.io/badge/-DingTalk-blue?style=flat-square">
     <!-- qqzone -->
-    <img src="https://img.shields.io/badge/-QQ%20Zone-FECC00?style=flat-square&logo=Tencent QQ&logoColor=black">
-    <br>
+    <!-- <img src="https://img.shields.io/badge/-QQ%20Zone-FECC00?style=flat-square&logo=Tencent QQ&logoColor=black"> -->
+    <!-- <br> -->
     <!-- minecraft -->
-    <img src="https://img.shields.io/badge/-Minecraft Server-62B47A?style=flat-square&logo=Minecraft&logoColor=white">
+    <!-- <img src="https://img.shields.io/badge/-Minecraft Server-62B47A?style=flat-square&logo=Minecraft&logoColor=white"> -->
     <!-- twitter -->
-    <img src="https://img.shields.io/badge/-Twitter-1DA1F2?style=flat-square&logo=twitter&logoColor=white">
+    <!-- <img src="https://img.shields.io/badge/-Twitter-1DA1F2?style=flat-square&logo=twitter&logoColor=white"> -->
     <!-- console -->
     <img src="https://img.shields.io/badge/-Console-4EAA25?style=flat-square&logo=GNU bash&logoColor=white">
     <!-- wechat -->
-    <img src="https://img.shields.io/badge/-Wechat-07C160?style=flat-square&logo=wechat&logoColor=white">
+    <!-- <img src="https://img.shields.io/badge/-Wechat-07C160?style=flat-square&logo=wechat&logoColor=white"> -->
     <!-- tg -->
-    <img src="https://img.shields.io/badge/-Telegram-26A5E4?style=flat-square&logo=telegram&logoColor=white">
+    <!-- <img src="https://img.shields.io/badge/-Telegram-26A5E4?style=flat-square&logo=telegram&logoColor=white"> -->
   </a>
 </p>
 <p align="center">
@@ -85,11 +85,13 @@
 - ⚡ **완전한 트리 쉐이커블**: 필요한 부분만 가져오기, [번들 크기](https://iamai.retrofor.space/export-size)
 - 🔩 **유연성**: 구성 가능한 이벤트 필터 및 대상
 - 🔌 **선택적 [추가 기능](https://iamai.retrofor.space/add-ons)**: [Apscheduler](https://iamai.retrofor.space/add-ons/apscheduler) 등
-- 👍 **크로스 플랫폼**: [Onebot](https://iamai.retrofor.space/adapters/onebot), [Wechat](https://iamai.retrofor.space/adapters/wechat), [Twitter](https://iamai.retrofor.space/adapters/twitter), [Bilibili](https://iamai.retrofor.space/adapters/bilibili), [Github](https://iamai.retrofor.space/adapters/github) 등 다양한 플랫폼 지원
+- 👍 **크로스 플랫폼**: [cqhttp](https://iamai.retrofor.space/guide/cqhttp-adapter.html), [dingtalk](https://iamai.retrofor.space/guide/dingtalk-adapter.html), [Mirai](https://iamai.retrofor.space/guide/mirai-adapter.html) 등 다양한 플랫폼 지원
 
 <p align="center"><img width="512" src="https://iamai.retrofor.space/icons/retro_plus.png"></p>
 
 ## ⬇️ 설치
+
+### iamai
 
 - STABLE VERSION
 
@@ -105,6 +107,16 @@
   pip install -i https://test.pypi.org/simple/ iamai
   ```
 
+### 어댑터 설치
+
+iamai 자체는 챗봇 프레임워크일 뿐이며 특정 프로토콜을 지원하기 위해 추가 프로토콜 어댑터가 필요합니다. pip를 사용하여 해당 프로토콜 어댑터를 설치할 수 있습니다.
+
+```py
+pip install iamai-adapter-cqhttp
+pip install iamai-adapter-mirai
+pip install iamai-adapter-dingtalk
+```
+
 ## ❗ 사용 방법
 
 먼저 어댑터를 로드해야 합니다.
@@ -119,7 +131,8 @@ bot.run()
 ```
 
 그런 다음, transformer를 로드하고 모델을 사용해야 합니다.
-**transformer(🤗/transformers 라이브러리에서 사용)**
+
+### transformer(🤗/transformers 라이브러리에서 사용)
 
 ```python
 from transformers import AutoModelWithLMHead, AutoTokenizer
@@ -141,7 +154,7 @@ transformer 모델 옵티마이저를 작성하려면 옵티마이저의 작동 
 
 옵티마이저에 대한 원리는 ["Attention Is All You Need"](https://arxiv.org/abs/1706.03762) 논문에 언급되어 있으며 transformer 모델의 구조는 ["Transformer: A Novel Neural Network Architecture for Language Understanding"](https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html?m=1) 논문에 언급되어 있습니다. 옵티마이저의 구현은 Hugging Face Transformers 라이브러리의 [AdamW optimizer](https://huggingface.co/transformers/v3.0.2/main_classes/optimizer_schedules.html)를 참조하면 됩니다.
 
-**인퍼런스 API 사용**
+### 인퍼런스 API 사용
 
 ```python
 import requests
