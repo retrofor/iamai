@@ -9,10 +9,11 @@ from functools import wraps
 from typing import Any, Dict, Type
 
 from apscheduler.job import Job
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+
 from iamai.plugin import Plugin
 from iamai.adapter import Adapter
 from iamai.log import logger, error_or_exception
-from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 from .config import Config
 from .event import APSchedulerEvent

@@ -5,10 +5,11 @@
 from abc import ABC
 from typing import Any, Generic, Optional
 
+from pydantic import BaseModel, PrivateAttr
+
 from iamai.message import Message
 from iamai.typing import T_Adapter
 from iamai.utils import DataclassEncoder
-from pydantic import BaseModel, PrivateAttr
 
 __all__ = ["Event"]
 

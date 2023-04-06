@@ -2,8 +2,9 @@
 import inspect
 from typing import TYPE_CHECKING, Any, Dict, Type, Union, Literal, TypeVar, Optional
 
-from iamai.event import Event
 from pydantic import Field, BaseModel
+
+from iamai.event import Event
 
 from .message import CQHTTPMessage
 
@@ -82,13 +83,15 @@ class CQHTTPEvent(Event["CQHTTPAdapter"]):
     time: int
     self_id: int
     self_tiny_id: Optional[str]
-    post_type: Literal["message", "message_sent",
-                       "notice", "request", "meta_event"]
+    post_type: Literal["message", "message_sent", "notice", "request", "meta_event"]
 
     @property
     def to_me(self) -> bool:
         """当前事件的 user_id 是否等于 self_id 或 self_tiny_id。"""
-        return getattr(self, "user_id") == self.self_id or getattr(self, "user_id") == self.self_tiny_id
+        return (
+            getattr(self, "user_id") == self.self_id
+            or getattr(self, "user_id") == self.self_tiny_id
+        )
 
 
 class MessageEvent(CQHTTPEvent):
@@ -97,9 +100,9 @@ class MessageEvent(CQHTTPEvent):
     __event__ = "message"
     post_type: Literal["message"]
     message_type: Literal["private", "group", "guild"]
-    sub_type: Union[Literal["channel"],str]
-    message_id: Union[str,int]
-    user_id: Union[str,int]
+    sub_type: Union[Literal["channel"], str]
+    message_id: Union[str, int]
+    user_id: Union[str, int]
     message: CQHTTPMessage
     raw_message: Optional[str]
     font: Optional[int]
@@ -503,6 +506,7 @@ class HeartbeatMetaEvent(MetaEvent):
     status: Status
     interval: int
 
+
 class GuildMessageEvent(MessageEvent):
     """收到频道消息"""
 
@@ -518,8 +522,11 @@ class GuildMessageEvent(MessageEvent):
 
     async def reply(self, msg: "T_CQMSG") -> Dict[str, Any]:
         return await self.adapter.send_guild_channel_msg(
-            guild_id=self.guild_id,channel_id=self.channel_id, message=CQHTTPMessage(msg)
+            guild_id=self.guild_id,
+            channel_id=self.channel_id,
+            message=CQHTTPMessage(msg),
         )
+
 
 class GuildMessageReactionUpdated(NoticeEvent):
     """频道消息表情贴更新"""
@@ -550,7 +557,7 @@ class GuildChannelCreated(NoticeEvent):
     """子频道创建"""
 
     __event__ = "notice.channel_created"
-    notice_type: Literal['channel_created']
+    notice_type: Literal["channel_created"]
     guild_id: str
     channel_id: str
     user_id: str
@@ -562,7 +569,7 @@ class GuildChannelDestoryed(NoticeEvent):
     """子频道删除"""
 
     __event__ = "notice.channel_destroyed"
-    notice_type: Literal['channel_destroyed']
+    notice_type: Literal["channel_destroyed"]
     guild_id: str
     channel_id: str
     user_id: str
