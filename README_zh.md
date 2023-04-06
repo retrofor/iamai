@@ -177,8 +177,8 @@ output = query({
 > 多个镜像可供选择。
 
 - [https://iamai.retrofor.space](https://iamai.retrofor.space) _(推荐)_
-- [https://iamai-docs-git-main-retrofor.vercel.app](https://iamai-docs-git-main-retrofor.vercel.app)
-- ~~[https://iamai-docs-retrofor.vercel.app/](https://iamai-docs-retrofor.vercel.app/)~~
+- [retrofor.github.io/iamai](https://retrofor.github.io/iamai)
+
 
 ## ✨ 项目公示板
 

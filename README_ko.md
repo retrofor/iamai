@@ -177,8 +177,8 @@ output = query({
 > 아래 중 선택하세요.
 
 - <https://iamai.retrofor.space> _(추천)_
-- <https://iamai-docs-git-main-retrofor.vercel.app>
-- ~~<https://iamai-docs-retrofor.vercel.app/>~~
+- [retrofor.github.io/iamai](https://retrofor.github.io/iamai)
+
 
 ## ✨ 프로젝트 활동
 

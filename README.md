@@ -180,8 +180,7 @@ output = query({
 > choices below.
 
 - [https://iamai.retrofor.space](https://iamai.retrofor.space) _(recommend)_
-- [https://iamai-docs-git-main-retrofor.vercel.app](https://iamai-docs-git-main-retrofor.vercel.app)
-- ~~[https://iamai-docs-retrofor.vercel.app/](https://iamai-docs-retrofor.vercel.app/)~~
+- [retrofor.github.io/iamai](https://retrofor.github.io/iamai)
 
 ## ✨ Project Activity
 
