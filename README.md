@@ -28,6 +28,7 @@
     <a style="text-decoration:none" href="https://www.codacy.com/gh/retrofor/iamai/dashboard?utm_source=github.com&utm_medium=referral&utm_content=retrofor/iamai&utm_campaign=Badge_Gradee" target="_blank">
     <img src="https://app.codacy.com/project/badge/Grade/f3611d85db764236b65fac956bdb53df" alt="Codacy Badge" />
   </a>
+    <img src="https://img.shields.io/badge/code_style-black-000000.svg?style=flat-square" alt="Codacy Badge" />
 </p>
 <p align="center">
 </p>
