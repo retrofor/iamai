@@ -45,7 +45,7 @@ export default defineConfig({
 
     editLink: {
       pattern:
-        "https://github.com/retrofor/iamai/edit/main/docs/:path",
+        "https://github.com/retrofor/iamai/edit/master/docs/:path",
       text: "在 GitHub 上编辑此页",
     },
 
@@ -60,7 +60,7 @@ export default defineConfig({
 
     footer: {
       message: "Released under the MIT License.",
-      copyright: "Copyright © 2021-present retrofor",
+      copyright: "Copyright © 2023-present retrofor",
     },
   },
 });
