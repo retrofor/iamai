@@ -358,7 +358,7 @@ class Bot:
         logger.add(
             sys.stderr,
             level=self.config.bot.log.level,
-            format="<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> [<level>{level: ^10}</level>] > <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",
+            format="<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> [<level>{level}</level>] > <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",
         )
 
     def _reload_config_dict(self):
