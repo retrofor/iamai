@@ -246,7 +246,7 @@ class Bot:
             removed_plugins.extend(_removed_plugins)
             for plugin_ in _removed_plugins:
                 plugins.remove(plugin_)
-                logger.info(
+                logger.success(
                     "Succeeded to remove plugin "
                     f'"{plugin_.__name__}" from file "{file}"'
                 )
@@ -358,8 +358,8 @@ class Bot:
         logger.add(
             sys.stderr,
             level=self.config.bot.log.level,
-            format="<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> [<level>{level: ^10}</level>] > <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",
-        )
+            format="<magenta>{time:YYYY-MM-DD HH:mm:ss.SSS}</magenta> <level>[{level}]</level> > <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",
+    )
 
     def _reload_config_dict(self):
         """重新加载配置文件。"""
@@ -566,7 +566,7 @@ class Bot:
             plugin_class.__plugin_load_type__ = plugin_load_type
             plugin_class.__plugin_file_path__ = plugin_file_path
             self.plugins_priority_dict[priority].append(plugin_class)
-            logger.info(
+            logger.success(
                 f'Succeeded to load plugin "{plugin_class.__name__}" '
                 f'from class "{plugin_class!r}"'
             )
@@ -746,7 +746,7 @@ class Bot:
                 )
             else:
                 self.adapters.append(adapter_object)
-                logger.info(
+                logger.success(
                     f'Succeeded to load adapter "{adapter_object.__class__.__name__}" '
                     f'from "{adapter_}"'
                 )
