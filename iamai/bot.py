@@ -359,7 +359,7 @@ class Bot:
             sys.stderr,
             level=self.config.bot.log.level,
             format="<magenta>{time:YYYY-MM-DD HH:mm:ss.SSS}</magenta> <level>[{level}]</level> > <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",
-    )
+        )
 
     def _reload_config_dict(self):
         """重新加载配置文件。"""
