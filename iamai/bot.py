@@ -687,7 +687,7 @@ class Bot:
             *dirs: 储存包含插件的模块的模块路径。
                 例如：`pathlib.Path("path/of/plugins/")` 。
         """
-        dirs = list(map(lambda x: str(x.resolve()), dirs))  # type: ignore
+        dirs = list(map(lambda x: str(x.resolve()), dirs))  # type: ignore  maybe remove?
         logger.warning(f'Loading plugins from dirs "{", ".join(map(str, dirs))}"')
         self._module_path_finder.path.extend(dirs)  # type: ignore
         # type: ignore
