@@ -194,7 +194,7 @@ output = query({
 ## 👨‍🚀 Contributors
 
 <a href="https://github.com/retrofor/iamai/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=retrofor/iamai" />
+  <img width="150" src="https://contrib.rocks/image?repo=retrofor/iamai" />
 </a>
 
 ## 📄 License
