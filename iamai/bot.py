@@ -246,7 +246,7 @@ class Bot:
             removed_plugins.extend(_removed_plugins)
             for plugin_ in _removed_plugins:
                 plugins.remove(plugin_)
-                logger.info(
+                logger.success(
                     "Succeeded to remove plugin "
                     f'"{plugin_.__name__}" from file "{file}"'
                 )
@@ -358,7 +358,11 @@ class Bot:
         logger.add(
             sys.stderr,
             level=self.config.bot.log.level,
+<<<<<<< HEAD
             format="<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> [<level>{level}</level>] > <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",
+=======
+            format="<magenta>{time:YYYY-MM-DD HH:mm:ss.SSS}</magenta> <level>[{level}]</level> > <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",
+>>>>>>> 0ee2714126501b7068d8b0e65b8d3d4fb815cf16
         )
 
     def _reload_config_dict(self):
@@ -566,7 +570,7 @@ class Bot:
             plugin_class.__plugin_load_type__ = plugin_load_type
             plugin_class.__plugin_file_path__ = plugin_file_path
             self.plugins_priority_dict[priority].append(plugin_class)
-            logger.info(
+            logger.success(
                 f'Succeeded to load plugin "{plugin_class.__name__}" '
                 f'from class "{plugin_class!r}"'
             )
@@ -687,7 +691,7 @@ class Bot:
             *dirs: 储存包含插件的模块的模块路径。
                 例如：`pathlib.Path("path/of/plugins/")` 。
         """
-        dirs = list(map(lambda x: str(x.resolve()), dirs))  # type: ignore
+        dirs = list(map(lambda x: str(x.resolve()), dirs))  # type: ignore  maybe remove?
         logger.warning(f'Loading plugins from dirs "{", ".join(map(str, dirs))}"')
         self._module_path_finder.path.extend(dirs)  # type: ignore
         # type: ignore
@@ -746,7 +750,7 @@ class Bot:
                 )
             else:
                 self.adapters.append(adapter_object)
-                logger.info(
+                logger.success(
                     f'Succeeded to load adapter "{adapter_object.__class__.__name__}" '
                     f'from "{adapter_}"'
                 )
