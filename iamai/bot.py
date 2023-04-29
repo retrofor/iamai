@@ -48,9 +48,11 @@ HANDLED_SIGNALS = (
     signal.SIGINT,  # Unix signal 2. Sent by Ctrl+C.
     signal.SIGTERM,  # Unix signal 15. Sent by `kill <pid>`.
 )
-current_path = os.path.dirname(os.path.abspath('__file__'))
-log_path = os.path.join(current_path, "logs",
-                        datetime.now().strftime("%Y-%m-%d") + ".log")
+current_path = os.path.dirname(os.path.abspath("__file__"))
+log_path = os.path.join(
+    current_path, "logs", datetime.now().strftime("%Y-%m-%d") + ".log"
+)
+
 
 class Bot:
     """iamai 机器人对象，定义了机器人的基本方法。
@@ -363,11 +365,7 @@ class Bot:
             level=self.config.bot.log.level,
             format="<magenta>{time:YYYY-MM-DD HH:mm:ss.SSS}</magenta> <level>[{level}]</level> > <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",
         )
-        logger.add(
-            sink=log_path,
-            level="INFO",
-            rotation="10 MB"  # 每个日志文件最大为 10MB
-        )
+        logger.add(sink=log_path, level="INFO", rotation="10 MB")  # 每个日志文件最大为 10MB
 
     def _reload_config_dict(self):
         """重新加载配置文件。"""
