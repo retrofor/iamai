@@ -11,6 +11,7 @@ import asyncio
 import threading
 from pathlib import Path
 from itertools import chain
+from datetime import datetime
 from collections import defaultdict
 from typing import Any, Dict, List, Type, Union, Callable, Optional, Awaitable
 
@@ -47,7 +48,9 @@ HANDLED_SIGNALS = (
     signal.SIGINT,  # Unix signal 2. Sent by Ctrl+C.
     signal.SIGTERM,  # Unix signal 15. Sent by `kill <pid>`.
 )
-
+current_path = os.path.dirname(os.path.abspath('__file__'))
+log_path = os.path.join(current_path, "logs",
+                        datetime.now().strftime("%Y-%m-%d") + ".log")
 
 class Bot:
     """iamai 机器人对象，定义了机器人的基本方法。
@@ -358,11 +361,12 @@ class Bot:
         logger.add(
             sys.stderr,
             level=self.config.bot.log.level,
-<<<<<<< HEAD
-            format="<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> [<level>{level}</level>] > <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",
-=======
             format="<magenta>{time:YYYY-MM-DD HH:mm:ss.SSS}</magenta> <level>[{level}]</level> > <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",
->>>>>>> 0ee2714126501b7068d8b0e65b8d3d4fb815cf16
+        )
+        logger.add(
+            sink=log_path,
+            level="INFO",
+            rotation="10 MB"  # 每个日志文件最大为 10MB
         )
 
     def _reload_config_dict(self):
