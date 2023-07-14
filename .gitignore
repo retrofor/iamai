@@ -144,3 +144,6 @@ tests/plugins/webui/__init__.py
 tests/plugins/webui/config.py
 iamai/adapter/github/
 iamai/adapter/cqhttp/
+
+# vscode
+.vscode/
