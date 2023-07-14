@@ -10,7 +10,7 @@ from .message import CQHTTPMessage
 
 if TYPE_CHECKING:
     from .message import T_CQMSG
-    from . import CQHTTPAdapter  # noqa
+    from . import CQHTTPAdapter
 
 T_CQHTTPEvent = TypeVar("T_CQHTTPEvent", bound="CQHTTPEvent")
 
