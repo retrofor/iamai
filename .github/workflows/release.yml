@@ -47,3 +47,7 @@ jobs:
       - run: poetry publish --build
         shell: bash
         working-directory: ./packages/iamai-adapter-mirai
+    
+      - run: poetry publish --build
+        shell: bash
+        working-directory: ./packages/iamai-adapter-kook
