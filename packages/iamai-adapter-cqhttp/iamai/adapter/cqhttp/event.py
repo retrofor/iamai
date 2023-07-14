@@ -9,8 +9,8 @@ from iamai.event import Event
 from .message import CQHTTPMessage
 
 if TYPE_CHECKING:
-    from .message import T_CQMSG
     from . import CQHTTPAdapter
+    from .message import T_CQMSG
 
 T_CQHTTPEvent = TypeVar("T_CQHTTPEvent", bound="CQHTTPEvent")
 
