@@ -1,14 +1,14 @@
 [tool.poetry]
-name = "iamai-adapter-mirai"
+name = "iamai-adapter-kook"
 version = "3.2"
-description = "Mirai adapter for iamai."
+description = "Kook adapter for iamai."
 authors = ["简律纯 <i@jyunko.cn>"]
 license = "GPL-3.0 License"
 readme = "README.md"
 homepage = "https://retrofor.space/"
 repository = "https://github.com/retrofor/iamai"
 documentation = "https://iamai.retrofor.space/"
-keywords = ["bot", "chatbot", "qq", "qqbot", "mirai"]
+keywords = ["bot", "chatbot", "kook", "kookbot", "kaiheila"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Framework :: AsyncIO",

@@ -1,9 +1,9 @@
 [tool.poetry]
 name = "iamai-adapter-cqhttp"
-version = "0.6.1"
-description = "OneBot(CQHTTP) adapter for iamai."
-authors = ["简律纯 <admin@jyunko.cn>"]
-license = "MIT"
+version = "3.2"
+description = "OneBot(go-cqhttp) adapter for iamai."
+authors = ["简律纯 <i@jyunko.cn>"]
+license = "GPL-3.0 License"
 readme = "README.md"
 homepage = "https://retrofor.space/"
 repository = "https://github.com/retrofor/iamai"
@@ -24,7 +24,7 @@ exclude = ["iamai/__init__.py", "iamai/adapter/__init__.py"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-iamai = "^3.14"
+iamai = "^3.2"
 
 [tool.poetry.dev-dependencies]
 iamai = { path = "../../", develop = true }

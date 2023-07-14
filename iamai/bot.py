@@ -40,7 +40,7 @@ from iamai.utils import (
 try:
     import tomllib  # type: ignore[module]
 except ModuleNotFoundError:
-    import tomli as tomllib
+    import tomli as tomllib # type: ignore[no-redef]
 
 __all__ = ["Bot"]
 
@@ -118,9 +118,9 @@ class Bot:
             hot_reload: 热重载。
                 启用后将自动检查 `plugin_dir` 中的插件文件更新，并在更新时自动重新加载。
         """
-        self.config = MainConfig()
+        self.config = MainConfig() # type: ignore[assignment]
         self.plugins_priority_dict = defaultdict(list)
-        self.plugin_state = defaultdict(type(None))
+        self.plugin_state = defaultdict(type(None)) # type: ignore[assignment]
         self.global_state = {}
 
         self.adapters = []
@@ -261,7 +261,7 @@ class Bot:
     async def _run_hot_reload(self):
         """热重载。"""
         try:
-            from watchfiles import Change, PythonFilter, DefaultFilter, awatch
+            from watchfiles import Change, PythonFilter, DefaultFilter, awatch # type: ignore
         except ImportError:
             logger.warning(
                 'Hot reload needs to install "watchfiles", '
@@ -288,7 +288,7 @@ class Bot:
             for change_type, file in sorted(changes, key=lambda x: x[0], reverse=True):
                 # 更改配置文件
                 if (
-                    samefile(self._config_file, file)
+                    samefile(self._config_file, file)  # type: ignore
                     and change_type == change_type.modified
                 ):
                     logger.warning(f'Reload config file "{self._config_file}"')
@@ -342,7 +342,7 @@ class Bot:
                 config_class = getattr(i, "Config", None)
                 if is_config_class(config_class):
                     try:
-                        default_value = config_class()
+                        default_value = config_class() # type: ignore
                     except ValidationError:
                         default_value = ...
                     config_update_dict[getattr(config_class, "__config_name__")] = (
@@ -396,7 +396,7 @@ class Bot:
         try:
             self.config = MainConfig(**self._raw_config_dict)
         except ValidationError as e:
-            self.config = MainConfig()
+            self.config = MainConfig() # type: ignore
             error_or_exception(
                 "Config dict parse error:", e, self.config.bot.log.verbose_exception
             )
@@ -411,7 +411,7 @@ class Bot:
         self._load_plugins_from_dirs(*self._extend_plugin_dirs)
         self._update_config()
 
-    def _handle_exit(self, *args):  # noqa
+    def _handle_exit(self, *args): # type: ignore
         """当机器人收到退出信号时，根据情况进行处理。"""
         logger.warning("Stopping iamai...")
         if self.should_exit.is_set():
@@ -421,7 +421,7 @@ class Bot:
             self.should_exit.set()
 
     async def handle_event(
-        self, current_event: T_Event, *, handle_get: bool = True, show_log: bool = True
+        self, current_event: T_Event, *, handle_get: bool = True, show_log: bool = True # type: ignore
     ):
         """被适配器对象调用，根据优先级分发事件给所有插件，并处理插件的 `stop` 、 `skip` 等信号。
 
@@ -450,8 +450,8 @@ class Bot:
         if current_event is None:
             async with self._condition:
                 await self._condition.wait()
-                current_event = self._current_event
-            if current_event.__handled__:
+                current_event = self._current_event # type: ignore
+            if current_event.__handled__: # type: ignore
                 return
 
         for _hook_func in self._event_preprocessor_hooks:
@@ -505,7 +505,7 @@ class Bot:
         *,
         max_try_times: Optional[int] = None,
         timeout: Optional[Union[int, float]] = None,
-    ) -> T_Event:
+    ) -> T_Event: # type: ignore
         """获取满足指定条件的的事件，协程会等待直到适配器接收到满足条件的事件、超过最大事件数或超时。
 
         Args:
@@ -524,7 +524,7 @@ class Bot:
         if func is None:
             func = sync_func_wrapper(lambda x: True)
         elif not asyncio.iscoroutinefunction(func):
-            func = sync_func_wrapper(func)
+            func = sync_func_wrapper(func) # type: ignore
 
         try_times = 0
         start_time = time.time()
@@ -547,9 +547,9 @@ class Bot:
                         break
 
                 if not self._current_event.__handled__:
-                    if await func(self._current_event):
+                    if await func(self._current_event): # type: ignore
                         self._current_event.__handled__ = True
-                        return self._current_event
+                        return self._current_event # type: ignore
 
                 try_times += 1
 
@@ -698,7 +698,7 @@ class Bot:
         logger.warning(f'Loading plugins from dirs "{", ".join(map(str, dirs))}"')
         self._module_path_finder.path.extend(dirs)  # type: ignore
         # type: ignore
-        for plugin_class, module in get_classes_from_dir(dirs, Plugin):
+        for plugin_class, module in get_classes_from_dir(dirs, Plugin): # type: ignore
             self._load_plugin_class(plugin_class, PluginLoadType.DIR, module.__file__)
 
     def load_plugins_from_dirs(self, *dirs: Path):
@@ -767,7 +767,7 @@ class Bot:
                 如果为 `str` 类型时，将作为适配器模块名称进行加载，格式和 Python `import` 语句相同。
                     例如：`path.of.adapter`。
         """
-        self._extend_adapters.extend(adapters)
+        self._extend_adapters.extend(adapters) # type: ignore
         return self._load_adapters(*adapters)
 
     def get_adapter(self, name: str) -> Adapter:
@@ -800,7 +800,7 @@ class Bot:
             LookupError: 找不到此名称的插件类。
         """
         for _plugin in self.plugins:
-            if _plugin.name == name:
+            if _plugin.name == name: # type: ignore
                 return _plugin
         raise LookupError(f'Can not find plugin named "{name}"')
 
