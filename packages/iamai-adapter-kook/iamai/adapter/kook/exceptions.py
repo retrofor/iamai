@@ -1,8 +1,6 @@
 """Kook 适配器异常。"""
-from typing import Optional
-
 from iamai.exceptions import AdapterException
-
+from typing import Optional
 
 class KookException(AdapterException):
     """Kook 异常基类。"""
@@ -29,15 +27,12 @@ class ApiNotAvailable(ActionFailed):
 
 class ApiTimeout(KookException):
     """API 请求响应超时。"""
-
-
+    
 class UnauthorizedException(KookException):
     pass
 
-
 class RateLimitException(KookException):
     pass
-
 
 class UnsupportedMessageType(KookException):
     """

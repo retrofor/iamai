@@ -21,5 +21,5 @@ class Config(ConfigModel):
     reconnect_interval: int = 3
     api_timeout: int = 1000
     access_token: str = ""
-    compress: Literal[0, 1] = 0
+    compress: Literal[0,1] = 0
     show_raw: bool = False
