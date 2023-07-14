@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "iamai"
-version = "3.14.5.post1"
+version = "3.2"
 description = "bot framework."
 authors = ["简律纯 <admin@jyunko.cn>"]
 license = "MIT"
@@ -28,6 +28,7 @@ typing-extensions = "^4.4.0"
 [tool.poetry.group.dev.dependencies]
 watchfiles = "^0.18.0"
 sophia-doc = "^0.1.0"
+iamai-adapter-kook = { path = "./packages/iamai-adapter-kook", develop = true }
 iamai-adapter-cqhttp = { path = "./packages/iamai-adapter-cqhttp", develop = true }
 iamai-adapter-dingtalk = { path = "./packages/iamai-adapter-dingtalk", develop = true }
 iamai-adapter-apscheduler = { path = "./packages/iamai-adapter-apscheduler", develop = true }
@@ -37,11 +38,13 @@ pre-commit = "^3.1.0"
 pre-commit-hooks = "^4.4.0"
 
 [tool.poetry.extras]
+kook = ["iamai-adapter-kook"]
 cqhttp = ["iamai-adapter-cqhttp"]
 dingtalk = ["iamai-adapter-dingtalk"]
 apscheduler = ["iamai-adapter-apscheduler"]
 hot_reload = ["watchfiles"]
 all = [
+  "iamai-adapter-kook",
   "iamai-adapter-cqhttp",
   "iamai-adapter-dingtalk",
   "iamai-adapter-apscheduler",
