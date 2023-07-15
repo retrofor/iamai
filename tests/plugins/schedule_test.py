@@ -9,7 +9,9 @@ from iamai.adapter.apscheduler import scheduler_decorator
 )
 class Schedulers(Plugin):
     async def handle(self) -> None:
-        await self.bot.get_adapter("console").send(f"Time: {strftime('%Y-%m-%d %H:%M:%S', localtime())}")
+        await self.bot.get_adapter("console").send(
+            f"Time: {strftime('%Y-%m-%d %H:%M:%S', localtime())}"
+        )
 
     async def rule(self) -> bool:
         return False

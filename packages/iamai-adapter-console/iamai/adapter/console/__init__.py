@@ -5,7 +5,9 @@ from asyncio import Condition
 
 from iamai.event import Event
 from iamai.adapter import Adapter
+
 from .config import Config
+
 
 class ConsoleEvent(Event["ConsoleAdapter"]):
     """测试适配器事件。
