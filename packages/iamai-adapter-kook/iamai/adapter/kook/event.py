@@ -18,6 +18,7 @@ from typing import (
 
 from pydantic import Field, HttpUrl, BaseModel, validator, root_validator
 
+from iamai.log import logger
 from iamai.event import Event
 
 from .api import Role, User, Emoji, Guild, Channel
@@ -873,7 +874,7 @@ class CartBtnClickNoticeEvent(NoticeEvent):
 
 
 # Meta Events
-class MetaEvent(KookEvent):
+class MetaEvent(OriginEvent):
     """元事件"""
 
     __event__ = "meta_event"
@@ -901,7 +902,7 @@ class HeartbeatMetaEvent(MetaEvent):
 _kook_events = {
     model.__event__: model
     for model in globals().values()
-    if inspect.isclass(model) and issubclass(model, KookEvent)
+    if inspect.isclass(model) and issubclass(model, OriginEvent)
 }
 
 
