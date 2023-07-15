@@ -8,7 +8,7 @@ readme = "README.md"
 homepage = "https://retrofor.space/"
 repository = "https://github.com/retrofor/iamai"
 documentation = "https://iamai.retrofor.space/"
-keywords = ["bot", "qq", "qqbot", "mirai", "coolq", "kook", "go-cqhttp", "dingtalk"]
+keywords = ["bot", "qq", "qqbot", "mirai", "coolq", "kook", "go-cqhttp", "dingtalk", "console"]
 classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Framework :: Robot Framework",
@@ -28,6 +28,7 @@ typing-extensions = "^4.4.0"
 [tool.poetry.group.dev.dependencies]
 watchfiles = "^0.18.0"
 sophia-doc = "^0.1.0"
+iamai-adapter-console = { path = "./packages/iamai-adapter-console", develop = true }
 iamai-adapter-kook = { path = "./packages/iamai-adapter-kook", develop = true }
 iamai-adapter-cqhttp = { path = "./packages/iamai-adapter-cqhttp", develop = true }
 iamai-adapter-dingtalk = { path = "./packages/iamai-adapter-dingtalk", develop = true }
@@ -44,6 +45,7 @@ dingtalk = ["iamai-adapter-dingtalk"]
 apscheduler = ["iamai-adapter-apscheduler"]
 hot_reload = ["watchfiles"]
 all = [
+  "iamai-adapter-console",
   "iamai-adapter-kook",
   "iamai-adapter-cqhttp",
   "iamai-adapter-dingtalk",
