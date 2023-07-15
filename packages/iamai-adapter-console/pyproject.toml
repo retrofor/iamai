@@ -1,14 +1,14 @@
 [tool.poetry]
-name = "iamai-adapter-apscheduler"
+name = "iamai-adapter-console"
 version = "3.2"
-description = "APScheduler adapter for iamai."
+description = "Console adapter for iamai."
 authors = ["简律纯 <i@jyunko.cn>"]
 license = "GPL-3.0 License"
 readme = "README.md"
 homepage = "https://retrofor.space/"
 repository = "https://github.com/retrofor/iamai"
 documentation = "https://iamai.retrofor.space/"
-keywords = ["bot", "chatbot", "scheduling", "apscheduler"]
+keywords = ["bot", "chatbot", "console", "Chat"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Framework :: AsyncIO",
@@ -25,7 +25,6 @@ exclude = ["iamai/__init__.py", "iamai/adapter/__init__.py"]
 [tool.poetry.dependencies]
 python = "^3.8"
 iamai = "^3.2"
-apscheduler = "^3.7"
 
 [tool.poetry.dev-dependencies]
 iamai = { path = "../../", develop = true }
