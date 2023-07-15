@@ -1,15 +1,17 @@
+from time import strftime, localtime
+
 from iamai import Plugin
+from iamai.adapter.apscheduler import scheduler_decorator
 
 
-class Schedule(Plugin):
-    __schedule__ = True
-    trigger = "interval"
-    trigger_args = {"seconds": 10}
-
+@scheduler_decorator(
+    trigger="interval", trigger_args={"seconds": 10}, override_rule=True
+)
+class Schedulers(Plugin):
     async def handle(self) -> None:
-        print(self.event.type, self.event.adapter)
+        await self.bot.get_adapter("console").send(
+            f"Time: {strftime('%Y-%m-%d %H:%M:%S', localtime())}"
+        )
 
     async def rule(self) -> bool:
-        return (
-            self.event.type == "apscheduler" and type(self) == self.event.plugin_class
-        )
+        return False

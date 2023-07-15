@@ -1,14 +1,14 @@
 [tool.poetry]
-name = "iamai-adapter-cqhttp"
+name = "iamai-adapter-console"
 version = "3.2.1"
-description = "OneBot(go-cqhttp) adapter for iamai."
+description = "Console adapter for iamai."
 authors = ["简律纯 <i@jyunko.cn>"]
 license = "GPL-3.0 License"
 readme = "README.md"
 homepage = "https://retrofor.space/"
 repository = "https://github.com/retrofor/iamai"
 documentation = "https://iamai.retrofor.space/"
-keywords = ["bot", "chatbot", "qq", "qqbot", "cqhttp", "coolq"]
+keywords = ["bot", "chatbot", "console", "Chat"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Framework :: AsyncIO",

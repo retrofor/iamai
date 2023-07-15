@@ -502,7 +502,7 @@ class Bot:
         for _hook_func in self._event_postprocessor_hooks:
             await _hook_func(current_event)
 
-        logger.warning("Event Finished")
+        logger.debug("Event Finished")
 
     async def get(
         self,

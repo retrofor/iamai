@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "iamai-adapter-mirai"
-version = "3.2"
+version = "3.2.1"
 description = "Mirai adapter for iamai."
 authors = ["简律纯 <i@jyunko.cn>"]
 license = "GPL-3.0 License"
