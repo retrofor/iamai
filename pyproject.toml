@@ -1,14 +1,14 @@
 [tool.poetry]
 name = "iamai"
-version = "3.2"
+version = "3.2.1"
 description = "bot framework."
-authors = ["简律纯 <admin@jyunko.cn>"]
+authors = ["简律纯 <i@jyunko.cn>"]
 license = "MIT"
 readme = "README.md"
 homepage = "https://retrofor.space/"
 repository = "https://github.com/retrofor/iamai"
 documentation = "https://iamai.retrofor.space/"
-keywords = ["bot", "qq", "qqbot", "mirai", "coolq"]
+keywords = ["bot", "qq", "qqbot", "mirai", "coolq", "kook", "go-cqhttp", "dingtalk"]
 classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Framework :: Robot Framework",
