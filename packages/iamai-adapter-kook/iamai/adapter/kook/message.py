@@ -218,7 +218,6 @@ class KookMessage(Message[MessageSegment]):
         elif isinstance(msg, str):
             yield KookMessageSegment("text", {"content": msg})
 
-    # @overrides(Message)
     def get_plain_text(self) -> str:
         return "".join(seg.get_plain_text() for seg in self)  # type: ignore
 
@@ -332,13 +331,11 @@ class MessageSerializer:
     def serialize(self, for_send: bool = True) -> Tuple[int, str]:
         if len(self.message) != 1:
             self.message = self.message.copy()
-            self.message.reduce()
+            self.message.reduce()  # type: ignore
 
             if len(self.message) != 1:
                 # 转化为卡片消息发送
-                return MessageSerializer(
-                    KookMessage(_convert_to_card_message(self.message))
-                ).serialize()
+                return MessageSerializer(KookMessage(_convert_to_card_message(self.message))).serialize()  # type: ignore
 
         msg_type = self.message[0].type
         msg_type_code = msg_type_map[msg_type]
