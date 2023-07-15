@@ -1,23 +1,17 @@
 """Kook 适配器消息。"""
-import json
 from io import StringIO
+import json
 from dataclasses import dataclass
-from typing_extensions import override, deprecated
-from typing import Any, Dict, Type, Tuple, Union, Mapping, Iterable, Optional, cast
-
+from typing import Any, Type, Tuple, Union, Mapping, Iterable, Dict, cast, Optional
+from typing_extensions import deprecated, override
 from iamai.message import Message, MessageSegment
-
 from .exceptions import UnsupportedMessageType, UnsupportedMessageOperation
 
-__all__ = [
-    "T_KookMSG",
-    "KookMessage",
-    "KookMessageSegment",
-    "escape_kmarkdown",
-    "unescape_kmarkdown",
-]
+__all__ = ["T_KookMSG", "KookMessage", "KookMessageSegment", "escape_kmarkdown", "unescape_kmarkdown"]
 
-T_KookMSG = Union[str, Mapping, Iterable[Mapping], "KookMessageSegment", "KookMessage"]
+T_KookMSG = Union[
+    str, Mapping, Iterable[Mapping], "KookMessageSegment", "KookMessage"
+]
 
 ESCAPE_CHAR = "!()*-.:>[\]`~"
 
@@ -34,7 +28,7 @@ msg_type_map = {
 rev_msg_type_map = {}
 for msg_type, code in msg_type_map.items():
     rev_msg_type_map[code] = msg_type
-
+    
 # 根据协议消息段类型显示消息段内容
 segment_text = {
     "text": "[文字]",
@@ -46,10 +40,8 @@ segment_text = {
     "card": "[卡片消息]",
 }
 
-
 class KookMessageSegment(MessageSegment["KookMessage"]):
     """Kook 消息字段。"""
-
     """
     开黑啦 协议 MessageSegment 适配。具体方法参考协议消息段类型或源码。
 
@@ -83,35 +75,29 @@ class KookMessageSegment(MessageSegment["KookMessage"]):
             return ""
 
     # @overrides(MessageSegment)
-    def __add__(
-        self, other: Union[str, "KookMessageSegment", Iterable["KookMessageSegment"]]
-    ) -> "KookMessage":
+    def __add__(self, other: Union[str, "KookMessageSegment", Iterable["KookMessageSegment"]]) -> "KookMessage":
         return KookMessage(self.conduct(other))
 
     # @overrides(MessageSegment)
-    def __radd__(
-        self, other: Union[str, "MessageSegment", Iterable["MessageSegment"]]
-    ) -> "Message":
+    def __radd__(self, other: Union[str, "MessageSegment", Iterable["MessageSegment"]]) -> "Message":
         if isinstance(other, str):
             other = MessageSegment(self.type, {"content": other})
-        return KookMessage(other.conduct(self))  # type: ignore
+        return KookMessage(other.conduct(self)) # type: ignore
 
-    def conduct(
-        self, other: Union[str, "KookMessageSegment", Iterable["KookMessageSegment"]]
-    ) -> "KookMessageSegment":
+    def conduct(self, other: Union[str, "KookMessageSegment", Iterable["KookMessageSegment"]]) -> "KookMessageSegment":
         """
         连接两个或多个 MessageSegment，必须为纯文本段或 KMarkdown 段
         """
 
         if isinstance(other, str) or isinstance(other, KookMessageSegment):
-            other = [other]  # type: ignore
+            other = [other] # type: ignore
         msg = KookMessage([self, *other])
-        msg.reduce()  # type: ignore
+        msg.reduce() # type: ignore
 
         if len(msg) != 1:
             raise UnsupportedMessageOperation("必须为纯文本段或 KMarkdown 段")
         else:
-            return msg[0]  # type: ignore
+            return msg[0] # type: ignore
 
     # @overrides(MessageSegment)
     def is_text(self) -> bool:
@@ -134,38 +120,33 @@ class KookMessageSegment(MessageSegment["KookMessage"]):
         return KookMessageSegment("image", {"file_key": file_key})
 
     @staticmethod
-    def video(file_key: str, title: Optional[str] = None) -> "KookMessageSegment":
-        return KookMessageSegment(
-            "video",
-            {
-                "file_key": file_key,
-                "title": title,
-            },
-        )
+    def video(file_key: str,
+              title: Optional[str] = None) -> "KookMessageSegment":
+        return KookMessageSegment("video", {
+            "file_key": file_key,
+            "title": title,
+        })
 
     @staticmethod
-    def file(file_key: str, title: Optional[str] = None) -> "KookMessageSegment":
-        return KookMessageSegment(
-            "file",
-            {
-                "file_key": file_key,
-                "title": title,
-            },
-        )
+    def file(file_key: str,
+             title: Optional[str] = None) -> "KookMessageSegment":
+        return KookMessageSegment("file", {
+            "file_key": file_key,
+            "title": title,
+        })
 
     @staticmethod
-    def audio(
-        file_key: str, title: Optional[str] = None, cover_file_key: Optional[str] = None
-    ) -> "KookMessageSegment":
-        return KookMessageSegment(
-            "audio",
-            {"file_key": file_key, "title": title, "cover_file_key": cover_file_key},
-        )
+    def audio(file_key: str,
+              title: Optional[str] = None,
+              cover_file_key: Optional[str] = None) -> "KookMessageSegment":
+        return KookMessageSegment("audio", {
+            "file_key": file_key,
+            "title": title,
+            "cover_file_key": cover_file_key
+        })
 
     @staticmethod
-    def KMarkdown(
-        content: str, raw_content: Optional[str] = None
-    ) -> "KookMessageSegment":
+    def KMarkdown(content: str, raw_content: Optional[str] = None) -> "KookMessageSegment":
         """
         构造KMarkdown消息段
 
@@ -175,9 +156,10 @@ class KookMessageSegment(MessageSegment["KookMessage"]):
         if raw_content is None:
             raw_content = ""
 
-        return KookMessageSegment(
-            "kmarkdown", {"content": content, "raw_content": raw_content}
-        )
+        return KookMessageSegment("kmarkdown", {
+            "content": content,
+            "raw_content": raw_content
+        })
 
     @staticmethod
     def Card(content: Any) -> "KookMessageSegment":
@@ -189,12 +171,15 @@ class KookMessageSegment(MessageSegment["KookMessage"]):
         if not isinstance(content, str):
             content = json.dumps(content)
 
-        return KookMessageSegment("card", {"content": content})
+        return KookMessageSegment("card", {
+            "content": content
+        })
 
     @staticmethod
     def quote(msg_id: str) -> "KookMessageSegment":
-        return KookMessageSegment("quote", {"msg_id": msg_id})
-
+        return KookMessageSegment("quote", {
+            "msg_id": msg_id
+        })
 
 class KookMessage(Message[MessageSegment]):
     """
@@ -207,7 +192,7 @@ class KookMessage(Message[MessageSegment]):
 
     @staticmethod
     def _str_to_message_segment(
-        msg: Union[str, Mapping, Iterable[Mapping]]
+            msg: Union[str, Mapping, Iterable[Mapping]]
     ) -> Iterable[KookMessageSegment]:
         if isinstance(msg, Mapping):
             msg = cast(Mapping[str, Any], msg)
@@ -219,7 +204,7 @@ class KookMessage(Message[MessageSegment]):
             yield KookMessageSegment("text", {"content": msg})
 
     def get_plain_text(self) -> str:
-        return "".join(seg.get_plain_text() for seg in self)  # type: ignore
+        return "".join(seg.get_plain_text() for seg in self) # type: ignore
 
     def reduce(self) -> None:
         """合并消息内连续的纯文本段和 KMarkdown 段。"""
@@ -228,39 +213,27 @@ class KookMessage(Message[MessageSegment]):
             prev = self[index - 1]
             cur = self[index]
             if prev.type == "text" and cur.type == "text":
-                self[index - 1] = MessageSegment(
-                    prev.type, {"content": prev.data["content"] + cur.data["content"]}
-                )
+                self[index - 1] = MessageSegment(prev.type, {
+                    "content": prev.data["content"] + cur.data["content"]
+                })
                 del self[index]
             elif prev.type == "kmarkdown" and cur.type == "kmarkdown":
-                self[index - 1] = MessageSegment(
-                    prev.type,
-                    {
-                        "content": prev.data["content"] + cur.data["content"],
-                        "raw_content": prev.data["raw_content"]
-                        + cur.data["raw_content"],
-                    },
-                )
+                self[index - 1] = MessageSegment(prev.type, {
+                    "content": prev.data["content"] + cur.data["content"],
+                    "raw_content": prev.data["raw_content"] + cur.data["raw_content"],
+                })
                 del self[index]
             elif prev.type == "kmarkdown" and cur.type == "text":
-                self[index - 1] = MessageSegment(
-                    prev.type,
-                    {
-                        "content": prev.data["content"]
-                        + escape_kmarkdown(cur.data["content"]),
-                        "raw_content": prev.data["raw_content"] + cur.data["content"],
-                    },
-                )
+                self[index - 1] = MessageSegment(prev.type, {
+                    "content": prev.data["content"] + escape_kmarkdown(cur.data["content"]),
+                    "raw_content": prev.data["raw_content"] + cur.data["content"],
+                })
                 del self[index]
             elif prev.type == "text" and cur.type == "kmarkdown":
-                self[index - 1] = MessageSegment(
-                    prev.type,
-                    {
-                        "content": escape_kmarkdown(prev.data["content"])
-                        + cur.data["content"],
-                        "raw_content": prev.data["content"] + cur.data["raw_content"],
-                    },
-                )
+                self[index - 1] = MessageSegment(prev.type, {
+                    "content": escape_kmarkdown(prev.data["content"]) + cur.data["content"],
+                    "raw_content": prev.data["content"] + cur.data["raw_content"],
+                })
                 del self[index]
             else:
                 index += 1
@@ -271,13 +244,11 @@ def _convert_to_card_message(msg: KookMessage) -> KookMessageSegment:
     modules = []
 
     for seg in msg:
-        if seg.type == "card":
+        if seg.type == 'card':
             if len(modules) != 0:
-                cards.append(
-                    {"type": "card", "theme": "none", "size": "lg", "modules": modules}
-                )
+                cards.append({"type": "card", "theme": "none", "size": "lg", "modules": modules})
                 modules = []
-            cards.extend(json.loads(seg.data["content"]))
+            cards.extend(json.loads(seg.data['content']))
         elif seg.type == "text":
             modules.append(
                 {
@@ -313,9 +284,7 @@ def _convert_to_card_message(msg: KookMessage) -> KookMessageSegment:
             raise UnsupportedMessageType(seg.type)
 
     if len(modules) != 0:
-        cards.append(
-            {"type": "card", "theme": "none", "size": "lg", "modules": modules}
-        )
+        cards.append({"type": "card", "theme": "none", "size": "lg", "modules": modules})
 
     return KookMessageSegment.Card(cards)
 
@@ -325,34 +294,31 @@ class MessageSerializer:
     """
     开黑啦 协议 Message 序列化器。
     """
-
     message: Message
 
     def serialize(self, for_send: bool = True) -> Tuple[int, str]:
         if len(self.message) != 1:
             self.message = self.message.copy()
-            self.message.reduce()  # type: ignore
+            self.message.reduce() # type: ignore
 
             if len(self.message) != 1:
                 # 转化为卡片消息发送
-                return MessageSerializer(KookMessage(_convert_to_card_message(self.message))).serialize()  # type: ignore
+                return MessageSerializer(KookMessage(_convert_to_card_message(self.message))).serialize() # type: ignore
 
         msg_type = self.message[0].type
         msg_type_code = msg_type_map[msg_type]
         # bot 发送消息只支持"text", "kmarkdown", "card"
         # 经测试还支持"image", "video", "file"
         if msg_type in ("text", "kmarkdown", "card"):
-            return msg_type_code, self.message[0].data["content"]
+            return msg_type_code, self.message[0].data['content']
         elif msg_type in ("image", "video", "file"):
-            return msg_type_code, self.message[0].data["file_key"]
+            return msg_type_code, self.message[0].data['file_key']
         elif msg_type == "audio":
             if not for_send:
-                return msg_type_code, self.message[0].data["file_key"]
+                return msg_type_code, self.message[0].data['file_key']
             else:
                 # 转化为卡片消息发送
-                return MessageSerializer(
-                    KookMessage(_convert_to_card_message(self.message))
-                ).serialize()
+                return MessageSerializer(KookMessage(_convert_to_card_message(self.message))).serialize()
         else:
             raise UnsupportedMessageType(msg_type)
 
@@ -362,7 +328,6 @@ class MessageDeserializer:
     """
     开黑啦 协议 Message 反序列化器。
     """
-
     type_code: int
     data: Dict
 
@@ -375,9 +340,7 @@ class MessageDeserializer:
         elif self.type == "image":
             return KookMessage(KookMessageSegment.image(self.data["content"]))
         elif self.type == "video":
-            return KookMessage(
-                KookMessageSegment.video(self.data["attachments"]["url"])
-            )
+            return KookMessage(KookMessageSegment.video(self.data["attachments"]["url"]))
         elif self.type == "file":
             return KookMessage(KookMessageSegment.file(self.data["attachments"]["url"]))
         elif self.type == "kmarkdown":
@@ -400,8 +363,7 @@ class MessageDeserializer:
             return KookMessage(KookMessageSegment.Card(self.data["content"]))
         else:
             return KookMessage(KookMessageSegment(self.type, self.data))
-
-
+        
 def escape_kmarkdown(content: str):
     """
     将文本中的kmarkdown标识符进行转义
@@ -409,7 +371,7 @@ def escape_kmarkdown(content: str):
     with StringIO() as f:
         for c in content:
             if c in ESCAPE_CHAR:
-                f.write("\\")
+                f.write('\\')
             f.write(c)
         return f.getvalue()
 
@@ -421,7 +383,7 @@ def unescape_kmarkdown(content: str):
     with StringIO() as f:
         i = 0
         while i < len(content):
-            if content[i] == "\\":
+            if content[i] == '\\':
                 if i + 1 < len(content) and content[i + 1] in ESCAPE_CHAR:
                     f.write(content[i + 1])
                     i += 2
