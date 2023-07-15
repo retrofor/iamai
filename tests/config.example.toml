@@ -1,0 +1,13 @@
+[bot]
+plugins = []
+plugin_dirs = ["plugins"]
+adapters = ["iamai.adapter.kook"]
+
+[bot.log]
+level = "INFO"
+verbose_exception = true
+
+[adapter.kook]
+adapter_type = "ws"
+api_timeout = 100
+access_token = ""

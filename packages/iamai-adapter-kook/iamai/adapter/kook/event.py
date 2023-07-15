@@ -7,6 +7,7 @@ from enum import IntEnum
 from iamai.event import Event
 from collections import UserDict
 from .message import KookMessage, Message, MessageDeserializer
+from .api import User, Guild, Channel, Role, Emoji
 
 if TYPE_CHECKING:
     from .message import T_KookMSG
@@ -40,60 +41,6 @@ class AttrDict(UserDict):
         return self[name]
 
 
-class User(BaseModel):
-    """
-    Kook User 字段
-
-    https://developer.kookapp.cn/doc/objects
-    """
-    id_: Optional[str] = Field(None, alias="id")
-    """用户的 id"""
-    username: Optional[str] = None
-    """用户的名称"""
-    nickname: Optional[str] = None
-    """用户在当前服务器的昵称"""
-    identify_num: Optional[str] = None
-    """用户名的认证数字，用户名正常为：user_name#identify_num"""
-    online: Optional[bool] = None
-    """当前是否在线"""
-    bot: Optional[bool] = None
-    """是否为机器人"""
-    os: Optional[str] = None
-    """os"""
-    status: Optional[int] = None
-    """用户的状态,`0`和`1`代表正常，`10`代表被封禁"""
-    avatar: Optional[str] = None
-    """用户的头像的 url 地址"""
-    vip_avatar: Optional[str] = None
-    """	vip 用户的头像的 url 地址，可能为 gif 动图"""
-    mobile_verified: Optional[bool] = None
-    """是否手机号已验证"""
-    roles: Optional[List[int]] = None
-    """用户在当前服务器中的角色 id 组成的列表"""
-    joined_at: Optional[int] = None
-    """加入服务器时间"""
-    active_time: Optional[int] = None
-    """上次在线时间"""
-
-
-class Role(BaseModel):
-    """角色"""
-    role_id: Optional[int] = None
-    """角色 id"""
-    name: Optional[str] = None
-    """角色名称"""
-    color: Optional[int] = None
-    """颜色色值"""
-    position: Optional[int] = None
-    """顺序位置"""
-    hoist: Optional[int] = None
-    """是否为角色设定(与普通成员分开显示)"""
-    mentionable: Optional[int] = None
-    """是否允许任何人@提及此角色"""
-    permissions: Optional[int] = None
-    """权限码"""
-
-
 class PermissionOverwrite(BaseModel):
     role_id: Optional[int] = None
     allow: Optional[int] = None
@@ -114,71 +61,6 @@ class ChannelRoleInfo(BaseModel):
     """针对用户在该频道的权限覆写规则组成的列表"""
     permission_sync: Optional[int] = None
     """权限设置是否与分组同步, 1 or 0"""
-
-
-class Channel(ChannelRoleInfo):
-    """开黑啦 频道 字段"""
-    id_: Optional[str] = Field(None, alias="id")
-    """频道 id"""
-    name: Optional[str] = None
-    """频道名称"""
-    user_id: Optional[str] = None
-    """创建者 id"""
-    master_id: Optional[str] = None
-    """master id """
-    guild_id: Optional[str] = None
-    """服务器 id"""
-    topic: Optional[str] = None
-    """频道简介"""
-    is_category: Optional[bool] = None
-    """是否为分组，事件中为 int 格式"""
-    parent_id: Optional[str] = None
-    """上级分组的 id"""
-    level: Optional[int] = None
-    """排序 level"""
-    slow_mode: Optional[int] = None
-    """慢速模式下限制发言的最短时间间隔, 单位为秒(s)"""
-    type: Optional[int] = None
-    """频道类型: 1 文字频道, 2 语音频道"""
-    has_password: Optional[bool] = None
-    """是否有密码"""
-    limit_amount: Optional[int] = None
-    """人数限制"""
-
-
-class Guild(BaseModel):
-    """服务器"""
-    id_: Optional[str] = Field(None, alias="id")
-    """服务器 id"""
-    name: Optional[str] = None
-    """服务器名称"""
-    topic: Optional[str] = None
-    """服务器主题"""
-    user_id: Optional[str] = None
-    """服务器主的 id"""
-    icon: Optional[str] = None
-    """服务器 icon 的地址"""
-    notify_type: Optional[int] = None
-    """通知类型\n
-    `0`代表默认使用服务器通知设置\n 
-    `1`代表接收所有通知\n 
-    `2`代表仅@被提及\n 
-    `3`代表不接收通知
-    """
-    region: Optional[str] = None
-    """服务器默认使用语音区域"""
-    enable_open: Optional[bool] = None
-    """是否为公开服务器"""
-    open_id: Optional[str] = None
-    """公开服务器 id"""
-    default_channel_id: Optional[str] = None
-    """默认频道 id"""
-    welcome_channel_id: Optional[str] = None
-    """欢迎频道 id"""
-    roles: Optional[List[Role]] = None
-    """角色列表"""
-    channels: Optional[List[Channel]] = None
-    """频道列表"""
 
 
 class Quote(BaseModel):
@@ -205,18 +87,6 @@ class Attachments(BaseModel):
     """多媒体名"""
     size: Optional[int] = None
     """大小 单位（B）"""
-
-
-class Emoji(BaseModel):
-    id_: Optional[str] = Field(None, alias="id")
-    name: Optional[str] = None
-
-    # 转义 unicdoe 为 emoji表情
-    @root_validator(pre=True)
-    def parse_emoji(cls, values: dict):
-        values['id'] = chr(int(values['id'][2:-2]))
-        values['name'] = chr(int(values['name'][2:-2]))
-        return values
 
 
 class URL(BaseModel):
@@ -548,12 +418,12 @@ class Extra(BaseModel):
         arbitrary_types_allowed = True
 
 
-# class OriginEvent(Event):
-#     """为了区分信令中非Event事件，增加了前置OriginEvent"""
+class OriginEvent(Event["KookAdapter"]):
+    """为了区分信令中非Event事件，增加了前置OriginEvent"""
 
-#     __event__ = ""
+    __event__ = ""
 
-#     post_type: str
+    post_type: str
 
 
 class Kmarkdown(BaseModel):
@@ -589,12 +459,12 @@ class EventMessage(BaseModel):
         return values
 
 
-class KookEvent(Event["KookAdapter"]):
+class KookEvent(OriginEvent):
     """
     事件主要格式，来自 d 字段
     Kook 协议事件，字段与 Kook 一致。各事件字段参考 `Kook 文档`
 
-    .. Kaiheila 文档:
+    .. Kook 文档:
         https://developer.kookapp.cn/doc/event/event-introduction
     """
     __event__ = ""
@@ -981,6 +851,7 @@ class HeartbeatMetaEvent(MetaEvent):
 
     __event__ = "meta_event.heartbeat"
     meta_event_type: Literal["heartbeat"]
+    sub_type: str
 
 # 事件类映射
 _kook_events = {
