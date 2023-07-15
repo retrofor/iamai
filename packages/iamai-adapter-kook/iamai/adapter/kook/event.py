@@ -1,19 +1,34 @@
 """Kook 适配器事件。"""
-import inspect
-from typing import TYPE_CHECKING, Any, Dict, Type, Union, Literal, TypeVar, Optional, List, Tuple
 import asyncio
-from pydantic import Field, BaseModel,HttpUrl,root_validator, validator
+import inspect
 from enum import IntEnum
-from iamai.event import Event
 from collections import UserDict
-from .message import KookMessage, Message, MessageDeserializer
-from .api import User, Guild, Channel, Role, Emoji
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Dict,
+    List,
+    Type,
+    Tuple,
+    Union,
+    Literal,
+    TypeVar,
+    Optional,
+)
+
+from pydantic import Field, HttpUrl, BaseModel, validator, root_validator
+
+from iamai.event import Event
+
+from .api import Role, User, Emoji, Guild, Channel
+from .message import Message, KookMessage, MessageDeserializer
 
 if TYPE_CHECKING:
-    from .message import T_KookMSG
     from . import KookAdapter
+    from .message import T_KookMSG
 
 T_KookEvent = TypeVar("T_KookEvent", bound="KookEvent")
+
 
 class ResultStore:
     _seq = 1
@@ -27,13 +42,14 @@ class ResultStore:
     @classmethod
     def get_sn(cls, self_id: str) -> int:
         return cls._sn_map.get(self_id, 0)
-    
+
+
 class AttrDict(UserDict):
     def __init__(self, data=None):
-        initial = dict(data) # type: ignore
+        initial = dict(data)  # type: ignore
         for k in initial:
             if isinstance(initial[k], dict):
-                initial[k] = AttrDict(initial[k]) # type: ignore
+                initial[k] = AttrDict(initial[k])  # type: ignore
 
         super().__init__(initial)
 
@@ -55,6 +71,7 @@ class PermissionUser(BaseModel):
 
 class ChannelRoleInfo(BaseModel):
     """频道角色权限详情"""
+
     permission_overwrites: Optional[List[PermissionOverwrite]] = None
     """针对角色在该频道的权限覆写规则组成的列表"""
     permission_users: Optional[List[PermissionUser]] = None
@@ -65,6 +82,7 @@ class ChannelRoleInfo(BaseModel):
 
 class Quote(BaseModel):
     """引用消息"""
+
     id_: Optional[str] = Field(None, alias="id")
     """引用消息 id"""
     type: Optional[int] = None
@@ -79,6 +97,7 @@ class Quote(BaseModel):
 
 class Attachments(BaseModel):
     """附加的多媒体数据"""
+
     type: Optional[str] = None
     """多媒体类型"""
     url: Optional[str] = None
@@ -108,6 +127,7 @@ class ListReturn(BaseModel):
 
 class BlackList(BaseModel):
     """黑名单"""
+
     user_id: Optional[str] = None
     """用户 id"""
     created_time: Optional[int] = None
@@ -120,12 +140,14 @@ class BlackList(BaseModel):
 
 class BlackListsReturn(ListReturn):
     """获取黑名单列表返回信息"""
+
     blacklists: Optional[List[BlackList]] = Field(None, alias="items")
     """黑名单列表"""
 
 
 class MessageCreateReturn(BaseModel):
     """发送频道消息返回信息"""
+
     msg_id: Optional[str] = None
     """服务端生成的消息 id"""
     msg_timestamp: Optional[int] = None
@@ -136,6 +158,7 @@ class MessageCreateReturn(BaseModel):
 
 class ChannelRoleReturn(BaseModel):
     """创建或更新频道角色权限返回信息"""
+
     role_id: Optional[int] = None
     user_id: Optional[str] = None
     allow: Optional[int] = None
@@ -152,6 +175,7 @@ class ChannelsReturn(ListReturn):
 
 class GuildUsersRetrun(ListReturn):
     """服务器中的用户列表"""
+
     users: Optional[List[User]] = Field(None, alias="items")
     """用户列表"""
     user_count: Optional[int] = None
@@ -204,6 +228,7 @@ class BaseMessage(BaseModel):
 
 class ChannelMessage(BaseMessage):
     """频道消息"""
+
     author: Optional[User] = None
     mention: Optional[List[Any]] = None
     mention_all: Optional[bool] = None
@@ -213,6 +238,7 @@ class ChannelMessage(BaseMessage):
 
 class DirectMessage(BaseMessage):
     """私聊消息"""
+
     author_id: Optional[str] = None
     """作者的用户 ID"""
     from_type: Optional[int] = None
@@ -223,11 +249,13 @@ class DirectMessage(BaseMessage):
 
 class ChannelMessagesReturn(BaseModel):
     """获取私信聊天消息列表返回信息"""
+
     direct_messages: Optional[List[ChannelMessage]] = Field(None, alias="items")
 
 
 class DirectMessagesReturn(BaseModel):
     """获取私信聊天消息列表返回信息"""
+
     direct_messages: Optional[List[DirectMessage]] = Field(None, alias="items")
 
 
@@ -237,6 +265,7 @@ class ReactionUser(User):
 
 class TargetInfo(BaseModel):
     """私聊会话 目标用户信息"""
+
     id_: Optional[str] = Field(None, alias="id")
     """目标用户 ID"""
     username: Optional[str] = None
@@ -249,6 +278,7 @@ class TargetInfo(BaseModel):
 
 class UserChat(BaseModel):
     """私聊会话"""
+
     code: Optional[str] = None
     """私信会话 Code"""
     last_read_time: Optional[int] = None
@@ -263,18 +293,21 @@ class UserChat(BaseModel):
 
 class UserChatsReturn(ListReturn):
     """获取私信聊天会话列表返回信息"""
+
     user_chats: Optional[List[UserChat]] = Field(None, alias="items")
     """私聊会话列表"""
 
 
 class RolesReturn(ListReturn):
     """获取服务器角色列表返回信息"""
+
     roles: Optional[List[Role]] = Field(None, alias="items")
     """服务器角色列表"""
 
 
 class GuilRoleReturn(BaseModel):
     """赋予或删除用户角色返回信息"""
+
     user_id: Optional[str] = None
     """用户 id"""
     guild_id: Optional[str] = None
@@ -285,6 +318,7 @@ class GuilRoleReturn(BaseModel):
 
 class IntimacyImg(BaseModel):
     """形象图片的总列表"""
+
     id_: Optional[str] = Field(None, alias="id")
     """	形象图片的 id"""
     url: Optional[str] = None
@@ -293,6 +327,7 @@ class IntimacyImg(BaseModel):
 
 class IntimacyIndexReturn(BaseModel):
     """获取用户亲密度返回信息"""
+
     img_url: Optional[str] = None
     """机器人给用户显示的形象图片地址"""
     social_info: Optional[str] = None
@@ -307,6 +342,7 @@ class IntimacyIndexReturn(BaseModel):
 
 class GuildEmoji(BaseModel):
     """服务器表情"""
+
     name: Optional[str] = None
     """表情的名称"""
     id_: Optional[str] = Field(None, alias="id")
@@ -317,12 +353,14 @@ class GuildEmoji(BaseModel):
 
 class GuildEmojisReturn(ListReturn):
     """获取服务器表情列表返回信息"""
+
     roles: Optional[List[GuildEmoji]] = Field(None, alias="items")
     """服务器表情列表"""
 
 
 class Invite(BaseModel):
     """邀请信息"""
+
     guild_id: Optional[str] = None
     """服务器 id"""
     channel_id: Optional[str] = None
@@ -337,10 +375,11 @@ class Invite(BaseModel):
 
 class InvitesReturn(ListReturn):
     """获取邀请列表返回信息"""
+
     roles: Optional[List[Invite]] = Field(None, alias="items")
     """邀请列表"""
-    
-    
+
+
 class EventTypes(IntEnum):
     """
     事件主要格式
@@ -409,7 +448,7 @@ class Extra(BaseModel):
             return None
 
         if not isinstance(v, dict):
-            raise TypeError('body must be dict')
+            raise TypeError("body must be dict")
         if not isinstance(v, AttrDict):
             v = AttrDict(v)
         return v
@@ -467,6 +506,7 @@ class KookEvent(OriginEvent):
     .. Kook 文档:
         https://developer.kookapp.cn/doc/event/event-introduction
     """
+
     __event__ = ""
     channel_type: Literal["PERSON", "GROUP"]
     type_: int = Field(alias="type")
@@ -488,6 +528,7 @@ class KookEvent(OriginEvent):
     post_type: str
     self_id: Optional[str] = None  # onebot兼容
 
+
 # Message Events
 class MessageEvent(KookEvent):
     """消息事件"""
@@ -499,7 +540,7 @@ class MessageEvent(KookEvent):
     sub_type: str
     event: EventMessage
     message: KookMessage
-    
+
     def __repr__(self) -> str:
         return f'Event<{self.type}>: "{self.message}"'
 
@@ -509,20 +550,20 @@ class MessageEvent(KookEvent):
         Returns:
             消息的纯文本内容。
         """
-        return self.message.get_plain_text() # type: ignore
+        return self.message.get_plain_text()  # type: ignore
 
     async def reply(self, msg: "T_KookMSG") -> Dict[str, Any]:
-            """回复消息。
+        """回复消息。
 
-            Args:
-                msg: 回复消息的内容，同 `call_api()` 方法。
+        Args:
+            msg: 回复消息的内容，同 `call_api()` 方法。
 
-            Returns:
-                API 请求响应。
-            """
-            raise NotImplementedError
-        
-        
+        Returns:
+            API 请求响应。
+        """
+        raise NotImplementedError
+
+
 class PrivateMessageEvent(MessageEvent):
     """私聊消息"""
 
@@ -545,7 +586,7 @@ class NoticeEvent(KookEvent):
     __event__ = "notice"
     post_type: Literal["notice"]
     notice_type: str
-    
+
 
 # Channel Events
 class ChannelNoticeEvent(NoticeEvent):
@@ -654,15 +695,17 @@ class PrivateDeleteReactionEvent(PrivateNoticeEvent):
 # Guild Events
 class GuildNoticeEvent(NoticeEvent):
     """服务器相关事件"""
+
     group_id: int
 
     def get_guild_id(self):
-        return self.target_id # type: ignore
+        return self.target_id  # type: ignore
 
 
 # Guild Member Events
 class GuildMemberNoticeEvent(GuildNoticeEvent):
     """服务器成员相关事件"""
+
     pass
 
 
@@ -711,7 +754,7 @@ class GuildRoleAddNoticeEvent(GuildRoleNoticeEvent):
 
     __event__ = "notice.added_role"
     notice_type: Literal["added_role"]
-    
+
 
 class GuildRoleDeleteNoticeEvent(GuildRoleNoticeEvent):
     """服务器角色增加"""
@@ -733,7 +776,7 @@ class GuildUpdateNoticeEvent(GuildNoticeEvent):
 
     __event__ = "notice.updated_guild"
     notice_type: Literal["updated_guild"]
-    
+
 
 class GuildDeleteNoticeEvent(GuildNoticeEvent):
     """服务器删除"""
@@ -853,6 +896,7 @@ class HeartbeatMetaEvent(MetaEvent):
     meta_event_type: Literal["heartbeat"]
     sub_type: str
 
+
 # 事件类映射
 _kook_events = {
     model.__event__: model
@@ -860,9 +904,10 @@ _kook_events = {
     if inspect.isclass(model) and issubclass(model, KookEvent)
 }
 
+
 def get_event_class(
     post_type: str, event_type: str, sub_type: Optional[str] = None
-) -> Type[T_KookEvent]: # type: ignore
+) -> Type[T_KookEvent]:  # type: ignore
     """根据接收到的消息类型返回对应的事件类。
 
     Args:
@@ -874,8 +919,8 @@ def get_event_class(
         对应的事件类。
     """
     if sub_type is None:
-        return _kook_events[".".join((post_type, event_type))] # type: ignore
+        return _kook_events[".".join((post_type, event_type))]  # type: ignore
     return (
         _kook_events.get(".".join((post_type, event_type, sub_type)))
         or _kook_events[".".join((post_type, event_type))]
-    ) # type: ignore
+    )  # type: ignore
