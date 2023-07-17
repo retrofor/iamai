@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "iamai-adapter-cqhttp"
-version = "3.2.1"
+version = "3.2.2"
 description = "OneBot(go-cqhttp) adapter for iamai."
 authors = ["简律纯 <i@jyunko.cn>"]
 license = "GPL-3.0 License"
