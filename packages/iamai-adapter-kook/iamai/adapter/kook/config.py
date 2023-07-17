@@ -23,3 +23,4 @@ class Config(ConfigModel):
     access_token: str = ""
     compress: Literal[0, 1] = 0
     show_raw: bool = False
+    report_self_message: bool = False
