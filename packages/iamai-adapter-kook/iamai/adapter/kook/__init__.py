@@ -12,17 +12,16 @@ from functools import partial
 from typing import TYPE_CHECKING, Any, Dict, Literal, Mapping, Optional
 
 import aiohttp
-from pydantic import parse_obj_as
 import requests
+from pydantic import parse_obj_as
 
 from iamai.utils import DataclassEncoder
 from iamai.adapter.utils import WebSocketAdapter
 from iamai.log import logger, error_or_exception
 
-from .api.handle import get_api_restype, get_api_method
-from .api.handle import User
 from .config import Config
 from .message import KookMessage
+from .api.handle import User, get_api_method, get_api_restype
 from .exceptions import (
     ApiTimeout,
     TokenError,
@@ -90,7 +89,7 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
 
         async with self.session.ws_connect(
             self._gateway_response["data"]["url"].replace("compress=1", "compress=0")
-            if self.config.compress == 0 # type: ignore
+            if self.config.compress == 0  # type: ignore
             else self._gateway_response["data"]["url"]  # type: ignore
         ) as self.websocket:
             await self.handle_websocket()
@@ -107,10 +106,10 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
                     self.bot.config.bot.log.verbose_exception,
                 )
                 return
-            
+
             bot_info = await self._get_self_data(self.config.access_token)  # type: ignore
             self_id = bot_info.id_
-            
+
             if msg_dict.get("s") == SignalTypes.HELLO:
                 if msg_dict.get("d").get("code") == 0:
                     try:
@@ -173,7 +172,7 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
                         data["post_type"] = "notice"
                         data["notice_type"] = extra.get("type")
                         # message = KookMessage(("{}").format(data["content"]))
-                        data["message"] = data.get('content')
+                        data["message"] = data.get("content")
                         # data['notice_type'] = data.get('channel_type').lower()
                         # data['notice_type'] = 'private' if data['notice_type'] == 'person' else data['notice_type']
                     else:
@@ -190,7 +189,7 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
                             else data["message_type"]
                         )
                         data["extra"]["content"] = data.get("content")
-                        data["message"] = data.get('content')
+                        data["message"] = data.get("content")
                         data["event"] = data["extra"]
 
                     data["message_id"] = data.get("msg_id")
@@ -222,13 +221,13 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
         post_type = data.get("post_type")
         event_type = data.get(f"{post_type}_type")
         sub_type = data.get("sub_type")
-        event_class = get_event_class(post_type, event_type, sub_type) # type: ignore
+        event_class = get_event_class(post_type, event_type, sub_type)  # type: ignore
 
         kook_event = event_class(adapter=self, **data)
         # 便于检查事件类型
         if self.config.show_raw:  # type: ignore
             logger.info(data)
-            
+
         if kook_event.post_type == "meta_event":
             # meta_event 不交由插件处理
             if (
@@ -241,28 +240,31 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
                 )
         else:
             # 屏蔽bot自身消息
-            if not self.config.report_self_message: # type: ignore
+            if not self.config.report_self_message:  # type: ignore
                 if kook_event.user_id == kook_event.self_id:
                     return
             await self.handle_event(kook_event)
 
     async def call_api(self, api: str, **data) -> Any:
-            match = re.findall(r'[A-Z]', api)
-            if len(match) > 0:
-                for m in match:
-                    api = api.replace(m, "-" + m.lower())
-            api = api.replace("_", "/")
+        match = re.findall(r"[A-Z]", api)
+        if len(match) > 0:
+            for m in match:
+                api = api.replace(m, "-" + m.lower())
+        api = api.replace("_", "/")
 
-            if api.startswith("/api/v3/"):
-                api = api[len("/api/v3/"):]
-            elif api.startswith("api/v3"):
-                api = api[len("api/v3"):]
-            api = api.strip("/")
-            return await self._call_api(api, data, self.config.access_token) # type: ignore 
+        if api.startswith("/api/v3/"):
+            api = api[len("/api/v3/") :]
+        elif api.startswith("api/v3"):
+            api = api[len("api/v3") :]
+        api = api.strip("/")
+        return await self._call_api(api, data, self.config.access_token)  # type: ignore
 
-    async def _call_api(self, api: str,
-                           data: Optional[Mapping[str, Any]] = None,
-                           token: Optional[str] = None) -> Any:
+    async def _call_api(
+        self,
+        api: str,
+        data: Optional[Mapping[str, Any]] = None,
+        token: Optional[str] = None,
+    ) -> Any:
         data = dict(data) if data is not None else dict()
 
         # 判断 POST 或 GET
@@ -286,32 +288,33 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
             body = data
 
         if token is not None:
-            headers["Authorization"] = f"Bot {self.config.access_token}" # type: ignore
+            headers["Authorization"] = f"Bot {self.config.access_token}"  # type: ignore
 
         result_type = get_api_restype(api)
         try:
-            resp = requests.request(method=method, # type: ignore
-                                    url=self.api_root + api,
-                                    headers=headers,
-                                    params=query,
-                                    data=body,
-                                    files=files,
-                                    timeout=self.config.api_timeout # type: ignore
-                    )
+            resp = requests.request(
+                method=method,  # type: ignore
+                url=self.api_root + api,
+                headers=headers,
+                params=query,
+                data=body,
+                files=files,
+                timeout=self.config.api_timeout,  # type: ignore
+            )
             result = _handle_api_result(resp)
             logger.debug(f"API {api} called with result {result}")
             return parse_obj_as(result_type, result) if result_type else None
         except Exception as e:
             raise e
-    
+
     async def _get_self_data(self, token: str) -> User:
         """获取当前机器人的信息。
 
         Returns:
             Optional[dict]: 当前机器人的信息。
         """
-        return await self._call_api("user/me", token=self.config.access_token) # type: ignore
-    
+        return await self._call_api("user/me", token=self.config.access_token)  # type: ignore
+
     async def start_heartbeat(self, session) -> None:
         """
         每30s一次心跳
@@ -357,7 +360,8 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
             )
         else:
             raise TypeError('message_type must be "PERSON" or "GROUP"')
-        
+
+
 def _handle_api_result(response) -> Any:
     """
     :说明:
