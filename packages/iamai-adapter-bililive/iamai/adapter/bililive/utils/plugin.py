@@ -1,23 +1,27 @@
-from abc import abstractmethod
 from enum import IntEnum
+from abc import abstractmethod
+
 from utils.file_loader import load_config as load_plugin_config
+
 
 def load_config(yml: str, default: dict = {}) -> any:
     return load_plugin_config(yml, default)
 
+
 class DanmakuPosition(IntEnum):
-    TOP = 5,
-    BOTTOM = 4,
+    TOP = (5,)
+    BOTTOM = (4,)
     NORMAL = 1
 
-class BotPlugin:
 
+class BotPlugin:
     def __init__(self) -> None:
         self.botid = -1
 
     """
     收到指令时
     """
+
     @abstractmethod
     async def on_command_received(self, cmd, data):
         pass
@@ -25,6 +29,7 @@ class BotPlugin:
     """
     收到人气时
     """
+
     @abstractmethod
     async def on_receive_popularity(self, popularity: int):
         pass
@@ -32,12 +37,14 @@ class BotPlugin:
     """
     发送弹幕
     """
-    async def send_message(self,
-                        danmaku: str, 
-                        fontsize: int = 25, 
-                        color: int = 0xffffff, 
-                        pos: DanmakuPosition = DanmakuPosition.NORMAL
-                    ) -> bool:
+
+    async def send_message(
+        self,
+        danmaku: str,
+        fontsize: int = 25,
+        color: int = 0xFFFFFF,
+        pos: DanmakuPosition = DanmakuPosition.NORMAL,
+    ) -> bool:
         pass
 
     """
@@ -48,12 +55,14 @@ class BotPlugin:
     """
     禁言用户
     """
+
     async def mute_user(self, uid: int) -> bool:
         pass
 
     """
     全局禁言
     """
+
     # "level" | "medal" | "member"
     async def room_slient_on(self, slientType: str, minute: int, level: int) -> bool:
         pass
@@ -61,32 +70,63 @@ class BotPlugin:
     """
     全局禁言关闭
     """
+
     async def room_slient_off(self) -> bool:
         pass
 
     """
     新增屏蔽字
     """
+
     async def add_badword(self, badword: str) -> bool:
         pass
 
     """
     删除屏蔽字
     """
+
     async def remove_badword(self, badword: str) -> bool:
         pass
+
 
 """
 WS數據物件化  (from xfgryujk)
 """
+
+
 class DanmakuMessage:
-    def __init__(self, mode, font_size, color, timestamp, rnd, uid_crc32, msg_type, bubble,
-                 msg,
-                 uid, uname, admin, vip, svip, urank, mobile_verify, uname_color,
-                 medal_level, medal_name, runame, room_id, mcolor, special_medal,
-                 user_level, ulevel_color, ulevel_rank,
-                 old_title, title,
-                 privilege_type):
+    def __init__(
+        self,
+        mode,
+        font_size,
+        color,
+        timestamp,
+        rnd,
+        uid_crc32,
+        msg_type,
+        bubble,
+        msg,
+        uid,
+        uname,
+        admin,
+        vip,
+        svip,
+        urank,
+        mobile_verify,
+        uname_color,
+        medal_level,
+        medal_name,
+        runame,
+        room_id,
+        mcolor,
+        special_medal,
+        user_level,
+        ulevel_color,
+        ulevel_rank,
+        old_title,
+        title,
+        privilege_type,
+    ):
         """
         :param mode: 弹幕显示模式（滚动、顶部、底部）
         :param font_size: 字体尺寸
@@ -163,19 +203,43 @@ class DanmakuMessage:
     @classmethod
     def from_command(cls, info: dict):
         return cls(
-            info[0][1], info[0][2], info[0][3], info[0][4], info[0][5], info[0][7], info[0][9], info[0][10],
+            info[0][1],
+            info[0][2],
+            info[0][3],
+            info[0][4],
+            info[0][5],
+            info[0][7],
+            info[0][9],
+            info[0][10],
             info[1],
             *info[2][:8],
-            *(info[3][:6] or (0, '', '', 0, 0, 0)),
-            info[4][0], info[4][2], info[4][3],
+            *(info[3][:6] or (0, "", "", 0, 0, 0)),
+            info[4][0],
+            info[4][2],
+            info[4][3],
             *info[5][:2],
-            info[7]
+            info[7],
         )
 
 
 class GiftMessage:
-    def __init__(self, gift_name, num, uname, face, guard_level, uid, timestamp, gift_id,
-                 gift_type, action, price, rnd, coin_type, total_coin):
+    def __init__(
+        self,
+        gift_name,
+        num,
+        uname,
+        face,
+        guard_level,
+        uid,
+        timestamp,
+        gift_id,
+        gift_type,
+        action,
+        price,
+        rnd,
+        coin_type,
+        total_coin,
+    ):
         """
         :param gift_name: 礼物名
         :param num: 礼物数量
@@ -210,15 +274,36 @@ class GiftMessage:
     @classmethod
     def from_command(cls, data: dict):
         return cls(
-            data['giftName'], data['num'], data['uname'], data['face'], data['guard_level'],
-            data['uid'], data['timestamp'], data['giftId'], data['giftType'],
-            data['action'], data['price'], data['rnd'], data['coin_type'], data['total_coin']
+            data["giftName"],
+            data["num"],
+            data["uname"],
+            data["face"],
+            data["guard_level"],
+            data["uid"],
+            data["timestamp"],
+            data["giftId"],
+            data["giftType"],
+            data["action"],
+            data["price"],
+            data["rnd"],
+            data["coin_type"],
+            data["total_coin"],
         )
 
 
 class GuardBuyMessage:
-    def __init__(self, uid, username, guard_level, num, price, gift_id, gift_name,
-                 start_time, end_time):
+    def __init__(
+        self,
+        uid,
+        username,
+        guard_level,
+        num,
+        price,
+        gift_id,
+        gift_name,
+        start_time,
+        end_time,
+    ):
         """
         :param uid: 用户ID
         :param username: 用户名
@@ -243,16 +328,41 @@ class GuardBuyMessage:
     @classmethod
     def from_command(cls, data: dict):
         return cls(
-            data['uid'], data['username'], data['guard_level'], data['num'], data['price'],
-            data['gift_id'], data['gift_name'], data['start_time'], data['end_time']
+            data["uid"],
+            data["username"],
+            data["guard_level"],
+            data["num"],
+            data["price"],
+            data["gift_id"],
+            data["gift_name"],
+            data["start_time"],
+            data["end_time"],
         )
 
 
 class SuperChatMessage:
-    def __init__(self, price, message, message_jpn, start_time, end_time, time, id_,
-                 gift_id, gift_name, uid, uname, face, guard_level, user_level,
-                 background_bottom_color, background_color, background_icon, background_image,
-                 background_price_color):
+    def __init__(
+        self,
+        price,
+        message,
+        message_jpn,
+        start_time,
+        end_time,
+        time,
+        id_,
+        gift_id,
+        gift_name,
+        uid,
+        uname,
+        face,
+        guard_level,
+        user_level,
+        background_bottom_color,
+        background_color,
+        background_icon,
+        background_image,
+        background_price_color,
+    ):
         """
         :param price: 价格（人民币）
         :param message: 消息
@@ -297,13 +407,25 @@ class SuperChatMessage:
     @classmethod
     def from_command(cls, data: dict):
         return cls(
-            data['price'], data['message'], data['message_trans'], data['start_time'],
-            data['end_time'], data['time'], data['id'], data['gift']['gift_id'],
-            data['gift']['gift_name'], data['uid'], data['user_info']['uname'],
-            data['user_info']['face'], data['user_info']['guard_level'],
-            data['user_info']['user_level'], data['background_bottom_color'],
-            data['background_color'], data['background_icon'], data['background_image'],
-            data['background_price_color']
+            data["price"],
+            data["message"],
+            data["message_trans"],
+            data["start_time"],
+            data["end_time"],
+            data["time"],
+            data["id"],
+            data["gift"]["gift_id"],
+            data["gift"]["gift_name"],
+            data["uid"],
+            data["user_info"]["uname"],
+            data["user_info"]["face"],
+            data["user_info"]["guard_level"],
+            data["user_info"]["user_level"],
+            data["background_bottom_color"],
+            data["background_color"],
+            data["background_icon"],
+            data["background_image"],
+            data["background_price_color"],
         )
 
 
@@ -316,6 +438,4 @@ class SuperChatDeleteMessage:
 
     @classmethod
     def from_command(cls, data: dict):
-        return cls(
-            data['ids']
-        )
+        return cls(data["ids"])

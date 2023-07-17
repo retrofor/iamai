@@ -7,43 +7,52 @@ import re
 import sys
 import json
 import time
+import struct
 import asyncio
+import ssl as ssl_
+from functools import partial
+from collections import namedtuple
+from typing import TYPE_CHECKING, Any, Dict
+
+import aiohttp
 from genericpath import exists
 from aiohttp.client import ClientSession
-import json
-from .utils.bilibili_bot import BiliLiveBot
-from .utils.file_loader import load_default_config, make_folder
-from .utils.plugins_loader import load_plugins
-from .utils.bilibili_api import get_cookies, login, user_cookies
-from functools import partial
-from typing import TYPE_CHECKING, Any, Dict
-from collections import namedtuple
-import ssl as ssl_
-import aiohttp
 
 from iamai.utils import DataclassEncoder
 from iamai.adapter.utils import WebSocketAdapter
 from iamai.log import logger, error_or_exception
 
-from .config import Config
-import struct
-
 from .event import *
 from .message import *
+from .config import Config
+from .utils.bilibili_bot import BiliLiveBot
+from .utils.plugins_loader import load_plugins
+from .utils.file_loader import make_folder, load_default_config
+from .utils.bilibili_api import login, get_cookies, user_cookies
+
 # from .api.blivedm import BLiveClient
 
 if TYPE_CHECKING:
     from .message import T_BililiveMSG
 
 __all__ = ["BililiveAdapter"]
-ROOM_INIT_URL = 'https://api.live.bilibili.com/xlive/web-room/v1/index/getInfoByRoom'
-DANMAKU_SERVER_CONF_URL = 'https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo'
+ROOM_INIT_URL = "https://api.live.bilibili.com/xlive/web-room/v1/index/getInfoByRoom"
+DANMAKU_SERVER_CONF_URL = (
+    "https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo"
+)
 DEFAULT_DANMAKU_SERVER_LIST = [
-    {'host': 'broadcastlv.chat.bilibili.com', 'port': 2243, 'wss_port': 443, 'ws_port': 2244}
+    {
+        "host": "broadcastlv.chat.bilibili.com",
+        "port": 2243,
+        "wss_port": 443,
+        "ws_port": 2244,
+    }
 ]
 
-HEADER_STRUCT = struct.Struct('>I2H2I')
-HeaderTuple = namedtuple('HeaderTuple', ('pack_len', 'raw_header_size', 'ver', 'operation', 'seq_id'))
+HEADER_STRUCT = struct.Struct(">I2H2I")
+HeaderTuple = namedtuple(
+    "HeaderTuple", ("pack_len", "raw_header_size", "ver", "operation", "seq_id")
+)
 WS_BODY_PROTOCOL_VERSION_INFLATE = 0
 WS_BODY_PROTOCOL_VERSION_NORMAL = 1
 WS_BODY_PROTOCOL_VERSION_DEFLATE = 2
@@ -62,8 +71,7 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
     _heartbeat_interval = 30
     _host_server_list = DEFAULT_DANMAKU_SERVER_LIST
     _retry_count = 0
-    
-    
+
     def __getattr__(self, item):  # type: ignore
         return partial(self.call_api, item)
 
@@ -75,22 +83,24 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
         self.reconnect_interval = self.config.reconnect_interval  # type: ignore
         self.room_id = self.config.room_id  # type: ignore
         self.bad_danmaku = self.config.bad_danmaku  # type: ignore
-        self.session_data_path = self.config.session_data_path # type: ignore
+        self.session_data_path = self.config.session_data_path  # type: ignore
         self._api_response_cond = asyncio.Condition()
-        self._ssl = self.config.ssl if self.config.ssl else ssl_._create_unverified_context() # type: ignore
+        self._ssl = self.config.ssl if self.config.ssl else ssl_._create_unverified_context()  # type: ignore
         await super().startup()
 
     async def websocket_connect(self):
         """创建正向 WebSocket 连接。"""
-        
+
         logger.info("Trying to connect to WebSocket server...")
         # 连接
-        host_server = self._host_server_list[self._retry_count % len(self._host_server_list)]
+        host_server = self._host_server_list[
+            self._retry_count % len(self._host_server_list)
+        ]
         try:
             async with self.session.ws_connect(
                 f'wss://{host_server["host"]}:{host_server["wss_port"]}/sub',
                 receive_timeout=self._heartbeat_interval + 5,
-                ssl=self._ssl
+                ssl=self._ssl,
             ) as self.websocket:
                 await self.handle_websocket()
         except Exception as e:
@@ -101,16 +111,16 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
 
     async def call_api(self, api: str, **params):
         """调用 bililive API。
-        
+
         TODO: 因为基于OlivOS的那个OlivaBiliLive插件架构其实相当于一个小框架的缘故,
         所以要改的东西太多了，这里插个保留的接口...
         """
-        
+
         ...
-    
+
     async def _call_api(self):
         ...
-        
+
     async def send(self, **params: Any) -> None:
         """发送消息。"""
         await self.call_api("send_msg", **params)
