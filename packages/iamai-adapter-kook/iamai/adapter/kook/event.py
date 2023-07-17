@@ -18,7 +18,6 @@ from typing import (
 
 from pydantic import Field, HttpUrl, BaseModel, validator, root_validator
 
-from iamai.log import logger
 from iamai.event import Event
 
 from .api import Role, User, Emoji, Guild, Channel
@@ -519,7 +518,6 @@ class KookEvent(OriginEvent):
     如果 channel_type 为 GROUP 组播且 type 为 255 系统消息时，则代表服务器 guild_id"""
     author_id: Optional[str] = None
     content: str
-    message: str
     msg_id: str
     msg_timestamp: int
     nonce: str
@@ -540,10 +538,9 @@ class MessageEvent(KookEvent):
     message_type: str  # group private 其实是person
     sub_type: str
     event: EventMessage
-    message: KookMessage
 
     def __repr__(self) -> str:
-        return f'Event<{self.type}>: "{self.message}"'
+        return f'Event<{self.type}>: "{self.content}"'
 
     def get_plain_text(self) -> str:
         """获取消息的纯文本内容。
@@ -551,7 +548,7 @@ class MessageEvent(KookEvent):
         Returns:
             消息的纯文本内容。
         """
-        return self.message.get_plain_text()  # type: ignore
+        return self.content.get_plain_text()  # type: ignore
 
     async def reply(self, msg: "T_KookMSG") -> Dict[str, Any]:
         """回复消息。
@@ -571,6 +568,11 @@ class PrivateMessageEvent(MessageEvent):
     __event__ = "message.private"
     message_type: Literal["private"]
 
+    async def reply(self, msg: "T_KookMSG") -> Dict[str, Any]:
+        return await self.adapter.call_api(
+            api="direct-message/create", target_id=self.author_id, content=msg
+        )
+
 
 class ChannelMessageEvent(MessageEvent):
     """公共频道消息"""
@@ -578,6 +580,11 @@ class ChannelMessageEvent(MessageEvent):
     __event__ = "message.group"
     message_type: Literal["group"]
     group_id: str
+
+    async def reply(self, msg: "T_KookMSG") -> Dict[str, Any]:
+        return await self.adapter.call_api(
+            "message/create", target_id=self.target_id, content=msg
+        )
 
 
 # Notice Events
