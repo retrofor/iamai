@@ -4,7 +4,6 @@ from iamai.log import logger
 
 class HalloKook(Plugin):
     async def handle(self) -> None:
-        await self.bot.get_adapter("kook").send("hi", "PERSON", 2238357493)
         try:
             await self.event.reply(eval(f"{self.event.content[5:]}"))
         except Exception as e:
