@@ -5,19 +5,18 @@
     "type": "separator",
     "title": "Themes"
   },
-  "docs-theme": "",
-  "custom-theme": "",
+  "model": "",
   "-- More": {
     "type": "separator",
     "title": "More"
   },
   "about-link": {
-    "title": "About Nextra",
+    "title": "About iamai",
     "href": "/about"
   },
-  "next.js-link": {
-    "title": "Next.js Docs ↗",
-    "href": "https://nextjs.org?utm_source=nextra.site&utm_medium=referral&utm_campaign=sidebar",
+  "HydroRoll-link": {
+    "title": "HydroRoll Docs ↗",
+    "href": "https://hydroroll.retrofor.space",
     "newWindow": true
   }
 }
