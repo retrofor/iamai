@@ -5,7 +5,6 @@ from iamai.log import logger
 class HalloKook(Plugin):
     async def handle(self) -> None:
         await self.event.reply("Hallo Kook!")
-        
 
     async def rule(self) -> bool:
         if self.event.adapter.name != "kook":

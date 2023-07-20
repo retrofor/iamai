@@ -1,5 +1,5 @@
 """Bililive 适配器配置。"""
-from typing import Literal, List, Optional, Union, Dict, Any
+from typing import Any, Dict, List, Union, Literal, Optional
 
 from iamai.config import ConfigModel
 
