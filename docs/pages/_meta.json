@@ -24,7 +24,8 @@
   },
   "contact": {
     "type": "link",
-    "title": "Contact",
-    "url": "https://github.com/retrofor/iamai"
+    "title": "Contact↗",
+    "href": "https://github.com/retrofor/iamai",
+    "newwindow": true
   }
 }

@@ -45,14 +45,14 @@ const logo = (
 
 const config: DocsThemeConfig = {
   project: {
-    link: 'https://github.com/shuding/nextra'
+    link: 'https://github.com/retro/iamai'
   },
-  docsRepositoryBase: 'https://github.com/shuding/nextra/tree/main/docs',
+  docsRepositoryBase: 'https://github.com/retro/iamai/tree/master/docs',
   useNextSeoProps() {
     const { asPath } = useRouter()
     if (asPath !== '/') {
       return {
-        titleTemplate: '%s – Nextra'
+        titleTemplate: '%s – iamai'
       }
     }
   },
@@ -62,8 +62,8 @@ const config: DocsThemeConfig = {
     const { route } = useRouter()
     const socialCard =
       route === '/' || !title
-        ? 'https://nextra.site/og.jpeg'
-        : `https://nextra.site/api/og?title=${title}`
+        ? 'https://iamai.retrofor.space/og.jpeg'
+        : `https://iamai.retrofor.space/api/og?title=${title}`
 
     return (
       <>
@@ -140,7 +140,7 @@ const config: DocsThemeConfig = {
             target="_blank"
             rel="noopener noreferrer"
             title="vercel.com homepage"
-            href="https://vercel.com?utm_source=nextra.site"
+            href="https://vercel.com?utm_source=iamai.retrofor.space"
           >
             <span>Powered by</span>
             <svg height={20} viewBox="0 0 283 64" fill="none">
@@ -153,7 +153,7 @@ const config: DocsThemeConfig = {
           </a>
         </div>
         <p className="mt-6 text-xs">
-          © {new Date().getFullYear()} The Nextra Project.
+          © {new Date().getFullYear()} The retrofor.
         </p>
       </div>
     )
