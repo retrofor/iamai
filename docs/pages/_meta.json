@@ -23,7 +23,6 @@
     }
   },
   "contact": {
-    "type": "link",
     "title": "Contact↗",
     "href": "https://github.com/retrofor/iamai",
     "newwindow": true
