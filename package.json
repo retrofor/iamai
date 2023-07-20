@@ -1,31 +1,62 @@
 {
-  "name": "iamai",
-  "version": "3.2",
-  "description": "A simple asynchronous python chat bot framework.",
   "private": true,
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/retrofor/iamai.git"
-  },
-  "author": "简律纯 <i@jyunko.cn>",
-  "homepage": "https://iamai.retrofor.space/",
-  "license": "MIT",
-  "devDependencies": {
-    "conventional-changelog": "^3.1.25",
-    "markdownlint-cli": "^0.31.1",
-    "vitepress": "1.0.0-alpha.50"
-  },
+  "packageManager": "pnpm@8.6.9",
   "scripts": {
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs",
-    "release": "node .release.js"
+    "build": "turbo run build:tailwind build --filter=./packages/\\*",
+    "build:all": "turbo run build:tailwind build",
+    "build:core": "pnpm build --filter=nextra",
+    "build:theme-blog": "pnpm build --filter=nextra-theme-blog",
+    "build:theme-docs": "pnpm build --filter=nextra-theme-docs",
+    "clean": "turbo run clean",
+    "dev:core": "turbo run dev --filter=nextra... --filter=!docs",
+    "dev:theme-blog": "turbo run dev --filter=example-blog... --filter=!docs",
+    "dev:theme-docs": "turbo run dev --filter=swr-site... --filter=!docs",
+    "dev:website": "turbo run dev --filter=docs...",
+    "lint": "eslint --cache --ignore-path .gitignore --max-warnings 0 .",
+    "lint:prettier": "prettier --cache --check --ignore-path .gitignore --ignore-path .prettierignore .",
+    "prettier": "pnpm lint:prettier --write",
+    "release": "changeset publish",
+    "test": "turbo run test",
+    "types:check": "turbo run types:check",
+    "version": "changeset version"
+  },
+  "devDependencies": {
+    "@changesets/cli": "2.26.2",
+    "@edge-runtime/vm": "3.0.4",
+    "@ianvs/prettier-plugin-sort-imports": "^4.0.2",
+    "@next/eslint-plugin-next": "13.4.10",
+    "@typescript-eslint/eslint-plugin": "6.1.0",
+    "@typescript-eslint/parser": "6.1.0",
+    "eslint": "8.45.0",
+    "eslint-config-prettier": "8.8.0",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-react": "7.32.2",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "eslint-plugin-tailwindcss": "3.13.0",
+    "eslint-plugin-typescript-sort-keys": "2.3.0",
+    "eslint-plugin-unicorn": "47.0.0",
+    "prettier": "3.0.0",
+    "prettier-plugin-pkg": "0.18.0",
+    "prettier-plugin-tailwindcss": "0.4.1",
+    "rimraf": "5.0.1",
+    "tsup": "7.0.0",
+    "turbo": "1.10.8",
+    "typescript": "5.1.6"
   },
   "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "@algolia/client-search"
-      ]
+    "overrides": {
+      "vitest": "^0.27.1",
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0",
+      "@mdx-js/react": "^2.3.0",
+      "next-themes": "^0.2.1",
+      "next": "^13.4.8",
+      "@types/react": "^18.0.15",
+      "@types/react-dom": "^18.0.6",
+      "postcss": "^8.4.21"
+    },
+    "patchedDependencies": {
+      "@changesets/assemble-release-plan@5.2.4": "patches/@changesets__assemble-release-plan@5.2.4.patch"
     }
   }
 }

@@ -3,7 +3,7 @@ import { promisify } from "util";
 import { Writable } from "stream";
 import conventionalChangelog from "conventional-changelog";
 
-const fileName = "docs/changelog.md";
+const fileName = "docs/pages/changelog.mdx";
 const prefix = `---
 sidebar: auto
 ---
