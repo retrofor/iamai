@@ -1,13 +1,14 @@
 import time
-from bilibili_api import Credential, Danmaku, sync
-from bilibili_api.live import LiveDanmaku, LiveRoom
+
+from bilibili_api import Danmaku, Credential, sync
+from bilibili_api.live import LiveRoom, LiveDanmaku
 
 # 自己直播间号
 ROOMID = 21752074
 # 凭证 根据回复弹幕的账号填写
 credential = Credential(
     sessdata="b62ece97%2C1705379969%2Ccdd22*71",
-    bili_jct="a6e051b71890306f61b94771eb7281ab"
+    bili_jct="a6e051b71890306f61b94771eb7281ab",
 )
 # 监听直播间弹幕
 monitor = LiveDanmaku(ROOMID, credential=credential)
@@ -25,7 +26,7 @@ async def recv(event):
     #     return
     # 弹幕文本
     msg = event["data"]["info"][1]
-    if str(msg).startswith('1'):
+    if str(msg).startswith("1"):
         # 发送弹幕
         await sender.send_danmaku(Danmaku(str(time.time())))
 
