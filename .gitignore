@@ -139,6 +139,7 @@ docs_build/**/*.rst
 docs_build/_build
 /tests/config.json
 /tests/config.toml
+/tests/data/session.token
 /docs/api/**/*.md
 tests/plugins/webui/__init__.py
 tests/plugins/webui/config.py

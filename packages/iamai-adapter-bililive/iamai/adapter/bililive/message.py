@@ -7,22 +7,26 @@ from typing import Any, Dict, Type, Tuple, Union, Mapping, Iterable, Optional, c
 
 from iamai.message import Message, MessageSegment
 
-from .exceptions import UnsupportedMessageType, UnsupportedMessageOperation
+from .exceptions import *
 
-__all__ = ["T_BililiveMSG", "BililiveMessage", "BililiveMessageSegment"]
-
-T_BililiveMSG = Union[
-    str, Mapping, Iterable[Mapping], "BililiveMessageSegment", "BililiveMessage"
+__all__ = [
+    "T_BililiveMSG",
+    "BililiveMessage",
+    "BililiveMessageSegment"
 ]
+
+T_BililiveMSG = Union[str, Mapping, Iterable[Mapping], "BililiveMessageSegment", "BililiveMessage"]
 
 
 class BililiveMessageSegment(MessageSegment["BililiveMessage"]):
+
     @property
     def _message_class(cls) -> Type["BililiveMessage"]:
         return BililiveMessage
 
 
 class BililiveMessage(Message[MessageSegment]):
+
     @property
     def _message_segment_class(self) -> Type["BililiveMessageSegment"]:
         return BililiveMessageSegment
