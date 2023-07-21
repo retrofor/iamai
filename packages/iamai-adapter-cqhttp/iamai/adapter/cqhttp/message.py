@@ -29,9 +29,7 @@ class CQHTTPMessageSegment(MessageSegment["CQHTTPMessage"]):
         return CQHTTPMessage
 
     def __str__(self) -> str:
-        if self.type == "text":
-            return self.data.get("text", "")
-        return self.get_cqcode()
+        return self.data.get("text", "") if self.type == "text" else self.get_cqcode()
 
     def get_cqcode(self) -> str:
         """

@@ -91,8 +91,7 @@ class Message(List[T_MessageSegment]):
             yield self._str_to_message_segment(msg)
         elif isinstance(msg, Iterable):
             for seg in msg:
-                for i in self._construct(seg):
-                    yield i
+                yield from self._construct(seg)
 
     def _mapping_to_message_segment(self, msg: Mapping) -> T_MessageSegment:
         """用于将 Mapping 转换为 MessageSegment，如有需要，子类可重写此方法以更改对 Mapping 的默认行为。
@@ -117,7 +116,7 @@ class Message(List[T_MessageSegment]):
         raise NotImplementedError
 
     def __repr__(self) -> str:
-        return "Message:[{}]".format(",".join(map(lambda x: repr(x), self)))
+        return f'Message:[{",".join(map(lambda x: repr(x), self))}]'
 
     def __str__(self) -> str:
         return "".join(map(lambda x: str(x), self))
@@ -203,9 +202,7 @@ class Message(List[T_MessageSegment]):
         if isinstance(prefix, str):
             return str(self).startswith(prefix, start, end)
         elif isinstance(prefix, self._message_segment_class):
-            if len(self) == 0:
-                return False
-            return self[0] == prefix
+            return False if len(self) == 0 else self[0] == prefix
         raise TypeError(
             f"first arg must be str or {self._message_segment_class}，not {type(prefix)}"
         )
@@ -230,9 +227,7 @@ class Message(List[T_MessageSegment]):
         if isinstance(suffix, str):
             return str(self).endswith(suffix, start, end)
         elif isinstance(suffix, self._message_segment_class):
-            if len(self) == 0:
-                return False
-            return self[-1] == suffix
+            return False if len(self) == 0 else self[-1] == suffix
         raise TypeError(
             f"first arg must be str or {self._message_segment_class}，not {type(suffix)}"
         )

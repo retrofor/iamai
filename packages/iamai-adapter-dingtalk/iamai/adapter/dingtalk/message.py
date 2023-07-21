@@ -14,10 +14,7 @@ class DingTalkMessage(MessageSegment[None]):
         return None
 
     def __str__(self):
-        if self.type == "text":
-            return self.data["content"]
-        else:
-            return super().__str__()
+        return self.data["content"] if self.type == "text" else super().__str__()
 
     def as_dict(self) -> Dict[str, Dict[str, Any]]:
         """返回符合钉钉消息标准的消息字段字典。
@@ -25,10 +22,7 @@ class DingTalkMessage(MessageSegment[None]):
         Returns:
             符合钉钉消息标准的消息字段字典。
         """
-        if self.type == "raw":
-            return self.data
-        else:
-            return {self.type: self.data}
+        return self.data if self.type == "raw" else {self.type: self.data}
 
     @classmethod
     def raw(cls, data: Dict[str, Any]) -> "DingTalkMessage":

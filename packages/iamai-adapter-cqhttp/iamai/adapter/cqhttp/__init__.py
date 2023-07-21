@@ -54,7 +54,7 @@ class CQHTTPAdapter(WebSocketAdapter[CQHTTPEvent, Config]):
 
     async def reverse_ws_connection_hook(self):
         """反向 WebSocket 连接建立时的钩子函数。"""
-        logger.info(f"WebSocket connected!")
+        logger.info("WebSocket connected!")
         if self.config.access_token:
             if (
                 self.websocket.headers.get("Authorization", "")
@@ -118,7 +118,7 @@ class CQHTTPAdapter(WebSocketAdapter[CQHTTPEvent, Config]):
         if post_type == "message_sent":
             event_type = msg.get("message_type")
         else:
-            event_type = msg.get(post_type + "_type")
+            event_type = msg.get(f"{post_type}_type")
 
         sub_type = msg.get("sub_type", None)
         event_class = get_event_class(post_type, event_type, sub_type)
@@ -136,9 +136,7 @@ class CQHTTPAdapter(WebSocketAdapter[CQHTTPEvent, Config]):
                     f"from CQHTTP Bot {msg.get('self_id')} accepted!"
                 )
             elif cqhttp_event.meta_event_type == "heartbeat":
-                if cqhttp_event.status.good and cqhttp_event.status.online:
-                    pass
-                else:
+                if not cqhttp_event.status.good or not cqhttp_event.status.online:
                     logger.error(
                         f"CQHTTP Bot status is not good: {cqhttp_event.status.dict()}"
                     )
