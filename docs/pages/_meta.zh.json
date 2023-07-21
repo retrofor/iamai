@@ -1,7 +1,7 @@
 {
   "index": {
     "type": "page",
-    "title": "iamai",
+    "title": "主页",
     "display": "hidden",
     "theme": {
       "layout": "raw"
@@ -9,22 +9,17 @@
   },
   "docs": {
     "type": "page",
-    "title": "Documentation"
+    "title": "文档"
   },
   "showcase": {
     "type": "page",
-    "title": "Showcase"
+    "title": "展示"
   },
   "about": {
     "type": "page",
-    "title": "About",
+    "title": "关于",
     "theme": {
       "typesetting": "article"
     }
-  },
-  "contact": {
-    "title": "Contact↗",
-    "href": "https://github.com/retrofor/iamai",
-    "newwindow": true
   }
 }
