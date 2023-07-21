@@ -232,7 +232,7 @@ class WebSocketAdapter(Adapter[T_Event, T_Config], metaclass=ABCMeta):
 
     async def reverse_ws_connection_hook(self):
         """反向 WebSocket 连接建立时的钩子函数。"""
-        logger.info(f"WebSocket connected!")
+        logger.info("WebSocket connected!")
 
     async def websocket_connect(self):
         """创建正向 WebSocket 连接。"""

@@ -108,9 +108,9 @@ def scheduler_decorator(
 
     def _decorator(cls: Type):
         if not inspect.isclass(cls):
-            raise TypeError(f"can only decorate class")
+            raise TypeError("can only decorate class")
         if not issubclass(cls, Plugin):
-            raise TypeError(f"can only decorate Plugin class")
+            raise TypeError("can only decorate Plugin class")
         setattr(cls, "__schedule__", True)
         setattr(cls, "trigger", trigger)
         setattr(cls, "trigger_args", trigger_args)

@@ -88,10 +88,7 @@ class CQHTTPEvent(Event["CQHTTPAdapter"]):
     @property
     def to_me(self) -> bool:
         """当前事件的 user_id 是否等于 self_id 或 self_tiny_id。"""
-        return (
-            getattr(self, "user_id") == self.self_id
-            or getattr(self, "user_id") == self.self_tiny_id
-        )
+        return getattr(self, "user_id") in [self.self_id, self.self_tiny_id]
 
 
 class MessageEvent(CQHTTPEvent):

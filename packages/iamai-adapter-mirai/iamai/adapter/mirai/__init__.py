@@ -63,7 +63,7 @@ class MiraiAdapter(WebSocketAdapter[MiraiEvent, Config]):
 
     async def reverse_ws_connection_hook(self):
         """反向 WebSocket 连接建立时的钩子函数。"""
-        logger.info(f"WebSocket connected!")
+        logger.info("WebSocket connected!")
         asyncio.create_task(self.verify_identity())
 
     async def websocket_connect(self):
@@ -235,7 +235,7 @@ class MiraiAdapter(WebSocketAdapter[MiraiEvent, Config]):
             TypeError: message_type 非法。
             ...: 同 `call_api()` 方法。
         """
-        if message_type == "private" or message_type == "friend":
+        if message_type in ["private", "friend"]:
             return await self.sendFriendMessage(
                 target=target, messageChain=MiraiMessage(message_), quote=quote
             )
