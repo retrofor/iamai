@@ -127,6 +127,9 @@ iamai itself is just a chatbot framework and additional protocol adapters are re
 pip install iamai-adapter-cqhttp
 pip install iamai-adapter-mirai
 pip install iamai-adapter-dingtalk
+pip install iamai-adapter-console
+pip install iamai-adapter-bililive
+pip install iamai-adapter-kook
 ```
 
 ## ❗ Usage
@@ -188,7 +191,7 @@ output = query({
 > choices below.
 
 - [https://iamai.retrofor.space](https://iamai.retrofor.space) _(recommend)_
-- [retrofor.github.io/iamai](https://retrofor.github.io/iamai)
+- [https://iamai-asi.vercel.app](https://iamai-asi.vercel.app)
 
 ## ✨ Project Activity
 

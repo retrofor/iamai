@@ -186,8 +186,7 @@ output = query({
 > 以下から選択してください。
 
 - [https://iamai.retrofor.space](https://iamai.retrofor.space) _(お勧め)_
-- [retrofor.github.io/iamai](https://retrofor.github.io/iamai)
-
+- [https://iamai-asi.vercel.app](https://iamai-asi.vercel.app)
 
 ## ✨ プロジェクトの活動状況
 
