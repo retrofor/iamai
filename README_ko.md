@@ -47,9 +47,9 @@
     <!-- <img src="https://img.shields.io/badge/-github-181717?style=flat-square&logo=github&logoColor=white"> -->
     <!-- discord -->
     <!-- <img src="https://img.shields.io/badge/-Discord-5865F2?style=flat-square&logo=Discord&logoColor=white"> -->
-    <!-- <br> -->
+    <br />
     <!-- bilibili live -->
-    <!-- <img src="https://img.shields.io/badge/-BiliBili Live-00A1D6?style=flat-square&logo=Bilibili&logoColor=white"> -->
+    <img src="https://img.shields.io/badge/-BiliBili Live-00A1D6?style=flat-square&logo=Bilibili&logoColor=white">
     <!-- mirai-api-http -->
     <img src="https://img.shields.io/badge/-Mirai%20api%20http%202.3+-00B8AA?style=flat-square">
     <!-- dingtalk -->

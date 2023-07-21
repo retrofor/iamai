@@ -21,7 +21,9 @@ jobs:
           python-version: "3.9"
           architecture: "x64"
           cache: "poetry"
-      - run: poetry install
+
+      - name: Install dependencies
+        run: poetry install
         shell: bash
 
       - run: poetry config pypi-token.pypi "$PYPI_TOKEN"
@@ -29,29 +31,41 @@ jobs:
         env:
           PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
 
-      - run: poetry publish --build
+      - name: Publish iamai to PyPI
+        run: poetry publish --build
         shell: bash
 
-      - run: poetry publish --build
+      - name: Publish iamai-adapter-apscheduler to PyPI
+        run: poetry publish --build
         shell: bash
         working-directory: ./packages/iamai-adapter-apscheduler
 
-      - run: poetry publish --build
+      - name: Publish iamai-adapter-cqhttp to PyPI
+        run: poetry publish --build
         shell: bash
         working-directory: ./packages/iamai-adapter-cqhttp
 
-      - run: poetry publish --build
+      - name: Publish iamai-adapter-dingtalk to PyPI
+        run: poetry publish --build
         shell: bash
         working-directory: ./packages/iamai-adapter-dingtalk
 
-      - run: poetry publish --build
+      - name: Publish iamai-adapter-mirai to PyPI
+        run: poetry publish --build
         shell: bash
         working-directory: ./packages/iamai-adapter-mirai
     
-      - run: poetry publish --build
+      - name: Publish iamai-adapter-kook to PyPI
+        run: poetry publish --build
         shell: bash
         working-directory: ./packages/iamai-adapter-kook
 
-      - run: poetry publish --build
+      - name: Publish iamai-adapter-console to PyPI
+        run: poetry publish --build
         shell: bash
         working-directory: ./packages/iamai-adapter-console
+
+      - name: Publish iamai-adapter-bililive to PyPI
+        run: poetry publish --build
+        shell: bash
+        working-directory: ./packages/iamai-adapter-bililive

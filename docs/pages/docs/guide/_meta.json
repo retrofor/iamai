@@ -1,0 +1,21 @@
+{
+  "index": "Introduction",
+  "basic-config": "",
+  "getting-started": "",
+  "hot-reload": "",
+  "plugin-basic": "",
+  "--": {
+    "type": "separator",
+    "title": "--"
+  },
+  "plugin-advanced": "",
+  "hook-function": "",
+  "scheduler": "",
+  "---": {
+    "type": "separator",
+    "title": "--"
+  },
+  "cqhttp-adapter": "",
+  "dingtalk-adapter": "",
+  "mirai-adapter": ""
+}
