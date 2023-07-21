@@ -65,7 +65,7 @@ class DingTalkAdapter(Adapter[DingTalkEvent, Config]):
             request: aiohttp 服务器的 Request 对象。
         """
         if "timestamp" not in request.headers or "sign" not in request.headers:
-            logger.error(f"Illegal http header, incomplete http header")
+            logger.error("Illegal http header, incomplete http header")
         elif abs(int(request.headers["timestamp"]) - time.time() * 1000) > 3600000:
             logger.error(
                 f'Illegal http header, timestamp: {request.headers["timestamp"]}'
@@ -96,7 +96,7 @@ class DingTalkAdapter(Adapter[DingTalkEvent, Config]):
         """
         hmac_code = hmac.new(
             self.config.app_secret.encode("utf-8"),
-            "{}\n{}".format(timestamp, self.config.app_secret).encode("utf-8"),
+            f"{timestamp}\n{self.config.app_secret}".encode("utf-8"),
             digestmod=hashlib.sha256,
         ).digest()
         return base64.b64encode(hmac_code).decode("utf-8")
@@ -137,9 +137,7 @@ class DingTalkAdapter(Adapter[DingTalkEvent, Config]):
 
         if at is not None:
             if isinstance(at, DingTalkMessage):
-                if at.type == "at":
-                    pass
-                else:
+                if at.type != "at":
                     raise ValueError(f'at.type must be "at", not {at.type}')
             elif isinstance(at, dict):
                 at = DingTalkMessage.raw(at)

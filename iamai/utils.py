@@ -146,9 +146,7 @@ class DataclassEncoder(json.JSONEncoder):
     """用于解析 MessageSegment 的 JSONEncoder 类。"""
 
     def default(self, o):
-        if dataclasses.is_dataclass(o):
-            return o.as_dict()
-        return super().default(o)
+        return o.as_dict() if dataclasses.is_dataclass(o) else super().default(o)
 
 
 def samefile(path1: str, path2: str) -> bool:

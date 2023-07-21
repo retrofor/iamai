@@ -31,6 +31,4 @@ class Weather(Plugin):
 
     @staticmethod
     async def get_weather(city):
-        if city not in ["北京", "上海"]:
-            return "你想查询的城市暂不支持！"
-        return f"{city}的天气是..."
+        return "你想查询的城市暂不支持！" if city not in ["北京", "上海"] else f"{city}的天气是..."

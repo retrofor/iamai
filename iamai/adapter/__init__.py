@@ -114,9 +114,7 @@ class Adapter(Generic[T_Event, T_Config], ABC):
 
         def func_wrapper(_func):
             async def _wrapper(_event: T_Event):
-                if _event.adapter is not self:
-                    return False
-                return await _func(_event)
+                return False if _event.adapter is not self else await _func(_event)
 
             return _wrapper
 
