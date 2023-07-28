@@ -25,6 +25,7 @@ exclude = ["iamai/__init__.py", "iamai/adapter/__init__.py"]
 [tool.poetry.dependencies]
 python = "^3.8"
 iamai = "^3.2"
+typing-extensions = "^4.4.0"
 
 [tool.poetry.dev-dependencies]
 iamai = { path = "../../", develop = true }
