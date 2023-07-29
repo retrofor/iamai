@@ -3,7 +3,7 @@ import asyncio
 import inspect
 from enum import IntEnum
 from collections import UserDict
-from typing import (
+from typing import (  # type: ignore
     TYPE_CHECKING,
     Any,
     Dict,
@@ -404,7 +404,7 @@ class SignalTypes(IntEnum):
     信令类型
     Kook 协议信令，字段与 Kook 一致。各事件字段参考 `Kook 文档`
 
-    .. Kaiheila 文档:
+    .. Kook 文档:
         https://developer.kookapp.cn/doc/websocket#信令格式
     """
 
@@ -540,7 +540,7 @@ class MessageEvent(KookEvent):
     event: EventMessage
 
     def __repr__(self) -> str:
-        return f'Event<{self.type}>: "{self.content}"'
+        return f'Event<{self.post_type}>: "{self.content}"'
 
     def get_plain_text(self) -> str:
         """获取消息的纯文本内容。
@@ -595,75 +595,78 @@ class NoticeEvent(KookEvent):
     post_type: Literal["notice"]
     notice_type: str
 
+    def __repr__(self) -> str:
+        return f'Event<{self.post_type}>: "{self.content}"'
+
 
 # Channel Events
 class ChannelNoticeEvent(NoticeEvent):
     """频道消息事件"""
 
-    __event__ = "notice.group"
+    __event__ = "notice"
     group_id: int
 
 
 class ChannelAddReactionEvent(ChannelNoticeEvent):
     """频道内用户添加 reaction"""
 
-    __event__ = "notice.group.added_reaction"
+    __event__ = "notice.added_reaction"
     notice_type: Literal["added_reaction"]
 
 
 class ChannelDeletedReactionEvent(ChannelNoticeEvent):
     """频道内用户删除 reaction"""
 
-    __event__ = "notice.group.deleted_reaction"
+    __event__ = "notice.deleted_reaction"
     notice_type: Literal["deleted_reaction"]
 
 
 class ChannelUpdatedMessageEvent(ChannelNoticeEvent):
     """频道消息更新"""
 
-    __event__ = "notice.group.updated_message"
+    __event__ = "notice.updated_message"
     notice_type: Literal["updated_message"]
 
 
 class ChannelDeleteMessageEvent(ChannelNoticeEvent):
     """频道消息被删除"""
 
-    __event__ = "notice.group.deleted_message"
+    __event__ = "notice.deleted_message"
     notice_type: Literal["deleted_message"]
 
 
 class ChannelAddedEvent(ChannelNoticeEvent):
     """新增频道"""
 
-    __event__ = "notice.group.added_channel"
+    __event__ = "notice.added_channel"
     notice_type: Literal["added_channel"]
 
 
 class ChannelUpdatedEvent(ChannelNoticeEvent):
     """修改频道信息"""
 
-    __event__ = "notice.group.updated_channel"
+    __event__ = "notice.updated_channel"
     notice_type: Literal["updated_channel"]
 
 
 class ChannelDeleteEvent(ChannelNoticeEvent):
     """删除频道"""
 
-    __event__ = "notice.group.deleted_channel"
+    __event__ = "notice.deleted_channel"
     notice_type: Literal["deleted_channel"]
 
 
 class ChannelPinnedMessageEvent(ChannelNoticeEvent):
     """新增频道置顶消息"""
 
-    __event__ = "notice.group.pinned_message"
+    __event__ = "notice.pinned_message"
     notice_type: Literal["pinned_message"]
 
 
 class ChannelUnpinnedMessageEvent(ChannelNoticeEvent):
     """取消频道置顶消息"""
 
-    __event__ = "notice.group.unpinned_message"
+    __event__ = "notice.unpinned_message"
     notice_type: Literal["unpinned_message"]
 
 

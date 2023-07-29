@@ -4,7 +4,17 @@ import json
 from io import StringIO
 from dataclasses import dataclass
 from typing_extensions import override, deprecated
-from typing import Any, Dict, Type, Tuple, Union, Mapping, Iterable, Optional, cast
+from typing import (  # type: ignore
+    Any,
+    Dict,
+    Type,
+    Tuple,
+    Union,
+    Mapping,
+    Iterable,
+    Optional,
+    cast,
+)
 
 from iamai.message import Message, MessageSegment
 
@@ -49,9 +59,9 @@ class KookMessageSegment(MessageSegment["KookMessage"]):
     """Kook 消息字段。"""
 
     """
-    开黑啦 协议 MessageSegment 适配。具体方法参考协议消息段类型或源码。
+    Kook 协议 MessageSegment 适配。具体方法参考协议消息段类型或源码。
 
-    https://developer.kaiheila.cn/doc/event/message
+    https://developer.kookapp.cn/doc/event/message
     """
 
     # 已知：
@@ -196,7 +206,7 @@ class KookMessageSegment(MessageSegment["KookMessage"]):
 
 class KookMessage(Message[MessageSegment]):
     """
-    开黑啦 v3 协议 Message 适配。
+    Kook v3 协议 Message 适配。
     """
 
     @property
