@@ -1,0 +1,25 @@
+{
+  "index": {
+    "type": "page",
+    "title": "主页",
+    "display": "hidden",
+    "theme": {
+      "layout": "raw"
+    }
+  },
+  "docs": {
+    "type": "page",
+    "title": "文档"
+  },
+  "showcase": {
+    "type": "page",
+    "title": "展示"
+  },
+  "about": {
+    "type": "page",
+    "title": "关于",
+    "theme": {
+      "typesetting": "article"
+    }
+  }
+}

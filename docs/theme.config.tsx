@@ -47,6 +47,12 @@ const config: DocsThemeConfig = {
   project: {
     link: 'https://github.com/retro/iamai'
   },
+  i18n: [
+    { locale: 'en', text: 'English' },
+    { locale: 'zh', text: '中文' },
+    { locale: 'ko', text: '한국어' },
+    { locale: 'jp', text: 'にほんご'}
+  ],
   docsRepositoryBase: 'https://github.com/retro/iamai/tree/master/docs',
   useNextSeoProps() {
     const { asPath } = useRouter()
