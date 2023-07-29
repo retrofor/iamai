@@ -173,8 +173,8 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
                         data["notice_type"] = extra.get("type")
                         message = KookMessage(f'{data["content"]}')
                         data["message"] = data.get("content")
-                                        # data['notice_type'] = data.get('channel_type').lower()
-                                        # data['notice_type'] = 'private' if data['notice_type'] == 'person' else data['notice_type']
+                        # data['notice_type'] = data.get('channel_type').lower()
+                        # data['notice_type'] = 'private' if data['notice_type'] == 'person' else data['notice_type']
                     else:
                         data["post_type"] = "message"
                         data["sub_type"] = [
