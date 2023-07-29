@@ -570,9 +570,8 @@ class PrivateMessageEvent(MessageEvent):
 
     async def reply(self, msg: "T_KookMSG") -> Dict[str, Any]:
         return await self.adapter.call_api(
-            api="direct-message/create", target_id=self.author_id, content=msg
+            api="direct-message/create",target_id=self.author_id, content=msg
         )
-
 
 class ChannelMessageEvent(MessageEvent):
     """公共频道消息"""
@@ -583,9 +582,8 @@ class ChannelMessageEvent(MessageEvent):
 
     async def reply(self, msg: "T_KookMSG") -> Dict[str, Any]:
         return await self.adapter.call_api(
-            "message/create", target_id=self.target_id, content=msg
+            "message/create",target_id=self.target_id, content=msg
         )
-
 
 # Notice Events
 class NoticeEvent(KookEvent):

@@ -1,5 +1,4 @@
 """Kook 适配器消息。"""
-
 import json
 from io import StringIO
 from dataclasses import dataclass
@@ -32,7 +31,10 @@ msg_type_map = {
     "card": 10,
 }
 
-rev_msg_type_map = {code: msg_type for msg_type, code in msg_type_map.items()}
+rev_msg_type_map = {}
+for msg_type, code in msg_type_map.items():
+    rev_msg_type_map[code] = msg_type
+
 # 根据协议消息段类型显示消息段内容
 segment_text = {
     "text": "[文字]",
@@ -101,7 +103,7 @@ class KookMessageSegment(MessageSegment["KookMessage"]):
         连接两个或多个 MessageSegment，必须为纯文本段或 KMarkdown 段
         """
 
-        if isinstance(other, (str, KookMessageSegment)):
+        if isinstance(other, str) or isinstance(other, KookMessageSegment):
             other = [other]  # type: ignore
         msg = KookMessage([self, *other])
         msg.reduce()  # type: ignore
@@ -331,9 +333,9 @@ class MessageSerializer:
             self.message = self.message.copy()
             self.message.reduce()  # type: ignore
 
-        if len(self.message) != 1:
-            # 转化为卡片消息发送
-            return MessageSerializer(KookMessage(_convert_to_card_message(self.message))).serialize()  # type: ignore
+            if len(self.message) != 1:
+                # 转化为卡片消息发送
+                return MessageSerializer(KookMessage(_convert_to_card_message(self.message))).serialize()  # type: ignore
 
         msg_type = self.message[0].type
         msg_type_code = msg_type_map[msg_type]
@@ -385,11 +387,15 @@ class MessageDeserializer:
             # raw_content默认strip掉首尾空格，但是开黑啦本体的聊天界面中不会strip，所以这里还原了
             unescaped = unescape_kmarkdown(content)
             is_plain_text = unescaped.strip() == raw_content
-            if not is_plain_text:
-                return KookMessage(KookMessageSegment.KMarkdown(content, raw_content))
-            raw_content = unescaped
+            if is_plain_text:
+                raw_content = unescaped
 
-            return KookMessage(KookMessageSegment.text(raw_content))
+            # 如果是KMarkdown消息是纯文本，直接构造纯文本消息
+            # 目的是让on_command等依赖__str__的规则能够在消息存在转义字符时正常工作
+            if is_plain_text:
+                return KookMessage(KookMessageSegment.text(raw_content))
+            else:
+                return KookMessage(KookMessageSegment.KMarkdown(content, raw_content))
         elif self.type == "card":
             return KookMessage(KookMessageSegment.Card(self.data["content"]))
         else:

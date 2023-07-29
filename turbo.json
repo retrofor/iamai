@@ -10,7 +10,8 @@
         "dist/**/*.css",
         "index.js",
         "ssg.js",
-        "loader.js"
+        "loader.js",
+        ".next/**"
       ]
     },
     "build:tailwind": {
