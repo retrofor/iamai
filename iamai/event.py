@@ -59,24 +59,24 @@ class Event(ABC, BaseModel, Generic[T_Adapter]):
         extra = "allow"
         json_encoders = {Message: DataclassEncoder}
 
-    async def query( 
-         self, 
-         message: str, 
-         max_try_times: Optional[int] = None, 
-         timeout: Optional[Union[int, float]] = None, 
-     ) -> Self: 
-         """询问消息。 
-  
-         表示回复一个消息后获取用户的回复。 
-         相当于 `reply()` 后执行 `get()`。 
-  
-         Args: 
-             message: 回复消息的内容。 
-             max_try_times: 最大事件数。 
-             timeout: 超时时间。 
-  
-         Returns: 
-             用户回复的消息事件。 
-         """ 
-         await self.reply(message) 
-         return await self.get(max_try_times=max_try_times, timeout=timeout)
+    async def query(
+        self,
+        message: str,
+        max_try_times: Optional[int] = None,
+        timeout: Optional[Union[int, float]] = None,
+    ) -> Self:
+        """询问消息。
+
+        表示回复一个消息后获取用户的回复。
+        相当于 `reply()` 后执行 `get()`。
+
+        Args:
+            message: 回复消息的内容。
+            max_try_times: 最大事件数。
+            timeout: 超时时间。
+
+        Returns:
+            用户回复的消息事件。
+        """
+        await self.reply(message)
+        return await self.get(max_try_times=max_try_times, timeout=timeout)
