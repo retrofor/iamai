@@ -8,7 +8,6 @@
         "dist/**/*.mjs",
         "dist/**/*.js",
         "dist/**/*.css",
-        ".next/**",
         "index.js",
         "ssg.js",
         "loader.js"
