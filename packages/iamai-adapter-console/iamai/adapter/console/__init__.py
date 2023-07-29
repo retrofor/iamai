@@ -5,10 +5,12 @@ from asyncio import Condition
 
 from iamai.event import Event
 from iamai.adapter import Adapter
+
 from .config import Config
 from .event import ConsoleEvent
 
 __all__ = ["ConsoleAdapter"]
+
 
 class ConsoleAdapter(Adapter[ConsoleEvent, Config]):
     """Console适配器。"""

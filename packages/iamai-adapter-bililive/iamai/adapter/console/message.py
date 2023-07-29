@@ -1,18 +1,20 @@
-from typing import Type, Union, Literal, Iterable, Optional, TypedDict
-from iamai.message import Message, MessageSegment
 import re
+from typing import Type, Union, Literal, Iterable, Optional, TypedDict
+
+from iamai.message import Message, MessageSegment
 
 
 class ConsoleMessage(MessageSegment[None]):
     """Console 适配器消息。"""
-    
+
     @property
     def _message_class(self) -> None:
         return None
 
     def is_text(self) -> bool:
         return self.type == "text"
-    
+
+
 def escape_tag(s: str) -> str:
     """用于记录带颜色日志时转义 `<tag>` 类型特殊标签
 
