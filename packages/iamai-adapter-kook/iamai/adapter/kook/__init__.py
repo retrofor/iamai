@@ -127,11 +127,11 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
                         heartbeat_task = asyncio.ensure_future(
                             self.start_heartbeat(self.bot.global_state["session"])
                         )
-                        logger.info("HeartBeat task started!")
+                        logger.debug("HeartBeat task started!")
+                        await self.handle_kook_event(data)
                     except Exception as e:
                         logger.error(f"WebSocket connection verified failed!\n{e}")
                         raise ReconnectError
-                    await self.handle_kook_event(data)
                 elif msg_dict.get("d").get("code") == 40103:
                     raise ReconnectError
                 elif msg_dict.get("d").get("code") == 40101:
@@ -214,7 +214,7 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
             )
 
     async def handle_kook_event(self, data: Dict[str, Any]):
-        """处理 Kook 事件。
+        """处理 kook 事件。
 
         Args:
             msg: 接收到的信息。

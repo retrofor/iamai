@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "iamai-adapter-cqhttp"
-version = "3.2.2"
+version = "3.2.3"
 description = "OneBot(go-cqhttp) adapter for iamai."
 authors = ["简律纯 <i@jyunko.cn>"]
 license = "GPL-3.0 License"
@@ -24,7 +24,7 @@ exclude = ["iamai/__init__.py", "iamai/adapter/__init__.py"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-iamai = "^3.2"
+iamai = ">=3.2"
 
 [tool.poetry.dev-dependencies]
 iamai = { path = "../../", develop = true }
