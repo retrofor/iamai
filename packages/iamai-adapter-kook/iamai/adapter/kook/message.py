@@ -4,7 +4,17 @@ import json
 from io import StringIO
 from dataclasses import dataclass
 from typing_extensions import override, deprecated
-from typing import Any, Dict, Type, Tuple, Union, Mapping, Iterable, Optional, cast # type: ignore
+from typing import (  # type: ignore
+    Any,
+    Dict,
+    Type,
+    Tuple,
+    Union,
+    Mapping,
+    Iterable,
+    Optional,
+    cast,
+)
 
 from iamai.message import Message, MessageSegment
 
