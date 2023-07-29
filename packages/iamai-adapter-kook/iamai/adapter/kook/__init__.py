@@ -81,7 +81,7 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
         }
         try:
             self._gateway_response = requests.get(url, headers=headers).json()
-            logger.success(f"GateWay GET success!")
+            logger.success("GateWay GET success!")
         except Exception as e:
             logger.error(f"GateWay GET failed!\n{e}")
 
@@ -145,10 +145,11 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
                     )
                     await asyncio.sleep(self.reconnect_interval)  # type: ignore
             elif msg_dict.get("s") == SignalTypes.PONG:
-                data = dict()
-                data["self_id"] = self_id
-                data["post_type"] = "meta_event"
-                data["meta_event_type"] = "heartbeat"
+                data = {
+                    "self_id": self_id,
+                    "post_type": "meta_event",
+                    "meta_event_type": "heartbeat",
+                }
                 logger.info(f"HeartBeat received!{data}")
                 logger.warning(
                     f"Bot {self.bot.global_state['session']} HeartBeat",
@@ -249,7 +250,7 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
         match = re.findall(r"[A-Z]", api)
         if len(match) > 0:
             for m in match:
-                api = api.replace(m, "-" + m.lower())
+                api = api.replace(m, f"-{m.lower()}")
         api = api.replace("_", "/")
 
         if api.startswith("/api/v3/"):
@@ -265,7 +266,7 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
         data: Optional[Mapping[str, Any]] = None,
         token: Optional[str] = None,
     ) -> Any:
-        data = dict(data) if data is not None else dict()
+        data = dict(data) if data is not None else {}
 
         # 判断 POST 或 GET
         method = get_api_method(api) if not data.get("method") else data.get("method")
@@ -382,7 +383,7 @@ def _handle_api_result(response) -> Any:
     """
     result = json.loads(response.content)
     if isinstance(result, dict):
-        logger.debug("API result " + str(result))
+        logger.debug(f"API result {str(result)}")
         if result.get("code") != 0:
             raise ActionFailed(response)
         else:
