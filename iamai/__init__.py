@@ -14,4 +14,4 @@ from iamai.plugin import Plugin
 from iamai.adapter import Adapter
 from iamai.config import ConfigModel
 
-__all__ = ['Bot', 'Event', 'Plugin', 'Adapter', 'ConfigModel']
+__all__ = ["Bot", "Event", "Plugin", "Adapter", "ConfigModel"]

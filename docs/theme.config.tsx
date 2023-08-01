@@ -45,9 +45,9 @@ const logo = (
 
 const config: DocsThemeConfig = {
   project: {
-    link: 'https://github.com/retro/iamai'
+    link: 'https://github.com/retrofor/iamai'
   },
-  docsRepositoryBase: 'https://github.com/retro/iamai/tree/master/docs',
+  docsRepositoryBase: 'https://github.com/retrofor/iamai/tree/master/docs',
   useNextSeoProps() {
     const { asPath } = useRouter()
     if (asPath !== '/') {
