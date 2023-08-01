@@ -11,7 +11,7 @@ const logo = (
       xmlns="http://www.w3.org/2000/svg"
     >
       <style>
-        {`.st0{fill:#fff}.st1{fill:#3d69a8}.st2{fill:#29993a}.st3{fill:#8fcce7}.st4{fill:#6ca0cf}.st5{fill:#000000}.st6{fill:#000000}`}
+        {`.st0{fill:#fff}.st1{fill:#3d69a8}.st2{fill:#29993a}.st3{fill:#8fcce7}.st4{fill:#6ca0cf}.st5{fill:#000000}.st6{fill:#002fa7}`}
       </style>
       <path d="M3 4v1h1V4h1V3h5v2h2v1h1V5h1V3h-2v1h-1V1H8v1H7V1H4v1H3v1H2v1z" className="st0" />
       <path d="M2 9h1v1h4V8h1V7h2V5H7v1H6v1H5V6H2v1H1v1h1zM9 10v1h1v-1h1V9H9z" className="st0" />
