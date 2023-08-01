@@ -1,10 +1,13 @@
 from iamai import Plugin
 from iamai.log import logger
-
+from iamai.adapter.kook.message import KookMessage, KookMessageSegment
 
 class EvalKook(Plugin):
     async def handle(self) -> None:
-        await self.event.reply(eval(self.event.content[5:]))
+        try:
+            await self.event.reply(KookMessageSegment.at(user_id=self.event.author_id))# eval(self.event.content[6:]))
+        except Exception as e:
+            await self.event.reply(f"Error:\n{e}")
 
     async def rule(self) -> bool:
         if self.event.adapter.name != "kook":

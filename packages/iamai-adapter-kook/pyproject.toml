@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "iamai-adapter-kook"
-version = "3.2.3"
+version = "3.2.4"
 description = "Kook adapter for iamai."
 authors = ["简律纯 <i@jyunko.cn>"]
 license = "GPL-3.0 License"

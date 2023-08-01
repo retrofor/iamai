@@ -3,10 +3,6 @@ import nextra from 'nextra'
 const withNextra = nextra({
   theme: 'nextra-theme-docs',
   themeConfig: './theme.config.tsx',
-  i18n: {
-    locales: ['en', 'zh', 'ko', 'jp'],
-    defaultLocale: 'en'
-  },
   latex: true,
   flexsearch: {
     codeblocks: true
