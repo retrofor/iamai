@@ -142,6 +142,12 @@ const config: DocsThemeConfig = {
   //     </a>
   //   )
   // },
+  i18n: [
+    { locale:'en', text:'English'},
+    { locale: 'zh', text:'中文' },
+    { locale: 'jp', text: '日本' },
+    { locale: 'ko', text: '한국인' }
+  ],
   editLink: {
     text: 'Edit this page on GitHub →'
   },
