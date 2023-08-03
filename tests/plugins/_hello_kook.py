@@ -2,6 +2,7 @@ from iamai import Plugin
 from iamai.log import logger
 from iamai.adapter.kook.message import KookMessage, KookMessageSegment
 
+
 class HalloKook(Plugin):
     async def handle(self) -> None:
         await self.event.reply(KookMessageSegment.Card(self.event.user_id))
