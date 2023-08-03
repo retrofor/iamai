@@ -148,10 +148,10 @@ const config: DocsThemeConfig = {
   //     </a>
   //   )
   // },
-  i18n: [
-    { locale: 'en-US', text: 'English' },
-    { locale: 'zh-CN', text: '简体中文' },
-  ],
+  i18n: Object.entries(languageMap).map(([locale, text]) => ({
+    locale,
+    text,
+  })),
   editLink: {
     text: () => useLocalesMap(editTextMap),
   },
