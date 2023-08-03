@@ -5,13 +5,7 @@ import useLocalesMap from "@components/use_locales_map";
 import {
   editTextMap,
   feedbackLinkMap,
-  footerTextMap,
-  gitTimestampMap,
-  headDescriptionMap,
   languageMap,
-  searchPlaceholderMap,
-  tableOfContentsTitleMap,
-  titleMap,
 } from "./translation/text";
 
 const logo = (
