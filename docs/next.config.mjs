@@ -9,7 +9,7 @@ const withNextra = nextra({
   },
   defaultShowCopyCode: true,
   i18n: {
-    locales: ["en-US", "zh-CN", "es-ES", "fr-FR", "pt-BR", "ja", "ko", "ru"],
+    locales: ["en-US", "zh-CN"],
     defaultLocale: "en-US",
   },
 })

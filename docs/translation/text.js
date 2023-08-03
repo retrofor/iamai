@@ -1,18 +1,12 @@
 /**
  * @typedef {"en-US"} DefaultLocale
- * @typedef {DefaultLocale | "zh-CN" | "es-ES" | "fr-FR" | "pt-BR" | "ja" | "ko" | "ru"} Locale
+ * @typedef {DefaultLocale | "zh-CN" } Locale
  */
 
 /** @type {Readonly<Record<Locale, string>>} */
 export const languageMap = {
   "en-US": "English",
-  "es-ES": "Español",
-  "fr-FR": "Français",
-  "pt-BR": "Português Brasileiro",
   "zh-CN": "简体中文",
-  ja: "日本語",
-  ko: "한국어",
-  ru: "Русский",
 };
 
 /** @type {Readonly<Record<Locale, string>>} */
