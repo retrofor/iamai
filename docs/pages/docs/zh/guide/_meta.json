@@ -1,0 +1,20 @@
+{
+  "basic-config": "Basic config",
+  "getting-started": "Getting started",
+  "hot-reload": "Hot reload",
+  "plugin-basic": "Plugin basic",
+  "--": {
+    "type": "separator",
+    "title": "More"
+  },
+  "plugin-advanced": "",
+  "hook-function": "",
+  "scheduler": "",
+  "---": {
+    "type": "separator",
+    "title": "More"
+  },
+  "cqhttp-adapter": "",
+  "dingtalk-adapter": "",
+  "mirai-adapter": ""
+}
