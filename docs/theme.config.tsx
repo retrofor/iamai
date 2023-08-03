@@ -1,7 +1,18 @@
 import { useRouter } from 'next/router'
 import type { DocsThemeConfig } from 'nextra-theme-docs'
 import { useConfig } from 'nextra-theme-docs'
-import { languageMap } from 'translation/text'
+import useLocalesMap from "@components/use_locale_map";
+import {
+  editTextMap,
+  feedbackLinkMap,
+  footerTextMap,
+  gitTimestampMap,
+  headDescriptionMap,
+  languageMap,
+  searchPlaceholderMap,
+  tableOfContentsTitleMap,
+  titleMap,
+} from "./translation/text";
 
 const logo = (
   <span>
@@ -147,12 +158,14 @@ const config: DocsThemeConfig = {
     locale,
     text,
   })),
+  search: {
+    placeholder: () => useLocalesMap(searchPlaceholderMap),
+  },
   editLink: {
-    text: 'Edit this page on GitHub →'
+    text: () => useLocalesMap(editTextMap),
   },
   feedback: {
-    content: 'Question? Give us feedback →',
-    labels: 'feedback'
+    content: () => useLocalesMap(feedbackLinkMap),
   },
   sidebar: {
     titleComponent({ title, type }) {
