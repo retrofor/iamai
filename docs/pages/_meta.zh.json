@@ -1,7 +1,7 @@
 {
-  "index": {
+  "index.zh": {
     "type": "page",
-    "title": "主页",
+    "title": "iamai主页",
     "display": "hidden",
     "theme": {
       "layout": "raw"
@@ -13,7 +13,7 @@
   },
   "showcase": {
     "type": "page",
-    "title": "展示"
+    "title": "展示柜"
   },
   "about": {
     "type": "page",
