@@ -16,7 +16,7 @@ iamai 内置了 `Message` 和 `MessageSegment` 类，即消息和消息字段。
 
 ```python
 msg_seg = MessageSegment()
-mas_seg.type = "text"
+msg_seg.type = "text"
 msg_seg["text"] = "Hello"
 msg = Message(msg_seg)
 
@@ -31,7 +31,7 @@ msg = Message(msg)
 msg = Message()
 
 msg_seg = MessageSegment()
-mas_seg.type = "text"
+msg_seg.type = "text"
 msg_seg["text"] = "Hello"
 
 msg += msg_seg
@@ -52,9 +52,9 @@ msg.startswith("a")
 
 ```python
 msg_seg = MessageSegment()
-mas_seg.type = "text"
+msg_seg.type = "text"
 
-msg_seg["text"] = "Hello"  # 等同与 mag_seg.data['text'] = 'Hello'
+msg_seg["text"] = "Hello"  # 等同与 msg_seg.data['text'] = 'Hello'
 print(msg_seg.get("text"))  # 等同与 print(msg_seg.data.get('text'))
 ```
 
