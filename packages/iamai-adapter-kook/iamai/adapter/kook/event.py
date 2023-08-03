@@ -517,7 +517,7 @@ class KookEvent(OriginEvent):
     频道消息类时, 代表的是频道 channel_id\n
     如果 channel_type 为 GROUP 组播且 type 为 255 系统消息时，则代表服务器 guild_id"""
     author_id: Optional[str] = None
-    content: str
+    content: KookMessage
     msg_id: str
     msg_timestamp: int
     nonce: str
