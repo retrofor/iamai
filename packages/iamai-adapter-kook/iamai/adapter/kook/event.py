@@ -3,7 +3,7 @@ import asyncio
 import inspect
 from enum import IntEnum
 from collections import UserDict
-from typing import (
+from typing import (  # type: ignore
     TYPE_CHECKING,
     Any,
     Dict,
@@ -14,7 +14,7 @@ from typing import (
     Literal,
     TypeVar,
     Optional,
-) # type: ignore
+)
 
 from pydantic import Field, HttpUrl, BaseModel, validator, root_validator
 
@@ -596,7 +596,8 @@ class NoticeEvent(KookEvent):
     notice_type: str
 
     def __repr__(self) -> str:
-            return f'Event<{self.post_type}>: "{self.content}"'
+        return f'Event<{self.post_type}>: "{self.content}"'
+
 
 # Channel Events
 class ChannelNoticeEvent(NoticeEvent):

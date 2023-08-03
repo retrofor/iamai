@@ -3,10 +3,19 @@ import json
 from io import StringIO
 from dataclasses import dataclass
 from typing_extensions import deprecated
-from typing import Any, Dict, Type, Tuple, Union, Mapping, Iterable, Optional, cast # type: ignore
+from typing import (
+    Any,
+    Dict,
+    Type,
+    Tuple,
+    Union,
+    Mapping,
+    Iterable,
+    Optional,
+    cast, # type: ignore
+)
 
 from iamai.message import Message, MessageSegment
-
 from .exceptions import UnsupportedMessageType
 
 __all__ = [
@@ -43,6 +52,7 @@ segment_text = {
     "card": "[卡片消息]",
 }
 
+
 class KookMessage(Message["KookMessageSegment"]):
     """
     Kook v3 协议 Message 适配。
@@ -57,6 +67,7 @@ class KookMessage(Message["KookMessageSegment"]):
 
     def _mapping_to_message_segment(self, msg: Mapping) -> "KookMessageSegment":
         return KookMessageSegment(type=msg["type"], data=msg.get("content") or {})
+
 
 class KookMessageSegment(MessageSegment["KookMessage"]):
     """Kook 消息字段。"""
@@ -114,11 +125,18 @@ class KookMessageSegment(MessageSegment["KookMessage"]):
 
     @classmethod
     def audio(
-        cls, file_key: str, title: Optional[str] = None, cover_file_key: Optional[str] = None
+        cls,
+        file_key: str,
+        title: Optional[str] = None,
+        cover_file_key: Optional[str] = None,
     ) -> "KookMessageSegment":
         return cls(
             type="audio",
-            data={"file_key": file_key, "title": title, "cover_file_key": cover_file_key},
+            data={
+                "file_key": file_key,
+                "title": title,
+                "cover_file_key": cover_file_key,
+            },
         )
 
     @classmethod
@@ -153,6 +171,7 @@ class KookMessageSegment(MessageSegment["KookMessage"]):
     @classmethod
     def quote(cls, msg_id: str) -> "KookMessageSegment":
         return cls(type="quote", data={"msg_id": msg_id})
+
 
 def _convert_to_card_message(msg: KookMessage) -> KookMessageSegment:
     cards = []
