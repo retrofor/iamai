@@ -1,14 +1,13 @@
 """Kook 适配器消息。"""
-from iamai.log import logger
 import json
 from io import StringIO
 from dataclasses import dataclass
-from typing_extensions import override, deprecated
+from typing_extensions import deprecated
 from typing import Any, Dict, Type, Tuple, Union, Mapping, Iterable, Optional, cast # type: ignore
 
 from iamai.message import Message, MessageSegment
 
-from .exceptions import UnsupportedMessageType, UnsupportedMessageOperation
+from .exceptions import UnsupportedMessageType
 
 __all__ = [
     "T_KookMSG",
@@ -53,7 +52,7 @@ class KookMessage(Message["KookMessageSegment"]):
     def _message_segment_class(self) -> Type["KookMessageSegment"]:
         return KookMessageSegment
 
-    def _str_to_message_segment(self, msg) -> "KookMessageSegment":
+    def _str_to_message_segment(self, msg: str) -> "KookMessageSegment":
         return KookMessageSegment(type="text", data={"content": msg})
 
     def _mapping_to_message_segment(self, msg: Mapping) -> "KookMessageSegment":
@@ -73,7 +72,6 @@ class KookMessageSegment(MessageSegment["KookMessage"]):
         return KookMessage
 
     def __str__(self) -> str:
-        logger.warning(f"KookMessageSegment.__str__: {self.type} {self.data}")
         if self.type in ["text", "kmarkdown", 1, 9]:
             return str(self.data["content"])
         elif self.type == "at":
