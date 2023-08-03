@@ -1,6 +1,6 @@
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
+import { useConfig } from "nextra-theme-docs";
 import type { DocsThemeConfig } from 'nextra-theme-docs'
-import { useConfig } from 'nextra-theme-docs'
 import useLocalesMap from "@components/use_locales_map";
 import {
   editTextMap,
@@ -152,12 +152,12 @@ const config: DocsThemeConfig = {
     locale,
     text,
   })),
-  // editLink: {
-  //   text: () => useLocalesMap(editTextMap),
-  // },
-  // feedback: {
-  //   content: () => useLocalesMap(feedbackLinkMap),
-  // },
+  editLink: {
+    text: () => useLocalesMap(editTextMap),
+  },
+  feedback: {
+    content: () => useLocalesMap(feedbackLinkMap),
+  },
   sidebar: {
     titleComponent({ title, type }) {
       if (type === 'separator') {
