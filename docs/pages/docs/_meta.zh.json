@@ -1,21 +1,16 @@
 {
-  "index": "Introduction",
+  "index": "简介",
   "guide": "",
-  "-- Themes": {
-    "type": "separator",
-    "title": "Themes"
-  },
-  "model": "",
   "-- More": {
     "type": "separator",
-    "title": "More"
+    "title": "更多信息"
   },
   "about-link": {
-    "title": "About iamai",
+    "title": "关于 IamAI",
     "href": "/about"
   },
   "HydroRoll-link": {
-    "title": "HydroRoll Docs ↗",
+    "title": "水系文档 ↗",
     "href": "https://hydroroll.retrofor.space",
     "newWindow": true
   }
