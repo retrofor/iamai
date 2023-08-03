@@ -9,9 +9,9 @@ const withNextra = nextra({
   },
   defaultShowCopyCode: true,
   i18n: {
-    locals: ['en-US','zh-CN'],
-    defaultLocal: 'en-US',
-  }
+    locales: ["en-US", "zh-CN", "es-ES", "fr-FR", "pt-BR", "ja", "ko", "ru"],
+    defaultLocale: "en-US",
+  },
 })
 
 export default withNextra({
