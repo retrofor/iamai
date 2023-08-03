@@ -2,20 +2,12 @@
 import json
 from io import StringIO
 from dataclasses import dataclass
+from typing import cast  # type: ignore
 from typing_extensions import deprecated
-from typing import (
-    Any,
-    Dict,
-    Type,
-    Tuple,
-    Union,
-    Mapping,
-    Iterable,
-    Optional,
-    cast, # type: ignore
-)
+from typing import Any, Dict, Type, Tuple, Union, Mapping, Iterable, Optional
 
 from iamai.message import Message, MessageSegment
+
 from .exceptions import UnsupportedMessageType
 
 __all__ = [
