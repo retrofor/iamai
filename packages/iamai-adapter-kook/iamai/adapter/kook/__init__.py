@@ -19,7 +19,7 @@ from iamai.adapter.utils import WebSocketAdapter
 from iamai.log import logger, error_or_exception
 
 from .config import Config
-from .message import KookMessage
+from .message import KookMessage, msg_type_map
 from .api.handle import User, get_api_method, get_api_restype
 from .exceptions import (
     ApiTimeout,
@@ -171,7 +171,7 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
                     if data["type"] == EventTypes.sys:
                         data["post_type"] = "notice"
                         data["notice_type"] = extra.get("type")
-                        message = KookMessage(f'{data["content"]}')
+                        message = KookMessage(("{}").format(data["content"]))
                         data["message"] = data.get("content")
                         # data['notice_type'] = data.get('channel_type').lower()
                         # data['notice_type'] = 'private' if data['notice_type'] == 'person' else data['notice_type']
@@ -189,9 +189,10 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
                             else data["message_type"]
                         )
                         data["extra"]["content"] = data.get("content")
-                        data["message"] = KookMessage(f'{data["content"]}')
+                        data["message"] = KookMessage(f'{data.get("content")}')
+                        data["raw_message"] = data.get("content")
                         data["event"] = data["extra"]
-
+                        
                     data["message_id"] = data.get("msg_id")
                     await self.handle_kook_event(data)
                 except Exception as e:

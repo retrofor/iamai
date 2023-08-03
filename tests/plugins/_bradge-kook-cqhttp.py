@@ -20,4 +20,4 @@ class Bradge(Plugin):
     async def rule(self) -> bool:
         if self.event.adapter.name not in ["cqhttp", "kook"]:
             return False
-        return self.event.type in ["message", "9", 9]
+        return self.event.type in ["message",  9]

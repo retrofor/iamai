@@ -1,20 +1,10 @@
 """Kook 适配器消息。"""
-
+from iamai.log import logger
 import json
 from io import StringIO
 from dataclasses import dataclass
 from typing_extensions import override, deprecated
-from typing import (  # type: ignore
-    Any,
-    Dict,
-    Type,
-    Tuple,
-    Union,
-    Mapping,
-    Iterable,
-    Optional,
-    cast,
-)
+from typing import Any, Dict, Type, Tuple, Union, Mapping, Iterable, Optional, cast # type: ignore
 
 from iamai.message import Message, MessageSegment
 
@@ -54,6 +44,20 @@ segment_text = {
     "card": "[卡片消息]",
 }
 
+class KookMessage(Message["KookMessageSegment"]):
+    """
+    Kook v3 协议 Message 适配。
+    """
+
+    @property
+    def _message_segment_class(self) -> Type["KookMessageSegment"]:
+        return KookMessageSegment
+
+    def _str_to_message_segment(self, msg) -> "KookMessageSegment":
+        return KookMessageSegment(type="text", data={"content": msg})
+
+    def _mapping_to_message_segment(self, msg: Mapping) -> "KookMessageSegment":
+        return KookMessageSegment(type=msg["type"], data=msg.get("content") or {})
 
 class KookMessageSegment(MessageSegment["KookMessage"]):
     """Kook 消息字段。"""
@@ -64,96 +68,45 @@ class KookMessageSegment(MessageSegment["KookMessage"]):
     https://developer.kookapp.cn/doc/event/message
     """
 
-    # 已知：
-    # command/shell_command使用message_seg = Message[0]; str(message_seg) if message_seg.is_text()
-    # startswith/endswith/keyword使用event.get_plaintext()
-    # regex使用str(Message)
-
     @property
-    def _message_class(cls) -> Type["KookMessage"]:
+    def _message_class(self) -> Type["KookMessage"]:
         return KookMessage
 
     def __str__(self) -> str:
-        if self.type in ["text", "kmarkdown"]:
+        logger.warning(f"KookMessageSegment.__str__: {self.type} {self.data}")
+        if self.type in ["text", "kmarkdown", 1, 9]:
             return str(self.data["content"])
         elif self.type == "at":
             return str(f"@{self.data['user_name']}")
         else:
             return segment_text.get(self.type, "[未知类型消息]")
 
-    @property
-    def get_plain_text(self):
-        if self.type == "text":
-            return self.data["content"]
-        elif self.type == "kmarkdown":
-            return self.data["raw_content"]
-        else:
-            return ""
-
-    # @overrides(MessageSegment)
-    def __add__(
-        self, other: Union[str, "KookMessageSegment", Iterable["KookMessageSegment"]]
-    ) -> "KookMessage":
-        return KookMessage(self.conduct(other))
-
-    # @overrides(MessageSegment)
-    def __radd__(
-        self, other: Union[str, "MessageSegment", Iterable["MessageSegment"]]
-    ) -> "Message":
-        if isinstance(other, str):
-            other = MessageSegment(self.type, {"content": other})
-        return KookMessage(other.conduct(self))  # type: ignore
-
-    def conduct(
-        self, other: Union[str, "KookMessageSegment", Iterable["KookMessageSegment"]]
-    ) -> "KookMessageSegment":
-        """
-        连接两个或多个 MessageSegment，必须为纯文本段或 KMarkdown 段
-        """
-
-        if isinstance(other, (str, KookMessageSegment)):
-            other = [other]  # type: ignore
-        msg = KookMessage([self, *other])
-        msg.reduce()  # type: ignore
-
-        if len(msg) != 1:
-            raise UnsupportedMessageOperation("必须为纯文本段或 KMarkdown 段")
-        else:
-            return msg[0]  # type: ignore
-
-    # @overrides(MessageSegment)
-    def is_text(self) -> bool:
-        if self.type == "kmarkdown":
-            return self.data["raw_content"] == self.data["content"]
-        else:
-            return self.type == "text"
-
-    @staticmethod
+    @classmethod
     @deprecated("用 KMarkdown 语法 (met)用户id/here/all(met) 代替")
-    def at(user_id: str) -> "KookMessageSegment":
+    def at(cls, user_id: str) -> "KookMessageSegment":
         return KookMessageSegment.KMarkdown(f"(met){user_id}(met)", user_id)
 
-    @staticmethod
-    def text(text: str) -> "KookMessageSegment":
-        return KookMessageSegment("text", {"content": text})
+    @classmethod
+    def text(cls, text: str) -> "KookMessageSegment":
+        return cls(type="text", data={"content": text})
 
-    @staticmethod
-    def image(file_key: str) -> "KookMessageSegment":
-        return KookMessageSegment("image", {"file_key": file_key})
+    @classmethod
+    def image(cls, file_key: str) -> "KookMessageSegment":
+        return cls(type="image", data={"file_key": file_key})
 
-    @staticmethod
-    def video(file_key: str, title: Optional[str] = None) -> "KookMessageSegment":
-        return KookMessageSegment(
-            "video",
-            {
+    @classmethod
+    def video(cls, file_key: str, title: Optional[str] = None) -> "KookMessageSegment":
+        return cls(
+            type="video",
+            data={
                 "file_key": file_key,
                 "title": title,
             },
         )
 
-    @staticmethod
-    def file(file_key: str, title: Optional[str] = None) -> "KookMessageSegment":
-        return KookMessageSegment(
+    @classmethod
+    def file(cls, file_key: str, title: Optional[str] = None) -> "KookMessageSegment":
+        return cls(
             "file",
             {
                 "file_key": file_key,
@@ -161,18 +114,18 @@ class KookMessageSegment(MessageSegment["KookMessage"]):
             },
         )
 
-    @staticmethod
+    @classmethod
     def audio(
-        file_key: str, title: Optional[str] = None, cover_file_key: Optional[str] = None
+        cls, file_key: str, title: Optional[str] = None, cover_file_key: Optional[str] = None
     ) -> "KookMessageSegment":
-        return KookMessageSegment(
-            "audio",
-            {"file_key": file_key, "title": title, "cover_file_key": cover_file_key},
+        return cls(
+            type="audio",
+            data={"file_key": file_key, "title": title, "cover_file_key": cover_file_key},
         )
 
-    @staticmethod
+    @classmethod
     def KMarkdown(
-        content: str, raw_content: Optional[str] = None
+        cls, content: str, raw_content: Optional[str] = None
     ) -> "KookMessageSegment":
         """
         构造KMarkdown消息段
@@ -183,12 +136,12 @@ class KookMessageSegment(MessageSegment["KookMessage"]):
         if raw_content is None:
             raw_content = ""
 
-        return KookMessageSegment(
-            "kmarkdown", {"content": content, "raw_content": raw_content}
+        return cls(
+            type="kmarkdown", data={"content": content, "raw_content": raw_content}
         )
 
-    @staticmethod
-    def Card(content: Any) -> "KookMessageSegment":
+    @classmethod
+    def Card(cls, content: Any) -> "KookMessageSegment":
         """
         构造卡片消息
 
@@ -197,82 +150,11 @@ class KookMessageSegment(MessageSegment["KookMessage"]):
         if not isinstance(content, str):
             content = json.dumps(content)
 
-        return KookMessageSegment("card", {"content": content})
+        return cls(type="card", data={"content": content})
 
-    @staticmethod
-    def quote(msg_id: str) -> "KookMessageSegment":
-        return KookMessageSegment("quote", {"msg_id": msg_id})
-
-
-class KookMessage(Message[MessageSegment]):
-    """
-    Kook v3 协议 Message 适配。
-    """
-
-    @property
-    def _message_segment_class(self) -> Type["KookMessageSegment"]:
-        return KookMessageSegment
-
-    @staticmethod
-    def _str_to_message_segment(
-        msg: Union[str, Mapping, Iterable[Mapping]]
-    ) -> Iterable[KookMessageSegment]:
-        if isinstance(msg, Mapping):
-            msg = cast(Mapping[str, Any], msg)
-            yield KookMessageSegment(msg["type"], msg.get("content") or {})
-        elif isinstance(msg, Iterable) and not isinstance(msg, str):
-            for seg in msg:
-                yield KookMessageSegment(seg["type"], seg.get("content") or {})
-        elif isinstance(msg, str):
-            yield KookMessageSegment("text", {"content": msg})
-
-    def get_plain_text(self) -> str:
-        return "".join(seg.get_plain_text() for seg in self)  # type: ignore
-
-    def reduce(self) -> None:
-        """合并消息内连续的纯文本段和 KMarkdown 段。"""
-        index = 1
-        while index < len(self):
-            prev = self[index - 1]
-            cur = self[index]
-            if prev.type == "text" and cur.type == "text":
-                self[index - 1] = MessageSegment(
-                    prev.type, {"content": prev.data["content"] + cur.data["content"]}
-                )
-                del self[index]
-            elif prev.type == "kmarkdown" and cur.type == "kmarkdown":
-                self[index - 1] = MessageSegment(
-                    prev.type,
-                    {
-                        "content": prev.data["content"] + cur.data["content"],
-                        "raw_content": prev.data["raw_content"]
-                        + cur.data["raw_content"],
-                    },
-                )
-                del self[index]
-            elif prev.type == "kmarkdown" and cur.type == "text":
-                self[index - 1] = MessageSegment(
-                    prev.type,
-                    {
-                        "content": prev.data["content"]
-                        + escape_kmarkdown(cur.data["content"]),
-                        "raw_content": prev.data["raw_content"] + cur.data["content"],
-                    },
-                )
-                del self[index]
-            elif prev.type == "text" and cur.type == "kmarkdown":
-                self[index - 1] = MessageSegment(
-                    prev.type,
-                    {
-                        "content": escape_kmarkdown(prev.data["content"])
-                        + cur.data["content"],
-                        "raw_content": prev.data["content"] + cur.data["raw_content"],
-                    },
-                )
-                del self[index]
-            else:
-                index += 1
-
+    @classmethod
+    def quote(cls, msg_id: str) -> "KookMessageSegment":
+        return cls(type="quote", data={"msg_id": msg_id})
 
 def _convert_to_card_message(msg: KookMessage) -> KookMessageSegment:
     cards = []
@@ -331,10 +213,10 @@ def _convert_to_card_message(msg: KookMessage) -> KookMessageSegment:
 @dataclass
 class MessageSerializer:
     """
-    开黑啦 协议 Message 序列化器。
+    Kook 协议 Message 序列化器。
     """
 
-    message: Message
+    message: KookMessage
 
     def serialize(self, for_send: bool = True) -> Tuple[int, str]:
         if len(self.message) != 1:
@@ -368,7 +250,7 @@ class MessageSerializer:
 @dataclass
 class MessageDeserializer:
     """
-    开黑啦 协议 Message 反序列化器。
+    Kook 协议 Message 反序列化器。
     """
 
     type_code: int

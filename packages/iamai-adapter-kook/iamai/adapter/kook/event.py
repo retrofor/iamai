@@ -3,7 +3,7 @@ import asyncio
 import inspect
 from enum import IntEnum
 from collections import UserDict
-from typing import (  # type: ignore
+from typing import (
     TYPE_CHECKING,
     Any,
     Dict,
@@ -14,7 +14,7 @@ from typing import (  # type: ignore
     Literal,
     TypeVar,
     Optional,
-)
+) # type: ignore
 
 from pydantic import Field, HttpUrl, BaseModel, validator, root_validator
 
@@ -517,7 +517,7 @@ class KookEvent(OriginEvent):
     频道消息类时, 代表的是频道 channel_id\n
     如果 channel_type 为 GROUP 组播且 type 为 255 系统消息时，则代表服务器 guild_id"""
     author_id: Optional[str] = None
-    content: str
+    content: KookMessage
     msg_id: str
     msg_timestamp: int
     nonce: str
@@ -596,8 +596,7 @@ class NoticeEvent(KookEvent):
     notice_type: str
 
     def __repr__(self) -> str:
-        return f'Event<{self.post_type}>: "{self.content}"'
-
+            return f'Event<{self.post_type}>: "{self.content}"'
 
 # Channel Events
 class ChannelNoticeEvent(NoticeEvent):
