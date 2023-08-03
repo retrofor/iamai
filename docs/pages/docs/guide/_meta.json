@@ -1,19 +1,18 @@
 {
-  "index": "Introduction",
-  "basic-config": "",
-  "getting-started": "",
-  "hot-reload": "",
-  "plugin-basic": "",
+  "basic-config": "Basic config",
+  "getting-started": "Getting started",
+  "hot-reload": "Hot reload",
+  "plugin-basic": "Plugin basic",
   "--": {
     "type": "separator",
-    "title": "--"
+    "title": "More"
   },
   "plugin-advanced": "",
   "hook-function": "",
   "scheduler": "",
   "---": {
     "type": "separator",
-    "title": "--"
+    "title": "More"
   },
   "cqhttp-adapter": "",
   "dingtalk-adapter": "",
