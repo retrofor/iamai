@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import type { DocsThemeConfig } from 'nextra-theme-docs'
 import { useConfig } from 'nextra-theme-docs'
+import { languageMap } from 'translation/text'
 
 const logo = (
   <span>
@@ -142,10 +143,10 @@ const config: DocsThemeConfig = {
   //     </a>
   //   )
   // },
-  i18n: [
-    { locale:'en', text:'English'},
-    { locale: 'zh', text:'中文' }
-  ],
+  i18n: Object.entries(languageMap).map(([locale, text]) => ({
+    locale,
+    text,
+  })),
   editLink: {
     text: 'Edit this page on GitHub →'
   },
