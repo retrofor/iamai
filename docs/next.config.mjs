@@ -7,7 +7,11 @@ const withNextra = nextra({
   flexsearch: {
     codeblocks: true
   },
-  defaultShowCopyCode: true
+  defaultShowCopyCode: true, 
+  i18n: {
+    locals: ['en','zh','jp','ko'],
+    defaultLocal: 'zh',
+  }
 })
 
 export default withNextra({
