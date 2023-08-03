@@ -152,12 +152,12 @@ const config: DocsThemeConfig = {
     locale,
     text,
   })),
-  editLink: {
-    text: () => useLocalesMap(editTextMap),
-  },
-  feedback: {
-    content: () => useLocalesMap(feedbackLinkMap),
-  },
+  // editLink: {
+  //   text: () => useLocalesMap(editTextMap),
+  // },
+  // feedback: {
+  //   content: () => useLocalesMap(feedbackLinkMap),
+  // },
   sidebar: {
     titleComponent({ title, type }) {
       if (type === 'separator') {
