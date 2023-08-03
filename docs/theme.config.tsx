@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import type { DocsThemeConfig } from 'nextra-theme-docs'
 import { useConfig } from 'nextra-theme-docs'
-import useLocalesMap from "@components/use_locale_map";
+import useLocalesMap from "@components/use_locales_map";
 import {
   editTextMap,
   feedbackLinkMap,
@@ -158,9 +158,6 @@ const config: DocsThemeConfig = {
     locale,
     text,
   })),
-  search: {
-    placeholder: () => useLocalesMap(searchPlaceholderMap),
-  },
   editLink: {
     text: () => useLocalesMap(editTextMap),
   },
