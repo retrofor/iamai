@@ -11,10 +11,6 @@
     "type": "page",
     "title": "文档"
   },
-  "showcase": {
-    "type": "page",
-    "title": "展示柜"
-  },
   "about": {
     "type": "page",
     "title": "关于",
