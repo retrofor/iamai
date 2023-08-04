@@ -1,78 +1,136 @@
-import { useRouter } from "next/router";
-
 /**
  * @typedef {"en-US"} DefaultLocale
- * @typedef {DefaultLocale | "zh-CN" } Locale
- * @typedef {{locale?: Locale | undefined; locales?: Locale[] | undefined; defaultLocale?: DefaultLocale | undefined}} TypedRouter
- * @typedef {Omit<import('next/router').NextRouter, "locale" | "locales" | "defaultLocale"> & TypedRouter} NextRouter
- * @template T
- * @type {(localesMap: Record<Locale, T>) => T}
+ * @typedef {DefaultLocale | "zh-CN" | "es-ES" | "fr-FR" | "pt-BR" | "ja" | "ko" | "ru"} Locale
  */
-export default function useLocalesMap(localesMap) {
-  /** @type {NextRouter} */
-  const router = useRouter();
-  const { locale, defaultLocale } = router;
-  if (!localesMap) {
-    throw new Error("Pass a locales map as argument to useLocalesMap");
-  }
 
-  if (!isObject(localesMap)) {
-    throw new Error("Locales map must be an object");
-  }
+/** @type {Readonly<Record<Locale, string>>} */
+export const languageMap = {
+  "en-US": "English",
+  "es-ES": "Español",
+  "fr-FR": "Français",
+  "pt-BR": "Português Brasileiro",
+  "zh-CN": "简体中文",
+  ja: "日本語",
+  ko: "한국어",
+  ru: "Русский",
+};
 
-  if (!localesMap.hasOwnProperty(defaultLocale)) {
-    throw new Error(
-      `Locales map must contain default locale "${defaultLocale}"`
-    );
-  }
+/** @type {Readonly<Record<Locale, string>>} */
+export const titleMap = {
+  "en-US": "React Hooks for Data Fetching",
+  "es-ES": "Biblioteca React Hooks para la obtención de datos",
+  "fr-FR": "Bibliothèque de React Hooks pour la récupération de données",
+  "pt-BR": "React Hooks para Data Fetching",
+  "zh-CN": "用于数据请求的 React Hooks 库",
+  ja: "データ取得のための React Hooks ライブラリ",
+  ko: "데이터 가져오기를 위한 React Hooks",
+  ru: "React хуки для выборки данных",
+};
 
-  if (
-    localesMap.hasOwnProperty(locale) &&
-    typeof localesMap[locale] !== typeof localesMap[defaultLocale]
-  ) {
-    throw new Error(
-      `Invalid locales map: Shape of "${locale}" must be the same as "${defaultLocale}"`
-    );
-  }
+/** @type {Readonly<Record<Locale, {lightweight:string;realtime?:string;suspense?:string;pagination?:string;backendAgnostic?:string;renderingStrategies?:string;typescript?:string;remoteLocal?:string;}>>} */
+export const featuresMap = {
+  "en-US": {
+    lightweight: "Lightweight",
+    realtime: "Realtime",
+    suspense: "Suspense",
+    pagination: "Pagination",
+    backendAgnostic: "Backend Agnostic",
+    renderingStrategies: "SSR / SSG Ready",
+    typescript: "TypeScript Ready",
+    remoteLocal: "Remote + Local",
+  },
+  "fr-FR": {
+    lightweight: "Léger",
+    realtime: "Temps réel",
+    backendAgnostic: "Indépendant du Backend",
+  },
+  "pt-BR": {
+    lightweight: "Leve",
+    realtime: "Tempo-real",
+    suspense: "Suspense",
+    pagination: "Paginação",
+    backendAgnostic: "Backend Agnóstico",
+    renderingStrategies: "Pronto para SSR / SSG",
+    typescript: "Pronto para TypeScript",
+    remoteLocal: "Remoto + Local",
+  },
+  ru: {
+    lightweight: "Лёгкий",
+    realtime: "В реальном времени",
+    suspense: "Задержка",
+    pagination: "Пагинация",
+    backendAgnostic: "Бэкэнд-независимый",
+    renderingStrategies: "SSR / SSG",
+    typescript: "TypeScript",
+    remoteLocal: "Удалённо + Локально",
+  },
+};
 
-  if (["string", "number", "symbol"].includes(typeof localesMap[defaultLocale])) {
-    return localesMap[locale] || localesMap[defaultLocale];
-  }
+/** @type {Readonly<Record<Locale, string>>} */
+export const headDescriptionMap = {
+  "en-US": "SWR is a React Hooks library for data fetching. SWR first returns the data from cache (stale), then sends the fetch request (revalidate), and finally comes with the up-to-date data again.",
+  "fr-FR": "SWR est une libraire de React Hooks pour récupérer des données. SWR retourne d'abord les données en cache (stale), puis envoie la requête (revalidate), et enfin retourne les données à jour.",
+  "pt-BR": "SWR é uma biblioteca React Hooks para data fetching. SWR primeiro retorna os dados do cache (stale), então envia a requisição de busca (revalidate), e finalmente vem com os dados atualizados novamente.",
+  ru: "SWR — это библиотека React хуков для получения данных. SWR сначала возвращает данные из кеша (устаревшие), затем отправляет запрос на выборку (ревалидация) и, наконец, снова получает актуальные данные.",
+};
 
-  const target = JSON.parse(JSON.stringify(localesMap[defaultLocale]));
-  return mergeDeep(target, localesMap[locale]);
-}
+/** @type {Readonly<Record<Locale, string>>} */
+export const feedbackLinkMap = {
+  "en-US": "Question? Give us feedback →",
+  "es-ES": "¿Dudas? Danos tu feedback →",
+  "fr-FR": "Question? Donnez-nous votre avis →",
+  "pt-BR": "Dúvidas? Nos dê feedback →",
+  "zh-CN": "有疑问？给我们反馈 →",
+  ko: "질문이 있으신가요? 피드백을 남겨주세요 →",
+  ru: "Вопросы? Оставьте нам отзыв →",
+};
 
-/**
- * Simple object check.
- * @param {any} item
- * @returns {boolean}
- */
-function isObject(item) {
-  return item && typeof item === "object" && !Array.isArray(item);
-}
+/** @type {Readonly<Record<Locale, string>>} */
+export const editTextMap = {
+  "en-US": "Edit this page on GitHub →",
+  "es-ES": "Edite esta página en GitHub →",
+  "fr-FR": "Modifier cette page sur GitHub →",
+  "pt-BR": "Edite essa página no GitHub →",
+  "zh-CN": "在 GitHub 上编辑本页 →",
+  ja: "Github で編集する →",
+  ko: "Github에서 이 페이지 편집하기 →",
+  ru: "Редактировать эту страницу на GitHub →",
+};
 
-/**
- * Deep merge two objects.
- * @template T
- * @param {Record<string, T>} target
- * @param {Record<string, T>} sources
- * @returns {Record<string, T>}
- */
-function mergeDeep(target, ...sources) {
-  if (!sources.length) return target;
-  const source = sources.shift();
+/** @type {Readonly<Record<Locale, { utmSource: string; text: string; suffix?: string | undefined }>>} */
+export const footerTextMap = {
+  "en-US": { utmSource: "swr", text: "Powered by" },
+  "es-ES": { utmSource: "swr_es-es", text: "Desarrollado por" },
+  "fr-FR": { utmSource: "swr_fr-fr", text: "Propulsé par" },
+  "pt-BR": { utmSource: "swr_pt-br", text: "Desenvolvido por" },
+  "zh-CN": { utmSource: "swr_zh-cn", text: "由", suffix: "驱动" },
+  ja: { utmSource: "swr_ja", text: "提供" },
+  ko: { utmSource: "swr_ko", text: "Powered by" },
+  ru: { utmSource: "swr_ru", text: "Работает на" },
+};
 
-  if (isObject(target) && isObject(source)) {
-    for (const key in source) {
-      if (isObject(source[key])) {
-        if (!target[key]) Object.assign(target, { [key]: {} });
-        mergeDeep(target[key], source[key]);
-      } else {
-        Object.assign(target, { [key]: source[key] });
-      }
-    }
-  }
+/** @type {Readonly<Record<Locale, string>>} */
+export const tableOfContentsTitleMap = {
+  "en-US": "On This Page",
+  "es-ES": "En esta página",
+  "fr-FR": "Sur cette page",
+  "pt-BR": "Nessa página",
+  ru: "На этой странице",
+};
 
-  return mergeDeep(target, ...sources);
-}
+/** @type {Readonly<Record<Locale, string>>} */
+export const searchPlaceholderMap = {
+  "en-US": "Search documentation...",
+  "es-ES": "Buscar documento...",
+  "fr-FR": "Rechercher dans la doc...",
+  "pt-BR": "Buscar documentação...",
+  ko: "문서 검색...",
+  ru: "Искать в документации...",
+};
+
+/** @type {Readonly<Record<Locale, string>>} */
+export const gitTimestampMap = {
+  "en-US": "Last updated on",
+  "fr-FR": "Dernière mise à jour le",
+  ru: "Последнее обновление",
+};
