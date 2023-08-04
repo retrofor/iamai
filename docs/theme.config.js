@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import { useConfig } from "nextra-theme-docs";
-import type { DocsThemeConfig } from 'nextra-theme-docs'
-import useLocalesMap from "@components/use_locales_map";
+import useLocalesMap from "./components/use_locales_map";
 import {
   editTextMap,
   feedbackLinkMap,
@@ -78,7 +77,7 @@ const logo = (
 )
 
 /** @type {import('nextra-theme-docs').DocsThemeConfig} */
-const config: DocsThemeConfig = {
+const ThemeConfig = {
   project: {
     link: 'https://github.com/retrofor/iamai'
   },
@@ -198,4 +197,4 @@ const config: DocsThemeConfig = {
   }
 }
 
-export default config
+export default ThemeConfig;
