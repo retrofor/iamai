@@ -77,6 +77,7 @@ const logo = (
   </span>
 )
 
+/** @type {import('nextra-theme-docs').DocsThemeConfig} */
 const config: DocsThemeConfig = {
   project: {
     link: 'https://github.com/retrofor/iamai'
