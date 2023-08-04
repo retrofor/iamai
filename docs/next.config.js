@@ -19,18 +19,17 @@ module.exports = withNextra({
     // Eslint behaves weirdly in this monorepo.
     ignoreDuringBuilds: true
   },
-  webpack(config) {
-    const allowedSvgRegex = /components\/icons\/.+\.svg$/
-
-    const fileLoaderRule = config.module.rules.find(rule =>
-      rule.test?.test('.svg')
-    )
-    fileLoaderRule.exclude = allowedSvgRegex
-
+  webpack: (config) => {
     config.module.rules.push({
-      test: allowedSvgRegex,
-      use: ['@svgr/webpack']
-    })
-    return config
+      test: /\.(js|jsx|ts|tsx)$/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env', '@babel/preset-react'],
+        },
+      },
+    });
+    return config;
   }
 })
+
