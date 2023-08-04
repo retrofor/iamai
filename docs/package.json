@@ -3,6 +3,7 @@
   "author": "HsiangNianian",
   "website": "https://iamai.retrofor.space/",
   "license": "MIT",
+  "main": "index.js",
   "private": true,
   "scripts": {
     "build": "next build",
