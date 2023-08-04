@@ -5,6 +5,7 @@
   "license": "MIT",
   "main": "index.js",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "next build",
     "dev": "next",
