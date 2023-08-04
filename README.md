@@ -115,15 +115,15 @@ or you can also install for TEST.
   ```sh
   git clone https://github.com/retrofor/iamai.git
   cd iamai
-  poetry install --no-dev  # 推荐
-  pip install .  # 不推荐
+  poetry install --only main  # 推荐 (recommended)
+  pip install .  # 不推荐 (not recommended)
   ```
 
 ### Adapters
 
 iamai itself is just a chatbot framework and additional protocol adapters are required to support specific protocols. You can use pip to install the protocol adapter:
 
-```py
+```shell
 pip install iamai-adapter-cqhttp
 pip install iamai-adapter-mirai
 pip install iamai-adapter-dingtalk
