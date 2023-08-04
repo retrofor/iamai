@@ -10,8 +10,8 @@ const withNextra = nextra({
   },
   defaultShowCopyCode: true,
   i18n: {
-    locales: ['en-US', 'zh-CN'],
-    defaultLocale: 'en-US',
+    locales: ["en-US", "zh-CN", "es-ES", "fr-FR", "pt-BR", "ja", "ko", "ru"],
+    defaultLocale: "en-US",
     domains: [
       {
         // Note: subdomains must be included in the domain value to be matched
