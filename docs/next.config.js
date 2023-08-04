@@ -15,23 +15,21 @@ module.exports = withNextra({
     defaultLocale: "en-US",
   },
   reactStrictMode: true,
-  // eslint: {
-  //   // Eslint behaves weirdly in this monorepo.
-  //   ignoreDuringBuilds: true
-  // },
-  // webpack(config) {
-  //   const allowedSvgRegex = /components\/icons\/.+\.svg$/
-
-  //   const fileLoaderRule = config.module.rules.find(rule =>
-  //     rule.test?.test('.svg')
-  //   )
-  //   fileLoaderRule.exclude = allowedSvgRegex
-
-  //   config.module.rules.push({
-  //     test: allowedSvgRegex,
-  //     use: ['@svgr/webpack']
-  //   })
-  //   return config
-  // }
+  eslint: {
+    // Eslint behaves weirdly in this monorepo.
+    ignoreDuringBuilds: true
+  },
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.(js|jsx|ts|tsx)$/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env', '@babel/preset-react'],
+        },
+      },
+    });
+    return config;
+  },
 })
 
