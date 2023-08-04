@@ -12,19 +12,6 @@ const withNextra = nextra({
   i18n: {
     locales: ["en-US", "zh-CN", "es-ES", "fr-FR", "pt-BR", "ja", "ko", "ru"],
     defaultLocale: "en-US",
-    domains: [
-      {
-        // Note: subdomains must be included in the domain value to be matched
-        // e.g. www.example.com should be used if that is the expected hostname
-        domain: 'iamai.retrofor.space',
-        defaultLocale: 'en-US',
-      },
-      {
-        domain: 'iamai.retrofor.zh',
-        defaultLocale: 'zh-CN',
-      },
-    ],
-    localeDetection: false,
   },
 })
 
