@@ -77,7 +77,7 @@ const logo = (
 )
 
 /** @type {import('nextra-theme-docs').DocsThemeConfig} */
-const ThemeConfig = {
+const themeConfig = {
   project: {
     link: 'https://github.com/retrofor/iamai'
   },
@@ -197,4 +197,4 @@ const ThemeConfig = {
   }
 }
 
-export default ThemeConfig;
+export default themeConfig;
