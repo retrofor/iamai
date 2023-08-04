@@ -1,4 +1,4 @@
-const withNextra = nextra({
+const withNextra = require("nextra")({
   theme: 'nextra-theme-docs',
   themeConfig: './theme.config.js',
   latex: true,
@@ -7,7 +7,7 @@ const withNextra = nextra({
     codeblocks: true
   },
   defaultShowCopyCode: true,
-})
+});
 
 module.exports = withNextra({
   i18n: {
