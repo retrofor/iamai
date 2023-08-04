@@ -15,10 +15,6 @@ module.exports = withNextra({
     defaultLocale: "en-US",
   },
   reactStrictMode: true,
-  eslint: {
-    // Eslint behaves weirdly in this monorepo.
-    ignoreDuringBuilds: true
-  },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.(js|jsx|ts|tsx)$/,
