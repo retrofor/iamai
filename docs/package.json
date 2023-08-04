@@ -32,5 +32,9 @@
     "postcss": "^8.4.21",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.0.0"
+  },
+  "prettier": {
+    "embeddedLanguageFormatting": "off",
+    "htmlWhitespaceSensitivity": "strict"
   }
 }
