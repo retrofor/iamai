@@ -1,5 +1,3 @@
-use "strict";
-
 import { useRouter } from "next/router";
 import { useConfig } from "nextra-theme-docs";
 import useLocalesMap from "./components/use_locales_map";
