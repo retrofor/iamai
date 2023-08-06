@@ -11,6 +11,10 @@ const withNextra = nextra({
 })
 
 export default withNextra({
+  i18n: {
+    locales: ["en-US", "zh-CN"],
+    defaultLocale: "en-US",
+  },
   reactStrictMode: true,
   eslint: {
     // Eslint behaves weirdly in this monorepo.
