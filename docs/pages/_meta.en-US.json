@@ -1,0 +1,28 @@
+{
+  "index": {
+    "type": "page",
+    "title": "iamai",
+    "display": "hidden",
+    "theme": {
+      "layout": "raw"
+    }
+  },
+  "docs": {
+    "type": "page",
+    "title": "Documentation"
+  },
+  "blog": {
+    "title": "Blog",
+    "type": "page",
+    "theme": {
+      "sidebar": false
+    }
+  },
+  "about": {
+    "type": "page",
+    "title": "About",
+    "theme": {
+      "typesetting": "article"
+    }
+  }
+}

@@ -1,6 +1,11 @@
-import { useRouter } from 'next/router'
-import type { DocsThemeConfig } from 'nextra-theme-docs'
-import { useConfig } from 'nextra-theme-docs'
+import { useRouter } from "next/router";
+import { useConfig } from "nextra-theme-docs";
+import useLocalesMap from "./components/use_locales_map";
+import {
+  editTextMap,
+  feedbackLinkMap,
+  languageMap,
+} from "./translation/text";
 
 const logo = (
   <span>
@@ -71,7 +76,8 @@ const logo = (
   </span>
 )
 
-const config: DocsThemeConfig = {
+/** @type {import('nextra-theme-docs').DocsThemeConfig} */
+const themeConfig = {
   project: {
     link: 'https://github.com/retrofor/iamai'
   },
@@ -142,18 +148,19 @@ const config: DocsThemeConfig = {
   //     </a>
   //   )
   // },
-  i18n: [
-    { locale:'en', text:'English'},
-    { locale: 'zh', text:'中文' },
-    { locale: 'jp', text: '日本' },
-    { locale: 'ko', text: '한국인' }
-  ],
+  // i18n: [
+  //   { locale: 'en-US', text: 'English' },
+  //   { locale: 'zh-CN', text: '简体中文' },
+  // ],
+  i18n: Object.entries(languageMap).map(([locale, text]) => ({
+    locale,
+    text,
+  })),
   editLink: {
-    text: 'Edit this page on GitHub →'
+    text: () => useLocalesMap(editTextMap),
   },
   feedback: {
-    content: 'Question? Give us feedback →',
-    labels: 'feedback'
+    content: () => useLocalesMap(feedbackLinkMap),
   },
   sidebar: {
     titleComponent({ title, type }) {
@@ -194,4 +201,4 @@ const config: DocsThemeConfig = {
   }
 }
 
-export default config
+export default themeConfig;

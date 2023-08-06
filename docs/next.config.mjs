@@ -7,31 +7,26 @@ const withNextra = nextra({
   flexsearch: {
     codeblocks: true
   },
-  defaultShowCopyCode: true, 
-  i18n: {
-    locals: ['en','zh','jp','ko'],
-    defaultLocal: 'zh',
-  }
+  defaultShowCopyCode: true
 })
 
 export default withNextra({
+  i18n: {
+    locales: ["en-US", "zh-CN"],
+    defaultLocale: "en-US",
+  },
   reactStrictMode: true,
   eslint: {
     // Eslint behaves weirdly in this monorepo.
     ignoreDuringBuilds: true
   },
-  redirects: () => [
-    {
-      source: '/docs/guide/:slug(typescript|latex|tailwind-css|mermaid)',
-      destination: '/docs/guide/advanced/:slug',
-      permanent: true
-    },
-    {
-      source: '/docs/docs-theme/built-ins/:slug(callout|steps|tabs)',
-      destination: '/docs/guide/built-ins/:slug',
-      permanent: true
-    }
-  ],
+  // redirects: () => [
+  //   {
+  //     source: '/docs/guide/:slug(typescript|latex|tailwind-css|mermaid)',
+  //     destination: '/docs/guide/advanced/:slug',
+  //     permanent: true
+  //   },
+  // ],
   webpack(config) {
     const allowedSvgRegex = /components\/icons\/.+\.svg$/
 
