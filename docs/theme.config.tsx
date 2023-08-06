@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
 import { useConfig } from "nextra-theme-docs";
-// import useLocalesMap from "./components/use_locales_map";
-// import {
-//   editTextMap,
-//   feedbackLinkMap,
-//   languageMap,
-// } from "./translation/text";
+import useLocalesMap from "./components/use_locales_map";
+import {
+  editTextMap,
+  feedbackLinkMap,
+  languageMap,
+} from "./translation/text";
 
 const logo = (
   <span>
@@ -148,20 +148,20 @@ const themeConfig = {
   //     </a>
   //   )
   // },
-  i18n: [
-    { locale: 'en-US', text: 'English' },
-    { locale: 'zh-CN', text: '简体中文' },
-  ],
-  // i18n: Object.entries(languageMap).map(([locale, text]) => ({
-  //   locale,
-  //   text,
-  // })),
-  // editLink: {
-  //   text: () => useLocalesMap(editTextMap),
-  // },
-  // feedback: {
-  //   content: () => useLocalesMap(feedbackLinkMap),
-  // },
+  // i18n: [
+  //   { locale: 'en-US', text: 'English' },
+  //   { locale: 'zh-CN', text: '简体中文' },
+  // ],
+  i18n: Object.entries(languageMap).map(([locale, text]) => ({
+    locale,
+    text,
+  })),
+  editLink: {
+    text: () => useLocalesMap(editTextMap),
+  },
+  feedback: {
+    content: () => useLocalesMap(feedbackLinkMap),
+  },
   sidebar: {
     titleComponent({ title, type }) {
       if (type === 'separator') {
