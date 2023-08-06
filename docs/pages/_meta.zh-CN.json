@@ -9,11 +9,18 @@
   },
   "docs": {
     "type": "page",
-    "title": "Documentation"
+    "title": "文档"
+  },
+  "blog": {
+    "title": "博客",
+    "type": "page",
+    "theme": {
+      "sidebar": false
+    }
   },
   "about": {
     "type": "page",
-    "title": "About",
+    "title": "关于",
     "theme": {
       "typesetting": "article"
     }

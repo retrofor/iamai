@@ -11,6 +11,13 @@
     "type": "page",
     "title": "Documentation"
   },
+  "blog": {
+    "title": "博客",
+    "type": "page",
+    "theme": {
+      "sidebar": false
+    }
+  },
   "about": {
     "type": "page",
     "title": "About",
