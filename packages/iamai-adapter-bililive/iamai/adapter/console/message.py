@@ -1,5 +1,5 @@
 import re
-from typing import Type, Union, Literal, Iterable, Optional, TypedDict
+from typing import Iterable, Literal, Optional, Type, TypedDict, Union
 
 from iamai.message import Message, MessageSegment
 

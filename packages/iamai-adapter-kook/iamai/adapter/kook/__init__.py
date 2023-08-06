@@ -3,41 +3,40 @@
 本适配器适配了 Kook 协议。
 协议详情请参考: [Kook 开发者平台](https://developer.kookapp.cn/) 。
 """
+import asyncio
+import json
 import re
 import sys
-import json
 import time
-import asyncio
 from functools import partial
 from typing import TYPE_CHECKING, Any, Dict, Literal, Mapping, Optional
 
 import aiohttp
 import requests
+from iamai.adapter.utils import WebSocketAdapter
+from iamai.log import error_or_exception, logger
 from pydantic import parse_obj_as
 
-from iamai.adapter.utils import WebSocketAdapter
-from iamai.log import logger, error_or_exception
-
-from .config import Config
-from .message import KookMessage, msg_type_map
 from .api.handle import User, get_api_method, get_api_restype
-from .exceptions import (
-    ApiTimeout,
-    TokenError,
-    ActionFailed,
-    NetworkError,
-    ReconnectError,
-    ApiNotAvailable,
-)
+from .config import Config
 from .event import (
-    KookEvent,
     EventTypes,
+    KookEvent,
     OriginEvent,
     ResultStore,
     SignalTypes,
     _kook_events,
     get_event_class,
 )
+from .exceptions import (
+    ActionFailed,
+    ApiNotAvailable,
+    ApiTimeout,
+    NetworkError,
+    ReconnectError,
+    TokenError,
+)
+from .message import KookMessage, msg_type_map
 
 if TYPE_CHECKING:
     from .message import T_KookMSG

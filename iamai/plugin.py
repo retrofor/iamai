@@ -2,14 +2,14 @@
 
 所有 iamai 插件的基类。所有用户编写的插件必须继承自 `Plugin` 类。
 """
-from enum import Enum
 from abc import ABC, abstractmethod
-from typing import TYPE_CHECKING, Type, Generic, NoReturn, Optional
+from enum import Enum
+from typing import TYPE_CHECKING, Generic, NoReturn, Optional, Type
 
 from iamai.config import ConfigModel
-from iamai.utils import is_config_class
-from iamai.typing import T_Event, T_State, T_Config
 from iamai.exceptions import SkipException, StopException
+from iamai.typing import T_Config, T_Event, T_State
+from iamai.utils import is_config_class
 
 if TYPE_CHECKING:
     from iamai.bot import Bot
