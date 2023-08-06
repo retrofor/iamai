@@ -23,7 +23,6 @@ jobs:
         with:
           python-version: 3.9
           cache: true
-          path: docs.old
       - name: Install dependencies
         run: pdm install -G dev -G docs
 
