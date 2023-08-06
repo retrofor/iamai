@@ -42,7 +42,6 @@ jobs:
           path: docs.old
       - run: pnpm install
         shell: bash
-        
 
       - name: Build VuePress site
         run: pnpm docs:build
