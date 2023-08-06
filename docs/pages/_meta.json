@@ -11,20 +11,11 @@
     "type": "page",
     "title": "Documentation"
   },
-  "showcase": {
-    "type": "page",
-    "title": "Showcase"
-  },
   "about": {
     "type": "page",
     "title": "About",
     "theme": {
       "typesetting": "article"
     }
-  },
-  "contact": {
-    "title": "Contact↗",
-    "href": "https://github.com/retrofor/iamai",
-    "newwindow": true
   }
 }

@@ -1,11 +1,6 @@
 {
   "index": "Introduction",
-  "guide": "",
-  "-- Themes": {
-    "type": "separator",
-    "title": "Themes"
-  },
-  "model": "",
+  "guide": "",  
   "-- More": {
     "type": "separator",
     "title": "More"
