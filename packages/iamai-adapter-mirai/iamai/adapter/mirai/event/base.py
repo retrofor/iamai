@@ -1,8 +1,7 @@
 from typing import TYPE_CHECKING, Literal
 
-from pydantic import BaseModel
-
 from iamai.event import Event
+from pydantic import BaseModel
 
 if TYPE_CHECKING:
     from .. import MiraiAdapter
