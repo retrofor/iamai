@@ -22,11 +22,6 @@ export default withNextra({
       destination: '/docs/guide/advanced/:slug',
       permanent: true
     },
-    {
-      source: '/docs/docs-theme/built-ins/:slug(callout|steps|tabs)',
-      destination: '/docs/guide/built-ins/:slug',
-      permanent: true
-    }
   ],
   webpack(config) {
     const allowedSvgRegex = /components\/icons\/.+\.svg$/
