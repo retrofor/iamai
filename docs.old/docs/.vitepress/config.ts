@@ -8,7 +8,7 @@ export default defineConfig({
   lang: "zh-CN",
   title: "iamai",
   description: "可用于机器学习的 Python 异步多后端聊天机器人框架",
-
+  base: "/iamai/",
   lastUpdated: true,
 
   head: [
