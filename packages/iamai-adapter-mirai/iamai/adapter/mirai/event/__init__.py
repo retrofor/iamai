@@ -3,8 +3,8 @@ import inspect
 from typing import Type
 
 from .mate import *
-from .notice import *
 from .message import *
+from .notice import *
 from .request import *
 
 _mirai_events = {

@@ -3,8 +3,8 @@
 """
 from asyncio import Condition
 
-from iamai.event import Event
 from iamai.adapter import Adapter
+from iamai.event import Event
 
 from .config import Config
 from .event import ConsoleEvent
