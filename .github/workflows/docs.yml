@@ -39,8 +39,8 @@ jobs:
         with:
           node-version: "16"
           cache: "pnpm"
-          working-directory: docs.old
       - run: pnpm install
+        working-directory: docs.old
 
       - name: Build VuePress site
         working-directory: docs.old
