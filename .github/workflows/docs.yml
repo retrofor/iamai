@@ -26,11 +26,11 @@ jobs:
       - name: Install dependencies
         run: pdm install -G dev -G docs.old
 
-      - name: Build API Doc
-        run: pdm run sophia-doc iamai -o docs.old/docs/dev-api --anchor-extend --ignore-data --overwrite --exclude-module-name --init-file-name index.md
-        shell: bash
-        env:
-          IAMAI_DEV: "1"
+      # - name: Build API Doc
+      #   run: pdm run sophia-doc iamai -o docs.old/docs/dev-api --anchor-extend --ignore-data --overwrite --exclude-module-name --init-file-name index.md
+      #   shell: bash
+      #   env:
+      #     IAMAI_DEV: "1"
 
       - uses: pnpm/action-setup@v2
         with:
