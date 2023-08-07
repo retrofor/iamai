@@ -61,7 +61,7 @@ export default defineConfig({
 
     footer: {
       message: "Released under the MIT License.",
-      copyright: "Copyright © 2021-present st1020",
+      copyright: "Copyright © 2023-present HsiangNianian",
     },
   },
 });
