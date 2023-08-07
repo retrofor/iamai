@@ -40,9 +40,8 @@ jobs:
           node-version: "16"
           cache: "pnpm"
       - name: Install dependencies
-        with:
-          path: docs.old
         run: pnpm install
+        working-directory: docs.old
         
       - name: Build VuePress site
         run: pnpm docs:build
