@@ -24,9 +24,7 @@ jobs:
           python-version: 3.9
           cache: true
       - name: Install dependencies
-        run: |
-          cd docs.old
-          pdm install -G dev -G docs.old
+        run: pdm install -G dev -G docs.old
 
       # - name: Build API Doc
       #   run: pdm run sophia-doc iamai -o docs.old/docs/dev-api --anchor-extend --ignore-data --overwrite --exclude-module-name --init-file-name index.md
@@ -41,9 +39,8 @@ jobs:
         with:
           node-version: "16"
           cache: "pnpm"
-      - run: |
-          cd docs.old
-          pnpm install
+          working-directory: docs.old
+      - run: pnpm install
 
       - name: Build VuePress site
         working-directory: docs.old
