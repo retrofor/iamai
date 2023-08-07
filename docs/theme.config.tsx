@@ -107,22 +107,22 @@ const themeConfig = {
         <meta httpEquiv="Content-Language" content="en" />
         <meta
           name="description"
-          content="Make beautiful websites with Next.js & MDX."
+          content="Make a bridge between AI and robot."
         />
         <meta
           name="og:description"
-          content="Make beautiful websites with Next.js & MDX."
+          content="Make a bridge between AI and robot."
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={socialCard} />
-        <meta name="twitter:site:domain" content="nextra.site" />
-        <meta name="twitter:url" content="https://nextra.site" />
+        <meta name="twitter:site:domain" content="iamai.retrofor.space" />
+        <meta name="twitter:url" content="https://iamai.retrofor.space" />
         <meta
           name="og:title"
-          content={title ? title + ' – Nextra' : 'Nextra'}
+          content={title ? title + ' – iamai' : 'iamai'}
         />
         <meta name="og:image" content={socialCard} />
-        <meta name="apple-mobile-web-app-title" content="Nextra" />
+        <meta name="apple-mobile-web-app-title" content="iamai" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="icon" href="/favicon.png" type="image/png" />
         <link
