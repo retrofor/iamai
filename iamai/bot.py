@@ -260,12 +260,8 @@ class Bot:
     async def _run_hot_reload(self):
         """热重载。"""
         try:
-            from watchfiles import (
-                Change,
-                DefaultFilter,  # type: ignore
-                PythonFilter,
-                awatch,
-            )
+            from watchfiles import DefaultFilter  # type: ignore
+            from watchfiles import Change, PythonFilter, awatch
         except ImportError:
             logger.warning(
                 'Hot reload needs to install "watchfiles", '
