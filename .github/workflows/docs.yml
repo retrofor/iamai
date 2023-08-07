@@ -44,6 +44,8 @@ jobs:
         shell: bash
 
       - name: Build VuePress site
+        with:
+          path: docs.old
         run: pnpm docs:build
 
       - uses: actions/upload-pages-artifact@v2
