@@ -24,10 +24,10 @@ jobs:
           python-version: 3.9
           cache: true
       - name: Install dependencies
-        run: pdm install -G dev -G docs
+        run: pdm install -G dev -G docs.old
 
       - name: Build API Doc
-        run: pdm run sophia-doc iamai -o docs.old/docs//dev-api --anchor-extend --ignore-data --overwrite --exclude-module-name --init-file-name index.md
+        run: pdm run sophia-doc iamai -o docs.old/docs/dev-api --anchor-extend --ignore-data --overwrite --exclude-module-name --init-file-name index.md
         shell: bash
         env:
           IAMAI_DEV: "1"
