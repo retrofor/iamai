@@ -40,11 +40,12 @@ jobs:
           node-version: "16"
           cache: "pnpm"
       - run: pnpm install
-        working-directory: docs.old
+        with: 
+          path: docs.old
 
       - name: Build VuePress site
-        working-directory: docs.old
         run: pnpm docs:build
+        working-directory: docs.old
 
       - uses: actions/upload-pages-artifact@v2
         if: github.event_name != 'pull_request'
