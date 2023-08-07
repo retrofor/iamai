@@ -39,7 +39,6 @@ jobs:
         with:
           node-version: "16"
           cache: "pnpm"
-          path: docs.old
       - run: |
           cd docs.old
           pnpm install
