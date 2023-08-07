@@ -40,7 +40,9 @@ jobs:
           node-version: "16"
           cache: "pnpm"
           path: docs.old
-      - run: pnpm install
+      - run: |
+          cd docs.old
+          pnpm install
         shell: bash
 
       - name: Build VuePress site
