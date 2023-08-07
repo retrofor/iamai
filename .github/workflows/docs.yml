@@ -39,10 +39,10 @@ jobs:
         with:
           node-version: "16"
           cache: "pnpm"
-      - run: pnpm install
-        with: 
-          path: docs.old
-
+      - run: |
+          cd docs.old
+          pnpm install
+        
       - name: Build VuePress site
         run: pnpm docs:build
         working-directory: docs.old
