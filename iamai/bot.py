@@ -451,7 +451,7 @@ class Bot:
             async with self._condition:
                 await self._condition.wait()
                 current_event = self._current_event  # type: ignore
-            if current_event.__handled__:  # type: ignore
+            if current_event._handled_:  # type: ignore
                 return
 
         for _hook_func in self._event_preprocessor_hooks:
@@ -546,9 +546,9 @@ class Bot:
                     except asyncio.TimeoutError:
                         break
 
-                if not self._current_event.__handled__:
+                if not self._current_event._handled_:
                     if await func(self._current_event):  # type: ignore
-                        self._current_event.__handled__ = True
+                        self._current_event._handled_ = True
                         return self._current_event  # type: ignore
 
                 try_times += 1

@@ -22,7 +22,7 @@ Bases: `abc.ABC`, `pydantic.main.BaseModel`, `typing.Generic`
 
   - **type** (*Optional[str]*) - 事件类型。
 
-  - **__handled__** - 表示事件是否被处理过了，用于适配器处理。警告：请勿手动更改此属性的值。
+  - **_handled_** - 表示事件是否被处理过了，用于适配器处理。警告：请勿手动更改此属性的值。
 
 ### *class* `Config`(self, /, *args, **kwargs) {#Event.Config}
 
