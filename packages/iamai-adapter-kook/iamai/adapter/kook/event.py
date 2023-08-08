@@ -1,16 +1,25 @@
 """Kook 适配器事件。"""
 import asyncio
 import inspect
-from collections import UserDict
 from enum import IntEnum
+from collections import UserDict
+
+<<<<<<< HEAD
 from typing import Literal  # type: ignore
-from typing import TYPE_CHECKING, Any, Dict, List, Optional, Tuple, Type, TypeVar, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Type, Tuple, Union, TypeVar, Optional
+
+=======
+from typing import Literal  # type: ignore
+from typing import TYPE_CHECKING, Any, Dict, List, Type, Tuple, Union, TypeVar, Optional
+
+>>>>>>> 0133e7e42d90607aeafbf8ced23100c49c2b423f
+
+from pydantic import Field, HttpUrl, BaseModel, validator, root_validator
 
 from iamai.event import Event
-from pydantic import BaseModel, Field, HttpUrl, root_validator, validator
 
-from .api import Channel, Emoji, Guild, Role, User
-from .message import KookMessage, Message, MessageDeserializer
+from .api import Role, User, Emoji, Guild, Channel
+from .message import Message, KookMessage, MessageDeserializer
 
 if TYPE_CHECKING:
     from . import KookAdapter

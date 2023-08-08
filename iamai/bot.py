@@ -2,39 +2,40 @@
 
 iamai 的基础模块，每一个 iamai 机器人即是一个 `Bot` 实例。
 """
-import asyncio
-import json
 import os
-import signal
 import sys
-import threading
+import json
 import time
-from collections import defaultdict
-from datetime import datetime
-from itertools import chain
+import signal
+import asyncio
+import threading
 from pathlib import Path
-from typing import Any, Awaitable, Callable, Dict, List, Optional, Type, Union
+from itertools import chain
+from datetime import datetime
+from collections import defaultdict
+from typing import Any, Dict, List, Type, Union, Callable, Optional, Awaitable
+
+from pydantic import ValidationError, create_model
 
 from iamai.adapter import Adapter
-from iamai.config import AdapterConfig, ConfigModel, MainConfig, PluginConfig
+from iamai.plugin import Plugin, PluginLoadType
+from iamai.log import logger, error_or_exception
+from iamai.typing import T_Event, T_BotHook, T_EventHook, T_AdapterHook
+from iamai.config import MainConfig, ConfigModel, PluginConfig, AdapterConfig
 from iamai.exceptions import (
-    GetEventTimeout,
-    LoadModuleError,
     SkipException,
     StopException,
+    GetEventTimeout,
+    LoadModuleError,
 )
-from iamai.log import error_or_exception, logger
-from iamai.plugin import Plugin, PluginLoadType
-from iamai.typing import T_AdapterHook, T_BotHook, T_Event, T_EventHook
 from iamai.utils import (
     ModulePathFinder,
+    samefile,
+    is_config_class,
+    sync_func_wrapper,
     get_classes_from_dir,
     get_classes_from_module_name,
-    is_config_class,
-    samefile,
-    sync_func_wrapper,
 )
-from pydantic import ValidationError, create_model
 
 try:
     import tomllib  # type: ignore[module]
@@ -260,8 +261,13 @@ class Bot:
     async def _run_hot_reload(self):
         """热重载。"""
         try:
-            from watchfiles import DefaultFilter  # type: ignore
+<<<<<<< HEAD
             from watchfiles import Change, PythonFilter, awatch
+            from watchfiles import DefaultFilter  # type: ignore
+=======
+            from watchfiles import Change, PythonFilter, awatch
+            from watchfiles import DefaultFilter  # type: ignore
+>>>>>>> 0133e7e42d90607aeafbf8ced23100c49c2b423f
         except ImportError:
             logger.warning(
                 'Hot reload needs to install "watchfiles", '

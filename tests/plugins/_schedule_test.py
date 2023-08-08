@@ -1,4 +1,4 @@
-from time import localtime, strftime
+from time import strftime, localtime
 
 from iamai import Plugin
 from iamai.adapter.apscheduler import scheduler_decorator

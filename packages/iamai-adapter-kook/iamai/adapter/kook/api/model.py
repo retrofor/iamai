@@ -1,6 +1,6 @@
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Union, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import Field, BaseModel
 
 
 class User(BaseModel):

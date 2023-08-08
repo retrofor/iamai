@@ -1,9 +1,10 @@
 """CQHTTP 适配器事件。"""
 import inspect
-from typing import TYPE_CHECKING, Any, Dict, Literal, Optional, Type, TypeVar, Union
+from typing import TYPE_CHECKING, Any, Dict, Type, Union, Literal, TypeVar, Optional
+
+from pydantic import Field, BaseModel
 
 from iamai.event import Event
-from pydantic import BaseModel, Field
 
 from .message import CQHTTPMessage
 
