@@ -67,8 +67,7 @@ with Path("docs/changelog.md").open("w", encoding="utf-8") as f:
         (
             CHANGELOG_PREFIX
             + "\n".join(
-                f"#{x}" if x.startswith("# ") else x
-                for x in changelog_file.split("\n")
+                f"#{x}" if x.startswith("# ") else x for x in changelog_file.split("\n")
             ).replace("_", "\\_")
         )
     )
