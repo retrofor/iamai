@@ -3,14 +3,15 @@
 这里定义了一些在编写适配器时常用的基类，适配器开发者可以直接继承自这里的类或者用作参考。
 """
 import asyncio
+from typing import Union, Literal
 from abc import ABCMeta, abstractmethod
-from typing import Literal, Union
 
 import aiohttp
 from aiohttp import web
+
 from iamai.adapter import Adapter
-from iamai.log import error_or_exception, logger
-from iamai.typing import T_Config, T_Event
+from iamai.typing import T_Event, T_Config
+from iamai.log import logger, error_or_exception
 
 
 class PollingAdapter(Adapter[T_Event, T_Config], metaclass=ABCMeta):

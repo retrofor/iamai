@@ -1,7 +1,7 @@
 """用于发布新版本的脚本。"""
 # ruff: noqa: S603, S607
-import argparse
 import json
+import argparse
 import subprocess
 from pathlib import Path
 

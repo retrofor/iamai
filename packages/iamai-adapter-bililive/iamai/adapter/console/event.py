@@ -6,19 +6,20 @@ from typing import (
     Any,
     Dict,
     List,
-    Literal,
-    Optional,
-    Tuple,
     Type,
-    TypeVar,
+    Tuple,
     Union,
+    Literal,
+    TypeVar,
+    Optional,
 )
+
+from pydantic import BaseModel
 
 from iamai.event import Event
 from iamai.plugin import Plugin
-from pydantic import BaseModel
 
-from .message import ConsoleMessage, Message, MessageSegment
+from .message import Message, ConsoleMessage, MessageSegment
 
 T_ConsoleEvent = TypeVar("T_ConsoleEvent", bound="ConsoleEvent")
 

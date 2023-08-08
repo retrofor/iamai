@@ -3,22 +3,23 @@
 本适配器适配了 OneBot v11 协议。
 协议详情请参考: [OneBot](https://github.com/howmanybots/onebot/blob/master/README.md) 。
 """
-import asyncio
-import json
 import sys
+import json
 import time
+import asyncio
 from functools import partial
 from typing import TYPE_CHECKING, Any, Dict, Literal
 
 import aiohttp
-from iamai.adapter.utils import WebSocketAdapter
-from iamai.log import error_or_exception, logger
+
 from iamai.utils import DataclassEncoder
+from iamai.adapter.utils import WebSocketAdapter
+from iamai.log import logger, error_or_exception
 
 from .config import Config
-from .event import CQHTTPEvent, get_event_class
-from .exceptions import ActionFailed, ApiNotAvailable, ApiTimeout, NetworkError
 from .message import CQHTTPMessage
+from .event import CQHTTPEvent, get_event_class
+from .exceptions import ApiTimeout, ActionFailed, NetworkError, ApiNotAvailable
 
 if TYPE_CHECKING:
     from .message import T_CQMSG

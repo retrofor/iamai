@@ -5,18 +5,18 @@
 """
 import dataclasses
 from copy import copy, deepcopy
-from dataclasses import dataclass, field
+from dataclasses import field, dataclass
 from typing import (
     Any,
     Dict,
+    List,
+    Type,
+    Union,
     Generic,
+    Mapping,
+    TypeVar,
     Iterable,
     Iterator,
-    List,
-    Mapping,
-    Type,
-    TypeVar,
-    Union,
 )
 
 __all__ = ["T_Message", "T_MessageSegment", "T_MS", "Message", "MessageSegment"]
