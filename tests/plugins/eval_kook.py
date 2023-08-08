@@ -17,4 +17,4 @@ class EvalKook(Plugin):
             return False
         if int(self.event.type) != 9:
             return False
-        return self.event.content.lower().startswith(".show")
+        return self.event.message.startswith(".show")

@@ -19,7 +19,7 @@ class Event(ABC, BaseModel, Generic[T_Adapter]):
     Attributes:
         adapter: 产生当前事件的适配器对象。
         type: 事件类型。
-        __handled__: 表示事件是否被处理过了，用于适配器处理。
+        _handled_: 表示事件是否被处理过了，用于适配器处理。
             警告：请勿手动更改此属性的值。
     """
 
@@ -34,7 +34,7 @@ class Event(ABC, BaseModel, Generic[T_Adapter]):
     type: Optional[str]
 
     _adapter: Optional[T_Adapter] = PrivateAttr()  # adapter 实际上放在这里
-    __handled__: bool = PrivateAttr(default=False)
+    _handled_: bool = PrivateAttr(default=False)
 
     def __init__(self, **data):
         if "adapter" in data:

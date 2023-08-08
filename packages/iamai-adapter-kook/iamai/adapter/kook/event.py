@@ -3,6 +3,7 @@ import asyncio
 import inspect
 from collections import UserDict
 from enum import IntEnum
+<<<<<<< HEAD
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -15,6 +16,10 @@ from typing import (
     TypeVar,
     Union,
 )
+=======
+from typing import Literal  # type: ignore
+from typing import TYPE_CHECKING, Any, Dict, List, Optional, Tuple, Type, TypeVar, Union
+>>>>>>> 0133e7e42d90607aeafbf8ced23100c49c2b423f
 
 from iamai.event import Event
 from pydantic import BaseModel, Field, HttpUrl, root_validator, validator

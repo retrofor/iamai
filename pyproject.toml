@@ -33,7 +33,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.8"
 tomli = { version = "^2.0.0", python = "<3.11" }
-pydantic = "^1.10.0"
+pydantic = ">=1.10,<3.0"
 aiohttp = "^3.8.0"
 loguru = ">=0.6,<0.8"
 pyyaml = "^6.0"
@@ -103,6 +103,67 @@ reportUnnecessaryIsInstance = false
 [tool.pydantic-pycharm-plugin]
 ignore-init-method-arguments = true
 
+[tool.pdm.build]
+includes = []
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[project]
+authors = [
+    {name = "简律纯", email = "i@jyunko.cn"},
+]
+license = {text = "MIT"}
+requires-python = ">=3.8,<4.0"
+dependencies = [
+    "tomli<3.0.0,>=2.0.0; python_version < \"3.11\"",
+    "pydantic<3.0,>=1.10",
+    "aiohttp<4.0.0,>=3.8.0",
+    "loguru<0.8,>=0.6",
+    "pyyaml<7.0,>=6.0",
+    "typing-extensions>=4.7.0",
+    "sophia-doc>=0.1.6",
+]
+name = "iamai"
+version = "3.2.4"
+description = "bot framework."
+readme = "README.md"
+keywords = ["bot", "qq", "qqbot", "mirai", "coolq", "kook", "go-cqhttp", "dingtalk", "console", "apscheduler", "bilibili", "bilibili-live"]
+classifiers = ["Development Status :: 5 - Production/Stable", "Framework :: Robot Framework", "Framework :: Robot Framework :: Library", "Operating System :: OS Independent", "Programming Language :: Python :: 3"]
+
+[project.urls]
+homepage = "https://retrofor.space/"
+repository = "https://github.com/retrofor/iamai"
+documentation = "https://iamai.retrofor.space/"
+
+[project.group.dev.dependencies]
+watchfiles = "^0.18.0"
+sophia-doc = "^0.1.0"
+black = "^23.1.0"
+isort = "^5.12.0"
+pre-commit = "^3.1.0"
+pre-commit-hooks = "^4.4.0"
+
+[project.group.dev.dependencies.iamai-adapter-bililive]
+path = "./packages/iamai-adapter-bililive"
+develop = true
+
+[project.group.dev.dependencies.iamai-adapter-console]
+path = "./packages/iamai-adapter-console"
+develop = true
+
+[project.group.dev.dependencies.iamai-adapter-kook]
+path = "./packages/iamai-adapter-kook"
+develop = true
+
+[project.group.dev.dependencies.iamai-adapter-cqhttp]
+path = "./packages/iamai-adapter-cqhttp"
+develop = true
+
+[project.group.dev.dependencies.iamai-adapter-dingtalk]
+path = "./packages/iamai-adapter-dingtalk"
+develop = true
+
+[project.group.dev.dependencies.iamai-adapter-apscheduler]
+path = "./packages/iamai-adapter-apscheduler"
+develop = true
