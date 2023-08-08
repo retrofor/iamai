@@ -64,16 +64,16 @@ with Path("docs/changelog.md").open(encoding="utf-8") as f:
     changelog_file = f.read()
 with Path("docs/changelog.md").open("w", encoding="utf-8") as f:
     f.write(
-        CHANGELOG_PREFIX
-        + (
-            "\n".join(
-                ("#" + x) if x.startswith("# ") else x
+        (
+            CHANGELOG_PREFIX
+            + "\n".join(
+                f"#{x}" if x.startswith("# ") else x
                 for x in changelog_file.split("\n")
-            )
-        ).replace("_", "\\_")
+            ).replace("_", "\\_")
+        )
     )
 subprocess.run(["pnpm", "exec", "prettier", "--write", "docs/changelog.md"])
-subprocess.run(["git", "tag", "-d", "v" + version])
+subprocess.run(["git", "tag", "-d", f"v{version}"])
 subprocess.run(["git", "add", "."])
-subprocess.run(["git", "commit", "-m", "chore: 发布 " + version])
-subprocess.run(["git", "tag", "v" + version])
+subprocess.run(["git", "commit", "-m", f"chore: 发布 {version}"])
+subprocess.run(["git", "tag", f"v{version}"])
