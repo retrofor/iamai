@@ -22,20 +22,15 @@ export default withNextra({
   },
   redirects: () => [
     {
-      source: '/docs/robot',
-      destination: '/docs/robot/index',
+      source: '/docs/',
+      destination: '/docs/index',
       permanent: false
     },
     {
-      source: '/docs/robot/:slug(typescript|latex|tailwind-css|mermaid)',
-      destination: '/docs/robot/:slug',
+      source: '/docs/:slug(typescript|latex|tailwind-css|mermaid)',
+      destination: '/docs/:slug',
       permanent: true
     },
-    {
-      source: '/docs/ai/:slug(callout|steps|tabs)',
-      destination: '/docs/ai/:slug',
-      permanent: true
-    }
   ],
   webpack(config) {
     const allowedSvgRegex = /components\/icons\/.+\.svg$/
