@@ -2,11 +2,19 @@
     "basic-config": "Basic Config",
     "getting-started": "Get Started",
     "plugin-basics": "Plugin Basics",
+    "-- Advanced": {
+        "type": "separator",
+        "title": "Advanced"
+      },
     "plugin-advanced": "Plugin Advanced",
-    "hook-functions": "Hook Functions",
+    "hook-function": "Hook Functions",
     "hot-reload": "Hot Reload",
-    "builtin-messages": "Builtin Messages",
+    "builtin-message": "Builtin Messages",
     "scheduler": "Scheduler",
+    "-- Adapter": {
+        "type": "separator",
+        "title": "Adapter"
+      },
     "cqhttp-adapter": "CQHTTP Adapter",
     "dingtalk-adapter": "Dingtalk Adapter",
     "mirai-adapter": "Mirai Adapter"

@@ -2,11 +2,19 @@
     "basic-config": "基本配置",
     "getting-started": "快速开始",
     "plugin-basics": "插件基础",
+    "-- 进阶": {
+        "type": "separator",
+        "title": "进阶"
+      },
     "plugin-advanced": "插件进阶",
-    "hook-functions": "钩子函数",
+    "hook-function": "钩子函数",
     "hot-reload": "热重载",
-    "builtin-messages": "内置消息",
+    "builtin-message": "内置消息",
     "scheduler": "定时任务",
+    "-- 适配器": {
+        "type": "separator",
+        "title": "适配器"
+      },
     "cqhttp-adapter": "CQHTTP 适配器",
     "dingtalk-adapter": "Dingtalk 适配器",
     "mirai-adapter": "Mirai 适配器"
