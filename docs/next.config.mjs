@@ -22,17 +22,17 @@ export default withNextra({
   },
   redirects: () => [
     {
-      source: '/docs',
-      destination: '/docs/index',
+      source: '/robot-docs',
+      destination: '/docs/robot/index',
       permanent: false
     },
     {
-      source: '/docs/robot-docs/:slug(typescript|latex|tailwind-css|mermaid)',
+      source: '/robot-docs/:slug(typescript|latex|tailwind-css|mermaid)',
       destination: '/docs/robot/:slug',
       permanent: true
     },
     {
-      source: '/docs/ai-docs/:slug(callout|steps|tabs)',
+      source: '/ai-docs/:slug(callout|steps|tabs)',
       destination: '/docs/ai/:slug',
       permanent: true
     }
