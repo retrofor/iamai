@@ -6,6 +6,13 @@ body {
   font-feature-settings:
     'rlig' 1,
     'calt' 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 1) 300px
+  ),
+  fixed 0 0 / 20px 20px radial-gradient(#d1d1d1 1px, transparent 0),
+  fixed 10px 10px / 20px 20px radial-gradient(#d1d1d1 1px, transparent 0);
 }
 
 .home-content p {
@@ -47,4 +54,25 @@ code.text-\[\.9em\] {
   .home-content .hide-small {
     display: none;
   }
+}
+
+
+.dark body {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000 300px),
+    fixed 0 0 / 20px 20px radial-gradient(#313131 1px, transparent 0),
+    fixed 10px 10px / 20px 20px radial-gradient(#313131 1px, transparent 0);
+}
+
+pre::-webkit-scrollbar {
+  display: none;
+}
+
+pre {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.dark .nextra-container .nextra-sidebar ul li.active > a {
+  color: #fff7ba !important;
+  background: #f7df1e1c !important;
 }
