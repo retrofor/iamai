@@ -27,13 +27,13 @@ export default withNextra({
       permanent: false
     },
     {
-      source: '/docs/robot-guide/:slug(typescript|latex|tailwind-css|mermaid)',
-      destination: '/docs/robot-guide/:slug',
+      source: '/docs/robot-docs/:slug(typescript|latex|tailwind-css|mermaid)',
+      destination: '/docs/robot/:slug',
       permanent: true
     },
     {
-      source: '/docs/ai-guice/:slug(callout|steps|tabs)',
-      destination: '/docs/ai-guide/:slug',
+      source: '/docs/ai-docs/:slug(callout|steps|tabs)',
+      destination: '/docs/ai/:slug',
       permanent: true
     }
   ],

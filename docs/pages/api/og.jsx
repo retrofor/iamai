@@ -18,7 +18,7 @@ export default async function (req) {
   const hasTitle = searchParams.has('title')
   const title = hasTitle
     ? searchParams.get('title')?.slice(0, 100)
-    : 'Nextra Documentation'
+    : 'IamAI Documentation'
 
   return new ImageResponse(
     (
@@ -67,7 +67,7 @@ export default async function (req) {
             letterSpacing: -1
           }}
         >
-          Create beautiful websites with Next.js & MDX.
+          Make a bridge between AI and robots.
         </p>
         <h1
           style={{

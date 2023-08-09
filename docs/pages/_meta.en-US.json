@@ -9,7 +9,17 @@
   },
   "docs": {
     "title": "Documentation",
-    "type": "page"
+    "type": "menu",
+    "items": {
+      "robot-docs": {
+        "title": "Robot Documentation",
+        "href": "/robot-docs/"
+      },
+      "ai-docs": {
+        "title": "AI Documentation",
+        "href": "/ai-docs/"
+      }
+    }
   },
   "blog": {
     "title": "Blog",
