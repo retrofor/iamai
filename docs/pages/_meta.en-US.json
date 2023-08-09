@@ -13,11 +13,11 @@
     "items": {
       "robot-docs": {
         "title": "Robot Documentation",
-        "href": "/robot-docs/"
+        "href": "/docs/robot/"
       },
       "ai-docs": {
         "title": "AI Documentation",
-        "href": "/ai-docs/"
+        "href": "/docs/ai/"
       }
     }
   },
