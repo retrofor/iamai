@@ -1,3 +1,5 @@
+import { Callout } from 'nextra/components'
+
 # 钩子函数
 
 iamai 提供了一些钩子函数，可以以装饰器的形式使用，使用方法如下：
@@ -18,9 +20,9 @@ if __name__ == "__main__":
 
 ```
 
-::: tip 注意
-如果你不确定自己在干什么，请不要添加钩子函数。
-:::
+<Callout type="warning" emoji="⚠️">
+  如果你不确定自己在干什么，请不要添加钩子函数。
+</Callout>
 
 ## Bot 相关钩子
 
@@ -40,9 +42,9 @@ async def hook_func(_bot: Bot):
     pass
 ```
 
-::: warning 注意
-只有这个钩子函数非协程！
-:::
+<Callout type="warning" emoji="⚠️">
+  只有这个钩子函数非协程！
+</Callout>
 
 ## 适配器相关钩子
 

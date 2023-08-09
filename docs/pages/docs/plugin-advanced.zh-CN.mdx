@@ -1,3 +1,5 @@
+import { Callout } from 'nextra/components'
+
 # 插件进阶
 
 ## 事件传播控制
@@ -228,10 +230,9 @@ class TestPlugin(Plugin):
         return True
 
 ```
-
-::: tip 注意
-配置类的类名必须为 `Config` 且必须包含 `__config_name__` 属性。
-:::
+<Callout type="warning" emoji="⚠️">
+  配置类的类名必须为 `Config` 且必须包含 `__config_name__` 属性。
+</Callout>
 
 ## `get()` 方法
 
