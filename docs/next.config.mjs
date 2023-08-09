@@ -20,23 +20,23 @@ export default withNextra({
     // Eslint behaves weirdly in this monorepo.
     ignoreDuringBuilds: true
   },
-  // redirects: () => [
-  //   {
-  //     source: '/robot-docs',
-  //     destination: '/docs/robot/index',
-  //     permanent: false
-  //   },
-  //   {
-  //     source: '/robot-docs/:slug(typescript|latex|tailwind-css|mermaid)',
-  //     destination: '/docs/robot/:slug',
-  //     permanent: true
-  //   },
-  //   {
-  //     source: '/ai-docs/:slug(callout|steps|tabs)',
-  //     destination: '/docs/ai/:slug',
-  //     permanent: true
-  //   }
-  // ],
+  redirects: () => [
+    {
+      source: '/docs/robot',
+      destination: '/docs/robot/index',
+      permanent: false
+    },
+    {
+      source: '/docs/robot/:slug(typescript|latex|tailwind-css|mermaid)',
+      destination: '/docs/robot/:slug',
+      permanent: true
+    },
+    {
+      source: '/docs/ai/:slug(callout|steps|tabs)',
+      destination: '/docs/ai/:slug',
+      permanent: true
+    }
+  ],
   webpack(config) {
     const allowedSvgRegex = /components\/icons\/.+\.svg$/
 
