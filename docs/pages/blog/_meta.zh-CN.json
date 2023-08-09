@@ -1,5 +1,12 @@
 {
-  "iamai-v3": "IamAI V3",
-  "iamai-v3.1": "IamAI V3.1",
-  "iamai-v3.2": "IamAI V3.2"
+  "*": {
+    "theme": {
+      "layout": "default",
+      "sidebar": false,
+      "toc": true,
+      "typesetting": "article",
+      "breadcrumb": false,
+      "pagination": false
+    }
+  }
 }
