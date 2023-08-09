@@ -22,7 +22,7 @@ export default withNextra({
   },
   redirects: () => [
     {
-      source: '/docs',
+      source: '/docs/',
       destination: '/docs/index',
       permanent: true
     },
