@@ -7,10 +7,7 @@
       "layout": "raw"
     }
   },
-  "docs": {
-    "type": "page",
-    "title": "Documentation"
-  },
+  "docs": "Documentation",
   "blog": {
     "title": "Blog",
     "type": "page",

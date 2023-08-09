@@ -7,10 +7,7 @@
       "layout": "raw"
     }
   },
-  "docs": {
-    "type": "page",
-    "title": "文档"
-  },
+  "docs": "文档",
   "blog": {
     "title": "博客",
     "type": "page",
