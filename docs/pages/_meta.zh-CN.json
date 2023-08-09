@@ -28,10 +28,7 @@
   "blog": {
     "title": "博客",
     "type": "page",
-    "href": "/blog/",
-    "theme": {
-      "sidebar": false
-    }
+    "href": "/blog"
   },
   "about": {
     "type": "page",
