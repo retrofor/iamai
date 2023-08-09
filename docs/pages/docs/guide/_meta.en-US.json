@@ -1,3 +1,13 @@
 {
-    "index": "Guidence"
+    "basic-config": "Basic Config",
+    "getting-started": "Get Started",
+    "plugin-basics": "Plugin Basics",
+    "plugin-advanced": "Plugin Advanced",
+    "hook-functions": "Hook Functions",
+    "hot-reload": "Hot Reload",
+    "builtin-messages": "Builtin Messages",
+    "scheduler": "Scheduler",
+    "cqhttp-adapter": "CQHTTP Adapter",
+    "dingtalk-adapter": "Dingtalk Adapter",
+    "mirai-adapter": "Mirai Adapter"
 }
