@@ -28,6 +28,7 @@
   "blog": {
     "title": "Blog",
     "type": "page",
+    "href": "/blog",
     "theme": {
       "sidebar": false
     }
