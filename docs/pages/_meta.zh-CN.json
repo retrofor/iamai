@@ -13,11 +13,11 @@
     "items": {
       "robot-docs": {
         "title": "机器人文档",
-        "href": "/docs/robot/"
+        "href": "/docs/"
       },
       "ai-docs": {
-        "title": "AI模型文档",
-        "href": "/docs/ai/"
+        "title": "尝试AI训练场",
+        "href": "/ai/playground/"
       }
     }
   },

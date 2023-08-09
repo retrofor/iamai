@@ -13,11 +13,11 @@
     "items": {
       "robot-docs": {
         "title": "Robot Documentation",
-        "href": "/docs/robot/"
+        "href": "/docs/"
       },
-      "ai-docs": {
-        "title": "AI Documentation",
-        "href": "/docs/ai/"
+      "ai-playground": {
+        "title": "AI Blockly Playground",
+        "href": "/ai/playground/"
       }
     }
   },
