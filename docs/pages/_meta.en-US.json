@@ -13,7 +13,7 @@
     "items": {
       "robot-docs": {
         "title": "Robot Documentation",
-        "href": "/docs/"
+        "href": "/docs"
       },
       "ai-playground": {
         "title": "AI Blockly Playground",

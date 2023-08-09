@@ -1,5 +1,9 @@
 {
     "index": "Introduction",
+    "-- Basic": {
+      "type": "separator",
+      "title": "Basic"
+    },
     "basic-config": "Basic Config",
     "getting-started": "Get Started",
     "plugin-basics": "Plugin Basics",

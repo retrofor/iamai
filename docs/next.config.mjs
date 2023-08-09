@@ -22,9 +22,9 @@ export default withNextra({
   },
   redirects: () => [
     {
-      source: '/docs/',
+      source: '/docs',
       destination: '/docs/index',
-      permanent: false
+      permanent: true
     },
     {
       source: '/docs/:slug(typescript|latex|tailwind-css|mermaid)',

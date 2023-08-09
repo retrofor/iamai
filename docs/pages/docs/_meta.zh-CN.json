@@ -1,5 +1,9 @@
 {
-    "index": "基本介绍",
+    "index": "介绍",
+    "-- 基础": {
+      "type": "separator",
+      "title": "基础"
+    },
     "basic-config": "基本配置",
     "getting-started": "快速开始",
     "plugin-basics": "插件基础",
