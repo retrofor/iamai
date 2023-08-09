@@ -20,13 +20,18 @@ export default withNextra({
     // Eslint behaves weirdly in this monorepo.
     ignoreDuringBuilds: true
   },
-  // redirects: () => [
-  //   {
-  //     source: '/docs/guide/:slug(typescript|latex|tailwind-css|mermaid)',
-  //     destination: '/docs/guide/advanced/:slug',
-  //     permanent: true
-  //   },
-  // ],
+  redirects: () => [
+    {
+      source: '/docs',
+      destination: '/docs/index',
+      permanent: true
+    },
+    // {
+    //   source: '/docs/:slug(typescript|latex|tailwind-css|mermaid)',
+    //   destination: '/docs/guide/advanced/:slug',
+    //   permanent: true
+    // },
+  ],
   webpack(config) {
     const allowedSvgRegex = /components\/icons\/.+\.svg$/
 
