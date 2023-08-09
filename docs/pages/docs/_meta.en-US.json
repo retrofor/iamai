@@ -2,14 +2,14 @@
     "index": "Introduction",
     "-- Basic": {
       "type": "separator",
-      "title": "Basic"
+      "title": "🧩 | Basic"
     },
     "basic-config": "Basic Config",
     "getting-started": "Get Started",
     "plugin-basics": "Plugin Basics",
     "-- Advanced": {
         "type": "separator",
-        "title": "Advanced"
+        "title": "🎢 | Advanced"
       },
     "plugin-advanced": "Plugin Advanced",
     "hook-function": "Hook Functions",
@@ -18,7 +18,7 @@
     "scheduler": "Scheduler",
     "-- Adapter": {
         "type": "separator",
-        "title": "Adapter"
+        "title": "⚙️ | Adapter"
       },
     "cqhttp-adapter": "CQHTTP Adapter",
     "dingtalk-adapter": "Dingtalk Adapter",
