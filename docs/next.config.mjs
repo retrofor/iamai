@@ -24,7 +24,7 @@ export default withNextra({
     {
       source: '/docs',
       destination: '/docs/index',
-      permanent: true
+      permanent: false
     },
     {
       source: '/docs/robot-guide/:slug(typescript|latex|tailwind-css|mermaid)',
