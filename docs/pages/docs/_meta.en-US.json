@@ -1,4 +1,18 @@
 {
     "index":"Introduction",
-    "guide": ""
+    "robot-guide": "Robot Guide",
+    "ai-guide": "AI Guide",
+    "-- More": {
+        "type": "separator",
+        "title": "More"
+      },
+      "about-link": {
+        "title": "About IamAI",
+        "href": "/about"
+      },
+      "HydroRoll-link": {
+        "title": "HydroRoll Docs ↗",
+        "href": "https://hydroroll.retrofor.space",
+        "newWindow": true
+      }
 }

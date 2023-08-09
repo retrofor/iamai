@@ -13,7 +13,7 @@ const withNextra = nextra({
 export default withNextra({
   i18n: {
     locales: ["en-US", "zh-CN"],
-    defaultLocale: "en-US",
+    defaultLocale: "zh-CN",
   },
   reactStrictMode: true,
   eslint: {
@@ -26,11 +26,16 @@ export default withNextra({
       destination: '/docs/index',
       permanent: true
     },
-    // {
-    //   source: '/docs/:slug(typescript|latex|tailwind-css|mermaid)',
-    //   destination: '/docs/guide/advanced/:slug',
-    //   permanent: true
-    // },
+    {
+      source: '/docs/robot-guide/:slug(typescript|latex|tailwind-css|mermaid)',
+      destination: '/docs/robot-guide/:slug',
+      permanent: true
+    },
+    {
+      source: '/docs/ai-guice/:slug(callout|steps|tabs)',
+      destination: '/docs/ai-guide/:slug',
+      permanent: true
+    }
   ],
   webpack(config) {
     const allowedSvgRegex = /components\/icons\/.+\.svg$/

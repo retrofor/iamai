@@ -1,4 +1,18 @@
 {
     "index":"介绍",
-    "guide": ""
+    "robot-guide": "跨平台机器人指南",
+    "ai-guide": "构建与训练模型指南",
+    "-- More": {
+        "type": "separator",
+        "title": "更多"
+      },
+      "about-link": {
+        "title": "关于 IamAI",
+        "href": "/about"
+      },
+      "HydroRoll-link": {
+        "title": "水系文档 ↗",
+        "href": "https://hydroroll.retrofor.space",
+        "newWindow": true
+      }
 }
