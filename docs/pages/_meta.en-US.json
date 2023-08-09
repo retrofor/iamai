@@ -21,6 +21,10 @@
       }
     }
   },
+  "dev-api": {
+    "title": "API",
+    "type": "page"
+  },  
   "blog": {
     "title": "Blog",
     "type": "page",

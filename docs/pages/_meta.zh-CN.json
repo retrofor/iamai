@@ -16,11 +16,15 @@
         "href": "/docs/"
       },
       "ai-docs": {
-        "title": "尝试AI训练场",
+        "title": "AI训练场",
         "href": "/ai/playground/"
       }
     }
   },
+  "dev-api": {
+    "title": "API",
+    "type": "page"
+  }, 
   "blog": {
     "title": "博客",
     "type": "page",
