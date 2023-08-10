@@ -55,16 +55,18 @@ if __name__ == "__main__":
 import { FileTree } from 'nextra/components'
  
 <FileTree>
-  <FileTree.Folder name="plugins" defaultOpen>
-    <FileTree.File name="a.py (单个 Python 文件)" />
-    <FileTree.Folder name="b (Python 包)" defaultOpen>
-      <FileTree.File name="__init__.py">
-    </FIleTree.Folder>
-  </FileTree.Folder>
-  <FileTree.File name="config.toml" />
-  <FileTree.File name="main.py" />
+  <FileTree.Folder name="iamai-starter" defaultOpen>
+    <FileTree.Folder name="plugins" defaultOpen>
+      <FileTree.File name="a.py (单个 Python 文件)" />
+      <FileTree.Folder name="b (Python 包)" defaultOpen>
+        <FileTree.File name="__init__.py" />
+      </FIleTree.Folder>
+    </FileTree.Folder>
+    <FileTree.File name="config.toml" />
+    <FileTree.File name="main.py" />
+  </FileTree.Foler>
 </FileTree>
-
+ 
 插件类都必须是 `Plugin` 类的子类，并必须实现 `rule()` 和 `handle()` 方法。
 
 ```python {5-6} filename="plugins/test.py" showLineNumbers /rule(self)/ /handle(self)/
