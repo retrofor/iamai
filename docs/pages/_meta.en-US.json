@@ -24,14 +24,11 @@
   "dev-api": {
     "title": "API",
     "type": "page"
-  },  
+  },
   "blog": {
     "title": "Blog",
     "type": "page",
-    "href": "/blog",
-    "theme": {
-      "sidebar": false
-    }
+    "href": "/blog"
   },
   "about": {
     "type": "page",
