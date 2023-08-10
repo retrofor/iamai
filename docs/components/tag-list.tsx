@@ -49,7 +49,7 @@ export const TagList = ({
         return (
           <Tag
             key={tag}
-            href={asLink ? `/blog/tag/${tag}` : ''}
+            href={asLink ? `/store/tag/${tag}` : ''}
             isActive={tag === router.query.tag}
           >
             {withCount && count > 0 ? `${tag} (${count})` : tag}
