@@ -76,3 +76,13 @@ pre {
   color: #fff7ba !important;
   background: #f7df1e1c !important;
 }
+
+:is(html[class~=dark] .dark\:nx-bg-dark) {
+  --tw-bg-opacity: 1;
+  background-color: rgba(0,0,0,var(--tw-bg-opacity));
+}
+
+:is(html[class~=dark] .dark\:nx-border-neutral-800) {
+  --tw-border-opacity: 1;
+  border-color: rgba(0,0,0,var(--tw-border-opacity));
+}
