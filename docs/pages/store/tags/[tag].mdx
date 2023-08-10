@@ -1,0 +1,41 @@
+---
+title: Store
+description: a list of plugins
+---
+
+import { useRouter } from 'next/router';
+import plugins from '../plugins.json';
+import { MDXProvider } from '@mdx-js/react';
+import enUSStore from '../../store.en-US.mdx';
+import zhCNStore from '../../store.zh-CN.mdx';
+
+const components = {
+  // 定义你要使用的自定义组件
+};
+
+const TagPage = () => {
+  const router = useRouter();
+  const { locale } = router;
+
+  const storeMdx = locale === 'en-US' ? enUSStore : zhCNStore;
+
+  return (
+    <div>
+      <MDXProvider components={components}>{storeMdx}</MDXProvider>
+    </div>
+  );
+};
+
+export const getStaticProps = () => {
+  return { props: {} }
+}
+
+export const getStaticPaths = async () => {
+  const allTags = new Set(plugins.flatMap(art => art.tags))
+  return {
+    paths: Array.from(allTags).map(tag => ({ params: { tag } })),
+    fallback: false
+  }
+}
+
+export default TagPage;
