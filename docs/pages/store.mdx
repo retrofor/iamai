@@ -6,7 +6,6 @@ skipSync: true
 
 import { useRouter } from 'next/router'
 import { StoreCardList } from '@components/store-card-list'
-import { HeroSection } from '@components/hero-section'
 import { Newsletter } from '@components/newsletter'
 import { Heading } from '@components/heading'
 import { TagList } from '@components/tag-list'
@@ -45,9 +44,9 @@ export default function Store() {
   }
   return (
     <>
-      <HeroSection>
+      <hero>
         <Heading>The IamAI's Store</Heading>
-      </HeroSection>
+      </hero>
       <div className="container max-w-[1200px]">
         <TagList tags={allTags} withCount asLink className="mb-20 mt-10" />
         {!tagsFilter.length && <Newsletter />}
