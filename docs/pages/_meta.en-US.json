@@ -21,6 +21,11 @@
       }
     }
   },
+  "store": {
+    "title": "Store",
+    "type": "page",
+    "href": "/store"
+  },
   "dev-api": {
     "title": "API",
     "type": "page"

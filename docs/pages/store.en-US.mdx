@@ -1,0 +1,59 @@
+---
+title: Store
+description: models and plugins for IamAI Store
+skipSync: true
+---
+
+import { useRouter } from 'next/router'
+import { StoreCardList } from '@components/store-card-list'
+import { Newsletter } from '@components/newsletter'
+import { Heading } from '@components/heading'
+import { TagList } from '@components/tag-list'
+import plugins from './store/plugins.json'
+import { asArray } from '@components/as-array'
+
+export function extractRelevantTags(articles) {
+  const allTags = articles.flatMap(article => article.tags || [])
+  const map = Object.create(null)
+  for (const tag of allTags) {
+    map[tag] = map[tag] == null ? 0 : map[tag]
+    map[tag] += 1
+  }
+  const sorted = Object.entries(map)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10)
+  if (sorted.every(([tagName]) => tagName !== 'models')) {
+    sorted.unshift(['models', 0])
+  }
+  if (sorted.every(([tagName]) => tagName !== 'plugins')) {
+    sorted.unshift(['plugins', 0])
+  }
+  return sorted.slice(0, 10)
+}
+
+export default function Store() {
+  const { query } = useRouter()
+  const tagsFilter = !query.tag ? [] : asArray(query.tag)
+  const allTags = extractRelevantTags(plugins)
+  let articles = plugins
+  if (tagsFilter.length > 0) {
+    articles = articles.filter(
+      article =>
+        tagsFilter.length === 0 || asArray(article.tags).some(tag => tagsFilter.includes(tag))
+    )
+  }
+  return (
+    <>
+      <hero>
+        <Heading>The IamAI's Store</Heading>
+      </hero>
+      <div className="container max-w-[1200px]">
+        <TagList tags={allTags} withCount asLink className="mb-20 mt-10" />
+        
+        {<StoreCardList articles={articles} />}
+      </div>
+    </>
+  )
+
+
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Test Plugins Post",
+    "description": "Just for a test.",
+    "tags": [
+      "tests",
+      "plugins"
+    ],
+    "authors": [
+      "HsiangNianian"
+    ],
+    "link": "/store/testspluginspost23",
+    "image": "/demo.png",
+    "date": "2023-08-10",
+    "thumbnail": "/logo.png"
+  }
+]
