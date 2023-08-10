@@ -1,14 +1,27 @@
-import React from 'react'
-import Document, { Html, Head, Main, NextScript } from 'next/document'
-import { SkipNavLink } from "nextra-theme-docs";
+import Document, { Head, Html, Main, NextScript } from 'next/document';
+import { OrganizationJsonLd } from 'next-seo';
+import { getCssText } from '@components/stitches.config';
 
-class MyDocument extends Document {
+export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <OrganizationJsonLd
+            url="https://iamai.retrofor.space"
+            logo="https://iamai.retrofor.space/logo.svg"
+            name="The IamAI"
+          />
+          <style dangerouslySetInnerHTML={{ __html: getCssText() }} />
+          <meta charSet="utf-8" />
+          <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="RSS Feed for iamai"
+            href="/feed.xml"
+          />
+        </Head>
         <body>
-          <SkipNavLink styled />
           <Main />
           <NextScript />
         </body>
@@ -16,5 +29,3 @@ class MyDocument extends Document {
     );
   }
 }
-
-export default MyDocument
