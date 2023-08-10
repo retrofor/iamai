@@ -5,7 +5,7 @@ export type Meta = {
     authors: string | string[];
     updateDate?: string;
     description: string;
-    image: string;
+    image?: string;
     thumbnail?: string;
     canonical?: string;
   };
