@@ -21,6 +21,11 @@
       }
     }
   },
+  "store": {
+    "title": "商店",
+    "type": "page",
+    "href": "/store"
+  },
   "dev-api": {
     "title": "API",
     "type": "page"
