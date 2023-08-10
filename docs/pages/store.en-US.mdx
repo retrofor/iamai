@@ -5,10 +5,12 @@ skipSync: true
 ---
 
 import { useRouter } from 'next/router'
-import { StoreCardList, Heading, Newsletter, TagList } from '@/components'
+import { StoreCardList } from '@components/store-card-list'
 import { HeroSection } from '@components/hero-section'
-import plugins from '../plugins.json'
-import { asArray } from '../lib/as-array'
+import { newsletter } from '@components/newsletter'
+import { TagList } from '@components/tag-list'
+import plugins from 'store/plugins.json'
+import { asArray } from '@components/as-array'
 
 export function extractRelevantTags(articles) {
   const allTags = articles.flatMap(article => article.tags || [])
