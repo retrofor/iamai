@@ -140,18 +140,14 @@ const themeConfig = {
       </>
     )
   },
-  // banner: {
-  //   key: '2.0-release',
-  //   text: (
-  //     <a href="https://nextra.site" target="_blank" rel="noreferrer">
-  //       🎉 Nextra 2.0 is released. Read more →
-  //     </a>
-  //   )
-  // },
-  // i18n: [
-  //   { locale: 'en-US', text: 'English' },
-  //   { locale: 'zh-CN', text: '简体中文' },
-  // ],
+  banner: {
+    key: '3.0-release',
+    text: (
+      <a href="https://iamai.retrofor.space/blog/iamai-v3" target="_blank" rel="noreferrer">
+        🎉 IamAI 3.0 is released. Read more →
+      </a>
+    )
+  },
   i18n: Object.entries(languageMap).map(([locale, text]) => ({
     locale,
     text,
