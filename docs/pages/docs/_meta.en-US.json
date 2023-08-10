@@ -4,8 +4,8 @@
       "type": "separator",
       "title": "🧩 | Basic"
     },
-    "basic-config": "Basic Config",
     "getting-started": "Get Started",
+    "basic-config": "Basic Config",
     "plugin-basics": "Plugin Basics",
     "-- Advanced": {
         "type": "separator",
