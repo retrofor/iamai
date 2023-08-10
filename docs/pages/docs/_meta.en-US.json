@@ -18,7 +18,7 @@
     "scheduler": "Scheduler",
     "-- Adapter": {
         "type": "separator",
-        "title": "⚙️ | Adapter"
+        "title": "📦 | Adapter"
       },
     "cqhttp-adapter": "CQHTTP Adapter",
     "dingtalk-adapter": "Dingtalk Adapter",

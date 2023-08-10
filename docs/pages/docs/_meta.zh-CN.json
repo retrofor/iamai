@@ -2,14 +2,14 @@
     "index": "介绍",
     "-- 基础": {
       "type": "separator",
-      "title": "基础"
+      "title": "🧩 | 基础"
     },
     "basic-config": "基本配置",
     "getting-started": "快速开始",
     "plugin-basics": "插件基础",
     "-- 进阶": {
         "type": "separator",
-        "title": "进阶"
+        "title": "🎢 | 进阶"
       },
     "plugin-advanced": "插件进阶",
     "hook-function": "钩子函数",
@@ -18,7 +18,7 @@
     "scheduler": "定时任务",
     "-- 适配器": {
         "type": "separator",
-        "title": "适配器"
+        "title": "📦 | 适配器"
       },
     "cqhttp-adapter": "CQHTTP 适配器",
     "dingtalk-adapter": "Dingtalk 适配器",
