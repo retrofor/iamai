@@ -1,11 +1,11 @@
 {
-    "index": "介绍",
+    "index": "概览",
     "-- 基础": {
       "type": "separator",
       "title": "🧩 | 基础"
     },
-    "basic-config": "基本配置",
     "getting-started": "快速开始",
+    "basic-config": "基本配置",
     "plugin-basics": "插件基础",
     "-- 进阶": {
         "type": "separator",
