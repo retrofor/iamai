@@ -21,7 +21,7 @@ export const HeroSection = ({
           hideCirclesOnMobile && 'hidden xl:block',
         )}
       />
-      <Image
+      {/* <Image
         alt=""
         src={pinkCircle}
         placeholder="empty"
@@ -30,7 +30,7 @@ export const HeroSection = ({
           'drag-none absolute top-96 right-0 z-[-1] w-32 sm:top-80 sm:w-60 md:top-24 lg:w-96',
           hideCirclesOnMobile && 'hidden xl:block',
         )}
-      />
+      /> */}
       <div className="flex flex-col items-center justify-center text-center">
         <div
           className="
