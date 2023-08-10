@@ -22,11 +22,11 @@ export function extractRelevantTags(articles) {
   const sorted = Object.entries(map)
     .sort((a, b) => b[1] - a[1])
     .slice(0, 10)
-  if (sorted.every(([tagName]) => tagName !== 'models')) {
-    sorted.unshift(['models', 0])
+  if (sorted.every(([tagName]) => tagName !== '模型')) {
+    sorted.unshift(['模型', 0])
   }
-  if (sorted.every(([tagName]) => tagName !== 'plugins')) {
-    sorted.unshift(['plugins', 0])
+  if (sorted.every(([tagName]) => tagName !== '插件')) {
+    sorted.unshift(['插件', 0])
   }
   return sorted.slice(0, 10)
 }

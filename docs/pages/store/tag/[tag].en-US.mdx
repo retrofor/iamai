@@ -1,0 +1,21 @@
+---
+title: Store
+description: a list of plugins
+---
+
+import plugins from '../plugins.json'
+import Store from '../../store.en-US.mdx'
+
+export const getStaticProps = () => {
+  return { props: {} }
+}
+
+export const getStaticPaths = async () => {
+  const allTags = new Set(plugins.flatMap(art => art.tags))
+  return {
+    paths: Array.from(allTags).map(tag => ({ params: { tag } })),
+    fallback: false
+  }
+}
+
+<Store />
