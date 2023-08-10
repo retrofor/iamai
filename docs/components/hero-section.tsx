@@ -1,8 +1,8 @@
 import { ReactElement, ReactNode } from 'react';
 import clsx from 'clsx';
 import { Image } from '@components/image';
-import blueCircle from '../public/img/blue-circle.svg';
-import pinkCircle from '../public/img/pink-circle.png';
+import logo from '../public/logo.svg';
+// import pinkCircle from '../public/img/pink-circle.png';
 
 export const HeroSection = ({
   children,
@@ -15,7 +15,7 @@ export const HeroSection = ({
     <div>
       <Image
         alt=""
-        src={blueCircle}
+        src={logo}
         className={clsx(
           'absolute top-0 -left-40 z-[-1] lg:left-0',
           hideCirclesOnMobile && 'hidden xl:block',
