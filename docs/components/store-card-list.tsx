@@ -3,7 +3,7 @@ import NextLink from 'next/link';
 import clsx from 'clsx';
 import { format } from 'date-fns';
 import { AUTHORS } from '@components/authors';
-import { MetaWithLink } from '../lib/meta';
+import { MetaWithLink } from '../lib/meta-with-link';
 import { Description } from './description';
 import { Heading } from './heading';
 
