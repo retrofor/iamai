@@ -31,7 +31,7 @@ export function extractRelevantTags(articles) {
   return sorted.slice(0, 10)
 }
 
-export default function enUSStore() {
+export default function Store() {
   const { query } = useRouter()
   const tagsFilter = !query.tag ? [] : asArray(query.tag)
   const allTags = extractRelevantTags(plugins)
