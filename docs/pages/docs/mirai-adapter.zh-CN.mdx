@@ -8,7 +8,7 @@ Mirai 协议适配器是 [mirai-api-http](https://github.com/project-mirai/mirai
 
 ## 安装
 
-```sh
+```sh filename="bash"
 pip install iamai-adapter-mirai
 ```
 
@@ -18,7 +18,7 @@ pip install iamai-adapter-mirai
 
 ### Websocket Adapter 模式
 
-```yaml
+```yaml filename="setting.yml" showLineNumbers
 adapters:
   - ws
 enableVerify: true
@@ -32,7 +32,7 @@ adapterSettings:
 
 ### Reverse Websocket Adapter 模式
 
-```yaml
+```yaml filename="setting.yml" showLineNumbers
 adapters:
   - reverse-ws
 enableVerify: true
@@ -57,7 +57,7 @@ adapterSettings:
 
 ### Websocket Adapter 模式
 
-```toml
+```toml filename="config.toml" showLineNumbers
 [bot]
 adapters = ["iamai.adapter.mirai"]
 
@@ -69,7 +69,7 @@ qq = 机器人QQ号
 
 ### Reverse Websocket Adapter 模式
 
-```toml
+```toml filename="config.toml" showLineNumbers
 [bot]
 adapters = ["iamai.adapter.mirai"]
 
@@ -83,7 +83,7 @@ qq = 机器人QQ号
 
 与 CQHTTP 协议适配器类似，Mirai 适配器也可以轻松地构建富文本消息。
 
-```python
+```python filename="plugins/hallo-mirai.py" showLineNumbers
 from iamai import Plugin
 from iamai.adapter.mirai.message import MiraiMessageSegment
 
@@ -109,7 +109,7 @@ class Halloiamai(Plugin):
 
 你可以使用下面的方法调用 mirai-api-http API：
 
-```python
+```python filename="plugins/test-mirai.py" showLineNumbers
 from iamai import Plugin
 
 

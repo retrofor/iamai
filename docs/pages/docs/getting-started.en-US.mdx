@@ -94,13 +94,15 @@ You should see the following output log:
 
 iamai recommends the following directory structure: 
 
-```text
-.
-├── plugins (插件目录)
-│   └── xxx.py
-├── config.toml (配置文件)
-└── main.py
-```
+import { FileTree } from 'nextra/components'
+ 
+<FileTree>
+  <FileTree.Folder name="plugins (The plugins dir)" defaultOpen>
+    <FileTree.File name="xxx.py" />
+  </FileTree.Folder>
+  <FileTree.File name="config.toml (The configuration file)" />
+  <FileTree.File name="main.py" />
+</FileTree>
 
 The `main.py` and `config.toml` files are as shown above.
 

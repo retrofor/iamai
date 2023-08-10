@@ -4,7 +4,7 @@
 
 iamai 提供了一个 `restart()` 方法用于退出并重新启动 iamai，你可以编写这样一个插件用于重新启动 iamai：
 
-```python
+```python filename="plugins/restart.py" showLineNumbers /self.bot.restart()/
 from iamai import Plugin
 
 
@@ -39,7 +39,7 @@ class Restart(Plugin):
 
 开启方式非常简单，只需要在实例化 `Bot` 类时传入 `hot_reload` 参数即可。
 
-```python
+```python filename="plugins/hot_reload.py" showLineNumbers {3}
 from iamai import Bot
 
 bot = Bot(hot_reload=True)

@@ -2,7 +2,7 @@
 
 ## 安装
 
-```sh
+```sh filename="bash"
 pip install iamai-adapter-dingtalk
 ```
 
@@ -27,7 +27,7 @@ DingTalk 协议适配器是钉钉企业机器人协议的适配器，钉钉的�
 
 比较特殊的是，由于钉钉富文本消息的特殊性，钉钉适配器的消息类 `DingTalkMessage` 并非 `Message` 的子类，而是 `MessageSegment` 的子类。你无法通过常用的消息字段相加的方式构建消息。而需要手动写 Markdown 文本。
 
-```python
+```python filename="plugins/hallo-dingtalk.py" showLineNumbers
 from iamai import Plugin
 from iamai.adapter.digntalk.message import DingTalkMessage
 

@@ -2,7 +2,7 @@
 
 ## 安装
 
-```sh
+```sh filename="bash"
 pip install iamai-adapter-cqhttp
 ```
 
@@ -22,7 +22,7 @@ CQHTTP 协议适配器是 OneBot 协议（原 CKYU 平台的 CQHTTP 协议）的
 
 目前 CQHTTP 适配器支持 WebSocket 连接和反向 WebSocket 连接，go-cqhttp 配置文件应该像下面所示：
 
-```yaml
+```yaml filename="config.yml" showLineNumbers {5-7,14}
 account:
   uin: 机器人QQ号
   password: '机器人密码'
@@ -71,7 +71,7 @@ servers:
 
 在编写插件时，除了发送普通的文本消息外，也可以轻松地构造并发送富文本消息，请确保查看本节时你已经阅读了 [内置消息](./builtin-message.md) 。
 
-```python
+```python filename="plugins/hallo-cqhttp.py" showLineNumbers
 from iamai import Plugin
 from iamai.adapter.cqhttp.message import CQHTTPMessageSegment
 
@@ -97,7 +97,7 @@ class Halloiamai(Plugin):
 
 你可以使用下面的方法调用 OneBot API：
 
-```python
+```python filename="plugins/test-cqhttp.py" showLineNumbers
 from iamai import Plugin
 
 

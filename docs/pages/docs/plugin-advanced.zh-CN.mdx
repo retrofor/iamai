@@ -10,7 +10,7 @@ import { Callout } from 'nextra/components'
 
 `skip()` 方法用于跳过当前插件继续事件传播。通常来说，你也可以在 `handle()` 方法使用 `return` 语句实现类似的效果，但这个方法在某些情况下可以简化一些操作。如：
 
-```python
+```python filename="plugins/test.py" showLineNumbers /self.skip()/
 from iamai import Plugin
 
 
@@ -36,7 +36,7 @@ class TestPlugin(Plugin):
 
 你可能会发现，设置 `block` 属性为 `True` 和在 `handle()` 方法最后加一句 `self.stop()` 没什么区别。实际上，它们在大多数情况下确实没有区别，除了一种情况，即当 `handle()` 方法中出现异常时，最后的 `self.stop()` 语句不会被执行，但 `block` 属性仍会起效。也就是， `block` 属性为 `True` 和下面的示例效果大致上等同：
 
-```python
+```python filename="plugins/test.py" showLineNumbers /self.stop()/
 from iamai import Plugin
 
 
@@ -57,7 +57,7 @@ class TestPlugin(Plugin):
 
 实际上，这两个方法是使用 Python 的异常处理实现的，所以，在编写插件时请注意不要捕获所有异常，如：
 
-```python
+```python filename="plugins/test.py" showLineNumbers {9}
 # 错误：skip() 方法不会生效
 from iamai import Plugin
 
@@ -76,7 +76,7 @@ class TestPlugin(Plugin):
 
 而应该至少使用：
 
-```python
+```python filename="plugins/test.py" showLineNumbers {8}
 from iamai import Plugin
 
 
@@ -100,7 +100,7 @@ class TestPlugin(Plugin):
 
 下面我们使用一个计数插件为例：
 
-```python
+```python filename="plugins/count.py" showLineNumbers /self.state/
 from iamai import Plugin
 
 
@@ -130,7 +130,7 @@ class Count(Plugin):
 
 下面的示例是两个不同的插件，实现分别对一个数字全局状态进行增减。
 
-```python
+```python filename="plugins/global_state_test.py" showLineNumbers /self.bot.global_state/
 from iamai import Plugin
 
 
@@ -150,31 +150,11 @@ class GlobalStateTest1(Plugin):
 
 ```
 
-```python
-from iamai import Plugin
-
-
-class GlobalStateTest2(Plugin):
-    async def handle(self) -> None:
-        if self.bot.global_state.get("count", None) is None:
-            self.bot.global_state["count"] = 0
-        self.bot.global_state["count"] -= 1
-        await self.event.reply(f"sub: {self.bot.global_state['count']}")
-
-    async def rule(self) -> bool:
-        if self.event.adapter.name != "cqhttp":
-            return False
-        if self.event.type != "message":
-            return False
-        return self.event.message.get_plain_text() == "sub"
-
-```
-
 ## 插件配置
 
 在 [基础配置](./basic-config.md) 一节中提到，你可以直接通过 `self.bot.config` 访问当前机器人的配置。但有时我们可能会希望插件配置像适配器配置一样放在一个独立的键中，以提高这个插件的可移植性，那么我们可以这样处理：
 
-```python
+```python filename="plugins/test_plugin.py" showLineNumbers /self.config.test_plugin/
 from iamai import Plugin, ConfigModel
 
 
@@ -195,7 +175,7 @@ class TestPlugin(Plugin):
 
 `config.toml` 文件对应如下：
 
-```toml
+```toml filename="config.toml" {2,3}
 [plugin.test_plugin]
 a = "abc"
 b = 123
@@ -213,7 +193,7 @@ b = 123
 
 然后在 `__init__.py` 中导入：
 
-```python {7}
+```python {7} filename="plugins/test/__init__.py" showLineNumbers
 from iamai import Plugin
 
 from .config import Config
@@ -230,6 +210,7 @@ class TestPlugin(Plugin):
         return True
 
 ```
+
 <Callout type="warning" emoji="⚠️">
   配置类的类名必须为 `Config` 且必须包含 `__config_name__` 属性。
 </Callout>
@@ -240,7 +221,7 @@ class TestPlugin(Plugin):
 
 实际上，`Bot` 和 `Adapter` 类都有一个 `get()` 方法。
 
-```python
+```python showLineNumbers /get()/
 self.bot.get()
 self.event.adapter.get()
 ```
@@ -251,7 +232,7 @@ self.event.adapter.get()
 
 插件类会在事件传播时被实例化，对于每个事件都会实例化一个新的插件类，如果你需要在被实例化时就进行一些操作，为了避免一些不必要的麻烦，建议不要直接重写 `__init__()` 方法。为此，iamai 提供了一个 `__post_init__()` 方法。`__post_init__()` 方法将被 `__init__()` 方法在最后调用，默认没有定义任何内容，你可以通过重写该方法进行初始化后处理。
 
-```python
+```python filename="plugins/test.py" showLineNumbers /__post_init__/
 from iamai import Plugin
 
 
@@ -271,7 +252,7 @@ class TestPlugin(Plugin):
 
 如果你想要在插件中输出到控制台什么东西的话，建议不要直接使用 `print()`，可以这样输出日志：
 
-```python
+```python {2,7} filename="plugins/test.py" showLineNumbers /logger/
 from iamai import Plugin
 from iamai.log import logger
 
@@ -289,7 +270,7 @@ class TestPlugin(Plugin):
 
 如果你编写了许多个有着不少相同的部分的插件，编写多次相同代码显然不是一个优雅的解决方案，我们可以利用类的继承创建一个所有插件共用的基类。
 
-```python
+```python filename="plugins/base_plugin.py" showLineNumbers /BasePlugin/
 from abc import ABC
 
 class BasePlugin(Plugin, ABC):
@@ -304,7 +285,7 @@ class BasePlugin(Plugin, ABC):
 
 比如：
 
-```python
+```python filename="plugins/test.py" showLineNumbers {12}
 from typing import Union
 
 from iamai import Plugin, ConfigModel

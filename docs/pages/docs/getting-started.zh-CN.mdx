@@ -10,24 +10,23 @@ import { Callout } from 'nextra/components'
 
 使用 Python 软件包安装程序（pip）进行安装：
 
-```sh
+```sh filename="bash"
 pip install iamai
 ```
 
 从 GitHub 中安装最新的测试版：
 
-```sh
+```sh filename="bash"
 git clone https://github.com/retrofor/iamai.git
 cd iamai
-poetry install --no-dev  # 推荐
-pip install .  # 不推荐
+poetry install --no-dev  # 推荐使用 poetry 进行安装
 ```
 
 ## 安装适配器
 
 iamai 本身只是一个聊天机器人框架，需要额外安装对应协议的适配器来支持特定的协议，你可以使用 pip 安装协议适配器：
 
-```sh
+```sh filename="bash"
 pip install iamai-adapter-cqhttp
 pip install iamai-adapter-mirai
 pip install iamai-adapter-dingtalk
@@ -35,7 +34,7 @@ pip install iamai-adapter-dingtalk
 
 或者你也可以在安装 iamai 的同时搭配对应的适配器，如：
 
-```sh
+```sh filename="bash"
 pip install iamai[all]
 pip install iamai[cqhttp]
 pip install iamai[dingtalk]
@@ -47,12 +46,12 @@ pip install iamai[dingtalk]
 
 1. 创建并进入一个新目录
 
-   ```sh
+   ```sh filename="bash"
    mkdir iamai-starter && cd iamai-starter
    ```
 2. 创建一个 `main.py` 文件并写入以下内容
 
-   ```python
+   ```python filename="main.py" showLineNumbers
    from iamai import Bot
 
    bot = Bot()
@@ -63,25 +62,25 @@ pip install iamai[dingtalk]
    ```
 3. 创建一个 `config.toml` 文件并写入以下内容
 
-   ```toml
+   ```toml filename="config.toml" showLineNumbers
    [bot]
    plugin_dirs = ["plugins"]
    adapters = ["iamai.adapter.cqhttp"]
    ```
 4. 创建一个 `plugins` 目录
 
-   ```sh
+   ```sh filename="bash"
    mkdir plugins
    ```
 5. 试试运行 `main.py` 吧！
 
-   ```sh
+   ```sh filename="bash"
    python main.py
    ```
 
 你应该会看到以下输出的日志
 
-```text
+```text 
 2021-07-24 00:00:00.000 | INFO     | iamai.bot:_load_plugins_from_dirs:689 - Loading plugins from dirs "/xxx/plugins"
 2021-07-24 00:00:00.000 | INFO     | iamai.bot:_load_adapters:746 - Succeeded to load adapter "CQHTTPAdapter" from "iamai.adapter.cqhttp"
 2021-07-24 00:00:00.000 | INFO     | iamai:run:90 - Running iamai...
@@ -91,13 +90,15 @@ pip install iamai[dingtalk]
 
 iamai 推荐的目录结构如下：
 
-```text
-.
-├── plugins (插件目录)
-│   └── xxx.py
-├── config.toml (配置文件)
-└── main.py
-```
+import { FileTree } from 'nextra/components'
+ 
+<FileTree>
+  <FileTree.Folder name="plugins (插件目录)" defaultOpen>
+    <FileTree.File name="xxx.py" />
+  </FileTree.Folder>
+  <FileTree.File name="config.toml (配置文件)" />
+  <FileTree.File name="main.py" />
+</FileTree>
 
 其中 `main.py` 和 `config.toml` 文件如上文所示。
 

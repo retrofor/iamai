@@ -4,7 +4,7 @@ import { Callout } from 'nextra/components'
 
 iamai 提供了一些钩子函数，可以以装饰器的形式使用，使用方法如下：
 
-```python
+```python filename="main.py" {6} showLineNumbers
 from iamai import Bot
 
 bot = Bot()
@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
 ### Bot 启动
 
-```python
+```python filename="main.py" {1} showLineNumbers
 @bot.bot_run_hook
 async def hook_func(_bot: Bot):
     pass
@@ -36,7 +36,7 @@ async def hook_func(_bot: Bot):
 
 ### Bot 退出
 
-```python
+```python filename="main.py" {1} showLineNumbers
 @bot.bot_exit_hook
 async def hook_func(_bot: Bot):
     pass
@@ -50,7 +50,7 @@ async def hook_func(_bot: Bot):
 
 ### 适配器初始化
 
-```python
+```python filename="main.py" {1} showLineNumbers
 @bot.adapter_startup_hook
 async def hook_func(_adapter: "T_Adapter"):
     pass
@@ -58,7 +58,7 @@ async def hook_func(_adapter: "T_Adapter"):
 
 ### 适配器运行
 
-```python
+```python filename="main.py" {1} showLineNumbers
 @bot.adapter_run_hook
 async def hook_func(_adapter: "T_Adapter"):
     pass
@@ -66,7 +66,7 @@ async def hook_func(_adapter: "T_Adapter"):
 
 ### 适配器关闭
 
-```python
+```python filename="main.py" {1} showLineNumbers
 @bot.adapter_shutdown_hook
 async def hook_func(_adapter: "T_Adapter"):
     pass
@@ -76,7 +76,7 @@ async def hook_func(_adapter: "T_Adapter"):
 
 ### 事件预处理
 
-```python
+```python filename="main.py" {1} showLineNumbers
 @bot.event_preprocessor_hook
 async def hook_func(_event: "T_Event"):
     pass
@@ -84,7 +84,7 @@ async def hook_func(_event: "T_Event"):
 
 ### 事件后处理
 
-```python
+```python filename="main.py" {1} showLineNumbers
 @bot.event_postprocessor_hook
 async def hook_func(_event: "T_Event"):
     pass

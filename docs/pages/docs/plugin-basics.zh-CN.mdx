@@ -12,7 +12,7 @@
 
 在 `main.py` 文件中添加以下行：
 
-```python {4}
+```python {4} filename="main.py" showLineNumbers
 from iamai import Bot
 
 bot = Bot()
@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
 在 `main.py` 文件中添加以下行：
 
-```python {7}
+```python {7} filename="main.py" showLineNumbers
 from iamai import Bot
 
 class TestPlugin(Plugin):
@@ -52,19 +52,22 @@ if __name__ == "__main__":
 
 虽然并非强制，但建议将一个插件类存放在一个单独的 Python 模块中。
 
-```text
-.
-├── plugins
-│   ├── a.py (单个 Python 文件)
-│   └── b (Python 包)
-│      └── __init__.py
-├── config.toml
-└── main.py
-```
+import { FileTree } from 'nextra/components'
+ 
+<FileTree>
+  <FileTree.Folder name="plugins" defaultOpen>
+    <FileTree.File name="a.py (单个 Python 文件)" />
+    <FileTree.Folder name="b (Python 包)" defaultOpen>
+      <FileTree.File name="__init__.py">
+    </FIleTree.Folder>
+  </FileTree.Folder>
+  <FileTree.File name="config.toml" />
+  <FileTree.File name="main.py" />
+</FileTree>
 
 插件类都必须是 `Plugin` 类的子类，并必须实现 `rule()` 和 `handle()` 方法。
 
-```python {5-6}
+```python {5-6} filename="plugins/test.py" showLineNumbers /rule(self)/ /handle(self)/
 from iamai import Plugin
 
 
@@ -108,7 +111,7 @@ class TestPlugin(Plugin):
 
 ### 编写 `rule()` 方法
 
-```python {9-13}
+```python {9-13} filename="plugins/hello.py" showLineNumbers /rule(self)/
 from iamai import Plugin
 
 
@@ -127,7 +130,7 @@ class Halloiamai(Plugin):
 
 如果你觉得把所有条件都写在一行不够好看的话也可以这样写：
 
-```python {9-13}
+```python {9-13} filename="plugins/hello.py" showLineNumbers /rule(self)/
 from iamai import Plugin
 
 
@@ -162,7 +165,7 @@ iamai 内置的 `Message` 类实现了许多实用的方法，建议所有适配
 
 ### 编写 `handle()` 方法
 
-```python {6}
+```python {6} filename="plugins/hello.py" showLineNumbers /handle(self)/
 from iamai import Plugin
 
 
@@ -189,7 +192,7 @@ class Halloiamai(Plugin):
 
 ## 示例：天气插件
 
-```python
+```python filename="plugins/weather.py" showLineNumbers
 from iamai import Plugin
 from iamai.exceptions import GetEventTimeout
 

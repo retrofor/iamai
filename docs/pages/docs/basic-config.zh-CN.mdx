@@ -36,7 +36,7 @@ iamai 自身拥有如下配置项：
 
 例如一个包含 `cqhttp` 适配器配置的配置文件如下：
 
-```toml
+```toml filename="config.toml" showLineNumbers
 [bot]
 # 这里是 iamai 自身的配置
 plugins = []
@@ -59,7 +59,7 @@ url = "/cqhttp/ws"
 
 你可以写入任意未被定义的配置项，它们同样会被 iamai 加载，这些自定义配置可以用于插件中，如你可以通过定义 `superuser` 来表示控制当前当前机器的特殊用户，或者用 `nickname` 表示当前机器人的昵称。
 
-```toml
+```toml filename="config.toml" showLineNumbers
 # 这里是任意未被使用的键名
 superuser = 10001
 nickname = "小爱"
@@ -74,7 +74,7 @@ adapters = ["iamai.adapter.cqhttp"]
 
 在插件中，整个配置可以通过 `self.bot.config` 来访问。例如：
 
-```python
+```python filename="plugins/hallo.py" showLineNumbers /self.bot.config/
 from iamai import Plugin
 
 
@@ -102,7 +102,7 @@ iamai 会判断 `config_file` 的拓展名，允许 `.toml` 或 `.json` 文件�
 
 当指定 `config_dict` 属性时，iamai 将不再读取配置文件，并直接从给定的配置字典读取配置。
 
-```python
+```python filename="main.py" showLineNumbers
 # 自定义配置文件名
 bot = Bot(config_file="my_config.json")
 
