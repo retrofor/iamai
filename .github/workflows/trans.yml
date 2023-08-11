@@ -5,10 +5,20 @@ on:
     types: [opened]
   issues:
     types: [opened]
-    labels: [trans]
 
 jobs:
   translate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions-cool/translation-helper@v1.2.0
+      - name: Check if trans label exists
+        id: check_label
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const issueLabels = context.payload.issue.labels.map(label => label.name);
+            const hasTransLabel = issueLabels.includes('trans');
+            core.setOutput('hasTransLabel', hasTransLabel)
+      
+      - name: Run translation helper
+        if: steps.check_label.outputs.hasTransLabel == 'true'
+        uses: actions-cool/translation-helper@v1.2.0
