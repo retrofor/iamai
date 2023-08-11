@@ -47,13 +47,13 @@ pip install iamai[dingtalk]
 import { Steps } from 'nextra/components'
 
 <Steps>
-### 1. 创建并进入一个新目录
+### 创建并进入一个新目录
 
       ```sh filename="bash"
       mkdir iamai-starter && cd iamai-starter
       ```
 
-### 2. 创建一个 `main.py` 文件并写入以下内容
+### 创建一个 `main.py` 文件并写入以下内容
 
       ```python filename="main.py" showLineNumbers
       from iamai import Bot
@@ -65,7 +65,7 @@ import { Steps } from 'nextra/components'
 
       ```
 
-### 3. 创建一个 `config.toml` 文件并写入以下内容
+### 创建一个 `config.toml` 文件并写入以下内容
 
       ```toml filename="config.toml" showLineNumbers
       [bot]
@@ -73,13 +73,13 @@ import { Steps } from 'nextra/components'
       adapters = ["iamai.adapter.cqhttp"]
       ```
 
-### 4. 创建一个 `plugins` 目录
+### 创建一个 `plugins` 目录
 
       ```sh filename="bash"
       mkdir plugins
       ```
 
-### 5. 试试运行 `main.py` 吧！
+### 试试运行 `main.py` 吧！
 
       ```sh filename="bash"
       python main.py
