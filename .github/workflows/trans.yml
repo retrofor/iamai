@@ -1,0 +1,14 @@
+name: Translation Helper
+
+on:
+  pull_request_target:
+    types: [opened]
+  issues:
+    types: [opened]
+    labels: [trans]
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions-cool/translation-helper@v1.2.0
