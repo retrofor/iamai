@@ -310,30 +310,30 @@ export function I18n() {
         </Feature>
         <Feature index={1} centered className="card-with-border" href="/docs/guide/image">
           <div className="h-full flex flex-col justify-between">
-            <h3>Links and images are <br className="show-on-mobile"/>always <span style={{ fontWeight: 300 }}>optimized</span>.</h3>
-            <p className='text-left mb-8'>Nextra automatically converts Markdown links and images to use [Next.js Link](https://nextjs.org/docs/routing/introduction#linking-between-pages) and [Next.js Image](https://nextjs.org/docs/basic-features/image-optimization#local-images) when possible. No slow navigation or layout shift.</p>
+            <h3>统一采用<br className="show-on-mobile"/>先进的<span style={{ fontWeight: 300 }}>消息段</span>(MS)</h3>
+            <p className='text-left mb-8'>IamAI 会自动根据平台的消息事件内容生成对应的消息段，方便插件/模型开发者使用和调度。</p>
             <div>
               <div className={styles.optimization}>
                 <div style={{ fontSize: '.9rem' }} className="leading-8">
-                  <code>{`[Learn more](/more)`}</code>
+                  <code>{`Adapter kook received: Event<message>: "Hi! Kook!!"`}</code>
                   <br/>
-                  <code>{`![Hero](/hero.png)`}</code>
+                  <code>{`Adapter cqhttp received: Event<message>: "Hi! CQHTTP!!"`}</code>
                 </div>
               </div>
               <ArrowRightIcon width="1.2em" className="text-neutral-400 rotate-90 my-6 mx-auto" />
               <div className={styles.optimization}>
                 <div style={{ fontSize: '.9rem' }} className="leading-8">
-                  <code>{`<Link .../>`}</code>
+                  <code>{`KookMessage(KookMessageSegment<text>:"Hi! Kook!!")`}</code>
                   <br/>
-                  <code>{`<Image .../>`}</code>
+                  <code>{`CQHTTPMessage(CQHTTPMessageSegment<text>:"Hi! CQHTTP!!")`}</code>
                 </div>
               </div>
             </div>
           </div>
         </Feature>
         <Feature index={2} id="highlighting-card" href="/docs/guide/syntax-highlighting">
-          <h3>Advanced syntax <br className="show-on-mobile"/>highlighting solution.</h3>
-          <p>Performant and reliable build-time syntax highlighting powered by [Shiki](https://shiki.matsu.io).</p>
+          <h3>完善的 <br className="show-on-mobile"/>类型提示。</h3>
+          <p>IamAI 使用[pydantic]()为开发提供强有力的类型提示支持，你甚至可以不需要查看文档，类型提示就是文档！</p>
         </Feature>
         <Feature index={3} href="/docs/guide/i18n">
           <h3>I18n as easy as <br className="show-on-mobile"/>creating new files.</h3>

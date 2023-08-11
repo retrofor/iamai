@@ -6,9 +6,7 @@ from iamai.adapter.kook.message import KookMessage, KookMessageSegment
 class EvalKook(Plugin):
     async def handle(self) -> None:
         try:
-            await self.event.reply(
-                KookMessageSegment.at(user_id=self.event.author_id)
-            )  # eval(self.event.content[6:]))
+            await self.event.reply(eval(self.event.content[5:]))
         except Exception as e:
             await self.event.reply(f"Error:\n{e}")
 
