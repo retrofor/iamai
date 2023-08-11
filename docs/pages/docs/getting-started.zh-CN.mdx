@@ -44,47 +44,56 @@ pip install iamai[dingtalk]
 
 本文会帮助你从零开始搭建一个简单的 iamai 机器人项目。
 
-1. 创建并进入一个新目录
+import { Steps } from 'nextra/components'
 
-   ```sh filename="bash"
-   mkdir iamai-starter && cd iamai-starter
-   ```
-2. 创建一个 `main.py` 文件并写入以下内容
+<Steps>
+### 1. 创建并进入一个新目录
 
-   ```python filename="main.py" showLineNumbers
-   from iamai import Bot
+      ```sh filename="bash"
+      mkdir iamai-starter && cd iamai-starter
+      ```
 
-   bot = Bot()
+### 2. 创建一个 `main.py` 文件并写入以下内容
 
-   if __name__ == "__main__":
-       bot.run()
+      ```python filename="main.py" showLineNumbers
+      from iamai import Bot
 
-   ```
-3. 创建一个 `config.toml` 文件并写入以下内容
+      bot = Bot()
 
-   ```toml filename="config.toml" showLineNumbers
-   [bot]
-   plugin_dirs = ["plugins"]
-   adapters = ["iamai.adapter.cqhttp"]
-   ```
-4. 创建一个 `plugins` 目录
+      if __name__ == "__main__":
+         bot.run()
 
-   ```sh filename="bash"
-   mkdir plugins
-   ```
-5. 试试运行 `main.py` 吧！
+      ```
 
-   ```sh filename="bash"
-   python main.py
-   ```
+### 3. 创建一个 `config.toml` 文件并写入以下内容
 
-你应该会看到以下输出的日志
+      ```toml filename="config.toml" showLineNumbers
+      [bot]
+      plugin_dirs = ["plugins"]
+      adapters = ["iamai.adapter.cqhttp"]
+      ```
 
-```text 
-2021-07-24 00:00:00.000 | INFO     | iamai.bot:_load_plugins_from_dirs:689 - Loading plugins from dirs "/xxx/plugins"
-2021-07-24 00:00:00.000 | INFO     | iamai.bot:_load_adapters:746 - Succeeded to load adapter "CQHTTPAdapter" from "iamai.adapter.cqhttp"
-2021-07-24 00:00:00.000 | INFO     | iamai:run:90 - Running iamai...
-```
+### 4. 创建一个 `plugins` 目录
+
+      ```sh filename="bash"
+      mkdir plugins
+      ```
+
+### 5. 试试运行 `main.py` 吧！
+
+      ```sh filename="bash"
+      python main.py
+      ```
+
+      你应该会看到以下输出的日志
+
+      ```text 
+      2021-07-24 00:00:00.000 | INFO     | iamai.bot:_load_plugins_from_dirs:689 - Loading plugins from dirs "/xxx/plugins"
+      2021-07-24 00:00:00.000 | INFO     | iamai.bot:_load_adapters:746 - Succeeded to load adapter "CQHTTPAdapter" from "iamai.adapter.cqhttp"
+      2021-07-24 00:00:00.000 | INFO     | iamai:run:90 - Running iamai...
+      ```
+
+</Steps>
 
 ## 目录结构
 
