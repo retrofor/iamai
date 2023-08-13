@@ -3,16 +3,18 @@ import asyncio
 import inspect
 from enum import IntEnum
 from collections import UserDict
-
-<<<<<<< HEAD
-from typing import Literal  # type: ignore
-from typing import TYPE_CHECKING, Any, Dict, List, Type, Tuple, Union, TypeVar, Optional
-
-=======
-from typing import Literal  # type: ignore
-from typing import TYPE_CHECKING, Any, Dict, List, Type, Tuple, Union, TypeVar, Optional
-
->>>>>>> 0133e7e42d90607aeafbf8ced23100c49c2b423f
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Dict,
+    List,
+    Type,
+    Tuple,
+    Union,
+    Literal,
+    TypeVar,
+    Optional,
+) # type: ignore
 
 from pydantic import Field, HttpUrl, BaseModel, validator, root_validator
 
@@ -594,8 +596,7 @@ class NoticeEvent(KookEvent):
     notice_type: str
 
     def __repr__(self) -> str:
-        return f'Event<{self.post_type}>: "{self.content}"'
-
+            return f'Event<{self.post_type}>: "{self.content}"'
 
 # Channel Events
 class ChannelNoticeEvent(NoticeEvent):

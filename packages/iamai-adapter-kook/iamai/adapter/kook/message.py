@@ -1,14 +1,14 @@
 """Kook 适配器消息。"""
+from iamai.log import logger
 import json
 from io import StringIO
 from dataclasses import dataclass
-from typing import cast  # type: ignore
-from typing_extensions import deprecated
-from typing import Any, Dict, Type, Tuple, Union, Mapping, Iterable, Optional
+from typing_extensions import override, deprecated
+from typing import Any, Dict, Type, Tuple, Union, Mapping, Iterable, Optional, cast # type: ignore
 
 from iamai.message import Message, MessageSegment
 
-from .exceptions import UnsupportedMessageType
+from .exceptions import UnsupportedMessageType, UnsupportedMessageOperation
 
 __all__ = [
     "T_KookMSG",
@@ -44,7 +44,6 @@ segment_text = {
     "card": "[卡片消息]",
 }
 
-
 class KookMessage(Message["KookMessageSegment"]):
     """
     Kook v3 协议 Message 适配。
@@ -54,12 +53,11 @@ class KookMessage(Message["KookMessageSegment"]):
     def _message_segment_class(self) -> Type["KookMessageSegment"]:
         return KookMessageSegment
 
-    def _str_to_message_segment(self, msg: str) -> "KookMessageSegment":
+    def _str_to_message_segment(self, msg) -> "KookMessageSegment":
         return KookMessageSegment(type="text", data={"content": msg})
 
     def _mapping_to_message_segment(self, msg: Mapping) -> "KookMessageSegment":
         return KookMessageSegment(type=msg["type"], data=msg.get("content") or {})
-
 
 class KookMessageSegment(MessageSegment["KookMessage"]):
     """Kook 消息字段。"""
@@ -75,6 +73,7 @@ class KookMessageSegment(MessageSegment["KookMessage"]):
         return KookMessage
 
     def __str__(self) -> str:
+        logger.warning(f"KookMessageSegment.__str__: {self.type} {self.data}")
         if self.type in ["text", "kmarkdown", 1, 9]:
             return str(self.data["content"])
         elif self.type == "at":
@@ -117,18 +116,11 @@ class KookMessageSegment(MessageSegment["KookMessage"]):
 
     @classmethod
     def audio(
-        cls,
-        file_key: str,
-        title: Optional[str] = None,
-        cover_file_key: Optional[str] = None,
+        cls, file_key: str, title: Optional[str] = None, cover_file_key: Optional[str] = None
     ) -> "KookMessageSegment":
         return cls(
             type="audio",
-            data={
-                "file_key": file_key,
-                "title": title,
-                "cover_file_key": cover_file_key,
-            },
+            data={"file_key": file_key, "title": title, "cover_file_key": cover_file_key},
         )
 
     @classmethod
@@ -163,7 +155,6 @@ class KookMessageSegment(MessageSegment["KookMessage"]):
     @classmethod
     def quote(cls, msg_id: str) -> "KookMessageSegment":
         return cls(type="quote", data={"msg_id": msg_id})
-
 
 def _convert_to_card_message(msg: KookMessage) -> KookMessageSegment:
     cards = []
