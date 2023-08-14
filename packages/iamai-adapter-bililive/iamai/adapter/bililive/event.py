@@ -19,6 +19,7 @@ from typing import (
 from pydantic import Field, HttpUrl, BaseModel, validator, root_validator
 
 from iamai.event import Event
+
 from .message import Message, BililiveMessage
 
 if TYPE_CHECKING:
@@ -26,6 +27,7 @@ if TYPE_CHECKING:
     from .message import T_BililiveMSG
 
 T_BililiveEvent = TypeVar("T_BililiveEvent", bound="BililiveEvent")
+
 
 # go-common\app\service\main\broadcast\model\operation.go
 class Operation(IntEnum):
@@ -50,17 +52,16 @@ class Operation(IntEnum):
     # B站业务自定义OP
     # MinBusinessOp = 1000
     # MaxBusinessOp = 10000
-    
 
 
 class DanmakuPosition(IntEnum):
-    TOP = 5,
-    BOTTOM = 4,
+    TOP = (5,)
+    BOTTOM = (4,)
     NORMAL = 1
-    
-    
+
+
 class BililiveEvent(Event["BililiveAdapter"]):
     """Blilive 适配器事件类。"""
-    
+
     type: str
     message: str
