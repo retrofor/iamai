@@ -9,58 +9,73 @@ TODO:
     - [ ] onebot 适配
     - [ ] api
 """
-from abc import abstractmethod
 import os
-from os.path import dirname, join, split, abspath
 import re
 import sys
 import json
 import time
-import asyncio
-from genericpath import exists
 import zlib
-from aiohttp.client import ClientSession
-import json
+import struct
+import asyncio
 from functools import partial
-from typing import TYPE_CHECKING, Any, Dict
+from abc import abstractmethod
 from collections import namedtuple
+from typing import TYPE_CHECKING, Any, Dict
+from os.path import join, split, abspath, dirname
+
+import qrcode
 import aiohttp
+from genericpath import exists
+from aiohttp.client import ClientSession
 
 from iamai.utils import DataclassEncoder
 from iamai.adapter.utils import WebSocketAdapter
 from iamai.log import logger, error_or_exception
-import qrcode
-
-from .config import Config
-import struct
 
 from .event import *
 from .message import *
+from .config import Config
 
 if TYPE_CHECKING:
     from .message import T_BililiveMSG
 
 __all__ = ["BililiveAdapter"]
 
-ROOM_INIT_URL = 'https://api.live.bilibili.com/xlive/web-room/v1/index/getInfoByRoom'
-DANMAKU_SERVER_CONF_URL = 'https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo'
+ROOM_INIT_URL = "https://api.live.bilibili.com/xlive/web-room/v1/index/getInfoByRoom"
+DANMAKU_SERVER_CONF_URL = (
+    "https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo"
+)
 DEFAULT_DANMAKU_SERVER_LIST = [
-    {'host': 'broadcastlv.chat.bilibili.com', 'port': 2243, 'wss_port': 443, 'ws_port': 2244}
+    {
+        "host": "broadcastlv.chat.bilibili.com",
+        "port": 2243,
+        "wss_port": 443,
+        "ws_port": 2244,
+    }
 ]
-QRCODE_REQUEST_URL = 'http://passport.bilibili.com/qrcode/getLoginUrl'
-CHECK_LOGIN_RESULT = 'http://passport.bilibili.com/qrcode/getLoginInfo'
-SEND_URL = 'https://api.live.bilibili.com/msg/send'
-MUTE_USER_URL = 'https://api.live.bilibili.com/xlive/web-ucenter/v1/banned/AddSilentUser'
-ROOM_SLIENT_URL = 'https://api.live.bilibili.com/xlive/web-room/v1/banned/RoomSilent'
-ADD_BADWORD_URL = 'https://api.live.bilibili.com/xlive/web-ucenter/v1/banned/AddShieldKeyword'
-DEL_BADWORD_URL = 'https://api.live.bilibili.com/xlive/web-ucenter/v1/banned/DelShieldKeyword'
-HEADER_STRUCT = struct.Struct('>I2H2I')
-HeaderTuple = namedtuple('HeaderTuple', ('pack_len', 'raw_header_size', 'ver', 'operation', 'seq_id'))
+QRCODE_REQUEST_URL = "http://passport.bilibili.com/qrcode/getLoginUrl"
+CHECK_LOGIN_RESULT = "http://passport.bilibili.com/qrcode/getLoginInfo"
+SEND_URL = "https://api.live.bilibili.com/msg/send"
+MUTE_USER_URL = (
+    "https://api.live.bilibili.com/xlive/web-ucenter/v1/banned/AddSilentUser"
+)
+ROOM_SLIENT_URL = "https://api.live.bilibili.com/xlive/web-room/v1/banned/RoomSilent"
+ADD_BADWORD_URL = (
+    "https://api.live.bilibili.com/xlive/web-ucenter/v1/banned/AddShieldKeyword"
+)
+DEL_BADWORD_URL = (
+    "https://api.live.bilibili.com/xlive/web-ucenter/v1/banned/DelShieldKeyword"
+)
+HEADER_STRUCT = struct.Struct(">I2H2I")
+HeaderTuple = namedtuple(
+    "HeaderTuple", ("pack_len", "raw_header_size", "ver", "operation", "seq_id")
+)
 WS_BODY_PROTOCOL_VERSION_INFLATE = 0
 WS_BODY_PROTOCOL_VERSION_NORMAL = 1
 WS_BODY_PROTOCOL_VERSION_DEFLATE = 2
 
 user_cookies = aiohttp.cookiejar.CookieJar()
+
 
 class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
     """bililive 协议适配器。"""
@@ -68,13 +83,13 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
     name: str = "bililive"
     Config = Config
     _gateway_response = {}  # type: ignore
-    _host_server_list = DEFAULT_DANMAKU_SERVER_LIST 
+    _host_server_list = DEFAULT_DANMAKU_SERVER_LIST
     _api_response: Dict[Any, Any]
     _api_response_cond: asyncio.Condition = None  # type: ignore
     _api_id: int = 0
     _heartbeat_interval = 30
     _retry_count = 0
-    
+
     def __getattr__(self, item):  # type: ignore
         return partial(self.call_api, item)
 
@@ -85,38 +100,38 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
             self.adapter_type = "ws"  # type: ignore
         self.reconnect_interval = self.config.reconnect_interval  # type: ignore
         self.room_id = self.config.room_id  # type: ignore
-        self.session_data_path = self.config.session_data_path # type: ignore
+        self.session_data_path = self.config.session_data_path  # type: ignore
         self._api_response_cond = asyncio.Condition()
-        self.jct: str = ''
+        self.jct: str = ""
         self.cookies = {}
         _path = f"{dirname(abspath(sys.argv[0]))}/{self.session_data_path}"
         if exists(_path):
             with open(_path) as f:
                 self.cookies = json.load(f)
         user_cookies.update_cookies(self.cookies)
-        if self.config.login: # type: ignore
+        if self.config.login:  # type: ignore
             logger.debug(f"Login enabled!")
             try:
                 async with ClientSession(cookie_jar=user_cookies) as self.session:
                     success = await login(self.session)
-                    
-                    if success:
 
-                        self._uid = get_cookies('DedeUserID')
-                        self.jct = get_cookies('bili_jct')
+                    if success:
+                        self._uid = get_cookies("DedeUserID")
+                        self.jct = get_cookies("bili_jct")
 
                         if self._uid == None or self.jct == None:
-                            logger.error(f"Unable to get cookies, please check your cookies.")
+                            logger.error(
+                                f"Unable to get cookies, please check your cookies."
+                            )
                             return
                         if not exists(_path):
-
                             for cookie in user_cookies:
                                 self.cookies[cookie.key] = cookie.value
 
-                            logger.debug(f'Stored cookies: {self.cookies}')
-                            with open(_path, mode='w') as f:
+                            logger.debug(f"Stored cookies: {self.cookies}")
+                            with open(_path, mode="w") as f:
                                 json.dump(self.cookies, f)
-                        
+
                         await super().startup()
             except Exception as e:
                 logger.error(e)
@@ -124,12 +139,14 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
         else:
             logger.debug(f"Login disabled!")
             await super().startup()
-            
+
     async def websocket_connect(self):
         """创建正向 WebSocket 连接。"""
-        
+
         logger.info("Trying to connect to WebSocket server...")
-        host_server = self._host_server_list[self._retry_count % len(self._host_server_list)]
+        host_server = self._host_server_list[
+            self._retry_count % len(self._host_server_list)
+        ]
         try:
             async with self.session.ws_connect(
                 f'wss://{host_server["host"]}:{host_server["wss_port"]}/sub'
@@ -146,7 +163,7 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
 
     async def handle_websocket_msg(self, msg: aiohttp.WSMessage):
         """处理 WebSocket 消息。"""
-        
+
         if msg.type == aiohttp.WSMsgType.BINARY:
             try:
                 data = await self.websocket.receive_bytes()
@@ -157,13 +174,13 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
                 try:
                     data = body
                     data["type"] = data["cmd"].lower().split("_")[0]
-                    data["message"] = data.get('msg_common') or ""
+                    data["message"] = data.get("msg_common") or ""
                     data["message_id"] = data.get("msg_id") or 0
                     data["group_id"] = data.get("roomid") or 0
                     data["time"] = data.get("send_time") or 0
-                    await self.handle_bililive_event(data) # type: ignore
+                    await self.handle_bililive_event(data)  # type: ignore
                 except Exception as e:
-                    logger.error(f'body: {body}, error: {e}')
+                    logger.error(f"body: {body}, error: {e}")
             except Exception as e:
                 error_or_exception(
                     "WebSocket message parsing error, not BINARY:",
@@ -179,37 +196,33 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
         else:
             async with self._api_response_cond:
                 self._api_response = msg.data
-                self._api_response_cond.notify_all()    
-        
-    async def handle_bililive_event(self,data: Dict[str, Any]):
+                self._api_response_cond.notify_all()
+
+    async def handle_bililive_event(self, data: Dict[str, Any]):
         logger.info(str(data))
         bililive_event = BililiveEvent(adapter=self, **data)
         await self.handle_event(bililive_event)
-    
+
     # 发送登录包
     async def _send_auth(self):
         auth_params = {
-            'uid':       self._uid or 0, # 0: 游客
-            'roomid':    self.room_id,
-            'protover':  3,
-            'platform':  'web',
-            'type':      2,
-            'key':       self.jct,
+            "uid": self._uid or 0,  # 0: 游客
+            "roomid": self.room_id,
+            "protover": 3,
+            "platform": "web",
+            "type": 2,
+            "key": self.jct,
         }
         await self.websocket.send_bytes(self._make_packet(auth_params, Operation.AUTH))
-    
+
     @staticmethod
     def _make_packet(data, operation):
-        body = json.dumps(data).encode('utf-8')
+        body = json.dumps(data).encode("utf-8")
         header = HEADER_STRUCT.pack(
-            HEADER_STRUCT.size + len(body),
-            HEADER_STRUCT.size,
-            1,
-            operation,
-            1
+            HEADER_STRUCT.size + len(body), HEADER_STRUCT.size, 1, operation, 1
         )
         return header + body
-    
+
     async def _start_heartbeat(self) -> None:
         """
         每30s一次心跳
@@ -225,40 +238,51 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
                 await asyncio.sleep(29)
         except Exception as e:
             logger.error(e)
-            
+
     async def call_api(self, api: str, **params):
         """调用 bililive API。
-        
+
         TODO: 因为基于OlivOS的那个OlivaBiliLive插件架构其实相当于一个小框架的缘故,
         所以要改的东西太多了，这里插个保留的接口...
         """
-        
+
         ...
-    
+
     async def send_danmu(self, **fields) -> bool:
         token = get_cookies("bili_jct")
         async with ClientSession(cookie_jar=user_cookies) as session:
             try:
-                res = await _post(session, SEND_URL,
+                res = await _post(
+                    session,
+                    SEND_URL,
                     rnd=time.time(),
                     csrf=token,
                     csrf_token=token,
-                    **fields
+                    **fields,
                 )
-                return 'data' in res
+                return "data" in res
             except Exception as e:
-                logger.warning(f'Send danmu failed: {e}')
+                logger.warning(f"Send danmu failed: {e}")
                 return False
-        
-    async def send(self,
-                    danmaku: str, 
-                    fontsize: int = 25, 
-                    color: int = 0xffffff, 
-                    pos: DanmakuPosition = DanmakuPosition.NORMAL
-                ) -> bool:
+
+    async def send(
+        self,
+        danmaku: str,
+        fontsize: int = 25,
+        color: int = 0xFFFFFF,
+        pos: DanmakuPosition = DanmakuPosition.NORMAL,
+    ) -> bool:
         # don't know what the hell is bubble
-        return await self.send_danmu(msg=danmaku, fontsize=fontsize, color=color, pos=pos, roomid=self.room_id, bubble=0)
-    
+        return await self.send_danmu(
+            msg=danmaku,
+            fontsize=fontsize,
+            color=color,
+            pos=pos,
+            roomid=self.room_id,
+            bubble=0,
+        )
+
+
 def rawData_to_jsonData(data: bytes):
     packetLen = int(data[:4].hex(), 16)
     ver = int(data[6:8].hex(), 16)
@@ -274,70 +298,74 @@ def rawData_to_jsonData(data: bytes):
 
     if op == 5:
         try:
-            jd = json.loads(data[16:].decode('utf-8', errors='ignore'))
+            jd = json.loads(data[16:].decode("utf-8", errors="ignore"))
             return jd
         except Exception as e:
             pass
 
+
 async def login(session: ClientSession) -> bool:
-    if get_cookies('bili_jct') != None:
+    if get_cookies("bili_jct") != None:
         logger.info(f"Aleady login!")
         return True
     try:
         res = await _get(session, QRCODE_REQUEST_URL)
-        ts = res['ts']
-        outdated = ts + 180 * 1000 # 180 秒後逾時
-        authKey = res['data']['oauthKey']
-        url = res['data']['url']
+        ts = res["ts"]
+        outdated = ts + 180 * 1000  # 180 秒後逾時
+        authKey = res["data"]["oauthKey"]
+        url = res["data"]["url"]
         qr = qrcode.QRCode()
-        logger.info('请扫描下面的二维码进行登录... (或者到目录下寻找 qrcode.png)')
+        logger.info("请扫描下面的二维码进行登录... (或者到目录下寻找 qrcode.png)")
         qr.add_data(url)
         qr.print_ascii(invert=True)
-        qr.make_image().save('qrcode.png')
+        qr.make_image().save("qrcode.png")
         while True:
             await asyncio.sleep(5)
             if time.time() > outdated:
-                logger.warning('Timeout!')
-                return False # 登入失敗
+                logger.warning("Timeout!")
+                return False  # 登入失敗
             res = await _post(session, CHECK_LOGIN_RESULT, oauthKey=authKey)
-            if res['status']:
-                logger.success('login success!')
+            if res["status"]:
+                logger.success("login success!")
                 return True
             else:
-                code = res['data']
+                code = res["data"]
                 if code in [-1, -2]:
                     logger.warning(f'login failed: {res["message"]}')
                     return False
     except Exception as e:
-        logger.warning(f'Something went wrong: {e}')
+        logger.warning(f"Something went wrong: {e}")
         return False
     finally:
-        os.remove('qrcode.png')
-            
-def get_cookies(name: str) -> any: # type: ignore
-        for cookie in user_cookies:
-            if cookie.key == name:
-                return cookie.value
-        return None
-    
+        os.remove("qrcode.png")
+
+
+def get_cookies(name: str) -> any:  # type: ignore
+    for cookie in user_cookies:
+        if cookie.key == name:
+            return cookie.value
+    return None
+
+
 async def _get(session: ClientSession, url: str):
     async with session.get(url) as resp:
         resp.raise_for_status()
         data = await resp.json()
         logger.debug(data)
-        if 'code' in data and data['code'] != 0:
-            raise Exception(data['message'] if 'message' in data else data['code'])
+        if "code" in data and data["code"] != 0:
+            raise Exception(data["message"] if "message" in data else data["code"])
         return data
-    
+
+
 async def _post(session: ClientSession, url: str, **data):
     form = aiohttp.FormData()
-    for (k, v) in data.items():
+    for k, v in data.items():
         form.add_field(k, v)
-    logger.debug(f'Sending POST: {url}, content: {data}')
+    logger.debug(f"Sending POST: {url}, content: {data}")
     async with session.post(url, data=form) as resp:
         resp.raise_for_status()
         data = await resp.json()
         logger.debug(data)
-        if 'code' in data and data['code'] != 0:
-            raise Exception(data['message'] if 'message' in data else data['code'])
+        if "code" in data and data["code"] != 0:
+            raise Exception(data["message"] if "message" in data else data["code"])
         return data

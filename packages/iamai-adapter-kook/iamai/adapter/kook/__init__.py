@@ -192,7 +192,7 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
                         data["message"] = KookMessage(f'{data.get("content")}')
                         data["raw_message"] = data.get("content")
                         data["event"] = data["extra"]
-                        
+
                     data["message_id"] = data.get("msg_id")
                     await self.handle_kook_event(data)
                 except Exception as e:

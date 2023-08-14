@@ -2,31 +2,41 @@
 
 __all__ = ["BLiveClient"]
 
-# code from xfgryujk
-from abc import abstractmethod
-import asyncio
 import json
+import zlib
+import struct
+import asyncio
 import logging
 import ssl as ssl_
-import struct
-import zlib
-from collections import namedtuple
 from enum import IntEnum
-from typing import * # ??这是什么粗暴的import方式
+
+# code from xfgryujk
+from abc import abstractmethod
+from collections import namedtuple
+from typing import *  # ??这是什么粗暴的import方式
 
 import aiohttp
 
 logger = logging.getLogger(__name__)
 
 
-ROOM_INIT_URL = 'https://api.live.bilibili.com/xlive/web-room/v1/index/getInfoByRoom'
-DANMAKU_SERVER_CONF_URL = 'https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo'
+ROOM_INIT_URL = "https://api.live.bilibili.com/xlive/web-room/v1/index/getInfoByRoom"
+DANMAKU_SERVER_CONF_URL = (
+    "https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo"
+)
 DEFAULT_DANMAKU_SERVER_LIST = [
-    {'host': 'broadcastlv.chat.bilibili.com', 'port': 2243, 'wss_port': 443, 'ws_port': 2244}
+    {
+        "host": "broadcastlv.chat.bilibili.com",
+        "port": 2243,
+        "wss_port": 443,
+        "ws_port": 2244,
+    }
 ]
 
-HEADER_STRUCT = struct.Struct('>I2H2I')
-HeaderTuple = namedtuple('HeaderTuple', ('pack_len', 'raw_header_size', 'ver', 'operation', 'seq_id'))
+HEADER_STRUCT = struct.Struct(">I2H2I")
+HeaderTuple = namedtuple(
+    "HeaderTuple", ("pack_len", "raw_header_size", "ver", "operation", "seq_id")
+)
 WS_BODY_PROTOCOL_VERSION_INFLATE = 0
 WS_BODY_PROTOCOL_VERSION_NORMAL = 1
 WS_BODY_PROTOCOL_VERSION_DEFLATE = 2
@@ -62,9 +72,15 @@ class InitError(Exception):
 
 
 class BLiveClient:
-
-    def __init__(self, room_id, uid=0, session: aiohttp.ClientSession=None,
-                 heartbeat_interval=30, ssl=True, loop=None):
+    def __init__(
+        self,
+        room_id,
+        uid=0,
+        session: aiohttp.ClientSession = None,
+        heartbeat_interval=30,
+        ssl=True,
+        loop=None,
+    ):
         """
         :param room_id: URL中的房间ID，可以为短ID
         :param uid: B站用户ID，0表示未登录
@@ -92,14 +108,16 @@ class BLiveClient:
         self._future = None
 
         if session is None:
-            self._session = aiohttp.ClientSession(loop=self._loop, timeout=aiohttp.ClientTimeout(total=10))
+            self._session = aiohttp.ClientSession(
+                loop=self._loop, timeout=aiohttp.ClientTimeout(total=10)
+            )
             self._own_session = True
         else:
             self._session = session
             self._own_session = False
             # noinspection PyDeprecation
             if self._session.loop is not self._loop:
-                raise RuntimeError('BLiveClient and session has to use same event loop')
+                raise RuntimeError("BLiveClient and session has to use same event loop")
 
         self._heartbeat_interval = heartbeat_interval
         # noinspection PyProtectedMember
@@ -145,18 +163,21 @@ class BLiveClient:
         :return: 协程的future
         """
         if self._future is not None:
-            raise RuntimeError('This client is already running')
+            raise RuntimeError("This client is already running")
         self._future = asyncio.ensure_future(self._message_loop(), loop=self._loop)
         self._future.add_done_callback(self.__on_message_loop_done)
         return self._future
 
     def __on_message_loop_done(self, future):
         self._future = None
-        logger.debug('room %s 消息协程结束', self.room_id)
+        logger.debug("room %s 消息协程结束", self.room_id)
         exception = future.exception()
         if exception is not None:
-            logger.exception('room %s 消息协程异常结束：', self.room_id,
-                             exc_info=(type(exception), exception, exception.__traceback__))
+            logger.exception(
+                "room %s 消息协程异常结束：",
+                self.room_id,
+                exc_info=(type(exception), exception, exception.__traceback__),
+            )
 
     def stop(self):
         """
@@ -164,7 +185,7 @@ class BLiveClient:
         :return: 协程的future
         """
         if self._future is None:
-            raise RuntimeError('This client is not running')
+            raise RuntimeError("This client is not running")
         self._future.cancel()
         return self._future
 
@@ -188,97 +209,108 @@ class BLiveClient:
 
     async def _init_room_id_and_owner(self):
         try:
-            async with self._session.get(ROOM_INIT_URL, params={'room_id': self._tmp_room_id},
-                                         ssl=self._ssl) as res:
+            async with self._session.get(
+                ROOM_INIT_URL, params={"room_id": self._tmp_room_id}, ssl=self._ssl
+            ) as res:
                 if res.status != 200:
-                    logger.warning('room %d init_room失败：%d %s', self._tmp_room_id,
-                                   res.status, res.reason)
+                    logger.warning(
+                        "room %d init_room失败：%d %s",
+                        self._tmp_room_id,
+                        res.status,
+                        res.reason,
+                    )
                     return False
                 data = await res.json()
-                if data['code'] != 0:
-                    logger.warning('room %d init_room失败：%s', self._tmp_room_id, data['message'])
+                if data["code"] != 0:
+                    logger.warning(
+                        "room %d init_room失败：%s", self._tmp_room_id, data["message"]
+                    )
                     return False
-                if not self._parse_room_init(data['data']):
+                if not self._parse_room_init(data["data"]):
                     return False
         except (aiohttp.ClientConnectionError, asyncio.TimeoutError):
-            logger.exception('room %d init_room失败：', self._tmp_room_id)
+            logger.exception("room %d init_room失败：", self._tmp_room_id)
             return False
         return True
 
     def _parse_room_init(self, data):
-        room_info = data['room_info']
-        self._room_id = room_info['room_id']
-        self._room_short_id = room_info['short_id']
-        self._room_owner_uid = room_info['uid']
+        room_info = data["room_info"]
+        self._room_id = room_info["room_id"]
+        self._room_short_id = room_info["short_id"]
+        self._room_owner_uid = room_info["uid"]
         return True
 
     async def _init_host_server(self):
         try:
-            async with self._session.get(DANMAKU_SERVER_CONF_URL, params={'id': self._room_id, 'type': 0},
-                                         ssl=self._ssl) as res:
+            async with self._session.get(
+                DANMAKU_SERVER_CONF_URL,
+                params={"id": self._room_id, "type": 0},
+                ssl=self._ssl,
+            ) as res:
                 if res.status != 200:
-                    logger.warning('room %d getConf失败：%d %s', self._room_id,
-                                   res.status, res.reason)
+                    logger.warning(
+                        "room %d getConf失败：%d %s", self._room_id, res.status, res.reason
+                    )
                     return False
                 data = await res.json()
-                if data['code'] != 0:
-                    logger.warning('room %d getConf失败：%s', self._room_id, data['message'])
+                if data["code"] != 0:
+                    logger.warning(
+                        "room %d getConf失败：%s", self._room_id, data["message"]
+                    )
                     return False
-                if not self._parse_danmaku_server_conf(data['data']):
+                if not self._parse_danmaku_server_conf(data["data"]):
                     return False
         except (aiohttp.ClientConnectionError, asyncio.TimeoutError):
-            logger.exception('room %d getConf失败：', self._room_id)
+            logger.exception("room %d getConf失败：", self._room_id)
             return False
         return True
 
     def _parse_danmaku_server_conf(self, data):
-        self._host_server_list = data['host_list']
-        self._host_server_token = data['token']
+        self._host_server_list = data["host_list"]
+        self._host_server_token = data["token"]
         if not self._host_server_list:
-            logger.warning('room %d getConf失败：host_server_list为空', self._room_id)
+            logger.warning("room %d getConf失败：host_server_list为空", self._room_id)
             return False
         return True
 
     @staticmethod
     def _make_packet(data, operation):
-        body = json.dumps(data).encode('utf-8')
+        body = json.dumps(data).encode("utf-8")
         header = HEADER_STRUCT.pack(
-            HEADER_STRUCT.size + len(body),
-            HEADER_STRUCT.size,
-            1,
-            operation,
-            1
+            HEADER_STRUCT.size + len(body), HEADER_STRUCT.size, 1, operation, 1
         )
         return header + body
 
     async def _send_auth(self):
         auth_params = {
-            'uid':       self._uid,
-            'roomid':    self._room_id,
-            'protover':  2,
-            'platform':  'web',
-            'clientver': '1.14.3',
-            'type':      2
+            "uid": self._uid,
+            "roomid": self._room_id,
+            "protover": 2,
+            "platform": "web",
+            "clientver": "1.14.3",
+            "type": 2,
         }
         if self._host_server_token is not None:
-            auth_params['key'] = self._host_server_token
+            auth_params["key"] = self._host_server_token
         await self._websocket.send_bytes(self._make_packet(auth_params, Operation.AUTH))
 
     async def _message_loop(self):
         # 如果之前未初始化则初始化
         if self._host_server_token is None:
             if not await self.init_room():
-                raise InitError('初始化失败')
+                raise InitError("初始化失败")
 
         retry_count = 0
         while True:
             try:
                 # 连接
-                host_server = self._host_server_list[retry_count % len(self._host_server_list)]
+                host_server = self._host_server_list[
+                    retry_count % len(self._host_server_list)
+                ]
                 async with self._session.ws_connect(
                     f'wss://{host_server["host"]}:{host_server["wss_port"]}/sub',
                     receive_timeout=self._heartbeat_interval + 5,
-                    ssl=self._ssl
+                    ssl=self._ssl,
                 ) as websocket:
                     self._websocket = websocket
                     await self._send_auth()
@@ -290,8 +322,12 @@ class BLiveClient:
                     async for message in websocket:  # type: aiohttp.WSMessage
                         retry_count = 0
                         if message.type != aiohttp.WSMsgType.BINARY:
-                            logger.warning('room %d 未知的websocket消息：type=%s %s', self.room_id,
-                                           message.type, message.data)
+                            logger.warning(
+                                "room %d 未知的websocket消息：type=%s %s",
+                                self.room_id,
+                                message.type,
+                                message.data,
+                            )
                             continue
 
                         try:
@@ -300,7 +336,7 @@ class BLiveClient:
                             logger.warn(f"{self.room_id} 程序被強制取消。")
                             raise
                         except Exception:
-                            logger.exception('room %d 处理消息时发生错误：', self.room_id)
+                            logger.exception("room %d 处理消息时发生错误：", self.room_id)
 
             except asyncio.CancelledError:
                 break
@@ -308,7 +344,7 @@ class BLiveClient:
                 # 重连
                 pass
             except ssl_.SSLError:
-                logger.exception('SSL错误：')
+                logger.exception("SSL错误：")
                 # 证书错误时无法重连
                 break
             finally:
@@ -318,7 +354,7 @@ class BLiveClient:
                     self._heartbeat_timer_handle = None
 
             retry_count += 1
-            logger.warning('room %d 掉线重连中%d', self.room_id, retry_count)
+            logger.warning("room %d 掉线重连中%d", self.room_id, retry_count)
             try:
                 await asyncio.sleep(1)
             except asyncio.CancelledError:
@@ -327,7 +363,9 @@ class BLiveClient:
     def _on_send_heartbeat(self):
         coro = self._websocket.send_bytes(self._make_packet({}, Operation.HEARTBEAT))
         asyncio.ensure_future(coro, loop=self._loop)
-        self._heartbeat_timer_handle = self._loop.call_later(self._heartbeat_interval, self._on_send_heartbeat)
+        self._heartbeat_timer_handle = self._loop.call_later(
+            self._heartbeat_interval, self._on_send_heartbeat
+        )
 
     async def _handle_message(self, data):
         offset = 0
@@ -338,31 +376,39 @@ class BLiveClient:
                 break
 
             if header.operation == Operation.HEARTBEAT_REPLY:
-                popularity = int.from_bytes(data[offset + HEADER_STRUCT.size:
-                                                 offset + HEADER_STRUCT.size + 4],
-                                            'big')
+                popularity = int.from_bytes(
+                    data[offset + HEADER_STRUCT.size : offset + HEADER_STRUCT.size + 4],
+                    "big",
+                )
                 await self._on_receive_popularity(popularity)
 
             elif header.operation == Operation.SEND_MSG_REPLY:
-                body = data[offset + HEADER_STRUCT.size: offset + header.pack_len]
+                body = data[offset + HEADER_STRUCT.size : offset + header.pack_len]
                 if header.ver == WS_BODY_PROTOCOL_VERSION_DEFLATE:
                     body = await self._loop.run_in_executor(None, zlib.decompress, body)
                     await self._handle_message(body)
                 else:
                     try:
-                        body = json.loads(body.decode('utf-8'))
+                        body = json.loads(body.decode("utf-8"))
                         await self._handle_command(body)
                     except Exception:
-                        logger.error('body: %s', body)
+                        logger.error("body: %s", body)
                         raise
 
             elif header.operation == Operation.AUTH_REPLY:
-                await self._websocket.send_bytes(self._make_packet({}, Operation.HEARTBEAT))
+                await self._websocket.send_bytes(
+                    self._make_packet({}, Operation.HEARTBEAT)
+                )
 
             else:
-                body = data[offset + HEADER_STRUCT.size: offset + header.pack_len]
-                logger.warning('room %d 未知包类型：operation=%d %s%s', self.room_id,
-                               header.operation, header, body)
+                body = data[offset + HEADER_STRUCT.size : offset + header.pack_len]
+                logger.warning(
+                    "room %d 未知包类型：operation=%d %s%s",
+                    self.room_id,
+                    header.operation,
+                    header,
+                    body,
+                )
 
             offset += header.pack_len
 
@@ -371,8 +417,8 @@ class BLiveClient:
             for one_command in command:
                 await self._handle_command(one_command)
             return
-        cmd = command.get('cmd', '')
-        pos = cmd.find(':')  # 2019-5-29 B站弹幕升级新增了参数
+        cmd = command.get("cmd", "")
+        pos = cmd.find(":")  # 2019-5-29 B站弹幕升级新增了参数
         if pos != -1:
             cmd = cmd[:pos]
         await self.on_command_received(cmd, command)
@@ -384,5 +430,3 @@ class BLiveClient:
     @abstractmethod
     async def _on_receive_popularity(self, popularity: int):
         pass
-
-    
