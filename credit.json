@@ -7,7 +7,7 @@
             "repo": "https://github.com/huggingface/transformers",
             "licenseUrl": "https://github.com/huggingface/transformers/blob/main/LICENSE",
             "description": "🤗 Transformers: State-of-the-art Machine Learning for Pytorch, TensorFlow, and JAX.",
-            "icon": "https://huggingface.co/datasets/huggingface/documentation-images/raw/main/transformers-logo-light.svg"
+            "icon": "<img width='200' src='https://huggingface.co/datasets/huggingface/documentation-images/raw/main/transformers-logo-light.svg'>"
         },
         {
             "name": "PaddlePaddle/PaddleNLP",
@@ -16,7 +16,7 @@
             "repo": "https://github.com/PaddlePaddle/PaddleNLP",
             "licenseUrl": "https://github.com/PaddlePaddle/PaddleNLP/blob/develop/LICENSE",
             "description":"👑 Easy-to-use and powerful NLP and LLM library with 🤗 Awesome model zoo, supporting wide-range of NLP tasks from research to industrial applications, including 🗂Text Classification, 🔍 Neural Search, ❓ Question Answering, ℹ️ Information Extraction, 📄 Document Intelligence, 💌 Sentiment Analysis etc.",
-            "icon":"https://user-images.githubusercontent.com/1371212/175816733-8ec25eb0-9af3-4380-9218-27c154518258.png"
+            "icon":"<img width='200' src='https://user-images.githubusercontent.com/1371212/175816733-8ec25eb0-9af3-4380-9218-27c154518258.png'>"
         }
     ],
     "RobotFramework": [
@@ -27,7 +27,7 @@
             "repo": "https://github.com/AliceBotProject/alicebot",
             "licenseUrl": "https://github.com/AliceBotProject/alicebot/blob/master/LICENSE",
             "description":"简单的 Python 异步多后端渐进式机器人框架",
-            "icon":"https://docs.alicebot.dev/logo.png"
+            "icon":"<img width='50' src='https://docs.alicebot.dev/logo.png'>"
         },
         {
             "name": "aio-libs/aiohttp",
