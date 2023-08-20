@@ -61,7 +61,7 @@ if __name__ == "__main__":
     MLF = fetch_mlf_denpendices()
     MLF_md = "\n\n".join(
         [
-            '[{name}]({repo})({version}) with [{license}]({licenseUrl}). <img align="right" width="200" src="{icon}" / > {descrip`tion}'.format(
+            '[{name}]({repo})({version}) with [{license}]({licenseUrl}). <img align="right" width="200" src="{icon}" / > {description}'.format(
                 **_
             )
             for _ in MLF
