@@ -7,7 +7,7 @@
             "repo": "https://github.com/huggingface/transformers",
             "licenseUrl": "https://github.com/huggingface/transformers/blob/main/LICENSE",
             "description": "🤗 Transformers: State-of-the-art Machine Learning for Pytorch, TensorFlow, and JAX.",
-            "icon": "<img width='200' src='https://huggingface.co/datasets/huggingface/documentation-images/raw/main/transformers-logo-light.svg'>"
+            "icon": "<img width='200' src='https://huggingface.co/datasets/huggingface/documentation-images/raw/main/transformers-logo-dark.svg'><br />"
         },
         {
             "name": "PaddlePaddle/PaddleNLP",
@@ -16,7 +16,7 @@
             "repo": "https://github.com/PaddlePaddle/PaddleNLP",
             "licenseUrl": "https://github.com/PaddlePaddle/PaddleNLP/blob/develop/LICENSE",
             "description":"👑 Easy-to-use and powerful NLP and LLM library with 🤗 Awesome model zoo, supporting wide-range of NLP tasks from research to industrial applications, including 🗂Text Classification, 🔍 Neural Search, ❓ Question Answering, ℹ️ Information Extraction, 📄 Document Intelligence, 💌 Sentiment Analysis etc.",
-            "icon":"<img width='200' src='https://user-images.githubusercontent.com/1371212/175816733-8ec25eb0-9af3-4380-9218-27c154518258.png'>"
+            "icon":"<img width='200' src='https://user-images.githubusercontent.com/1371212/175816733-8ec25eb0-9af3-4380-9218-27c154518258.png'> <br /> "
         }
     ],
     "RobotFramework": [
@@ -27,7 +27,7 @@
             "repo": "https://github.com/AliceBotProject/alicebot",
             "licenseUrl": "https://github.com/AliceBotProject/alicebot/blob/master/LICENSE",
             "description":"简单的 Python 异步多后端渐进式机器人框架",
-            "icon":"<img width='50' src='https://docs.alicebot.dev/logo.png'>"
+            "icon":"<img width='50' src='https://docs.alicebot.dev/logo.png'> <br />"
         },
         {
             "name": "aio-libs/aiohttp",
@@ -36,7 +36,7 @@
             "repo": "https://github.com/aio-libs/aiohttp",
             "licenseUrl": "https://github.com/aio-libs/aiohttp/blob/master/LICENSE.txt",
             "description":"Asynchronous HTTP client/server framework for asyncio and Python",
-            "icon":"https://raw.githubusercontent.com/aio-libs/aiohttp/master/docs/aiohttp-plain.svg"
+            "icon":"<img width='50' src='https://raw.githubusercontent.com/aio-libs/aiohttp/master/docs/aiohttp-plain.svg'> <br />"
         },
         {
             "name": "Delgan/loguru",
@@ -45,7 +45,7 @@
             "repo": "https://github.com/Delgan/loguru",
             "licenseUrl": "https://github.com/Delgan/loguru/blob/master/LICENSE",
             "description":"Python logging made (stupidly) simple",
-            "icon":"https://raw.githubusercontent.com/Delgan/loguru/master/docs/_static/img/logo.png"
+            "icon":"<img width='50' src='https://raw.githubusercontent.com/Delgan/loguru/master/docs/_static/img/logo.png'> <br />"
         },
         {
             "name": "pydantic/pydantic",
@@ -54,7 +54,7 @@
             "repo": "https://github.com/pydantic/pydantic",
             "licenseUrl": "https://github.com/pydantic/pydantic/blob/main/LICENSE",
             "description":"Data validation using Python type hints",
-            "icon":"#"
+            "icon":"<br />"
         },
         {
             "name": "yaml/pyyaml",
@@ -63,7 +63,7 @@
             "repo": "https://github.com/yaml/pyyaml",
             "licenseUrl": "https://github.com/yaml/pyyaml/blob/master/LICENSE",
             "description":"Canonical source repository for PyYAML",
-            "icon":"#"
+            "icon":"<br />"
         },
         {
             "name": "st1020/sophia-doc",
@@ -72,7 +72,7 @@
             "repo": "https://github.com/st1020/sophia-doc",
             "licenseUrl": "https://github.com/st1020/sophia-doc/blob/master/LICENSE",
             "description":"A python package to automatically generate API documents for Python modules",
-            "icon":"#"
+            "icon":"<br />"
         },
         {
             "name": "hukkin/tomli",
@@ -81,7 +81,7 @@
             "repo": "https://github.com/hukkin/tomli",
             "licenseUrl": "https://github.com/hukkin/tomli/blob/master/LICENSE",
             "description":"A lil' TOML parser",
-            "icon":"#"
+            "icon":"<br />"
         }
     ]
 }
