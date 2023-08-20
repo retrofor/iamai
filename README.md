@@ -213,27 +213,27 @@ To avoid any potential disputes or misunderstandings, we have listed the license
 > Machine Learning Framework
 
 <!-- MLF starts -->
-[huggingface/transformers](https://github.com/huggingface/transformers) @v4.31.0: Llama v2, MusicGen, Bark, MMS, EnCodec, InstructBLIP, Umt5, MRa, vIvIt with LICENSE< [Apache License 2.0](https://github.com/huggingface/transformers/blob/main/LICENSE). 
+[huggingface/transformers](https://github.com/huggingface/transformers)(@v4.31.0: Llama v2, MusicGen, Bark, MMS, EnCodec, InstructBLIP, Umt5, MRa, vIvIt) with [Apache License 2.0](https://github.com/huggingface/transformers/blob/main/LICENSE). <img align="right" width="200" src="https://huggingface.co/datasets/huggingface/documentation-images/raw/main/transformers-logo-light.svg" / > 🤗 Transformers: State-of-the-art Machine Learning for Pytorch, TensorFlow, and JAX.
 
-[PaddlePaddle/PaddleNLP](https://github.com/PaddlePadlle/PaddleNLP) @2.6.0 with LICENSE< [Apache License 2.0](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/LICENSE). 
+[PaddlePaddle/PaddleNLP](https://github.com/PaddlePaddle/PaddleNLP)(@2.6.0) with [Apache License 2.0](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/LICENSE). <img align="right" width="200" src="https://user-images.githubusercontent.com/1371212/175816733-8ec25eb0-9af3-4380-9218-27c154518258.png" / > 👑 Easy-to-use and powerful NLP and LLM library with 🤗 Awesome model zoo, supporting wide-range of NLP tasks from research to industrial applications, including 🗂Text Classification, 🔍 Neural Search, ❓ Question Answering, ℹ️ Information Extraction, 📄 Document Intelligence, 💌 Sentiment Analysis etc.
 <!-- MLF ends -->
 
 > Cross-Platform Robot Framework
 
 <!-- CPRF starts -->
-<a href="https://github.com/AliceProject/alicebot">AliceProject/alicebot</a> tags: @0.6.0</a> with LICENSE< <a href="https://github.com/AliceBotProject/alicebot/blob/master/LICENSE">MIT> >. 
+[AliceBotProject/alicebot](https://github.com/AliceBotProject/alicebot)(@0.6.0) with [MIT](https://github.com/AliceBotProject/alicebot/blob/master/LICENSE). <img align="right" width="200" src="https://docs.alicebot.dev/logo.png" / > 简单的 Python 异步多后端渐进式机器人框架
 
-<a href="https://github.com/aio-libs/aiohttp">aio-libs/aiohttp</a> tags: < 4.0.0, >= 3.8.0</a> with LICENSE< <a href="https://github.com/aio-libs/aiohttp/blob/master/LICENSE.txt">Apache License 2.0> >. 
+[aio-libs/aiohttp](https://github.com/aio-libs/aiohttp)(< 4.0.0, >= 3.8.0) with [Apache License 2.0](https://github.com/aio-libs/aiohttp/blob/master/LICENSE.txt). <img align="right" width="200" src="https://raw.githubusercontent.com/aio-libs/aiohttp/master/docs/aiohttp-plain.svg" / > Asynchronous HTTP client/server framework for asyncio and Python
 
-<a href="https://github.com/Delgan/loguru">Delgan/loguru</a> tags: < 0.8, >= 0.6</a> with LICENSE< <a href="https://github.com/Delgan/loguru/blob/master/LICENSE">MIT> >. 
+[Delgan/loguru](https://github.com/Delgan/loguru)(< 0.8, >= 0.6) with [MIT](https://github.com/Delgan/loguru/blob/master/LICENSE). <img align="right" width="200" src="https://raw.githubusercontent.com/Delgan/loguru/master/docs/_static/img/logo.png" / > Python logging made (stupidly) simple
 
-<a href="https://github.com/pydantic/pydantic">pydantic/pydantic</a> tags: < 3.0, >= 1.10</a> with LICENSE< <a href="https://github.com/pydantic/pydantic/blob/main/LICENSE">MIT> >. 
+[pydantic/pydantic](https://github.com/pydantic/pydantic)(< 3.0, >= 1.10) with [MIT](https://github.com/pydantic/pydantic/blob/main/LICENSE). <img align="right" width="200" src="#" / > Data validation using Python type hints
 
-<a href="https://github.com/yaml/pyyaml">yaml/pyyaml</a> tags: < 7.0, >= 6.0</a> with LICENSE< <a href="https://github.com/yaml/pyyaml/blob/master/LICENSE">MIT> >. 
+[yaml/pyyaml](https://github.com/yaml/pyyaml)(< 7.0, >= 6.0) with [MIT](https://github.com/yaml/pyyaml/blob/master/LICENSE). <img align="right" width="200" src="#" / > Canonical source repository for PyYAML
 
-<a href="https://github.com/st1020/sophia-doc">st1020/sophia-doc</a> tags: >= 0.1.6</a> with LICENSE< <a href="https://github.com/st1020/sophia-doc/blob/master/LICENSE">MIT> >. 
+[st1020/sophia-doc](https://github.com/st1020/sophia-doc)(>= 0.1.6) with [MIT](https://github.com/st1020/sophia-doc/blob/master/LICENSE). <img align="right" width="200" src="#" / > A python package to automatically generate API documents for Python modules
 
-<a href="https://github.com/hukkin/tomli">hukkin/tomli</a> tags: < 3.0.0, >= 2.0.0</a> with LICENSE< <a href="https://github.com/hukkin/tomli/blob/master/LICENSE">MIT> >. 
+[hukkin/tomli](https://github.com/hukkin/tomli)(< 3.0.0, >= 2.0.0) with [MIT](https://github.com/hukkin/tomli/blob/master/LICENSE). <img align="right" width="200" src="#" / > A lil' TOML parser
 <!-- CPRF ends -->
 
 ## 📄 License
