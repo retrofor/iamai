@@ -218,7 +218,7 @@ To avoid any potential disputes or misunderstandings, we have listed the license
 [PaddlePaddle/PaddleNLP](https://github.com/PaddlePaddle/PaddleNLP)(@2.6.0) with [Apache License 2.0](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/LICENSE). <img width='200' src='https://user-images.githubusercontent.com/1371212/175816733-8ec25eb0-9af3-4380-9218-27c154518258.png'> <br />  `👑 Easy-to-use and powerful NLP and LLM library with 🤗 Awesome model zoo, supporting wide-range of NLP tasks from research to industrial applications, including 🗂Text Classification, 🔍 Neural Search, ❓ Question Answering, ℹ️ Information Extraction, 📄 Document Intelligence, 💌 Sentiment Analysis etc.`
 <!-- MLF ends -->
 
-### Cross-Platform Robot Framework
+### Cross-Platform Robot Framework Dependencies
 
 <!-- CPRF starts -->
 [AliceBotProject/alicebot](https://github.com/AliceBotProject/alicebot)(@0.6.0) with [MIT](https://github.com/AliceBotProject/alicebot/blob/master/LICENSE). <img width='50' src='https://docs.alicebot.dev/logo.png'> <br /> `简单的 Python 异步多后端渐进式机器人框架`
