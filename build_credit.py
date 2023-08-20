@@ -36,6 +36,7 @@ def fetch_mlf_denpendices():
             "repo": _["repo"],
             "licenseUrl": _["licenseUrl"],
             "description": _["description"],
+            "icon": _["icon"],
         }
         for _ in dependencies
     ]
@@ -50,6 +51,7 @@ def fetch_cprf_denpendices():
             "repo": _["repo"],
             "licenseUrl": _["licenseUrl"],
             "description": _["description"],
+            "icon": _["icon"],
         }
         for _ in dependencies
     ]
