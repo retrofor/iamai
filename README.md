@@ -236,6 +236,15 @@ To avoid any potential disputes or misunderstandings, we have listed the license
 [hukkin/tomli](https://github.com/hukkin/tomli)(< 3.0.0, >= 2.0.0) with [MIT](https://github.com/hukkin/tomli/blob/master/LICENSE). <br /> `A lil' TOML parser`
 <!-- CPRF ends -->
 
+## 😅 特别的鸣谢
+
+我们很乐意在下面列出对IamAI的发展方向和动机有着[重大贡献](https://academic.jyunko.cn/2023/04/04/April-Fours-Day.html)的组织和个人。如果你认为你应该在这里，请联系我们 :D
+
+个人: [A60](https://github.com/djkcyl)、[Bryan不可思议](https://github.com/ProgramRipper)
+组织: [GariaProject](https://github.com/GraiaProject)
+
+如果没有以上个人和组织的帮助，IamAI将不会有现在的样子。我们真的很感谢他们。
+
 ## 📄 License
 
 [MIT](https://github.com/retrofor/iamai/blob/main/LICENSE) © 2023-PRESENT [简律纯](https://github.com/HsiangNianian).
