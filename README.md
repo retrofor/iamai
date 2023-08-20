@@ -238,7 +238,7 @@ To avoid any potential disputes or misunderstandings, we have listed the license
 
 ## 😅 特别的鸣谢
 
-我们很乐意在下面列出对IamAI的发展方向和动机有着[重大贡献](https://academic.jyunko.cn/2023/04/04/April-Fours-Day.html)的组织和个人。如果你认为你应该在这里，请联系我们 :D
+我们很乐意在下面列出对IamAI的发展方向和动机有着[重大贡献](https://academic.jyunko.cn/2023/04/04/April-Fours-Day.html)的组织和个人。如果你认为你应该在这里，请至少要像Bryan不可思议那样在文章底栏留言或者发送邮件联系我们 :D
 
 个人: [A60](https://github.com/djkcyl)、[Bryan不可思议](https://github.com/ProgramRipper)
 组织: [GariaProject](https://github.com/GraiaProject)
