@@ -61,7 +61,7 @@ if __name__ == "__main__":
     MLF = fetch_mlf_denpendices()
     MLF_md = "\n\n".join(
         [
-            '[{name}]({repo})({description}) {version} with [{license}]({licenseUrl}). <img align="right" width="200" src="{icon}" / > '.format(
+            '[{name}]({repo})({version}) with [{license}]({licenseUrl}). <img align="right" width="200" src="{icon}" / > {descrip`tion}'.format(
                 **_
             )
             for _ in MLF
@@ -76,7 +76,7 @@ if __name__ == "__main__":
     CPRF = fetch_cprf_denpendices()
     CPRF_md = "\n\n".join(
         [
-            '[{name}]({repo})({description}) {version} with [{license}]({licenseUrl}). <img align="right" width="200" src="{icon}" / >'.format(
+            '[{name}]({repo})({version}) with [{license}]({licenseUrl}). <img align="right" width="200" src="{icon}" / > {description}'.format(
                 **_
             )
             for _ in CPRF
