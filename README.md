@@ -115,8 +115,7 @@ or you can also install for TEST.
   ```sh
   git clone https://github.com/retrofor/iamai.git
   cd iamai
-  poetry install --only main  # 推荐 (recommended)
-  pip install .  # 不推荐 (not recommended)
+  poetry install --only main
   ```
 
 ### Adapters
@@ -203,6 +202,50 @@ output = query({
   <img width="150" src="https://contrib.rocks/image?repo=retrofor/iamai" />
 </a>
 
+## 📢 Credits
+
+First of all, in the field of machine learning, we drew inspiration from the excellent design of Hugging Face's Transformers 🤗 for the use of pre-trained models. We would like to express our gratitude to the authors of Hugging Face and their open-source community.
+
+Secondly, regarding the cross-platform robot framework, it is primarily based on [st](https://github.com/st1020)'s [alicebot](https://AlicebotProject/alicebot). We have made numerous adaptations to make it compatible with machine learning. We would like to thank the st and alicebot open-source communities for their contributions.
+
+To avoid any potential disputes or misunderstandings, we have listed the licenses of the projects we have used and express our gratitude towards them.
+
+> Machine Learning Framework
+
+<!-- MLF starts -->
+
+<!-- MLF ends -->
+
+> Cross-Platform Robot Framework
+
+<!-- CPRF starts -->
+
+<!-- CPRF ends -->
+
 ## 📄 License
 
-[MIT](https://github.com/retrofor/iamai/blob/main/LICENSE) © 2023-PRESENT [简律纯](https://github.com/HsiangNianian)
+[MIT](https://github.com/retrofor/iamai/blob/main/LICENSE) © 2023-PRESENT [简律纯](https://github.com/HsiangNianian).
+
+```
+MIT License
+
+Copyright (c) 2023 Retro for wut?
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```

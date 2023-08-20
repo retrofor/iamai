@@ -1,0 +1,69 @@
+{
+    "MachineLearningFramework": [
+        {
+            "name": "huggingface/transformers",
+            "versionInfo": "@v4.31.0: Llama v2, MusicGen, Bark, MMS, EnCodec, InstructBLIP, Umt5, MRa, vIvIt",
+            "license": "Apache License 2.0",
+            "repo": "https://github.com/huggingface/transformers",
+            "licenseUrl": "https://github.com/huggingface/transformers/blob/main/LICENSE"
+        },
+        {
+            "name": "PaddlePaddle/PaddleNLP",
+            "versionInfo": "@2.6.0",
+            "license": "Apache License 2.0",
+            "repo": "https://github.com/PaddlePadlle/PaddleNLP",
+            "licenseUrl": "https://github.com/PaddlePaddle/PaddleNLP/blob/develop/LICENSE"
+        }
+    ],
+    "RobotFramework": [
+        {
+            "name": "AliceProject/alicebot",
+            "versionInfo": "@0.6.0",
+            "license": "MIT",
+            "repo": "https://github.com/AliceProject/alicebot",
+            "licenseUrl": "https://github.com/AliceBotProject/alicebot/blob/master/LICENSE"
+        },
+        {
+            "name": "aio-libs/aiohttp",
+            "versionInfo": "< 4.0.0, >= 3.8.0",
+            "license": "Apache License 2.0",
+            "repo": "https://github.com/aio-libs/aiohttp",
+            "licenseUrl": "https://github.com/aio-libs/aiohttp/blob/master/LICENSE.txt"
+        },
+        {
+            "name": "Delgan/loguru",
+            "versionInfo": "< 0.8, >= 0.6",
+            "license": "MIT",
+            "repo": "https://github.com/Delgan/loguru",
+            "licenseUrl": "https://github.com/Delgan/loguru/blob/master/LICENSE"
+        },
+        {
+            "name": "pydantic/pydantic",
+            "versionInfo": "< 3.0, >= 1.10",
+            "license": "MIT",
+            "repo": "https://github.com/pydantic/pydantic",
+            "licenseUrl": "https://github.com/pydantic/pydantic/blob/main/LICENSE"
+        },
+        {
+            "name": "yaml/pyyaml",
+            "versionInfo": "< 7.0, >= 6.0",
+            "license": "MIT",
+            "repo": "https://github.com/yaml/pyyaml",
+            "licenseUrl": "https://github.com/yaml/pyyaml/blob/master/LICENSE"
+        },
+        {
+            "name": "st1020/sophia-doc",
+            "versionInfo": ">= 0.1.6",
+            "license": "MIT",
+            "repo": "https://github.com/st1020/sophia-doc",
+            "licenseUrl": "https://github.com/st1020/sophia-doc/blob/master/LICENSE"
+        },
+        {
+            "name": "hukkin/tomli",
+            "versionInfo": "< 3.0.0, >= 2.0.0",
+            "license": "MIT",
+            "repo": "https://github.com/hukkin/tomli",
+            "licenseUrl": "https://github.com/hukkin/tomli/blob/master/LICENSE"
+        }
+    ]
+}

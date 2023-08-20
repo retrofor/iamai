@@ -1,0 +1,22 @@
+cff-version: "1.2.0"
+date-released: 2023-08
+message: "If you use this software, please cite it using these metadata."
+title: "IamAI: A Python Library for Artificial Intelligence and RobotFramework"
+url: "https://github.com/retrofor/iamai"
+authors: 
+  - family-names: Hsiang
+    given-names: Nianian
+preferred-citation:
+  type: conference-paper
+  authors:
+  - family-names: Hsiang
+    given-names: Nianian
+  booktitle: "Build a bradge between AI and RobotFramework"
+  month: 8
+  start: 1
+  end: 10
+  title: "IamAI: A Python Library for Artificial Intelligence and RobotFramework"
+  year: 2023
+  publisher: "Association for AICMUniversity"
+  url: "https://www.aicmu.eu.org"
+  address: "Online"
