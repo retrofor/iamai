@@ -5,65 +5,83 @@
             "versionInfo": "@v4.31.0: Llama v2, MusicGen, Bark, MMS, EnCodec, InstructBLIP, Umt5, MRa, vIvIt",
             "license": "Apache License 2.0",
             "repo": "https://github.com/huggingface/transformers",
-            "licenseUrl": "https://github.com/huggingface/transformers/blob/main/LICENSE"
+            "licenseUrl": "https://github.com/huggingface/transformers/blob/main/LICENSE",
+            "description": "🤗 Transformers: State-of-the-art Machine Learning for Pytorch, TensorFlow, and JAX.",
+            "icon": "https://huggingface.co/datasets/huggingface/documentation-images/raw/main/transformers-logo-light.svg"
         },
         {
             "name": "PaddlePaddle/PaddleNLP",
             "versionInfo": "@2.6.0",
             "license": "Apache License 2.0",
-            "repo": "https://github.com/PaddlePadlle/PaddleNLP",
-            "licenseUrl": "https://github.com/PaddlePaddle/PaddleNLP/blob/develop/LICENSE"
+            "repo": "https://github.com/PaddlePaddle/PaddleNLP",
+            "licenseUrl": "https://github.com/PaddlePaddle/PaddleNLP/blob/develop/LICENSE",
+            "description":"👑 Easy-to-use and powerful NLP and LLM library with 🤗 Awesome model zoo, supporting wide-range of NLP tasks from research to industrial applications, including 🗂Text Classification, 🔍 Neural Search, ❓ Question Answering, ℹ️ Information Extraction, 📄 Document Intelligence, 💌 Sentiment Analysis etc.",
+            "icon":"https://user-images.githubusercontent.com/1371212/175816733-8ec25eb0-9af3-4380-9218-27c154518258.png"
         }
     ],
     "RobotFramework": [
         {
-            "name": "AliceProject/alicebot",
+            "name": "AliceBotProject/alicebot",
             "versionInfo": "@0.6.0",
             "license": "MIT",
-            "repo": "https://github.com/AliceProject/alicebot",
-            "licenseUrl": "https://github.com/AliceBotProject/alicebot/blob/master/LICENSE"
+            "repo": "https://github.com/AliceBotProject/alicebot",
+            "licenseUrl": "https://github.com/AliceBotProject/alicebot/blob/master/LICENSE",
+            "description":"简单的 Python 异步多后端渐进式机器人框架",
+            "icon":"https://docs.alicebot.dev/logo.png"
         },
         {
             "name": "aio-libs/aiohttp",
             "versionInfo": "< 4.0.0, >= 3.8.0",
             "license": "Apache License 2.0",
             "repo": "https://github.com/aio-libs/aiohttp",
-            "licenseUrl": "https://github.com/aio-libs/aiohttp/blob/master/LICENSE.txt"
+            "licenseUrl": "https://github.com/aio-libs/aiohttp/blob/master/LICENSE.txt",
+            "description":"Asynchronous HTTP client/server framework for asyncio and Python",
+            "icon":"https://raw.githubusercontent.com/aio-libs/aiohttp/master/docs/aiohttp-plain.svg"
         },
         {
             "name": "Delgan/loguru",
             "versionInfo": "< 0.8, >= 0.6",
             "license": "MIT",
             "repo": "https://github.com/Delgan/loguru",
-            "licenseUrl": "https://github.com/Delgan/loguru/blob/master/LICENSE"
+            "licenseUrl": "https://github.com/Delgan/loguru/blob/master/LICENSE",
+            "description":"Python logging made (stupidly) simple",
+            "icon":"https://raw.githubusercontent.com/Delgan/loguru/master/docs/_static/img/logo.png"
         },
         {
             "name": "pydantic/pydantic",
             "versionInfo": "< 3.0, >= 1.10",
             "license": "MIT",
             "repo": "https://github.com/pydantic/pydantic",
-            "licenseUrl": "https://github.com/pydantic/pydantic/blob/main/LICENSE"
+            "licenseUrl": "https://github.com/pydantic/pydantic/blob/main/LICENSE",
+            "description":"Data validation using Python type hints",
+            "icon":"#"
         },
         {
             "name": "yaml/pyyaml",
             "versionInfo": "< 7.0, >= 6.0",
             "license": "MIT",
             "repo": "https://github.com/yaml/pyyaml",
-            "licenseUrl": "https://github.com/yaml/pyyaml/blob/master/LICENSE"
+            "licenseUrl": "https://github.com/yaml/pyyaml/blob/master/LICENSE",
+            "description":"Canonical source repository for PyYAML",
+            "icon":"#"
         },
         {
             "name": "st1020/sophia-doc",
             "versionInfo": ">= 0.1.6",
             "license": "MIT",
             "repo": "https://github.com/st1020/sophia-doc",
-            "licenseUrl": "https://github.com/st1020/sophia-doc/blob/master/LICENSE"
+            "licenseUrl": "https://github.com/st1020/sophia-doc/blob/master/LICENSE",
+            "description":"A python package to automatically generate API documents for Python modules",
+            "icon":"#"
         },
         {
             "name": "hukkin/tomli",
             "versionInfo": "< 3.0.0, >= 2.0.0",
             "license": "MIT",
             "repo": "https://github.com/hukkin/tomli",
-            "licenseUrl": "https://github.com/hukkin/tomli/blob/master/LICENSE"
+            "licenseUrl": "https://github.com/hukkin/tomli/blob/master/LICENSE",
+            "description":"A lil' TOML parser",
+            "icon":"#"
         }
     ]
 }
