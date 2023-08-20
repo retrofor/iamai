@@ -204,7 +204,7 @@ output = query({
 
 ## 📢 Credits
 
-First of all, in the field of machine learning, we drew inspiration from the excellent design of Hugging Face's Transformers 🤗 for the use of pre-trained models. We would like to express our gratitude to the authors of Hugging Face and their open-source community.
+First of all, in the field of machine learning, we drew inspiration from the excellent design of [Hugging Face](https://huggingface.co)'s [transformers](https://github.com/huggingface/transformers) 🤗 for the use of pre-trained models. We would like to express our gratitude to the authors of Hugging Face and their open-source community.
 
 Secondly, regarding the cross-platform robot framework, it is primarily based on [st](https://github.com/st1020)'s [alicebot](https://AlicebotProject/alicebot). We have made numerous adaptations to make it compatible with machine learning. We would like to thank the st and alicebot open-source communities for their contributions.
 
