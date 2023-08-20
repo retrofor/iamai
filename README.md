@@ -219,7 +219,19 @@ To avoid any potential disputes or misunderstandings, we have listed the license
 > Cross-Platform Robot Framework
 
 <!-- CPRF starts -->
+<a href="https://github.com/AliceProject/alicebot">AliceProject/alicebot</a> tags: @0.6.0</a> with LICENSE<<a href="https://github.com/AliceBotProject/alicebot/blob/master/LICENSE">MIT>>. 
 
+<a href="https://github.com/aio-libs/aiohttp">aio-libs/aiohttp</a> tags: < 4.0.0, >= 3.8.0</a> with LICENSE<<a href="https://github.com/aio-libs/aiohttp/blob/master/LICENSE.txt">Apache License 2.0>>. 
+
+<a href="https://github.com/Delgan/loguru">Delgan/loguru</a> tags: < 0.8, >= 0.6</a> with LICENSE<<a href="https://github.com/Delgan/loguru/blob/master/LICENSE">MIT>>. 
+
+<a href="https://github.com/pydantic/pydantic">pydantic/pydantic</a> tags: < 3.0, >= 1.10</a> with LICENSE<<a href="https://github.com/pydantic/pydantic/blob/main/LICENSE">MIT>>. 
+
+<a href="https://github.com/yaml/pyyaml">yaml/pyyaml</a> tags: < 7.0, >= 6.0</a> with LICENSE<<a href="https://github.com/yaml/pyyaml/blob/master/LICENSE">MIT>>. 
+
+<a href="https://github.com/st1020/sophia-doc">st1020/sophia-doc</a> tags: >= 0.1.6</a> with LICENSE<<a href="https://github.com/st1020/sophia-doc/blob/master/LICENSE">MIT>>. 
+
+<a href="https://github.com/hukkin/tomli">hukkin/tomli</a> tags: < 3.0.0, >= 2.0.0</a> with LICENSE<<a href="https://github.com/hukkin/tomli/blob/master/LICENSE">MIT>>. 
 <!-- CPRF ends -->
 
 ## 📄 License
