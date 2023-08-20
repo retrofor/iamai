@@ -2,8 +2,6 @@ import json
 import os
 import pathlib
 import re
-
-import feedparser
 import httpx
 from python_graphql_client import GraphqlClient
 
