@@ -59,7 +59,7 @@ if __name__ == "__main__":
     MLF = fetch_mlf_denpendices()
     MLF_md = "\n\n".join(
         [
-            '<a href="{repo}">{name}</a> tags: {version}</a> with LICENSE<<a href="{licenseUrl}">{license}>>. '.format(
+            '[{name}]({repo}) {version} with LICENSE< [{license}]({licenseUrl}). '.format(
                 **_
             )
             for _ in MLF
@@ -74,7 +74,7 @@ if __name__ == "__main__":
     CPRF = fetch_cprf_denpendices()
     CPRF_md = "\n\n".join(
         [
-            '<a href="{repo}">{name}</a> tags: {version}</a> with LICENSE<<a href="{licenseUrl}">{license}>>. '.format(
+            '<a href="{repo}">{name}</a> tags: {version}</a> with LICENSE< <a href="{licenseUrl}">{license}> >. '.format(
                 **_
             )
             for _ in CPRF
@@ -83,6 +83,6 @@ if __name__ == "__main__":
     print()
     print(CPRF_md)
     print()
-    rewritten = replace_chunk(readme_contents, "CPRF", CPRF_md)
+    rewritten = replace_chunk(rewritten, "CPRF", CPRF_md)
 
     readme.open("w").write(rewritten)
