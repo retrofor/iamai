@@ -1,7 +1,8 @@
-import json
 import os
-import pathlib
 import re
+import json
+import pathlib
+
 import httpx
 from python_graphql_client import GraphqlClient
 
@@ -39,6 +40,7 @@ def fetch_mlf_denpendices():
         for _ in dependencies
     ]
 
+
 def fetch_cprf_denpendices():
     dependencies = credit["RobotFramework"]
     return [
@@ -53,7 +55,8 @@ def fetch_cprf_denpendices():
         }
         for _ in dependencies
     ]
-    
+
+
 if __name__ == "__main__":
     readme = root / "README.md"
     readme_contents = readme.open().read()
@@ -61,7 +64,7 @@ if __name__ == "__main__":
     MLF = fetch_mlf_denpendices()
     MLF_md = "\n\n".join(
         [
-            '[{name}]({repo})({version}) with [{license}]({licenseUrl}). {icon} `{description}`'.format(
+            "[{name}]({repo})({version}) with [{license}]({licenseUrl}). {icon} `{description}`".format(
                 **_
             )
             for _ in MLF
@@ -71,12 +74,12 @@ if __name__ == "__main__":
     print(MLF_md)
     print()
     rewritten = replace_chunk(readme_contents, "MLF", MLF_md)
-    
+
     # CPRF
     CPRF = fetch_cprf_denpendices()
     CPRF_md = "\n\n".join(
         [
-            '[{name}]({repo})({version}) with [{license}]({licenseUrl}). {icon} `{description}`'.format(
+            "[{name}]({repo})({version}) with [{license}]({licenseUrl}). {icon} `{description}`".format(
                 **_
             )
             for _ in CPRF
