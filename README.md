@@ -195,6 +195,7 @@ output = query({
 ## ✨ Project Activity
 
 ![Alt](https://repobeats.axiom.co/api/embed/cc9b8bded331c406e68cc0c7c294ef04122d6da2.svg "Repobeats analytics image")
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fretrofor%2Fiamai.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fretrofor%2Fiamai?ref=badge_shield)
 
 ## 👨‍🚀 Contributors
 
@@ -272,3 +273,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fretrofor%2Fiamai.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fretrofor%2Fiamai?ref=badge_large)
