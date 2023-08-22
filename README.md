@@ -7,11 +7,6 @@
   <a href="https://jq.qq.com/?_wv=1027&k=OOUmgrqx"><img alt="QQ群" src="https://img.shields.io/badge/-QQ群%20761859776-002FA7?style=flat-square&logo=Tencent QQ&logoColor=white"></a>
 </p>
 <p align="center">
-  <a href="/README_zh.md">简体中文</a>
-  <a href="/README_jp.md">にほんご</a>
-  <a href="/README_ko.md">한국어</a>
-</p>
-<p align="center">
   Cross-platform robot framework, mainly used for ML/DL.
 </p>
 <p align="center">
