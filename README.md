@@ -195,7 +195,6 @@ output = query({
 ## ✨ Project Activity
 
 ![Alt](https://repobeats.axiom.co/api/embed/cc9b8bded331c406e68cc0c7c294ef04122d6da2.svg "Repobeats analytics image")
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fretrofor%2Fiamai.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fretrofor%2Fiamai?ref=badge_shield)
 
 ## 👨‍🚀 Contributors
 
@@ -250,28 +249,6 @@ To avoid any potential disputes or misunderstandings, we have listed the license
 
 [MIT](https://github.com/retrofor/iamai/blob/main/LICENSE) © 2023-PRESENT [简律纯](https://github.com/HsiangNianian).
 
-```
-MIT License
-
-Copyright (c) 2023 Retro for wut?
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fretrofor%2Fiamai.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fretrofor%2Fiamai?ref=badge_shield)
 
 <a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fretrofor%2Fiamai?ref=badge_large" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fretrofor%2Fiamai.svg?type=large"/></a>
