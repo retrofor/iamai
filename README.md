@@ -180,22 +180,8 @@ output = query({
 })
 ```
 
-## 💕The Docs
-
-> choices below.
-
-- [https://iamai.retrofor.space](https://iamai.retrofor.space) _(recommend)_
-- [https://iamai-asi.vercel.app](https://iamai-asi.vercel.app)
-
-## ✨ Project Activity
-
-![Alt](https://repobeats.axiom.co/api/embed/cc9b8bded331c406e68cc0c7c294ef04122d6da2.svg "Repobeats analytics image")
-
-## 👨‍🚀 Contributors
-
-<a href="https://github.com/retrofor/iamai/graphs/contributors">
-  <img width="150" src="https://contrib.rocks/image?repo=retrofor/iamai" />
-</a>
+## [![Repography logo](https://images.repography.com/logo.svg)](https://repography.com) / Structure
+[![Structure](https://images.repography.com/40962158/retrofor/iamai/structure/afEhYzXo83AMGRNy9EzPPQcX9ECBKj2gOPhvmpzMFSg/DQMxDEhfNZdq6zFhjPa1G61Bg9g-DRhQiwNY-W2ZHVE_table.svg)](https://github.com/retrofor/iamai)
 
 ## 📢 Credits
 
