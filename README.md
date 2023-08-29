@@ -228,7 +228,7 @@ To avoid any potential disputes or misunderstandings, we have listed the license
 
 ## 📄 License
 
-[MIT](https://github.com/retrofor/iamai/blob/main/LICENSE) © 2023-PRESENT [简律纯](https://github.com/HsiangNianian).
+[MIT](https://github.com/retrofor/iamai/blob/main/LICENSE) © 2023-PRESENT [Retrofor Wut?](https://github.com/retrofor).
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fretrofor%2Fiamai.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fretrofor%2Fiamai?ref=badge_shield)
 
