@@ -1,4 +1,5 @@
 import Document, { Head, Html, Main, NextScript } from 'next/document';
+import { OrganizationJsonLd } from 'next-seo';
 import { getCssText } from '@components/stitche.config';
 
 export default class MyDocument extends Document {
