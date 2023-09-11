@@ -1,13 +1,10 @@
-[tool.poetry]
+[project]
 name = "iamai"
 version = "3.2.4"
 description = "bot framework."
-authors = ["简律纯 <i@jyunko.cn>"]
-license = "MIT"
+authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
+license = { text = "MIT" }
 readme = "README.md"
-homepage = "https://retrofor.space/"
-repository = "https://github.com/retrofor/iamai"
-documentation = "https://iamai.retrofor.space/"
 keywords = [
   "bot",
   "qq",
@@ -30,35 +27,24 @@ classifiers = [
   "Programming Language :: Python :: 3",
 ]
 
-[tool.poetry.dependencies]
-python = "^3.8"
-tomli = { version = "^2.0.0", python = "<3.11" }
-pydantic = ">=1.10,<3.0"
-aiohttp = "^3.8.0"
-loguru = ">=0.6,<0.8"
-pyyaml = "^6.0"
-typing-extensions = ">=4.7.0"
+requires-python = ">=3.8"
 
-[tool.poetry.group.dev.dependencies]
-watchfiles = "^0.18.0"
-sophia-doc = "^0.1.0"
-iamai-adapter-bililive = { path = "./packages/iamai-adapter-bililive", develop = true }
-iamai-adapter-console = { path = "./packages/iamai-adapter-console", develop = true }
-iamai-adapter-kook = { path = "./packages/iamai-adapter-kook", develop = true }
-iamai-adapter-cqhttp = { path = "./packages/iamai-adapter-cqhttp", develop = true }
-iamai-adapter-dingtalk = { path = "./packages/iamai-adapter-dingtalk", develop = true }
-iamai-adapter-apscheduler = { path = "./packages/iamai-adapter-apscheduler", develop = true }
-black = "^23.1.0"
-isort = "^5.12.0"
-pre-commit = "^3.1.0"
-pre-commit-hooks = "^4.4.0"
+dependencies = [
+  "tomli>=2.0.0,<3.0.0;python_version<'3.11'",
+  "pydantic>=2.0.3,<3.0.0",
+  "aiohttp>=3.8.0,<4.0.0",
+  "loguru>=0.7.0,<0.8.0",
+  "typing-extensions>=4.5.0",
+  "pyyaml=^6.0",
+]
 
-[tool.poetry.extras]
-kook = ["iamai-adapter-kook"]
+
+[project.optional-dependencies]
+bililive = ["iamai-adapter-bililive"]
+cokook = ["iamai-adapter-kook"]
 mirai = ["iamai-adapter-mirai"]
 cqhttp = ["iamai-adapter-cqhttp"]
 console = ["iamai-adapter-console"]
-bililive = ["iamai-adapter-bililive"]
 dingtalk = ["iamai-adapter-dingtalk"]
 apscheduler = ["iamai-adapter-apscheduler"]
 hot_reload = ["watchfiles"]
@@ -73,6 +59,50 @@ all = [
   "watchfiles",
 ]
 
+[tool.pdm.dev-dependencies]
+dev = [
+  "-e iamai-adapter-console @ {root:uri}/packages/iamai-adapter-console",
+  "-e iamai-adapter-bililive @ {root:uri}/packages/iamai-adapter-bililive",
+  "-e iamai-adapter-cqhttp @ {root:uri}/packages/iamai-adapter-cqhttp",
+  "-e iamai-adapter-kook @ {root:uri}/packages/iamai-adapter-kook",
+  "-e iamai-adapter-mirai @ {root:uri}/packages/iamai-adapter-mirai",
+  "-e iamai-adapter-dingtalk @ {root:uri}/packages/iamai-adapter-dingtalk",
+  "-e iamai-adapter-apscheduler @ {root:uri}/packages/iamai-adapter-apscheduler",
+]
+typing = ["watchfiles", "trio>=0.22.2"]
+lint = ["black", "pylint", "pylint-pydantic"]
+docs = ["sophia-doc~=0.1.4", "tomlkit"]
+
+
+[project.urls]
+Homepage = "https://retrofor.space/"
+Repository = "https://github.com/retrofor/iamai"
+Documentation = "https://iamai.retrofor.space/"
+
+[tool.pylint.main]
+disable = [
+  "arguments-differ",
+  "broad-exception-caught",
+  "import-outside-toplevel",
+  "line-too-long",
+  "too-many-lines",
+  "duplicate-code",
+  "too-few-public-methods",
+  "too-many-arguments",
+  "too-many-boolean-expressions",
+  "too-many-branches",
+  "too-many-instance-attributes",
+  "too-many-nested-blocks",
+  "too-many-public-methods",
+]
+load-plugins = ["pylint_pydantic"]
+source-roots = ["."]
+
+[tool.pylint.basic]
+good-names = ["i", "j", "k", "ex", "Run", "_", "e", "f", "ws", "cm", "at"]
+
+[tool.pylint.variables]
+allowed-redefined-builtins = ["id", "type"]
 [tool.black]
 target-version = ["py38", "py39", "py310", "py311"]
 
@@ -103,67 +133,6 @@ reportUnnecessaryIsInstance = false
 [tool.pydantic-pycharm-plugin]
 ignore-init-method-arguments = true
 
-[tool.pdm.build]
-includes = []
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-[project]
-authors = [
-    {name = "简律纯", email = "i@jyunko.cn"},
-]
-license = {text = "MIT"}
-requires-python = ">=3.8,<4.0"
-dependencies = [
-    "tomli<3.0.0,>=2.0.0; python_version < \"3.11\"",
-    "pydantic<3.0,>=1.10",
-    "aiohttp<4.0.0,>=3.8.0",
-    "loguru<0.8,>=0.6",
-    "pyyaml<7.0,>=6.0",
-    "typing-extensions>=4.7.0",
-    "sophia-doc>=0.1.6",
-]
-name = "iamai"
-version = "3.2.4"
-description = "bot framework."
-readme = "README.md"
-keywords = ["bot", "qq", "qqbot", "mirai", "coolq", "kook", "go-cqhttp", "dingtalk", "console", "apscheduler", "bilibili", "bilibili-live"]
-classifiers = ["Development Status :: 5 - Production/Stable", "Framework :: Robot Framework", "Framework :: Robot Framework :: Library", "Operating System :: OS Independent", "Programming Language :: Python :: 3"]
-
-[project.urls]
-homepage = "https://retrofor.space/"
-repository = "https://github.com/retrofor/iamai"
-documentation = "https://iamai.retrofor.space/"
-
-[project.group.dev.dependencies]
-watchfiles = "^0.18.0"
-sophia-doc = "^0.1.0"
-black = "^23.1.0"
-isort = "^5.12.0"
-pre-commit = "^3.1.0"
-pre-commit-hooks = "^4.4.0"
-
-[project.group.dev.dependencies.iamai-adapter-bililive]
-path = "./packages/iamai-adapter-bililive"
-develop = true
-
-[project.group.dev.dependencies.iamai-adapter-console]
-path = "./packages/iamai-adapter-console"
-develop = true
-
-[project.group.dev.dependencies.iamai-adapter-kook]
-path = "./packages/iamai-adapter-kook"
-develop = true
-
-[project.group.dev.dependencies.iamai-adapter-cqhttp]
-path = "./packages/iamai-adapter-cqhttp"
-develop = true
-
-[project.group.dev.dependencies.iamai-adapter-dingtalk]
-path = "./packages/iamai-adapter-dingtalk"
-develop = true
-
-[project.group.dev.dependencies.iamai-adapter-apscheduler]
-path = "./packages/iamai-adapter-apscheduler"
-develop = true
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"

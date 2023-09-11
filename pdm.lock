@@ -6,7 +6,7 @@ groups = ["default"]
 cross_platform = true
 static_urls = false
 lock_version = "4.3"
-content_hash = "sha256:2b604cdeadf390c90af864d15d30a788236faf69425a72d48fec7aed587640a3"
+content_hash = "sha256:c81c91d3ba011520c1733793b9b8aae70b04017795a744baa00c3530b514875a"
 
 [[package]]
 name = "aiohttp"
@@ -289,6 +289,20 @@ files = [
     {file = "frozenlist-1.4.0-cp39-cp39-win32.whl", hash = "sha256:19488c57c12d4e8095a922f328df3f179c820c212940a498623ed39160bc3c2f"},
     {file = "frozenlist-1.4.0-cp39-cp39-win_amd64.whl", hash = "sha256:6221d84d463fb110bdd7619b69cb43878a11d51cbb9394ae3105d082d5199167"},
     {file = "frozenlist-1.4.0.tar.gz", hash = "sha256:09163bdf0b2907454042edb19f887c6d33806adc71fbd54afc14908bfdc22251"},
+]
+
+[[package]]
+name = "iamai-adapter-kook"
+version = "3.2.3"
+requires_python = ">=3.8,<4.0"
+summary = "Kook adapter for iamai."
+dependencies = [
+    "iamai>=3.2",
+    "typing-extensions>=4.7.0",
+]
+files = [
+    {file = "iamai_adapter_kook-3.2.3-py3-none-any.whl", hash = "sha256:d9ab2f443fc7cdc9b63ceead0177f733a141f2f236f142371878f9cab8cc5b97"},
+    {file = "iamai_adapter_kook-3.2.3.tar.gz", hash = "sha256:9cb4361091da4035a141807e2db0b3d3ee4d1a317965e047b412fadaeb6e0565"},
 ]
 
 [[package]]

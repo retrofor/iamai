@@ -149,3 +149,7 @@ iamai/adapter/cqhttp/
 
 .pdm-python
 %Project%retrofor%iamai/chat_history/history.sqlite
+
+# pdm
+dist/**/*
+.pdm-build/**/*
