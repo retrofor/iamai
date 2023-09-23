@@ -40,6 +40,7 @@ dependencies = [
     "packages>=0.1.1",
     "watchfiles>=0.20.0",
     "httpimport>=1.3.1",
+    "scikit-learn>=1.3.1",
 ]
 
 
