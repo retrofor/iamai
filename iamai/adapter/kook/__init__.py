@@ -19,7 +19,7 @@ from iamai.adapter.utils import WebSocketAdapter
 from iamai.log import logger, error_or_exception
 
 from .config import Config
-from .message import KookMessage, msg_type_map
+from .message import KookMessage, msg_type_map, MessageDeserializer
 from .api.handle import User, get_api_method, get_api_restype
 from .exceptions import (
     ApiTimeout,
@@ -66,6 +66,7 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
             self.adapter_type = "ws"  # type: ignore
         if self.adapter_type == "webhook":  # type: ignore
             self.adapter_type = "wb"  # type: ignore
+        self.bot.global_state["kook"] = {}
         self.reconnect_interval = self.config.reconnect_interval  # type: ignore
         self._api_response_cond = asyncio.Condition()
         await super().startup()
@@ -106,36 +107,40 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
                 )
                 return
 
-            bot_info = await self._get_self_data(self.config.access_token)  # type: ignore
-            self_id = bot_info.id_
+            self.bot.global_state["kook"]["bot_info"] = await self._get_self_data(self.config.access_token)  # type: ignore
+            self_id = self.bot.global_state["kook"]["bot_info"].id_
 
             if msg_dict.get("s") == SignalTypes.HELLO:
-                if msg_dict.get("d").get("code") == 0:
+                data = msg_dict.get("d")
+                if data.get("code") == 0:
                     try:
-                        data = msg_dict.get("d")
                         data["post_type"] = "meta_event"
                         data["sub_type"] = "connect"
                         data["meta_event_type"] = "lifecycle"
                         logger.success(
                             f"WebSocket connection verified, "
-                            f"Session key: {data.get('session_id')}"
+                            f"Session key: {data.get('session_id')[:7]}"
                         )
-                        # 调用 start_heartbeat 间隔30(+5,-5)发送心跳 TO-DO
-                        self.bot.global_state["session"] = data.get("session_id")
-                        ResultStore.set_sn(self.bot.global_state["session"], 0)
-                        heartbeat_task = asyncio.ensure_future(
-                            self.start_heartbeat(self.bot.global_state["session"])
+                        # 调用 start_heartbeat 间隔30(+5,-5)发送心跳
+                        self.bot.global_state["kook"]["session"] = data.get(
+                            "session_id"
+                        )
+                        ResultStore.set_sn(self.bot.global_state["kook"]["session"], 0)
+                        asyncio.ensure_future(
+                            self.start_heartbeat(
+                                self.bot.global_state["kook"]["session"]
+                            )
                         )
                         logger.debug("HeartBeat task started!")
                         await self.handle_kook_event(data)
                     except Exception as e:
                         logger.error(f"WebSocket connection verified failed!\n{e}")
-                        raise ReconnectError from e
-                elif msg_dict.get("d").get("code") == 40103:
+                        raise ReconnectError
+                elif data.get("code") == 40103:
                     raise ReconnectError
-                elif msg_dict.get("d").get("code") == 40101:
+                elif data.get("code") == 40101:
                     raise TokenError("无效的 token")
-                elif msg_dict.get("d").get("code") == 40102:
+                elif data.get("code") == 40102:
                     raise TokenError("token 验证失败")
                 else:
                     logger.warning(
@@ -151,11 +156,13 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
                 }
                 logger.info(f"HeartBeat received!{data}")
                 logger.warning(
-                    f"Bot {self.bot.global_state['session']} HeartBeat",
+                    f"Bot {self.bot.global_state['kook']['bot_info'].username} HeartBeat",
                 )
                 await self.handle_kook_event(data)
             elif msg_dict.get("s") == SignalTypes.EVENT:
-                ResultStore.set_sn(self.bot.global_state["session"], msg_dict["sn"])
+                ResultStore.set_sn(
+                    self.bot.global_state["kook"]["session"], msg_dict["sn"]
+                )
                 try:
                     data = msg_dict.get("d")
                     extra = data.get("extra")
@@ -167,14 +174,22 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
                         if data.get("author_id") != "1"
                         else "SYSTEM"
                     )
+                    content = MessageDeserializer(
+                        extra["type"],
+                        extra,
+                    ).deserialize()
 
                     if data["type"] == EventTypes.sys:
                         data["post_type"] = "notice"
                         data["notice_type"] = extra.get("type")
-                        message = KookMessage(("{}").format(data["content"]))
-                        data["message"] = data.get("content")
-                        # data['notice_type'] = data.get('channel_type').lower()
-                        # data['notice_type'] = 'private' if data['notice_type'] == 'person' else data['notice_type']
+                        logger.debug(data)
+                        data["message"] = content
+                        data["notice_type"] = data.get("channel_type").lower()
+                        data["notice_type"] = (
+                            "private"
+                            if data["notice_type"] == "person"
+                            else data["notice_type"]
+                        )
                     else:
                         data["post_type"] = "message"
                         data["sub_type"] = [
@@ -189,18 +204,19 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
                             else data["message_type"]
                         )
                         data["extra"]["content"] = data.get("content")
-                        data["message"] = KookMessage(f'{data.get("content")}')
                         data["raw_message"] = data.get("content")
+                        data['message'] = content
                         data["event"] = data["extra"]
 
+                    data["type"] = extra.get("type")
+                    logger.debug(data["type"])
                     data["message_id"] = data.get("msg_id")
                     await self.handle_kook_event(data)
                 except Exception as e:
-                    logger.error(f"Event handle failed!\n{e}")
+                    logger.error(f"Event handle failed!\n{e!r}")
             elif msg_dict.get("s") == SignalTypes.RECONNECT:
                 raise ReconnectError
             elif msg_dict.get("s") == SignalTypes.RESUME_ACK:
-                # 不存在的signal，resume是不可能resume的，这辈子都不会resume的，出了问题直接重连
                 return
             else:
                 async with self._api_response_cond:
@@ -227,7 +243,7 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
         kook_event = event_class(adapter=self, **data)
         # 便于检查事件类型
         if self.config.show_raw:  # type: ignore
-            logger.info(data)
+            logger.debug(data)
 
         if kook_event.post_type == "meta_event":
             # meta_event 不交由插件处理
@@ -237,7 +253,7 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
             ):
                 logger.success(
                     f"WebSocket connection "
-                    f"from Kook Bot {data.get('session_id')} accepted!"
+                    f"from Kook Bot {self.bot.global_state['kook']['bot_info'].username} accepted!"
                 )
         else:
             # 屏蔽bot自身消息
@@ -246,10 +262,10 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
                     return
             await self.handle_event(kook_event)
 
-    async def call_api(self, api: str, **data) -> Any:
+    async def call_api(self, api: str, **data: dict) -> Any:
         match = re.findall(r"[A-Z]", api)
         if len(match) > 0:
-            for m in match:
+            for m in match: 
                 api = api.replace(m, f"-{m.lower()}")
         api = api.replace("_", "/")
 
@@ -316,7 +332,7 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
         """
         return await self._call_api("user/me", token=self.config.access_token)  # type: ignore
 
-    async def start_heartbeat(self, session) -> None:
+    async def start_heartbeat(self, session: str) -> None:
         """
         每30s一次心跳
         :return:
@@ -353,17 +369,17 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
         """
         if message_type == "PERSON":
             return await self.call_api(
-                api="direct-message/create", target_id=id_, content=message_
+                api="direct-message/create", target_id=id_, content=message_ # type: ignore
             )
         elif message_type == "GROUP":
             return await self.call_api(
-                api="message/create", target_id=id_, content=message_
+                api="message/create", target_id=id_, content=message_ # type: ignore
             )
         else:
             raise TypeError('message_type must be "PERSON" or "GROUP"')
 
 
-def _handle_api_result(response) -> Any:
+def _handle_api_result(response: Any) -> Any:
     """
     :说明:
 
@@ -383,7 +399,6 @@ def _handle_api_result(response) -> Any:
     """
     result = json.loads(response.content)
     if isinstance(result, dict):
-        logger.debug(f"API result {str(result)}")
         if result.get("code") != 0:
             raise ActionFailed(response)
         else:
