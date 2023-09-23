@@ -6,7 +6,7 @@ groups = ["default"]
 cross_platform = true
 static_urls = false
 lock_version = "4.3"
-content_hash = "sha256:0b3c4879c49ba99a72373756304d0ce847c921f222c2e29f46c1ba233fabd969"
+content_hash = "sha256:f70c65ad98f6d8ac220f3a9c3c467c69c5a001547dfea02a756e823d860ea0c9"
 
 [[package]]
 name = "aiohttp"
@@ -320,6 +320,15 @@ files = [
     {file = "frozenlist-1.4.0-cp39-cp39-win32.whl", hash = "sha256:19488c57c12d4e8095a922f328df3f179c820c212940a498623ed39160bc3c2f"},
     {file = "frozenlist-1.4.0-cp39-cp39-win_amd64.whl", hash = "sha256:6221d84d463fb110bdd7619b69cb43878a11d51cbb9394ae3105d082d5199167"},
     {file = "frozenlist-1.4.0.tar.gz", hash = "sha256:09163bdf0b2907454042edb19f887c6d33806adc71fbd54afc14908bfdc22251"},
+]
+
+[[package]]
+name = "httpimport"
+version = "1.3.1"
+summary = "Module for remote in-memory Python package/module loading through HTTP"
+files = [
+    {file = "httpimport-1.3.1-py2.py3-none-any.whl", hash = "sha256:b1fdfaaa51892707651dcb895656b6e5274585b0ef524bad8179238c86b14843"},
+    {file = "httpimport-1.3.1.tar.gz", hash = "sha256:5b3d448404bee70d4ec7b5d5d65d9777c06f15851ed7a8d96af4a0cd0ef9ebb2"},
 ]
 
 [[package]]
