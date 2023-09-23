@@ -489,6 +489,7 @@ class EventMessage(BaseModel):
 
     content: KookMessage
 
+
 class KookEvent(OriginEvent):
     """
     事件主要格式，来自 d 字段

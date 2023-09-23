@@ -1,7 +1,8 @@
 import math
 from collections import Counter
 
-__all__ = ['BM25']
+__all__ = ["BM25"]
+
 
 class BM25:
     def __init__(self, documents):
@@ -33,7 +34,14 @@ class BM25:
             for word in query_words:
                 if word in self.freqs[i]:
                     idf = self.idf[word]
-                    tf = self.freqs[i][word] * (self.k1 + 1) / (self.freqs[i][word] + self.k1 * (1 - self.b + self.b * doc_len / self.avgdl))
+                    tf = (
+                        self.freqs[i][word]
+                        * (self.k1 + 1)
+                        / (
+                            self.freqs[i][word]
+                            + self.k1 * (1 - self.b + self.b * doc_len / self.avgdl)
+                        )
+                    )
                     score += idf * tf * query_freq[word]
             scores.append(score)
         return scores
@@ -44,10 +52,12 @@ class BM25:
         for i, word in enumerate(query):
             sub_query = query[i:]
             sub_scores = self.score(sub_query)
-            sub_top_k_indices = sorted(range(len(sub_scores)), key=lambda i: sub_scores[i], reverse=True)[:k]
+            sub_top_k_indices = sorted(
+                range(len(sub_scores)), key=lambda i: sub_scores[i], reverse=True
+            )[:k]
             for j in sub_top_k_indices:
                 result = self.documents[j].copy()
-                result.extend(sub_query[len(result):])
+                result.extend(sub_query[len(result) :])
                 results.append(result)
             if len(results) >= k:
                 break
