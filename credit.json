@@ -82,6 +82,14 @@
             "licenseUrl": "https://github.com/hukkin/tomli/blob/master/LICENSE",
             "description":"A lil' TOML parser",
             "icon":"<br />"
+        },
+        {
+            "name": "operatorequals/httpimport",
+            "versionInfo": ">=1.3.1",
+            "license": "Apache License 2.0",
+            "licenseUrl": "https://github.com/operatorequals/httpimport/blob/master/LICENSE",
+            "description": "Module for remote in-memory Python package/module loading through HTTP/S",
+            "icon": "<br />"
         }
     ]
 }
