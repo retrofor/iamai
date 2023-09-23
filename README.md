@@ -80,7 +80,7 @@
 
 ## 📘 Introduction
 
-A Cross-platform robot framework, mainly used for machine learning.
+A Cross-platform robot framework, mainly used for machine learning and based on alicebot. It allows for quick usage of various convenient NLP models(not only but also other single task models), such as named entity recognition and relation extraction.
 
 ## 🚀 Features
 
@@ -109,8 +109,7 @@ or you can also install for TEST.
 
   ```sh
   git clone https://github.com/retrofor/iamai.git
-  cd iamai
-  poetry install --only main
+  pdm install
   ```
 
 ### Adapters
