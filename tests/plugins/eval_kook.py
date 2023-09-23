@@ -1,8 +1,12 @@
 from iamai import Plugin
 from iamai.log import logger
 from iamai.models.BM25 import BM25
-from iamai.adapter.kook.message import KookMessageSegment, KookMessage
-from iamai.adapter.kook.message import unescape_kmarkdown, escape_kmarkdown
+from iamai.adapter.kook.message import (
+    KookMessage,
+    KookMessageSegment,
+    escape_kmarkdown,
+    unescape_kmarkdown,
+)
 
 documents = [
     "管制品兑换-远程武器-手枪-等级1".split("-"),
@@ -28,7 +32,9 @@ class EvalKook(Plugin):
         # )
         # await self.event.reply(bm25.get_score(query))
         await self.event.adapter.call_api(
-            api="message/create", target_id=self.event.group_id, content=KookMessageSegment.KMarkdown('**hi**')
+            api="message/create",
+            target_id=self.event.group_id,
+            content=KookMessageSegment.KMarkdown("**hi**"),
         )
 
     async def rule(self) -> bool:

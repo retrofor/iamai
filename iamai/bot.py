@@ -887,7 +887,7 @@ class Bot:
         Args:
             func: 被注册的函数。
 
-        Returns: 
+        Returns:
             被注册的函数。
         """
         self._event_postprocessor_hooks.append(func)
