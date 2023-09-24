@@ -19,7 +19,7 @@ from iamai.adapter.utils import WebSocketAdapter
 from iamai.log import logger, error_or_exception
 
 from .config import Config
-from .message import KookMessage, msg_type_map, MessageDeserializer
+from .message import rev_msg_type_map, MessageDeserializer
 from .api.handle import User, get_api_method, get_api_restype
 from .exceptions import (
     ApiTimeout,
@@ -50,10 +50,10 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
 
     name: str = "kook"
     Config = Config
-    _gateway_response = {}  # type: ignore
+    _gateway_response: dict = {}
     api_root = "https://www.kookapp.cn/api/v3/"
     _api_response: Dict[Any, Any]
-    _api_response_cond: asyncio.Condition = None  # type: ignore
+    _api_response_cond: asyncio.Condition = None # type: ignore
     _api_id: int = 0
 
     def __getattr__(self, item):  # type: ignore
@@ -82,6 +82,8 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
         try:
             self._gateway_response = requests.get(url, headers=headers).json()
             logger.success("GateWay GET success!")
+            self.bot.global_state["kook"]["bot_info"] = await self._get_self_data(self.config.access_token)  # type: ignore
+            self.self_id = self.bot.global_state["kook"]["bot_info"].id_
         except Exception as e:
             logger.error(f"GateWay GET failed!\n{e}")
 
@@ -106,9 +108,6 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
                     self.bot.config.bot.log.verbose_exception,
                 )
                 return
-
-            self.bot.global_state["kook"]["bot_info"] = await self._get_self_data(self.config.access_token)  # type: ignore
-            self_id = self.bot.global_state["kook"]["bot_info"].id_
 
             if msg_dict.get("s") == SignalTypes.HELLO:
                 data = msg_dict.get("d")
@@ -150,7 +149,7 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
                     await asyncio.sleep(self.reconnect_interval)  # type: ignore
             elif msg_dict.get("s") == SignalTypes.PONG:
                 data = {
-                    "self_id": self_id,
+                    "self_id": self.self_id,
                     "post_type": "meta_event",
                     "meta_event_type": "heartbeat",
                 }
@@ -166,8 +165,9 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
                 try:
                     data = msg_dict.get("d")
                     extra = data.get("extra")
-                    data["self_id"] = self_id
-                    data["group_id"] = data.get("target_id")
+                    logger.info(f'\n{data}')
+                    data["self_id"] = self.self_id
+                    data["group_id"] = data.get("target_id") if data.get('channel_type') == 'GROUP' else None
                     data["time"] = data.get("msg_timestamp")
                     data["user_id"] = (
                         data.get("author_id")
@@ -175,14 +175,12 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
                         else "SYSTEM"
                     )
                     content = MessageDeserializer(
-                        extra["type"],
-                        extra,
+                        data["type"],
+                        data,
                     ).deserialize()
 
                     if data["type"] == EventTypes.sys:
                         data["post_type"] = "notice"
-                        data["notice_type"] = extra.get("type")
-                        logger.debug(data)
                         data["message"] = content
                         data["notice_type"] = data.get("channel_type").lower()
                         data["notice_type"] = (
@@ -203,13 +201,14 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
                             if data["message_type"] == "person"
                             else data["message_type"]
                         )
-                        data["extra"]["content"] = data.get("content")
                         data["raw_message"] = data.get("content")
                         data['message'] = content
+                        # data['type'] = rev_msg_type_map.get(data['type'], "")
+                        data['extra']['content'] = content
                         data["event"] = data["extra"]
 
                     data["type"] = extra.get("type")
-                    logger.debug(data["type"])
+                    logger.debug(data)
                     data["message_id"] = data.get("msg_id")
                     await self.handle_kook_event(data)
                 except Exception as e:

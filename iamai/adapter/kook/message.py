@@ -85,12 +85,9 @@ class KookMessageSegment(MessageSegment["KookMessage"]):
         return KookMessage
 
     def __str__(self) -> str:
-        import re
-
-        logger.debug(f"KookMessageSegment.__str__: {self.type} {self.data}")
         if self.type in ["text", "kmarkdown"]:
             return str(self.data["content"])
-        elif self.type == "at" or re.search(r"\(met\).*?\(met\)", self.data["content"]):
+        elif self.type == "at":
             return str(f"@{self.data['user_name']}")
         else:
             return segment_text.get(self.type, "[未知类型消息]")
@@ -294,7 +291,7 @@ class MessageDeserializer:
             return KookMessage(KookMessageSegment.file(self.data["attachments"]["url"]))
         elif self.type == "kmarkdown":
             content = self.data["content"]
-            raw_content = self.data["kmarkdown"]["raw_content"]
+            raw_content = self.data['extra']["kmarkdown"]["raw_content"]
 
             unescaped = unescape_kmarkdown(content)
             is_plain_text = unescaped.strip() == raw_content

@@ -18,18 +18,13 @@ class EvalKook(Plugin):
     global bm25
 
     async def handle(self) -> None:
-        logger.info(self.event.type)
-        # query = str(self.event.content)[5:]
-        # logger.info(eval(query))
-        # await self.event.reply(escape_kmarkdown(query))
-        # await self.event.reply(str(eval(query)))
-        # await self.event.reply(
-        #     "\n".join([str(x) for x in bm25.search_top_k(query, k=5)])
+        msg = KookMessage()
+        msg += KookMessageSegment.text('jijijijiji')
+        await self.event.reply(msg)
+        logger.info(list(self.event))
+        # await self.event.adapter.call_api(
+        #     api="message/create", target_id=self.event.group_id, content=KookMessageSegment.KMarkdown('**hi**')
         # )
-        # await self.event.reply(bm25.get_score(query))
-        await self.event.adapter.call_api(
-            api="message/create", target_id=self.event.group_id, content=KookMessageSegment.KMarkdown('**hi**')
-        )
 
     async def rule(self) -> bool:
         if self.event.adapter.name != "kook":
