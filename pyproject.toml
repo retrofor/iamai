@@ -43,6 +43,8 @@ dependencies = [
     "scikit-learn>=1.3.1",
     "flask>=2.0.3",
     "iamai-adapter-cqhttp>=3.2.3",
+    "iamai-adapter-mirai>=3.2.3",
+    "iamai-adapter-apscheduler>=3.2.3",
 ]
 
 
