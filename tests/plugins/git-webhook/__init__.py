@@ -58,3 +58,8 @@ class F(Plugin):
                 return EVENT_DESCRIPTIONS[event_type].format(**data)
         except KeyError:
             return None
+        
+
+"""
+>smee -u https://smee.io/MHldOrjI8msgNUa5 -p 8888
+"""
