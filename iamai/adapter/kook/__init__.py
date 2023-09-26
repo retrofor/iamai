@@ -19,12 +19,8 @@ from iamai.adapter.utils import WebSocketAdapter
 from iamai.log import logger, error_or_exception
 
 from .config import Config
-<<<<<<< HEAD
 from .message import rev_msg_type_map, MessageDeserializer
-=======
->>>>>>> e96a4d186b0e2d1cd114661c33c2ea51044528a8
 from .api.handle import User, get_api_method, get_api_restype
-from .message import KookMessage, MessageDeserializer, msg_type_map
 from .exceptions import (
     ApiTimeout,
     TokenError,
@@ -206,13 +202,9 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
                             else data["message_type"]
                         )
                         data["raw_message"] = data.get("content")
-<<<<<<< HEAD
                         data['message'] = content
                         # data['type'] = rev_msg_type_map.get(data['type'], "")
                         data['extra']['content'] = content
-=======
-                        data["message"] = content
->>>>>>> e96a4d186b0e2d1cd114661c33c2ea51044528a8
                         data["event"] = data["extra"]
 
                     data["type"] = extra.get("type")
@@ -272,7 +264,7 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
     async def call_api(self, api: str, **data: dict) -> Any:
         match = re.findall(r"[A-Z]", api)
         if len(match) > 0:
-            for m in match:
+            for m in match: 
                 api = api.replace(m, f"-{m.lower()}")
         api = api.replace("_", "/")
 
@@ -376,11 +368,11 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
         """
         if message_type == "PERSON":
             return await self.call_api(
-                api="direct-message/create", target_id=id_, content=message_  # type: ignore
+                api="direct-message/create", target_id=id_, content=message_ # type: ignore
             )
         elif message_type == "GROUP":
             return await self.call_api(
-                api="message/create", target_id=id_, content=message_  # type: ignore
+                api="message/create", target_id=id_, content=message_ # type: ignore
             )
         else:
             raise TypeError('message_type must be "PERSON" or "GROUP"')
