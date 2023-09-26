@@ -40,6 +40,6 @@ EVENT_DESCRIPTIONS = {
 
 def _format_event(event_type, data):
     try:
-        return EVENT_DESCRIPTIONS[event_type[data['action']] if data['action'] else event_type].format(**data)
+        return EVENT_DESCRIPTIONS[event_type].format(**data)
     except KeyError:
-        return ''
+        return event_type
