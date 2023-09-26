@@ -37,9 +37,3 @@ EVENT_DESCRIPTIONS = {
     "watch": "{sender[login]} {action} watch in repository \"{repository[full_name]}\"(Total {repository[stargazers_count]} stargazers)"
 }
 
-
-def _format_event(event_type, data):
-    try:
-        return EVENT_DESCRIPTIONS[event_type].format(**data)
-    except KeyError:
-        return event_type

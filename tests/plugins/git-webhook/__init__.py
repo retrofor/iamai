@@ -1,7 +1,7 @@
 from aiohttp import web
 from iamai import Plugin
 from iamai.log import logger
-from .config import _format_event
+from .config import EVENT_DESCRIPTIONS
 
 server = None
 
@@ -37,10 +37,20 @@ class F(Plugin):
 
         event_type = request.headers.get('X-GitHub-Event')
         if event_type in ['commit_comment', 'create', 'delete', 'fork', 'issue_comment', 'issues', 'pull_request', 'push', 'release', 'watch']:
-            await self.event.adapter.call_api('send_group_msg', group_id=126211793, message=_format_event(event_type=event_type[data['action']] if data['action'] else event_type, data=data))
+            await self.event.adapter.call_api('send_group_msg', group_id=126211793, message=_format_event(event_type=event_type, data=data))
 
         response = {'message': 'Received request'}
         return web.json_response(response)
 
     async def rule(self) -> bool:
         return str(self.event.message) in ["service on", "service off"]
+
+    
+    def _format_event(self, event_type, data):
+        try:
+            if data['action']:
+                return EVENT_DESCRIPTIONS[event_type][data['action']].format(**data)
+            else:
+                return EVENT_DESCRIPTIONS[event_type].format(**data)
+        except KeyError:
+            return event_type
