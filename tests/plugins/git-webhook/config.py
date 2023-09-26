@@ -24,7 +24,7 @@ EVENT_DESCRIPTIONS = {
     "pull_request_review_comment": "{comment[user][login]} {action} comment "
     "on pull #{pull_request[number]} in "
     "{repository[full_name]}",
-    "push": "{pusher[name]} pushed {ref} in {repository[full_name]}",
+    "push": "{pusher[name]} pushed {ref} in {repository[full_name]}\n{commits[0][message]}",
     "release": "{release[author][login]} {action} {release[tag_name]} in " "{repository[full_name]}",
     "repository": "{sender[login]} {action} repository " "{repository[full_name]}",
     "status": "{sender[login]} set {sha} status to {state} in " "{repository[full_name]}",
