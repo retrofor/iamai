@@ -33,7 +33,7 @@ class F(Plugin):
 
     async def handle_request(self, request):
         data = await request.json()
-        logger.info(f'Received JSON body: {data}')
+        # logger.info(f'Received JSON body: {data}')
 
         event_type = request.headers.get('X-GitHub-Event')
         if event_type in ['commit_comment', 'create', 'delete', 'fork', 'issue_comment', 'issues', 'pull_request', 'push', 'release', 'watch']:
