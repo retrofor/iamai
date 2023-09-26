@@ -129,11 +129,7 @@ class MiraiAdapter(WebSocketAdapter[MiraiEvent, Config]):
         if isinstance(mirai_event, MateEvent):
             # meta_event 不交由插件处理
             if isinstance(mirai_event, BotEvent):
-                logger.info(f"Bot {mirai_event.qq}: {mirai_event.type}")
-            elif isinstance(mirai_event, CommandExecutedEvent):
-                logger.info(
-                    f'Command "{mirai_event.name}" was executed: {mirai_event!r}'
-                )
+                logger.info(f"Bot {mirai_event.qq}: {mirai_event.type}") 1
         else:
             await self.handle_event(mirai_event)
 

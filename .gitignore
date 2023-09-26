@@ -146,3 +146,10 @@ tests/plugins/webui/__init__.py
 tests/plugins/webui/config.py
 iamai/adapter/github/
 iamai/adapter/cqhttp/
+
+.pdm-python
+%Project%retrofor%iamai/chat_history/history.sqlite
+
+# pdm
+dist/**/*
+.pdm-build/**/*
