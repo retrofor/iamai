@@ -37,7 +37,11 @@ class F(Plugin):
 
         event_type = request.headers.get('X-GitHub-Event')
         if event_type in ['commit_comment', 'create', 'delete', 'fork', 'issue_comment', 'issues', 'pull_request', 'push', 'release', 'watch']:
-            await self.event.adapter.call_api('send_group_msg', group_id=126211793, message=self._format_event(event_type=event_type, data=data))
+            message = self._format_event(event_type=event_type, data=data)
+            if message:
+                await self.event.adapter.call_api('send_group_msg', group_id=126211793, message=message)
+            else:
+                return
 
         response = {'message': 'Received request'}
         return web.json_response(response)
@@ -53,4 +57,4 @@ class F(Plugin):
             elif isinstance(EVENT_DESCRIPTIONS[event_type], str):
                 return EVENT_DESCRIPTIONS[event_type].format(**data)
         except KeyError:
-            return event_type
+            return None
