@@ -48,9 +48,9 @@ class F(Plugin):
     
     def _format_event(self, event_type, data):
         try:
-            if data['action']:
+            if isinstance(EVENT_DESCRIPTIONS[event_type], dict):
                 return EVENT_DESCRIPTIONS[event_type][data['action']].format(**data)
-            else:
+            elif isinstance(EVENT_DESCRIPTIONS[event_type], str):
                 return EVENT_DESCRIPTIONS[event_type].format(**data)
         except KeyError:
             return event_type
