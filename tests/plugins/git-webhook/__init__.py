@@ -1,10 +1,13 @@
 from aiohttp import web
+
 from iamai import Plugin
 from iamai.log import logger
+
 from .config import EVENT_DESCRIPTIONS
 
 server = None
 app = web.Application()
+
 
 class F(Plugin):
     async def handle(self) -> None:
@@ -32,7 +35,7 @@ class F(Plugin):
                 await self.event.reply("Server Off.")
             else:
                 await self.event.reply("Server is not running.")
-    
+
     async def handle_request(self, request):
         data = await request.json()
         # logger.info(f'Received JSON body: {data}')
