@@ -13,59 +13,90 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install poetry
-        run: pipx install poetry
+      - name: Install PDM
+        run: pipx install pdm
         shell: bash
       - uses: actions/setup-python@v4
         with:
           python-version: "3.9"
           architecture: "x64"
-          cache: "poetry"
 
       - name: Install dependencies
-        run: poetry install
+        run: pdm install
         shell: bash
 
-      - run: poetry config pypi-token.pypi "$PYPI_TOKEN"
+      - run: pdm publish
         shell: bash
         env:
-          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+          PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+          PDM_PUBLISH_USERNAME: ${{ secrets.PYPI_USERNAME }}
 
-      - name: Publish iamai to PyPI
-        run: poetry publish --build
+      - name: Publish iamai-adapter-apscheduler
+        run: |
+          pdm install
+          pdm publish
         shell: bash
-
-      - name: Publish iamai-adapter-apscheduler to PyPI
-        run: poetry publish --build
-        shell: bash
+        env:
+          PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+          PDM_PUBLISH_USERNAME: ${{ secrets.PYPI_USERNAME }}
         working-directory: ./packages/iamai-adapter-apscheduler
 
-      - name: Publish iamai-adapter-cqhttp to PyPI
-        run: poetry publish --build
+      - name: Publish iamai-adapter-cqhttp
+        run: |
+          pdm install
+          pdm publish 
         shell: bash
+        env:
+          PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+          PDM_PUBLISH_USERNAME: ${{ secrets.PYPI_USERNAME }}
         working-directory: ./packages/iamai-adapter-cqhttp
 
-      - name: Publish iamai-adapter-dingtalk to PyPI
-        run: poetry publish --build
+      - name: Publish iamai-adapter-dingtalk
+        run: |
+          pdm install
+          pdm publish
         shell: bash
+        env:
+          PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+          PDM_PUBLISH_USERNAME: ${{ secrets.PYPI_USERNAME }}
         working-directory: ./packages/iamai-adapter-dingtalk
 
-      - name: Publish iamai-adapter-mirai to PyPI
-        run: poetry publish --build
+      - name: Publish iamai-adapter-mirai
+        run: |
+          pdm install
+          pdm publish
         shell: bash
+        env:
+          PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+          PDM_PUBLISH_USERNAME: ${{ secrets.PYPI_USERNAME }}
         working-directory: ./packages/iamai-adapter-mirai
     
-      - name: Publish iamai-adapter-kook to PyPI
-        run: poetry publish --build
+      - name: Publish iamai-adapter-kook
+        run: |
+          pdm install
+          pdm publish
         shell: bash
+        env:
+          PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+          PDM_PUBLISH_USERNAME: ${{ secrets.PYPI_USERNAME }}
         working-directory: ./packages/iamai-adapter-kook
 
-      - name: Publish iamai-adapter-console to PyPI
-        run: poetry publish --build
+      - name: Publish iamai-adapter-console
+        run: |
+          pdm install
+          pdm publish
         shell: bash
+        env:
+          PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+          PDM_PUBLISH_USERNAME: ${{ secrets.PYPI_USERNAME }}
         working-directory: ./packages/iamai-adapter-console
 
-      - name: Publish iamai-adapter-bililive to PyPI
-        run: poetry publish --build
+      - name: Publish iamai-adapter-bililive
+        run: |
+          pdm install
+          pdm publish
         shell: bash
+        env:
+          PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+          PDM_PUBLISH_USERNAME: ${{ secrets.PYPI_USERNAME }}
         working-directory: ./packages/iamai-adapter-bililive
