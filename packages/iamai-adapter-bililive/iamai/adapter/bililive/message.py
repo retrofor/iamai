@@ -16,13 +16,22 @@ T_BililiveMSG = Union[
 ]
 
 
+class BililiveMessage(Message["BililiveMessageSegment"]):
+    @property
+    def _message_segment_class(self) -> Type["BililiveMessageSegment"]:
+        return BililiveMessageSegment
+
+    def _str_to_message_segment(self, msg: str) -> "BililiveMessageSegment":
+        return BililiveMessageSegment.danmu(msg)
+
 class BililiveMessageSegment(MessageSegment["BililiveMessage"]):
     @property
     def _message_class(cls) -> Type["BililiveMessage"]:
         return BililiveMessage
 
-
-class BililiveMessage(Message[MessageSegment]):
-    @property
-    def _message_segment_class(self) -> Type["BililiveMessageSegment"]:
-        return BililiveMessageSegment
+    def __str__(self) -> str:
+        return self.data.get("danmu", "")
+    
+    @classmethod
+    def danmu(cls, msg: str) -> "BililiveMessageSegment":
+        return cls(type="danmu", data={"danmu": msg})

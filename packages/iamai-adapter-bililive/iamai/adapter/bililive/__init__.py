@@ -9,6 +9,7 @@ TODO:
     - [ ] onebot 适配
     - [ ] api
 """
+from math import log
 import os
 import re
 import sys
@@ -20,7 +21,7 @@ import asyncio
 from functools import partial
 from abc import abstractmethod
 from collections import namedtuple
-from typing import TYPE_CHECKING, Any, Dict
+from typing import TYPE_CHECKING, Any, Dict, NamedTuple
 from os.path import join, split, abspath, dirname
 
 import qrcode
@@ -35,6 +36,7 @@ from iamai.log import logger, error_or_exception
 from .event import *
 from .message import *
 from .config import Config
+from .event import get_event_class
 
 if TYPE_CHECKING:
     from .message import T_BililiveMSG
@@ -105,6 +107,8 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
         self.jct: str = ""
         self.cookies = {}
         _path = f"{dirname(abspath(sys.argv[0]))}/{self.session_data_path}"
+        if not os.path.exists(_path):
+            os.mkdir(dirname(_path))
         if exists(_path):
             with open(_path) as f:
                 self.cookies = json.load(f)
@@ -112,6 +116,7 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
         if self.config.login:  # type: ignore
             logger.debug(f"Login enabled!")
             try:
+                # 尝试登陆
                 async with ClientSession(cookie_jar=user_cookies) as self.session:
                     success = await login(self.session)
 
@@ -149,10 +154,13 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
         ]
         try:
             async with self.session.ws_connect(
-                f'wss://{host_server["host"]}:{host_server["wss_port"]}/sub'
+                f'wss://{host_server["host"]}:{host_server["wss_port"]}/sub',
+                receive_timeout=self._heartbeat_interval + 5,
             ) as self.websocket:
                 await self._send_auth()
-                heartbeat_task = asyncio.ensure_future(self._start_heartbeat())
+                self._heartbeat_timer_handle = asyncio.ensure_future(
+                    self._start_heartbeat()
+                )
                 logger.success(f"Success to be invited to room {self.room_id}.")
                 await self.handle_websocket()
         except Exception as e:
@@ -163,44 +171,93 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
 
     async def handle_websocket_msg(self, msg: aiohttp.WSMessage):
         """处理 WebSocket 消息。"""
-
+        logger.info(msg)
         if msg.type == aiohttp.WSMsgType.BINARY:
             try:
-                data = await self.websocket.receive_bytes()
-                body = rawData_to_jsonData(data)
-                logger.debug(f"Received: {body}")
-                if body == None:
-                    return
-                try:
-                    data = body
-                    data["type"] = data["cmd"].lower().split("_")[0]
-                    data["message"] = data.get("msg_common") or ""
-                    data["message_id"] = data.get("msg_id") or 0
-                    data["group_id"] = data.get("roomid") or 0
-                    data["time"] = data.get("send_time") or 0
-                    await self.handle_bililive_event(data)  # type: ignore
-                except Exception as e:
-                    logger.error(f"body: {body}, error: {e}")
+                data = msg.data  # await self.websocket.receive_bytes()
+                logger.info(data)
+                offset = 0
+                while offset < len(data):
+                    try:
+                        header = HeaderTuple(*HEADER_STRUCT.unpack_from(data, offset))
+                    except struct.error:
+                        break
+                    if header.operation == Operation.HEARTBEAT_REPLY:
+                        popularity = int.from_bytes(
+                            data[
+                                offset
+                                + HEADER_STRUCT.size : offset
+                                + HEADER_STRUCT.size
+                                + 4
+                            ],
+                            "big",
+                        )
+                        await self._on_receive_popularity(popularity)
+                    elif header.operation == Operation.SEND_MSG_REPLY:
+                        body = data[
+                            offset + HEADER_STRUCT.size : offset + header.pack_len
+                        ]
+                        if header.ver == WS_BODY_PROTOCOL_VERSION_DEFLATE:
+                            self._loop = asyncio.get_event_loop()
+                            body = await self._loop.run_in_executor(
+                                None, zlib.decompress, body
+                            )
+                            # await self.handle_websocket_msg(body)
+                            return
+                        else:
+                            try:
+                                body = json.loads(body.decode("utf-8"))
+                                data = body
+                                logger.info(data)
+                                data["post_type"] = data["cmd"].lower().split("_")[0]
+                                data["message"] = data.get("msg_common") or ""
+                                data["message_id"] = data.get("msg_id") or 0
+                                data["group_id"] = data.get("roomid") or 0
+                                data["time"] = data.get("send_time") or 0
+                                await self.handle_bililive_event(data)  # type: ignore
+                            except Exception:
+                                logger.debug(f"body: {body}")
+                                raise
+
+                    elif header.operation == Operation.AUTH_REPLY:
+                        await self.websocket.send_bytes(
+                            self._make_packet({}, Operation.HEARTBEAT)
+                        )
+
+                    else:
+                        body = data[
+                            offset + HEADER_STRUCT.size : offset + header.pack_len
+                        ]
+                        logger.warning(
+                            f"room {self.room_id,} 未知包类型：operation={header.operation, header, body}"
+                        )
+
+                    offset += header.pack_len
             except Exception as e:
                 error_or_exception(
                     "WebSocket message parsing error, not BINARY:",
                     e,
                     self.bot.config.bot.log.verbose_exception,
                 )
-                return
+                async with self._api_response_cond:
+                    self._api_response = msg.data
+                    logger.warning(msg.data)
+                    self._api_response_cond.notify_all()
         elif msg.type == aiohttp.WSMsgType.ERROR:
             logger.error(
                 f"WebSocket connection closed "
                 f"with exception {self.websocket.exception()!r}"
             )
-        else:
-            async with self._api_response_cond:
-                self._api_response = msg.data
-                self._api_response_cond.notify_all()
 
     async def handle_bililive_event(self, data: Dict[str, Any]):
         logger.info(str(data))
-        bililive_event = BililiveEvent(adapter=self, **data)
+        post_type = data.get("post_type")
+        event_type = data.get(f"{post_type}_type")
+        sub_type = data.get("sub_type", None)
+
+        event_class = get_event_class(post_type, event_type, sub_type)
+        bililive_event = event_class(adapter=self, **data)
+
         await self.handle_event(bililive_event)
 
     # 发送登录包
@@ -208,10 +265,10 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
         auth_params = {
             "uid": self._uid or 0,  # 0: 游客
             "roomid": self.room_id,
-            "protover": 3,
+            "protover": 2,
             "platform": "web",
+            "clientver": "1.14.3",
             "type": 2,
-            "key": self.jct,
         }
         await self.websocket.send_bytes(self._make_packet(auth_params, Operation.AUTH))
 
@@ -281,6 +338,10 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
             roomid=self.room_id,
             bubble=0,
         )
+
+    @abstractmethod
+    async def _on_receive_popularity(self, popularity: int):
+        pass
 
 
 def rawData_to_jsonData(data: bytes):

@@ -14,7 +14,7 @@ class Config(ConfigModel):
         show_raw: 是否显示原始数据，默认为 False，不显示。
         session_data_path: session 数据文件路径, 默认为 "data/session.token"。
         report_self_message: 是否上报自己发送的消息，默认为 False，不上报。
-        room_id: 监听的房间号列表，默认为 [5651193], 简律纯自己的）。
+        room_id: 监听的房间号列表，默认为 [0]）。
         ssl: 是否使用 SSL，默认为 True，使用。
     """
 
