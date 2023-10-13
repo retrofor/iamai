@@ -21,7 +21,7 @@ from pydantic import Field, HttpUrl, BaseModel, validator, root_validator
 from iamai.event import Event
 
 from .api import Role, User, Emoji, Guild, Channel
-from .message import Message, KookMessage, MessageDeserializer
+from .message import KookMessage, MessageDeserializer
 
 if TYPE_CHECKING:
     from . import KookAdapter
@@ -488,14 +488,6 @@ class EventMessage(BaseModel):
     attachments: Optional[Attachment] = None
 
     content: KookMessage
-
-    @root_validator(pre=True)
-    def parse_message(cls, values: dict):
-        values["content"] = MessageDeserializer(
-            values["type"],
-            values,
-        ).deserialize()
-        return values
 
 
 class KookEvent(OriginEvent):
