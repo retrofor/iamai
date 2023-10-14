@@ -6,13 +6,13 @@
 import os
 import json
 import asyncio
-import requests
 from uu import Error
 from functools import partial
 from typing import TYPE_CHECKING, Any, Dict
 
 import yaml
 import aiohttp
+import requests
 
 from iamai.log import logger
 from iamai.adapter.utils import WebSocketAdapter
