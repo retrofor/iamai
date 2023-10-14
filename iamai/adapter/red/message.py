@@ -1,22 +1,20 @@
 """red 适配器消息。"""
-from dataclasses import dataclass, field
-from datetime import datetime
+import random
 from io import BytesIO
 from pathlib import Path
-import random
+from datetime import datetime
+from dataclasses import field, dataclass
 from typing import TYPE_CHECKING, Type, Union, Literal, Mapping, Iterable, Optional
 
 from iamai.message import Message, MessageSegment
 
 __all__ = ["T_RedMSG", "RedMessage", "RedMessageSegment"]
 
-T_RedMSG = Union[
-    str, Mapping, Iterable[Mapping], "RedMessageSegment", "RedMessage"
-]
+T_RedMSG = Union[str, Mapping, Iterable[Mapping], "RedMessageSegment", "RedMessage"]
+
 
 class RedMessage(Message["RedMessageSegment"]):
     """Red 消息"""
-    
 
     @property
     def _message_segment_class(self) -> Type["RedMessageSegment"]:
@@ -26,16 +24,15 @@ class RedMessage(Message["RedMessageSegment"]):
         return RedMessageSegment.text(msg)
 
 
-
 class RedMessageSegment(MessageSegment["RedMessage"]):
     @property
     def _message_class(self) -> Type["RedMessage"]:
         return RedMessage
-    
+
     def __str__(self) -> str:
         shown_data = {k: v for k, v in self.data.items() if not k.startswith("_")}
         return self.data["text"] if self.is_text() else f"[{self.type}: {shown_data}]"
-    
+
     def is_text(self) -> bool:
         # 判断该消息段是否为纯文本
         return self.type == "text"
@@ -43,7 +40,7 @@ class RedMessageSegment(MessageSegment["RedMessage"]):
     @classmethod
     def text(cls, text: str) -> "RedMessageSegment":
         return cls(type="text", data={"text": text})
-    
+
     @classmethod
     def at(cls, user_id: str, user_name: Optional[str] = None) -> "RedMessageSegment":
         return cls(type="at", data={"user_id": user_id, "user_name": user_name})
@@ -73,8 +70,8 @@ class RedMessageSegment(MessageSegment["RedMessage"]):
         return cls(type="file", data={"file": file})
 
     @classmethod
-    def voice(cls,
-        file: Union[str, Path, BytesIO, bytes], duration: int = 1
+    def voice(
+        cls, file: Union[str, Path, BytesIO, bytes], duration: int = 1
     ) -> "RedMessageSegment":
         if isinstance(file, str):
             file = Path(file)
@@ -107,7 +104,11 @@ class RedMessageSegment(MessageSegment["RedMessage"]):
     ) -> "RedMessageSegment":
         return cls(
             type="reply",
-            data={"msg_id": message_id, "msg_seq": message_seq, "sender_uin": sender_uin},
+            data={
+                "msg_id": message_id,
+                "msg_seq": message_seq,
+                "sender_uin": sender_uin,
+            },
         )
 
     @classmethod
@@ -116,8 +117,7 @@ class RedMessageSegment(MessageSegment["RedMessage"]):
 
     @classmethod
     def market_face(
-        cls,
-        package_id: str, emoji_id: str, face_name: str, key: str, face_path: str
+        cls, package_id: str, emoji_id: str, face_name: str, key: str, face_path: str
     ) -> "RedMessageSegment":
         return cls(
             type="market_face",
@@ -131,11 +131,12 @@ class RedMessageSegment(MessageSegment["RedMessage"]):
         )
 
     @classmethod
-    def forward(cls,xml: str, id: str, file_name: str) -> "RedMessageSegment":
+    def forward(cls, xml: str, id: str, file_name: str) -> "RedMessageSegment":
         return cls(
             type="forward",
             data={"xml": xml, "id": id, "name": file_name},
         )
+
 
 @dataclass
 class ForwardNode:

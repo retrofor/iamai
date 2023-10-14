@@ -1,13 +1,14 @@
 """red 协议配置。"""
 
 import os
+from os.path import join
 from pathlib import Path
 
-from os.path import join
 from iamai.config import ConfigModel
 
 HOME = Path(os.path.expanduser("~"))
 USER_CONFIG = join(HOME, ".chronocat", "config", "chronocat.yml")
+
 
 class Config(ConfigModel):
     """red 配置类，将在适配器被加载时被混入到机器人主配置中。

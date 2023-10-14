@@ -1,14 +1,14 @@
 """Red 适配器事件。"""
-from datetime import datetime, timedelta
-from enum import IntEnum
 import inspect
+from enum import IntEnum
+from datetime import datetime, timedelta
 from typing import TYPE_CHECKING, Any, Dict, Type, Union, Literal, TypeVar, Optional
 
 from pydantic import Field, BaseModel
 
 from iamai.event import Event
 
-from .message import RedMessage, T_RedMSG
+from .message import T_RedMSG, RedMessage
 
 if TYPE_CHECKING:
     from . import RedAdapter
@@ -149,6 +149,7 @@ class Element(BaseModel):
     walletElement: Optional[Any]
     yoloGameResultElement: Optional[Any]
 
+
 class ChatType(IntEnum):
     FRIEND = 1
     GROUP = 2
@@ -216,6 +217,7 @@ class XmlElement(BaseModel):
     pbReserv: Optional[str]
     members: Optional[Any]
 
+
 class Member(BaseModel):
     uid: str
     qid: str
@@ -269,6 +271,7 @@ class UploadResponse(BaseModel):
     filePath: str
     ntFilePath: str
 
+
 class MsgType(IntEnum):
     normal = 2
     may_file = 3
@@ -280,6 +283,7 @@ class MsgType(IntEnum):
     wallet = 10
     ark = 11
     may_market = 17
+
 
 class MessageEvent(RedEvent):
     """消息事件"""
@@ -356,20 +360,21 @@ class PrivateMessageEvent(MessageEvent):
     async def reply(self, msg: T_RedMSG) -> Dict[str, Any]:
         return await self.adapter.call_api(api="message/send", elements=RedMessage(msg))
 
+
 class GroupMessageEvent(MessageEvent):
     """群消息事件"""
 
     __event__ = "message.group"
-    message_type: Literal['group']
+    message_type: Literal["group"]
     sub_type: Literal["normal", "anonymous", "notice"]
-    
+
     async def reply(self, msg: T_RedMSG) -> Dict[str, Any]:
         return await self.adapter.call_api(api="message/send", elements=RedMessage(msg))
 
-class NoticeEvent(RedEvent):
 
+class NoticeEvent(RedEvent):
     __event__ = "notice"
-    post_type: Literal['notice']
+    post_type: Literal["notice"]
     notice_type: str
     msgId: str
     msgRandom: str
@@ -383,6 +388,7 @@ class NoticeEvent(RedEvent):
 
     # class Config:
     #     extra = "ignore"
+
 
 class GroupNameUpdateEvent(NoticeEvent):
     """群名变更事件"""
@@ -419,7 +425,7 @@ class MemberUnmuteEvent(NoticeEvent):
     """群成员被解除禁言事件"""
 
     __event__ = "notice.member_unmute"
-    notice_type: Literal['member_unmute']
+    notice_type: Literal["member_unmute"]
     start: datetime
     duration: timedelta
     operator: ShutUpTarget

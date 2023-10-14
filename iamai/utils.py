@@ -190,5 +190,3 @@ def sync_func_wrapper(
             return func(*args, **kwargs)
 
     return _wrapper
-
-

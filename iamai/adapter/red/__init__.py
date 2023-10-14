@@ -5,21 +5,21 @@
 """
 import os
 import json
-import yaml
 import asyncio
-import aiohttp
-
 from uu import Error
 from functools import partial
 from typing import TYPE_CHECKING, Any, Dict
 
-from iamai.adapter.utils import WebSocketAdapter
-from iamai.log import logger
+import yaml
+import aiohttp
 
-from .config import USER_CONFIG, Config
-from .message import RedMessage
-from .event import RedEvent, get_event_class, MsgType
+from iamai.log import logger
+from iamai.adapter.utils import WebSocketAdapter
+
 from .exceptions import *
+from .message import RedMessage
+from .config import USER_CONFIG, Config
+from .event import MsgType, RedEvent, get_event_class
 
 if TYPE_CHECKING:
     from .message import T_RedMSG  # type: ignore
@@ -83,7 +83,8 @@ class RedAdapter(WebSocketAdapter[RedEvent, Config]):
         """处理 WebSocket 消息。"""
         msg_dict = json.loads(msg.data)
         msg_data = msg_dict["payload"]
-        if self.config.show_raw: logger.info(msg_data)
+        if self.config.show_raw:
+            logger.info(msg_data)
         if msg_dict["type"] == "meta::connect":
             self.self_id = msg_data.get("authData").get("account")
             logger.success(
