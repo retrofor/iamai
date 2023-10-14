@@ -102,15 +102,15 @@ class RedAdapter(WebSocketAdapter[RedEvent, Config]):
                     data["sub_type"] = (
                         "private" if msg_data["chatType"] == 1 else "group"
                     )
-                    if data['sub_type'] == "group":
-                        data['group_id'] = msg_data.get('peerUid')
-                    if data['sub_type'] == "private":
-                        data['user_id'] = msg_data.get('peerUid')
-                    data['timestamp'] = msg_data.get('msgTime')
-                    data['nick_name'] = msg_data.get('sendNickName')
-                    data['msgId'] = msg_data.get('msgId')
-                    data['event'] = msg_data.get('elements')[0]
-                    data['message'] = data['event']['textElement']['content']
+                    if data["sub_type"] == "group":
+                        data["group_id"] = msg_data.get("peerUid")
+                    if data["sub_type"] == "private":
+                        data["user_id"] = msg_data.get("peerUid")
+                    data["timestamp"] = msg_data.get("msgTime")
+                    data["nick_name"] = msg_data.get("sendNickName")
+                    data["msgId"] = msg_data.get("msgId")
+                    data["event"] = msg_data.get("elements")[0]
+                    data["message"] = data["event"]["textElement"]["content"]
                 elif (
                     msg_data["msgType"] == MsgType.system and msg_data["sendType"] == 3
                 ):
@@ -155,8 +155,8 @@ class RedAdapter(WebSocketAdapter[RedEvent, Config]):
         await self.handle_event(red_event)
 
     async def call_api(self, api: str, **params) -> Dict[str, Any]:
-        url = f'http://{self.host}/{self.port}/api/{api}'
-        
+        url = f"http://{self.host}/{self.port}/api/{api}"
+
         if api not in HANDLE:
             raise ValueError(f"API '{api}' is not supported.")
 
@@ -167,7 +167,6 @@ class RedAdapter(WebSocketAdapter[RedEvent, Config]):
             async with session.request(method, url, json=payload) as response:
                 response_data = await response.json()
                 return response_data
-
 
     @staticmethod
     def get_red_config():
