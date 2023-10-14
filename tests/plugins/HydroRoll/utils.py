@@ -153,6 +153,4 @@ class HydroDice:
         if len(rolls) > int(threshold):
             return str(total)
         rolls_str = " + ".join(str(r) for r in rolls)
-        return (
-            f"{total} = {rolls_str}" if is_reversed else f"{rolls_str} = {total}"
-        )
+        return f"{total} = {rolls_str}" if is_reversed else f"{rolls_str} = {total}"

@@ -124,9 +124,7 @@ class RedAdapter(WebSocketAdapter[RedEvent, Config]):
                             data["sub_type"] = "member_mute"
                         if sub_type["type"] == 5:
                             data["sub_type"] = "group_name_update"
-                if xml_type := msg_data["elements"][0]["grayTipElement"][
-                    "xmlElement"
-                ]:
+                if xml_type := msg_data["elements"][0]["grayTipElement"]["xmlElement"]:
                     if (
                         xml_type["subElementType"] == 12
                         and xml_type["busiType"] == "1"

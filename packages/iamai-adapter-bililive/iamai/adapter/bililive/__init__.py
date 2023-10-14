@@ -125,7 +125,9 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
                         self.jct = get_cookies("bili_jct")
 
                         if self._uid is None or self.jct is None:
-                            logger.error("Unable to get cookies, please check your cookies.")
+                            logger.error(
+                                "Unable to get cookies, please check your cookies."
+                            )
                             return
                         if not exists(_path):
                             for cookie in user_cookies:
@@ -399,9 +401,7 @@ async def login(session: ClientSession) -> bool:
 
 
 def get_cookies(name: str) -> any:  # type: ignore
-    return next(
-        (cookie.value for cookie in user_cookies if cookie.key == name), None
-    )
+    return next((cookie.value for cookie in user_cookies if cookie.key == name), None)
 
 
 async def _get(session: ClientSession, url: str):
