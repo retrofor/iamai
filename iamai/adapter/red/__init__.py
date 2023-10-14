@@ -6,6 +6,7 @@
 import os
 import json
 import asyncio
+import requests
 from uu import Error
 from functools import partial
 from typing import TYPE_CHECKING, Any, Dict
@@ -16,6 +17,7 @@ import aiohttp
 from iamai.log import logger
 from iamai.adapter.utils import WebSocketAdapter
 
+from .api import HANDLE
 from .exceptions import *
 from .message import RedMessage
 from .config import USER_CONFIG, Config
@@ -95,11 +97,20 @@ class RedAdapter(WebSocketAdapter[RedEvent, Config]):
             msg_data = msg_data[0]
             try:
                 data = {}
-                if msg_data["chatType"]:
+                if msg_data.get("chatType", None):
                     data["post_type"] = "message"
                     data["sub_type"] = (
                         "private" if msg_data["chatType"] == 1 else "group"
                     )
+                    if data['sub_type'] == "group":
+                        data['group_id'] = msg_data.get('peerUid')
+                    if data['sub_type'] == "private":
+                        data['user_id'] = msg_data.get('peerUid')
+                    data['timestamp'] = msg_data.get('msgTime')
+                    data['nick_name'] = msg_data.get('sendNickName')
+                    data['msgId'] = msg_data.get('msgId')
+                    data['event'] = msg_data.get('elements')[0]
+                    data['message'] = data['event']['textElement']['content']
                 elif (
                     msg_data["msgType"] == MsgType.system and msg_data["sendType"] == 3
                 ):
@@ -119,10 +130,10 @@ class RedAdapter(WebSocketAdapter[RedEvent, Config]):
                         and xml_type["busiType"] == "1"
                         and xml_type["busiId"] == "10145"
                     ):
-                        data["sub_type"] = "member_add"
+                        data["sub_type"] = "member_unmute"
                 await self.handle_red_event(data)
             except Exception as e:
-                logger.error(f"Event Handled Error with {e}")
+                logger.error(f"Event Handled Error with {e!r}")
         elif msg.type == aiohttp.WSMsgType.ERROR:
             logger.error(
                 f"Websocket connection closed "
@@ -144,7 +155,19 @@ class RedAdapter(WebSocketAdapter[RedEvent, Config]):
         await self.handle_event(red_event)
 
     async def call_api(self, api: str, **params) -> Dict[str, Any]:
-        ...
+        url = f'http://{self.host}/{self.port}/api/{api}'
+        
+        if api not in HANDLE:
+            raise ValueError(f"API '{api}' is not supported.")
+
+        sender = HANDLE[api](params)
+
+        async with aiohttp.ClientSession() as session:
+            api, method, payload = sender(params)
+            async with session.request(method, url, json=payload) as response:
+                response_data = await response.json()
+                return response_data
+
 
     @staticmethod
     def get_red_config():
