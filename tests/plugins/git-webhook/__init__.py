@@ -53,8 +53,7 @@ class F(Plugin):
             "release",
             "watch",
         ]:
-            message = self._format_event(event_type=event_type, data=data)
-            if message:
+            if message := self._format_event(event_type=event_type, data=data):
                 await self.event.adapter.call_api(
                     "send_group_msg", group_id=126211793, message=message
                 )
@@ -65,7 +64,7 @@ class F(Plugin):
         return web.json_response(response)
 
     async def rule(self) -> bool:
-        return str(self.event.message) in ["service on", "service off"]
+        return str(self.event.message) in {"service on", "service off"}
 
     @staticmethod
     def _format_event(self, event_type, data):

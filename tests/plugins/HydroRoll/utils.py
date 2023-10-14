@@ -60,9 +60,6 @@ class BasePlugin(
                     or self.event.group_id in self.config.accept_group
                 ):
                     return self.str_match(match_str)
-        elif self.config.handle_group_message:
-            if self.event.message_type == "guild":
-                return self.str_match(match_str)
         return False
 
     @abstractmethod
@@ -153,11 +150,7 @@ class HydroDice:
 
         if streamline:
             return str(total)
-        else:
-            if len(rolls) > int(threshold):
-                return str(total)
-            rolls_str = " + ".join(str(r) for r in rolls)
-            result_str = (
-                f"{total} = {rolls_str}" if is_reversed else f"{rolls_str} = {total}"
-            )
-            return result_str
+        if len(rolls) > int(threshold):
+            return str(total)
+        rolls_str = " + ".join(str(r) for r in rolls)
+        return f"{total} = {rolls_str}" if is_reversed else f"{rolls_str} = {total}"

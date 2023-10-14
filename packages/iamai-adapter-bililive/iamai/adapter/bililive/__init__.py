@@ -114,7 +114,7 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
                 self.cookies = json.load(f)
         user_cookies.update_cookies(self.cookies)
         if self.config.login:  # type: ignore
-            logger.debug(f"Login enabled!")
+            logger.debug("Login enabled!")
             try:
                 # 尝试登陆
                 async with ClientSession(cookie_jar=user_cookies) as self.session:
@@ -124,9 +124,9 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
                         self._uid = get_cookies("DedeUserID")
                         self.jct = get_cookies("bili_jct")
 
-                        if self._uid == None or self.jct == None:
+                        if self._uid is None or self.jct is None:
                             logger.error(
-                                f"Unable to get cookies, please check your cookies."
+                                "Unable to get cookies, please check your cookies."
                             )
                             return
                         if not exists(_path):
@@ -142,7 +142,7 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
                 logger.error(e)
                 return
         else:
-            logger.debug(f"Login disabled!")
+            logger.debug("Login disabled!")
             await super().startup()
 
     async def websocket_connect(self):
@@ -291,7 +291,7 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
                 if self.websocket.closed:
                     break
                 await self.websocket.send_bytes(bytes.fromhex(hb))
-                logger.debug(f"HeartBeat sent!")
+                logger.debug("HeartBeat sent!")
                 await asyncio.sleep(29)
         except Exception as e:
             logger.error(e)
@@ -359,15 +359,14 @@ def rawData_to_jsonData(data: bytes):
 
     if op == 5:
         try:
-            jd = json.loads(data[16:].decode("utf-8", errors="ignore"))
-            return jd
+            return json.loads(data[16:].decode("utf-8", errors="ignore"))
         except Exception as e:
             pass
 
 
 async def login(session: ClientSession) -> bool:
     if get_cookies("bili_jct") != None:
-        logger.info(f"Aleady login!")
+        logger.info("Aleady login!")
         return True
     try:
         res = await _get(session, QRCODE_REQUEST_URL)
@@ -402,10 +401,7 @@ async def login(session: ClientSession) -> bool:
 
 
 def get_cookies(name: str) -> any:  # type: ignore
-    for cookie in user_cookies:
-        if cookie.key == name:
-            return cookie.value
-    return None
+    return next((cookie.value for cookie in user_cookies if cookie.key == name), None)
 
 
 async def _get(session: ClientSession, url: str):
