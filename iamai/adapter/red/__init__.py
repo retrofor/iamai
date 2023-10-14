@@ -115,16 +115,18 @@ class RedAdapter(WebSocketAdapter[RedEvent, Config]):
                     msg_data["msgType"] == MsgType.system and msg_data["sendType"] == 3
                 ):
                     data["post_type"] = "notice"
-                    sub_type = msg_data["elements"][0]["grayTipElement"]["groupElement"]
-                    if sub_type:
+                    if sub_type := msg_data["elements"][0]["grayTipElement"][
+                        "groupElement"
+                    ]:
                         if sub_type["type"] == 1:
                             data["sub_type"] = "member_add"
                         if sub_type["type"] == 8:
                             data["sub_type"] = "member_mute"
                         if sub_type["type"] == 5:
                             data["sub_type"] = "group_name_update"
-                xml_type = msg_data["elements"][0]["grayTipElement"]["xmlElement"]
-                if xml_type:
+                if xml_type := msg_data["elements"][0]["grayTipElement"][
+                    "xmlElement"
+                ]:
                     if (
                         xml_type["subElementType"] == 12
                         and xml_type["busiType"] == "1"
@@ -165,8 +167,7 @@ class RedAdapter(WebSocketAdapter[RedEvent, Config]):
         async with aiohttp.ClientSession() as session:
             api, method, payload = sender(params)
             async with session.request(method, url, json=payload) as response:
-                response_data = await response.json()
-                return response_data
+                return await response.json()
 
     @staticmethod
     def get_red_config():
