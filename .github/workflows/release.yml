@@ -41,16 +41,6 @@ jobs:
           PDM_PUBLISH_USERNAME: ${{ secrets.PYPI_USERNAME }}
         working-directory: ./packages/iamai-adapter-apscheduler
 
-      - name: Publish iamai-adapter-cqhttp
-        run: |
-          pdm install
-          pdm publish 
-        shell: bash
-        env:
-          PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-          PDM_PUBLISH_USERNAME: ${{ secrets.PYPI_USERNAME }}
-        working-directory: ./packages/iamai-adapter-cqhttp
-
       - name: Publish iamai-adapter-dingtalk
         run: |
           pdm install
@@ -60,16 +50,6 @@ jobs:
           PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
           PDM_PUBLISH_USERNAME: ${{ secrets.PYPI_USERNAME }}
         working-directory: ./packages/iamai-adapter-dingtalk
-
-      - name: Publish iamai-adapter-mirai
-        run: |
-          pdm install
-          pdm publish
-        shell: bash
-        env:
-          PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-          PDM_PUBLISH_USERNAME: ${{ secrets.PYPI_USERNAME }}
-        working-directory: ./packages/iamai-adapter-mirai
     
       - name: Publish iamai-adapter-kook
         run: |
