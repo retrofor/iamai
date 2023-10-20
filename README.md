@@ -46,12 +46,8 @@
     <br />
     <!-- bilibili live -->
     <img src="https://img.shields.io/badge/-BiliBili Live-00A1D6?style=flat-square&logo=Bilibili&logoColor=white">
-    <!-- mirai-api-http -->
-    <img src="https://img.shields.io/badge/-Mirai%20api%20http%202.3+-00B8AA?style=flat-square">
     <!-- dingtalk -->
     <img src="https://img.shields.io/badge/-DingTalk-blue?style=flat-square">
-    <!-- qqzone -->
-    <!-- <img src="https://img.shields.io/badge/-QQ%20Zone-FECC00?style=flat-square&logo=Tencent QQ&logoColor=black"> -->
     <!-- <br> -->
     <!-- minecraft -->
     <!-- <img src="https://img.shields.io/badge/-Minecraft Server-62B47A?style=flat-square&logo=Minecraft&logoColor=white"> -->
@@ -59,8 +55,6 @@
     <!-- <img src="https://img.shields.io/badge/-Twitter-1DA1F2?style=flat-square&logo=twitter&logoColor=white"> -->
     <!-- console -->
     <img src="https://img.shields.io/badge/-Console-4EAA25?style=flat-square&logo=GNU bash&logoColor=white">
-    <!-- wechat -->
-    <!-- <img src="https://img.shields.io/badge/-Wechat-07C160?style=flat-square&logo=wechat&logoColor=white"> -->
     <!-- tg -->
     <!-- <img src="https://img.shields.io/badge/-Telegram-26A5E4?style=flat-square&logo=telegram&logoColor=white"> -->
   </a>
@@ -89,7 +83,7 @@ A Cross-platform robot framework, mainly used for machine learning and based on 
 - ⚡ **Fully tree shakeable**: Only take what you want, [bundle size](https://iamai.retrofor.space/export-size)
 - 🔩 **Flexible**: Configurable event filters and targets
 - 🔌 **Optional [Add-ons](https://iamai.retrofor.space/add-ons)**: [Apscheduler](https://iamai.retrofor.space/add-ons/apscheduler), etc.
-- 👍 **Cross-platform**: [cqhttp](https://iamai.retrofor.space/guide/cqhttp-adapter.html), [dingtalk](https://iamai.retrofor.space/guide/dingtalk-adapter.html), [Mirai](https://iamai.retrofor.space/guide/mirai-adapter.html) etc.
+- 👍 **Cross-platform**: [dingtalk](https://iamai.retrofor.space/guide/dingtalk-adapter.html) etc.
 
 <p align="center"><img width="512" src="https://iamai.retrofor.space/icons/retro_plus.png"></p>
 
@@ -117,8 +111,6 @@ or you can also install for TEST.
 iamai itself is just a chatbot framework and additional protocol adapters are required to support specific protocols. You can use pip to install the protocol adapter:
 
 ```shell
-pip install iamai-adapter-cqhttp
-pip install iamai-adapter-mirai
 pip install iamai-adapter-dingtalk
 pip install iamai-adapter-console
 pip install iamai-adapter-bililive
@@ -133,7 +125,7 @@ firstly, you need to load an adapter.
 from iamai import Bot
 
 bot = Bot()
-bot.load_adapters("iamai.adapter.cqhttp")
+bot.load_adapters("iamai.adapter.console")
 
 bot.run()
 ```
