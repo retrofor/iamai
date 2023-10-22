@@ -7,12 +7,7 @@ license = { text = "MIT" }
 readme = "README.md"
 keywords = [
   "bot",
-  "qq",
-  "qqbot",
-  "mirai",
-  "coolq",
   "kook",
-  "go-cqhttp",
   "dingtalk",
   "console",
   "apscheduler",
@@ -40,29 +35,24 @@ dependencies = [
     "httpimport>=1.3.1",
     "scikit-learn>=1.3.1",
     "flask>=2.0.3",
-    "iamai-adapter-cqhttp>=3.2.3",
-    "iamai-adapter-mirai>=3.2.3",
-    "iamai-adapter-apscheduler>=3.2.3",
     "pylint-pydantic>=0.2.4",
     "qrcode>=7.4.2",
+    "requests>=2.31.0",
+    "dingtalk-stream>=0.15.2",
 ]
 
 
 [project.optional-dependencies]
 bililive = ["iamai-adapter-bililive"]
 cokook = ["iamai-adapter-kook"]
-mirai = ["iamai-adapter-mirai"]
-cqhttp = ["iamai-adapter-cqhttp"]
 console = ["iamai-adapter-console"]
 dingtalk = ["iamai-adapter-dingtalk"]
 apscheduler = ["iamai-adapter-apscheduler"]
 hot_reload = ["watchfiles"]
 all = [
-  "iamai-adapter-mirai",
   "iamai-adapter-bililive",
   "iamai-adapter-console",
   "iamai-adapter-kook",
-  "iamai-adapter-cqhttp",
   "iamai-adapter-dingtalk",
   "iamai-adapter-apscheduler",
   "watchfiles",
@@ -72,9 +62,7 @@ all = [
 dev = [
   "-e iamai-adapter-console @ {root:uri}/packages/iamai-adapter-console",
   "-e iamai-adapter-bililive @ {root:uri}/packages/iamai-adapter-bililive",
-  "-e iamai-adapter-cqhttp @ {root:uri}/packages/iamai-adapter-cqhttp",
   "-e iamai-adapter-kook @ {root:uri}/packages/iamai-adapter-kook",
-  "-e iamai-adapter-mirai @ {root:uri}/packages/iamai-adapter-mirai",
   "-e iamai-adapter-dingtalk @ {root:uri}/packages/iamai-adapter-dingtalk",
   "-e iamai-adapter-apscheduler @ {root:uri}/packages/iamai-adapter-apscheduler",
 ]
