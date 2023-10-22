@@ -1,0 +1,36 @@
+[tool.pdm]
+[tool.pdm.dev-dependencies]
+dev = ["iamai @ "]
+
+[tool.pdm.build]
+includes = ["iamai"]
+excludes = ["iamai/__init__.py", "iamai/adapter/__init__.py"]
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[project]
+name = "iamai-adapter-onebot11"
+version = "3.2.4"
+description = "OneBot(v11) adapter for iamai."
+authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
+dependencies = ["iamai>=3.2"]
+requires-python = ">=3.8,<4.0"
+readme = "README.md"
+license = { text = "MIT" }
+keywords = ["bot", "chatbot", "qq", "qqbot", "cqhttp", "coolq"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Framework :: AsyncIO",
+    "Framework :: Robot Framework",
+    "Framework :: Robot Framework :: Library",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Communications :: Chat",
+]
+
+[project.urls]
+homepage = "https://retrofor.space/"
+repository = "https://github.com/retrofor/iamai"
+documentation = "https://iamai.retrofor.space/"
