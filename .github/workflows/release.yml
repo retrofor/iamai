@@ -80,3 +80,23 @@ jobs:
           PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
           PDM_PUBLISH_USERNAME: ${{ secrets.PYPI_USERNAME }}
         working-directory: ./packages/iamai-adapter-bililive
+
+      - name: Publish iamai-adapter-red
+        run: |
+          pdm install
+          pdm publish
+        shell: bash
+        env:
+          PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+          PDM_PUBLISH_USERNAME: ${{ secrets.PYPI_USERNAME }}
+        working-directory: ./packages/iamai-adapter-red
+
+      - name: Publish iamai-adapter-onebot11
+        run: |
+          pdm install
+          pdm publish
+        shell: bash
+        env:
+          PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+          PDM_PUBLISH_USERNAME: ${{ secrets.PYPI_USERNAME }}
+        working-directory: ./packages/iamai-adapter-onebot11

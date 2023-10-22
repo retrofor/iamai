@@ -9,6 +9,7 @@ keywords = [
   "bot",
   "red",
   "kook",
+  "onebot11",
   "dingtalk",
   "console",
   "apscheduler",
@@ -46,6 +47,7 @@ dependencies = [
 bililive = ["iamai-adapter-bililive"]
 cokook = ["iamai-adapter-kook"]
 console = ["iamai-adapter-console"]
+onebot11 = ["iamai-adapter-onebot11"]
 dingtalk = ["iamai-adapter-dingtalk"]
 apscheduler = ["iamai-adapter-apscheduler"]
 red = ["iamai-adapter-red"]
@@ -67,7 +69,8 @@ dev = [
   "-e iamai-adapter-kook @ {root:uri}/packages/iamai-adapter-kook",
   "-e iamai-adapter-dingtalk @ {root:uri}/packages/iamai-adapter-dingtalk",
   "-e iamai-adapter-apscheduler @ {root:uri}/packages/iamai-adapter-apscheduler",
-  "-e iamai-adapter-red @ {root:uri}/packages/iamai-adapter-red"
+  "-e iamai-adapter-red @ {root:uri}/packages/iamai-adapter-red",
+  "-e iamai-adapter-onebot11 @ {root:uri}/packages/iamai-adapter-onebot11",
 ]
 typing = ["watchfiles", "trio>=0.22.2"]
 lint = ["black", "pylint", "pylint-pydantic"]
