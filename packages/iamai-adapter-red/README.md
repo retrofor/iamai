@@ -1,0 +1,1 @@
+# iamai-adapter-red
