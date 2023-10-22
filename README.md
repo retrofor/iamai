@@ -47,7 +47,7 @@
     <!-- bilibili live -->
     <img src="https://img.shields.io/badge/-BiliBili Live-00A1D6?style=flat-square&logo=Bilibili&logoColor=white">
     <!-- dingtalk -->
-    <img src="https://img.shields.io/badge/-DingTalk-blue?style=flat-square">
+    <img src="https://img.shields.io/badge/http/stream-DingTalk-blue?style=flat-square">
     <!-- <br> -->
     <!-- minecraft -->
     <!-- <img src="https://img.shields.io/badge/-Minecraft Server-62B47A?style=flat-square&logo=Minecraft&logoColor=white"> -->
@@ -57,6 +57,8 @@
     <img src="https://img.shields.io/badge/-Console-4EAA25?style=flat-square&logo=GNU bash&logoColor=white">
     <!-- tg -->
     <!-- <img src="https://img.shields.io/badge/-Telegram-26A5E4?style=flat-square&logo=telegram&logoColor=white"> -->
+    <!-- red -->
+    <img src="https://img.shields.io/badge/-Red-red?style=flat-square&logo=red&logoColor=white">
   </a>
 </p>
 <p align="center">
