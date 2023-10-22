@@ -11,7 +11,7 @@ build-backend = "pdm.backend"
 
 [project]
 name = "iamai-adapter-onebot11"
-version = "3.2.4"
+version = "3.2.4-rc2"
 description = "OneBot(v11) adapter for iamai."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 dependencies = ["iamai>=3.2"]

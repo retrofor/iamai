@@ -33,7 +33,6 @@ jobs:
 
       - name: Publish iamai-adapter-apscheduler
         run: |
-          pdm install
           pdm publish
         shell: bash
         env:
@@ -43,7 +42,6 @@ jobs:
 
       - name: Publish iamai-adapter-dingtalk
         run: |
-          pdm install
           pdm publish
         shell: bash
         env:
@@ -53,7 +51,6 @@ jobs:
     
       - name: Publish iamai-adapter-kook
         run: |
-          pdm install
           pdm publish
         shell: bash
         env:
@@ -63,7 +60,6 @@ jobs:
 
       - name: Publish iamai-adapter-console
         run: |
-          pdm install
           pdm publish
         shell: bash
         env:
@@ -73,7 +69,6 @@ jobs:
 
       - name: Publish iamai-adapter-bililive
         run: |
-          pdm install
           pdm publish
         shell: bash
         env:
@@ -83,7 +78,6 @@ jobs:
 
       - name: Publish iamai-adapter-red
         run: |
-          pdm install
           pdm publish
         shell: bash
         env:
@@ -93,7 +87,6 @@ jobs:
 
       - name: Publish iamai-adapter-onebot11
         run: |
-          pdm install
           pdm publish
         shell: bash
         env:
