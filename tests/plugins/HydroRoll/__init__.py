@@ -1,7 +1,7 @@
 """中间件"""
 
-from iamai import ConfigModel, Plugin
 from iamai.log import logger
+from iamai import Plugin, ConfigModel
 
 # HydroRollCore 读取 rules 文件夹内的rules package
 logger.info("Loading HydroRollCore...")
@@ -9,6 +9,7 @@ logger.info("Loading HydroRollCore...")
 
 class HydroRoll(Plugin):
     """中间件"""
+
     class Config(ConfigModel):
         __config_name__ = "HydroRoll"
 
@@ -25,6 +26,7 @@ class HydroRoll(Plugin):
         elif self.event.message.startswith(".test"):
             try:
                 from ast import literal_eval
+
                 result = literal_eval(self.event.message.get_plain_text()[5:])
                 await self.event.reply(result)
             except Exception as e:

@@ -291,7 +291,7 @@ class MessageDeserializer:
             return KookMessage(KookMessageSegment.file(self.data["attachments"]["url"]))
         elif self.type == "kmarkdown":
             content = self.data["content"]
-            raw_content = self.data['extra']["kmarkdown"]["raw_content"]
+            raw_content = self.data["extra"]["kmarkdown"]["raw_content"]
 
             unescaped = unescape_kmarkdown(content)
             is_plain_text = unescaped.strip() == raw_content
