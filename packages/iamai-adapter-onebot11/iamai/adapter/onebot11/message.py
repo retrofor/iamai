@@ -155,7 +155,9 @@ class OneBot11MessageSegment(MessageSegment["OneBot11Message"]):
         )
 
     @classmethod
-    def contact(cls, type_: Literal["qq", "group"], id_: int) -> "OneBot11MessageSegment":
+    def contact(
+        cls, type_: Literal["qq", "group"], id_: int
+    ) -> "OneBot11MessageSegment":
         """推荐好友/推荐群"""
         return cls(type="contact", data={"type": type_, "id": str(id_)})
 

@@ -9,7 +9,6 @@ TODO:
     - [ ] onebot 适配
     - [ ] api
 """
-from math import log
 import os
 import re
 import sys
@@ -18,11 +17,12 @@ import time
 import zlib
 import struct
 import asyncio
+from math import log
 from functools import partial
 from abc import abstractmethod
 from collections import namedtuple
-from typing import TYPE_CHECKING, Any, Dict, NamedTuple
 from os.path import join, split, abspath, dirname
+from typing import TYPE_CHECKING, Any, Dict, NamedTuple
 
 import qrcode
 import aiohttp

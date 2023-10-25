@@ -24,6 +24,7 @@ class BililiveMessage(Message["BililiveMessageSegment"]):
     def _str_to_message_segment(self, msg: str) -> "BililiveMessageSegment":
         return BililiveMessageSegment.danmu(msg)
 
+
 class BililiveMessageSegment(MessageSegment["BililiveMessage"]):
     @property
     def _message_class(cls) -> Type["BililiveMessage"]:
@@ -31,7 +32,7 @@ class BililiveMessageSegment(MessageSegment["BililiveMessage"]):
 
     def __str__(self) -> str:
         return self.data.get("danmu", "")
-    
+
     @classmethod
     def danmu(cls, msg: str) -> "BililiveMessageSegment":
         return cls(type="danmu", data={"danmu": msg})

@@ -9,10 +9,10 @@ import asyncio
 from uu import Error
 from functools import partial
 from typing import TYPE_CHECKING, Any, Dict, Literal
-from itsdangerous import exc
 
 import yaml
 import aiohttp
+from itsdangerous import exc
 
 from iamai.log import logger
 from iamai.adapter.utils import WebSocketAdapter
@@ -200,7 +200,3 @@ class RedAdapter(WebSocketAdapter[RedEvent, Config]):
                 chatType=2, peerUin=peerUin, elements=RedMessage(elements)
             )
         raise TypeError('message_type must be "private" or "group"')
-    
-
-
-
