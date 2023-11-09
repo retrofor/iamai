@@ -1,8 +1,8 @@
 """Bililive 适配器事件。"""
 import asyncio
-from email import message
 import inspect
 from enum import IntEnum
+from email import message
 from collections import UserDict
 from typing import (
     TYPE_CHECKING,
@@ -16,8 +16,8 @@ from typing import (
     TypeVar,
     Optional,
 )
-from isort import literal
 
+from isort import literal
 from pydantic import Field, HttpUrl, BaseModel, validator, root_validator
 
 from iamai.event import Event

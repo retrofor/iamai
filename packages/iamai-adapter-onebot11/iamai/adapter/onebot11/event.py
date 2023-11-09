@@ -9,8 +9,8 @@ from iamai.event import Event
 from .message import OneBot11Message
 
 if TYPE_CHECKING:
-    from . import OneBot11Adapter
     from .message import T_CQMSG
+    from . import OneBot11Adapter
 
 T_OneBot11Event = TypeVar("T_OneBot11Event", bound="OneBot11Event")
 
