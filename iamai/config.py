@@ -4,7 +4,7 @@ iamai 使用 [pydantic](https://pydantic-docs.helpmanual.io/) 来读取配置。
 """
 from typing import Set, Union
 
-from pydantic import Extra, Field, BaseModel, DirectoryPath
+from pydantic import BaseModel, ConfigDict, DirectoryPath, Field
 
 __all__ = [
     "ConfigModel",
@@ -23,10 +23,9 @@ class ConfigModel(BaseModel):
         __config_name__: 配置名称。
     """
 
-    __config_name__: str
+    model_config = ConfigDict(extra="allow")
 
-    class Config:
-        extra = Extra.allow
+    __config_name__: str = ""
 
 
 class LogConfig(ConfigModel):
@@ -34,7 +33,7 @@ class LogConfig(ConfigModel):
 
     Attributes:
         level: 日志级别。
-        verbose_exception: 详细的异常记录，设置为 True 时会在日志中添加异常的 Traceback。
+        verbose_exception: 详细的异常记录，设置为 `True` 时会在日志中添加异常的 Traceback。
     """
 
     level: Union[str, int] = "DEBUG"
@@ -65,10 +64,6 @@ class AdapterConfig(ConfigModel):
     """适配器配置。"""
 
 
-class DebugConfig(ConfigModel):
-    """是否打印事件配置。"""
-
-
 class MainConfig(ConfigModel):
     """iamai 配置。
 
@@ -79,6 +74,3 @@ class MainConfig(ConfigModel):
     bot: BotConfig = BotConfig()
     plugin: PluginConfig = PluginConfig()
     adapter: AdapterConfig = AdapterConfig()
-
-    class Config:
-        extra = Extra.allow

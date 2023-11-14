@@ -1,24 +1,11 @@
-[tool.pdm]
-[tool.pdm.dev-dependencies]
-dev = ["iamai @ "]
-
-[tool.pdm.build]
-includes = ["iamai"]
-excludes = ["iamai/__init__.py", "iamai/adapter/__init__.py"]
-[build-system]
-requires = ["pdm-backend"]
-build-backend = "pdm.backend"
-
 [project]
 name = "iamai-adapter-onebot11"
-version = "3.2.4-rc2"
-description = "OneBot(v11) adapter for iamai."
+version = "3.2.5"
+description = "OneBot(V11) adapter for iamai."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
-dependencies = ["iamai>=3.2"]
-requires-python = ">=3.8,<4.0"
-readme = "README.md"
 license = { text = "MIT" }
-keywords = ["bot", "chatbot", "qq", "qqbot", "cqhttp", "coolq"]
+readme = "README.md"
+keywords = ["bot", "chatbot", "qq", "ontbot", "cqhttp"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Framework :: AsyncIO",
@@ -29,8 +16,18 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Topic :: Communications :: Chat",
 ]
+requires-python = ">=3.8"
+dependencies = ["iamai>=3.2"]
 
 [project.urls]
-homepage = "https://retrofor.space/"
-repository = "https://github.com/retrofor/iamai"
-documentation = "https://iamai.retrofor.space/"
+Homepage = "https://iamai.retrofor.space/"
+Documentation = "https://iamai.retrofor.space/"
+Repository = "https://github.com/retrofor/iamai"
+Changelog = "https://iamai.retrofor.space/changelog.html"
+
+[tool.hatch.build]
+exclude = ["iamai/__init__.py", "iamai/adapter/__init__.py"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
