@@ -6,7 +6,7 @@ class Halloiamai(Plugin):
         await self.event.reply("Hello, iamai!")
 
     async def rule(self) -> bool:
-        if self.event.adapter.name != "cqhttp":
+        if self.event.adapter.name != "onebot11":
             return False
         if self.event.type != "message":
             return False

@@ -1,11 +1,13 @@
-"""OneBot11 适配器配置。"""
+"""CQHTTP 适配器配置。"""
 from typing import Literal
 
 from iamai.config import ConfigModel
 
+__all__ = ["Config"]
+
 
 class Config(ConfigModel):
-    """OneBot11 配置类，将在适配器被加载时被混入到机器人主配置中。
+    """CQHTTP 配置类，将在适配器被加载时被混入到机器人主配置中。
 
     Attributes:
         adapter_type: 适配器类型，需要和协议端配置相同。
@@ -21,8 +23,7 @@ class Config(ConfigModel):
     adapter_type: Literal["ws", "reverse-ws", "ws-reverse"] = "reverse-ws"
     host: str = "127.0.0.1"
     port: int = 8080
-    url: str = "/OneBot11/ws"
+    url: str = "/cqhttp/ws"
     reconnect_interval: int = 3
     api_timeout: int = 1000
     access_token: str = ""
-    show_raw: bool = False

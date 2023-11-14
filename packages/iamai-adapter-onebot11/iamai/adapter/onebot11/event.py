@@ -1,150 +1,134 @@
-"""OneBot11 适配器事件。"""
-import inspect
-from typing import TYPE_CHECKING, Any, Dict, Type, Union, Literal, TypeVar, Optional
+"""CQHTTP 适配器事件。"""
+# pyright: reportIncompatibleVariableOverride=false
 
-from pydantic import Field, BaseModel
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Dict,
+    Literal,
+    Optional,
+    Tuple,
+    get_args,
+    get_origin,
+)
+from typing_extensions import Self
+
+from pydantic import BaseModel, ConfigDict, Field
+from pydantic.fields import FieldInfo
 
 from iamai.event import Event
+from iamai.event import MessageEvent as BaseMessageEvent
+from iamai.message import BuildMessageType
 
-from .message import OneBot11Message
+from .message import CQHTTPMessage, CQHTTPMessageSegment
 
 if TYPE_CHECKING:
-    from .message import T_CQMSG
-    from . import OneBot11Adapter
-
-T_OneBot11Event = TypeVar("T_OneBot11Event", bound="OneBot11Event")
+    from . import CQHTTPAdapter
 
 
 class Sender(BaseModel):
-    user_id: Optional[int]
-    nickname: Optional[str]
-    card: Optional[str]
-    sex: Optional[Literal["male", "female", "unknown"]]
-    age: Optional[int]
-    area: Optional[str]
-    level: Optional[str]
-    role: Optional[str]
-    title: Optional[str]
+    """发送人信息"""
+
+    user_id: Optional[int] = None
+    nickname: Optional[str] = None
+    card: Optional[str] = None
+    sex: Optional[Literal["male", "female", "unknown"]] = None
+    age: Optional[int] = None
+    area: Optional[str] = None
+    level: Optional[str] = None
+    role: Optional[str] = None
+    title: Optional[str] = None
 
 
 class Anonymous(BaseModel):
+    """匿名信息"""
+
     id: int
     name: str
     flag: str
 
 
 class File(BaseModel):
+    """文件信息"""
+
     id: str
     name: str
     size: int
     busid: int
 
 
-class OfflineFile(BaseModel):
-    name: str
-    size: int
-    url: str
-
-
-class Device(BaseModel):
-    app_id: int
-    device_name: str
-    device_kind: str
-
-
 class Status(BaseModel):
+    """状态信息"""
+
+    model_config = ConfigDict(extra="allow")
+
     online: bool
     good: bool
 
-    class Config:
-        extra = "allow"
+
+def _get_literal_field(field: Optional[FieldInfo]) -> Optional[str]:
+    if field is None:
+        return None
+    annotation = field.annotation
+    if annotation is None or get_origin(annotation) is not Literal:
+        return None
+    literal_values = get_args(annotation)
+    if len(literal_values) != 1:
+        return None
+    return literal_values[0]
 
 
-class ReactionInfo(BaseModel):
-    """当前消息被贴表情列表"""
-
-    emoji_id: Optional[str]
-    emoji_index: Optional[int]
-    emoji_type: Optional[int]
-    emoji_name: Optional[str]
-    count: Optional[int]
-    clicked: Optional[bool]
-
-
-class ChannelInfo(BaseModel):
-    pass
-
-
-class OneBot11Event(Event["OneBot11Adapter"]):
-    """OneBot11 事件基类"""
+class CQHTTPEvent(Event["CQHTTPAdapter"]):
+    """CQHTTP 事件基类"""
 
     __event__ = ""
     type: Optional[str] = Field(alias="post_type")
     time: int
     self_id: int
-    self_tiny_id: Optional[str]
-    post_type: Literal["message", "message_sent", "notice", "request", "meta_event"]
+    post_type: str
 
     @property
     def to_me(self) -> bool:
-        """当前事件的 user_id 是否等于 self_id 或 self_tiny_id。"""
-        return getattr(self, "user_id") in [self.self_id, self.self_tiny_id]
+        """当前事件的 `user_id` 是否等于 `self_id`。"""
+        return getattr(self, "user_id", None) == self.self_id
+
+    @classmethod
+    def get_event_type(cls) -> Tuple[Optional[str], Optional[str], Optional[str]]:
+        """获取事件类型。
+
+        Returns:
+            事件类型。
+        """
+        post_type = _get_literal_field(cls.model_fields.get("post_type", None))
+        if post_type is None:
+            return (None, None, None)
+        return (
+            post_type,
+            _get_literal_field(cls.model_fields.get(post_type + "_type", None)),
+            _get_literal_field(cls.model_fields.get("sub_type", None)),
+        )
 
 
-class MessageEvent(OneBot11Event):
+class MessageEvent(CQHTTPEvent, BaseMessageEvent["CQHTTPAdapter"]):
     """消息事件"""
 
     __event__ = "message"
     post_type: Literal["message"]
-    message_type: Literal["private", "group", "guild"]
-    sub_type: Union[Literal["channel"], str]
-    message_id: Union[str, int]
-    user_id: Union[str, int]
-    message: OneBot11Message
-    raw_message: Optional[str]
-    font: Optional[int]
-    sender: Sender
-    guild_id: Optional[str]
-    channel_id: Optional[str]
-
-    def __repr__(self) -> str:
-        return f'Event<{self.type}>: "{self.message}"'
-
-    def get_plain_text(self) -> str:
-        """获取消息的纯文本内容。
-
-        Returns:
-            消息的纯文本内容。
-        """
-        return self.message.get_plain_text()
-
-    async def reply(self, msg: "T_CQMSG") -> Dict[str, Any]:
-        """回复消息。
-
-        Args:
-            msg: 回复消息的内容，同 `call_api()` 方法。
-
-        Returns:
-            API 请求响应。
-        """
-        raise NotImplementedError
-
-
-class MessageSentEvent(OneBot11Event):
-    """自身消息事件"""
-
-    __event__ = "message_sent"
-    post_type: Literal["message_sent"]
     message_type: Literal["private", "group"]
     sub_type: str
     message_id: int
     user_id: int
-    message: OneBot11Message
+    message: CQHTTPMessage
     raw_message: str
     font: int
     sender: Sender
 
     def __repr__(self) -> str:
+        """返回消息事件的描述。
+
+        Returns:
+            消息事件的描述。
+        """
         return f'Event<{self.type}>: "{self.message}"'
 
     def get_plain_text(self) -> str:
@@ -155,16 +139,29 @@ class MessageSentEvent(OneBot11Event):
         """
         return self.message.get_plain_text()
 
-    async def reply(self, msg: "T_CQMSG") -> Dict[str, Any]:
+    async def reply(
+        self, message: BuildMessageType[CQHTTPMessageSegment]
+    ) -> Dict[str, Any]:
         """回复消息。
 
         Args:
-            msg: 回复消息的内容，同 `call_api()` 方法。
+            message: 回复消息的内容，同 `call_api()` 方法。
 
         Returns:
             API 请求响应。
         """
         raise NotImplementedError
+
+    async def is_same_sender(self, other: Self) -> bool:
+        """判断自身和另一个事件是否是同一个发送者。
+
+        Args:
+            other: 另一个事件。
+
+        Returns:
+            是否是同一个发送者。
+        """
+        return self.sender.user_id == other.sender.user_id
 
 
 class PrivateMessageEvent(MessageEvent):
@@ -172,24 +169,21 @@ class PrivateMessageEvent(MessageEvent):
 
     __event__ = "message.private"
     message_type: Literal["private"]
-    sub_type: Literal["friend", "group", "group_self", "other"]
+    sub_type: Literal["friend", "group", "other"]
 
-    async def reply(self, msg: "T_CQMSG") -> Dict[str, Any]:
+    async def reply(
+        self, message: BuildMessageType[CQHTTPMessageSegment]
+    ) -> Dict[str, Any]:
+        """回复消息。
+
+        Args:
+            message: 回复消息的内容，同 `call_api()` 方法。
+
+        Returns:
+            API 请求响应。
+        """
         return await self.adapter.send_private_msg(
-            user_id=self.user_id, message=OneBot11Message(msg)
-        )
-
-
-class PrivateMessageSentEvent(MessageSentEvent):
-    """自身私聊消息"""
-
-    __event__ = "message_sent.private"
-    message_type: Literal["private", "group"]
-    sub_type: Literal["friend", "group", "group_self", "other"]
-
-    async def reply(self, msg: "T_CQMSG") -> Dict[str, Any]:
-        return await self.adapter.send_private_msg(
-            user_id=self.user_id, message=OneBot11Message(msg)
+            user_id=self.user_id, message=CQHTTPMessage(message)
         )
 
 
@@ -202,28 +196,23 @@ class GroupMessageEvent(MessageEvent):
     group_id: int
     anonymous: Optional[Anonymous] = None
 
-    async def reply(self, msg: "T_CQMSG") -> Dict[str, Any]:
+    async def reply(
+        self, message: BuildMessageType[CQHTTPMessageSegment]
+    ) -> Dict[str, Any]:
+        """回复消息。
+
+        Args:
+            message: 回复消息的内容，同 `call_api()` 方法。
+
+        Returns:
+            API 请求响应。
+        """
         return await self.adapter.send_group_msg(
-            group_id=self.group_id, message=OneBot11Message(msg)
+            group_id=self.group_id, message=CQHTTPMessage(message)
         )
 
 
-class GroupMessageSentEvent(MessageSentEvent):
-    """自身群消息"""
-
-    __event__ = "message_sent.group"
-    message_type: Literal["group"]
-    sub_type: Literal["normal", "anonymous", "notice"]
-    group_id: int
-    anonymous: Optional[Anonymous] = None
-
-    async def reply(self, msg: "T_CQMSG") -> Dict[str, Any]:
-        return await self.adapter.send_group_msg(
-            group_id=self.group_id, message=OneBot11Message(msg)
-        )
-
-
-class NoticeEvent(OneBot11Event):
+class NoticeEvent(CQHTTPEvent):
     """通知事件"""
 
     __event__ = "notice"
@@ -319,7 +308,7 @@ class NotifyEvent(NoticeEvent):
     __event__ = "notice.notify"
     notice_type: Literal["notify"]
     sub_type: str
-    group_id: int
+    group_id: Optional[int] = None
     user_id: int
 
 
@@ -337,6 +326,7 @@ class GroupLuckyKingNotifyEvent(NotifyEvent):
 
     __event__ = "notice.notify.lucky_king"
     sub_type: Literal["lucky_king"]
+    group_id: int
     target_id: int
 
 
@@ -345,61 +335,11 @@ class GroupHonorNotifyEvent(NotifyEvent):
 
     __event__ = "notice.notify.honor"
     sub_type: Literal["honor"]
+    group_id: int
     honor_type: Literal["talkative", "performer", "emotion"]
 
 
-class GroupTitleNotifyEvent(NotifyEvent):
-    """群成员头衔变更"""
-
-    __event__ = "notice.notify.title"
-    sub_type: Literal["title"]
-    group_id: int
-    user_id: int
-    title: str
-
-
-class GroupCardNotifyEvent(NoticeEvent):
-    """群成员名片更新"""
-
-    __event__ = "notice.group_card"
-    notice_type: Literal["group_card"]
-    group_id: int
-    user_id: int
-    card_new: str
-    card_old: str
-
-
-class ReceiveOfflineFileEvent(NoticeEvent):
-    """接收到离线文件"""
-
-    __event__ = "notice.offline_file"
-    notice_type: Literal["offline_file"]
-    user_id: int
-    file: OfflineFile
-
-
-class OtherClientStatusEvent(NoticeEvent):
-    """其他客户端在线状态变更"""
-
-    __event__ = "notice.client_status"
-    notice_type: Literal["client_status"]
-    client: Device
-    online: bool
-
-
-class EssenceEvent(NoticeEvent):
-    """精华消息变更"""
-
-    __event__ = "notice.essence"
-    notice_type: Literal["essence"]
-    sub_type: Literal["add", "delete"]
-    group_id: int
-    sender_id: int
-    operator_id: int
-    message_id: int
-
-
-class RequestEvent(OneBot11Event):
+class RequestEvent(CQHTTPEvent):
     """请求事件"""
 
     __event__ = "request"
@@ -446,11 +386,16 @@ class FriendRequestEvent(RequestEvent):
         )
 
     async def refuse(self) -> Dict[str, Any]:
+        """拒绝请求。
+
+        Returns:
+            API 请求响应。
+        """
         return await self.adapter.set_friend_add_request(flag=self.flag, approve=False)
 
 
 class GroupRequestEvent(RequestEvent):
-    """加群请求／邀请"""
+    """加群请求 / 邀请"""
 
     __event__ = "request.group"
     request_type: Literal["group"]
@@ -461,6 +406,11 @@ class GroupRequestEvent(RequestEvent):
     flag: str
 
     async def approve(self) -> Dict[str, Any]:
+        """同意请求。
+
+        Returns:
+            API 请求响应。
+        """
         return await self.adapter.set_group_add_request(
             flag=self.flag, sub_type=self.sub_type, approve=True
         )
@@ -479,7 +429,7 @@ class GroupRequestEvent(RequestEvent):
         )
 
 
-class MetaEvent(OneBot11Event):
+class MetaEvent(CQHTTPEvent):
     """元事件"""
 
     __event__ = "meta_event"
@@ -496,107 +446,9 @@ class LifecycleMetaEvent(MetaEvent):
 
 
 class HeartbeatMetaEvent(MetaEvent):
-    """心跳包"""
+    """心跳"""
 
     __event__ = "meta_event.heartbeat"
     meta_event_type: Literal["heartbeat"]
     status: Status
     interval: int
-
-
-class GuildMessageEvent(MessageEvent):
-    """收到频道消息"""
-
-    __event__ = "message.guild"
-    message_type: Literal["guild"]
-    sub_type: Literal["channel"]
-    guild_id: str
-    channel_id: str
-    user_id: str
-    message_id: str
-    sender: Sender
-    message: OneBot11Message
-
-    async def reply(self, msg: "T_CQMSG") -> Dict[str, Any]:
-        return await self.adapter.send_guild_channel_msg(
-            guild_id=self.guild_id,
-            channel_id=self.channel_id,
-            message=OneBot11Message(msg),
-        )
-
-
-class GuildMessageReactionUpdated(NoticeEvent):
-    """频道消息表情贴更新"""
-
-    __event__ = "notice.message_reactions_updated"
-    notice_type: Literal["message_reactions_updated"]
-    guild_id: str
-    channel_id: str
-    user_id: str
-    message_id: str
-    # current_reactions: ReactionInfo
-
-
-class GuildChannelUpdate(NoticeEvent):
-    """子频道信息更新"""
-
-    __event__ = "notice.channel_updated"
-    notice_type: Literal["channel_updated"]
-    guild_id: str
-    channel_id: str
-    user_id: str
-    operator_id: str
-    old_info: ChannelInfo
-    new_info: ChannelInfo
-
-
-class GuildChannelCreated(NoticeEvent):
-    """子频道创建"""
-
-    __event__ = "notice.channel_created"
-    notice_type: Literal["channel_created"]
-    guild_id: str
-    channel_id: str
-    user_id: str
-    operator_id: str
-    channel_info: ChannelInfo
-
-
-class GuildChannelDestoryed(NoticeEvent):
-    """子频道删除"""
-
-    __event__ = "notice.channel_destroyed"
-    notice_type: Literal["channel_destroyed"]
-    guild_id: str
-    channel_id: str
-    user_id: str
-    operator_id: str
-    channel_info: ChannelInfo
-
-
-_OneBot11_events = {
-    model.__event__: model
-    for model in globals().values()
-    if inspect.isclass(model) and issubclass(model, OneBot11Event)
-}
-
-
-def get_event_class(
-    post_type: str, event_type: str, sub_type: Optional[str] = None
-) -> Type[T_OneBot11Event]:
-    """根据接收到的消息类型返回对应的事件类。
-
-    Args:
-        post_type: 请求类型。
-        event_type: 事件类型。
-        sub_type: 子类型。
-
-    Returns:
-        对应的事件类。
-    """
-    if sub_type is None:
-        return _OneBot11_events[".".join((post_type, event_type))]
-    return (
-        _OneBot11_events.get(".".join((post_type, event_type, sub_type)))
-        or _OneBot11_events[".".join((post_type, event_type))]
-    )

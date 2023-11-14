@@ -29,15 +29,12 @@ class EvalKook(Plugin):
         # await self.event.adapter.call_api(
         #     api="message/create", target_id=self.event.group_id, content=KookMessageSegment.KMarkdown('**hi**')
         # )
-<<<<<<< HEAD
-=======
         # await self.event.reply(bm25.get_score(query))
         await self.event.adapter.call_api(
             api="message/create",
             target_id=self.event.group_id,
             content=KookMessageSegment.KMarkdown("**hi**"),
         )
->>>>>>> e96a4d186b0e2d1cd114661c33c2ea51044528a8
 
     async def rule(self) -> bool:
         if self.event.adapter.name != "kook":

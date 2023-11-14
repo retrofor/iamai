@@ -1,6 +1,8 @@
 """DingTalk 适配器异常。"""
 from iamai.exceptions import AdapterException
 
+__all__ = ["DingTalkException", "NetworkError", "WebhookExpiredError"]
+
 
 class DingTalkException(AdapterException):
     """DingTalk 异常基类。"""
@@ -12,7 +14,3 @@ class NetworkError(DingTalkException):
 
 class WebhookExpiredError(DingTalkException):
     """Webhook 地址已到期。"""
-
-
-class ApiTimeout(DingTalkException):
-    """API 请求响应超时。"""

@@ -1,20 +1,31 @@
-"""OneBot11 适配器异常。"""
+"""CQHTTP 适配器异常。"""
+from typing import Any, ClassVar, Dict
+
 from iamai.exceptions import AdapterException
 
+__all__ = [
+    "CQHTTPException",
+    "NetworkError",
+    "ActionFailed",
+    "ApiNotAvailable",
+    "ApiTimeout",
+]
 
-class OneBot11Exception(AdapterException):
-    """OneBot11 异常基类。"""
+
+class CQHTTPException(AdapterException):
+    """CQHTTP 异常基类。"""
 
 
-class NetworkError(OneBot11Exception):
+class NetworkError(CQHTTPException):
     """网络异常。"""
 
 
-class ActionFailed(OneBot11Exception):
+class ActionFailed(CQHTTPException):
     """API 请求成功响应，但响应表示 API 操作失败。"""
 
-    def __init__(self, resp):
-        """
+    def __init__(self, resp: Dict[str, Any]) -> None:
+        """初始化。
+
         Args:
             resp: 返回的响应。
         """
@@ -24,6 +35,8 @@ class ActionFailed(OneBot11Exception):
 class ApiNotAvailable(ActionFailed):
     """API 请求返回 404，表示当前请求的 API 不可用或不存在。"""
 
+    ERROR_CODE: ClassVar[int] = 1404
 
-class ApiTimeout(OneBot11Exception):
+
+class ApiTimeout(CQHTTPException):
     """API 请求响应超时。"""

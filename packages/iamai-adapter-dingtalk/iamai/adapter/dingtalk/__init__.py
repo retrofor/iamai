@@ -1,24 +1,24 @@
 """DingTalk 协议适配器。
 
 本适配器适配了钉钉企业自建机器人协议。
-协议详情请参考: [钉钉开放平台](https://developers.dingtalk.com/document/robots/robot-overview) 。
+协议详情请参考：[钉钉开放平台](https://open.dingtalk.com/document/robots/robot-overview)。
 """
-import hmac
-import time
 import base64
 import hashlib
-from typing import Any, Dict, Union, Literal
+import hmac
+import time
+from typing import Any, Dict, Literal, Union
 
 import aiohttp
 from aiohttp import web
 
 from iamai.adapter import Adapter
-from iamai.log import logger, error_or_exception
+from iamai.log import logger
 
 from .config import Config
 from .event import DingTalkEvent
+from .exceptions import NetworkError
 from .message import DingTalkMessage
-from .exceptions import ApiTimeout, NetworkError
 
 __all__ = ["DingTalkAdapter"]
 
@@ -29,44 +29,43 @@ class DingTalkAdapter(Adapter[DingTalkEvent, Config]):
     name: str = "dingtalk"
     Config = Config
 
-    app: web.Application = None
-    runner: web.AppRunner = None
-    site: web.TCPSite = None
+    app: web.Application
+    runner: web.AppRunner
+    site: web.TCPSite
 
-    session: aiohttp.ClientSession = None
+    session: aiohttp.ClientSession
 
-    async def startup(self):
+    async def startup(self) -> None:
         """创建 aiohttp Application。"""
         self.app = web.Application()
         self.app.add_routes([web.post(self.config.url, self.handler)])
 
         self.session = aiohttp.ClientSession()
 
-    async def run(self):
+    async def run(self) -> None:
         """运行 aiohttp 服务器。"""
         self.runner = web.AppRunner(self.app)
         await self.runner.setup()
         self.site = web.TCPSite(self.runner, self.config.host, self.config.port)
         await self.site.start()
 
-    async def shutdown(self):
+    async def shutdown(self) -> None:
         """清理 aiohttp AppRunner。"""
-        if self.session is not None:
-            await self.session.close()
-        if self.site is not None:
-            await self.site.stop()
-        if self.runner is not None:
-            await self.runner.cleanup()
+        await self.session.close()
+        await self.site.stop()
+        await self.runner.cleanup()
 
-    async def handler(self, request: web.Request):
+    async def handler(self, request: web.Request) -> web.Response:
         """处理 aiohttp 服务器的接收。
 
         Args:
-            request: aiohttp 服务器的 Request 对象。
+            request: aiohttp 服务器的 `Request` 对象。
         """
         if "timestamp" not in request.headers or "sign" not in request.headers:
             logger.error("Illegal http header, incomplete http header")
-        elif abs(int(request.headers["timestamp"]) - time.time() * 1000) > 3600000:
+        elif (
+            abs(int(request.headers["timestamp"]) - time.time() * 1000) > 60 * 60 * 1000
+        ):
             logger.error(
                 f'Illegal http header, timestamp: {request.headers["timestamp"]}'
             )
@@ -76,11 +75,7 @@ class DingTalkAdapter(Adapter[DingTalkEvent, Config]):
             try:
                 dingtalk_event = DingTalkEvent(adapter=self, **(await request.json()))
             except Exception as e:
-                error_or_exception(
-                    "Request parsing error:",
-                    e,
-                    self.bot.config.bot.log.verbose_exception,
-                )
+                self.bot.error_or_exception("Request parsing error:", e)
                 return web.Response()
             await self.handle_event(dingtalk_event)
         return web.Response()
@@ -96,7 +91,7 @@ class DingTalkAdapter(Adapter[DingTalkEvent, Config]):
         """
         hmac_code = hmac.new(
             self.config.app_secret.encode("utf-8"),
-            f"{timestamp}\n{self.config.app_secret}".encode("utf-8"),
+            f"{timestamp}\n{self.config.app_secret}".encode(),
             digestmod=hashlib.sha256,
         ).digest()
         return base64.b64encode(hmac_code).decode("utf-8")
@@ -105,14 +100,14 @@ class DingTalkAdapter(Adapter[DingTalkEvent, Config]):
         self,
         webhook: str,
         conversation_type: Literal["1", "2"],
-        msg: Union[str, Dict, DingTalkMessage],
-        at: Union[None, Dict, DingTalkMessage] = None,
+        msg: Union[str, Dict[str, Any], DingTalkMessage],
+        at: Union[None, Dict[str, Any], DingTalkMessage] = None,
     ) -> Dict[str, Any]:
         """发送消息。
 
         Args:
             webhook: Webhook 网址。
-            conversation_type: 聊天类型，'1' 表示单聊，'2' 表示群聊。
+            conversation_type: 聊天类型，"1" 表示单聊，"2" 表示群聊。
             msg: 消息。
             at: At 对象，仅在群聊时生效，默认为空。
 
@@ -137,20 +132,23 @@ class DingTalkAdapter(Adapter[DingTalkEvent, Config]):
 
         if at is not None:
             if isinstance(at, DingTalkMessage):
-                if at.type != "at":
+                if at.type == "at":
+                    pass
+                else:
                     raise ValueError(f'at.type must be "at", not {at.type}')
             elif isinstance(at, dict):
                 at = DingTalkMessage.raw(at)
             else:
                 raise TypeError(f"at must be Dict or DingTalkMessage, not {type(at)!r}")
 
+        data: Union[Dict[str, Any], DingTalkMessage]
         if conversation_type == "1":
             data = msg
         elif conversation_type == "2":
             if at is None:
-                data = {"msgtype": msg.type, **msg.as_dict()}
+                data = {"msgtype": msg.type, **msg.model_dump()}
             else:
-                data = {"msgtype": msg.type, **msg.as_dict(), **at.as_dict()}
+                data = {"msgtype": msg.type, **msg.model_dump(), **at.model_dump()}
         else:
             raise ValueError(
                 f'conversation_type must be "1" or "2" not {conversation_type}'
@@ -159,5 +157,5 @@ class DingTalkAdapter(Adapter[DingTalkEvent, Config]):
         try:
             async with self.session.post(webhook, json=data) as resp:
                 return await resp.json()
-        except aiohttp.ClientError:
-            raise NetworkError
+        except aiohttp.ClientError as e:
+            raise NetworkError from e

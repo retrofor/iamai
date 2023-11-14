@@ -1,6 +1,6 @@
 [project]
 name = "iamai-adapter-kook"
-version = "3.2.6"
+version = "3.2.7"
 description = "kook adapter for iamai."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }

@@ -1,6 +1,6 @@
 [project]
 name = "iamai-adapter-onebot11"
-version = "3.2.6"
+version = "3.2.7"
 description = "OneBot(V11) adapter for iamai."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
