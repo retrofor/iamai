@@ -3,6 +3,6 @@
 
 # iamai-Adapter-Bililive
 
-**Bililive 协议适配**
+**Bililive 平台适配**
 
 </div>

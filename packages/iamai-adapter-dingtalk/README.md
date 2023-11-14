@@ -3,6 +3,6 @@
 
 # iamai-Adapter-Dingtalk
 
-**Dingtalk 协议适配**
+**Dingtalk 平台适配**
 
 </div>

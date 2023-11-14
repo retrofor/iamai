@@ -1,6 +1,6 @@
 [project]
 name = "iamai-adapter-bililive"
-version = "3.2.5"
+version = "3.2.6"
 description = "bililive adapter for iamai."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }

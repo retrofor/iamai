@@ -3,6 +3,6 @@
 
 # iamai-Adapter-Console
 
-**console 协议适配**
+**console 平台适配**
 
 </div>

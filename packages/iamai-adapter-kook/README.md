@@ -3,6 +3,6 @@
 
 # iamai-Adapter-Kook
 
-**Kook 协议适配**
+**Kook 平台适配**
 
 </div>

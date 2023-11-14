@@ -1,6 +1,6 @@
 [project]
 name = "iamai"
-version = "3.2.5"
+version = "3.2.6"
 description = "A bot Framework."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
@@ -38,7 +38,6 @@ dependencies = [
 [project.optional-dependencies]
 onebot11 = ["iamai-adapter-onebot11"]
 bililive = ["iamai-adapter-bililive"]
-mirai = ["iamai-adapter-mirai"]
 dingtalk = ["iamai-adapter-dingtalk"]
 apscheduler = ["iamai-adapter-apscheduler"]
 red = ["iamai-adapter-red"]
@@ -48,7 +47,6 @@ hot_reload = ["watchfiles"]
 all = [
     "iamai-adapter-bililive",
     "iamai-adapter-onebot11",
-    "iamai-adapter-mirai",
     "iamai-adapter-dingtalk",
     "iamai-adapter-apscheduler",
     "iamai-adapter-console",
