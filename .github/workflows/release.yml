@@ -44,6 +44,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     environment: release
+    env:
+      PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+      PDM_PUBLISH_USERNAME: ${{ secrets.PYPI_USERNAME }}
     permissions:
       id-token: write
     steps:
