@@ -19,7 +19,7 @@
     "eslint-plugin-mdx": "^2.1.0",
     "framer-motion": "^10.0.0",
     "katex": "^0.16.8",
-    "next": "^13.4.12",
+    "next": "^13.5.0",
     "next-seo": "^6.1.0",
     "nextra": "^2.10.0",
     "nextra-theme-docs": "^2.10.0",
