@@ -1,13 +1,15 @@
-import argparse
-import sys
-import platform
-from importlib.metadata import version
 import os
+import sys
+import argparse
+import platform
 from typing import Set, Optional
+from importlib.metadata import version
+
 from iamai import ConfigModel
 
 # 创建全局 ArgumentParser 对象
 global_parser = argparse.ArgumentParser(description="HydroRoll[水系] 全局命令参数")
+
 
 class BasePluginConfig(ConfigModel):
     __config_name__ = ""
@@ -76,5 +78,3 @@ class GlobalConfig(CommandPluginConfig):
     class HydroBot:
         def __init__(self) -> None:
             self.parser = argparse.ArgumentParser(description="Bot命令")
-
-

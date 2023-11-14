@@ -24,6 +24,7 @@ class RedEvent(Event["RedAdapter"]):
     # type = Optional[str] = Field(alias="post_type")
     post_type: Literal["message", "notice", "request", "meta_event"]
 
+
 class EmojiAd(BaseModel):
     url: str
     desc: str
@@ -283,7 +284,7 @@ class MsgType(IntEnum):
     ark = 11
     may_market = 17
 
- 
+
 class MessageEvent(RedEvent):
     """消息事件"""
 
@@ -312,7 +313,9 @@ class PrivateMessageEvent(MessageEvent):
     roleType: int
 
     async def reply(self, msg: T_RedMSG) -> Dict[str, Any]:
-        return await self.adapter.send_message(chatType=1, peerUin=self.peerUid, elements=RedMessage(msg))
+        return await self.adapter.send_message(
+            chatType=1, peerUin=self.peerUid, elements=RedMessage(msg)
+        )
 
 
 class GroupMessageEvent(MessageEvent):
@@ -324,7 +327,9 @@ class GroupMessageEvent(MessageEvent):
     roleType: int
 
     async def reply(self, msg: T_RedMSG) -> Dict[str, Any]:
-        return await self.adapter.send_message(chatType=2, peerUin=self.peerUid, elements=RedMessage(msg))
+        return await self.adapter.send_message(
+            chatType=2, peerUin=self.peerUid, elements=RedMessage(msg)
+        )
 
 
 class NoticeEvent(RedEvent):

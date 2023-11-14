@@ -1,7 +1,7 @@
 """red 协议配置。"""
 
-from ast import List
 import os
+from ast import List
 from os.path import join
 from pathlib import Path
 from typing import Optional
