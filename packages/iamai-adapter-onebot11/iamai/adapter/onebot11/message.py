@@ -1,5 +1,5 @@
 """OneBot11 适配器消息。"""
-from typing import Type, Union, Literal, Mapping, Iterable, Optional
+from typing import Iterable, Literal, Mapping, Optional, Type, Union
 
 from iamai.message import Message, MessageSegment
 

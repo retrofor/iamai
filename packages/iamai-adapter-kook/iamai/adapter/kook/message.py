@@ -1,24 +1,25 @@
 """Kook 适配器消息。"""
 import json
-from io import StringIO
 from dataclasses import dataclass
-from typing_extensions import override, deprecated
-from typing import (  # type: ignore
+from io import StringIO
+from typing import (
     Any,
     Dict,
-    Type,
-    Tuple,
-    Union,
-    Mapping,
     Iterable,
-    Optional,
+    Mapping,
+    Optional,  # type: ignore
+    Tuple,
+    Type,
+    Union,
     cast,
 )
+
+from typing_extensions import deprecated, override
 
 from iamai.log import logger
 from iamai.message import Message, MessageSegment
 
-from .exceptions import UnsupportedMessageType, UnsupportedMessageOperation
+from .exceptions import UnsupportedMessageOperation, UnsupportedMessageType
 
 __all__ = [
     "T_KookMSG",

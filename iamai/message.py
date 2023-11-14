@@ -21,10 +21,10 @@ from typing import (
     ValuesView,
     overload,
 )
-from typing_extensions import Self
 
 from pydantic import BaseModel, Field, GetCoreSchemaHandler
 from pydantic_core import core_schema
+from typing_extensions import Self
 
 __all__ = [
     "MessageT",

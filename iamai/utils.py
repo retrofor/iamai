@@ -32,9 +32,9 @@ from typing import (
     Union,
     cast,
 )
-from typing_extensions import ParamSpec, TypeAlias, TypeGuard
 
 from pydantic import BaseModel
+from typing_extensions import ParamSpec, TypeAlias, TypeGuard
 
 from iamai.config import ConfigModel
 from iamai.typing import EventT

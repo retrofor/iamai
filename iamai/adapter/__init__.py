@@ -105,8 +105,7 @@ class Adapter(Generic[EventT, ConfigT], ABC):
     @overload
     async def get(
         self,
-        func: Optional[Callable[[EventT],
-                                Union[bool, Awaitable[bool]]]] = None,
+        func: Optional[Callable[[EventT], Union[bool, Awaitable[bool]]]] = None,
         *,
         event_type: None = None,
         max_try_times: Optional[int] = None,
@@ -117,8 +116,7 @@ class Adapter(Generic[EventT, ConfigT], ABC):
     @overload
     async def get(
         self,
-        func: Optional[Callable[[_EventT],
-                                Union[bool, Awaitable[bool]]]] = None,
+        func: Optional[Callable[[_EventT], Union[bool, Awaitable[bool]]]] = None,
         *,
         event_type: Type[_EventT],
         max_try_times: Optional[int] = None,

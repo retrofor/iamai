@@ -4,9 +4,9 @@
 """
 from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING, Any, Generic, Optional, Union
-from typing_extensions import Self
 
 from pydantic import BaseModel, ConfigDict
+from typing_extensions import Self
 
 from iamai.typing import AdapterT
 

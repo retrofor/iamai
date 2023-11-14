@@ -1,14 +1,14 @@
 """Red 适配器事件。"""
 import inspect
-from enum import IntEnum
 from datetime import datetime, timedelta
-from typing import TYPE_CHECKING, Any, Dict, Type, Union, Literal, TypeVar, Optional
+from enum import IntEnum
+from typing import TYPE_CHECKING, Any, Dict, Literal, Optional, Type, TypeVar, Union
 
-from pydantic import Field, BaseModel
+from pydantic import BaseModel, Field
 
 from iamai.event import Event
 
-from .message import T_RedMSG, RedMessage
+from .message import RedMessage, T_RedMSG
 
 if TYPE_CHECKING:
     from . import RedAdapter

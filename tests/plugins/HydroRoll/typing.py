@@ -3,15 +3,15 @@
 此模块定义了部分 HydroRoll 使用的类型。
 """
 
-from typing import TYPE_CHECKING, TypeVar, Callable, NoReturn, Awaitable
+from typing import TYPE_CHECKING, Awaitable, Callable, NoReturn, TypeVar
 
 from iamai.message import T_MS, T_Message, T_MessageSegment
 
 if TYPE_CHECKING:
     from iamai.bot import Bot  # noqa
+    from iamai.config import ConfigModel  # noqa
     from iamai.event import Event  # noqa
     from iamai.plugin import Plugin  # noqa
-    from iamai.config import ConfigModel  # noqa
 
 __all__ = [
     "T_State",

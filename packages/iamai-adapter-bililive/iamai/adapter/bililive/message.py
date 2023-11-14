@@ -1,9 +1,10 @@
 """Bililive 适配器消息。"""
 import json
-from io import StringIO
 from dataclasses import dataclass
+from io import StringIO
+from typing import Any, Dict, Iterable, Mapping, Optional, Tuple, Type, Union, cast
+
 from typing_extensions import deprecated
-from typing import Any, Dict, Type, Tuple, Union, Mapping, Iterable, Optional, cast
 
 from iamai.message import Message, MessageSegment
 

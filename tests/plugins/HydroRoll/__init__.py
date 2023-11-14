@@ -1,7 +1,7 @@
 """中间件"""
 
+from iamai import ConfigModel, Plugin
 from iamai.log import logger
-from iamai import Plugin, ConfigModel
 
 # HydroRollCore 读取 rules 文件夹内的rules package
 logger.info("Loading HydroRollCore...")

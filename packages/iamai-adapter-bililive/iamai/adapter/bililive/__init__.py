@@ -9,34 +9,34 @@ TODO:
     - [ ] onebot 适配
     - [ ] api
 """
+import asyncio
+import json
 import os
 import re
+import struct
 import sys
-import json
 import time
 import zlib
-import struct
-import asyncio
-from math import log
-from functools import partial
 from abc import abstractmethod
 from collections import namedtuple
-from os.path import join, split, abspath, dirname
+from functools import partial
+from math import log
+from os.path import abspath, dirname, join, split
 from typing import TYPE_CHECKING, Any, Dict, NamedTuple
 
-import qrcode
 import aiohttp
-from genericpath import exists
+import qrcode
 from aiohttp.client import ClientSession
+from genericpath import exists
 
-from iamai.utils import DataclassEncoder
 from iamai.adapter.utils import WebSocketAdapter
-from iamai.log import logger, error_or_exception
+from iamai.log import error_or_exception, logger
+from iamai.utils import DataclassEncoder
 
-from .event import *
-from .message import *
 from .config import Config
+from .event import *
 from .event import get_event_class
+from .message import *
 
 if TYPE_CHECKING:
     from .message import T_BililiveMSG
