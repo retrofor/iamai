@@ -159,7 +159,7 @@ strict = true
 exclude = [
   '^packages/.*/iamai/__init__\.py$',
   '^packages/.*/iamai/adapter/__init__\.py$',
-  '^examples/.*\.py$',
+  '^tests/.*\.py$',
 ]
 warn_return_any = false
 
