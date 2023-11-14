@@ -1,8 +1,18 @@
 """iamai 异常。
 
-下列是 iamai 运行过程中可能会抛出的异常。这些异常大部分不需要用户处理，iamai 会自动捕获并处理。
+下列是 iamai 运行过程中可能会抛出的异常。这些异常大部分不需要用户处理， iamai 会自动捕获并处理。
 对于适配器开发者，所有适配器抛出的异常都应该继承自 `AdapterException` 。
 """
+
+__all__ = [
+    "EventException",
+    "SkipException",
+    "StopException",
+    "iamaiException",
+    "GetEventTimeout",
+    "AdapterException",
+    "LoadModuleError",
+]
 
 
 class EventException(BaseException):
@@ -17,7 +27,7 @@ class StopException(EventException):
     """停止当前事件传播。"""
 
 
-class iamaiException(Exception):
+class iamaiException(Exception):  # noqa: N818
     """所有 iamai 发生的异常的基类。"""
 
 

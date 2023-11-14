@@ -1,21 +1,10 @@
-[tool.pdm]
-[tool.pdm.dev-dependencies]
-dev = ["iamai @ "]
-
-[tool.pdm.build]
-includes = ["iamai"]
-excludes = ["iamai/__init__.py", "iamai/adapter/__init__.py"]
-
-
 [project]
 name = "iamai-adapter-red"
-version = "3.2.4"
+version = "3.2.5"
 description = "Red adapter for iamai."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
-dependencies = ["iamai>=3.2", "typing-extensions>=4.7.0"]
-requires-python = ">=3.8"
-readme = "README.md"
 license = { text = "MIT" }
+readme = "README.md"
 keywords = ["bot", "chatbot", "red"]
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -27,12 +16,18 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Topic :: Communications :: Chat",
 ]
-
-[build-system]
-requires = ["pdm-backend"]
-build-backend = "pdm.backend"
+requires-python = ">=3.8"
+dependencies = ["iamai>=3.2"]
 
 [project.urls]
-homepage = "https://retrofor.space/"
-repository = "https://github.com/retrofor/iamai"
-documentation = "https://iamai.retrofor.space/"
+Homepage = "https://iamai.retrofor.space/"
+Documentation = "https://iamai.retrofor.space/"
+Repository = "https://github.com/retrofor/iamai"
+Changelog = "https://iamai.retrofor.space/changelog.html"
+
+[tool.hatch.build]
+exclude = ["iamai/__init__.py", "iamai/adapter/__init__.py"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
