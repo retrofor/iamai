@@ -1,6 +1,6 @@
 [project]
 name = "iamai"
-version = "3.2.4"
+version = "3.2.5"
 description = "A bot Framework."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
@@ -17,70 +17,155 @@ keywords = [
   "bilibili-live",
 ]
 classifiers = [
-  "Development Status :: 5 - Production/Stable",
+  "Development Status :: 3 - Alpha",
+  "Framework :: AsyncIO",
   "Framework :: Robot Framework",
   "Framework :: Robot Framework :: Library",
+  "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
   "Programming Language :: Python :: 3",
+  "Topic :: Communications :: Chat",
 ]
-
 requires-python = ">=3.8"
-
 dependencies = [
   "tomli>=2.0.0,<3.0.0;python_version<'3.11'",
-  "pydantic>=1.10.0,<3.0.0",
+  "pydantic>=2.0.3,<3.0.0",
   "aiohttp>=3.8.0,<4.0.0",
   "loguru>=0.7.0,<0.8.0",
   "typing-extensions>=4.5.0",
-  "packages>=0.1.1",
-  "watchfiles>=0.20.0",
-  "httpimport>=1.3.1",
-  "scikit-learn>=1.3.1",
-  "flask>=2.0.3",
-  "pylint-pydantic>=0.2.4",
-  "qrcode>=7.4.2",
-  "requests>=2.31.0",
 ]
 
-
 [project.optional-dependencies]
-bililive = ["iamai-adapter-bililive"]
-cokook = ["iamai-adapter-kook"]
-console = ["iamai-adapter-console"]
 onebot11 = ["iamai-adapter-onebot11"]
+bililive = ["iamai-adapter-bililive"]
+mirai = ["iamai-adapter-mirai"]
 dingtalk = ["iamai-adapter-dingtalk"]
 apscheduler = ["iamai-adapter-apscheduler"]
 red = ["iamai-adapter-red"]
+console = ["iamai-adapter-console"]
+kook = ["iamai-adapter-kook"]
 hot_reload = ["watchfiles"]
 all = [
   "iamai-adapter-bililive",
-  "iamai-adapter-console",
-  "iamai-adapter-kook",
+  "iamai-adapter-onebot11",
+  "iamai-adapter-mirai",
   "iamai-adapter-dingtalk",
   "iamai-adapter-apscheduler",
-  "iamai-adapter-red",
+  "iamai-adapter-console",
+  "iamai-adapter-kook",
   "watchfiles",
 ]
 
 [tool.pdm.dev-dependencies]
 dev = [
-  "-e iamai-adapter-console @ {root:uri}/packages/iamai-adapter-console",
   "-e iamai-adapter-bililive @ {root:uri}/packages/iamai-adapter-bililive",
+  "-e iamai-adapter-console @ {root:uri}/packages/iamai-adapter-console",
   "-e iamai-adapter-kook @ {root:uri}/packages/iamai-adapter-kook",
+  "-e iamai-adapter-onebot11 @ {root:uri}/packages/iamai-adapter-onebot11",
+  "-e iamai-adapter-mirai @ {root:uri}/packages/iamai-adapter-mirai",
   "-e iamai-adapter-dingtalk @ {root:uri}/packages/iamai-adapter-dingtalk",
   "-e iamai-adapter-apscheduler @ {root:uri}/packages/iamai-adapter-apscheduler",
-  "-e iamai-adapter-red @ {root:uri}/packages/iamai-adapter-red",
-  "-e iamai-adapter-onebot11 @ {root:uri}/packages/iamai-adapter-onebot11",
 ]
-typing = ["watchfiles", "trio>=0.22.2"]
-lint = ["black", "pylint", "pylint-pydantic"]
+typing = [ # used only in type check
+  "watchfiles",
+  "trio>=0.22.2", # watchfiles used this lib
+]
+lint = ["black", "ruff", "mypy", "pylint", "pylint-pydantic"]
 docs = ["sophia-doc~=0.1.4", "tomlkit"]
-
+test = ["pytest", "pytest-asyncio", "pytest-xdist", "pytest-cov"]
 
 [project.urls]
-Homepage = "https://retrofor.space/"
-Repository = "https://github.com/retrofor/iamai"
+Homepage = "https://iamai.retrofor.space/"
 Documentation = "https://iamai.retrofor.space/"
+Repository = "https://github.com/retrofor/iamai"
+Changelog = "https://iamai.retrofor.space/changelog.html"
+
+[tool.black]
+target-version = ["py38", "py39", "py310", "py311"]
+
+[tool.ruff]
+line-length = 88
+select = ["ALL"]
+ignore = [
+  "C90",     # mccabe
+  "BLE",     # flake8-blind-except
+  "FBT",     # flake8-boolean-trap
+  "COM",     # flake8-commas
+  "EM",      # flake8-errmsg
+  "INP",     # flake8-no-pep420
+  "TID",     # flake8-tidy-imports
+  "E501",    # Line too long, handled by black
+  "D415",    # First line should end with a period, question mark, or exclamation point
+  "ANN101",  # Missing type annotation for self
+  "ANN102",  # Missing type annotation for cls
+  "ANN401",  # Dynamically typed expressions (typing.Any) are disallowed
+  "S101",    # Use of assert detected
+  "PGH003",  # Use specific rule codes when ignoring type issues
+  "PLR0912", # Too many branches
+  "PLR0913", # Too many arguments to function call
+  "TRY003",  # Avoid specifying long messages outside the exception class
+  "PERF203", # try-except within a loop incurs performance overhead
+  "RUF001",  # String contains ambiguous unicode character string
+  "RUF002",  # Docstring contains ambiguous unicode character string
+  "RUF003",  # Comment contains ambiguous unicode character string
+]
+target-version = "py38"
+
+[tool.ruff.flake8-builtins]
+builtins-ignorelist = ["id", "type"]
+
+[tool.ruff.isort]
+known-third-party = ["pydantic", "aiohttp", "loguru"]
+extra-standard-library = ["typing_extensions"]
+
+[tool.ruff.pydocstyle]
+convention = "google"
+
+[tool.ruff.pyflakes]
+extend-generics = [
+  "iamai.plugin.Plugin",
+  "iamai.adapter.Adapter",
+  "iamai.event.Event",
+  "iamai.event.MessageEvent",
+  "iamai.message.Message",
+  "iamai.message.MessageSegment",
+]
+
+[tool.ruff.pyupgrade]
+keep-runtime-typing = true
+
+[tool.ruff.per-file-ignores]
+"packages/*/iamai/__init__.py" = ["D104"]
+"packages/*/iamai/adapter/__init__.py" = ["D104"]
+"examples/plugins/*.py" = ["D", "T", "ANN"]
+"tests/*.py" = ["D", "PLR2004"]
+
+[tool.pyright]
+ignore = ["examples/plugins"]
+pythonVersion = "3.8"
+pythonPlatform = "All"
+typeCheckingMode = "strict"
+reportMissingTypeStubs = false
+reportUnknownMemberType = false
+reportUnnecessaryIsInstance = false
+reportCallInDefaultInitializer = true
+reportPropertyTypeMismatch = true
+reportShadowedImports = true
+reportUninitializedInstanceVariable = true
+
+[tool.mypy]
+python_version = "3.8"
+strict = true
+exclude = [
+  '^packages/.*/iamai/__init__\.py$',
+  '^packages/.*/iamai/adapter/__init__\.py$',
+  '^examples/.*\.py$',
+]
+warn_return_any = false
+
+[[tool.mypy.overrides]]
+module = "apscheduler.*"
+ignore_missing_imports = true
 
 [tool.pylint.main]
 disable = [
@@ -101,41 +186,28 @@ disable = [
 load-plugins = ["pylint_pydantic"]
 source-roots = ["."]
 
-[tool.pylint.basic]
-good-names = ["i", "j", "k", "ex", "Run", "_", "e", "f", "ws", "cm", "at"]
-
 [tool.pylint.variables]
 allowed-redefined-builtins = ["id", "type"]
-[tool.black]
-target-version = ["py38", "py39", "py310", "py311"]
 
-[tool.isort]
-profile = "black"
-length_sort = true
-skip_gitignore = true
-force_sort_within_sections = true
-src_paths = ["iamai", "tests"]
-extra_standard_library = ["typing_extensions"]
+[tool.pytest.ini_options]
+log_cli = true
+testpaths = "tests"
+addopts = "--cov=iamai --cov-report=term-missing"
 
-[tool.pyright]
-exclude = ["tests"]
-pythonVersion = "3.8"
-pythonPlatform = "All"
-typeCheckingMode = "strict"
-reportImportCycles = false
-reportIncompatibleMethodOverride = false
-reportMissingTypeArgument = false
-reportMissingTypeStubs = false
-reportUnknownArgumentType = false
-reportUnknownLambdaType = false
-reportUnknownMemberType = false
-reportUnknownParameterType = false
-reportUnknownVariableType = false
-reportUnnecessaryIsInstance = false
+[tool.coverage.run]
+omit = ["iamai/adapter/utils.py"]
 
-[tool.pydantic-pycharm-plugin]
-ignore-init-method-arguments = true
+[tool.coverage.report]
+exclude_also = [
+  "raise NotImplementedError",
+  "if TYPE_CHECKING:",
+  "@overload",
+  "@(abc\\.)?abstractmethod",
+]
+
+[tool.hatch.build.targets.sdist]
+include = ["/README.md", "/iamai"]
 
 [build-system]
-requires = ["pdm-backend"]
-build-backend = "pdm.backend"
+requires = ["hatchling"]
+build-backend = "hatchling.build"

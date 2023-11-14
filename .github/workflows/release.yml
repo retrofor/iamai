@@ -1,95 +1,90 @@
 name: Release
 
 on:
-  push:
-    tags:
-      - "v*"
   workflow_dispatch:
 
 jobs:
-  build:
+  update-api-doc:
     runs-on: ubuntu-latest
-
+    environment: release
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install PDM
-        run: pipx install pdm
-        shell: bash
-      - uses: actions/setup-python@v4
+      - uses: pdm-project/setup-pdm@v3
+        name: Setup PDM
         with:
-          python-version: "3.9"
-          architecture: "x64"
-
+          python-version: 3.9
+          cache: true
       - name: Install dependencies
         run: pdm install
+
+      - name: Remove API Doc
+        run: rm -rf docs/pages/api
+      - name: Build API Doc
+        run: pdm run sophia-doc iamai -o docs/pages/api --anchor-extend --ignore-data --overwrite --exclude-module-name --init-file-name index.md
+        shell: bash
+        env:
+          iamai_DEV: "1"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: "docs: 更新 API 文档"
+          title: "docs: 更新 API 文档"
+          body: "自动更新 API 文档"
+          branch: docs/update-api-docs
+          base: master
+
+  build:
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: pdm-project/setup-pdm@v3
+        name: Setup PDM
+        with:
+          python-version: 3.9
+          cache: true
+      - name: Install dependencies
+        run: pdm install
+
+      - run: pdm publish
         shell: bash
 
       - run: pdm publish
         shell: bash
-        env:
-          PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-          PDM_PUBLISH_USERNAME: ${{ secrets.PYPI_USERNAME }}
-
-      - name: Publish iamai-adapter-apscheduler
-        run: |
-          pdm publish
-        shell: bash
-        env:
-          PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-          PDM_PUBLISH_USERNAME: ${{ secrets.PYPI_USERNAME }}
         working-directory: ./packages/iamai-adapter-apscheduler
 
-      - name: Publish iamai-adapter-dingtalk
-        run: |
-          pdm publish
+      - run: pdm publish
         shell: bash
-        env:
-          PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-          PDM_PUBLISH_USERNAME: ${{ secrets.PYPI_USERNAME }}
-        working-directory: ./packages/iamai-adapter-dingtalk
-    
-      - name: Publish iamai-adapter-kook
-        run: |
-          pdm publish
-        shell: bash
-        env:
-          PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-          PDM_PUBLISH_USERNAME: ${{ secrets.PYPI_USERNAME }}
         working-directory: ./packages/iamai-adapter-kook
 
-      - name: Publish iamai-adapter-console
-        run: |
-          pdm publish
+      - run: pdm publish
         shell: bash
-        env:
-          PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-          PDM_PUBLISH_USERNAME: ${{ secrets.PYPI_USERNAME }}
-        working-directory: ./packages/iamai-adapter-console
+        working-directory: ./packages/iamai-adapter-onebot11
 
-      - name: Publish iamai-adapter-bililive
-        run: |
-          pdm publish
+      - run: pdm publish
         shell: bash
-        env:
-          PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-          PDM_PUBLISH_USERNAME: ${{ secrets.PYPI_USERNAME }}
+        working-directory: ./packages/iamai-adapter-dingtalk
+
+      - run: pdm publish
+        shell: bash
+        working-directory: ./packages/iamai-adapter-mirai
+
+      - run: pdm publish
+        shell: bash
         working-directory: ./packages/iamai-adapter-bililive
 
-      - name: Publish iamai-adapter-red
-        run: |
-          pdm publish
+      - run: pdm publish
         shell: bash
-        env:
-          PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-          PDM_PUBLISH_USERNAME: ${{ secrets.PYPI_USERNAME }}
-        working-directory: ./packages/iamai-adapter-red
+        working-directory: ./packages/iamai-adapter-console
 
-      - name: Publish iamai-adapter-onebot11
-        run: |
-          pdm publish
+      - run: pdm publish
         shell: bash
-        env:
-          PDM_PUBLISH_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-          PDM_PUBLISH_USERNAME: ${{ secrets.PYPI_USERNAME }}
-        working-directory: ./packages/iamai-adapter-onebot11
+        working-directory: ./packages/iamai-adapter-red

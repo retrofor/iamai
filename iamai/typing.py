@@ -2,38 +2,40 @@
 
 此模块定义了部分 iamai 使用的类型。
 """
+# ruff: noqa: TCH001
+from typing import TYPE_CHECKING, Awaitable, Callable, Optional, TypeVar
 
-from typing import TYPE_CHECKING, TypeVar, Callable, NoReturn, Awaitable
-
-from iamai.message import T_MS, T_Message, T_MessageSegment
+from iamai.message import BuildMessageType, MessageSegmentT, MessageT
 
 if TYPE_CHECKING:
-    from iamai.bot import Bot  # noqa
-    from iamai.event import Event  # noqa
-    from iamai.plugin import Plugin  # noqa
-    from iamai.adapter import Adapter  # noqa
-    from iamai.config import ConfigModel  # noqa
+    from typing import Any
+
+    from iamai.adapter import Adapter
+    from iamai.bot import Bot
+    from iamai.config import ConfigModel
+    from iamai.event import Event
+    from iamai.plugin import Plugin
 
 __all__ = [
-    "T_State",
-    "T_Event",
-    "T_Plugin",
-    "T_Adapter",
-    "T_Config",
-    "T_Message",
-    "T_MessageSegment",
-    "T_MS",
-    "T_BotHook",
-    "T_AdapterHook",
-    "T_EventHook",
+    "StateT",
+    "EventT",
+    "PluginT",
+    "AdapterT",
+    "ConfigT",
+    "MessageT",
+    "MessageSegmentT",
+    "BuildMessageType",
+    "BotHook",
+    "AdapterHook",
+    "EventHook",
 ]
 
-T_State = TypeVar("T_State")
-T_Event = TypeVar("T_Event", bound="Event")
-T_Plugin = TypeVar("T_Plugin", bound="Plugin")
-T_Adapter = TypeVar("T_Adapter", bound="Adapter")
-T_Config = TypeVar("T_Config", bound="ConfigModel")
+StateT = TypeVar("StateT")
+EventT = TypeVar("EventT", bound="Event[Any]")
+PluginT = TypeVar("PluginT", bound="Plugin[Any, Any, Any]")
+AdapterT = TypeVar("AdapterT", bound="Adapter[Any, Any]")
+ConfigT = TypeVar("ConfigT", bound=Optional["ConfigModel"])
 
-T_BotHook = Callable[["Bot"], Awaitable[NoReturn]]
-T_AdapterHook = Callable[[T_Adapter], Awaitable[NoReturn]]
-T_EventHook = Callable[[T_Event], Awaitable[NoReturn]]
+BotHook = Callable[["Bot"], Awaitable[None]]
+AdapterHook = Callable[["Adapter[Any, Any]"], Awaitable[None]]
+EventHook = Callable[["Event[Any]"], Awaitable[None]]
