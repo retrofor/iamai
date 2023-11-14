@@ -1,9 +1,9 @@
-import os
-import sys
 import argparse
+import os
 import platform
-from typing import Set, Optional
+import sys
 from importlib.metadata import version
+from typing import Optional, Set
 
 from iamai import ConfigModel
 

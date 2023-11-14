@@ -1,28 +1,28 @@
 """Bililive 适配器事件。"""
 import asyncio
 import inspect
-from enum import IntEnum
-from email import message
 from collections import UserDict
+from email import message
+from enum import IntEnum
 from typing import (
     TYPE_CHECKING,
     Any,
     Dict,
     List,
-    Type,
-    Tuple,
-    Union,
     Literal,
-    TypeVar,
     Optional,
+    Tuple,
+    Type,
+    TypeVar,
+    Union,
 )
 
 from isort import literal
-from pydantic import Field, HttpUrl, BaseModel, validator, root_validator
+from pydantic import BaseModel, Field, HttpUrl, root_validator, validator
 
 from iamai.event import Event
 
-from .message import Message, BililiveMessage
+from .message import BililiveMessage, Message
 
 if TYPE_CHECKING:
     from . import BililiveAdapter

@@ -1,5 +1,5 @@
-from enum import IntEnum
 from abc import abstractmethod
+from enum import IntEnum
 
 from utils.file_loader import load_config as load_plugin_config
 

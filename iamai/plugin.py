@@ -17,6 +17,7 @@ from typing import (
     cast,
     final,
 )
+
 from typing_extensions import Annotated, get_args, get_origin
 
 from iamai.config import ConfigModel

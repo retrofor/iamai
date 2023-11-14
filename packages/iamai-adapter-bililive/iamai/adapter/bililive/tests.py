@@ -1,7 +1,7 @@
 import time
 
-from bilibili_api import Danmaku, Credential, sync
-from bilibili_api.live import LiveRoom, LiveDanmaku
+from bilibili_api import Credential, Danmaku, sync
+from bilibili_api.live import LiveDanmaku, LiveRoom
 
 # 自己直播间号
 ROOMID = 21752074

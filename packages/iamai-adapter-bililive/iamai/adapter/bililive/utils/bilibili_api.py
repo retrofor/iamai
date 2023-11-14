@@ -1,15 +1,15 @@
-import os
-import time
 import asyncio
 import logging
+import os
+import time
 from typing import Any
 
-import qrcode
 import aiohttp
+import qrcode
 from aiohttp import cookiejar
-from qrcode.main import QRCode
 from aiohttp.client import ClientSession
 from aiohttp.client_exceptions import ClientResponseError
+from qrcode.main import QRCode
 
 QRCODE_REQUEST_URL = "http://passport.bilibili.com/qrcode/getLoginUrl"
 CHECK_LOGIN_RESULT = "http://passport.bilibili.com/qrcode/getLoginInfo"

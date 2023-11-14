@@ -3,25 +3,25 @@
 本适配器适配了 red 协议。
 协议详情请参考: [RedProtocol](https://chrononeko.github.io/QQNTRedProtocol/) 。
 """
-import os
-import json
 import asyncio
-from uu import Error
+import json
+import os
 from functools import partial
 from typing import TYPE_CHECKING, Any, Dict, Literal
+from uu import Error
 
-import yaml
 import aiohttp
+import yaml
 from itsdangerous import exc
 
-from iamai.log import logger
 from iamai.adapter.utils import WebSocketAdapter
+from iamai.log import logger
 
 from .api import HANDLE
-from .exceptions import *
-from .message import RedMessage
 from .config import USER_CONFIG, Config
 from .event import MsgType, RedEvent, get_event_class
+from .exceptions import *
+from .message import RedMessage
 
 if TYPE_CHECKING:
     from .message import T_RedMSG  # type: ignore

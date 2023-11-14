@@ -1,12 +1,8 @@
 from iamai import Plugin
+from iamai.adapter.kook.message import (KookMessage, KookMessageSegment,
+                                        escape_kmarkdown, unescape_kmarkdown)
 from iamai.log import logger
 from iamai.models.BM25 import BM25
-from iamai.adapter.kook.message import (
-    KookMessage,
-    KookMessageSegment,
-    escape_kmarkdown,
-    unescape_kmarkdown,
-)
 
 documents = [
     "管制品兑换-远程武器-手枪-等级1".split("-"),

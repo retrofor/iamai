@@ -1,16 +1,16 @@
 """OneBot11 适配器事件。"""
 import inspect
-from typing import TYPE_CHECKING, Any, Dict, Type, Union, Literal, TypeVar, Optional
+from typing import TYPE_CHECKING, Any, Dict, Literal, Optional, Type, TypeVar, Union
 
-from pydantic import Field, BaseModel
+from pydantic import BaseModel, Field
 
 from iamai.event import Event
 
 from .message import OneBot11Message
 
 if TYPE_CHECKING:
-    from .message import T_CQMSG
     from . import OneBot11Adapter
+    from .message import T_CQMSG
 
 T_OneBot11Event = TypeVar("T_OneBot11Event", bound="OneBot11Event")
 

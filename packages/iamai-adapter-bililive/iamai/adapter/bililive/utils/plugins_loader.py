@@ -1,11 +1,11 @@
 import inspect
 import logging
-from os import listdir
-from os.path import join, isfile
 from importlib.machinery import SourceFileLoader
+from os import listdir
+from os.path import isfile, join
 
-from utils.plugin import BotPlugin
 from utils.file_loader import make_folder
+from utils.plugin import BotPlugin
 
 PLUGINS_DIR = "plugins"
 make_folder(PLUGINS_DIR)

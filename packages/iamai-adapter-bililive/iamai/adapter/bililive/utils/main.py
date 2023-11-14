@@ -1,14 +1,13 @@
-import json
 import asyncio
+import json
 import logging
 
-from genericpath import exists
 from aiohttp.client import ClientSession
-
+from genericpath import exists
+from utils.bilibili_api import get_cookies, login, user_cookies
 from utils.bilibili_bot import BiliLiveBot
+from utils.file_loader import load_default_config, make_folder
 from utils.plugins_loader import load_plugins
-from utils.file_loader import make_folder, load_default_config
-from utils.bilibili_api import login, get_cookies, user_cookies
 
 
 async def start_bot(room: int):

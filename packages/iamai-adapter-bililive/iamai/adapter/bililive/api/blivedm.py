@@ -2,17 +2,17 @@
 
 __all__ = ["BLiveClient"]
 
-import json
-import zlib
-import struct
 import asyncio
+import json
 import logging
 import ssl as ssl_
-from enum import IntEnum
+import struct
+import zlib
 
 # code from xfgryujk
 from abc import abstractmethod
 from collections import namedtuple
+from enum import IntEnum
 from typing import *  # ??这是什么粗暴的import方式
 
 import aiohttp

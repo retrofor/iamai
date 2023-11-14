@@ -2,16 +2,15 @@ import logging
 from typing import List
 
 from aiohttp import ClientSession
-
-from utils.plugin import BotPlugin, DanmakuMessage, DanmakuPosition, SuperChatMessage
 from utils.bilibili_api import (
-    mute_user,
-    send_danmu,
     add_badword,
-    room_slient,
-    user_cookies,
+    mute_user,
     remove_badword,
+    room_slient,
+    send_danmu,
+    user_cookies,
 )
+from utils.plugin import BotPlugin, DanmakuMessage, DanmakuPosition, SuperChatMessage
 
 from ..api.blivedm import BLiveClient
 
