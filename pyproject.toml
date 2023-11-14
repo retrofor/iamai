@@ -33,6 +33,7 @@ dependencies = [
     "aiohttp>=3.8.0,<4.0.0",
     "loguru>=0.7.0,<0.8.0",
     "typing-extensions>=4.5.0",
+    "sophia-doc>=0.1.6",
 ]
 
 [project.optional-dependencies]

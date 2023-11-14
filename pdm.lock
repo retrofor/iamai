@@ -5,7 +5,7 @@
 groups = ["default"]
 strategy = ["cross_platform"]
 lock_version = "4.4"
-content_hash = "sha256:4ae6465e4775ea65393645a2a7a64620713183e9dd022a4b382578faefdbf006"
+content_hash = "sha256:c563471601aec321f5169e2ec740f96d1165e78f12f74071b3c875470dc92a2e"
 
 [[package]]
 name = "aiohttp"
@@ -224,6 +224,16 @@ summary = "Cross-platform colored terminal text."
 files = [
     {file = "colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"},
     {file = "colorama-0.4.6.tar.gz", hash = "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44"},
+]
+
+[[package]]
+name = "docstring-parser"
+version = "0.15"
+requires_python = ">=3.6,<4.0"
+summary = "Parse Python docstrings in reST, Google and Numpydoc format"
+files = [
+    {file = "docstring_parser-0.15-py3-none-any.whl", hash = "sha256:d1679b86250d269d06a99670924d6bce45adc00b08069dae8c47d98e89b667a9"},
+    {file = "docstring_parser-0.15.tar.gz", hash = "sha256:48ddc093e8b1865899956fcc03b03e66bb7240c310fac5af81814580c55bf682"},
 ]
 
 [[package]]
@@ -501,6 +511,20 @@ files = [
     {file = "pydantic_core-2.14.1-pp39-pypy39_pp73-musllinux_1_1_x86_64.whl", hash = "sha256:8e17f0c3ba4cb07faa0038a59ce162de584ed48ba645c8d05a5de1e40d4c21e7"},
     {file = "pydantic_core-2.14.1-pp39-pypy39_pp73-win_amd64.whl", hash = "sha256:d983222223f63e323a5f497f5b85e211557a5d8fb670dc88f343784502b466ba"},
     {file = "pydantic_core-2.14.1.tar.gz", hash = "sha256:0d82a6ee815388a362885186e431fac84c7a06623bc136f508e9f88261d8cadb"},
+]
+
+[[package]]
+name = "sophia-doc"
+version = "0.1.6"
+requires_python = ">=3.8"
+summary = "A python package to automatically generate API documents for Python modules."
+dependencies = [
+    "docstring-parser>=0.15",
+    "typing-extensions>=4.7.1",
+]
+files = [
+    {file = "sophia_doc-0.1.6-py3-none-any.whl", hash = "sha256:a41bf8a1db975fba5c10bb6432f4622bda5577eae22afce09d67dac2367c7c6a"},
+    {file = "sophia_doc-0.1.6.tar.gz", hash = "sha256:2e17362556c1ee1c35bf4e58b5dec20f1bcb8d5b46c275f25e34a053de7c02cc"},
 ]
 
 [[package]]
