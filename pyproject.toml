@@ -1,6 +1,6 @@
 [project]
 name = "iamai"
-version = "3.2.7"
+version = "3.2.8"
 description = "A bot Framework."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
@@ -52,9 +52,37 @@ all = [
     "iamai-adapter-dingtalk",
     "iamai-adapter-apscheduler",
     "iamai-adapter-console",
+    "iamai-adapter-red",
     "iamai-adapter-kook",
     "watchfiles",
 ]
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "-e iamai-adapter-red @ {root:uri}/packages/iamai-adapter-red",
+    "-e iamai-adapter-bililive @ {root:uri}/packages/iamai-adapter-bililive",
+    "-e iamai-adapter-kook @ {root:uri}/packages/iamai-adapter-kook",
+    "-e iamai-adapter-onebot11 @ {root:uri}/packages/iamai-adapter-onebot11",
+    "-e iamai-adapter-console @ {root:uri}/packages/iamai-adapter-console",
+    "-e iamai-adapter-dingtalk @ {root:uri}/packages/iamai-adapter-dingtalk",
+    "-e iamai-adapter-apscheduler @ {root:uri}/packages/iamai-adapter-apscheduler",
+]
+typing = [ # used only in type check
+    "watchfiles",
+    "trio>=0.22.2", # watchfiles used this lib
+]
+lint = ["black", "ruff", "mypy", "pylint", "pylint-pydantic"]
+docs = ["sophia-doc~=0.1.4", "tomlkit"]
+test = ["pytest", "pytest-asyncio", "pytest-xdist", "pytest-cov"]
+
+[project.urls]
+Homepage = "https://iamai.retrofor.space/"
+Documentation = "https://iamai.retrofor.space/"
+Repository = "https://github.com/retrofor/iamai"
+Changelog = "https://iamai.retrofor.space/changelog.html"
+
+[tool.black]
+target-version = ["py38", "py39", "py310", "py311"]
 
 [build-system]
 requires = ["hatchling"]
