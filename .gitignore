@@ -154,10 +154,5 @@ iamai/adapter/cqhttp/
 dist/**/*
 .pdm-build/**/*
 
-
-# adapters
-iamai/adapter/**
-
-
 # tests
 tests/logs
