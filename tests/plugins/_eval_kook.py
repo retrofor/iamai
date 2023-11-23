@@ -23,7 +23,7 @@ class EvalKook(Plugin):
 
     async def handle(self) -> None:
         msg = KookMessage()
-        msg += KookMessageSegment.text('jijijijiji')
+        msg += KookMessageSegment.text("jijijijiji")
         await self.event.reply(msg)
         logger.info(list(self.event))
         # await self.event.adapter.call_api(
