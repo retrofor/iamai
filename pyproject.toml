@@ -81,6 +81,9 @@ Documentation = "https://iamai.retrofor.space/"
 Repository = "https://github.com/retrofor/iamai"
 Changelog = "https://iamai.retrofor.space/changelog.html"
 
+[project.scripts]
+iamai = "iamai.cli:Cli.parse_args"
+
 [tool.black]
 target-version = ["py38", "py39", "py310", "py311"]
 
