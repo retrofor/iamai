@@ -21,23 +21,27 @@ class HydroRoll(Plugin):
         @BODY: HydroRollCore actives the rule-packages.
         """
 
-        if self.event.message.get_plain_text() == ".core":
-            await self.event.reply("HydroRollCore is running.")
-        elif self.event.message.startswith(".test"):
-            try:
-                from ast import literal_eval
+        try:
+            if self.event.message.get_plain_text() == "/core":
+                await self.event.reply("HydroRollCore is running.")
+            elif self.event.message.startswith("/test"):
+                try:
+                    from ast import literal_eval
 
-                result = literal_eval(self.event.message.get_plain_text()[5:])
-                await self.event.reply(result)
-            except Exception as e:
-                await self.event.reply(f"{e!r}")
-
+                    result = literal_eval(self.event.message.get_plain_text()[5:])
+                    await self.event.reply(result)
+                except Exception as e:
+                    await self.event.reply(f"{e!r}")
+        except Exception as e:
+            logger.exception(e)
+            
     async def rule(self) -> bool:
         """
         @TODO: Psi should be able to handle all message first.
         @BODY: lexer module will return a list of tokens, parser module will parse the tokens into a tree, and executor module will execute the tokens with a stack with a bool return value.
         """
         logger.info("loading psi...")
+        logger.info(f"{self.event.message.get_plain_text()}")
         if self.event.type != "message":
             return False
-        return self.event.message.get_plain_text().startswith(".")
+        return self.event.message.get_plain_text().startswith("/")
