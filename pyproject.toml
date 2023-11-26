@@ -53,6 +53,7 @@ all = [
     "iamai-adapter-onebot11",
     "iamai-adapter-dingtalk",
     "iamai-adapter-apscheduler",
+    "iamai-adapter-gensokyo",
     "iamai-adapter-console",
     "iamai-adapter-red",
     "iamai-adapter-kook",
