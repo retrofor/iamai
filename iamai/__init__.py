@@ -30,3 +30,5 @@ __all__ = [
     "Plugin",
     "Cli",
 ]
+
+__version__ = "3.3.3"
