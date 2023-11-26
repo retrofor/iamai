@@ -1,13 +1,13 @@
 from iamai import Plugin
 
 
-class Halloiamai(Plugin):
+class Hallo(Plugin):
     async def handle(self) -> None:
-        await self.event.reply("Hello, iamai!")
+        await self.event.reply("Hello!")
 
     async def rule(self) -> bool:
-        if self.event.adapter.name != "onebot11":
+        if self.event.adapter.name != "gensokyo":
             return False
         if self.event.type != "message":
             return False
-        return str(self.event.message).lower() == "hello"
+        return str(self.event.message).lower() == "shiki"

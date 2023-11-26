@@ -1,6 +1,6 @@
 [project]
 name = "iamai"
-version = "3.2.9"
+version = "3.3.0"
 description = "A bot Framework."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
@@ -10,6 +10,7 @@ keywords = [
     "red",
     "kook",
     "onebot11",
+    "gensokyo",
     "dingtalk",
     "console",
     "apscheduler",
@@ -30,7 +31,7 @@ requires-python = ">=3.8"
 dependencies = [
     "tomli>=2.0.0,<3.0.0;python_version<'3.11'",
     "pydantic>=2.0.3,<3.0.0",
-    "aiohttp>=3.8.0,<4.0.0",
+    "aiohttp>=3.9.0",
     "loguru>=0.7.0,<0.8.0",
     "typing-extensions>=4.8.0",
     "sophia-doc>=0.1.6",
@@ -45,6 +46,7 @@ apscheduler = ["iamai-adapter-apscheduler"]
 red = ["iamai-adapter-red"]
 console = ["iamai-adapter-console"]
 kook = ["iamai-adapter-kook"]
+gensokyo = ["iamai-adapter-gensokyo"]
 hot_reload = ["watchfiles"]
 all = [
     "iamai-adapter-bililive",
@@ -66,6 +68,7 @@ dev = [
     "-e iamai-adapter-console @ {root:uri}/packages/iamai-adapter-console",
     "-e iamai-adapter-dingtalk @ {root:uri}/packages/iamai-adapter-dingtalk",
     "-e iamai-adapter-apscheduler @ {root:uri}/packages/iamai-adapter-apscheduler",
+    "-e iamai-adapter-gensokyo @ {root:uri}/packages/packages/iamai-adapter-gensokyo"
 ]
 typing = [ # used only in type check
     "watchfiles",
@@ -80,6 +83,9 @@ Homepage = "https://iamai.retrofor.space/"
 Documentation = "https://iamai.retrofor.space/"
 Repository = "https://github.com/retrofor/iamai"
 Changelog = "https://iamai.retrofor.space/changelog.html"
+
+[project.scripts]
+iamai = "iamai.cli:Cli.parse_args"
 
 [tool.black]
 target-version = ["py38", "py39", "py310", "py311"]

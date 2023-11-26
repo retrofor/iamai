@@ -1,11 +1,11 @@
 [project]
-name = "iamai-adapter-onebot11"
+name = "iamai-adapter-gensokyo"
 version = "3.3.0"
-description = "OneBot(V11) adapter for iamai."
+description = "Gensokyo adapter for iamai."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
 readme = "README.md"
-keywords = ["bot", "chatbot", "qq", "ontbot", "cqhttp"]
+keywords = ["bot", "chatbot", "qq", "ontbot", "gensokyo"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Framework :: AsyncIO",
