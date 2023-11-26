@@ -69,7 +69,7 @@ dev = [
     "-e iamai-adapter-console @ {root:uri}/packages/iamai-adapter-console",
     "-e iamai-adapter-dingtalk @ {root:uri}/packages/iamai-adapter-dingtalk",
     "-e iamai-adapter-apscheduler @ {root:uri}/packages/iamai-adapter-apscheduler",
-    "-e iamai-adapter-gensokyo @ {root:uri}/packages/packages/iamai-adapter-gensokyo"
+    "-e iamai-adapter-gensokyo @ {root:uri}/packages/iamai-adapter-gensokyo"
 ]
 typing = [ # used only in type check
     "watchfiles",
