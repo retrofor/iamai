@@ -50,9 +50,7 @@ class GSKMessageSegment(MessageSegment["GSKMessage"]):
         Returns:
             消息字段的文本表示。
         """
-        if self.type == "text":
-            return self.data.get("text", "")
-        return self.get_cqcode()
+        return self.data.get("text", "") if self.type == "text" else self.get_cqcode()
 
     def get_cqcode(self) -> str:
         """获取此消息字段的 CQ 码形式。
@@ -247,7 +245,7 @@ class GSKMessageSegment(MessageSegment["GSKMessage"]):
             type="node",
             data={
                 "user_id": str(user_id),
-                "nickname": str(nickname),
+                "nickname": nickname,
                 "content": content,
             },
         )

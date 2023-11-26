@@ -3,6 +3,7 @@
 本适配器适配了 gensokyo obv11 协议。
 协议详情请参考：[OneBot](https://github.com/howmanybots/onebot/blob/master/README.md)。
 """
+
 import asyncio
 import inspect
 import json
@@ -39,10 +40,11 @@ __all__ = ["GSKAdapter"]
 
 EventModels = Dict[Tuple[Optional[str], Optional[str], Optional[str]], Type[GSKEvent]]
 
-DEFAULT_EVENT_MODELS: EventModels = {}
-for _, model in inspect.getmembers(event, inspect.isclass):
-    if issubclass(model, GSKEvent):
-        DEFAULT_EVENT_MODELS[model.get_event_type()] = model
+DEFAULT_EVENT_MODELS: EventModels = {
+    model.get_event_type(): model
+    for _, model in inspect.getmembers(event, inspect.isclass)
+    if issubclass(model, GSKEvent)
+}
 
 
 class GSKAdapter(WebSocketAdapter[GSKEvent, Config]):
@@ -181,7 +183,7 @@ class GSKAdapter(WebSocketAdapter[GSKEvent, Config]):
         else:
             event_class = self.get_event_model(
                 post_type,
-                msg.get(post_type + "_type", None),
+                msg.get(f"{post_type}_type", None),
                 msg.get("sub_type", None),
             )
 
@@ -199,9 +201,7 @@ class GSKAdapter(WebSocketAdapter[GSKEvent, Config]):
                     )
             elif gsk_event.meta_event_type == "heartbeat":
                 assert isinstance(gsk_event, HeartbeatMetaEvent)
-                if gsk_event.status.good and gsk_event.status.online:
-                    pass
-                else:
+                if not gsk_event.status.good or not gsk_event.status.online:
                     logger.error(
                         f"gensokyo Bot status is not good: {gsk_event.status.model_dump()}"
                     )
@@ -300,12 +300,11 @@ class GSKAdapter(WebSocketAdapter[GSKEvent, Config]):
         """
         async with aiohttp.ClientSession() as session:
             async with session.post(
-                self._get_access_token_url,
-                {"appId": self.config.app_id, "clientSecret": self.config.app_secret},
-            ) as response:
-                if response.status == 200:
-                    data = await response.json()
-                    logger.info(f"Access token: {data}")
-                    return data
-                else:
+                        self._get_access_token_url,
+                        {"appId": self.config.app_id, "clientSecret": self.config.app_secret},
+                    ) as response:
+                if response.status != 200:
                     raise TimeoutError
+                data = await response.json()
+                logger.info(f"Access token: {data}")
+                return data

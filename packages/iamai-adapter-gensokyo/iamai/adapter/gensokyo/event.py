@@ -73,9 +73,7 @@ def _get_literal_field(field: Optional[FieldInfo]) -> Optional[str]:
     if annotation is None or get_origin(annotation) is not Literal:
         return None
     literal_values = get_args(annotation)
-    if len(literal_values) != 1:
-        return None
-    return literal_values[0]
+    return None if len(literal_values) != 1 else literal_values[0]
 
 
 class GSKEvent(Event["GSKAdapter"]):
@@ -104,7 +102,7 @@ class GSKEvent(Event["GSKAdapter"]):
             return (None, None, None)
         return (
             post_type,
-            _get_literal_field(cls.model_fields.get(post_type + "_type", None)),
+            _get_literal_field(cls.model_fields.get(f"{post_type}_type", None)),
             _get_literal_field(cls.model_fields.get("sub_type", None)),
         )
 
