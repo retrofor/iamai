@@ -43,9 +43,9 @@
     <!-- <img src="https://img.shields.io/badge/-github-181717?style=flat-square&logo=github&logoColor=white"> -->
     <!-- discord -->
     <!-- <img src="https://img.shields.io/badge/-Discord-5865F2?style=flat-square&logo=Discord&logoColor=white"> -->
-    <br />
     <!-- bilibili live -->
     <img src="https://img.shields.io/badge/-BiliBili Live-00A1D6?style=flat-square&logo=Bilibili&logoColor=white">
+    <br />
     <!-- dingtalk -->
     <img src="https://img.shields.io/badge/http/stream-DingTalk-blue?style=flat-square">
     <!-- <br> -->
@@ -58,7 +58,9 @@
     <!-- tg -->
     <!-- <img src="https://img.shields.io/badge/-Telegram-26A5E4?style=flat-square&logo=telegram&logoColor=white"> -->
     <!-- red -->
-    <img src="https://img.shields.io/badge/-Red-red?style=flat-square&logo=red&logoColor=white">
+    <img src="https://img.shields.io/badge/Chronocat-Red-red?style=flat-square&logo=&logoColor=white">
+    <!-- gensokyo -->
+    <img src="https://img.shields.io/badge/Onebot11-Gensokyo-blue?style=flat-square&logo=[red](https://mirror.ghproxy.com/github.com/Hoshinonyaruko/Gensokyo/blob/main/frontend/public/icons/favicon-128x128.png)&logoColor=white">
   </a>
 </p>
 <p align="center">
