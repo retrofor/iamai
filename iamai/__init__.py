@@ -28,5 +28,5 @@ __all__ = [
     "Event",
     "MessageEvent",
     "Plugin",
-    "Cli"
+    "Cli",
 ]

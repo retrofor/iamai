@@ -34,7 +34,7 @@ class HydroRoll(Plugin):
                     await self.event.reply(f"{e!r}")
         except Exception as e:
             logger.exception(e)
-            
+
     async def rule(self) -> bool:
         """
         @TODO: Psi should be able to handle all message first.
