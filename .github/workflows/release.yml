@@ -91,3 +91,7 @@ jobs:
       - run: pdm publish
         shell: bash
         working-directory: ./packages/iamai-adapter-red
+
+      - run: pdm publish
+        shell: bash
+        working-directory: ./packages/iamai-adapter-gensokyo

@@ -28,5 +28,7 @@ __all__ = [
     "Event",
     "MessageEvent",
     "Plugin",
-    "Cli"
+    "Cli",
 ]
+
+__version__ = "3.3.3"
