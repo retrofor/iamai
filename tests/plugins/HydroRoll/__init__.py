@@ -20,9 +20,7 @@ def _init_directory(_prefix: str = ""):
 
 
 def _load_models():
-    models = {}
-    models["hola"] = joblib.load(join(HYDRO_DIR, "models", "hola.pkl"))
-    return models
+    return {"hola": joblib.load(join(HYDRO_DIR, "models", "hola.pkl"))}
 
 
 def load_model(model):
