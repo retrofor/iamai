@@ -83,15 +83,14 @@ class Directory(object):
         self.current_path = _path
 
     def get_dice_dir_list(self, _prefix: str) -> list:
-
         return [
-            os.path.join(self.current_path, f'{_prefix}', *dirs)
+            os.path.join(self.current_path, f"{_prefix}", *dirs)
             for dirs in [
-                ['config'],
-                ['data'],
-                ['rules'],
-                ['scripts'],
-                ['web', 'frontend'],
-                ['web', 'backend'],
+                ["config"],
+                ["data"],
+                ["rules"],
+                ["scripts"],
+                ["web", "frontend"],
+                ["web", "backend"],
             ]
         ]

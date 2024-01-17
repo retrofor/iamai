@@ -1,6 +1,7 @@
 import difflib
 import pickle
 
+
 def find_max_similarity(input_string, string_list):
     max_similarity = 0
     max_string = ""
