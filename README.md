@@ -98,7 +98,7 @@ A Cross-platform robot framework, mainly used for machine learning and based on 
 - STABLE VERSION
 
   ```sh
-  pip install iamai
+  pdm add iamai
   ```
 
 or you can also install for TEST.
@@ -123,15 +123,11 @@ pip install iamai-adapter-kook
 
 ## ❗ Usage
 
-firstly, you need to load an adapter.
+since version 3.3.1, we recommend using the `iamai` shell command instead:
 
-```python
-from iamai import Bot
-
-bot = Bot()
-bot.load_adapters("iamai.adapter.console")
-
-bot.run()
+```shell
+iamai new "my bot"
+cd "my bot"
 ```
 
 then, you need load the transformer and use your models.
