@@ -1,4 +1,3 @@
-from ast import arg
 from importlib.metadata import version
 import shutil
 import requests
@@ -63,7 +62,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-
 
 class Cli:
     def __init__(self):
