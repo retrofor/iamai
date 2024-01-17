@@ -1,10 +1,9 @@
-import os
-import sys
 import argparse
+import sys
 import platform
-from typing import Set, Optional
 from importlib.metadata import version
-
+import os
+from typing import Set, Optional
 from iamai import ConfigModel
 
 # 创建全局 ArgumentParser 对象
@@ -47,7 +46,6 @@ class GlobalConfig(CommandPluginConfig):
     _iamai_version = version("iamai")
     _python_ver = sys.version
     _python_ver_raw = ".".join(map(str, platform.python_version_tuple()[:3]))
-    current_path = os.path.dirname(os.path.abspath("__file__"))
 
     # 定义系统组件
     class HydroSystem:
@@ -78,3 +76,22 @@ class GlobalConfig(CommandPluginConfig):
     class HydroBot:
         def __init__(self) -> None:
             self.parser = argparse.ArgumentParser(description="Bot命令")
+
+
+class Directory(object):
+    def __init__(self, _path: str) -> None:
+        self.current_path = _path
+
+    def get_dice_dir_list(self, _prefix: str) -> list:
+
+        return [
+            os.path.join(self.current_path, f'{_prefix}', *dirs)
+            for dirs in [
+                ['config'],
+                ['data'],
+                ['rules'],
+                ['scripts'],
+                ['web', 'frontend'],
+                ['web', 'backend'],
+            ]
+        ]
