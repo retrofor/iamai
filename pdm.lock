@@ -5,7 +5,7 @@
 groups = ["default"]
 strategy = ["cross_platform"]
 lock_version = "4.4.1"
-content_hash = "sha256:a8a87ebb15b84e259c47cde4607adcbd0bc3df7928b4c1365fb1ce4f0b61fee9"
+content_hash = "sha256:a176ba5623f67d5c33b17fc61d421f5fc62773c8f295a7b4366f11007d1c0794"
 
 [[package]]
 name = "aiohttp"
@@ -726,23 +726,6 @@ summary = "A small Python utility to set file creation time on Windows"
 files = [
     {file = "win32_setctime-1.1.0-py3-none-any.whl", hash = "sha256:231db239e959c2fe7eb1d7dc129f11172354f98361c4fa2d6d2d7e278baa8aad"},
     {file = "win32_setctime-1.1.0.tar.gz", hash = "sha256:15cf5750465118d6929ae4de4eb46e8edae9a5634350c01ba582df868e932cb2"},
-]
-
-[[package]]
-name = "windows-curses"
-version = "2.3.2"
-summary = "Support for the standard curses module on Windows"
-files = [
-    {file = "windows_curses-2.3.2-cp310-cp310-win32.whl", hash = "sha256:0286d35c9a2589731af3cf2b1251635a400f4b61aef2b9c081f6c98e7887a170"},
-    {file = "windows_curses-2.3.2-cp310-cp310-win_amd64.whl", hash = "sha256:b5e68520c7e92dff72914e4126cadb5b8eb3b6c968d955de6d35ff42306da8c0"},
-    {file = "windows_curses-2.3.2-cp311-cp311-win32.whl", hash = "sha256:95d2a288af6172270da5ca9225aa99eeae98595c6e90f3574aa9b9f2fc1d2619"},
-    {file = "windows_curses-2.3.2-cp311-cp311-win_amd64.whl", hash = "sha256:9b7ecd0f21f643e22a979effff25f62200626bb9853ea8b9aacf0bbcaab0950d"},
-    {file = "windows_curses-2.3.2-cp312-cp312-win32.whl", hash = "sha256:4546122f5bec2fb46c1706c020d971bcfc4d9a5158372f25ba7472a834b0f165"},
-    {file = "windows_curses-2.3.2-cp312-cp312-win_amd64.whl", hash = "sha256:e3f27939f39143c513f444a8c0419b2737e8de55fbe5d63d765992512125366d"},
-    {file = "windows_curses-2.3.2-cp38-cp38-win32.whl", hash = "sha256:6bc698058081408685975256f46f570c32f8d7e1f4f82f9d6c66c300c6daff89"},
-    {file = "windows_curses-2.3.2-cp38-cp38-win_amd64.whl", hash = "sha256:f73bfd283f86d3ac0a72b74307ccc99ea0fd008a732d80db95d31fbafeee3c66"},
-    {file = "windows_curses-2.3.2-cp39-cp39-win32.whl", hash = "sha256:e4ec5245f0c00ede45b033a885511eea80d5928c9bd3ceb523fbfb086370a4df"},
-    {file = "windows_curses-2.3.2-cp39-cp39-win_amd64.whl", hash = "sha256:00d5d000b68db38bd97b6a5b90ee4b4c915a7cef7492fc5aa9ecc7794ee2ca93"},
 ]
 
 [[package]]
