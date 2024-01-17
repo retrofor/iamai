@@ -61,9 +61,6 @@ jobs:
 
       - run: pdm publish
         shell: bash
-
-      - run: pdm publish
-        shell: bash
         working-directory: ./packages/iamai-adapter-apscheduler
 
       - run: pdm publish
