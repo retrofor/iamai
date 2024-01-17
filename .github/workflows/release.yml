@@ -56,12 +56,9 @@ jobs:
         with:
           python-version: 3.9
           cache: true
-          
+
       - name: Install dependencies
         run: pdm install
-
-      - run: pdm publish
-        shell: bash
 
       - run: pdm publish
         shell: bash
@@ -94,3 +91,6 @@ jobs:
       - run: pdm publish
         shell: bash
         working-directory: ./packages/iamai-adapter-gensokyo
+
+      - run: pdm publish
+        shell: bash

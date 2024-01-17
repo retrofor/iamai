@@ -1,6 +1,6 @@
 [project]
 name = "iamai"
-version = "3.3.1"
+version = "3.3.2"
 description = "A bot Framework."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
