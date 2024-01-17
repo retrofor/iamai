@@ -27,6 +27,7 @@ Changelog = "https://iamai.retrofor.space/changelog.html"
 
 [tool.hatch.build]
 exclude = ["iamai/__init__.py", "iamai/adapter/__init__.py"]
+include = ["iamai/adapter/dingtalk"]
 
 [build-system]
 requires = ["hatchling"]
