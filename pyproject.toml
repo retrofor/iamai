@@ -37,6 +37,7 @@ dependencies = [
     "sophia-doc>=0.1.6",
     "watchfiles>=0.21.0",
     "requests>=2.31.0",
+    "click>=8.1.7",
 ]
 
 [project.optional-dependencies]
@@ -87,7 +88,7 @@ Repository = "https://github.com/retrofor/iamai"
 Changelog = "https://iamai.retrofor.space/changelog.html"
 
 [project.scripts]
-iamai = "iamai.cli:main"
+iamai = "iamai.cli:iamai"
 
 [tool.black]
 target-version = ["py38", "py39", "py310", "py311"]

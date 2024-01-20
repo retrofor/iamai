@@ -209,9 +209,7 @@ class Message(ABC, List[MessageSegmentT]):
         if isinstance(prefix, str):
             return str(self).startswith(prefix, start, end)
         if isinstance(prefix, self.get_segment_class()):
-            if len(self) == 0:
-                return False
-            return self[0] == prefix
+            return False if len(self) == 0 else self[0] == prefix
         raise TypeError(
             f"first arg must be str or {self.get_segment_class()}, not {type(prefix)}"
         )
@@ -239,9 +237,7 @@ class Message(ABC, List[MessageSegmentT]):
         if isinstance(suffix, str):
             return str(self).endswith(suffix, start, end)
         if isinstance(suffix, self.get_segment_class()):
-            if len(self) == 0:
-                return False
-            return self[-1] == suffix
+            return False if len(self) == 0 else self[-1] == suffix
         raise TypeError(
             f"first arg must be str or {self.get_segment_class()}, not {type(suffix)}"
         )

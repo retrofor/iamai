@@ -1,5 +1,4 @@
 from iamai import Bot
-import iamai
 
 bot = Bot(hot_reload=True)
 

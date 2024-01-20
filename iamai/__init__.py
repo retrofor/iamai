@@ -10,15 +10,14 @@
 - `Adapter` => [`iamai.adapter.Adapter`](./adapter/#Adapter)
 - `ConfigModel` => [`iamai.config.ConfigModel`](./config#ConfigModel)
 - `Depends` => [`iamai.dependencies.Depends`](./dependencies#Depends)
-- `Cli` => [`iamai.cli.Cli`](./cli#Cli)
 """
 from iamai.adapter import Adapter
 from iamai.bot import Bot
-from iamai.cli import Cli
 from iamai.config import ConfigModel
 from iamai.dependencies import Depends
 from iamai.event import Event, MessageEvent
 from iamai.plugin import Plugin
+from iamai.const import __version__
 
 __all__ = [
     "Adapter",
@@ -28,5 +27,5 @@ __all__ = [
     "Event",
     "MessageEvent",
     "Plugin",
-    "Cli",
+    "__version__",
 ]
