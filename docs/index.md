@@ -1,4 +1,4 @@
-# iaamai
+# iamai
 
 ## Contents
 
