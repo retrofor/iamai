@@ -38,6 +38,8 @@ dependencies = [
     "watchfiles>=0.21.0",
     "requests>=2.31.0",
     "click>=8.1.7",
+    "sphinx>=7.1.2",
+    "sphinx-autobuild>=2021.3.14",
 ]
 
 [project.optional-dependencies]
