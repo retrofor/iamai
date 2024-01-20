@@ -6,9 +6,9 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "Fish Diffusion"
-copyright = "2023, Fish Audio Team"
-author = "Fish Audio Team"
+project = "iamai"
+copyright = "2023, retrofor."
+author = "Hsiang Nianian"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -42,13 +42,13 @@ html_css_files = [
 
 html_theme_options = {
     "announcement": "Wiki is under construction, we welcome any contribution!",
-    "source_repository": "https://github.com/fishaudio/fish-diffusion/",
-    "source_branch": "main",
+    "source_repository": "https://github.com/retrofor/iamai/",
+    "source_branch": "master",
     "source_directory": "docs/",
     "footer_icons": [
         {
             "name": "GitHub",
-            "url": "https://github.com/fishaudio/fish-diffusion/",
+            "url": "https://github.com/retrofor/iamai/",
             "html": "",
             "class": "fa-brands fa-github fa-2x",
         },
