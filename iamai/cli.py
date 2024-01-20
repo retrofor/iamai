@@ -98,7 +98,7 @@ def new(dir_name):
 
     with open(os.path.join(dir_path, "config.toml"), "w") as config_file:
         config_file.write(CONFIG_FILE_CONTENT)
-    
+
     with open(os.path.join(dir_path, "run.bat"), "w") as run_file:
         run_file.write(BATCH_FILE_CONTENT)
 
