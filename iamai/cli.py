@@ -1,10 +1,10 @@
-from importlib.metadata import version
 import shutil
 import requests
 import subprocess
-import argparse
+import click
 import os
 import sys
+from .const import __version__
 
 CURRENT_PATH = os.getcwd()  # dirname(abspath("__file__"))
 
@@ -28,8 +28,15 @@ adapters = [
 level = "DEBUG"
 verbose_exception = true
 
-[adapter.apscheduler]
-scheduler_config = { "apscheduler.timezone" = "Asia/Shanghai" }
+# [adapter.apscheduler]
+# scheduler_config = { "apscheduler.timezone" = "Asia/Shanghai" }
+"""
+
+BATCH_FILE_CONTENT = f"""\
+CD /D %~dp0
+dir
+cmd /C "{sys.prefix}\\Scripts\\python.exe -m main.py"
+pause
 """
 
 RED = "\033[1;31m"
@@ -64,261 +71,177 @@ SOFTWARE.
 """
 
 
-class Cli:
-    def __init__(self):
-        self.parser = self.create_parser()
+@click.group()
+def iamai():
+    pass
 
-    def create_parser(self):
-        parser = argparse.ArgumentParser(description="iamai command line tool")
-        subparsers = parser.add_subparsers(help="Subcommands")
 
-        # new
-        new_parser = subparsers.add_parser(
-            "new", aliases=["N"], help="Create a new project"
-        )
-        new_parser.add_argument(
-            "dir_name", nargs="?", help="Name of the new project directory"
-        )
-        new_parser.set_defaults(func=self.create_project)
+@iamai.command()
+@click.argument("dir_name", default="my_iamai_bot", required=False)
+def new(dir_name):
+    """Create a new project"""
+    dir_path = os.path.join(CURRENT_PATH, dir_name)
 
-        # plugin
-        plugin_parser = subparsers.add_parser(
-            "plugin", aliases=["P"], help="Manage Plugins"
+    if os.path.exists(os.path.join(dir_path, "config.toml")):
+        click.echo(
+            click.style(f"Error: Project '{dir_name}' already exists.", fg="red")
         )
-        plugin_parser.add_argument(
-            "-i",
-            "--install",
-            dest="install_command",
-            required=False,
-            nargs="+",
-            help="Plugins to install",
-        )
-        plugin_parser.add_argument(
-            "-s",
-            "--search",
-            dest="search_command",
-            required=False,
-            nargs="?",
-            help="Plugins to search",
-        )
-        plugin_parser.add_argument(
-            "-uni",
-            "--uninstall",
-            dest="uninstall_command",
-            required=False,
-            nargs="+",
-            help="Plugins to uninstall",
-        )
-        plugin_parser.set_defaults(func=self.manage_plugins)
+        return
 
-        # model
-        model_parser = subparsers.add_parser(
-            "model", aliases=["M"], help="Manage Models"
-        )
-        model_parser.add_argument(
-            "-i",
-            "--install",
-            dest="install_command",
-            required=False,
-            help="Models to install",
-        )
-        model_parser.add_argument(
-            "-s",
-            "--search",
-            dest="search_command",
-            required=False,
-            help="Models to search",
-        )
-        model_parser.add_argument(
-            "-uni",
-            "--uninstall",
-            dest="uninstall_command",
-            required=False,
-            help="Models to uninstall",
-        )
-        model_parser.set_defaults(func=self.manage_models)
+    os.makedirs(dir_path)
+    os.makedirs(os.path.join(dir_path, "plugins"))
+    os.makedirs(os.path.join(dir_path, "models"))
+    os.makedirs(os.path.join(dir_path, "data"))
 
-        # version
-        version_parser = subparsers.add_parser(
-            "version", aliases=["V"], help="Watch version information"
-        )
-        version_parser.set_defaults(func=self.print_version)
+    with open(os.path.join(dir_path, "main.py"), "w") as main_file:
+        main_file.write(MAIN_FILE_CONTENT)
 
-        # version
-        copying_parser = subparsers.add_parser(
-            "copying", aliases=["C"], help="Watch copying information"
-        )
-        copying_parser.set_defaults(func=self.print_copying)
+    with open(os.path.join(dir_path, "config.toml"), "w") as config_file:
+        config_file.write(CONFIG_FILE_CONTENT)
 
-        return parser
+    with open(os.path.join(dir_path, "run.bat"), "w") as run_file:
+        run_file.write(BATCH_FILE_CONTENT)
 
-    def manage_plugins(self, args):
-        package_name_list = args.install_command or args.uninstall_command
+    click.echo(
+        click.style(f"New project '{dir_name}' created with 'config.toml'.", fg="green")
+    )
 
-        config_path = "config.toml"
-        if not os.path.exists(config_path):
-            print(
-                f"{RED}Error: {CYAN}'config.toml'{RED} not found. Use {YELLOW}'iamai new'{RED} command first.{WHITE}"
+
+@iamai.command()
+def version():
+    """Watch version information"""
+    click.echo(f"version: {__version__}")
+
+
+@iamai.command()
+def copying():
+    """Watch copying information"""
+    click.echo(COPYING)
+
+
+@iamai.command()
+@click.option("-i", "--install", nargs="+", help="Plugins to install")
+@click.option("-s", "--search", required=False, help="Plugins to search")
+@click.option("-uni", "--uninstall", nargs="+", help="Plugins to uninstall")
+def plugin(install, search, uninstall):
+    """Manage Plugins"""
+    package_name_list = install or uninstall
+
+    config_path = "config.toml"
+    if not os.path.exists(config_path):
+        click.echo(
+            click.style(
+                f"Error: 'config.toml' not found. Use 'iamai new' command first.",
+                fg="red",
             )
-            return
-
-        if package_name_list is None and args.search_command != None:
-            print(f"{CYAN}So, what do you want to do now?{WHITE}")
-
-        if args.install_command != None:
-            for package_name in package_name_list:
-                self.install_package(package_name, "plugins")
-        elif args.uninstall_command != None:
-            for package_name in package_name_list:
-                self.force_delete_package(package_name, "plugins")
-        elif args.search_command != None:
-            self.search_packages_with_dependency(args.search_command)
-
-    def manage_models(self, args):
-        package_name_list = args.install_command or args.uninstall_command
-
-        config_path = "config.toml"
-        if not os.path.exists(config_path):
-            print(
-                f"{RED}Error: {CYAN}'config.toml'{RED} not found. Use {YELLOW}'iamai new'{RED} command first.{WHITE}"
-            )
-            return
-
-        if package_name_list is None and args.search_command != None:
-            print(f"{CYAN}So, what do you want to do now?{WHITE}")
-
-        if args.install_command != None:
-            for package_name in package_name_list:
-                self.install_package(package_name, "models")
-        elif args.uninstall_command != None:
-            for package_name in package_name_list:
-                self.force_delete_package(package_name, "models")
-        elif args.search_command != None:
-            self.search_packages_with_dependency(args.search_command)
-
-    def create_project(self, args):
-        dir_name = args.dir_name or "my_iamai_bot"
-        config_path = os.path.join(CURRENT_PATH, dir_name, "config.toml")
-        plugin_dir_path = os.path.join(CURRENT_PATH, dir_name, "plugins")
-        model_dir_path = os.path.join(CURRENT_PATH, dir_name, "models")
-        main_path = os.path.join(CURRENT_PATH, dir_name, "main.py")
-
-        if os.path.exists(config_path):
-            print(f"{RED}Error: Project already exists.{WHITE}")
-            return
-
-        os.makedirs(os.path.join(CURRENT_PATH, dir_name))
-        os.makedirs(plugin_dir_path)
-        os.makedirs(model_dir_path)
-        with open(main_path, "w") as main_file:
-            main_file.write(MAIN_FILE_CONTENT)
-
-        with open(config_path, "w") as config_file:
-            config_file.write(CONFIG_FILE_CONTENT)
-
-        print(
-            f"{GREEN}New project {CYAN}'{dir_name}'{CYAN} created with {CYAN}'config.toml'{GREEN}.{WHITE}"
         )
+        return
 
-    def install_package(self, package_name, dir):
-        try:
-            if package_name.startswith(("http://", "https://")):
-                url = package_name
-                response = requests.get(url, stream=True)
-                response.raise_for_status()
-                filename = os.path.basename(url)
-                target_path = os.path.join(os.getcwd(), dir, filename)
+    if search is not None:
+        click.echo("So, what do you want to do now?")
 
-                with open(target_path, "wb") as file:
-                    for chunk in response.iter_content(chunk_size=8192):
-                        file.write(chunk)
+    if install is not None:
+        for package_name in package_name_list:
+            install_package(package_name, "plugins")
+    elif uninstall is not None:
+        for package_name in package_name_list:
+            force_delete_package(package_name, "plugins")
+    elif search is not None:
+        search_packages_with_dependency(search)
 
-            else:
-                subprocess.run([sys.executable, "-m", "pip", "install", package_name])
 
-                site_packages_path = os.path.join(sys.prefix, "Lib", "site-packages")
-                installed_package_path = os.path.join(site_packages_path, package_name)
-
-                target_path = os.path.join(os.getcwd(), dir, package_name)
-                shutil.move(installed_package_path, target_path)
-
-            print(
-                f"{GREEN}Package {YELLOW}'{package_name}'{GREEN} successfully installed in the {CYAN}'{dir}'{GREEN} folder.{WHITE}"
-            )
-
-        except subprocess.CalledProcessError as e:
-            print(
-                f"{RED}Error installing package {YELLOW}'{package_name}'{RED}: {e}{WHITE}"
-            )
-
-    def force_delete_package(self, package_name, dir):
-        try:
-            plugins_path = os.path.join(os.getcwd(), dir)
-            package_path = os.path.join(plugins_path, package_name)
-
-            if os.path.exists(package_path):
-                if os.path.isfile(package_path):
-                    os.remove(package_path)
-                    print(
-                        f"{GREEN}File {YELLOW}'{package_name}'{GREEN} successfully removed from the {CYAN}'{dir}'{GREEN} folder.{WHITE}"
-                    )
-                elif os.path.isdir(package_path):
-                    shutil.rmtree(package_path)
-                    print(
-                        f"{GREEN}Directory {YELLOW}'{package_name}'{GREEN} successfully removed from the {CYAN}'{dir}'{GREEN} folder.{WHITE}"
-                    )
-            else:
-                print(
-                    f"{RED}Package {YELLOW}'{package_name}'{RED} not found in the {CYAN}'{dir}'{RED} folder.{WHITE}"
-                )
-        except Exception as e:
-            print(
-                f"{RED}Error removing package {YELLOW}'{package_name}'{RED}: {e}{WHITE}"
-            )
-
-    def search_packages_with_dependency(self, dependency_name):
-        if dependency_name is None:
-            dependency_name = ""
-
-        search_url = "https://pypi.org/pypi?%3Aaction=search&term=iamai&submit=search"
-
-        try:
-            response = requests.get(search_url)
+def install_package(package_name, directory):
+    try:
+        if package_name.startswith(("http://", "https://")):
+            url = package_name
+            response = requests.get(url, stream=True)
             response.raise_for_status()
-            print(response.json())
-            results = response.json()["data"]
+            filename = os.path.basename(url)
+            target_path = os.path.join(os.getcwd(), directory, filename)
 
-            result_packages = [result["name"] for result in results]
-        except requests.exceptions.RequestException as e:
-            print(f"Error searching for packages: {e}")
-            result_packages = []
-
-        if result_packages:
-            print("Packages searched:")
-            for package in result_packages:
-                if dependency_name in package:
-                    print(package)
+            with open(target_path, "wb") as file:
+                for chunk in response.iter_content(chunk_size=8192):
+                    file.write(chunk)
         else:
-            print(f"No packages found with '{dependency_name}' in iamai dependencies.")
+            subprocess.run(["pip", "install", package_name])
 
-    def print_version(self, args):
-        print(f'version: {version("iamai")}')
+            site_packages_path = os.path.join(sys.prefix, "Lib", "site-packages")
+            installed_package_path = os.path.join(site_packages_path, package_name)
 
-    def print_copying(self, args):
-        print(COPYING)
+            target_path = os.path.join(os.getcwd(), directory, package_name)
+            shutil.move(installed_package_path, target_path)
 
-    def parse_args(self, args=None):
-        return self.parser.parse_args(args)
+        click.echo(
+            click.style(
+                f"Package '{package_name}' successfully installed in the '{directory}' folder.",
+                fg="green",
+            )
+        )
+
+    except subprocess.CalledProcessError as e:
+        click.echo(
+            click.style(f"Error installing package '{package_name}': {e}", fg="red")
+        )
 
 
-def main():
-    cli = Cli()
-    args = cli.parse_args(sys.argv[1:])
-    if hasattr(args, "func"):
-        args.func(args)
+def force_delete_package(package_name, directory):
+    try:
+        package_path = os.path.join(os.getcwd(), directory, package_name)
+
+        if os.path.exists(package_path):
+            if os.path.isfile(package_path):
+                os.remove(package_path)
+                click.echo(
+                    click.style(
+                        f"File '{package_name}' successfully removed from the '{directory}' folder.",
+                        fg="green",
+                    )
+                )
+            elif os.path.isdir(package_path):
+                shutil.rmtree(package_path)
+                click.echo(
+                    click.style(
+                        f"Directory '{package_name}' successfully removed from the '{directory}' folder.",
+                        fg="green",
+                    )
+                )
+        else:
+            click.echo(
+                click.style(
+                    f"Package '{package_name}' not found in the '{directory}' folder.",
+                    fg="red",
+                )
+            )
+    except Exception as e:
+        click.echo(
+            click.style(f"Error removing package '{package_name}': {e}", fg="red")
+        )
+
+
+def search_packages_with_dependency(dependency_name):
+    if dependency_name is None:
+        dependency_name = ""
+
+    search_url = "https://pypi.org/pypi?%3Aaction=search&term=iamai&submit=search"
+
+    try:
+        response = requests.get(search_url)
+        response.raise_for_status()
+        results = response.json()["data"]
+
+        result_packages = [result["name"] for result in results]
+    except requests.exceptions.RequestException as e:
+        click.echo(f"Error searching for packages: {e}")
+        result_packages = []
+
+    if result_packages:
+        click.echo("Packages searched:")
+        for package in result_packages:
+            if dependency_name in package:
+                click.echo(package)
     else:
-        cli.parser.print_help()
+        click.echo(f"No packages found with '{dependency_name}' in iamai dependencies.")
 
 
 if __name__ == "__main__":
-    main()
+    iamai()
