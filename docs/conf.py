@@ -17,13 +17,16 @@ with open(PYPROJECT, "r", encoding="utf8") as f:
     DATA = tomllib.loads(pyproject)
 PROJECT_VERSION = DATA["project"]["version"]
 PROJECT_NAME = DATA["project"]["name"]
+AUTHOR_TABLE = DATA["project"]["authors"]
+AUTHORS = ",".join([f"{aut['name']}<{aut['email']}>" for aut in AUTHOR_TABLE])
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "IamAI"  # PROJECT_NAME
-release = PROJECT_VERSION
+project = PROJECT_NAME  # "IamAI"
+release = PROJECT_VERSION  # "latest"
 copyright = "2023-PRESENT, Retrofor Wut?"
-author = "Hsiang Nianian"
+author = AUTHORS
+
 # html_title = "Who am I? I am AI."
 
 # -- General configuration ---------------------------------------------------
