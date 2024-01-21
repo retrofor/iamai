@@ -1,5 +1,3 @@
-import { Callout } from 'nextra/components'
-
 # Quick Start
 
 ## Installation
@@ -23,9 +21,9 @@ poetry install --no-dev  # Recommended
 pip install  .  # Not Recommended
 ```
 
-## Installing Adapters 
+## Installing Adapters
 
-iamai itself is just a chatbot framework and requires additional installation of adapters for supporting specific protocols. You can use pip to install protcol adapters: 
+iamai itself is just a chatbot framework and requires additional installation of adapters for supporting specific protocols. You can use pip to install protcol adapters:
 
 ```sh
 pip install iamai-adapter-cqhttp
@@ -35,22 +33,21 @@ pip install iamai-adapter-dingtalk
 
 Alternatively, you can install iamai along with the corresponding adapters at the same time, like this:
 
-```sh 
+```sh
 pip install iamai[all]
 pip install iamai[cqhttp]
 pip install iamai[dingtalk]
 ```
 
-## First Project 
+## First Project
 
 This section will guide you to build a simple iamai bot project from scratch.
 
 1. Create and enter a new directory
 
-   ```sh 
+   ```sh
    mkdir iamai-starter && cd iamai-starter
    ```
-
 2. Create a `main.py` file and write the following content:
 
    ```python
@@ -60,29 +57,27 @@ This section will guide you to build a simple iamai bot project from scratch.
 
     if __name__ == "__main__":
         bot.run()
-    ```
-
+   ```
 3. Create a `config.toml` file and write the following content inside that file:
-   
+
    ```toml
    [bot]
    plugin_dirs = ["plugins"]
    adapters = ["iamai.adapter.cqhttp"]
-   
-   ``` 
+
+   ```
 4. Create a `plugins` directory
 
-   ```sh 
+   ```sh
    mkdir plugins
    ```
-
 5. Try Running `main.py` !
-   
-   ```sh 
+
+   ```sh
    python main.py
    ```
 
-You should see the following output log: 
+You should see the following output log:
 
 ```text
 2021-07-24 00:00:00.000 | INFO     | iamai.bot:_load_plugins_from_dirs:689 - Loading plugins from dirs "/xxx/plugins"
@@ -92,10 +87,10 @@ You should see the following output log:
 
 ## Directory Structure
 
-iamai recommends the following directory structure: 
+iamai recommends the following directory structure:
 
 import { FileTree } from 'nextra/components'
- 
+
 <FileTree>
   <FileTree.Folder name="plugins (The plugins dir)" defaultOpen>
     <FileTree.File name="xxx.py" />
