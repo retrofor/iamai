@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Quick Start" href="pages/starting/getting-started.html" />
 
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/retrofor/iamai@master/docs/public/retro.png"/><!-- Generated with Sphinx 7.1.2 and Furo 2023.09.10 -->
-        <title>iamai documentation</title>
+        <title>IAMAI documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
@@ -129,7 +129,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="#"><div class="brand">iamai  documentation</div></a>
+      <a href="#"><div class="brand">IAMAI  documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -155,7 +155,7 @@
     <img class="sidebar-logo" src="https://cdn.jsdelivr.net/gh/retrofor/iamai@master/docs/public/retro.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">iamai  documentation</span>
+  <span class="sidebar-brand-text">IAMAI  documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -230,8 +230,93 @@
         <article role="main">
           <section id="iamai">
 <h1>IAMAI<a class="headerlink" href="#iamai" title="Permalink to this heading">#</a></h1>
-<p>Cross-platform robot framework, mainly used for machine learning.</p>
-<div class="toctree-wrapper compound">
+<p>A Cross-platform robot framework, mainly used for machine learning and based on alicebot. It allows for quick usage of various convenient NLP models(not only but also other single task models), such as named entity recognition and relation extraction.</p>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>🎪 <strong>Interactive <a class="reference external" href="https://iamai.retrofor.space">docs</a> &amp; <a class="reference external" href="https://iamai.retrofor.space/demos">demos</a></strong></p></li>
+<li><p>🕶 <strong>Seamless migration</strong>: Works for <strong>both</strong> <a class="reference internal" href="#"><span class="xref myst">Rasa</span></a> and <a class="reference internal" href="#"><span class="xref myst">GPT</span></a> and more…</p></li>
+<li><p>⚡ <strong>Fully tree shakeable</strong>: Only take what you want, <a class="reference external" href="https://iamai.retrofor.space/export-size">bundle size</a></p></li>
+<li><p>🔩 <strong>Flexible</strong>: Configurable event filters and targets</p></li>
+<li><p>🔌 <strong>Optional <a class="reference external" href="https://iamai.retrofor.space/add-ons">Add-ons</a></strong>: <a class="reference external" href="https://iamai.retrofor.space/add-ons/apscheduler">Apscheduler</a>, etc.</p></li>
+<li><p>👍 <strong>Cross-platform</strong>: <a class="reference external" href="https://iamai.retrofor.space/guide/dingtalk-adapter.html">dingtalk</a> etc.</p></li>
+</ul>
+<p align="center"><img width="512" src="https://iamai.retrofor.space/icons/retro_plus.png"></p>
+</section>
+<section id="install">
+<h2>Install<a class="headerlink" href="#install" title="Permalink to this heading">#</a></h2>
+<section id="framework">
+<h3>FrameWork<a class="headerlink" href="#framework" title="Permalink to this heading">#</a></h3>
+<ul>
+<li><p>STABLE VERSION</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pdm<span class="w"> </span>add<span class="w"> </span>iamai
+</pre></div>
+</div>
+</li>
+</ul>
+<p>or you can also install for TEST.</p>
+<ul>
+<li><p>TEST VERSION</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/retrofor/iamai.git
+pdm<span class="w"> </span>install
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="adapters">
+<h3>Adapters<a class="headerlink" href="#adapters" title="Permalink to this heading">#</a></h3>
+<p>iamai itself is just a chatbot framework and additional protocol adapters are required to support specific protocols. You can use pip to install the protocol adapter:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>iamai-adapter-dingtalk
+pip<span class="w"> </span>install<span class="w"> </span>iamai-adapter-console
+pip<span class="w"> </span>install<span class="w"> </span>iamai-adapter-bililive
+pip<span class="w"> </span>install<span class="w"> </span>iamai-adapter-kook
+</pre></div>
+</div>
+</section>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">#</a></h2>
+<p>since version 3.3.1, we recommend using the <code class="docutils literal notranslate"><span class="pre">iamai</span></code> shell command instead:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>iamai<span class="w"> </span>new<span class="w"> </span><span class="s2">&quot;my bot&quot;</span>
+<span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;my bot&quot;</span>
+</pre></div>
+</div>
+<p>then, you need load the transformer and use your models.</p>
+<section id="transformer-use-from-the-transformers-library">
+<h3>transformer(Use from the 🤗/transformers library)<a class="headerlink" href="#transformer-use-from-the-transformers-library" title="Permalink to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelWithLMHead</span><span class="p">,</span> <span class="n">AutoTokenizer</span>
+<span class="c1"># load models</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelWithLMHead</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;gpt2&quot;</span><span class="p">)</span>
+<span class="c1"># load tokenizer</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;gpt2&quot;</span><span class="p">)</span>
+<span class="c1"># transfor the text to token</span>
+<span class="n">input_ids</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;Hello, my name is IamAI!&quot;</span><span class="p">,</span> <span class="n">add_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># input the token to the models</span>
+<span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">input_ids</span><span class="p">)</span>
+<span class="c1"># get the text generated</span>
+<span class="n">generated_text</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>You can use pre-built optimizers to speed up the model inference process, or you can write your own optimizer. However, it’s important to note that the transformer model optimizer is a special type of optimizer that is designed specifically for optimizing parameters in transformer models, thereby improving their performance.</p>
+<p>To write a transformer model optimizer, you need to have an understanding of how optimizers work and be familiar with the structure of transformer models.</p>
+<p>The principle of optimizers can be referred to in the paper <a class="reference external" href="https://arxiv.org/abs/1706.03762">“Attention Is All You Need”</a>, and the structure of transformer models can be referred to in the paper <a class="reference external" href="https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html?m=1">“Transformer: A Novel Neural Network Architecture for Language Understanding”</a>. The implementation of optimizers can be referred to in the <a class="reference external" href="https://huggingface.co/transformers/v3.0.2/main_classes/optimizer_schedules.html">AdamW optimizer</a> in the Hugging Face Transformers library.</p>
+</section>
+<section id="use-the-inference-api">
+<h3>Use the Inference API<a class="headerlink" href="#use-the-inference-api" title="Permalink to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">API_URL</span> <span class="o">=</span> <span class="s2">&quot;https://api-inference.huggingface.co/models/xxx/xxxxx&quot;</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&quot;</span><span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="n">payload</span><span class="p">):</span>
+ <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">API_URL</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+ <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+<span class="n">output</span> <span class="o">=</span> <span class="n">query</span><span class="p">({</span>
+ <span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="s2">&quot;xxx&quot;</span><span class="p">,</span>
+<span class="p">})</span>
+</pre></div>
 </div>
 <div class="toctree-wrapper compound">
 </div>
@@ -241,6 +326,10 @@
 </div>
 <div class="toctree-wrapper compound">
 </div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
 </section>
 
         </article>
