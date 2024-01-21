@@ -1,4 +1,4 @@
-<p align="center"><img width="128" src="https://iamai.retrofor.space/retro.png"></p>
+<p align="center"><img width="128" src="https://cdn.jsdelivr.net/gh/retrofor/iamai@master/docs/_static/retro.png"></p>
 <h1 align="center">
   iamai
 </h1>
@@ -7,13 +7,13 @@
   <a href="https://jq.qq.com/?_wv=1027&k=OOUmgrqx"><img alt="QQ群" src="https://img.shields.io/badge/-QQ群%20761859776-002FA7?style=flat-square&logo=Tencent QQ&logoColor=white"></a>
 </p>
 <p align="center">
-  Cross-platform robot framework, mainly used for ML/DL.
+  Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform Robotics.
 </p>
 <p align="center">
 <a style="text-decoration:none" href="https://iamai.readthedocs.io" target="_blank">
     <img src="https://img.shields.io/badge/docs-readthedocs-yellow?style=flat-square" alt="Website">
 </a>
-  <a style="text-decoration:none" href="https://playground.retrofor.space/iamai" target="_blank">
+  <a style="text-decoration:none" href="#" target="_blank">
     <img src="https://img.shields.io/badge/playgroud-Under construction-cyan?style=flat-square" alt="Website">
     </a>
   <br>
@@ -79,31 +79,12 @@
 ## Introduction
 
 <!-- start intro -->
+Welcome to iamai, a powerful and comprehensive AI toolkit that seamlessly integrates multimodal machine learning capabilities with advanced tools for cross-platform robot development!
 
-IAMAI: A Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform Robotics
-
-Welcome to IAMAI, a powerful and comprehensive AI toolkit that seamlessly integrates multimodal machine learning capabilities with advanced tools for cross-platform robot development. This library is designed to provide developers with a unified solution for creating intelligent systems that span multiple modalities and operate across diverse platforms.
-
-Key Features:
-
-Multimodal Machine Learning: IAMAI excels in supporting various machine learning tasks, including NLP, ASR, TTS, and more. Its unified interface simplifies the development process, allowing developers to address multimodal challenges within a cohesive framework.
-
-Cross-Platform Robotics: IAMAI goes beyond traditional machine learning by extending its capabilities to enable the construction of intelligent robots that seamlessly operate across different platforms. Developers can leverage the toolkit to build and deploy robotic systems with ease.
-
-Flexibility and Extensibility: IAMAI maintains flexibility by supporting diverse machine learning algorithms and models. Configurable options allow developers to tailor the toolkit to meet the specific requirements of their projects.
-
-User-Friendly Interface: The library prioritizes a user-friendly interface, offering a concise and consistent API design. Rich documentation and examples facilitate a smooth integration process for both novice and experienced developers.
-
-Getting Started with IAMAI:
-
-Installation: Quickly get started with IAMAI by using a simple installation command: pip install IAMAI.
-Documentation and Examples: Dive into our comprehensive documentation, where you'll find detailed usage instructions and example code to accelerate your understanding and application of IAMAI.
-IAMAI is not just a library; it's a comprehensive AI toolkit that brings together multimodal machine learning and cross-platform robotics. Whether you're developing intelligent systems or constructing robots for various platforms, IAMAI is your go-to solution for a unified and powerful development experience. Explore the possibilities with IAMAI today!
-
+> This library is designed to provide developers with a unified solution for creating intelligent systems that span multiple modalities and operate across diverse platforms.
 <!-- end intro -->
 
 <!-- start index -->
-
 ## Features
 
 - 🎪 **Interactive [docs](https://iamai.retrofor.space) &amp; [demos](https://iamai.retrofor.space/demos)**
@@ -113,8 +94,7 @@ IAMAI is not just a library; it's a comprehensive AI toolkit that brings togethe
 - 🔌 **Optional [Add-ons](https://iamai.retrofor.space/add-ons)**: [Apscheduler](https://iamai.retrofor.space/add-ons/apscheduler), etc.
 - 👍 **Cross-platform**: [dingtalk](https://iamai.retrofor.space/guide/dingtalk-adapter.html) etc.
 
-<p align="center"><img width="512" src="./_static/icons/retro_plus.png"></p>
-
+<p align="center"><img width="512" src="./docs/_static/icons/retro_plus.png"></p>
 <!-- end index -->
 
 ## Install
