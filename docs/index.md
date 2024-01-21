@@ -1,14 +1,16 @@
-# IAMAI
+# Iamai
 
 ```{include} ../README.md
 :start-after: <!-- start index -->
 :end-before: <!-- end index -->
 ```
+Iamai is not just a library; it's a comprehensive AI toolkit that brings together multimodal machine learning and cross-platform robotics. Whether you're developing intelligent systems or constructing robots for various platforms, iamai is your go-to solution for a unified and powerful development experience. Explore the possibilities with iamai today!
+
+This documentation is based on Alicebot [Docs](https://docs.alicebot.dev), but with some modifications and improvements. It still has many shortcomings and is currently under reconstruction.
 
 ```{toctree}
 :hidden:
 
-pages/introduction
 pages/starting/getting-started
 ```
 
