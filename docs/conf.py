@@ -53,13 +53,13 @@ html_theme_options = {
             "name": "GitHub",
             "url": "https://github.com/retrofor/iamai/",
             "html": "",
-            "class": "fa-brands fa-github fa-2x",
+            "class": "fa-brands fa-github",
         },
         {
             "name": "Pypi",
             "url": "https://pypi.org/project/iamai/",
             "html": "",
-            "class": "fa-brands fa-python fa-2x",
+            "class": "fa-brands fa-python",
         },
     ],
 }
