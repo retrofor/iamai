@@ -8,7 +8,7 @@
 ```{toctree}
 :hidden:
 
-introduction
+pages/introduction
 pages/starting/getting-started
 ```
 
