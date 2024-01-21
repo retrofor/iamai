@@ -11,7 +11,7 @@ else:
     import tomli as tomllib
 
 DATA = None
-PYPROJECT = os.path.join("pyproject.toml")
+PYPROJECT = os.path.join("..", "pyproject.toml")
 with open(PYPROJECT, "r", encoding="utf8") as f:
     pyproject = f.read()
     DATA = tomllib.loads(pyproject)
