@@ -94,7 +94,7 @@ Welcome to iamai, a powerful and comprehensive AI toolkit that seamlessly integr
 - 🔌 **Optional [Add-ons](https://iamai.retrofor.space/add-ons)**: [Apscheduler](https://iamai.retrofor.space/add-ons/apscheduler), etc.
 - 👍 **Cross-platform**: [dingtalk](https://iamai.retrofor.space/guide/dingtalk-adapter.html) etc.
 
-<p align="center"><img width="512" src="./docs/_static/icons/retro_plus.png"></p>
+<p align="center"><img width="512" src="https://cdn.jsdelivr.net/gh/retrofor/iamai@master/docs/_static/icons/retro_plus.png"></p>
 <!-- end index -->
 
 ## Install
