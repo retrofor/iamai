@@ -4,11 +4,9 @@ hide-toc: true
 
 # IAMAI
 
-Cross-platform robot framework, mainly used for machine learning.
-
 ```{include} ../README.md
-:start-after: <!-- start -introduction -->
-:end-before: <!-- end use-the-inference-api -->
+:start-after: <!-- start index -->
+:end-before: <!-- end index -->
 ```
 
 ```{toctree}

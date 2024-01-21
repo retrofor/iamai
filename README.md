@@ -76,11 +76,13 @@
   <img src="https://img.shields.io/github/languages/top/retrofor/iamai?style=social" >
 </p>
 
-## 📘 Introduction
+## Introduction
+
+<!-- start index -->
 
 A Cross-platform robot framework, mainly used for machine learning and based on alicebot. It allows for quick usage of various convenient NLP models(not only but also other single task models), such as named entity recognition and relation extraction.
 
-## 🚀 Features
+## Features
 
 - 🎪 **Interactive [docs](https://iamai.retrofor.space) &amp; [demos](https://iamai.retrofor.space/demos)**
 - 🕶 **Seamless migration**: Works for **both** [Rasa]() and [GPT]() and more...
@@ -91,7 +93,7 @@ A Cross-platform robot framework, mainly used for machine learning and based on 
 
 <p align="center"><img width="512" src="https://iamai.retrofor.space/icons/retro_plus.png"></p>
 
-## ⬇️ Install
+## Install
 
 ### FrameWork
 
@@ -121,7 +123,7 @@ pip install iamai-adapter-bililive
 pip install iamai-adapter-kook
 ```
 
-## ❗ Usage
+## Usage
 
 since version 3.3.1, we recommend using the `iamai` shell command instead:
 
@@ -171,10 +173,12 @@ output = query({
 })
 ```
 
+<!-- end index -->
+
 ## [![Repography logo](https://images.repography.com/logo.svg)](https://repography.com) / Structure
 [![Structure](https://images.repography.com/40962158/retrofor/iamai/structure/afEhYzXo83AMGRNy9EzPPQcX9ECBKj2gOPhvmpzMFSg/DQMxDEhfNZdq6zFhjPa1G61Bg9g-DRhQiwNY-W2ZHVE_table.svg)](https://github.com/retrofor/iamai)
 
-## 📢 Credits
+## Credits
 
 First of all, in the field of machine learning, we drew inspiration from the excellent design of [Hugging Face](https://huggingface.co)'s [transformers](https://github.com/huggingface/transformers) 🤗 for the use of pre-trained models. We would like to express our gratitude to the authors of Hugging Face and their open-source community.
 
@@ -212,16 +216,16 @@ To avoid any potential disputes or misunderstandings, we have listed the license
 [operatorequals/httpimport](https://github.com/operatorequals/httpimport)(>=1.3.1) with [Apache License 2.0](https://github.com/operatorequals/httpimport/blob/master/LICENSE). <br /> `Module for remote in-memory Python package/module loading through HTTP/S`
 <!-- CPRF ends -->
 
-## 😅 特别的鸣谢
+<!-- ## 特别的鸣谢
 
 我们很乐意在下面列出对IamAI的发展方向和动机有着[重大贡献](https://academic.jyunko.cn/2023/04/04/April-Fours-Day.html)的组织和个人。如果你认为你应该在这里，请至少要像Bryan不可思议那样在文章底栏留言或者发送邮件联系我们 :D
 
 个人: [A60](https://github.com/djkcyl)、[Bryan不可思议](https://github.com/ProgramRipper)
 组织: [GariaProject](https://github.com/GraiaProject)
 
-如果没有以上个人和组织的帮助，IamAI将不会有现在的样子。我们真的很感谢他们。
+如果没有以上个人和组织的帮助，IamAI将不会有现在的样子。我们真的很感谢他们。 -->
 
-## 📄 License
+## License
 
 [MIT](https://github.com/retrofor/iamai/blob/main/LICENSE) © 2023-PRESENT [Retrofor Wut?](https://github.com/retrofor).
 
