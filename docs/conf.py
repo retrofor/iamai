@@ -59,7 +59,7 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 html_theme = "furo"
 html_static_path = ["_static"]
-html_logo = "https://cdn.jsdelivr.net/gh/retrofor/iamai@master/docs/public/retro.png"
+html_logo = "https://cdn.jsdelivr.net/gh/retrofor/iamai@master/docs/_static/retro.png"
 html_favicon = html_logo
 
 html_css_files = [
