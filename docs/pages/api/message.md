@@ -1,7 +1,7 @@
-# API Documentation
+# Message
 
 ```{eval-rst}
-.. autoclass:: iamai
+.. autoclass:: iamai.message
     :members:
     :noindex:
 ```

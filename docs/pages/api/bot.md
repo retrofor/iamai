@@ -1,7 +1,7 @@
-# API Documentation
+# Bot
 
 ```{eval-rst}
-.. autoclass:: iamai
+.. autoclass:: iamai.Bot
     :members:
     :noindex:
 ```
