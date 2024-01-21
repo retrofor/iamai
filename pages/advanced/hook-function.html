@@ -178,8 +178,6 @@
 <li class="toctree-l1"><a class="reference internal" href="hot-reload.html">Hot Reload</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scheduler.html">Scheduled Tasks</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Hook Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#bot-startup">Bot Startup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#bot-exit">Bot Exit</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Adapters</span></p>
 <ul>
@@ -248,10 +246,8 @@ If you are not sure what you are doing, please do not add hook functions.
 :::</p>
 <section id="bot-related-hooks">
 <h2>Bot-Related Hooks<a class="headerlink" href="#bot-related-hooks" title="Permalink to this heading">#</a></h2>
-</section>
-</section>
 <section id="bot-startup">
-<h1>Bot Startup<a class="headerlink" href="#bot-startup" title="Permalink to this heading">#</a></h1>
+<h3>Bot Startup<a class="headerlink" href="#bot-startup" title="Permalink to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@bot</span><span class="o">.</span><span class="n">bot_run_hook</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">hook_func</span><span class="p">(</span><span class="n">_bot</span><span class="p">:</span> <span class="n">Bot</span><span class="p">):</span>
    <span class="k">pass</span> 
@@ -259,7 +255,7 @@ If you are not sure what you are doing, please do not add hook functions.
 </div>
 </section>
 <section id="bot-exit">
-<h1>Bot Exit<a class="headerlink" href="#bot-exit" title="Permalink to this heading">#</a></h1>
+<h3>Bot Exit<a class="headerlink" href="#bot-exit" title="Permalink to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@bot</span><span class="o">.</span><span class="n">bot_exit_hook</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">hook_func</span><span class="p">(</span><span class="n">_bot</span><span class="p">:</span> <span class="n">Bot</span><span class="p">):</span>
    <span class="k">pass</span>
@@ -268,6 +264,8 @@ If you are not sure what you are doing, please do not add hook functions.
 <p>::: warning Note
 This hook function is not a coroutine!
 :::</p>
+</section>
+</section>
 <section id="adapter-related-hooks">
 <h2>Adapter-Related Hooks<a class="headerlink" href="#adapter-related-hooks" title="Permalink to this heading">#</a></h2>
 <section id="adapter-initialization">
@@ -381,11 +379,11 @@ This hook function is not a coroutine!
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Hook Functions</a><ul>
-<li><a class="reference internal" href="#bot-related-hooks">Bot-Related Hooks</a></li>
+<li><a class="reference internal" href="#bot-related-hooks">Bot-Related Hooks</a><ul>
+<li><a class="reference internal" href="#bot-startup">Bot Startup</a></li>
+<li><a class="reference internal" href="#bot-exit">Bot Exit</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#bot-startup">Bot Startup</a></li>
-<li><a class="reference internal" href="#bot-exit">Bot Exit</a><ul>
 <li><a class="reference internal" href="#adapter-related-hooks">Adapter-Related Hooks</a><ul>
 <li><a class="reference internal" href="#adapter-initialization">Adapter Initialization</a></li>
 <li><a class="reference internal" href="#adapter-run">Adapter Run</a></li>
