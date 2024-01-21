@@ -6,9 +6,10 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "Who am I? iamai."
+# project = "Who am I? iamai."
 copyright = "2023-PRESENT, retrofor wut?"
 author = "Hsiang Nianian"
+html_title = "Who am I? I am AI."
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
