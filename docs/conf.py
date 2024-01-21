@@ -7,10 +7,9 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 import iamai
-from importlib.metadata import version
 
 project = "IamAI"
-release = str(version("iamai"))
+release = iamai.__version__
 copyright = "2023-PRESENT, Retrofor Wut?"
 author = "Hsiang Nianian"
 # html_title = "Who am I? I am AI."
