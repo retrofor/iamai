@@ -6,10 +6,14 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-# project = "Who am I? iamai."
+import iamai
+from importlib.metadata import version
+
+project = "IamAI"
+release = version('iamai')
 copyright = "2023-PRESENT, Retrofor Wut?"
 author = "Hsiang Nianian"
-html_title = "Who am I? I am AI."
+# html_title = "Who am I? I am AI."
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
