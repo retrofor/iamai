@@ -53,4 +53,8 @@ html_theme_options = {
             "class": "fa-brands fa-github fa-2x",
         },
     ],
+    "light_css_variables": {
+        "color-brand-primary": "#7C4DFF",
+        "color-brand-content": "#7C4DFF",
+    },
 }
