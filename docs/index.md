@@ -2,34 +2,94 @@
 
 ## Contents
 
-### Quick Guide
+### Starting
+
 ```{eval-rst}
 .. toctree::
    :maxdepth: 4
 
-   pages/guide
+   pages/docs/index
 ```
 
-### Configuration
 ```{eval-rst}
 .. toctree::
    :maxdepth: 4
 
-   pages/config
+   pages/docs/getting-started
 ```
 
-### Generation Quality
 ```{eval-rst}
 .. toctree::
    :maxdepth: 4
 
-   pages/quality
+   pages/docs/basic-config
 ```
 
-### Common Questions
+### Basic
+
 ```{eval-rst}
 .. toctree::
    :maxdepth: 4
 
-   pages/faq
+   pages/docs/plugin-basics
+```
+
+```{eval-rst}
+.. toctree::
+   :maxdepth: 4
+
+   pages/docs/hot-reload
+```
+
+### Advanced
+
+```{eval-rst}
+.. toctree::
+   :maxdepth: 4
+
+   pages/docs/plugin-advanced
+```
+
+```{eval-rst}
+.. toctree::
+   :maxdepth: 4
+
+   pages/docs/hook-function
+```
+
+```{eval-rst}
+.. toctree::
+   :maxdepth: 4
+
+   pages/docs/builtin-message
+```
+
+```{eval-rst}
+.. toctree::
+   :maxdepth: 4
+
+   pages/docs/scheduler
+```
+
+### Adapters
+
+```{eval-rst}
+.. toctree::
+   :maxdepth: 4
+
+   pages/docs/cqhttp-adapter
+```
+
+```{eval-rst}
+.. toctree::
+   :maxdepth: 4
+
+   pages/docs/dingtalk-adapter
+```
+
+```{eval-rst}
+.. toctree::
+   :maxdepth: 4
+
+   pages/docs/mirai-adapter
 ```
