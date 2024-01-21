@@ -42,11 +42,21 @@ pages/adapters/mirai-adapter
 pages/adapters/dingtalk-adapter
 ```
 
+···{toctree}
+:caption: API Reference
+:hidden:
+
+pages/api/index
+pages/api/bot
+pages/api/adapter
+pages/api/config
+pages/api/event
+```
+
 ```{toctree}
 :caption: Development
 :hidden:
 
-pages/api/index
 pages/development/contributing
 changelog
 COPYING
