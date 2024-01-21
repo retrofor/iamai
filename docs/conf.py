@@ -31,7 +31,7 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 html_theme = "furo"
 html_static_path = ["_static"]
 html_logo = (
-    "https://cdn.jsdelivr.net/gh/fishaudio/fish-diffusion@main/images/logo_512x512.png"
+    "https://cdn.jsdelivr.net/gh/retrofor/iamai@master/docs/public/retro.png"
 )
 html_favicon = html_logo
 
@@ -41,7 +41,7 @@ html_css_files = [
 ]
 
 html_theme_options = {
-    "announcement": "Wiki is under construction, we welcome any contribution!",
+    "announcement": "Wiki is under construction, welcome any contribution!",
     "source_repository": "https://github.com/retrofor/iamai/",
     "source_branch": "master",
     "source_directory": "docs/",
