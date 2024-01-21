@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
 
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/retrofor/iamai@master/docs/_static/retro.png"/><!-- Generated with Sphinx 7.1.2 and Furo 2023.09.10 -->
-        <title>API Documentation - iamai 3.3.2 documentation</title>
+        <title>Plugin - iamai 3.3.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
@@ -204,7 +204,7 @@
         </a>
         <div class="content-icon-container">
           <div class="edit-this-page">
-  <a class="muted-link" href="https://github.com/retrofor/iamai/edit/master/docs/pages/api/index.md" title="Edit this page">
+  <a class="muted-link" href="https://github.com/retrofor/iamai/edit/master/docs/pages/api/plugin.md" title="Edit this page">
     <svg aria-hidden="true" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
       <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
@@ -226,12 +226,112 @@
           </label>
         </div>
         <article role="main">
-          <section id="api-documentation">
-<h1>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this heading">#</a></h1>
+          <section id="plugin">
+<h1>Plugin<a class="headerlink" href="#plugin" title="Permalink to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">iamai.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">iamai.</span></span><span class="sig-name descname"><span class="pre">Plugin</span></span><a class="reference internal" href="../../_modules/iamai/plugin.html#Plugin"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>所有 iamai 插件的基类。</p>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">event</span></span></dt>
+<dd><p>当前正在被此插件处理的事件。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">priority</span></span></dt>
+<dd><p>插件的优先级，数字越小表示优先级越高，默认为 0。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ClassVar[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">block</span></span></dt>
+<dd><p>插件执行结束后是否阻止事件的传播。<cite>True</cite> 表示阻止。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ClassVar[bool]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__plugin_load_type__</span></span></dt>
+<dd><p>插件加载类型，由 iamai 自动设置，反映了此插件是如何被加载的。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ClassVar[iamai.plugin.PluginLoadType]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__plugin_file_path__</span></span></dt>
+<dd><p>当插件加载类型为 <cite>PluginLoadType.CLASS</cite> 时为 <cite>None</cite>，
+否则为定义插件在的 Python 模块的位置。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ClassVar[str | None]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bot</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Bot</span></em></dt>
+<dd><p>机器人对象。</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ConfigT</span></em></dt>
+<dd><p>插件配置。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">handle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/iamai/plugin.html#Plugin.handle"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>处理事件的方法。当 <cite>rule()</cite> 方法返回 <cite>True</cite> 时 iamai 会调用此方法。每个插件必须实现此方法。</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em></dt>
+<dd><p>插件类名称。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../_modules/iamai/plugin.html#Plugin.rule"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>匹配事件的方法。事件处理时，会按照插件的优先级依次调用此方法，当此方法返回 <cite>True</cite> 时将事件交由此插件处理。每个插件必须实现此方法。</p>
+<p>注意：不建议直接在此方法内实现对事件的处理，事件的具体处理请交由 <cite>handle()</cite> 方法。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">final</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">skip</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">NoReturn</span></span></span><a class="reference internal" href="../../_modules/iamai/plugin.html#Plugin.skip"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>跳过自身继续当前事件传播。</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">state</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">StateT</span></em></dt>
+<dd><p>插件状态。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">final</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">NoReturn</span></span></span><a class="reference internal" href="../../_modules/iamai/plugin.html#Plugin.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>停止当前事件传播。</p>
+</dd></dl>
+
 </dd></dl>
 
 </section>
