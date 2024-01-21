@@ -1,4 +1,4 @@
-# Message
+# Event, MessageEvent
 
 ```{eval-rst}
 .. autoclass:: iamai.Event
