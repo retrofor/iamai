@@ -7,7 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 # project = "Who am I? iamai."
-copyright = "2023-PRESENT, retrofor wut?"
+copyright = "2023-PRESENT, Retrofor Wut?"
 author = "Hsiang Nianian"
 html_title = "Who am I? I am AI."
 
