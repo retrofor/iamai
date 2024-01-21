@@ -30,9 +30,7 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 html_theme = "furo"
 html_static_path = ["_static"]
-html_logo = (
-    "https://cdn.jsdelivr.net/gh/retrofor/iamai@master/docs/public/retro.png"
-)
+html_logo = "https://cdn.jsdelivr.net/gh/retrofor/iamai@master/docs/public/retro.png"
 html_favicon = html_logo
 
 html_css_files = [
@@ -51,6 +49,12 @@ html_theme_options = {
             "url": "https://github.com/retrofor/iamai/",
             "html": "",
             "class": "fa-brands fa-github fa-2x",
+        },
+        {
+            "name": "Pypi",
+            "url": "https://pypi.org/project/iamai/",
+            "html": "",
+            "class": "fa-brands fa-pypi fa-2x",
         },
     ],
 }
