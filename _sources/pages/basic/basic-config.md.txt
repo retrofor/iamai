@@ -1,4 +1,6 @@
-# Configuration File
+# Basic Configuration
+
+## Configuration File
 
 All configurations for iamai are stored in `config.toml` file. 
 
@@ -88,7 +90,7 @@ class Halloiamai(Plugin):
         )
 ```
 
-## Custom Configuration File or No Configuration File 
+### Custom Configuration File or No Configuration File 
 
 You can provide a custom configuration file or use no configuration file by passing the config_file or config_dict attributes when instantiating the Bot object.
 
