@@ -21,7 +21,7 @@ If you are not sure what you are doing, please do not add hook functions.
 
 ## Bot-Related Hooks
 
-# Bot Startup 
+### Bot Startup 
 
 ```python
 @bot.bot_run_hook
@@ -29,7 +29,7 @@ async def hook_func(_bot: Bot):
    pass 
 ```
 
-# Bot Exit 
+### Bot Exit 
 
 ```python
 @bot.bot_exit_hook
