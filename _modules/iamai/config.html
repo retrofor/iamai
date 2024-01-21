@@ -2,11 +2,10 @@
 <html class="no-js" lang="en" data-content_root="">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Scheduled Tasks" href="scheduler.html" /><link rel="prev" title="Advanced Plugin Features" href="plugin-advanced.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
 
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/retrofor/iamai@master/docs/_static/retro.png"/><!-- Generated with Sphinx 7.1.2 and Furo 2023.09.10 -->
-        <title>Hot Reload - iamai 3.3.2 documentation</title>
+        <title>iamai.config - iamai 3.3.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
@@ -140,7 +139,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -164,31 +163,31 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul>
-<li class="toctree-l1"><a class="reference internal" href="../starting/getting-started.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pages/starting/getting-started.html">Quick Start</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Basic</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../basic/basic-config.html">Basic Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../basic/plugin-basics.html">Plugin Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../basic/builtin-message.html">Built-in Messages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pages/basic/basic-config.html">Basic Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pages/basic/plugin-basics.html">Plugin Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pages/basic/builtin-message.html">Built-in Messages</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="plugin-advanced.html">Advanced Plugin Features</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Hot Reload</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scheduler.html">Scheduled Tasks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hook-function.html">Hook Functions</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../pages/advanced/plugin-advanced.html">Advanced Plugin Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pages/advanced/hot-reload.html">Hot Reload</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pages/advanced/scheduler.html">Scheduled Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pages/advanced/hook-function.html">Hook Functions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Adapters</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../adapters/cqhttp-adapter.html">CQHTTP Protocol Adapter</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../adapters/mirai-adapter.html">Mirai Protocol Adapter</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../adapters/dingtalk-adapter.html">DingTalk Protocol Adapter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pages/adapters/cqhttp-adapter.html">CQHTTP Protocol Adapter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pages/adapters/mirai-adapter.html">Mirai Protocol Adapter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pages/adapters/dingtalk-adapter.html">DingTalk Protocol Adapter</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../development/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pages/api/index.html">API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pages/development/contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../COPYING.html">COPYING</a></li>
 </ul>
@@ -210,16 +209,7 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          <div class="edit-this-page">
-  <a class="muted-link" href="https://github.com/retrofor/iamai/edit/master/docs/pages/advanced/hot-reload.md" title="Edit this page">
-    <svg aria-hidden="true" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-      <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
-      <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
-    </svg>
-    <span class="visually-hidden">Edit this page</span>
-  </a>
-</div><div class="theme-toggle-container theme-toggle-content">
+          <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -227,86 +217,97 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main">
-          <section id="hot-reload">
-<h1>Hot Reload<a class="headerlink" href="#hot-reload" title="Permalink to this heading">#</a></h1>
-<section id="manual-cold-reload">
-<h2>Manual Cold Reload<a class="headerlink" href="#manual-cold-reload" title="Permalink to this heading">#</a></h2>
-<p>iamai provides a <code class="docutils literal notranslate"><span class="pre">restart()</span></code> method to exit and restart the iamai. You can write a plugin like this to restart iamai:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">from</span> <span class="nn">iamai</span> <span class="kn">import</span> <span class="n">Plugin</span>
+          <h1>Source code for iamai.config</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;iamai 配置。</span>
 
-<span class="k">class</span> <span class="nc">Restart</span><span class="p">(</span><span class="n">Plugin</span><span class="p">):</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-       <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">restart</span><span class="p">()</span>
-    
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">rule</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">adapter</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="s2">&quot;cqhttp&quot;</span><span class="p">:</span>
-           <span class="k">return</span> <span class="kc">False</span>
-        
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="s2">&quot;message&quot;</span><span class="p">:</span>
-           <span class="k">return</span> <span class="kc">False</span>
-        
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">get_plain_text</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;restart&quot;</span>
+<span class="sd">iamai 使用 [pydantic](https://pydantic-docs.helpmanual.io/) 来读取配置。</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Union</span>
 
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">ConfigDict</span><span class="p">,</span> <span class="n">DirectoryPath</span><span class="p">,</span> <span class="n">Field</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;ConfigModel&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;LogConfig&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BotConfig&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PluginConfig&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AdapterConfig&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MainConfig&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+
+<div class="viewcode-block" id="ConfigModel"><a class="viewcode-back" href="../../pages/api/config.html#iamai.ConfigModel">[docs]</a><span class="k">class</span> <span class="nc">ConfigModel</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;iamai 配置模型。</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        __config_name__: 配置名称。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">model_config</span> <span class="o">=</span> <span class="n">ConfigDict</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="s2">&quot;allow&quot;</span><span class="p">)</span>
+
+    <span class="n">__config_name__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span></div>
+
+
+<span class="k">class</span> <span class="nc">LogConfig</span><span class="p">(</span><span class="n">ConfigModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;iamai 日志相关设置。</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        level: 日志级别。</span>
+<span class="sd">        verbose_exception: 详细的异常记录，设置为 `True` 时会在日志中添加异常的 Traceback。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">level</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;DEBUG&quot;</span>
+    <span class="n">verbose_exception</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+
+
+<span class="k">class</span> <span class="nc">BotConfig</span><span class="p">(</span><span class="n">ConfigModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bot 配置。</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        plugins: 将被加载的插件列表，将被 `Bot` 类的 `load_plugins()` 方法加载。</span>
+<span class="sd">        plugin_dirs: 将被加载的插件目录列表，将被 `Bot` 类的 `load_plugins_from_dirs()` 方法加载。</span>
+<span class="sd">        adapters: 将被加载的适配器列表，将依次被 `Bot` 类的 `load_adapters()` 方法加载。</span>
+<span class="sd">        log: iamai 日志相关设置。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">plugins</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">set</span><span class="p">)</span>
+    <span class="n">plugin_dirs</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">DirectoryPath</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">set</span><span class="p">)</span>
+    <span class="n">adapters</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">set</span><span class="p">)</span>
+    <span class="n">log</span><span class="p">:</span> <span class="n">LogConfig</span> <span class="o">=</span> <span class="n">LogConfig</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">PluginConfig</span><span class="p">(</span><span class="n">ConfigModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;插件配置。&quot;&quot;&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">AdapterConfig</span><span class="p">(</span><span class="n">ConfigModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;适配器配置。&quot;&quot;&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">MainConfig</span><span class="p">(</span><span class="n">ConfigModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;iamai 配置。</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        bot: iamai 的主要配置。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">bot</span><span class="p">:</span> <span class="n">BotConfig</span> <span class="o">=</span> <span class="n">BotConfig</span><span class="p">()</span>
+    <span class="n">plugin</span><span class="p">:</span> <span class="n">PluginConfig</span> <span class="o">=</span> <span class="n">PluginConfig</span><span class="p">()</span>
+    <span class="n">adapter</span><span class="p">:</span> <span class="n">AdapterConfig</span> <span class="o">=</span> <span class="n">AdapterConfig</span><span class="p">()</span>
 </pre></div>
-</div>
-<p>One detail to note is that using this function and manually exiting and restarting iamai have some subtle differences, mainly in that using this function will not clear plugin and global states.</p>
-</section>
-<section id="reload-plugin">
-<h2>Reload Plugin<a class="headerlink" href="#reload-plugin" title="Permalink to this heading">#</a></h2>
-<p>In addition, iamai also provides a <code class="docutils literal notranslate"><span class="pre">reload_plugins()</span></code> method to reload all plugins. This method does not reload configuration files, adapters, etc.</p>
-</section>
-<section id="automatic-hot-reload">
-<h2>Automatic Hot Reload<a class="headerlink" href="#automatic-hot-reload" title="Permalink to this heading">#</a></h2>
-<p>Since version 0.4.0, iamai has supported automatic hot reload. This means that when plugin files or configuration files are updated, iamai does not need to be restarted, and the changes will be automatically loaded.</p>
-<p>This feature requires support from the <code class="docutils literal notranslate"><span class="pre">watchfiles</span></code> library, so please manually install this Python library.</p>
-<p>When the configuration file is updated, the configuration file will be reloaded. If the bot table changes, the <code class="docutils literal notranslate"><span class="pre">restart()</span></code> method will be called to restart iamai.</p>
-<p>When plugin files in the directories set in <code class="docutils literal notranslate"><span class="pre">plugin_dirs</span></code> are added, modified, or deleted, iamai will automatically try to import, reload, or delete the corresponding plugins.</p>
-<p>Enabling this feature is very simple, just pass the <code class="docutils literal notranslate"><span class="pre">hot_reload</span></code> parameter when instantiating the <code class="docutils literal notranslate"><span class="pre">Bot</span></code> class.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">from</span> <span class="nn">iamai</span> <span class="kn">import</span> <span class="n">Bot</span>
-
-<span class="n">bot</span> <span class="o">=</span> <span class="n">Bot</span><span class="p">(</span><span class="n">hot_reload</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-   <span class="n">bot</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>However, please note that this feature is still in early experimental stage. If you encounter any issues during use, please provide feedback. Also, this feature may slightly affect performance, so if your use case is highly performance-sensitive, do not enable this feature in production environments.</p>
-</section>
-</section>
-
         </article>
       </div>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="scheduler.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title">Scheduled Tasks</div>
-              </div>
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
-            </a>
-          <a class="prev-page" href="plugin-advanced.html">
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
-              <div class="page-info">
-                <div class="context">
-                  <span>Previous</span>
-                </div>
-                
-                <div class="title">Advanced Plugin Features</div>
-                
-              </div>
-            </a>
+          
+          
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -329,29 +330,8 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            On this page
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">Hot Reload</a><ul>
-<li><a class="reference internal" href="#manual-cold-reload">Manual Cold Reload</a></li>
-<li><a class="reference internal" href="#reload-plugin">Reload Plugin</a></li>
-<li><a class="reference internal" href="#automatic-hot-reload">Automatic Hot Reload</a></li>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>

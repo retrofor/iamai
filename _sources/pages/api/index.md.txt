@@ -1,7 +1,7 @@
 # API Documentation
 
 ```{eval-rst}
-.. autoclass:: iamai
+.. autoclass:: iamai.__init__
     :members:
     :noindex:
 ```
