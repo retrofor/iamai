@@ -1,7 +1,3 @@
----
-hide-toc: true
----
-
 # IAMAI
 
 ```{include} ../README.md
