@@ -1,95 +1,56 @@
-# iamai
+---
+hide-toc: true
+---
 
-## Contents
+# IAMAI
 
-### Starting
+Cross-platform robot framework, mainly used for machine learning.
 
-```{eval-rst}
-.. toctree::
-   :maxdepth: 4
-
-   pages/docs/index
+```{include} ../README.md
+:start-after: <!-- start -introduction -->
+:end-before: <!-- end use-the-inference-api -->
 ```
 
-```{eval-rst}
-.. toctree::
-   :maxdepth: 4
+```{toctree}
+:hidden:
 
-   pages/docs/getting-started
+introduction
+pages/starting/getting-started
 ```
 
-```{eval-rst}
-.. toctree::
-   :maxdepth: 4
+```{toctree}
+:caption: Basic
+:hidden:
 
-   pages/docs/basic-config
+pages/basic/basic-config
+pages/basic/plugin-basics
+pages/basic/builtin-message
 ```
 
-### Basic
+```{toctree}
+:caption: Advanced
+:hidden:
 
-```{eval-rst}
-.. toctree::
-   :maxdepth: 4
-
-   pages/docs/plugin-basics
+pages/advanced/plugin-advanced
+pages/advanced/hot-reload
+pages/advanced/scheduler
+pages/advanced/hook-function
 ```
 
-```{eval-rst}
-.. toctree::
-   :maxdepth: 4
+```{toctree}
+:caption: Adapters
+:hidden:
 
-   pages/docs/hot-reload
+pages/adapters/cqhttp-adapter
+pages/adapters/mirai-adapter
+pages/adapters/dingtalk-adapter
 ```
 
-### Advanced
+```{toctree}
+:caption: Development
+:hidden:
 
-```{eval-rst}
-.. toctree::
-   :maxdepth: 4
-
-   pages/docs/plugin-advanced
-```
-
-```{eval-rst}
-.. toctree::
-   :maxdepth: 4
-
-   pages/docs/hook-function
-```
-
-```{eval-rst}
-.. toctree::
-   :maxdepth: 4
-
-   pages/docs/builtin-message
-```
-
-```{eval-rst}
-.. toctree::
-   :maxdepth: 4
-
-   pages/docs/scheduler
-```
-
-### Adapters
-
-```{eval-rst}
-.. toctree::
-   :maxdepth: 4
-
-   pages/docs/cqhttp-adapter
-```
-
-```{eval-rst}
-.. toctree::
-   :maxdepth: 4
-
-   pages/docs/dingtalk-adapter
-```
-
-```{eval-rst}
-.. toctree::
-   :maxdepth: 4
-
-   pages/docs/mirai-adapter
+pages/development/contributing
+changelog
+COPYING
 ```
