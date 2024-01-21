@@ -91,7 +91,9 @@ A Cross-platform robot framework, mainly used for machine learning and based on 
 - 🔌 **Optional [Add-ons](https://iamai.retrofor.space/add-ons)**: [Apscheduler](https://iamai.retrofor.space/add-ons/apscheduler), etc.
 - 👍 **Cross-platform**: [dingtalk](https://iamai.retrofor.space/guide/dingtalk-adapter.html) etc.
 
-<p align="center"><img width="512" src="https://iamai.retrofor.space/icons/retro_plus.png"></p>
+<p align="center"><img width="512" src="./_static/icons/retro_plus.png"></p>
+
+<!-- end index -->
 
 ## Install
 
@@ -172,8 +174,6 @@ output = query({
  "inputs": "xxx",
 })
 ```
-
-<!-- end index -->
 
 ## [![Repography logo](https://images.repography.com/logo.svg)](https://repography.com) / Structure
 [![Structure](https://images.repography.com/40962158/retrofor/iamai/structure/afEhYzXo83AMGRNy9EzPPQcX9ECBKj2gOPhvmpzMFSg/DQMxDEhfNZdq6zFhjPa1G61Bg9g-DRhQiwNY-W2ZHVE_table.svg)](https://github.com/retrofor/iamai)
