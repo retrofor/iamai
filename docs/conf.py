@@ -10,12 +10,13 @@ PYPROJECT = os.path.join("pyproject.toml")
 with open(PYPROJECT, "r", encoding="utf8") as f:
     pyproject = f.read()
     DATA = tomllib.loads(pyproject)
-__version__ = DATA["version"]
+PROJECT_VERSION = DATA["project"]["version"]
+PROJECT_NAME = DATA["project"]["name"]
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "IamAI"
-release = __version__
+project = "IamAI"  # PROJECT_NAME
+release = PROJECT_VERSION
 copyright = "2023-PRESENT, Retrofor Wut?"
 author = "Hsiang Nianian"
 # html_title = "Who am I? I am AI."
