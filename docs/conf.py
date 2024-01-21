@@ -39,22 +39,6 @@ extensions = [
     "sphinx.ext.napoleon",
     "myst_parser",
 ]
-extensions = [
-    # Sphinx's own extensions
-    "sphinx.ext.autodoc",
-    "sphinx.ext.extlinks",
-    "sphinx.ext.intersphinx",
-    "sphinx.ext.mathjax",
-    "sphinx.ext.todo",
-    "sphinx.ext.viewcode",
-    # Our custom extension, only meant for Furo's own documentation.
-    "furo.sphinxext",
-    # External stuff
-    "myst_parser",
-    "sphinx_copybutton",
-    "sphinx_design",
-    "sphinx_inline_tabs",
-]
 
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
