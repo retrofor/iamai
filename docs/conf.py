@@ -54,7 +54,7 @@ html_theme_options = {
             "name": "Pypi",
             "url": "https://pypi.org/project/iamai/",
             "html": "",
-            "class": "fa-brands fa-pypi fa-2x",
+            "class": "fa-brands fa-python fa-2x",
         },
     ],
 }
