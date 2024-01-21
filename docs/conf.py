@@ -2,12 +2,18 @@
 #
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
+import iamai, tomllib
+import os
 
+DATA = None
+PYPROJECT = os.path.join("pyproject.toml")
+with open(PYPROJECT, "r", encoding="utf8") as f:
+    pyproject = f.read()
+    DATA = tomllib.loads(pyproject)
+__version__ = DATA["version"]
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-import iamai
-from iamai import __version__
 project = "IamAI"
 release = __version__
 copyright = "2023-PRESENT, Retrofor Wut?"

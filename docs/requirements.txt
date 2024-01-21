@@ -3,3 +3,4 @@ sphinx-autobuild>=2021.3.14
 myst-parser>=0.18.1
 sphinx>=5.3.0
 iamai
+tomllib
