@@ -58,7 +58,7 @@ html_css_files = [
 ]
 
 html_theme_options = {
-    "announcement": "<em>p<a href='#'>playground</a> is still under construction now, welcome any <a href='./pages/development/contributing.html'>contribution</a>!</em>",
+    "announcement": "<em><a href='#'>playground</a> is still under construction now, welcome any <a href='./pages/development/contributing.html'>contribution</a>!</em>",
     "source_repository": "https://github.com/retrofor/iamai/",
     "source_branch": "master",
     "source_directory": "docs/",
