@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Introduction" href="pages/docs/index.html" />
 
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/fishaudio/fish-diffusion@main/images/logo_512x512.png"/><!-- Generated with Sphinx 7.1.2 and Furo 2023.09.10 -->
         <title>iamai documentation</title>
@@ -163,7 +163,45 @@
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/index.html">Introduction</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/getting-started.html">Quick Start</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/basic-config.html">Configuration File</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/plugin-basics.html">Plugin Basics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/hot-reload.html">Hot Reload</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/plugin-advanced.html">Advanced Plugin Features</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/hook-function.html">Hook Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/hook-function.html#bot-startup">Bot Startup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/hook-function.html#bot-exit">Bot Exit</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/builtin-message.html">Built-in Messages</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/scheduler.html">Scheduled Tasks</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/cqhttp-adapter.html">CQHTTP Protocol Adapter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/dingtalk-adapter.html">DingTalk Protocol Adapter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/mirai-adapter.html">Mirai Protocol Adapter</a></li>
+</ul>
+
 </div>
 </div>
 
@@ -208,24 +246,172 @@
 <h1>iamai<a class="headerlink" href="#iamai" title="Permalink to this heading">#</a></h1>
 <section id="contents">
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this heading">#</a></h2>
-<section id="quick-guide">
-<h3>Quick Guide<a class="headerlink" href="#quick-guide" title="Permalink to this heading">#</a></h3>
+<section id="starting">
+<h3>Starting<a class="headerlink" href="#starting" title="Permalink to this heading">#</a></h3>
 <div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/index.html">Introduction</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/getting-started.html">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/getting-started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/getting-started.html#installing-adapters">Installing Adapters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/getting-started.html#first-project">First Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/getting-started.html#directory-structure">Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/getting-started.html#configuring-the-protocol-enpoint">Configuring the Protocol Enpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/getting-started.html#development-tips">Development Tips</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/basic-config.html">Configuration File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/basic-config.html#custom-configuration-file-or-no-configuration-file">Custom Configuration File or No Configuration File</a></li>
+</ul>
+</li>
+</ul>
 </div>
 </section>
-<section id="configuration">
-<h3>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">#</a></h3>
+<section id="basic">
+<h3>Basic<a class="headerlink" href="#basic" title="Permalink to this heading">#</a></h3>
 <div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/plugin-basics.html">Plugin Basics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/plugin-basics.html#loading-plugins">Loading Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/plugin-basics.html#loading-plugin-directories">Loading Plugin Directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/plugin-basics.html#loading-individual-plugins">Loading Individual Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/plugin-basics.html#writing-plugins">Writing Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/plugin-basics.html#writing-the-rule-method">Writing the <code class="docutils literal notranslate"><span class="pre">rule()</span></code> Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/plugin-basics.html#writing-the-handle-method">Writing the <code class="docutils literal notranslate"><span class="pre">handle()</span></code> method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/plugin-basics.html#example-weather-plugin">Example : Weather Plugin</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/hot-reload.html">Hot Reload</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/hot-reload.html#manual-cold-reload">Manual Cold Reload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/hot-reload.html#reload-plugin">Reload Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/hot-reload.html#automatic-hot-reload">Automatic Hot Reload</a></li>
+</ul>
+</li>
+</ul>
 </div>
 </section>
-<section id="generation-quality">
-<h3>Generation Quality<a class="headerlink" href="#generation-quality" title="Permalink to this heading">#</a></h3>
+<section id="advanced">
+<h3>Advanced<a class="headerlink" href="#advanced" title="Permalink to this heading">#</a></h3>
 <div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/plugin-advanced.html">Advanced Plugin Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/plugin-advanced.html#event-propogation-control">Event Propogation Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages/docs/plugin-advanced.html#skip-method"><code class="docutils literal notranslate"><span class="pre">skip()</span></code> Method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pages/docs/plugin-advanced.html#stop-method"><code class="docutils literal notranslate"><span class="pre">stop()</span></code> Method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pages/docs/plugin-advanced.html#stop-method-and-block-attribute"><code class="docutils literal notranslate"><span class="pre">stop()</span></code> Method and <code class="docutils literal notranslate"><span class="pre">block</span></code> Attribute</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/hook-function.html">Hook Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/hook-function.html#bot-related-hooks">Bot-Related Hooks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/hook-function.html#bot-startup">Bot Startup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/hook-function.html#bot-exit">Bot Exit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/hook-function.html#adapter-related-hooks">Adapter-Related Hooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages/docs/hook-function.html#adapter-initialization">Adapter Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pages/docs/hook-function.html#adapter-run">Adapter Run</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pages/docs/hook-function.html#adapter-shutdown">Adapter Shutdown</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/hook-function.html#event-processing-related-hooks">Event Processing-Related Hooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages/docs/hook-function.html#event-processing">Event Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/hook-function.html#event-postprocessing">Event PostProcessing</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/builtin-message.html">Built-in Messages</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/builtin-message.html#message-class">Message Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/builtin-message.html#message-segment">Message Segment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/builtin-message.html#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/scheduler.html">Scheduled Tasks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/scheduler.html#downloading-and-loading-the-adapter">Downloading and Loading the Adapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/scheduler.html#configuring-apscheduler">Configuring APScheduler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/scheduler.html#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages/docs/scheduler.html#adding-attributes-directly">Adding Attributes Directly</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/scheduler.html#using-class-decorators-recommended">Using Class Decorators (Recommended)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/scheduler.html#tips">Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/scheduler.html#example">Example</a></li>
+</ul>
+</li>
+</ul>
 </div>
 </section>
-<section id="common-questions">
-<h3>Common Questions<a class="headerlink" href="#common-questions" title="Permalink to this heading">#</a></h3>
+<section id="adapters">
+<h3>Adapters<a class="headerlink" href="#adapters" title="Permalink to this heading">#</a></h3>
 <div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/cqhttp-adapter.html">CQHTTP Protocol Adapter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/cqhttp-adapter.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/cqhttp-adapter.html#configuring-the-protocol-endpoint">Configuring the Protocol Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/cqhttp-adapter.html#configuring-iamai">Configuring iamai</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/cqhttp-adapter.html#running-tests">Running Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/cqhttp-adapter.html#sending-rich-text-messages">Sending Rich Text Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/cqhttp-adapter.html#calling-onebot-api">Calling OneBot API</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/dingtalk-adapter.html">DingTalk Protocol Adapter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/dingtalk-adapter.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/dingtalk-adapter.html#configuring-the-protocol-endpoint">Configuring the Protocol Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/dingtalk-adapter.html#configuring-iamai">Configuring iamai</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/dingtalk-adapter.html#sending-rich-text-messages">Sending Rich Text Messages</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/docs/mirai-adapter.html">Mirai Protocol Adapter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/mirai-adapter.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/mirai-adapter.html#configuring-the-protocol-endpoint">Configuring the Protocol Endpoint</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages/docs/mirai-adapter.html#websocket-adapter-mode">Websocket Adapter Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pages/docs/mirai-adapter.html#reverse-websocket-adapter-mode">Reverse Websocket Adapter Mode</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/mirai-adapter.html#configuring-iamai">Configuring iamai</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pages/docs/mirai-adapter.html#id1">Websocket Adapter Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pages/docs/mirai-adapter.html#id2">Reverse Websocket Adapter Mode</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/mirai-adapter.html#sending-rich-text-messages">Sending Rich Text Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/docs/mirai-adapter.html#calling-mirai-api-http-api">Calling mirai-api-http API</a></li>
+</ul>
+</li>
+</ul>
 </div>
 </section>
 </section>
@@ -236,7 +422,15 @@
       <footer>
         
         <div class="related-pages">
-          
+          <a class="next-page" href="pages/docs/index.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Introduction</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
           
         </div>
         <div class="bottom-of-page">
@@ -273,10 +467,18 @@
             <ul>
 <li><a class="reference internal" href="#">iamai</a><ul>
 <li><a class="reference internal" href="#contents">Contents</a><ul>
-<li><a class="reference internal" href="#quick-guide">Quick Guide</a></li>
-<li><a class="reference internal" href="#configuration">Configuration</a></li>
-<li><a class="reference internal" href="#generation-quality">Generation Quality</a></li>
-<li><a class="reference internal" href="#common-questions">Common Questions</a></li>
+<li><a class="reference internal" href="#starting">Starting</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#basic">Basic</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#advanced">Advanced</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#adapters">Adapters</a><ul>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
