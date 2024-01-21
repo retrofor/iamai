@@ -10,8 +10,8 @@
   Cross-platform robot framework, mainly used for ML/DL.
 </p>
 <p align="center">
-<a style="text-decoration:none" href="https://iamai.retrofor.space" target="_blank">
-    <img src="https://img.shields.io/badge/docs-iamai.retrofor.space-yellow?style=flat-square" alt="Website">
+<a style="text-decoration:none" href="https://iamai.readthedocs.io" target="_blank">
+    <img src="https://img.shields.io/badge/docs-readthedocs-yellow?style=flat-square" alt="Website">
 </a>
   <a style="text-decoration:none" href="https://playground.retrofor.space/iamai" target="_blank">
     <img src="https://img.shields.io/badge/playgroud-Under construction-cyan?style=flat-square" alt="Website">
