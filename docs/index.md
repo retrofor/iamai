@@ -42,7 +42,7 @@ pages/adapters/mirai-adapter
 pages/adapters/dingtalk-adapter
 ```
 
-···{toctree}
+```{toctree}
 :caption: API Reference
 :hidden:
 
