@@ -290,7 +290,7 @@
 <span class="p">)</span>
 
 
-<div class="viewcode-block" id="Bot"><a class="viewcode-back" href="../../pages/api/index.html#iamai.Bot">[docs]</a><span class="k">class</span> <span class="nc">Bot</span><span class="p">:</span>
+<div class="viewcode-block" id="Bot"><a class="viewcode-back" href="../../pages/api/bot.html#iamai.Bot">[docs]</a><span class="k">class</span> <span class="nc">Bot</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;iamai 机器人对象，定义了机器人的基本方法。</span>
 
 <span class="sd">    读取并储存配置 `Config`，加载适配器 `Adapter` 和插件 `Plugin`，并进行事件分发。</span>
@@ -392,7 +392,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;当前已经加载的插件的列表。&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">plugins_priority_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
 
-<div class="viewcode-block" id="Bot.run"><a class="viewcode-back" href="../../pages/api/index.html#iamai.Bot.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="Bot.run"><a class="viewcode-back" href="../../pages/api/bot.html#iamai.Bot.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;运行 iamai，监听并拦截系统退出信号，更新机器人配置。&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_restart_flag</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">_restart_flag</span><span class="p">:</span>
@@ -403,7 +403,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_load_plugins</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_extend_plugins</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_load_adapters</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_extend_adapters</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Bot.restart"><a class="viewcode-back" href="../../pages/api/index.html#iamai.Bot.restart">[docs]</a>    <span class="k">def</span> <span class="nf">restart</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="Bot.restart"><a class="viewcode-back" href="../../pages/api/bot.html#iamai.Bot.restart">[docs]</a>    <span class="k">def</span> <span class="nf">restart</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;退出并重新运行 iamai。&quot;&quot;&quot;</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Restarting iamai...&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_restart_flag</span> <span class="o">=</span> <span class="kc">True</span>
@@ -644,7 +644,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">error_or_exception</span><span class="p">(</span><span class="s2">&quot;Config dict parse error:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_update_config</span><span class="p">()</span>
 
-<div class="viewcode-block" id="Bot.reload_plugins"><a class="viewcode-back" href="../../pages/api/index.html#iamai.Bot.reload_plugins">[docs]</a>    <span class="k">def</span> <span class="nf">reload_plugins</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="Bot.reload_plugins"><a class="viewcode-back" href="../../pages/api/bot.html#iamai.Bot.reload_plugins">[docs]</a>    <span class="k">def</span> <span class="nf">reload_plugins</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;手动重新加载所有插件。&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plugins_priority_dict</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_load_plugins</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">plugins</span><span class="p">)</span>
@@ -662,7 +662,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">should_exit</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
 
-<div class="viewcode-block" id="Bot.handle_event"><a class="viewcode-back" href="../../pages/api/index.html#iamai.Bot.handle_event">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">handle_event</span><span class="p">(</span>
+<div class="viewcode-block" id="Bot.handle_event"><a class="viewcode-back" href="../../pages/api/bot.html#iamai.Bot.handle_event">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">handle_event</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">current_event</span><span class="p">:</span> <span class="n">Event</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
         <span class="o">*</span><span class="p">,</span>
@@ -788,7 +788,7 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EventT</span><span class="p">:</span>
         <span class="o">...</span>
 
-<div class="viewcode-block" id="Bot.get"><a class="viewcode-back" href="../../pages/api/index.html#iamai.Bot.get">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get</span><span class="p">(</span>
+<div class="viewcode-block" id="Bot.get"><a class="viewcode-back" href="../../pages/api/bot.html#iamai.Bot.get">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">func</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="n">Awaitable</span><span class="p">[</span><span class="nb">bool</span><span class="p">]]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
@@ -983,7 +983,7 @@
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">error_or_exception</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Load plugin &quot;</span><span class="si">{</span><span class="n">plugin_</span><span class="si">}</span><span class="s1">&quot; failed:&#39;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Bot.load_plugins"><a class="viewcode-back" href="../../pages/api/index.html#iamai.Bot.load_plugins">[docs]</a>    <span class="k">def</span> <span class="nf">load_plugins</span><span class="p">(</span>
+<div class="viewcode-block" id="Bot.load_plugins"><a class="viewcode-back" href="../../pages/api/bot.html#iamai.Bot.load_plugins">[docs]</a>    <span class="k">def</span> <span class="nf">load_plugins</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">plugins</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">Plugin</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;加载插件。</span>
@@ -1016,7 +1016,7 @@
                     <span class="n">module_info</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">plugin_load_type</span><span class="o">=</span><span class="n">PluginLoadType</span><span class="o">.</span><span class="n">DIR</span>
                 <span class="p">)</span>
 
-<div class="viewcode-block" id="Bot.load_plugins_from_dirs"><a class="viewcode-back" href="../../pages/api/index.html#iamai.Bot.load_plugins_from_dirs">[docs]</a>    <span class="k">def</span> <span class="nf">load_plugins_from_dirs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">dirs</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="Bot.load_plugins_from_dirs"><a class="viewcode-back" href="../../pages/api/bot.html#iamai.Bot.load_plugins_from_dirs">[docs]</a>    <span class="k">def</span> <span class="nf">load_plugins_from_dirs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">dirs</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;从目录中加载插件，以 `_` 开头的模块中的插件不会被导入。路径可以是相对路径或绝对路径。</span>
 
 <span class="sd">        Args:</span>
@@ -1064,7 +1064,7 @@
                     <span class="sa">f</span><span class="s1">&#39;from &quot;</span><span class="si">{</span><span class="n">adapter_</span><span class="si">}</span><span class="s1">&quot;&#39;</span>
                 <span class="p">)</span>
 
-<div class="viewcode-block" id="Bot.load_adapters"><a class="viewcode-back" href="../../pages/api/index.html#iamai.Bot.load_adapters">[docs]</a>    <span class="k">def</span> <span class="nf">load_adapters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">adapters</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">Adapter</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="Bot.load_adapters"><a class="viewcode-back" href="../../pages/api/bot.html#iamai.Bot.load_adapters">[docs]</a>    <span class="k">def</span> <span class="nf">load_adapters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">adapters</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">Adapter</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;加载适配器。</span>
 
 <span class="sd">        Args:</span>
@@ -1084,7 +1084,7 @@
     <span class="k">def</span> <span class="nf">get_adapter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">adapter</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">AdapterT</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">AdapterT</span><span class="p">:</span>
         <span class="o">...</span>
 
-<div class="viewcode-block" id="Bot.get_adapter"><a class="viewcode-back" href="../../pages/api/index.html#iamai.Bot.get_adapter">[docs]</a>    <span class="k">def</span> <span class="nf">get_adapter</span><span class="p">(</span>
+<div class="viewcode-block" id="Bot.get_adapter"><a class="viewcode-back" href="../../pages/api/bot.html#iamai.Bot.get_adapter">[docs]</a>    <span class="k">def</span> <span class="nf">get_adapter</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">adapter</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Type</span><span class="p">[</span><span class="n">AdapterT</span><span class="p">]]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Adapter</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">AdapterT</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;按照名称或适配器类获取已经加载的适配器。</span>
@@ -1106,7 +1106,7 @@
                 <span class="k">return</span> <span class="n">_adapter</span>
         <span class="k">raise</span> <span class="ne">LookupError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Can not find adapter named &quot;</span><span class="si">{</span><span class="n">adapter</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Bot.get_plugin"><a class="viewcode-back" href="../../pages/api/index.html#iamai.Bot.get_plugin">[docs]</a>    <span class="k">def</span> <span class="nf">get_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">Plugin</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<div class="viewcode-block" id="Bot.get_plugin"><a class="viewcode-back" href="../../pages/api/bot.html#iamai.Bot.get_plugin">[docs]</a>    <span class="k">def</span> <span class="nf">get_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">Plugin</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;按照名称获取已经加载的插件类。</span>
 
 <span class="sd">        Args:</span>
@@ -1123,7 +1123,7 @@
                 <span class="k">return</span> <span class="n">_plugin</span>
         <span class="k">raise</span> <span class="ne">LookupError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Can not find plugin named &quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Bot.error_or_exception"><a class="viewcode-back" href="../../pages/api/index.html#iamai.Bot.error_or_exception">[docs]</a>    <span class="k">def</span> <span class="nf">error_or_exception</span><span class="p">(</span>
+<div class="viewcode-block" id="Bot.error_or_exception"><a class="viewcode-back" href="../../pages/api/bot.html#iamai.Bot.error_or_exception">[docs]</a>    <span class="k">def</span> <span class="nf">error_or_exception</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="ne">Exception</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;根据当前 Bot 的配置输出 error 或者 exception 日志。</span>
@@ -1137,7 +1137,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">exception</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Bot.bot_run_hook"><a class="viewcode-back" href="../../pages/api/index.html#iamai.Bot.bot_run_hook">[docs]</a>    <span class="k">def</span> <span class="nf">bot_run_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">BotHook</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BotHook</span><span class="p">:</span>
+<div class="viewcode-block" id="Bot.bot_run_hook"><a class="viewcode-back" href="../../pages/api/bot.html#iamai.Bot.bot_run_hook">[docs]</a>    <span class="k">def</span> <span class="nf">bot_run_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">BotHook</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BotHook</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;注册一个 Bot 启动时的函数。</span>
 
 <span class="sd">        Args:</span>
@@ -1149,7 +1149,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_bot_run_hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">func</span></div>
 
-<div class="viewcode-block" id="Bot.bot_exit_hook"><a class="viewcode-back" href="../../pages/api/index.html#iamai.Bot.bot_exit_hook">[docs]</a>    <span class="k">def</span> <span class="nf">bot_exit_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">BotHook</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BotHook</span><span class="p">:</span>
+<div class="viewcode-block" id="Bot.bot_exit_hook"><a class="viewcode-back" href="../../pages/api/bot.html#iamai.Bot.bot_exit_hook">[docs]</a>    <span class="k">def</span> <span class="nf">bot_exit_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">BotHook</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BotHook</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;注册一个 Bot 退出时的函数。</span>
 
 <span class="sd">        Args:</span>
@@ -1161,7 +1161,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_bot_exit_hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">func</span></div>
 
-<div class="viewcode-block" id="Bot.adapter_startup_hook"><a class="viewcode-back" href="../../pages/api/index.html#iamai.Bot.adapter_startup_hook">[docs]</a>    <span class="k">def</span> <span class="nf">adapter_startup_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">AdapterHook</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AdapterHook</span><span class="p">:</span>
+<div class="viewcode-block" id="Bot.adapter_startup_hook"><a class="viewcode-back" href="../../pages/api/bot.html#iamai.Bot.adapter_startup_hook">[docs]</a>    <span class="k">def</span> <span class="nf">adapter_startup_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">AdapterHook</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AdapterHook</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;注册一个适配器初始化时的函数。</span>
 
 <span class="sd">        Args:</span>
@@ -1173,7 +1173,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_adapter_startup_hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">func</span></div>
 
-<div class="viewcode-block" id="Bot.adapter_run_hook"><a class="viewcode-back" href="../../pages/api/index.html#iamai.Bot.adapter_run_hook">[docs]</a>    <span class="k">def</span> <span class="nf">adapter_run_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">AdapterHook</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AdapterHook</span><span class="p">:</span>
+<div class="viewcode-block" id="Bot.adapter_run_hook"><a class="viewcode-back" href="../../pages/api/bot.html#iamai.Bot.adapter_run_hook">[docs]</a>    <span class="k">def</span> <span class="nf">adapter_run_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">AdapterHook</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AdapterHook</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;注册一个适配器运行时的函数。</span>
 
 <span class="sd">        Args:</span>
@@ -1185,7 +1185,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_adapter_run_hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">func</span></div>
 
-<div class="viewcode-block" id="Bot.adapter_shutdown_hook"><a class="viewcode-back" href="../../pages/api/index.html#iamai.Bot.adapter_shutdown_hook">[docs]</a>    <span class="k">def</span> <span class="nf">adapter_shutdown_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">AdapterHook</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AdapterHook</span><span class="p">:</span>
+<div class="viewcode-block" id="Bot.adapter_shutdown_hook"><a class="viewcode-back" href="../../pages/api/bot.html#iamai.Bot.adapter_shutdown_hook">[docs]</a>    <span class="k">def</span> <span class="nf">adapter_shutdown_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">AdapterHook</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AdapterHook</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;注册一个适配器关闭时的函数。</span>
 
 <span class="sd">        Args:</span>
@@ -1197,7 +1197,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_adapter_shutdown_hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">func</span></div>
 
-<div class="viewcode-block" id="Bot.event_preprocessor_hook"><a class="viewcode-back" href="../../pages/api/index.html#iamai.Bot.event_preprocessor_hook">[docs]</a>    <span class="k">def</span> <span class="nf">event_preprocessor_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">EventHook</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EventHook</span><span class="p">:</span>
+<div class="viewcode-block" id="Bot.event_preprocessor_hook"><a class="viewcode-back" href="../../pages/api/bot.html#iamai.Bot.event_preprocessor_hook">[docs]</a>    <span class="k">def</span> <span class="nf">event_preprocessor_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">EventHook</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EventHook</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;注册一个事件预处理函数。</span>
 
 <span class="sd">        Args:</span>
@@ -1209,7 +1209,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_event_preprocessor_hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">func</span></div>
 
-<div class="viewcode-block" id="Bot.event_postprocessor_hook"><a class="viewcode-back" href="../../pages/api/index.html#iamai.Bot.event_postprocessor_hook">[docs]</a>    <span class="k">def</span> <span class="nf">event_postprocessor_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">EventHook</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EventHook</span><span class="p">:</span>
+<div class="viewcode-block" id="Bot.event_postprocessor_hook"><a class="viewcode-back" href="../../pages/api/bot.html#iamai.Bot.event_postprocessor_hook">[docs]</a>    <span class="k">def</span> <span class="nf">event_postprocessor_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">EventHook</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EventHook</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;注册一个事件后处理函数。</span>
 
 <span class="sd">        Args:</span>
