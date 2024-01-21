@@ -44,5 +44,7 @@ pages/adapters/dingtalk-adapter
 :caption: Development
 :hidden:
 
+pages/development/contributing
+changelog
 COPYING
 ```
