@@ -46,8 +46,8 @@ pages/adapters/dingtalk-adapter
 :caption: API Reference
 :hidden:
 
-pages/api/index
 pages/api/bot
+pages/api/plugin
 pages/api/adapter
 pages/api/config
 pages/api/event
