@@ -10,7 +10,7 @@ import iamai
 from importlib.metadata import version
 
 project = "IamAI"
-release = version("iamai")
+release = str(version("iamai"))
 copyright = "2023-PRESENT, Retrofor Wut?"
 author = "Hsiang Nianian"
 # html_title = "Who am I? I am AI."
@@ -44,7 +44,7 @@ html_css_files = [
 ]
 
 html_theme_options = {
-    "announcement": "<em>Playground is still under construction now, welcome any <a href='./pages/development/contributing.html'>contribution</a>!</em>",
+    "announcement": "<em>p<a href='#'>playground</a> is still under construction now, welcome any <a href='./pages/development/contributing.html'>contribution</a>!</em>",
     "source_repository": "https://github.com/retrofor/iamai/",
     "source_branch": "master",
     "source_directory": "docs/",
