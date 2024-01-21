@@ -2,8 +2,13 @@
 #
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
-import iamai, tomllib
-import os
+import iamai
+import os, sys
+
+if sys.version_info >= (3, 11):
+    import tomllib
+else:
+    import tomli as tomllib
 
 DATA = None
 PYPROJECT = os.path.join("pyproject.toml")
