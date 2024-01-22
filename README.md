@@ -1,7 +1,9 @@
 <p align="center">
   <img width="128" align="center" src="https://cdn.jsdelivr.net/gh/retrofor/iamai@master/docs/_static/retro.png" />
     <img width="88" align="" src="https://images.repography.com/40962158/retrofor/iamai/structure/afEhYzXo83AMGRNy9EzPPQcX9ECBKj2gOPhvmpzMFSg/DQMxDEhfNZdq6zFhjPa1G61Bg9g-DRhQiwNY-W2ZHVE_table.svg" />
+    <img width="280" align="right" src="https://cdn.jsdelivr.net/gh/retrofor/iamai@master/docs/_static/icons/retro_plus.png" />
 </p>
+<br />
 <h1 align="center">
   iamai
 </h1>
@@ -100,7 +102,6 @@ Welcome to iamai, a powerful and comprehensive AI toolkit that seamlessly integr
 - 🔌 **Optional [Add-ons](https://iamai.retrofor.space/add-ons)**: [Apscheduler](https://iamai.retrofor.space/add-ons/apscheduler), etc.
 - 👍 **Cross-platform**: [dingtalk](https://iamai.retrofor.space/guide/dingtalk-adapter.html) etc.
 
-<p align="center"><img width="512" src="https://cdn.jsdelivr.net/gh/retrofor/iamai@master/docs/_static/icons/retro_plus.png"></p>
 <!-- end index -->
 
 ## Install
