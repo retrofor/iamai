@@ -2,6 +2,7 @@
 #
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
+
 import iamai
 import os, sys
 
@@ -19,6 +20,7 @@ PROJECT_VERSION = DATA["project"]["version"]
 PROJECT_NAME = DATA["project"]["name"]
 AUTHOR_TABLE = DATA["project"]["authors"]
 AUTHORS = ",".join([f"{aut['name']}<{aut['email']}>" for aut in AUTHOR_TABLE])
+
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
