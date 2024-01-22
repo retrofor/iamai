@@ -4,21 +4,11 @@ iamai.adapter.red package
 Submodules
 ----------
 
-iamai.adapter.red.config module
--------------------------------
+.. toctree::
+   :maxdepth: 4
 
-.. automodule:: iamai.adapter.red.config
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-iamai.adapter.red.event module
-------------------------------
-
-.. automodule:: iamai.adapter.red.event
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   iamai.adapter.red.config
+   iamai.adapter.red.event
 
 Module contents
 ---------------
