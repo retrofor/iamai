@@ -1,4 +1,9 @@
-<p align="center"><img width="128" src="https://cdn.jsdelivr.net/gh/retrofor/iamai@master/docs/_static/retro.png"></p>
+<p align="center">
+  <img width="128" align="center" src="https://cdn.jsdelivr.net/gh/retrofor/iamai@master/docs/_static/retro.png" />
+  <img width="60" align="right" src="https://cdn.jsdelivr.net/gh/retrofor/iamai@master/docs/_static/icons/retro_plus.png" />
+  <img width="60" align="left" src="https://images.repography.com/40962158/retrofor/iamai/structure/afEhYzXo83AMGRNy9EzPPQcX9ECBKj2gOPhvmpzMFSg/DQMxDEhfNZdq6zFhjPa1G61Bg9g-DRhQiwNY-W2ZHVE_table.svg" />
+</p>
+<br />
 <h1 align="center">
   iamai
 </h1>
@@ -97,27 +102,24 @@ Welcome to iamai, a powerful and comprehensive AI toolkit that seamlessly integr
 - 🔌 **Optional [Add-ons](https://iamai.retrofor.space/add-ons)**: [Apscheduler](https://iamai.retrofor.space/add-ons/apscheduler), etc.
 - 👍 **Cross-platform**: [dingtalk](https://iamai.retrofor.space/guide/dingtalk-adapter.html) etc.
 
-<p align="center"><img width="512" src="https://cdn.jsdelivr.net/gh/retrofor/iamai@master/docs/_static/icons/retro_plus.png"></p>
 <!-- end index -->
 
 ## Install
 
-### FrameWork
+STABLE VERSION
 
-- STABLE VERSION
+```sh
+pdm add iamai
+```
 
-  ```sh
-  pdm add iamai
-  ```
+Or you can also install for TEST.
 
-or you can also install for TEST.
+TEST VERSION
 
-- TEST VERSION
-
-  ```sh
-  git clone https://github.com/retrofor/iamai.git
-  pdm install
-  ```
+```sh
+git clone https://github.com/retrofor/iamai.git
+pdm install
+```
 
 ### Adapters
 
@@ -180,11 +182,9 @@ output = query({
 })
 ```
 
-## [![Repography logo](https://images.repography.com/logo.svg)](https://repography.com) / Structure
-
-[![Structure](https://images.repography.com/40962158/retrofor/iamai/structure/afEhYzXo83AMGRNy9EzPPQcX9ECBKj2gOPhvmpzMFSg/DQMxDEhfNZdq6zFhjPa1G61Bg9g-DRhQiwNY-W2ZHVE_table.svg)](https://github.com/retrofor/iamai)
-
 ## Credits
+
+<details>
 
 First of all, in the field of machine learning, we drew inspiration from the excellent design of [Hugging Face](https://huggingface.co)'s [transformers](https://github.com/huggingface/transformers) 🤗 for the use of pre-trained models. We would like to express our gratitude to the authors of Hugging Face and their open-source community.
 
@@ -221,6 +221,8 @@ To avoid any potential disputes or misunderstandings, we have listed the license
 
 [operatorequals/httpimport](https://github.com/operatorequals/httpimport)(>=1.3.1) with [Apache License 2.0](https://github.com/operatorequals/httpimport/blob/master/LICENSE). <br /> `Module for remote in-memory Python package/module loading through HTTP/S`
 <!-- CPRF ends -->
+
+</details>
 
 <!-- ## 特别的鸣谢
 
