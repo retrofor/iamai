@@ -1,4 +1,4 @@
-# API :ref:`iamai`
+# API {ref}`iamai`
 
 iamai
 
