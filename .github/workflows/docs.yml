@@ -28,7 +28,7 @@ jobs:
           - name: Remove API Doc
             run: rm -rf docs/pages/api
           - name: Build API Doc
-            run: pdm run sophia iamai -o docs/pages/api --anchor-extend --ignore-data --overwrite --exclude-module-name --init-file-name index.md
+            run: pdm run sphinx-apidoc iamai -o docs/pages/api -f -e --tocfile index
             shell: bash
             env:
               iamai_DEV: "1"
@@ -37,8 +37,8 @@ jobs:
             uses: peter-evans/create-pull-request@v5
             with:
               token: ${{ secrets.GITHUB_TOKEN }}
-              commit-message: "docs: 更新 API 文档"
-              title: "docs: 更新 API 文档"
-              body: "自动更新 API 文档"
+              commit-message: "chore(docs): update api docs"
+              title: "chore(docs): update api docs"
+              body: "automatic update api docs"
               branch: docs/update-api-docs
               base: master

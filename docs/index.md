@@ -43,16 +43,10 @@ pages/adapters/dingtalk-adapter
 ```
 
 ```{toctree}
-:caption: API Reference
-:hidden:
-
-pages/api/index
-```
-
-```{toctree}
 :caption: Development
 :hidden:
 
+pages/api/index
 pages/development/contributing
 changelog
 COPYING
