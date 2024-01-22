@@ -1,6 +1,6 @@
 <p align="center">
-  <img width="128" align="" src="https://cdn.jsdelivr.net/gh/retrofor/iamai@master/docs/_static/retro.png" />
-  <img width="280" align="" src="https://cdn.jsdelivr.net/gh/retrofor/iamai@master/docs/_static/icons/retro_plus.png" />
+  <img width="128" align="center" src="https://cdn.jsdelivr.net/gh/retrofor/iamai@master/docs/_static/retro.png" />
+  <img width="60" align="right" src="https://cdn.jsdelivr.net/gh/retrofor/iamai@master/docs/_static/icons/retro_plus.png" />
   <img width="60" align="left" src="https://images.repography.com/40962158/retrofor/iamai/structure/afEhYzXo83AMGRNy9EzPPQcX9ECBKj2gOPhvmpzMFSg/DQMxDEhfNZdq6zFhjPa1G61Bg9g-DRhQiwNY-W2ZHVE_table.svg" />
 </p>
 <br />
