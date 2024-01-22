@@ -44,7 +44,10 @@ extensions = [
 
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
-
+extlinks = {
+    "issue": ("https://github.com/retrofor/iamai/%s", "issue %s"),
+    "doc": ("https://iamai.is-a.dev/en/latest/%s", "pages/%s"),
+}
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
