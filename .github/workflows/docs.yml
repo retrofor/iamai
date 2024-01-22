@@ -1,0 +1,41 @@
+name: api build
+
+on:
+    push:
+
+jobs:
+    update-api-doc:
+        runs-on: ubuntu-latest
+        environment: release
+        permissions:
+          contents: write
+          pull-requests: write
+          id-token: write
+        steps:
+          - uses: actions/checkout@v3
+    
+          - uses: pdm-project/setup-pdm@v3
+            name: Setup PDM
+            with:
+              python-version: 3.9
+              cache: true
+          - name: Install dependencies
+            run: pdm install
+    
+          - name: Remove API Doc
+            run: rm -rf docs/pages/api
+          - name: Build API Doc
+            run: pdm run sophia-doc iamai -o docs/pages/api --anchor-extend --ignore-data --overwrite --exclude-module-name --init-file-name index.md
+            shell: bash
+            env:
+              iamai_DEV: "1"
+    
+          - name: Create Pull Request
+            uses: peter-evans/create-pull-request@v5
+            with:
+              token: ${{ secrets.ACCESS_TOKEN }}
+              commit-message: "docs: 更新 API 文档"
+              title: "docs: 更新 API 文档"
+              body: "自动更新 API 文档"
+              branch: docs/update-api-docs
+              base: master
