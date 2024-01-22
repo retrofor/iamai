@@ -49,9 +49,9 @@ extlinks = {
     "doc": ("https://iamai.is-a.dev/en/latest/%s", "pages/%s"),
 }
 source_suffix = {
-    '.rst': 'restructuredtext',
-    '.txt': 'markdown',
-    '.md': 'markdown',
+    ".rst": "restructuredtext",
+    ".txt": "markdown",
+    ".md": "markdown",
 }
 
 # -- Options for HTML output -------------------------------------------------
