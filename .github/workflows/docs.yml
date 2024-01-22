@@ -2,7 +2,10 @@ name: api build
 
 on:
     push:
-
+        tags:
+          - "v*"
+      workflow_dispatch:
+        
 jobs:
     update-api-doc:
         runs-on: ubuntu-latest
