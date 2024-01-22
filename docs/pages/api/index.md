@@ -6,13 +6,9 @@ iamai
 
 本模块从子模块导入了以下内容：
 - `Bot` => {doc}`./api/Bot`
-- `Event` => [`iamai.event.Event`](./event#Event)
+- `Event` => [`iamai.event.Event`]({doc}`./event`)
 - `MessageEvent` => [`iamai.event.MessageEvent`](./event#MessageEvent)
 - `Plugin` => [`iamai.plugin.Plugin`](./plugin#Plugin)
 - `Adapter` => [`iamai.adapter.Adapter`](./adapter/#Adapter)
 - `ConfigModel` => [`iamai.config.ConfigModel`](./config#ConfigModel)
 - `Depends` => [`iamai.dependencies.Depends`](./dependencies#Depends)
-
-```{eval-rst}
-:toctree: generated
-```
