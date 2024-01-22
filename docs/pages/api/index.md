@@ -1,4 +1,4 @@
-# API {#iamai_api}
+# API {:.iamai_api}
 
 iamai
 
