@@ -14,7 +14,7 @@ iamai
 - `Depends` => [`iamai.dependencies.Depends`](./dependencies#Depends)
 
 ```{toctree}
-:maxdepth: 1
+:hidden:
 
 bot
 plugin
