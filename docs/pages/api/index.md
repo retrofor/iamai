@@ -1,5 +1,4 @@
-# API 
-{:.iamai_api}
+# API :ref:`iamai`
 
 iamai
 
