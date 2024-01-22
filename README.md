@@ -186,6 +186,8 @@ output = query({
 
 ## Credits
 
+<details>
+
 First of all, in the field of machine learning, we drew inspiration from the excellent design of [Hugging Face](https://huggingface.co)'s [transformers](https://github.com/huggingface/transformers) 🤗 for the use of pre-trained models. We would like to express our gratitude to the authors of Hugging Face and their open-source community.
 
 Secondly, regarding the cross-platform robot framework, it is primarily based on [st](https://github.com/st1020)'s [alicebot](https://github.com/AliceBotProject/alicebot). We have made numerous adaptations to make it compatible with machine learning. We would like to thank the st and alicebot open-source communities for their contributions.
@@ -225,6 +227,8 @@ To avoid any potential disputes or misunderstandings, we have listed the license
 [operatorequals/httpimport](https://github.com/operatorequals/httpimport)(>=1.3.1) with [Apache License 2.0](https://github.com/operatorequals/httpimport/blob/master/LICENSE). `<br />` `Module for remote in-memory Python package/module loading through HTTP/S`
 
 <!-- CPRF ends -->
+
+</details>
 
 <!-- ## 特别的鸣谢
 
