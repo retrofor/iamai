@@ -38,6 +38,7 @@ extensions = [
     "sphinx.ext.todo",
     "sphinx.ext.napoleon",
     "sphinx.ext.autosummary",
+    "sphinx.ext.extlinks",
     "myst_parser",
 ]
 
