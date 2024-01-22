@@ -1,7 +1,7 @@
 [project]
 name = "iamai"
 version = "3.3.2"
-description = "A bot Framework."
+description = "Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform Robotics."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
 readme = "README.md"
@@ -86,10 +86,10 @@ docs = ["sophia-doc~=0.1.4", "tomlkit"]
 test = ["pytest", "pytest-asyncio", "pytest-xdist", "pytest-cov"]
 
 [project.urls]
-Homepage = "https://iamai.retrofor.space/"
-Documentation = "https://iamai.retrofor.space/"
+Homepage = "https://iamai.is-a.dev"
+Documentation = "https://iamai.is-a.dev"
 Repository = "https://github.com/retrofor/iamai"
-Changelog = "https://iamai.retrofor.space/changelog.html"
+Changelog = "https://iamai.is-a.dev/en/latest/changelog.html#"
 
 [project.scripts]
 iamai = "iamai.cli:iamai"

@@ -10,7 +10,7 @@
   Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform Robotics.
 </p>
 <p align="center">
-<a style="text-decoration:none" href="https://iamai.readthedocs.io" target="_blank">
+<a style="text-decoration:none" href="https://iamai.is-a.dev" target="_blank">
     <img src="https://img.shields.io/badge/docs-readthedocs-yellow?style=flat-square" alt="Website">
 </a>
   <a style="text-decoration:none" href="#" target="_blank">
@@ -79,15 +79,18 @@
 ## Introduction
 
 <!-- start intro -->
+
 Welcome to iamai, a powerful and comprehensive AI toolkit that seamlessly integrates multimodal machine learning capabilities with advanced tools for cross-platform robot development!
 
 > This library is designed to provide developers with a unified solution for creating intelligent systems that span multiple modalities and operate across diverse platforms.
+
 <!-- end intro -->
 
 <!-- start index -->
+
 ## Features
 
-- 🎪 **Interactive [docs](https://iamai.retrofor.space) &amp; [demos](https://iamai.retrofor.space/demos)**
+- 🎪 **Interactive [docs](https://iamai.is-a.dev) &amp; [demos](https://iamai.is-a.dev/)**
 - 🕶 **Seamless migration**: Works for **both** [Rasa]() and [GPT]() and more...
 - ⚡ **Fully tree shakeable**: Only take what you want, [bundle size](https://iamai.retrofor.space/export-size)
 - 🔩 **Flexible**: Configurable event filters and targets
@@ -178,6 +181,7 @@ output = query({
 ```
 
 ## [![Repography logo](https://images.repography.com/logo.svg)](https://repography.com) / Structure
+
 [![Structure](https://images.repography.com/40962158/retrofor/iamai/structure/afEhYzXo83AMGRNy9EzPPQcX9ECBKj2gOPhvmpzMFSg/DQMxDEhfNZdq6zFhjPa1G61Bg9g-DRhQiwNY-W2ZHVE_table.svg)](https://github.com/retrofor/iamai)
 
 ## Credits
@@ -191,31 +195,35 @@ To avoid any potential disputes or misunderstandings, we have listed the license
 ### Machine Learning Framework
 
 <!-- MLF starts -->
-[huggingface/transformers](https://github.com/huggingface/transformers)(@v4.31.0: Llama v2, MusicGen, Bark, MMS, EnCodec, InstructBLIP, Umt5, MRa, vIvIt) with [Apache License 2.0](https://github.com/huggingface/transformers/blob/main/LICENSE). <img width='200' src='https://huggingface.co/datasets/huggingface/documentation-images/raw/main/transformers-logo-dark.svg'><br /> `🤗 Transformers: State-of-the-art Machine Learning for Pytorch, TensorFlow, and JAX.`
 
-[PaddlePaddle/PaddleNLP](https://github.com/PaddlePaddle/PaddleNLP)(@2.6.0) with [Apache License 2.0](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/LICENSE). <img width='200' src='https://user-images.githubusercontent.com/1371212/175816733-8ec25eb0-9af3-4380-9218-27c154518258.png'> <br />  `👑 Easy-to-use and powerful NLP and LLM library with 🤗 Awesome model zoo, supporting wide-range of NLP tasks from research to industrial applications, including 🗂Text Classification, 🔍 Neural Search, ❓ Question Answering, ℹ️ Information Extraction, 📄 Document Intelligence, 💌 Sentiment Analysis etc.`
+[huggingface/transformers](https://github.com/huggingface/transformers)(@v4.31.0: Llama v2, MusicGen, Bark, MMS, EnCodec, InstructBLIP, Umt5, MRa, vIvIt) with [Apache License 2.0](https://github.com/huggingface/transformers/blob/main/LICENSE). `<img width='200' src='https://huggingface.co/datasets/huggingface/documentation-images/raw/main/transformers-logo-dark.svg'><br />` `🤗 Transformers: State-of-the-art Machine Learning for Pytorch, TensorFlow, and JAX.`
 
-[scikit-learn](https://github.com/scikit-learn/scikit-learn)(>=1.3.1) with [BSD-3-Clause license](https://github.com/scikit-learn/scikit-learn/blob/main/COPYING). <img width='50' src='https://scikit-learn.org/stable/_static/scikit-learn-logo-small.png' /> `scikit-learn: machine learning in Python`
+[PaddlePaddle/PaddleNLP](https://github.com/PaddlePaddle/PaddleNLP)(@2.6.0) with [Apache License 2.0](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/LICENSE). `<img width='200' src='https://user-images.githubusercontent.com/1371212/175816733-8ec25eb0-9af3-4380-9218-27c154518258.png'>` `<br />`  `👑 Easy-to-use and powerful NLP and LLM library with 🤗 Awesome model zoo, supporting wide-range of NLP tasks from research to industrial applications, including 🗂Text Classification, 🔍 Neural Search, ❓ Question Answering, ℹ️ Information Extraction, 📄 Document Intelligence, 💌 Sentiment Analysis etc.`
+
+[scikit-learn](https://github.com/scikit-learn/scikit-learn)(>=1.3.1) with [BSD-3-Clause license](https://github.com/scikit-learn/scikit-learn/blob/main/COPYING). `<img width='50' src='https://scikit-learn.org/stable/_static/scikit-learn-logo-small.png' />` `scikit-learn: machine learning in Python`
+
 <!-- MLF ends -->
 
 ### Cross-Platform Robot Framework Dependencies
 
 <!-- CPRF starts -->
-[AliceBotProject/alicebot](https://github.com/AliceBotProject/alicebot)(@0.6.0) with [MIT](https://github.com/AliceBotProject/alicebot/blob/master/LICENSE). <img width='50' src='https://docs.alicebot.dev/logo.png'> <br /> `简单的 Python 异步多后端渐进式机器人框架`
 
-[aio-libs/aiohttp](https://github.com/aio-libs/aiohttp)(< 4.0.0, >= 3.8.0) with [Apache License 2.0](https://github.com/aio-libs/aiohttp/blob/master/LICENSE.txt). <img width='50' src='https://raw.githubusercontent.com/aio-libs/aiohttp/master/docs/aiohttp-plain.svg'> <br /> `Asynchronous HTTP client/server framework for asyncio and Python`
+[AliceBotProject/alicebot](https://github.com/AliceBotProject/alicebot)(@0.6.0) with [MIT](https://github.com/AliceBotProject/alicebot/blob/master/LICENSE). `<img width='50' src='https://docs.alicebot.dev/logo.png'>` `<br />` `简单的 Python 异步多后端渐进式机器人框架`
 
-[Delgan/loguru](https://github.com/Delgan/loguru)(< 0.8, >= 0.6) with [MIT](https://github.com/Delgan/loguru/blob/master/LICENSE). <img width='50' src='https://raw.githubusercontent.com/Delgan/loguru/master/docs/_static/img/logo.png'> <br /> `Python logging made (stupidly) simple`
+[aio-libs/aiohttp](https://github.com/aio-libs/aiohttp)(< 4.0.0, >= 3.8.0) with [Apache License 2.0](https://github.com/aio-libs/aiohttp/blob/master/LICENSE.txt). `<img width='50' src='https://raw.githubusercontent.com/aio-libs/aiohttp/master/docs/aiohttp-plain.svg'>` `<br />` `Asynchronous HTTP client/server framework for asyncio and Python`
 
-[pydantic/pydantic](https://github.com/pydantic/pydantic)(< 3.0, >= 1.10) with [MIT](https://github.com/pydantic/pydantic/blob/main/LICENSE). <br /> `Data validation using Python type hints`
+[Delgan/loguru](https://github.com/Delgan/loguru)(< 0.8, >= 0.6) with [MIT](https://github.com/Delgan/loguru/blob/master/LICENSE). `<img width='50' src='https://raw.githubusercontent.com/Delgan/loguru/master/docs/_static/img/logo.png'>` `<br />` `Python logging made (stupidly) simple`
 
-[yaml/pyyaml](https://github.com/yaml/pyyaml)(< 7.0, >= 6.0) with [MIT](https://github.com/yaml/pyyaml/blob/master/LICENSE). <br /> `Canonical source repository for PyYAML`
+[pydantic/pydantic](https://github.com/pydantic/pydantic)(< 3.0, >= 1.10) with [MIT](https://github.com/pydantic/pydantic/blob/main/LICENSE). `<br />` `Data validation using Python type hints`
 
-[st1020/sophia-doc](https://github.com/st1020/sophia-doc)(>= 0.1.6) with [MIT](https://github.com/st1020/sophia-doc/blob/master/LICENSE). <br /> `A python package to automatically generate API documents for Python modules`
+[yaml/pyyaml](https://github.com/yaml/pyyaml)(< 7.0, >= 6.0) with [MIT](https://github.com/yaml/pyyaml/blob/master/LICENSE). `<br />` `Canonical source repository for PyYAML`
 
-[hukkin/tomli](https://github.com/hukkin/tomli)(< 3.0.0, >= 2.0.0) with [MIT](https://github.com/hukkin/tomli/blob/master/LICENSE). <br /> `A lil' TOML parser`
+[st1020/sophia-doc](https://github.com/st1020/sophia-doc)(>= 0.1.6) with [MIT](https://github.com/st1020/sophia-doc/blob/master/LICENSE). `<br />` `A python package to automatically generate API documents for Python modules`
 
-[operatorequals/httpimport](https://github.com/operatorequals/httpimport)(>=1.3.1) with [Apache License 2.0](https://github.com/operatorequals/httpimport/blob/master/LICENSE). <br /> `Module for remote in-memory Python package/module loading through HTTP/S`
+[hukkin/tomli](https://github.com/hukkin/tomli)(< 3.0.0, >= 2.0.0) with [MIT](https://github.com/hukkin/tomli/blob/master/LICENSE). `<br />` `A lil' TOML parser`
+
+[operatorequals/httpimport](https://github.com/operatorequals/httpimport)(>=1.3.1) with [Apache License 2.0](https://github.com/operatorequals/httpimport/blob/master/LICENSE). `<br />` `Module for remote in-memory Python package/module loading through HTTP/S`
+
 <!-- CPRF ends -->
 
 <!-- ## 特别的鸣谢
