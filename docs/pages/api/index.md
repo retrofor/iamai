@@ -5,7 +5,7 @@ iamai
 简单的 Python 异步多后端机器人框架
 
 本模块从子模块导入了以下内容：
-- `Bot` => {doc}`./Bot`
+- `Bot` => {doc}`./api/Bot`
 - `Event` => [`iamai.event.Event`](./event#Event)
 - `MessageEvent` => [`iamai.event.MessageEvent`](./event#MessageEvent)
 - `Plugin` => [`iamai.plugin.Plugin`](./plugin#Plugin)
