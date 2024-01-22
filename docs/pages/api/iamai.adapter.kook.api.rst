@@ -4,12 +4,29 @@ iamai.adapter.kook.api package
 Submodules
 ----------
 
-.. toctree::
-   :maxdepth: 4
+iamai.adapter.kook.api.client module
+------------------------------------
 
-   iamai.adapter.kook.api.client
-   iamai.adapter.kook.api.handle
-   iamai.adapter.kook.api.model
+.. automodule:: iamai.adapter.kook.api.client
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+iamai.adapter.kook.api.handle module
+------------------------------------
+
+.. automodule:: iamai.adapter.kook.api.handle
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+iamai.adapter.kook.api.model module
+-----------------------------------
+
+.. automodule:: iamai.adapter.kook.api.model
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 Module contents
 ---------------

@@ -4,10 +4,13 @@ iamai.models.BM25 package
 Submodules
 ----------
 
-.. toctree::
-   :maxdepth: 4
+iamai.models.BM25.config module
+-------------------------------
 
-   iamai.models.BM25.config
+.. automodule:: iamai.models.BM25.config
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 Module contents
 ---------------

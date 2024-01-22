@@ -18,10 +18,13 @@ Subpackages
 Submodules
 ----------
 
-.. toctree::
-   :maxdepth: 4
+iamai.adapter.utils module
+--------------------------
 
-   iamai.adapter.utils
+.. automodule:: iamai.adapter.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 Module contents
 ---------------
