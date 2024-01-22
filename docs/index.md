@@ -46,11 +46,7 @@ pages/adapters/dingtalk-adapter
 :caption: API Reference
 :hidden:
 
-pages/api/bot
-pages/api/plugin
-pages/api/adapter
-pages/api/config
-pages/api/event
+pages/api/
 ```
 
 ```{toctree}
