@@ -27,7 +27,7 @@ AUTHORS = ",".join([f"{aut['name']}<{aut['email']}>" for aut in AUTHOR_TABLE])
 project = PROJECT_NAME  # "IamAI"
 release = PROJECT_VERSION  # "latest"
 copyright = "2023-PRESENT, Retrofor Wut?"
-author = "Hsiang Nianian" AUTHORS
+author = "Hsiang Nianian" # AUTHORS
 
 # html_title = "Who am I? I am AI."
 
