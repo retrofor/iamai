@@ -106,22 +106,20 @@ Welcome to iamai, a powerful and comprehensive AI toolkit that seamlessly integr
 
 ## Install
 
-### FrameWork
+STABLE VERSION
 
-- STABLE VERSION
+```sh
+pdm add iamai
+```
 
-  ```sh
-  pdm add iamai
-  ```
+Or you can also install for TEST.
 
-or you can also install for TEST.
+TEST VERSION
 
-- TEST VERSION
-
-  ```sh
-  git clone https://github.com/retrofor/iamai.git
-  pdm install
-  ```
+```sh
+git clone https://github.com/retrofor/iamai.git
+pdm install
+```
 
 ### Adapters
 
