@@ -46,7 +46,7 @@ pages/adapters/dingtalk-adapter
 :caption: API Reference
 :hidden:
 
-pages/api/index
+pages/api/modules
 ```
 
 ```{toctree}

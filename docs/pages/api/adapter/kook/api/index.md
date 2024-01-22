@@ -1,1 +1,0 @@
-# iamai.adapter.kook.api

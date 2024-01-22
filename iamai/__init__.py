@@ -1,9 +1,9 @@
 """API Documentation
 
-简单的 Python 异步多后端机器人框架
+Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform Robotics.
 
-本模块从子模块导入了以下内容：
-- `Bot` => [`iamai.bot.Bot`](bot)
+This Module imports the following contents from the sub-module:
+- `Bot` => [`iamai.bot.Bot`](bot#class-bot-bot)
 - `Event` => [`iamai.event.Event`](event#Event)
 - `MessageEvent` => [`iamai.event.MessageEvent`](./event#MessageEvent)
 - `Plugin` => [`iamai.plugin.Plugin`](./plugin#Plugin)
