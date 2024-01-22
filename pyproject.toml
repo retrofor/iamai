@@ -66,6 +66,22 @@ all = [
     "watchfiles",
 ]
 
+[project.urls]
+Homepage = "https://iamai.is-a.dev"
+Documentation = "https://iamai.is-a.dev"
+Repository = "https://github.com/retrofor/iamai"
+Changelog = "https://iamai.is-a.dev/en/latest/changelog.html#"
+
+[project.scripts]
+iamai = "iamai.cli:iamai"
+
+[tool.black]
+target-version = ["py38", "py39", "py310", "py311"]
+
+[tool.hatch.build.targets.sdist]
+include = ["/README.md", "/iamai"]
+
+
 [tool.pdm.dev-dependencies]
 dev = [
     "-e iamai-adapter-red @ {root:uri}/packages/iamai-adapter-red",
@@ -82,23 +98,17 @@ typing = [ # used only in type check
     "trio>=0.22.2", # watchfiles used this lib
 ]
 lint = ["black", "ruff", "mypy", "pylint", "pylint-pydantic"]
-docs = ["sophia-doc~=0.1.4", "tomlkit"]
+docs = [
+    "tomlkit",
+    "sphinx>=7.1.2",
+    "furo>=2023.9.10",
+    "sphinx-autobuild>=2021.3.14",
+    "myst-parser>=2.0.0",
+    "tomli>=2.0.1",
+    "sphinx-design>=0.5.0",
+    "sophia-doc>=0.1.6",
+]
 test = ["pytest", "pytest-asyncio", "pytest-xdist", "pytest-cov"]
-
-[project.urls]
-Homepage = "https://iamai.is-a.dev"
-Documentation = "https://iamai.is-a.dev"
-Repository = "https://github.com/retrofor/iamai"
-Changelog = "https://iamai.is-a.dev/en/latest/changelog.html#"
-
-[project.scripts]
-iamai = "iamai.cli:iamai"
-
-[tool.black]
-target-version = ["py38", "py39", "py310", "py311"]
-
-[tool.hatch.build.targets.sdist]
-include = ["/README.md", "/iamai"]
 
 [build-system]
 requires = ["hatchling"]

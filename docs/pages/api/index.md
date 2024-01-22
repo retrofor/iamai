@@ -1,4 +1,4 @@
-# iamai
+# API {#iamai_api}
 
 iamai
 
@@ -14,9 +14,9 @@ iamai
 - `Depends` => [`iamai.dependencies.Depends`](./dependencies#Depends)
 
 ```{toctree}
-:hidden:
+:hidden:    
 
-``Bot`` => bot
+bot
 plugin
 event
 utils
