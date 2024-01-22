@@ -12,3 +12,18 @@ iamai
 - `Adapter` => [`iamai.adapter.Adapter`](./adapter/#Adapter)
 - `ConfigModel` => [`iamai.config.ConfigModel`](./config#ConfigModel)
 - `Depends` => [`iamai.dependencies.Depends`](./dependencies#Depends)
+
+```{toctree}
+:maxdepth: 1
+
+bot
+plugin
+event
+utils
+typing
+message
+const
+config
+cli
+dependencies
+```
