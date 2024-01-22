@@ -46,7 +46,7 @@ pages/adapters/dingtalk-adapter
 :caption: Development
 :hidden:
 
-pages/api/index :title: API Documentation
+API Documentation <pages/api/index.rst>
 pages/development/contributing
 changelog
 COPYING
