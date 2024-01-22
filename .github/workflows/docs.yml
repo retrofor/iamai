@@ -33,7 +33,7 @@ jobs:
           - name: Create Pull Request
             uses: peter-evans/create-pull-request@v5
             with:
-              token: ${{ secrets.ACCESS_TOKEN }}
+              token: ${{ secrets.GITHUB_TOKEN }}
               commit-message: "docs: 更新 API 文档"
               title: "docs: 更新 API 文档"
               body: "自动更新 API 文档"
