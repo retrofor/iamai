@@ -16,7 +16,7 @@ iamai
 ```{toctree}
 :hidden:
 
-bot
+`Bot` => bot
 plugin
 event
 utils
