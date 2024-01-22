@@ -4,29 +4,12 @@ iamai.adapter.console package
 Submodules
 ----------
 
-iamai.adapter.console.config module
------------------------------------
+.. toctree::
+   :maxdepth: 4
 
-.. automodule:: iamai.adapter.console.config
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-iamai.adapter.console.event module
-----------------------------------
-
-.. automodule:: iamai.adapter.console.event
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-iamai.adapter.console.message module
-------------------------------------
-
-.. automodule:: iamai.adapter.console.message
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   iamai.adapter.console.config
+   iamai.adapter.console.event
+   iamai.adapter.console.message
 
 Module contents
 ---------------
