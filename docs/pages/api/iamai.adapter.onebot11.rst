@@ -4,37 +4,13 @@ iamai.adapter.onebot11 package
 Submodules
 ----------
 
-iamai.adapter.onebot11.config module
-------------------------------------
+.. toctree::
+   :maxdepth: 4
 
-.. automodule:: iamai.adapter.onebot11.config
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-iamai.adapter.onebot11.event module
------------------------------------
-
-.. automodule:: iamai.adapter.onebot11.event
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-iamai.adapter.onebot11.exceptions module
-----------------------------------------
-
-.. automodule:: iamai.adapter.onebot11.exceptions
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-iamai.adapter.onebot11.message module
--------------------------------------
-
-.. automodule:: iamai.adapter.onebot11.message
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   iamai.adapter.onebot11.config
+   iamai.adapter.onebot11.event
+   iamai.adapter.onebot11.exceptions
+   iamai.adapter.onebot11.message
 
 Module contents
 ---------------
