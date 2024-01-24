@@ -15,13 +15,6 @@
   Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform Robotics.
 </p>
 <p align="center">
-<a style="text-decoration:none" href="https://iamai.is-a.dev" target="_blank">
-    <img src="https://img.shields.io/badge/docs-readthedocs-yellow?style=flat-square" alt="Website">
-</a>
-  <a style="text-decoration:none" href="#" target="_blank">
-    <img src="https://img.shields.io/badge/playgroud-Under construction-cyan?style=flat-square" alt="Website">
-    </a>
-  <br>
   <a href="https://pypi.python.org/pypi/iamai">
     <img src="https://img.shields.io/pypi/v/iamai?style=flat-square" alt="pypi">
   </a>
