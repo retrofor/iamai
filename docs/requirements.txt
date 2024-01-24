@@ -5,3 +5,4 @@ sphinx>=5.3.0
 iamai
 tomli
 sphinx_design
+sphinx-intl>=2.1.0

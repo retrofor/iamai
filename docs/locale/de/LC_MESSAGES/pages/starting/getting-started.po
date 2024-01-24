@@ -1,0 +1,156 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-24 22:12+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../pages/starting/getting-started.md:1
+msgid "Quick Start"
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:3
+msgid "Installation"
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:9
+msgid "Install using the Python package manager (pip):"
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:15
+msgid "Install the latest development version from GitHub"
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:24
+msgid "Installing Adapters"
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:26
+msgid ""
+"iamai itself is just a chatbot framework and requires additional "
+"installation of adapters for supporting specific protocols. You can use "
+"pip to install protcol adapters:"
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:34
+msgid ""
+"Alternatively, you can install iamai along with the corresponding "
+"adapters at the same time, like this:"
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:42
+msgid "First Project"
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:44
+msgid ""
+"This section will guide you to build a simple iamai bot project from "
+"scratch."
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:46
+msgid "Create and enter a new directory"
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:51
+msgid "Create a `main.py` file and write the following content:"
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:61
+msgid ""
+"Create a `config.toml` file and write the following content inside that "
+"file:"
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:69
+msgid "Create a `plugins` directory"
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:74
+msgid "Try Running `main.py` !"
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:80
+msgid "You should see the following output log:"
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:88
+msgid "Directory Structure"
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:90
+msgid "iamai recommends the following directory structure:"
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:92
+msgid "import { FileTree } from 'nextra/components'"
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:102
+msgid "The `main.py` and `config.toml` files are as shown above."
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:104
+msgid "Configuring the Protocol Enpoint"
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:106
+msgid ""
+"The above example uses the `iamai.adapter.cqhttp` protocol adapter, which"
+" is an adapter for the OneBot v11 protocol (formerly known as the CKYU "
+"platform's CQHTTP protocol). It requires a protocol endpoint compatible "
+"with the OneBot protocol for communication. Here are some commonly used "
+"QQ protocol endpoints that support the OneBot protocol:"
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:108
+msgid "[go-cqhttp](https://github.com/Mrs4s/go-cqhttp)"
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:109
+msgid ""
+"[mirai](https://github.com/mamoe/mirai) + [onebot-"
+"kotlin](https://github.com/yyuueexxiinngg/onebot-kotlin)"
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:110
+msgid "[oicq](https://github.com/takayama-lily/oicq)"
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:112
+msgid ""
+"For more information, see the [CQHTTP Protocol Usage Guide](./cqhttp-"
+"adapter.md) ."
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:114
+msgid ""
+"You can also install other protocols adapters or try writing your own "
+"protocol adapter."
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:116
+msgid "Development Tips"
+msgstr ""
+
+#: ../../pages/starting/getting-started.md:118
+msgid ""
+"When developing with iamai, it is recommended to use an IDE with type "
+"checking, such as PyCharm, VSCode, etc. This can help you make full use "
+"of iamai's type hints."
+msgstr ""
+

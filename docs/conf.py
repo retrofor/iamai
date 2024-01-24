@@ -56,6 +56,9 @@ source_suffix = {
     ".md": "markdown",
 }
 
+locale_dirs = ['locale/']   # path is example but recommended.
+gettext_compact = False     # optional.
+
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 

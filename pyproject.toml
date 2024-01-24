@@ -102,6 +102,7 @@ docs = [
     "tomli>=2.0.1",
     "sphinx-design>=0.5.0",
     "sophia-doc>=0.1.6",
+    "sphinx-intl>=2.1.0",
 ]
 test = ["pytest", "pytest-asyncio", "pytest-xdist", "pytest-cov"]
 

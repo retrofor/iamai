@@ -1,0 +1,140 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-24 22:12+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../pages/basic/basic-config.md:1
+msgid "Basic Configuration"
+msgstr ""
+
+#: ../../pages/basic/basic-config.md:3
+msgid "Configuration File"
+msgstr ""
+
+#: ../../pages/basic/basic-config.md:5
+msgid "All configurations for iamai are stored in `config.toml` file."
+msgstr ""
+
+#: ../../pages/basic/basic-config.md:7
+msgid ""
+"The `config.toml` file is a standard [TOML](https://toml.io/) v1.0.0 "
+"file. TOML is a 'minimal' configuration file format that easy to read due"
+" to obvious semantics. It is recommended to have a basic understanding of"
+" the TOML language before proceeding."
+msgstr ""
+
+#: ../../pages/basic/basic-config.md:9
+msgid ""
+"iamai configurations are stored in different tables within the "
+"config.toml file. iamai's own configurations are in the `bot` table, "
+"while all `adapter` and `plugin` configurations are stored in the "
+"`adapter` and `plugin` tables, respectively."
+msgstr ""
+
+#: ../../pages/basic/basic-config.md:11
+msgid "iamai iteself has the following configurations:"
+msgstr ""
+
+#: ../../pages/basic/basic-config.md:13
+msgid ""
+"**plugins** The list of plugins to be loaded , which will be loaded using"
+" the `Bot` class's `load_plugins()` method."
+msgstr ""
+
+#: ../../pages/basic/basic-config.md:16
+msgid ""
+"**plugin_dirs** The list of plugin directories to be loaded , which will "
+"be loaded using the `Bot` classes `load_plugins_from_dirs()` method."
+msgstr ""
+
+#: ../../pages/basic/basic-config.md:19
+msgid ""
+"**adapters** The list of adapters to be loaded, which will be loaded "
+"sequentially using the `Bot` classes `load_adapters()` method."
+msgstr ""
+
+#: ../../pages/basic/basic-config.md:22
+msgid ""
+"Logging-related configurations are found in the `bot.log` table, as "
+"follows:"
+msgstr ""
+
+#: ../../pages/basic/basic-config.md:24
+msgid "**level** The log level."
+msgstr ""
+
+#: ../../pages/basic/basic-config.md:27
+msgid ""
+"**verbose_exception** Detailed exception logging. When set to True, it "
+"will add the exception's Traceback。to the log."
+msgstr ""
+
+#: ../../pages/basic/basic-config.md:30
+msgid ""
+"Configurations for different adapters or plugins will be placed in sub-"
+"tables under `adapter` and `plugin`."
+msgstr ""
+
+#: ../../pages/basic/basic-config.md:32
+msgid ""
+"For example, a configuration file with the `cqhttp` adapter configuration"
+" looks like this:"
+msgstr ""
+
+#: ../../pages/basic/basic-config.md:55
+msgid ""
+"You can include any custom, undefined configuration options, and they "
+"will be loaded by iamai. These custom configurations can be used in "
+"plugins. For example, you can define `superuser` to represent a special "
+"user controlling the current machine, or use `nickname` to represent the "
+"nickname of the current bot."
+msgstr ""
+
+#: ../../pages/basic/basic-config.md:71
+msgid ""
+"In a plugin, you can access the entire configuration using "
+"`self.bot.config`.For example:"
+msgstr ""
+
+#: ../../pages/basic/basic-config.md:93
+msgid "Custom Configuration File or No Configuration File"
+msgstr ""
+
+#: ../../pages/basic/basic-config.md:95
+msgid ""
+"You can provide a custom configuration file or use no configuration file "
+"by passing the config_file or config_dict attributes when instantiating "
+"the Bot object."
+msgstr ""
+
+#: ../../pages/basic/basic-config.md:97
+msgid ""
+"iamai will check the file extension of config_file, allowing either .toml"
+" or .json files. If the configuration file is a JSON file, it should be a"
+" standard JSON file encoded in UTF-8, with content equivalent to the TOML"
+" format configuration file."
+msgstr ""
+
+#: ../../pages/basic/basic-config.md:99
+msgid ""
+"When specifying the config_dict attribute, iamai will no longer read from"
+" the configuration file and will directly read from the given "
+"configuration dictionary."
+msgstr ""
+

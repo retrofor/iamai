@@ -1,0 +1,281 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-24 22:12+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../pages/basic/plugin-basics.md:1
+msgid "Plugin Basics"
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:3
+msgid "Loading Plugins"
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:5
+msgid ""
+"In the [Getting Started](./getting-started.md) chapter, we created a "
+"`plugins` directory and set it as the plugin directory in the "
+"configuration file. Any Python modules placed in the plugins directory "
+"(except those starting with _) will be automatically loaded and tested as"
+" plugins. Alternatively, you can load plugins \"programmatically\" "
+"without configuring `plugin_dirs` using the following methods."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:7
+msgid ""
+"However, in most cases, you do not need to use the methods below, and it "
+"is recommended to load plugins through the configuration options "
+"`plugin_dirs` or `plugins`."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:9
+msgid "Loading Plugin Directories"
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:11 ../../pages/basic/plugin-basics.md:30
+msgid "Add the following lines in the `main.py` file:"
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:26
+msgid ""
+"This is actually the same as configuring plugin_dirs to [\"plugins\", "
+"\"/home/xxx/iamai/plugins\"]. The directories can be relative paths or "
+"absolute paths. Plugins starting with _ will not be loaded."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:28
+msgid "Loading Individual Plugins"
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:46
+msgid ""
+"The `load_plugins` method can take a plugin class, a string, or a "
+"`pathlib.Path` object. If it's the latter two, it will be considered as "
+"the name of the plugin module (in the same format as Python's `import` "
+"statement) and the path of the plugin module file, respectively."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:48
+msgid "Writing Plugins"
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:50
+msgid "Each plugin is a plugin class."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:52
+msgid ""
+"Although not mandatory, it is recommended to place each plugin class in a"
+" separate Python module."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:65
+msgid ""
+"Plugin classes must be subclasses of the Plugin class and must implement "
+"the `rule()` and `handle()` methods."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:85
+msgid ""
+"While the class name `TestPlugin` is not mandatory, it is recommended to "
+"use meaningful names for better readability."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:87
+msgid ""
+"The priority attribute represents the priority of the plugin, where a "
+"smaller number indicates a higher priority."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:89
+msgid ""
+"The block attribute determines whether to stop event propagation after "
+"the current plugin is executed. If set to `True`, event propagation will "
+"stop after the current plugin completes, and plugins with lower "
+"priorities will not be executed."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:91
+msgid ""
+"Both priority and block are optional, and their default values are 0 and "
+"False, respectively."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:94
+msgid ""
+"As mentioned in the section [How Does it Work?](), when an adapter "
+"generates an event (e.g., the robot receives a message), the event will "
+"be dispatched to various plugins based on their priorities. iamai will "
+"then execute the rule() method of each plugin one by one to determine "
+"whether the handle() method should be executed."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:96
+msgid "The `Plugin` class has built-in attributes and methods:"
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:98
+msgid "`self.event`: The event currently being processed by this plugin."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:99
+msgid "`self.name`: The name of the plugin class."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:100
+msgid "`self.bot`: The robot object."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:101
+msgid "`self.config`: The plugin configuration."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:102
+msgid "`self.state`: The plugin state."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:103
+msgid "`self.stop()`: Stops the current event propagation."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:104
+msgid ""
+"`self.skip()`: Skips itself and continues event propagation. All "
+"attributes and methods except for `self.event` will be discussed in "
+"detail in the section [Advanced Plugins](./plugin-advanced) ."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:107
+msgid ""
+"Different adapters generate different events. In the following example, "
+"we will write a \"Hello\" plugin using the CQHTTP adapter."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:110
+msgid "Writing the `rule()` Method"
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:129
+msgid ""
+"If you find putting all the conditions in one line less readable, you can"
+" write it like this:"
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:150
+msgid ""
+"As different adapters generate different events, you should first check "
+"the name of the adapter that generated the current event."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:152
+msgid ""
+"Then, check the type of the current event. For CQHTTP adapter, the event "
+"types are `message`, `notice`, and `request`, where only message type has"
+" the `message` attribute. This plugin only responds to message events."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:154
+msgid ""
+"The `message` attribute of CQHTTP adapter message events represents the "
+"received message and is of type `CQHTTPMessage`, which is a subclass of "
+"the built-in Message class in iamai."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:156
+msgid ""
+"The built-in Message class in iamai implements many useful methods. It is"
+" recommended that all adapter developers use it as much as possible. "
+"Specific usage is mentioned in the [Advanced Plugins](./plugin-"
+"advanced.md) section. Here, you can directly use the `str()` function to "
+"convert the Message object `self.event.message` to a string."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:158
+msgid ""
+"In addition, commonly used methods in the `rule()` method are "
+"`self.event.message.startswith('xxx')` and "
+"`self.event.message.endswith('xxx')`, which are equivalent to the "
+"`startswith()` and `endswith()` methods of strings."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:160
+msgid "Writing the `handle()` method"
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:180
+msgid ""
+"As mentioned above, when the rule() method returns `True`, the `handle()`"
+" method will be called. Here, we used a method of the message event, "
+"`reply()`, to quickly reply to the current message without specifying the"
+" recipient of the message."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:182
+msgid ""
+"The `reply()` method is an asynchronous method, so you must use `await` "
+"when calling it to wait for it to return."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:184
+msgid "Now let's look at another example to learn more usage."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:188
+msgid "Example : Weather Plugin"
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:229
+msgid ""
+"You can send a message to the robot in the format weather Beijing to get "
+"the weather information for Beijing. Alternatively, you can just send "
+"weather, and the robot will ask you for the city to query, then you can "
+"send the name of the city to query the weather."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:231
+msgid ""
+"In this example, the plugin needs to get the next received message. We "
+"use the get() method for this, which is used to obtain events that meet "
+"certain conditions. It is also an asynchronous method, so use await to "
+"wait for it."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:233
+msgid ""
+"Note that the get() method can specify a timeout to avoid waiting for "
+"events indefinitely. When a timeout occurs, it will raise the "
+"iamai.exception.GetEventTimeout exception. Be sure to handle this "
+"situation properly."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:235
+msgid ""
+"Also, the get_weather() method here does not actually fetch real weather "
+"data. You can use any weather API, but when making network requests, use "
+"asynchronous libraries like aiohttp or httpx, rather than synchronous "
+"ones like requests, to avoid blocking the program."
+msgstr ""
+
+#: ../../pages/basic/plugin-basics.md:237
+msgid ""
+"By reading up to this point, you should be able to write an iamai plugin."
+" Next, we suggest you continue reading Advanced Plugins and the tutorial "
+"for the adapter you are going to use."
+msgstr ""
+

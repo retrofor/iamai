@@ -1,0 +1,96 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-24 22:12+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../index.md:17
+msgid "Basic"
+msgstr ""
+
+#: ../../index.md:26
+msgid "Advanced"
+msgstr ""
+
+#: ../../index.md:36
+msgid "Adapters"
+msgstr ""
+
+#: ../../index.md:45
+msgid "Development"
+msgstr ""
+
+#: ../../index.md:1
+msgid "Iamai"
+msgstr ""
+
+#: ../../../README.md:5929
+msgid "Features"
+msgstr ""
+
+#: ../../../README.md:5931
+msgid ""
+"🎪 **Interactive [docs](https://iamai.is-a.dev) &amp; "
+"[demos](https://iamai.is-a.dev/)**"
+msgstr ""
+
+#: ../../../README.md:5932
+msgid ""
+"🕶 **Seamless migration**: Works for **both** [Rasa]() and [GPT]() and "
+"more..."
+msgstr ""
+
+#: ../../../README.md:5933
+msgid ""
+"⚡ **Fully tree shakeable**: Only take what you want, [bundle "
+"size](https://iamai.retrofor.space/export-size)"
+msgstr ""
+
+#: ../../../README.md:5934
+msgid "🔩 **Flexible**: Configurable event filters and targets"
+msgstr ""
+
+#: ../../../README.md:5935
+msgid ""
+"🔌 **Optional [Add-ons](https://iamai.retrofor.space/add-ons)**: "
+"[Apscheduler](https://iamai.retrofor.space/add-ons/apscheduler), etc."
+msgstr ""
+
+#: ../../../README.md:5936
+msgid ""
+"👍 **Cross-platform**: [dingtalk](https://iamai.retrofor.space/guide"
+"/dingtalk-adapter.html) etc."
+msgstr ""
+
+#: ../../index.md:7
+msgid ""
+"Iamai is not just a library; it's a comprehensive AI toolkit that brings "
+"together multimodal machine learning and cross-platform robotics. Whether"
+" you're developing intelligent systems or constructing robots for various"
+" platforms, iamai is your go-to solution for a unified and powerful "
+"development experience. Explore the possibilities with iamai today!"
+msgstr ""
+
+#: ../../index.md:9
+msgid ""
+"This documentation is based on Alicebot "
+"[Docs](https://docs.alicebot.dev), but with some modifications and "
+"improvements. It still has many shortcomings and is currently under "
+"reconstruction."
+msgstr ""
+
