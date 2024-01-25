@@ -59,4 +59,6 @@ msgid ""
 "improvements. It still has many shortcomings and is currently under "
 "reconstruction."
 msgstr ""
-
+"此文档基于 Alicebot "
+"[文档](https://docs.alicebot.dev)，但是有一些修正和"
+"改进。并且仍然处于维护状态。"
