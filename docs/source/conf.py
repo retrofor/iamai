@@ -64,7 +64,7 @@ gettext_uuid = True  # optional.
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "furo"
-html_static_path = ["_static"]
+html_static_path = ["../_static"]
 html_logo = "https://cdn.jsdelivr.net/gh/retrofor/iamai@master/docs/_static/retro.png"
 html_favicon = html_logo
 
