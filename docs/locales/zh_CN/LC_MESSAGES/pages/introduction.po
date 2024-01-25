@@ -1,0 +1,95 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/introduction.md:1 a84f2eeac13043fc81398383cbccfb81
+msgid "Introduction"
+msgstr ""
+
+#: ../../source/pages/introduction.md:8 5f06d63044e44792b3f2c0f7921be3b2
+msgid "**Multimodal Machine Learning**"
+msgstr ""
+
+#: ../../source/pages/introduction.md:10 2918b36e93bd486494805bd9cfd0626d
+msgid ""
+"Iamai excels in supporting various machine learning tasks, including NLP,"
+" ASR, TTS, and more. Its unified interface simplifies the development "
+"process, allowing developers to address multimodal challenges within a "
+"cohesive framework."
+msgstr ""
+
+#: ../../source/pages/introduction.md:12 43c4bb08788d460fbb59133665a1f66a
+msgid "**Cross-Platform Robotics**"
+msgstr ""
+
+#: ../../source/pages/introduction.md:14 bdbbac70a4ce481cad6b65cb9b9cba24
+msgid ""
+"The library goes beyond traditional machine learning by extending its "
+"capabilities to enable the construction of intelligent robots that "
+"seamlessly operate across different platforms. Developers can leverage "
+"the toolkit to build and deploy robotic systems with ease."
+msgstr ""
+
+#: ../../source/pages/introduction.md:16 b56720c6747442ea93b531d432959c26
+msgid "**Flexibility and Extensibility**"
+msgstr ""
+
+#: ../../source/pages/introduction.md:18 8b01c0a975824068a91cf8f0290c61e1
+msgid ""
+"Which maintains flexibility by supporting diverse machine learning "
+"algorithms and models. Configurable options allow developers to tailor "
+"the toolkit to meet the specific requirements of their projects."
+msgstr ""
+
+#: ../../source/pages/introduction.md:20 3d27fe85b1814dbda10aa24315b01692
+msgid "**User-Friendly Interface**"
+msgstr ""
+
+#: ../../source/pages/introduction.md:22 2287cadfa41e4fec96e3a3d878e3b190
+msgid ""
+"The library prioritizes a user-friendly interface, offering a concise and"
+" consistent API design. Rich documentation and examples facilitate a "
+"smooth integration process for both novice and experienced developers."
+msgstr ""
+
+#: ../../source/pages/introduction.md:24 60916d1798cf48418e5de2edf1f28b27
+msgid ""
+"Dive into our comprehensive documentation, where you'll find detailed "
+"usage instructions and example code to accelerate your understanding and "
+"application of iamai."
+msgstr ""
+
+#: ../../source/pages/introduction.md:26 1b15eb1a293f4598996e33855ec62221
+msgid ""
+"Iamai is not just a library; it's a comprehensive AI toolkit that brings "
+"together multimodal machine learning and cross-platform robotics. Whether"
+" you're developing intelligent systems or constructing robots for various"
+" platforms, iamai is your go-to solution for a unified and powerful "
+"development experience. Explore the possibilities with iamai today!"
+msgstr ""
+
+#: ../../source/pages/introduction.md:28 54d04060bab14f6ba83cf1adcb7d18dc
+msgid ""
+"This documentation is based on Alicebot "
+"[Docs](https://docs.alicebot.dev), but with some modifications and "
+"improvements. It still has many shortcomings and is currently under "
+"reconstruction."
+msgstr ""
+

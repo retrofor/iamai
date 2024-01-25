@@ -1,0 +1,110 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/api/iamai.adapter.onebot11.config.rst:2
+#: 1ad32b1403e544cc9e12f9c91f4d4a53
+msgid "iamai.adapter.onebot11.config module"
+msgstr ""
+
+#: 84c328b9c90d47828e5b195e3fc5ca99 iamai.adapter.onebot11.config:1 of
+msgid "CQHTTP 适配器配置。"
+msgstr ""
+
+#: 338f6d419aec4d1c8d00d87d330d07bd iamai.adapter.onebot11.config.Config:1 of
+msgid "Bases: :py:class:`~iamai.config.ConfigModel`"
+msgstr ""
+
+#: a1f45dca454b4bd9934b5f4722865aa1 iamai.adapter.onebot11.config.Config:1 of
+msgid "CQHTTP 配置类，将在适配器被加载时被混入到机器人主配置中。"
+msgstr ""
+
+#: 644dd61aadba492e993f508922010d96 iamai.adapter.onebot11.config.Config:5 of
+msgid "适配器类型，需要和协议端配置相同。"
+msgstr ""
+
+#: 058e1958836541c6816d26569ba4274b 13a56e40b76c4cefab2b2d54de5a5693
+#: 498311895fbc4ad2b7f5aa3aed05a666 849d65bdfd4c44968f08633c31088e3f
+#: a15a16d26ee44491925f6ae94b8a1c07 ddf8a3530e3740ccadf6fee3b7f163f4
+#: e7b9fdb8113a4c468888b2d77e5f3b00 iamai.adapter.onebot11.config.Config of
+msgid "type"
+msgstr ""
+
+#: c2a7c3f138114242bb5eb85c39143841 iamai.adapter.onebot11.config.Config:7 of
+msgid "Literal['ws', 'reverse-ws', 'ws-reverse']"
+msgstr ""
+
+#: 1433eb4a95954957afb156289539421a iamai.adapter.onebot11.config.Config:11 of
+msgid "本机域名。"
+msgstr ""
+
+#: 4de82b5dfaa545a488da579fd7cecd00 86b0c601d50e48e681103edd6d73eb27
+#: e31b3d62910e4ce78ea829c5fdb6beac iamai.adapter.onebot11.config.Config:13
+#: iamai.adapter.onebot11.config.Config:25
+#: iamai.adapter.onebot11.config.Config:43 of
+msgid "str"
+msgstr ""
+
+#: 0cce26591ac647c49c8d9f2d116946c6 iamai.adapter.onebot11.config.Config:17 of
+msgid "监听的端口。"
+msgstr ""
+
+#: 6a2919ef7c94453287ca9ac81adc3542 8a0d7847dbb840f68e2b280f1f676af4
+#: a1e9a3c7a13049319408edc41d36902a iamai.adapter.onebot11.config.Config:19
+#: iamai.adapter.onebot11.config.Config:31
+#: iamai.adapter.onebot11.config.Config:37 of
+msgid "int"
+msgstr ""
+
+#: 2620834a24e64af28ebe0e0c4fbe981b iamai.adapter.onebot11.config.Config:23 of
+msgid "WebSocket 路径，需和协议端配置相同。"
+msgstr ""
+
+#: 14e4db0f6c63471b8154aa19d210a1d8 iamai.adapter.onebot11.config.Config:29 of
+msgid "重连等待时间。"
+msgstr ""
+
+#: 8e39c83d0071492b85d729557293b8d0 iamai.adapter.onebot11.config.Config:35 of
+msgid "进行 API 调用时等待返回响应的超时时间。"
+msgstr ""
+
+#: 1e391cdcafab4bdb927a9bc5cf6ca74f iamai.adapter.onebot11.config.Config:41 of
+msgid "鉴权。"
+msgstr ""
+
+#: ../../docstring aa4d59a722da4f529e5a32b62cd0279e
+#: iamai.adapter.onebot11.config.Config.model_config:1 of
+msgid ""
+"Configuration for the model, should be a dictionary conforming to "
+"[`ConfigDict`][pydantic.config.ConfigDict]."
+msgstr ""
+
+#: ../../docstring d0c9d387f0d64020bd0d3242abfe5889
+#: iamai.adapter.onebot11.config.Config.model_fields:1 of
+msgid ""
+"Metadata about the fields defined on the model, mapping of field names to"
+" [`FieldInfo`][pydantic.fields.FieldInfo]."
+msgstr ""
+
+#: ../../docstring d7543d25a1a9418eb9cd2ec1e7e8fde1
+#: iamai.adapter.onebot11.config.Config.model_fields:4 of
+msgid "This replaces `Model.__fields__` from Pydantic V1."
+msgstr ""
+

@@ -1,0 +1,118 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/adapters/dingtalk-adapter.md:1
+#: c17ae34421304c118be161027268d652
+msgid "DingTalk Protocol Adapter"
+msgstr ""
+
+#: ../../source/pages/adapters/dingtalk-adapter.md:3
+#: f3bcc21123264999b818a229f0cce941
+msgid "Installation"
+msgstr ""
+
+#: ../../source/pages/adapters/dingtalk-adapter.md:9
+#: 48b110a736f04d3097782df5e1594d8f
+msgid "Configuring the Protocol Endpoint"
+msgstr ""
+
+#: ../../source/pages/adapters/dingtalk-adapter.md:11
+#: 3b7e7480cd3f42e9b606041b4178dfcd
+msgid ""
+"The DingTalk protocol adapter is an adapter for the DingTalk enterprise "
+"robot protocol. DingTalk's enterprise robot uses the outgoing (callback) "
+"mechanism. After a user mentions the robot, DingTalk will POST the "
+"message content to the developer's message receiving address."
+msgstr ""
+
+#: ../../source/pages/adapters/dingtalk-adapter.md:13
+#: b15ceb42adfb4513b1895789ee802c81
+msgid ""
+"For specific configurations, refer to the relevant documentation on the "
+"DingTalk Open Platform:"
+msgstr ""
+
+#: ../../source/pages/adapters/dingtalk-adapter.md:15
+#: d07b8e621ef8416f84ba9829f4bae26f
+msgid "[Robot Overiew](https://open.dingtalk.com/document/group/robot-overview)"
+msgstr ""
+
+#: ../../source/pages/adapters/dingtalk-adapter.md:16
+#: badc94899a23452b84c1294ee5ac05ef
+msgid ""
+"[Enterprise Internal Development of "
+"Robots](https://open.dingtalk.com/document/group/enterprise-created-"
+"chatbot)"
+msgstr ""
+
+#: ../../source/pages/adapters/dingtalk-adapter.md:18
+#: cd4bc398208440139ab690da1ee725c3
+msgid ""
+"During testing,  you may not have your own public domain name or IP. "
+"DingTalk provides an intranet penetration tool: [Intranet Penetration "
+"Tool](https://open.dingtalk.com/document/resourcedownload/http-intranet-"
+"penetration) ."
+msgstr ""
+
+#: ../../source/pages/adapters/dingtalk-adapter.md:20
+#: 7fc4a10f6381495c9f1f7996d9b34c73
+msgid "Configuring iamai"
+msgstr ""
+
+#: ../../source/pages/adapters/dingtalk-adapter.md:22
+#: 4e474554526b45c9a098da51fcd79bf8
+msgid ""
+"You need to edit `config.toml` to configure the DingTalk adapter. Refer "
+"to [Basic Configuration](./basic-config.md) and [DingTalk "
+"Configuration](/api/adapter/dingtalk/config.md) ."
+msgstr ""
+
+#: ../../source/pages/adapters/dingtalk-adapter.md:24
+#: 8477fa4b59dc417886081cba038f351c
+msgid "Sending Rich Text Messages"
+msgstr ""
+
+#: ../../source/pages/adapters/dingtalk-adapter.md:26
+#: aa67f6c7e30f4ad6b63088bf689fc61d
+msgid ""
+"When writing plugins, besides sending regular text messages, you can also"
+" easily construct and send rich-text messages. Make sure you have read "
+"the Built-in Messages section before reading this section."
+msgstr ""
+
+#: ../../source/pages/adapters/dingtalk-adapter.md:28
+#: a6e51f7cc590402795921f1c9491d405
+msgid ""
+"The special thing is that due to the uniqueness of DingTalk's rich-text "
+"messages, the message class of the DingTalk adapter `DingTalkMessage` is "
+"not a subclass of `Message`, but a subclass of `MessageSegment`. You "
+"cannot build messages by simply adding common message fields. Instead, "
+"you need to manually write Markdown text."
+msgstr ""
+
+#: ../../source/pages/adapters/dingtalk-adapter.md:47
+#: 601f149ee11d46c68e620fb95a44282a
+msgid ""
+"For more usage methods, please refer to [Message Types and Data "
+"Formats](https://open.dingtalk.com/document/group/message-types-and-data-"
+"format) and [CQHTTP Messages](/api/adapter/dingtalk/message.md) ."
+msgstr ""
+

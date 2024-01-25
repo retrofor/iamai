@@ -1,0 +1,498 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/api/iamai.adapter.onebot11.event.rst:2
+#: ec5daeb3f69c48728d1e2d13f9dd3ac2
+msgid "iamai.adapter.onebot11.event module"
+msgstr ""
+
+#: 6cf1c318591c4437a823dabe96959731 iamai.adapter.onebot11.event:1 of
+msgid "CQHTTP 适配器事件。"
+msgstr ""
+
+#: 51ca8b20ed834560bbd71da78a16a72f 65ca7c90e5be4eb49542e01ff32aae37
+#: 7eb9b542c7a2426697d7dd6e6f7a836e 88cc99cf73e24df7af661786b0058ff3
+#: iamai.adapter.onebot11.event.Anonymous:1 iamai.adapter.onebot11.event.File:1
+#: iamai.adapter.onebot11.event.Sender:1 iamai.adapter.onebot11.event.Status:1
+#: of
+msgid "Bases: :py:class:`~pydantic.main.BaseModel`"
+msgstr ""
+
+#: c74b3a3a302147b5a9b6a94ff7a0909d iamai.adapter.onebot11.event.Anonymous:1 of
+msgid "匿名信息"
+msgstr ""
+
+#: ../../docstring 1229e794cd7b4409bb99329d0ef74487
+#: 1cc09080c1404737bd7a229c78be64fa 2017e4e1a4054316a74fba212d646cf7
+#: 26d28530bcb144f3b1f18a031c91cb16 4b562019ec06429993713baab11b16e8
+#: 4d0a47dd8f47463db756a84dcae7b8f9 518649f4a2a046a799b4872a4b4ab292
+#: 633f04c3a1da4f0687870b13cd2ba28b 67b94ca1acbb4661adb9bb0db4bde47a
+#: 67d6225f1e6d40e79ba384e3cd13744d 75350070ece64cb98b1450283649b2e8
+#: 7aba839b40cd442eb088456f9cb5bf93 7e3b472144b1410fa7f76dc90b75cbbd
+#: 8a6c9bc09ca04fadb98de25be24ce02c a35a39a06aa2457fa78824e3587746b9
+#: a4383fc6c3734cbeb3c91423b4cc4f71 b849a2113e7f40719447930cf80b8f7e
+#: b85245b7d8ca45539299967f5ad41841 bb85bd4c68b945529eb8bce13d97d5c8
+#: c9c2a94f2fa74517a7a39040f0be7a68 d3958c86bd4e4ebba9b080b86ab68e78
+#: d51114580f6343199121ed8afe4993e5 d7d1e438fda94f9cb0d74b49e77b994e
+#: db184588dfe04e0186fef0696d4c3dbd dc69c590e54d41a59aab26b31fe91fcd
+#: e0acf7ac8e9246879521a1124b3f8496 f9316c2465e54260a87ca866b5bacb5e
+#: iamai.adapter.onebot11.event.Anonymous.model_config:1
+#: iamai.adapter.onebot11.event.CQHTTPEvent.model_config:1
+#: iamai.adapter.onebot11.event.File.model_config:1
+#: iamai.adapter.onebot11.event.FriendAddNoticeEvent.model_config:1
+#: iamai.adapter.onebot11.event.FriendRecallNoticeEvent.model_config:1
+#: iamai.adapter.onebot11.event.FriendRequestEvent.model_config:1
+#: iamai.adapter.onebot11.event.GroupAdminNoticeEvent.model_config:1
+#: iamai.adapter.onebot11.event.GroupBanNoticeEvent.model_config:1
+#: iamai.adapter.onebot11.event.GroupDecreaseNoticeEvent.model_config:1
+#: iamai.adapter.onebot11.event.GroupHonorNotifyEvent.model_config:1
+#: iamai.adapter.onebot11.event.GroupIncreaseNoticeEvent.model_config:1
+#: iamai.adapter.onebot11.event.GroupLuckyKingNotifyEvent.model_config:1
+#: iamai.adapter.onebot11.event.GroupMessageEvent.model_config:1
+#: iamai.adapter.onebot11.event.GroupRecallNoticeEvent.model_config:1
+#: iamai.adapter.onebot11.event.GroupRequestEvent.model_config:1
+#: iamai.adapter.onebot11.event.GroupUploadNoticeEvent.model_config:1
+#: iamai.adapter.onebot11.event.HeartbeatMetaEvent.model_config:1
+#: iamai.adapter.onebot11.event.LifecycleMetaEvent.model_config:1
+#: iamai.adapter.onebot11.event.MessageEvent.model_config:1
+#: iamai.adapter.onebot11.event.MetaEvent.model_config:1
+#: iamai.adapter.onebot11.event.NoticeEvent.model_config:1
+#: iamai.adapter.onebot11.event.NotifyEvent.model_config:1
+#: iamai.adapter.onebot11.event.PokeNotifyEvent.model_config:1
+#: iamai.adapter.onebot11.event.PrivateMessageEvent.model_config:1
+#: iamai.adapter.onebot11.event.RequestEvent.model_config:1
+#: iamai.adapter.onebot11.event.Sender.model_config:1
+#: iamai.adapter.onebot11.event.Status.model_config:1 of
+msgid ""
+"Configuration for the model, should be a dictionary conforming to "
+"[`ConfigDict`][pydantic.config.ConfigDict]."
+msgstr ""
+
+#: ../../docstring 019c89ed97694fa9a27f436b45f7b126
+#: 059b6aa57d6e478cb39c28e6ebdecc81 1ddea8bebd83451383cf08d010800373
+#: 24d2e0934dad466a933bd0dae7a95962 2b94d4f3019344f5bec60d7638406bec
+#: 2d5380acfbf347109cca890bb289454a 34bb3e4d30fd454489259ecc043ca9be
+#: 3576c2dfb9734d47a18c41fc88036b37 3fced54732274401926ee7b7bbf26419
+#: 60b7658936194072a8186f5bfb1f0ce4 7ae89a605b6f43a0a3028b3e16ca4df4
+#: 7b836896fc9343338e3f12801af7a75a 858345c16b4443ffb6c917103b5dbba3
+#: 9f780ee9af0846ed9d5b146048c427c0 9f7aa4edfa164f6e81536895b3754ded
+#: b3adef71935247178a5e7eaf51f7f770 b9706418783242e9a9cd080d418f68af
+#: c2fdbac02f21426f898cff58b217d07e c4e327c4dd6e41d2a4f1e1520cb64b9c
+#: ce5faafbfd534161a1413330b7465ece d12f09e8280e4691b91915bd9e282aff
+#: dbc3f8b4fa5c4bae804a82795cb09297 e3416716251c4a87950ba76d77eb8ae0
+#: ea2b17c236f64370a55efefbcf570d5a eced36f949a34848a62f92f2b05d7c4c
+#: f865543b9afd49c697230414f0c92465 fec0c6020b174c158e34e1a6e4ff3cc1
+#: iamai.adapter.onebot11.event.Anonymous.model_fields:1
+#: iamai.adapter.onebot11.event.CQHTTPEvent.model_fields:1
+#: iamai.adapter.onebot11.event.File.model_fields:1
+#: iamai.adapter.onebot11.event.FriendAddNoticeEvent.model_fields:1
+#: iamai.adapter.onebot11.event.FriendRecallNoticeEvent.model_fields:1
+#: iamai.adapter.onebot11.event.FriendRequestEvent.model_fields:1
+#: iamai.adapter.onebot11.event.GroupAdminNoticeEvent.model_fields:1
+#: iamai.adapter.onebot11.event.GroupBanNoticeEvent.model_fields:1
+#: iamai.adapter.onebot11.event.GroupDecreaseNoticeEvent.model_fields:1
+#: iamai.adapter.onebot11.event.GroupHonorNotifyEvent.model_fields:1
+#: iamai.adapter.onebot11.event.GroupIncreaseNoticeEvent.model_fields:1
+#: iamai.adapter.onebot11.event.GroupLuckyKingNotifyEvent.model_fields:1
+#: iamai.adapter.onebot11.event.GroupMessageEvent.model_fields:1
+#: iamai.adapter.onebot11.event.GroupRecallNoticeEvent.model_fields:1
+#: iamai.adapter.onebot11.event.GroupRequestEvent.model_fields:1
+#: iamai.adapter.onebot11.event.GroupUploadNoticeEvent.model_fields:1
+#: iamai.adapter.onebot11.event.HeartbeatMetaEvent.model_fields:1
+#: iamai.adapter.onebot11.event.LifecycleMetaEvent.model_fields:1
+#: iamai.adapter.onebot11.event.MessageEvent.model_fields:1
+#: iamai.adapter.onebot11.event.MetaEvent.model_fields:1
+#: iamai.adapter.onebot11.event.NoticeEvent.model_fields:1
+#: iamai.adapter.onebot11.event.NotifyEvent.model_fields:1
+#: iamai.adapter.onebot11.event.PokeNotifyEvent.model_fields:1
+#: iamai.adapter.onebot11.event.PrivateMessageEvent.model_fields:1
+#: iamai.adapter.onebot11.event.RequestEvent.model_fields:1
+#: iamai.adapter.onebot11.event.Sender.model_fields:1
+#: iamai.adapter.onebot11.event.Status.model_fields:1 of
+msgid ""
+"Metadata about the fields defined on the model, mapping of field names to"
+" [`FieldInfo`][pydantic.fields.FieldInfo]."
+msgstr ""
+
+#: ../../docstring 049ac5fadfd54e62b844dd0c2a77ec8b
+#: 0ae3fd3dfcd341cf80cb9c0e9b92134b 18484b1e4e344384b2fe5f75389bb2e1
+#: 286c985ebe3f45ada2119bfc8bee6aa4 28d57ed7684a42f6b35a3ed2d500a724
+#: 3083d03d80cb412db2e093bb46bed1f2 3bd8b1e4fcf941e69ae6c7a6d06d769e
+#: 474f076dae6b4cb5a56c5912902c5875 4f809f6e5b604933942b3b003782204d
+#: 568852f448b84151841e18105eda0d6c 5c2d9420a3314a959fe92e6938edbbb0
+#: 69d366e759c448d7977c20601d940187 81116c95bb2242f4957be3b6682e69f0
+#: 884e5737485b4f59800f8612126ccb3c 89ff918628bb4805b0e652097d468175
+#: 921c8c968dc94e78a31b2643000eac81 9e7cb307d363418d9c90f272eaa7f7b7
+#: a5efff2a396541b89daa96718efa82c2 a7f172163cac4978aef1a97b0c610a77
+#: b5193b352b6e4cfa9d8128b14ea2d062 c806f47261414aed930203d444df245c
+#: dc2fe9077a3a4d508bb564df5371bfde e4091473d48d4de9bd9df7239ae07fda
+#: e7a5c603fd7f4fe8bb9822dbb78ccf56 ea183478b5cb48e5a9f1af818674da6b
+#: eb966705e905421f807f8941b73480a5 fe3e71d6aaf54339b5a0b0facc391477
+#: iamai.adapter.onebot11.event.Anonymous.model_fields:4
+#: iamai.adapter.onebot11.event.CQHTTPEvent.model_fields:4
+#: iamai.adapter.onebot11.event.File.model_fields:4
+#: iamai.adapter.onebot11.event.FriendAddNoticeEvent.model_fields:4
+#: iamai.adapter.onebot11.event.FriendRecallNoticeEvent.model_fields:4
+#: iamai.adapter.onebot11.event.FriendRequestEvent.model_fields:4
+#: iamai.adapter.onebot11.event.GroupAdminNoticeEvent.model_fields:4
+#: iamai.adapter.onebot11.event.GroupBanNoticeEvent.model_fields:4
+#: iamai.adapter.onebot11.event.GroupDecreaseNoticeEvent.model_fields:4
+#: iamai.adapter.onebot11.event.GroupHonorNotifyEvent.model_fields:4
+#: iamai.adapter.onebot11.event.GroupIncreaseNoticeEvent.model_fields:4
+#: iamai.adapter.onebot11.event.GroupLuckyKingNotifyEvent.model_fields:4
+#: iamai.adapter.onebot11.event.GroupMessageEvent.model_fields:4
+#: iamai.adapter.onebot11.event.GroupRecallNoticeEvent.model_fields:4
+#: iamai.adapter.onebot11.event.GroupRequestEvent.model_fields:4
+#: iamai.adapter.onebot11.event.GroupUploadNoticeEvent.model_fields:4
+#: iamai.adapter.onebot11.event.HeartbeatMetaEvent.model_fields:4
+#: iamai.adapter.onebot11.event.LifecycleMetaEvent.model_fields:4
+#: iamai.adapter.onebot11.event.MessageEvent.model_fields:4
+#: iamai.adapter.onebot11.event.MetaEvent.model_fields:4
+#: iamai.adapter.onebot11.event.NoticeEvent.model_fields:4
+#: iamai.adapter.onebot11.event.NotifyEvent.model_fields:4
+#: iamai.adapter.onebot11.event.PokeNotifyEvent.model_fields:4
+#: iamai.adapter.onebot11.event.PrivateMessageEvent.model_fields:4
+#: iamai.adapter.onebot11.event.RequestEvent.model_fields:4
+#: iamai.adapter.onebot11.event.Sender.model_fields:4
+#: iamai.adapter.onebot11.event.Status.model_fields:4 of
+msgid "This replaces `Model.__fields__` from Pydantic V1."
+msgstr ""
+
+#: 7a07164644334ec0b3bfe8ccb739991e iamai.adapter.onebot11.event.CQHTTPEvent:1
+#: of
+msgid "Bases: :py:class:`~iamai.event.Event[CQHTTPAdapter]`"
+msgstr ""
+
+#: 4c62b1b9d5064efb9e96958ccb654dbc iamai.adapter.onebot11.event.CQHTTPEvent:1
+#: of
+msgid "CQHTTP 事件基类"
+msgstr ""
+
+#: 1acdf516f9a54073ad6131fced52e7c1
+#: iamai.adapter.onebot11.event.CQHTTPEvent.get_event_type:1 of
+msgid "获取事件类型。"
+msgstr ""
+
+#: 0a43ecdf2ef9470d9f55ad991adb109e 2d899498bd504b72a077e16a055c8395
+#: 367cf778ce6c4cff8e7b484c78dd37b3 53991aaaad7443978f9d77e79f58aa0f
+#: 71134f674c2a4b1a832ecf2c1332b192 a2b087728cfa42e6a4eec6f37c80bc9f
+#: a72dc1a575734f66b1fb531bf251eea7 b00ad336fe7f4616a080d8d1c4a56c83
+#: b662bf348bb34615a639fa35cf590fed c635f2c314944ec38c0ee56f90aa1011
+#: eb0fb0f4c24b448c9daf75a4fa1f0649 fa45c77677844c95a3c30c762cc8d3d1
+#: iamai.adapter.onebot11.event.CQHTTPEvent.get_event_type
+#: iamai.adapter.onebot11.event.FriendRequestEvent.approve
+#: iamai.adapter.onebot11.event.FriendRequestEvent.refuse
+#: iamai.adapter.onebot11.event.GroupMessageEvent.reply
+#: iamai.adapter.onebot11.event.GroupRequestEvent.approve
+#: iamai.adapter.onebot11.event.GroupRequestEvent.refuse
+#: iamai.adapter.onebot11.event.MessageEvent.get_plain_text
+#: iamai.adapter.onebot11.event.MessageEvent.is_same_sender
+#: iamai.adapter.onebot11.event.MessageEvent.reply
+#: iamai.adapter.onebot11.event.PrivateMessageEvent.reply
+#: iamai.adapter.onebot11.event.RequestEvent.approve
+#: iamai.adapter.onebot11.event.RequestEvent.refuse of
+msgid "Returns"
+msgstr ""
+
+#: 6dcd8f4cc3ae4244934f35d85adeb8fb
+#: iamai.adapter.onebot11.event.CQHTTPEvent.get_event_type:3 of
+msgid "事件类型。"
+msgstr ""
+
+#: d28ca1ecd98940d9a65903b0cea59c21
+#: iamai.adapter.onebot11.event.CQHTTPEvent.to_me:1 of
+msgid "当前事件的 `user_id` 是否等于 `self_id`。"
+msgstr ""
+
+#: 4b8b9223ccd041569e20e12d74fa9614 iamai.adapter.onebot11.event.File:1 of
+msgid "文件信息"
+msgstr ""
+
+#: 028b79b303504bc4937bd69bd94db7d9 031d8ef480f24de3aa5e248ca15fbcd4
+#: 0c5d762738ea430aa9f451c8c19a7b32 22dfd5cb4e8344b889d77fc4fa7a76a9
+#: 375e1c423eac450daf4a8222db6fbd11 5ceab76df1e44a14a475c4c54a49e427
+#: b889dab2a0684c3296b731d93fd46c96 f5c3998701734c809c2c24ecd5fe41bb
+#: fd822de0af3842f28cffdc8d2346b758
+#: iamai.adapter.onebot11.event.FriendAddNoticeEvent:1
+#: iamai.adapter.onebot11.event.FriendRecallNoticeEvent:1
+#: iamai.adapter.onebot11.event.GroupAdminNoticeEvent:1
+#: iamai.adapter.onebot11.event.GroupBanNoticeEvent:1
+#: iamai.adapter.onebot11.event.GroupDecreaseNoticeEvent:1
+#: iamai.adapter.onebot11.event.GroupIncreaseNoticeEvent:1
+#: iamai.adapter.onebot11.event.GroupRecallNoticeEvent:1
+#: iamai.adapter.onebot11.event.GroupUploadNoticeEvent:1
+#: iamai.adapter.onebot11.event.NotifyEvent:1 of
+msgid "Bases: :py:class:`~iamai.adapter.onebot11.event.NoticeEvent`"
+msgstr ""
+
+#: 70394a9d60dc48e6babb66991c6209fe
+#: iamai.adapter.onebot11.event.FriendAddNoticeEvent:1 of
+msgid "好友添加"
+msgstr ""
+
+#: cecb776f0c574c2bb0bce3131b711a7d
+#: iamai.adapter.onebot11.event.FriendRecallNoticeEvent:1 of
+msgid "好友消息撤回"
+msgstr ""
+
+#: 47942ccd6e9a4fe1bc2f42dc3affb15f 804bef921a614e0fa75e879cc569fb66
+#: iamai.adapter.onebot11.event.FriendRequestEvent:1
+#: iamai.adapter.onebot11.event.GroupRequestEvent:1 of
+msgid "Bases: :py:class:`~iamai.adapter.onebot11.event.RequestEvent`"
+msgstr ""
+
+#: 12a01020dfe24b00bbf9880bea3c32a1
+#: iamai.adapter.onebot11.event.FriendRequestEvent:1 of
+msgid "加好友请求"
+msgstr ""
+
+#: 12d2290542ad47969aa85e80661ffa10 2092f288debe41e4a34a9a9d52ce9133
+#: 9ecaea7b80e04075ad44539d74d35d20
+#: iamai.adapter.onebot11.event.FriendRequestEvent.approve:1
+#: iamai.adapter.onebot11.event.GroupRequestEvent.approve:1
+#: iamai.adapter.onebot11.event.RequestEvent.approve:1 of
+msgid "同意请求。"
+msgstr ""
+
+#: 051467ca1968466a857f0d20d040bb08 06234808743b4e25abf0c7e506b3ce95
+#: 2234f1e205c14abdb9522f24afc2fdc4 3a21bd7ee74647d7a07c739c49e1b9f3
+#: 580cf34e6b254319bcedb559649f07fd b82dd78d8468494ba5117e988fa7cd8c
+#: iamai.adapter.onebot11.event.FriendRequestEvent.approve
+#: iamai.adapter.onebot11.event.GroupMessageEvent.reply
+#: iamai.adapter.onebot11.event.GroupRequestEvent.refuse
+#: iamai.adapter.onebot11.event.MessageEvent.is_same_sender
+#: iamai.adapter.onebot11.event.MessageEvent.reply
+#: iamai.adapter.onebot11.event.PrivateMessageEvent.reply of
+msgid "Parameters"
+msgstr ""
+
+#: 60e4e9c09607462a8bf52cf124a7c0b2
+#: iamai.adapter.onebot11.event.FriendRequestEvent.approve:3 of
+msgid "好友备注。"
+msgstr ""
+
+#: 0a93d163448e4310945b24729c0e48a6 1f26f69cf5b543d4910c1046bcdc68ec
+#: 2aca2c7381cd4a1593a039000151d507 89f8a5d2bd724470aed6bee0d5280647
+#: 8db0830a83244a74852f34eb56327442 9a7d8778260048cdbec41f890f00634e
+#: a7fd0ba412074ba8ac2b0f7e674d98aa aae2a266bc634396a8ebdbdd3aa73d72
+#: c196502e1c0d48dd87f67b2008a3c7c7
+#: iamai.adapter.onebot11.event.FriendRequestEvent.approve:5
+#: iamai.adapter.onebot11.event.FriendRequestEvent.refuse:3
+#: iamai.adapter.onebot11.event.GroupMessageEvent.reply:5
+#: iamai.adapter.onebot11.event.GroupRequestEvent.approve:3
+#: iamai.adapter.onebot11.event.GroupRequestEvent.refuse:5
+#: iamai.adapter.onebot11.event.MessageEvent.reply:5
+#: iamai.adapter.onebot11.event.PrivateMessageEvent.reply:5
+#: iamai.adapter.onebot11.event.RequestEvent.approve:3
+#: iamai.adapter.onebot11.event.RequestEvent.refuse:3 of
+msgid "API 请求响应。"
+msgstr ""
+
+#: 2e3bc7918528444483bbdcb143aa508f 9c5638db690d452b9ca316c3bae0ec4b
+#: c49f6b70fdb946c997250b9c12e49b04
+#: iamai.adapter.onebot11.event.FriendRequestEvent.refuse:1
+#: iamai.adapter.onebot11.event.GroupRequestEvent.refuse:1
+#: iamai.adapter.onebot11.event.RequestEvent.refuse:1 of
+msgid "拒绝请求。"
+msgstr ""
+
+#: 5ca3a35006ff4d75a1a77bb81d8125a5
+#: iamai.adapter.onebot11.event.GroupAdminNoticeEvent:1 of
+msgid "群管理员变动"
+msgstr ""
+
+#: 7348f70e62f4497d96e11310d54ad88c
+#: iamai.adapter.onebot11.event.GroupBanNoticeEvent:1 of
+msgid "群禁言"
+msgstr ""
+
+#: c229d8f7161a4fa3bccc2aaafa75b32f
+#: iamai.adapter.onebot11.event.GroupDecreaseNoticeEvent:1 of
+msgid "群成员减少"
+msgstr ""
+
+#: 327b6e6037a94a159fb532b7938d92a6 68a5e5de4302427db465960cd177cf03
+#: b04073a5a1e74f96b134409d9fa6c8c5
+#: iamai.adapter.onebot11.event.GroupHonorNotifyEvent:1
+#: iamai.adapter.onebot11.event.GroupLuckyKingNotifyEvent:1
+#: iamai.adapter.onebot11.event.PokeNotifyEvent:1 of
+msgid "Bases: :py:class:`~iamai.adapter.onebot11.event.NotifyEvent`"
+msgstr ""
+
+#: 5030ad40ace249779315a58227d5b419
+#: iamai.adapter.onebot11.event.GroupHonorNotifyEvent:1 of
+msgid "群成员荣誉变更"
+msgstr ""
+
+#: cb65728fe0984539af76f9f791872339
+#: iamai.adapter.onebot11.event.GroupIncreaseNoticeEvent:1 of
+msgid "群成员增加"
+msgstr ""
+
+#: a38a1d65215a4092be7c53171d194249
+#: iamai.adapter.onebot11.event.GroupLuckyKingNotifyEvent:1 of
+msgid "群红包运气王"
+msgstr ""
+
+#: c9f505c5ca6745adad553e03e8f55331 d535cc1d3b7c4d9d856384f8d3261ae8
+#: iamai.adapter.onebot11.event.GroupMessageEvent:1
+#: iamai.adapter.onebot11.event.PrivateMessageEvent:1 of
+msgid "Bases: :py:class:`~iamai.adapter.onebot11.event.MessageEvent`"
+msgstr ""
+
+#: 2a34db0146b849e3bd39c2fa743e665d
+#: iamai.adapter.onebot11.event.GroupMessageEvent:1 of
+msgid "群消息"
+msgstr ""
+
+#: 7cabbf4838a34d54b4356aa084884e30 86c085964aba4fcba1c7e3f49e584eba
+#: c6e53857b8e549aab3ac4d07aec51344
+#: iamai.adapter.onebot11.event.GroupMessageEvent.reply:1
+#: iamai.adapter.onebot11.event.MessageEvent.reply:1
+#: iamai.adapter.onebot11.event.PrivateMessageEvent.reply:1 of
+msgid "回复消息。"
+msgstr ""
+
+#: 7c76aa20cd93463db7a8834301afb750 cdac663da8eb443c9a3c9ba7bb94dadb
+#: ff4e786cffea43f9b0ba5815be5465f9
+#: iamai.adapter.onebot11.event.GroupMessageEvent.reply:3
+#: iamai.adapter.onebot11.event.MessageEvent.reply:3
+#: iamai.adapter.onebot11.event.PrivateMessageEvent.reply:3 of
+msgid "回复消息的内容，同 `call_api()` 方法。"
+msgstr ""
+
+#: 11dfb73d9eb44a1ead3408d7d6d75242
+#: iamai.adapter.onebot11.event.GroupRecallNoticeEvent:1 of
+msgid "群消息撤回"
+msgstr ""
+
+#: 7a683daa6bd6420bbd4c9f80e2bd42ed
+#: iamai.adapter.onebot11.event.GroupRequestEvent:1 of
+msgid "加群请求 / 邀请"
+msgstr ""
+
+#: eedbcc3357124bddbb5bb39c0bbd766c
+#: iamai.adapter.onebot11.event.GroupRequestEvent.refuse:3 of
+msgid "拒绝原因。"
+msgstr ""
+
+#: 668374d222f94d318704f5a849d8e059
+#: iamai.adapter.onebot11.event.GroupUploadNoticeEvent:1 of
+msgid "群文件上传"
+msgstr ""
+
+#: a39e6077ac434a0298700c57e02f57ba d8bc6001d39f42128fc690a6c1a7e175
+#: iamai.adapter.onebot11.event.HeartbeatMetaEvent:1
+#: iamai.adapter.onebot11.event.LifecycleMetaEvent:1 of
+msgid "Bases: :py:class:`~iamai.adapter.onebot11.event.MetaEvent`"
+msgstr ""
+
+#: d1c2b5b2ff4749238725a6e6bcbf9f59
+#: iamai.adapter.onebot11.event.HeartbeatMetaEvent:1 of
+msgid "心跳"
+msgstr ""
+
+#: 7446ebba90634e899d66dcb97b206681
+#: iamai.adapter.onebot11.event.LifecycleMetaEvent:1 of
+msgid "生命周期"
+msgstr ""
+
+#: 06ef46aa41024608b6d4931f1bca436c iamai.adapter.onebot11.event.MessageEvent:1
+#: of
+msgid ""
+"Bases: :py:class:`~iamai.adapter.onebot11.event.CQHTTPEvent`, "
+":py:class:`~iamai.event.MessageEvent[CQHTTPAdapter]`"
+msgstr ""
+
+#: 99b4e006f7d94157bfdad0c819596fa5 iamai.adapter.onebot11.event.MessageEvent:1
+#: of
+msgid "消息事件"
+msgstr ""
+
+#: d13450ee21764ae28b1672a19fcb2053
+#: iamai.adapter.onebot11.event.MessageEvent.get_plain_text:1 of
+msgid "获取消息的纯文本内容。"
+msgstr ""
+
+#: 530f3dc922794fcea02e7fe56f42f206
+#: iamai.adapter.onebot11.event.MessageEvent.get_plain_text:3 of
+msgid "消息的纯文本内容。"
+msgstr ""
+
+#: 4570b6d765384926aa89b7721e0bf8b3
+#: iamai.adapter.onebot11.event.MessageEvent.is_same_sender:1 of
+msgid "判断自身和另一个事件是否是同一个发送者。"
+msgstr ""
+
+#: 13ea749ce93143d892ded15ec8299264
+#: iamai.adapter.onebot11.event.MessageEvent.is_same_sender:3 of
+msgid "另一个事件。"
+msgstr ""
+
+#: 027f6e977d1d49d39e8b4987751d063a
+#: iamai.adapter.onebot11.event.MessageEvent.is_same_sender:5 of
+msgid "是否是同一个发送者。"
+msgstr ""
+
+#: 0fd7855694f24c7e960e8d6173e50d55 483d89af016d49f89304e7acb55c7de4
+#: 8b41c0b661734846ace5cfb8701374c9 iamai.adapter.onebot11.event.MetaEvent:1
+#: iamai.adapter.onebot11.event.NoticeEvent:1
+#: iamai.adapter.onebot11.event.RequestEvent:1 of
+msgid "Bases: :py:class:`~iamai.adapter.onebot11.event.CQHTTPEvent`"
+msgstr ""
+
+#: 0b7e1576cdd84001b181988fe669c7de iamai.adapter.onebot11.event.MetaEvent:1 of
+msgid "元事件"
+msgstr ""
+
+#: 541042a5c694481d8f890d151ae64cb9 iamai.adapter.onebot11.event.NoticeEvent:1
+#: of
+msgid "通知事件"
+msgstr ""
+
+#: 0f07cc0f8eb34b5d9608b42e3214b4f4 iamai.adapter.onebot11.event.NotifyEvent:1
+#: of
+msgid "提醒事件"
+msgstr ""
+
+#: b3f8a46fd9bb4120823c83da6c7f55c9
+#: iamai.adapter.onebot11.event.PokeNotifyEvent:1 of
+msgid "戳一戳"
+msgstr ""
+
+#: beb941d211d44e4aa8100a596e882859
+#: iamai.adapter.onebot11.event.PrivateMessageEvent:1 of
+msgid "私聊消息"
+msgstr ""
+
+#: e035e7034b504503ba6eba073e58cb21 iamai.adapter.onebot11.event.RequestEvent:1
+#: of
+msgid "请求事件"
+msgstr ""
+
+#: 1869c2f95bdf4bc39bfc7ec11215f39d iamai.adapter.onebot11.event.Sender:1 of
+msgid "发送人信息"
+msgstr ""
+
+#: 80246ec6da63493c994c6ec5d863953b iamai.adapter.onebot11.event.Status:1 of
+msgid "状态信息"
+msgstr ""
+

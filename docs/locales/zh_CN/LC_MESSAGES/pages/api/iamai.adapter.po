@@ -1,0 +1,156 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/api/iamai.adapter.rst:2 d3f78b0b36c84588a4e8acff703c6b5e
+msgid "iamai.adapter package"
+msgstr ""
+
+#: ../../source/pages/api/iamai.adapter.rst:5 05663e2f6cbd461fb18b904cb929bf61
+msgid "Subpackages"
+msgstr ""
+
+#: ../../source/pages/api/iamai.adapter.rst:19 95553f906d4b4a029bf862ab5e2f7fee
+msgid "Submodules"
+msgstr ""
+
+#: ../../source/pages/api/iamai.adapter.rst:27 a8440e57ca454ebea391f6b68ba9d030
+msgid "Module contents"
+msgstr ""
+
+#: 3a48620ca59d490d87db58193474f7f2 iamai.adapter:1 of
+msgid "iamai 协议适配器。"
+msgstr ""
+
+#: 310c4905cfff47a6a315d9fb473379c2 iamai.adapter:3 of
+msgid "所有协议适配器都必须继承自 `Adapter` 基类。"
+msgstr ""
+
+#: 73deb92625cf4b8b9806acb2ec40d482 iamai.adapter.Adapter:1 of
+msgid ""
+"Bases: :py:class:`~typing.Generic`\\ [:py:obj:`~iamai.typing.EventT`, "
+":py:obj:`~iamai.typing.ConfigT`], :py:class:`~abc.ABC`"
+msgstr ""
+
+#: 450f8bef8a574546bfa82eb3ad3f5bab iamai.adapter.Adapter:1 of
+msgid "协议适配器基类。"
+msgstr ""
+
+#: 3c3c3a167c1f4c97a87677d0ecb8afc7 iamai.adapter.Adapter:5 of
+msgid "适配器的名称。"
+msgstr ""
+
+#: 9a3360e5b7bb468dac2b9475bd57ce70 d23b5ea682594174a38b392b683cd580
+#: iamai.adapter.Adapter of
+msgid "type"
+msgstr ""
+
+#: 01141727dd954c18b188b7f0ca7c262d iamai.adapter.Adapter:7 of
+msgid "str"
+msgstr ""
+
+#: c4b8df8571d14338b8e7f91f8570fbbe iamai.adapter.Adapter:11 of
+msgid "当前的机器人对象。"
+msgstr ""
+
+#: f513757e777b413f8976a69cd22bc8f2 iamai.adapter.Adapter:13 of
+msgid "Bot"
+msgstr ""
+
+#: 633c386d0a684192b195f03616540a68 iamai.adapter.Adapter.config:1 of
+msgid "适配器配置。"
+msgstr ""
+
+#: fc02a049458243a1b0ec842c5687ae8a iamai.adapter.Adapter.get:1 of
+msgid "获取满足指定条件的的事件，协程会等待直到适配器接收到满足条件的事件、超过最大事件数或超时。"
+msgstr ""
+
+#: dee56e7ff87142d88ec474a77711bc14 iamai.adapter.Adapter.get:3 of
+msgid ""
+"类似 `Bot` 类的 `get()` 方法，但是隐含了判断产生事件的适配器是本适配器。 等效于 `Bot` 类的 `get()` 方法传入 "
+"adapter_type 为本适配器类型。"
+msgstr ""
+
+#: 7bc38441a18743d59b6d880ece304b32 iamai.adapter.Adapter.get of
+msgid "Parameters"
+msgstr ""
+
+#: 851a907212a74d80b1ddc504fde1e3ac iamai.adapter.Adapter.get:6 of
+msgid ""
+"协程或者函数，函数会被自动包装为协程执行。 要求接受一个事件作为参数，返回布尔值。 当协程返回 `True` 时返回当前事件。 当为 `None`"
+" 时相当于输入对于任何事件均返回真的协程，即返回适配器接收到的下一个事件。"
+msgstr ""
+
+#: e6f90e013b7d433fbeac454285d0f529 iamai.adapter.Adapter.get:10 of
+msgid "当指定时，只接受指定类型的事件，先于 func 条件生效。默认为 `None`。"
+msgstr ""
+
+#: 4ad64068a51e47c68a1e3d11f222142b iamai.adapter.Adapter.get:11 of
+msgid "最大事件数。"
+msgstr ""
+
+#: 50b251f43d194c1b983558730571efe6 iamai.adapter.Adapter.get:12 of
+msgid "超时时间。"
+msgstr ""
+
+#: 27eae0b7dd9d4c8d95a31801d05a9748 iamai.adapter.Adapter.get of
+msgid "Returns"
+msgstr ""
+
+#: a8a323db9da049f4b63398ed8d3b64b8 iamai.adapter.Adapter.get:14 of
+msgid "返回满足 func 条件的事件。"
+msgstr ""
+
+#: a924221ac0544e37b3eb909eb255eccf iamai.adapter.Adapter.get of
+msgid "Raises"
+msgstr ""
+
+#: c298cf5fd8044d729e6a6440c958341d iamai.adapter.Adapter.get:16 of
+msgid "超过最大事件数或超时。"
+msgstr ""
+
+#: 0ec9048378384357bfd6a8b74994335a iamai.adapter.Adapter.run:1 of
+msgid "适配器运行方法，适配器开发者必须实现该方法。"
+msgstr ""
+
+#: 8aaaa24515a440fb867772c457a47977 iamai.adapter.Adapter.run:3 of
+msgid "适配器运行过程中保持保持运行，当此方法结束后， AliceBot 不会自动重新启动适配器。"
+msgstr ""
+
+#: 511a23e143b34e948289d565fa9a3dba iamai.adapter.Adapter.safe_run:1 of
+msgid "附带有异常处理地安全运行适配器。"
+msgstr ""
+
+#: 4f8e5aafca524419acc90e43bbf3b6c6 iamai.adapter.Adapter.shutdown:1 of
+msgid "在适配器结束运行时运行的方法，用于安全地关闭适配器。"
+msgstr ""
+
+#: c814957e9f1244289d4626af5a862af1 iamai.adapter.Adapter.shutdown:3 of
+msgid "AliceBot 在接收到系统的结束信号后依次运行并等待所有适配器的 `shutdown()` 方法。 当强制退出时此方法可能未被执行。"
+msgstr ""
+
+#: 7867b0eab78c418b9403945515e86b2b iamai.adapter.Adapter.startup:1 of
+msgid "在适配器开始运行前运行的方法，用于初始化适配器。"
+msgstr ""
+
+#: a49a2d1a1e2443d8ba63a20910992b3e iamai.adapter.Adapter.startup:3 of
+msgid "AliceBot 依次运行并等待所有适配器的 `startup()` 方法，待运行完毕后再创建 `run()` 任务。"
+msgstr ""
+

@@ -1,0 +1,718 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/api/iamai.rst:2 0f7ca09092464366b2267e83661c69fe
+msgid "iamai package"
+msgstr ""
+
+#: ../../source/pages/api/iamai.rst:5 b471e5dc138e4499b9bfee3c8a37c832
+msgid "Subpackages"
+msgstr ""
+
+#: ../../source/pages/api/iamai.rst:14 5857b7e3748547d49b80fbdeec5b2396
+msgid "Submodules"
+msgstr ""
+
+#: ../../source/pages/api/iamai.rst:33 a28a1fcd1bc54c98948e98b9d7304609
+msgid "Module contents"
+msgstr ""
+
+#: f121137ef9a1405e9aa28835f7b6f6c6 iamai:1 of
+msgid "API Documentation"
+msgstr ""
+
+#: c543b3e241b74ca2ad84e5c17d239c56 iamai:3 of
+msgid ""
+"Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform "
+"Robotics."
+msgstr ""
+
+#: 2a3a67b8dca641d3ae41c16dd9d74e9f iamai:5 of
+msgid "This Module imports the following contents from the sub-module."
+msgstr ""
+
+#: e471bc7c5a43423ca2ce423af374c490 iamai.adapter.Adapter:1 of
+msgid ""
+"Bases: :py:class:`~typing.Generic`\\ [:py:obj:`~iamai.typing.EventT`, "
+":py:obj:`~iamai.typing.ConfigT`], :py:class:`~abc.ABC`"
+msgstr ""
+
+#: bfe72cf4546e4bf1ad483fdc67f9efd3 iamai.adapter.Adapter:1 of
+msgid "协议适配器基类。"
+msgstr ""
+
+#: e8d22a6c612b4d0dbdfd044555edd4f4 iamai.adapter.Adapter:5 of
+msgid "适配器的名称。"
+msgstr ""
+
+#: 08adefe31cea4aac942840bf0a0d90d8 0ecb960f027b45d5b2f3225a5c7d9470
+#: 126a572578fc410eae8ea391ce0cd4bd 1def51ef72064ca6b80f3ca5f5c5a5fb
+#: 1f68882c734a4fb1bdd89e788de4dcab 2cd0ff18c229429b89ad0d695819023a
+#: 48615b8d0fb4442ebb223b515cf97f1e 51205055d2334179aadab7b5f02e7546
+#: 5961df5561234222873b42aa931cb8c7 67f55aeef4684f7991acab716975b188
+#: 93ed62eced7f46cea2a3b6b745325d49 94e239938c6241158e77a69b953812da
+#: acc4e46600c14bbd8f99634830c3065c b73ff72a6b674e71b08526935d7311c0
+#: eb99d7c641184a7a87b833ffb7bb0d17 edc16267f7ed4f5fb1734b04f268725a
+#: iamai.adapter.Adapter iamai.bot.Bot iamai.config.ConfigModel
+#: iamai.event.Event iamai.plugin.Plugin of
+msgid "type"
+msgstr ""
+
+#: 763631fbcb6e4784896d49aeddf1c485 a4032585004f4e83a4729521e607a778
+#: iamai.adapter.Adapter:7 iamai.config.ConfigModel:7 of
+msgid "str"
+msgstr ""
+
+#: 7463fc1d79cc4bdf9e8becf21e48ab0c iamai.adapter.Adapter:11 of
+msgid "当前的机器人对象。"
+msgstr ""
+
+#: 80e45a811379480ba96b1c9050fe36ca iamai.adapter.Adapter:13 of
+msgid "Bot"
+msgstr ""
+
+#: e230a9529bd3458ab19240440b01272b iamai.Adapter.config:1 of
+msgid "适配器配置。"
+msgstr ""
+
+#: 2b4643e5342243d3853e444df6460dba fde6f5487725431bad9d286576d1dfff
+#: iamai.adapter.Adapter.get:1 iamai.bot.Bot.get:1 of
+msgid "获取满足指定条件的的事件，协程会等待直到适配器接收到满足条件的事件、超过最大事件数或超时。"
+msgstr ""
+
+#: e6420c82fac041fe8b6933b6aa73f897 iamai.adapter.Adapter.get:3 of
+msgid ""
+"类似 `Bot` 类的 `get()` 方法，但是隐含了判断产生事件的适配器是本适配器。 等效于 `Bot` 类的 `get()` 方法传入 "
+"adapter_type 为本适配器类型。"
+msgstr ""
+
+#: 17461adad9c446d2ba975d24ddfe5303 199d3eb43fea42749868a81a15b287f5
+#: 37120f0d6c2e48799b209855a84208a7 3a7194131e1d4c5abbcbde55b5f80f25
+#: 3d824a33f566413caeb9bc2dbe700c63 416fd50e52274eeda0a72ac97d7f482b
+#: 44f086e4ac664d669e538eea87a5e493 487ef4b754f346d6b26304062e68d84e
+#: 4e65873b55944523b04604303457aadd 52bce97169b34984ac9fed4e4d9968de
+#: 6832b8e19ba743888e368dc3d4ecd897 6c9dbc90ebb94f8197e8d0ee8b258997
+#: 7f487fb0a2394161bdf8a95b0a10bb6e 80c3d1d312f74d8182f4e14e74677f71
+#: 8de91b48405a424cbdff41a13a5806f3 9fe56ae4a5e241c8b6506e22303f4100
+#: b7bc3bff376c45cab75edc63928b40a9 c65dd0082b4944558f885017e2dd785f
+#: daac61753c2a4f94a294cdc411fe3c01 ed9ed3ec5e1f4402b313202a7458a05b
+#: f665ec4a75004e15bff4eecf327cfc29 iamai.adapter.Adapter.get
+#: iamai.bot.Bot.adapter_run_hook iamai.bot.Bot.adapter_shutdown_hook
+#: iamai.bot.Bot.adapter_startup_hook iamai.bot.Bot.bot_exit_hook
+#: iamai.bot.Bot.bot_run_hook iamai.bot.Bot.error_or_exception
+#: iamai.bot.Bot.event_postprocessor_hook iamai.bot.Bot.event_preprocessor_hook
+#: iamai.bot.Bot.get iamai.bot.Bot.get_adapter iamai.bot.Bot.get_plugin
+#: iamai.bot.Bot.handle_event iamai.bot.Bot.load_adapters
+#: iamai.bot.Bot.load_plugins iamai.bot.Bot.load_plugins_from_dirs
+#: iamai.dependencies.Depends iamai.event.MessageEvent.ask
+#: iamai.event.MessageEvent.get iamai.event.MessageEvent.is_same_sender
+#: iamai.event.MessageEvent.reply of
+msgid "Parameters"
+msgstr ""
+
+#: 8fa4fd6fe0624e8cb1d600debc9b548f iamai.adapter.Adapter.get:6 of
+msgid ""
+"协程或者函数，函数会被自动包装为协程执行。 要求接受一个事件作为参数，返回布尔值。 当协程返回 `True` 时返回当前事件。 当为 `None`"
+" 时相当于输入对于任何事件均返回真的协程，即返回适配器接收到的下一个事件。"
+msgstr ""
+
+#: 1c2b55044f4f4a11a03112f81df0cd50 72c7cca4a5d540d999242a4aa4c0df59
+#: iamai.adapter.Adapter.get:10 iamai.bot.Bot.get:6 of
+msgid "当指定时，只接受指定类型的事件，先于 func 条件生效。默认为 `None`。"
+msgstr ""
+
+#: 5e8e65f73d464424ab89578abd6aea66 887b641171264b358c2cf053597e9eed
+#: 9a49dc0b04ef4a8d89c715f8958a10ad a80bfc074c224dbf90ac563ad7b13ca4
+#: iamai.adapter.Adapter.get:11 iamai.bot.Bot.get:8
+#: iamai.event.MessageEvent.ask:7 iamai.event.MessageEvent.get:5 of
+msgid "最大事件数。"
+msgstr ""
+
+#: 3a4d9476e04c47459d8793a0e3fb42cf 65c11c521b4b43b280932e0f2d6edf56
+#: ccd9c0b2835e432eac30f2b4fb4d673d e7b80201d3f14eeba66656ec0cfbe016
+#: iamai.adapter.Adapter.get:12 iamai.bot.Bot.get:9
+#: iamai.event.MessageEvent.ask:8 iamai.event.MessageEvent.get:6 of
+msgid "超时时间。"
+msgstr ""
+
+#: 088cea2ff815443cac78b9dd8c335f93 171467a8b5934312b8cb6131eadda19e
+#: 1e632a0f22e140fa96a8b9bdd38165f0 5396047d44fc42ea86f944f90b290b41
+#: 630f19f388174167aa3345016fdf9f11 743c16bd80b441088e3d61a8753ae834
+#: 8711717a3e154fe9b2cf315345b895c9 9cb74b6ccbd9437cb426f3c581bc1b05
+#: ab6a34194fa6425daf6930e7f8a53cac b4cf620938da4a3aaca28c5392244b93
+#: bc589ce3554445dea8c9d73af60ee4d7 bf278da024c34d3ba2eda2abae826f74
+#: c4dafa8f283a49c288cb1e6cc7c6ae97 d173352b35a949b88c320fb08e850f5e
+#: d90b3811307346e4963b21fdcfcb16f5 e54471b4565245cb953379611c447da0
+#: ed1b8006481e4e4ba0fc9da3db419c14 iamai.adapter.Adapter.get
+#: iamai.bot.Bot.adapter_run_hook iamai.bot.Bot.adapter_shutdown_hook
+#: iamai.bot.Bot.adapter_startup_hook iamai.bot.Bot.bot_exit_hook
+#: iamai.bot.Bot.bot_run_hook iamai.bot.Bot.event_postprocessor_hook
+#: iamai.bot.Bot.event_preprocessor_hook iamai.bot.Bot.get
+#: iamai.bot.Bot.get_adapter iamai.bot.Bot.get_plugin
+#: iamai.dependencies.Depends iamai.event.MessageEvent.ask
+#: iamai.event.MessageEvent.get iamai.event.MessageEvent.get_plain_text
+#: iamai.event.MessageEvent.is_same_sender iamai.event.MessageEvent.reply of
+msgid "Returns"
+msgstr ""
+
+#: 28e30372ee214ad09b3608714da743dd iamai.adapter.Adapter.get:14 of
+msgid "返回满足 func 条件的事件。"
+msgstr ""
+
+#: 081318f793d541e2a8f68e2aef209096 25f6445aa8164c9495ceb183b7e70b6e
+#: d1223c5b4f204fc7ad551c2e7d2cd5b9 d859774139a44216b1ce2c6ba984563c
+#: f53c75d58a6b49be8608aa9bb1f30d9a iamai.adapter.Adapter.get iamai.bot.Bot.get
+#: iamai.bot.Bot.get_adapter iamai.bot.Bot.get_plugin
+#: iamai.event.MessageEvent.get of
+msgid "Raises"
+msgstr ""
+
+#: 2861e86a17f545a3b6be57bf95f1a3e2 93a792da6a8040bca59f61df14a2d451
+#: f00da7a7c1cd46d796f0f948a070b107 iamai.adapter.Adapter.get:16
+#: iamai.bot.Bot.get:13 iamai.event.MessageEvent.get:10 of
+msgid "超过最大事件数或超时。"
+msgstr ""
+
+#: 80fe4048918a4bb2b2ba0e50e42f7038 iamai.adapter.Adapter.run:1 of
+msgid "适配器运行方法，适配器开发者必须实现该方法。"
+msgstr ""
+
+#: 0e67a97aa2d0478f85d7a3823d493af7 iamai.adapter.Adapter.run:3 of
+msgid "适配器运行过程中保持保持运行，当此方法结束后， AliceBot 不会自动重新启动适配器。"
+msgstr ""
+
+#: 4245909e92374bd99665c99d9d807531 iamai.adapter.Adapter.safe_run:1 of
+msgid "附带有异常处理地安全运行适配器。"
+msgstr ""
+
+#: eb8704b49d724a159baabfa1dafff2e2 iamai.adapter.Adapter.shutdown:1 of
+msgid "在适配器结束运行时运行的方法，用于安全地关闭适配器。"
+msgstr ""
+
+#: a093adfb0b9148359499f44b5d41e078 iamai.adapter.Adapter.shutdown:3 of
+msgid "AliceBot 在接收到系统的结束信号后依次运行并等待所有适配器的 `shutdown()` 方法。 当强制退出时此方法可能未被执行。"
+msgstr ""
+
+#: f2602c0d0c9e4e798e7cb61a888452c2 iamai.adapter.Adapter.startup:1 of
+msgid "在适配器开始运行前运行的方法，用于初始化适配器。"
+msgstr ""
+
+#: 7d6d1938085043b9bfe2197d792396f8 iamai.adapter.Adapter.startup:3 of
+msgid "AliceBot 依次运行并等待所有适配器的 `startup()` 方法，待运行完毕后再创建 `run()` 任务。"
+msgstr ""
+
+#: af52ad1508c94e48bd660d959701c69e iamai.bot.Bot:1 of
+msgid "Bases: :py:class:`object`"
+msgstr ""
+
+#: f7e09a54583b41c4aeabf3c9ec6b8dba iamai.bot.Bot:1 of
+msgid "iamai 机器人对象，定义了机器人的基本方法。"
+msgstr ""
+
+#: abdc62a9c2bf4b298a44a5cd6afb45ce iamai.bot.Bot:3 of
+msgid "读取并储存配置 `Config`，加载适配器 `Adapter` 和插件 `Plugin`，并进行事件分发。"
+msgstr ""
+
+#: e0513fa083c241d1af996accb3b32fc1 iamai.bot.Bot:7 of
+msgid "机器人配置。"
+msgstr ""
+
+#: 84c6cab7ab7c4912b724037d082230b7 iamai.bot.Bot:9 of
+msgid "iamai.config.MainConfig"
+msgstr ""
+
+#: 310dde30867c4130964530e3dd9a5825 iamai.bot.Bot:13 of
+msgid "机器人是否应该进入准备退出状态。"
+msgstr ""
+
+#: af7ea8d9b4f1435c88d192330ffd6f23 iamai.bot.Bot:15 of
+msgid "asyncio.locks.Event"
+msgstr ""
+
+#: 5571aabea160496d979b9aced5560359 iamai.bot.Bot:19 of
+msgid "当前已经加载的适配器的列表。"
+msgstr ""
+
+#: fc3acce6f17d4ab88b6188877f568454 iamai.bot.Bot:21 of
+msgid "List[iamai.adapter.Adapter[Any, Any]]"
+msgstr ""
+
+#: 8cd8f04a5b9547daa057d244625e9583 iamai.bot.Bot:25 of
+msgid "插件优先级字典。"
+msgstr ""
+
+#: 8d86114c7683489aacc52ceb10f8e312 iamai.bot.Bot:27 of
+msgid "Dict[int, List[Type[iamai.plugin.Plugin[Any, Any, Any]]]]"
+msgstr ""
+
+#: 17b71c003cba42eda8646343c7bd61be 35b831e9eeb14a5583f53e20c522ca49
+#: iamai.Plugin.state:1 iamai.bot.Bot:31 of
+msgid "插件状态。"
+msgstr ""
+
+#: b37584b9c1c24a5ca61365f07aa7cb20 iamai.bot.Bot:33 of
+msgid "Dict[str, Any]"
+msgstr ""
+
+#: b1e0e3d4184f4dabb5d813e5891fc992 iamai.bot.Bot:37 of
+msgid "全局状态。"
+msgstr ""
+
+#: 96800b1605744c26afc085d74328e363 iamai.bot.Bot:39 of
+msgid "Dict[Any, Any]"
+msgstr ""
+
+#: 2daaeef52d0c4dd3a6aafd074ac2e708 iamai.bot.Bot.adapter_run_hook:1 of
+msgid "注册一个适配器运行时的函数。"
+msgstr ""
+
+#: 0e092cbcf59e4079afe56f5a45933e57 1780bbee816542b39d1750d95445f07a
+#: 2b41ff1975e34d208f7c95754f2cf394 39958f99c5c942f5a1c025f7473d3044
+#: 3c9012e13e3b495183a38623fd4c4c09 4444fbaf9c6b49c19afd49479877b3e5
+#: 641eb94fc4804f089e08e57935eef32d 77efd3fac81c4060b7f2a9a941a00b14
+#: 8348a62b46704e8da6ee0bca9eb5ec5f a7fbd19610944692b43fa969506e4c6a
+#: c5f638a4ceea40b8b1ed4eaefe6197ad d658bee2aeee43fbb545c9c000f5cab9
+#: d6706e67c68d4abc8d7c3974b1dd99ad eb75004d3ea7431cb20b61ed017b94a8
+#: iamai.bot.Bot.adapter_run_hook:3 iamai.bot.Bot.adapter_run_hook:5
+#: iamai.bot.Bot.adapter_shutdown_hook:3 iamai.bot.Bot.adapter_shutdown_hook:5
+#: iamai.bot.Bot.adapter_startup_hook:3 iamai.bot.Bot.adapter_startup_hook:5
+#: iamai.bot.Bot.bot_exit_hook:3 iamai.bot.Bot.bot_exit_hook:5
+#: iamai.bot.Bot.bot_run_hook:3 iamai.bot.Bot.bot_run_hook:5
+#: iamai.bot.Bot.event_postprocessor_hook:3
+#: iamai.bot.Bot.event_postprocessor_hook:5
+#: iamai.bot.Bot.event_preprocessor_hook:3
+#: iamai.bot.Bot.event_preprocessor_hook:5 of
+msgid "被注册的函数。"
+msgstr ""
+
+#: 500bccdbc4a24f59bd27fa2232cfba7d iamai.bot.Bot.adapter_shutdown_hook:1 of
+msgid "注册一个适配器关闭时的函数。"
+msgstr ""
+
+#: c1b96c2bf1184a86ad8f1de7c9bace44 iamai.bot.Bot.adapter_startup_hook:1 of
+msgid "注册一个适配器初始化时的函数。"
+msgstr ""
+
+#: 5bec188192e7477cb3d2123e2b1350c7 iamai.bot.Bot.bot_exit_hook:1 of
+msgid "注册一个 Bot 退出时的函数。"
+msgstr ""
+
+#: 5c25a7258c2a4356ae37f050cc9499be iamai.bot.Bot.bot_run_hook:1 of
+msgid "注册一个 Bot 启动时的函数。"
+msgstr ""
+
+#: a5d4c98c8d9f446997d1956d21fa75cd iamai.bot.Bot.error_or_exception:1 of
+msgid "根据当前 Bot 的配置输出 error 或者 exception 日志。"
+msgstr ""
+
+#: fbc21f528de74938ae2d18044c22559e iamai.bot.Bot.error_or_exception:3 of
+msgid "消息。"
+msgstr ""
+
+#: 13b929a90e844c418267a080ff5abcad iamai.bot.Bot.error_or_exception:4 of
+msgid "异常。"
+msgstr ""
+
+#: 9fbf62619e124e42ba21ae4672560657 iamai.bot.Bot.event_postprocessor_hook:1 of
+msgid "注册一个事件后处理函数。"
+msgstr ""
+
+#: f52bb7839a6b4ab38812a92026e8df04 iamai.bot.Bot.event_preprocessor_hook:1 of
+msgid "注册一个事件预处理函数。"
+msgstr ""
+
+#: 54cd32335f96449f994469495dd4ac9e iamai.bot.Bot.get:3 of
+msgid ""
+"协程或者函数，函数会被自动包装为协程执行。 要求接受一个事件作为参数，返回布尔值。当协程返回 `True` 时返回当前事件。 当为 `None` "
+"时相当于输入对于任何事件均返回真的协程，即返回适配器接收到的下一个事件。"
+msgstr ""
+
+#: ad6befed02524e45935a4efafa83a2d5 iamai.bot.Bot.get:7 of
+msgid "当指定时，只接受指定适配器产生的事件，先于 func 条件生效。默认为 `None`。"
+msgstr ""
+
+#: 94d2984ed1634810a36ccaf3ead8fbf1 iamai.bot.Bot.get:11 of
+msgid "返回满足 `func` 条件的事件。"
+msgstr ""
+
+#: ec0b02b4eeee447abe8c1082cccd4b54 iamai.bot.Bot.get_adapter:1 of
+msgid "按照名称或适配器类获取已经加载的适配器。"
+msgstr ""
+
+#: 3c5c2637e38345d5ad895eb66fcd5f4c iamai.bot.Bot.get_adapter:3 of
+msgid "适配器名称或适配器类。"
+msgstr ""
+
+#: b53ca54ced27450cbfaefc033d2a8ccc iamai.bot.Bot.get_adapter:5 of
+msgid "获取到的适配器对象。"
+msgstr ""
+
+#: 10d15a44b577478487b7f7bca0e12733 iamai.bot.Bot.get_adapter:7 of
+msgid "找不到此名称的适配器对象。"
+msgstr ""
+
+#: 5a92740fecb54bd3a66ce2721c4a06e6 iamai.bot.Bot.get_plugin:1 of
+msgid "按照名称获取已经加载的插件类。"
+msgstr ""
+
+#: dc4f2d67bd7c43319e0c99b62a616800 iamai.bot.Bot.get_plugin:3 of
+msgid "插件名称"
+msgstr ""
+
+#: e80030d5297c4715a921e7ead43f2de7 iamai.bot.Bot.get_plugin:5 of
+msgid "获取到的插件类。"
+msgstr ""
+
+#: a382837801c842da9a86c9ad93971c2d iamai.bot.Bot.get_plugin:7 of
+msgid "找不到此名称的插件类。"
+msgstr ""
+
+#: 85c51504cd1e4111bea2ecee98461f83 iamai.bot.Bot.handle_event:1 of
+msgid "被适配器对象调用，根据优先级分发事件给所有插件，并处理插件的 `stop` 、 `skip` 等信号。"
+msgstr ""
+
+#: 74ae078c35ea4f7ab89736916eb37263 iamai.bot.Bot.handle_event:3 of
+msgid "此方法不应该被用户手动调用。"
+msgstr ""
+
+#: 7be278a3ba73453593a35d5470a8336d iamai.bot.Bot.handle_event:5 of
+msgid "当前待处理的 `Event`。"
+msgstr ""
+
+#: 6ce782303af146289912bef9a7266d93 iamai.bot.Bot.handle_event:6 of
+msgid "当前事件是否可以被 get 方法捕获，默认为 `True`。"
+msgstr ""
+
+#: d077eae73bcd4e72aeee8346cec9a990 iamai.bot.Bot.handle_event:7 of
+msgid "是否在日志中显示，默认为 `True`。"
+msgstr ""
+
+#: 8dcc3f6ebf784e0b9f9f2e9307b6ce69 iamai.bot.Bot.load_adapters:1 of
+msgid "加载适配器。"
+msgstr ""
+
+#: 3f64b92756f34d76a2f270ae2a5e969b iamai.bot.Bot.load_adapters:3 of
+msgid ""
+"适配器类或适配器名称，类型可以是 `Type[Adapter]` 或 `str`。 如果为 `Type[Adapter]` "
+"类型时，将作为适配器类进行加载。 如果为 `str` 类型时，将作为适配器模块名称进行加载，格式和 Python `import` 语句相同。"
+"     例如：`path.of.adapter`。"
+msgstr ""
+
+#: e0b78a0818bb4bc58d707ed285b88b03 iamai.bot.Bot.load_adapters:3 of
+msgid ""
+"适配器类或适配器名称，类型可以是 `Type[Adapter]` 或 `str`。 如果为 `Type[Adapter]` "
+"类型时，将作为适配器类进行加载。 如果为 `str` 类型时，将作为适配器模块名称进行加载，格式和 Python `import` 语句相同。"
+msgstr ""
+
+#: d21f3546bc484841807783bca7af13cf iamai.bot.Bot.load_adapters:6 of
+msgid "例如：`path.of.adapter`。"
+msgstr ""
+
+#: 8f5469a91676452eb9437751547a5f86 iamai.bot.Bot.load_plugins:1 of
+msgid "加载插件。"
+msgstr ""
+
+#: f59729bcd2ae4f57ad886b2d846162c8 iamai.bot.Bot.load_plugins:3 of
+msgid ""
+"插件类、插件模块名称或者插件模块文件路径。 类型可以是 `Type[Plugin]`, `str` 或 `pathlib.Path`。 如果为 "
+"`Type[Plugin]` 类型时，将作为插件类进行加载。 如果为 `str` 类型时，将作为插件模块名称进行加载，格式和 Python "
+"`import` 语句相同。     例如：`path.of.plugin`。 如果为 `pathlib.Path` "
+"类型时，将作为插件模块文件路径进行加载。     例如：`pathlib.Path(\"path/of/plugin\")`。"
+msgstr ""
+
+#: c8ece8cfbc164c0386742aedeb8e92d9 iamai.bot.Bot.load_plugins:3 of
+msgid ""
+"插件类、插件模块名称或者插件模块文件路径。 类型可以是 `Type[Plugin]`, `str` 或 `pathlib.Path`。 如果为 "
+"`Type[Plugin]` 类型时，将作为插件类进行加载。 如果为 `str` 类型时，将作为插件模块名称进行加载，格式和 Python "
+"`import` 语句相同。"
+msgstr ""
+
+#: 29e2c1299f9941e48f0bb68ef288d9a4 iamai.bot.Bot.load_plugins:7 of
+msgid "例如：`path.of.plugin`。"
+msgstr ""
+
+#: a766a03dca154337ade077ed734d642c iamai.bot.Bot.load_plugins:8 of
+msgid "如果为 `pathlib.Path` 类型时，将作为插件模块文件路径进行加载。"
+msgstr ""
+
+#: 94cec709db5c4944a85ee5c16a455a0a iamai.bot.Bot.load_plugins:9 of
+msgid "例如：`pathlib.Path(\"path/of/plugin\")`。"
+msgstr ""
+
+#: 663b3b5960794d98992c2a21e70aacaa iamai.bot.Bot.load_plugins_from_dirs:1 of
+msgid "从目录中加载插件，以 `_` 开头的模块中的插件不会被导入。路径可以是相对路径或绝对路径。"
+msgstr ""
+
+#: 76975841517346f49574463a0a69ecaa iamai.bot.Bot.load_plugins_from_dirs:3 of
+msgid "储存包含插件的模块的模块路径。 例如：`pathlib.Path(\"path/of/plugins/\")` 。"
+msgstr ""
+
+#: 8ea9ee39a1bc40b3b28389fffffdcb74 iamai.Bot.plugins:1 of
+msgid "当前已经加载的插件的列表。"
+msgstr ""
+
+#: 4b32b0f5d85a403f85898372201a3259 iamai.bot.Bot.reload_plugins:1 of
+msgid "手动重新加载所有插件。"
+msgstr ""
+
+#: 250891d6a07d4d73b7f2bfc767f4d4be iamai.bot.Bot.restart:1 of
+msgid "退出并重新运行 iamai。"
+msgstr ""
+
+#: de92c1212d1746ec911d58223b8fe1de iamai.bot.Bot.run:1 of
+msgid "运行 iamai，监听并拦截系统退出信号，更新机器人配置。"
+msgstr ""
+
+#: 5ea460cfe82a4e57b28e0d07cfb24674 iamai.config.ConfigModel:1 of
+msgid "Bases: :py:class:`~pydantic.main.BaseModel`"
+msgstr ""
+
+#: e4403d8b42604c2a9c5e95948c4ed6f6 iamai.config.ConfigModel:1 of
+msgid "iamai 配置模型。"
+msgstr ""
+
+#: 0689d642357f4a8caa363b217fda18ad iamai.config.ConfigModel:5 of
+msgid "配置名称。"
+msgstr ""
+
+#: ../../docstring cbd31b89f45b4d328e44b7467ad77627
+#: ecc42532acb2421ab531cfec51623b2c ffabe771f94044f98c47be7a26b011db
+#: iamai.ConfigModel.model_config:1 iamai.Event.model_config:1
+#: iamai.MessageEvent.model_config:1 of
+msgid ""
+"Configuration for the model, should be a dictionary conforming to "
+"[`ConfigDict`][pydantic.config.ConfigDict]."
+msgstr ""
+
+#: ../../docstring 611a7d568c2645e786931569036f8624
+#: 6b8d1254ce28440dbd48fade55de503f 9ef63e4cb0c14184af1164c05bfb2c4b
+#: iamai.ConfigModel.model_fields:1 iamai.Event.model_fields:1
+#: iamai.MessageEvent.model_fields:1 of
+msgid ""
+"Metadata about the fields defined on the model, mapping of field names to"
+" [`FieldInfo`][pydantic.fields.FieldInfo]."
+msgstr ""
+
+#: ../../docstring 34643d8fe3b1437e9c13be39fc0cfd6e
+#: ab55dd2936454736acd9990ec93ac6be acb4e25f2c8e4950a98881be3e0a5962
+#: iamai.ConfigModel.model_fields:4 iamai.Event.model_fields:4
+#: iamai.MessageEvent.model_fields:4 of
+msgid "This replaces `Model.__fields__` from Pydantic V1."
+msgstr ""
+
+#: 423bd7f2d36f4c8e8dc69f80ede1cde2 iamai.dependencies.Depends:1 of
+msgid "子依赖装饰器。"
+msgstr ""
+
+#: d3d36765b505478d876c9c1f4bc70386 iamai.dependencies.Depends:3 of
+msgid "依赖类。如果不指定则根据字段的类型注释自动判断。"
+msgstr ""
+
+#: e27a9ebc8c95445487d6472397c0c887 iamai.dependencies.Depends:4 of
+msgid "是否使用缓存。默认为 `True`。"
+msgstr ""
+
+#: 2ae5c740974242a688cb2588cd8c4686 iamai.dependencies.Depends:6 of
+msgid "返回内部子依赖对象。"
+msgstr ""
+
+#: 6099a10b62e04a88a9d7bd19f004fc98 iamai.event.Event:1 of
+msgid ""
+"Bases: :py:class:`~abc.ABC`, :py:class:`~pydantic.main.BaseModel`, "
+":py:class:`~typing.Generic`\\ [:py:obj:`~iamai.typing.AdapterT`]"
+msgstr ""
+
+#: 3768da693d6f485fb9b4626ab0f7322f iamai.event.Event:1 of
+msgid "事件类的基类。"
+msgstr ""
+
+#: 53709301834b453faa4e2fa77f6d3a51 iamai.event.Event:5 of
+msgid "产生当前事件的适配器对象。"
+msgstr ""
+
+#: dab0e10a840f40b099322a9e7fce5e6e iamai.event.Event:7 of
+msgid "Any"
+msgstr ""
+
+#: 35863b355b634b89846ec9535211c75f iamai.event.Event:11 of
+msgid "事件类型。"
+msgstr ""
+
+#: 033aebc67ea34f1c933f08386272bd02 iamai.event.Event:13 of
+msgid "str | None"
+msgstr ""
+
+#: 4f9650cd3e1644c9b692de0197d7e5a4 iamai.event.Event:17 of
+msgid "表示事件是否被处理过了，用于适配器处理。警告：请勿手动更改此属性的值。"
+msgstr ""
+
+#: 2e4916fd4f09493b8ff8d185cd9319e2 iamai.event.Event:19 of
+msgid "bool"
+msgstr ""
+
+#: d6108f825a5c43b69123d9a630179dab iamai.event.MessageEvent:1 of
+msgid ""
+"Bases: :py:class:`~iamai.event.Event`, :py:class:`~typing.Generic`\\ "
+"[:py:obj:`~iamai.typing.AdapterT`]"
+msgstr ""
+
+#: 4a724f4537b640eda82829e13e83bb5d iamai.event.MessageEvent:1 of
+msgid "通用的消息事件类的基类。"
+msgstr ""
+
+#: d56adf1ca15c4c5e86ed92b5d3aa6f84 iamai.event.MessageEvent.ask:1 of
+msgid "询问消息。"
+msgstr ""
+
+#: d8a5f01eb5094a648b8e6192b687111a iamai.event.MessageEvent.ask:3 of
+msgid "表示回复一个消息后获取用户的回复。 相当于 `reply()` 后执行 `get()`。"
+msgstr ""
+
+#: 38138c04252b4c6496006710e3e99a38 afc12b385b3c49a494232a257a33ec73
+#: iamai.event.MessageEvent.ask:6 iamai.event.MessageEvent.reply:3 of
+msgid "回复消息的内容。"
+msgstr ""
+
+#: 98e179b2df86410282754e1a15908892 a2575ad2c8b849cca1f7aa85ac2dc997
+#: iamai.event.MessageEvent.ask:10 iamai.event.MessageEvent.get:8 of
+msgid "用户回复的消息事件。"
+msgstr ""
+
+#: ed25c02d48fa4e4fb3b957c091481616 iamai.event.MessageEvent.get:1 of
+msgid "获取用户回复消息。"
+msgstr ""
+
+#: fd06dd0f4c3f44c49c5ce23650131aa4 iamai.event.MessageEvent.get:3 of
+msgid "相当于 `Bot` 的 `get()`，条件为适配器、事件类型、发送人相同。"
+msgstr ""
+
+#: 5490b413be2a4534891a84cd191f2d53 iamai.event.MessageEvent.get_plain_text:1
+#: of
+msgid "获取消息的纯文本内容。"
+msgstr ""
+
+#: 4bcbcb440b7146e781be04f15886bff5 iamai.event.MessageEvent.get_plain_text:3
+#: of
+msgid "消息的纯文本内容。"
+msgstr ""
+
+#: 6617f9fab1f94479890b9aeb1ec893b2 iamai.event.MessageEvent.is_same_sender:1
+#: of
+msgid "判断自身和另一个事件是否是同一个发送者。"
+msgstr ""
+
+#: 8b00d6e99bb64404a4db7a5708bc2d06 iamai.event.MessageEvent.is_same_sender:3
+#: of
+msgid "另一个事件。"
+msgstr ""
+
+#: 78c6d803a8164f6599577ebe044aed4c iamai.event.MessageEvent.is_same_sender:5
+#: of
+msgid "是否是同一个发送者。"
+msgstr ""
+
+#: 24696f2415f74c6f98e9ffc471158319 iamai.event.MessageEvent.reply:1 of
+msgid "回复消息。"
+msgstr ""
+
+#: 77437f2c8dfc468d8099c332d9cdee2b iamai.event.MessageEvent.reply:5 of
+msgid "回复消息动作的响应。"
+msgstr ""
+
+#: e769b9f3ab234390a87d02cf00b66334 iamai.plugin.Plugin:1 of
+msgid ""
+"Bases: :py:class:`~abc.ABC`, :py:class:`~typing.Generic`\\ "
+"[:py:obj:`~iamai.typing.EventT`, :py:obj:`~iamai.typing.StateT`, "
+":py:obj:`~iamai.typing.ConfigT`]"
+msgstr ""
+
+#: 556d1c925b724de0bf8f90d753e100a2 iamai.plugin.Plugin:1 of
+msgid "所有 iamai 插件的基类。"
+msgstr ""
+
+#: 8374c4cbf9884239bd0e5d9b21d407bd iamai.plugin.Plugin:5 of
+msgid "当前正在被此插件处理的事件。"
+msgstr ""
+
+#: 9b54e854408549bab9e8aa6ae3d9d094 iamai.plugin.Plugin:9 of
+msgid "插件的优先级，数字越小表示优先级越高，默认为 0。"
+msgstr ""
+
+#: 181d1ad664f143b9b135467224ca195a iamai.plugin.Plugin:11 of
+msgid "ClassVar[int]"
+msgstr ""
+
+#: f32a3b0056fe471c870fc7b178e9acac iamai.plugin.Plugin:15 of
+msgid "插件执行结束后是否阻止事件的传播。`True` 表示阻止。"
+msgstr ""
+
+#: ef08fbd9ec5549019b19365524ab951c iamai.plugin.Plugin:17 of
+msgid "ClassVar[bool]"
+msgstr ""
+
+#: f318d43ac3f446f1abcd0473e45577c7 iamai.plugin.Plugin:21 of
+msgid "插件加载类型，由 iamai 自动设置，反映了此插件是如何被加载的。"
+msgstr ""
+
+#: 0bf05e4fa82c43528e36b66ae810c30a iamai.plugin.Plugin:23 of
+msgid "ClassVar[iamai.plugin.PluginLoadType]"
+msgstr ""
+
+#: fa788886d991427ea3c6b35059bc3479 iamai.plugin.Plugin:27 of
+msgid "当插件加载类型为 `PluginLoadType.CLASS` 时为 `None`， 否则为定义插件在的 Python 模块的位置。"
+msgstr ""
+
+#: 15504904cb464bacb320615c57077a45 iamai.plugin.Plugin:30 of
+msgid "ClassVar[str | None]"
+msgstr ""
+
+#: 16cd19bbb6d84e71aa22fa58512c1f9a iamai.Plugin.bot:1 of
+msgid "机器人对象。"
+msgstr ""
+
+#: d2afe1fd086a47c4a6c95c2dd4ef12d3 iamai.Plugin.config:1 of
+msgid "插件配置。"
+msgstr ""
+
+#: a1c813cd3f3c4f2893e5e608d8e77e0b iamai.plugin.Plugin.handle:1 of
+msgid "处理事件的方法。当 `rule()` 方法返回 `True` 时 iamai 会调用此方法。每个插件必须实现此方法。"
+msgstr ""
+
+#: 896cdb8a75244270b8f4713221f810df iamai.Plugin.name:1 of
+msgid "插件类名称。"
+msgstr ""
+
+#: 08e7ddd2279b4b349cec5215b5f1b671 iamai.plugin.Plugin.rule:1 of
+msgid "匹配事件的方法。事件处理时，会按照插件的优先级依次调用此方法，当此方法返回 `True` 时将事件交由此插件处理。每个插件必须实现此方法。"
+msgstr ""
+
+#: 3d9a60734680489c8230ece0418f3bf6 iamai.plugin.Plugin.rule:3 of
+msgid "注意：不建议直接在此方法内实现对事件的处理，事件的具体处理请交由 `handle()` 方法。"
+msgstr ""
+
+#: ad10a1e36c2e46a3b3d7b7e3b3ac1b9b iamai.plugin.Plugin.skip:1 of
+msgid "跳过自身继续当前事件传播。"
+msgstr ""
+
+#: ddcd6b959b21455095e06527bee275f9 iamai.plugin.Plugin.stop:1 of
+msgid "停止当前事件传播。"
+msgstr ""
+

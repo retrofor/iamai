@@ -1,0 +1,134 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/basic/builtin-message.md:1
+#: 5ccfc14b12314030a3176d2f75e65ba2
+msgid "Built-in Messages"
+msgstr ""
+
+#: ../../source/pages/basic/builtin-message.md:3
+#: 37560008a15a4aaf82ec829b86e0f048
+msgid ""
+"iamai has built-in a message class and recommends all adapter developers "
+"to use it as much as possible. It provides many useful functionalities  "
+"for conveniently constructing rich-text messages."
+msgstr ""
+
+#: ../../source/pages/basic/builtin-message.md:6
+#: 4be5e84ca96b43399090e71c0d61a845
+msgid ""
+"iamai has built-in the `Message` and `MessageSegment` classes, which "
+"represent messages and message segments, respectively."
+msgstr ""
+
+#: ../../source/pages/basic/builtin-message.md:8
+#: 0e1e6205663a47db9b68d5ef76f30529
+msgid ""
+"Most adapter message classes are subclasses of the built-in message "
+"classes, but there are some special use cases that can be referred to in "
+"the adapter documentation."
+msgstr ""
+
+#: ../../source/pages/basic/builtin-message.md:10
+#: 3934fbdb7e3b4abf9d9f68cbf44afdf1
+msgid ""
+"The built-in message classes and message segment classes are essentially "
+"implementations of the OneBot protocol message classes."
+msgstr ""
+
+#: ../../source/pages/basic/builtin-message.md:12
+#: 533d060bf61043b8b1bedfb7716de367
+msgid "Message Class"
+msgstr ""
+
+#: ../../source/pages/basic/builtin-message.md:14
+#: 7f3cd5d648b9422da75e4ca594b580a3
+msgid ""
+"The message class ( `Message` ) is a subclass of `list` and can be "
+"regarded as a list of message segments, but it provides the following "
+"additional functionalities:"
+msgstr ""
+
+#: ../../source/pages/basic/builtin-message.md:16
+#: fbe342070bb947cea414dcc3c57ff23a
+msgid ""
+"It overrides the `__init__()` method to allow initialization with objects"
+" of types: str, Mapping, Iterable[Mapping], MessageSegment, and Message."
+"  Note that str is not natively supported and needs to be implemented by "
+"the adapter developer.  When a Message object of the same type is passed "
+"in during initialization, a new Message object with the same content will"
+" be created. When a MessageSegment object is passed in, it will be added "
+"to the list. Mapping and Iterable[Mapping] are mainly for the convenience"
+" of using pydantic to process events in the adapter,  which regular users"
+" do not need to be concerned about."
+msgstr ""
+
+#: ../../source/pages/basic/builtin-message.md:32
+#: 36eb9cdc87954a528cad384ddaedc88f
+msgid ""
+"It implements the `+` and `+=` operators, allowing direct addition with "
+"objects of types: `Message`, `MessageSegment`, and `str`."
+msgstr ""
+
+#: ../../source/pages/basic/builtin-message.md:46
+#: 446f06ba03034f00aa507d408d5f7e07
+msgid ""
+"It implements the `startswith()`, `endswith()`, and `replace()` methods, "
+"similar to the corresponding methods for strings, but it can accept "
+"`MessageSegment` or `str` objects as arguments. Please refer to the API "
+"documentation(/api/message.md) for details."
+msgstr ""
+
+#: ../../source/pages/basic/builtin-message.md:52
+#: 6b14fca61f774797ba23e4d0afbd5b31
+msgid "Message Segment"
+msgstr ""
+
+#: ../../source/pages/basic/builtin-message.md:54
+#: 4d30f9969a50470ab01b006f96d193d4
+msgid ""
+"The message segment `class (MessageSegment)` is a data class that also "
+"inherits from Mapping. The reason for not using pydantic's model class is"
+" to facilitate conversion to JSON in the adapter."
+msgstr ""
+
+#: ../../source/pages/basic/builtin-message.md:56
+#: 1f472fab4ec149feaf7ef2c91bbdb074
+msgid ""
+"It has two fields: `type` and `data`, which represent the type and "
+"content of the message segment, respectively. type is of type `str`, and "
+"data is a `dict`. You can directly use dictionary-related operations on "
+"the `MessageSegment object`, which is equivalent to operating on the data"
+" field. For example:"
+msgstr ""
+
+#: ../../source/pages/basic/builtin-message.md:66
+#: ed82928536b044ab87b77901035257fc
+msgid ""
+"Message segment objects can also be directly added to other objects, and "
+"it will return a message class."
+msgstr ""
+
+#: ../../source/pages/basic/builtin-message.md:76
+#: fa16080ea2ee430eae6a9e6a75543069
+msgid "Example"
+msgstr ""
+

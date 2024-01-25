@@ -1,0 +1,258 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/api/iamai.adapter.onebot11.message.rst:2
+#: 7ac135569cd84757add317afd1f6a5a6
+msgid "iamai.adapter.onebot11.message module"
+msgstr ""
+
+#: cf73e4b3438d45ac873722c90468271e iamai.adapter.onebot11.message:1 of
+msgid "CQHTTP 适配器消息。"
+msgstr ""
+
+#: 4d202c01cce34a7bacae20a15cad72ee
+#: iamai.adapter.onebot11.message.CQHTTPMessage:1 of
+msgid "Bases: :py:class:`~iamai.message.Message`\\ [CQHTTPMessageSegment]"
+msgstr ""
+
+#: 877a4ebc25ed4248a9900df6b786e096
+#: iamai.adapter.onebot11.message.CQHTTPMessage:1 of
+msgid "CQHTTP 消息。"
+msgstr ""
+
+#: de7d49ca5d464be1b395e5f7f565858e
+#: iamai.adapter.onebot11.message.CQHTTPMessage.get_segment_class:1 of
+msgid "获取消息字段类。"
+msgstr ""
+
+#: 0687392221364d96afc866f75b7bd193 74403ea16d6546d5bd8733f2c361d420
+#: aed0a955f462452e82ae47db03721e10 c32608d25542426cbfc0fa749e59e405
+#: dfa839504ad0411faac1c19c07444aec
+#: iamai.adapter.onebot11.message.CQHTTPMessage.get_segment_class
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.from_str
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.get_cqcode
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.get_message_class
+#: iamai.adapter.onebot11.message.escape of
+msgid "Returns"
+msgstr ""
+
+#: ca175f90cc714e2fb1eb8c8a4e221afe
+#: iamai.adapter.onebot11.message.CQHTTPMessage.get_segment_class:3 of
+msgid "消息字段类。"
+msgstr ""
+
+#: 7b43f4fbc086486dae62941be6ac3b16
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment:1 of
+msgid "Bases: :py:class:`~iamai.message.MessageSegment[CQHTTPMessage]`"
+msgstr ""
+
+#: 6759db361cce42aca73cd31929f1c4f0
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment:1 of
+msgid "CQHTTP 消息字段。"
+msgstr ""
+
+#: f3803ff04ac04ef2a9a9a3e738bc72d3
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.anonymous:1 of
+msgid "匿名发消息"
+msgstr ""
+
+#: b8be0d885fd84f3d9bc08e0332c73f85
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.at:1 of
+msgid "@某人"
+msgstr ""
+
+#: 315c12189af348bd81d667e08b45d605
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.contact:1 of
+msgid "推荐好友/推荐群"
+msgstr ""
+
+#: 464fd9afa66844d6abea8b3af4507b6f dac722244faa4ac4a2d199872df5206a
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.contact_friend:1
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.contact_group:1 of
+msgid "推荐好友"
+msgstr ""
+
+#: 17d6bc3a731f4cf5a5d88d077c7df395
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.dice:1 of
+msgid "掷骰子魔法表情"
+msgstr ""
+
+#: bd941d83c78a4baf9de8b38585674e3f
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.face:1 of
+msgid "QQ 表情"
+msgstr ""
+
+#: e5b8c14fbdf741cd892b759f92b6974e
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.from_str:1 of
+msgid "用于将 `str` 转换为消息字段。"
+msgstr ""
+
+#: 55cf09dfa3f44197912ea79547b1e405 6941dcb673f54a238a7a0ae9151b6c15
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.from_str
+#: iamai.adapter.onebot11.message.escape of
+msgid "Parameters"
+msgstr ""
+
+#: 16daa9b02c9e4b7f8ab9eb43eea415b2
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.from_str:3 of
+msgid "要解析为消息字段的数据。"
+msgstr ""
+
+#: 2e24d13ebc7d44e8b8f71f51ff3e5009
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.from_str:5 of
+msgid "由 `str` 转换的消息字段。"
+msgstr ""
+
+#: c69dcf0822c845139cee2db9d7101271
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.get_cqcode:1 of
+msgid "获取此消息字段的 CQ 码形式。"
+msgstr ""
+
+#: 522d30042d714306840f0c52a521ec7c
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.get_cqcode:3 of
+msgid "此消息字段的 CQ 码形式。"
+msgstr ""
+
+#: f141a69cded447e8a1360e1efc3afa3e
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.get_message_class:1 of
+msgid "获取消息类。"
+msgstr ""
+
+#: 62d601a329ec4f988b0ff4f5265cda71
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.get_message_class:3 of
+msgid "消息类。"
+msgstr ""
+
+#: 7596588c8c1647c0888700285b9bbef1
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.image:1 of
+msgid "图片"
+msgstr ""
+
+#: 9bcccf2c0f494d71a16bbaf6bbe2e3dd
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.json_message:1 of
+msgid "JSON 消息"
+msgstr ""
+
+#: a45f205b06544461bed204ee50f49061
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.location:1 of
+msgid "位置"
+msgstr ""
+
+#: ../../docstring 7ba0dfd9660d4fd9a9a7800eea87997f
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.model_config:1 of
+msgid ""
+"Configuration for the model, should be a dictionary conforming to "
+"[`ConfigDict`][pydantic.config.ConfigDict]."
+msgstr ""
+
+#: ../../docstring 3e0885305377450996154f43f54833ed
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.model_fields:1 of
+msgid ""
+"Metadata about the fields defined on the model, mapping of field names to"
+" [`FieldInfo`][pydantic.fields.FieldInfo]."
+msgstr ""
+
+#: ../../docstring e7937d53a4924a3094920c7a485e9815
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.model_fields:4 of
+msgid "This replaces `Model.__fields__` from Pydantic V1."
+msgstr ""
+
+#: 35705a4b7f5d42e6885ae50750e47de1
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.music:1 of
+msgid "音乐分享"
+msgstr ""
+
+#: 95a4d58d0f4a4ad6a9cc8e090582eacd
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.music_custom:1 of
+msgid "音乐自定义分享"
+msgstr ""
+
+#: cdade5d4f4b4443e81008bfea170250c
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.node:1 of
+msgid "合并转发节点"
+msgstr ""
+
+#: 9fcf3bb33ddd430eb8d84db6cccaa070
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.node_custom:1 of
+msgid "合并转发自定义节点"
+msgstr ""
+
+#: 79307dd0868445558366e5672aa94c8f
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.poke:1 of
+msgid "戳一戳"
+msgstr ""
+
+#: 73ae62774d5b4c8db0366bb0e92b1c15
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.record:1 of
+msgid "语音"
+msgstr ""
+
+#: 3d7807a9c1554324879b7b0ee0ea5b6c
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.reply:1 of
+msgid "回复"
+msgstr ""
+
+#: 7db02d33b35e4b12adac1c1ae048a9be
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.rps:1 of
+msgid "猜拳魔法表情"
+msgstr ""
+
+#: c57de1740e6b40fc92a5a8bedf8a6096
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.shake:1 of
+msgid "窗口抖动 (戳一戳)"
+msgstr ""
+
+#: e1f8fcd488374e28aabd97141bac12b2
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.share:1 of
+msgid "链接分享"
+msgstr ""
+
+#: 3eda9f3dd2c04e2bb8bd12c2a1cc39e6
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.text:1 of
+msgid "纯文本"
+msgstr ""
+
+#: f7a52337059d4d42aeeaa114d21a1a62
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.video:1 of
+msgid "短视频"
+msgstr ""
+
+#: 230bf24e40334d95aeeb2b90420c2526
+#: iamai.adapter.onebot11.message.CQHTTPMessageSegment.xml_message:1 of
+msgid "XML 消息"
+msgstr ""
+
+#: c48c3651386643b6b6a8cb1c447dee8b iamai.adapter.onebot11.message.escape:1 of
+msgid "对 CQ 码中的特殊字符进行转义。"
+msgstr ""
+
+#: 87d1a56e8a204d5886c2ba141cfbdcdf iamai.adapter.onebot11.message.escape:3 of
+msgid "待转义的字符串。"
+msgstr ""
+
+#: 615b656f81174f6eb63978fc905d997e iamai.adapter.onebot11.message.escape:4 of
+msgid "是否转义 `,`。"
+msgstr ""
+
+#: 7f10741d0fa94051b38fa74f2f5155dc iamai.adapter.onebot11.message.escape:6 of
+msgid "转义后的字符串。"
+msgstr ""
+

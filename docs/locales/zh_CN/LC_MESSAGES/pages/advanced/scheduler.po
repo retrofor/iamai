@@ -1,0 +1,204 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/advanced/scheduler.md:1 ceae17ad097f46a0858b1bbf83fb1cd1
+msgid "Scheduled Tasks"
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:3 bebf9aa422e7492da7e37507d5bbf653
+msgid ""
+"iamai's scheduled tasks are implemented using the "
+"[APScheduler](https://apscheduler.readthedocs.io/) library. iamai wraps "
+"it into an adapter, providing the same interface as other regular "
+"adapters."
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:5 ce7920649d3d4dba88efc0458870e3f9
+msgid "Downloading and Loading the Adapter"
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:7 d18a9ec83e7b405fa1731f4a70bfa5ad
+msgid ""
+"Like other adapters, the scheduled task adapter also needs to be "
+"downloaded separately:"
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:13 cad0b0a9fe7c4ae7ac6744bca87a5e6b
+msgid "Alternatively, you can install it along with iamai:"
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:21 08ef87fd490a40a2b63d3a3c4842bf85
+msgid ""
+"Once downloaded, you can configure it in the `config.toml` file just like"
+" any other adapter:"
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:31 8a7304652bb5473db95872f6ece01430
+msgid "Or you can manually load it:"
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:45 0a995394ea5042639df2a45c1f54aec7
+msgid ""
+"However, please note that when manually loading the adapter, you need to "
+"load the adapter after loading all the plugins."
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:47 6673295b18bc42029bce8f8a0ddd3a2e
+msgid "Configuring APScheduler"
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:49 0d6696becbe3435294afbd1bad9fa734
+msgid ""
+"The `iamai-adapter-apscheduler` adapter has only one configuration item, "
+"`scheduler_config`:"
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:61 84f937e2d6d749aca98d65a9e3e2d72a
+msgid ""
+"Please refer to the APScheduler documentation for specific configuration "
+"options: [scheduler-"
+"config](https://apscheduler.readthedocs.io/en/latest/userguide.html"
+"#scheduler-config) ."
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:63 341d6dedc077482083be0d22d8bd5bfd
+msgid "Usage"
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:65 8769c7e9b9e048ae81aeb12f2014da37
+msgid "Adding Attributes Directly"
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:67 0d397756565347fe93af51081a0be171
+msgid ""
+"After loading the adapter, for plugins that need to be executed on a "
+"schedule, they should have a format similar to the following:"
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:90 3b706750bbc74b1d8be2a661fcdd2c89
+msgid ""
+"Scheduled plugins must have the `__schedule__`, `trigger`, and "
+"`trigger_args` attributes set."
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:92 8dd7e08a3da6427a97be1a09d8d79a9f
+msgid ""
+"`__schedule__` must be set to True. `trigger` represents the APScheduler "
+"trigger. `trigger_args` represents the adapter configuration. They will "
+"be passed to the `add_job()` method of the scheduler in the following "
+"form:"
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:102
+#: 8c4a6a4a010940be8418d4f1044a9cdc
+msgid ""
+"The APScheduler adapter will iterate over all plugins during startup, "
+"looking for plugins that meet the above criteria, and add scheduled tasks"
+" based on the plugin descriptions."
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:104
+#: a0088a3bda904eb2abd05555a8bd8fc0
+msgid ""
+"When a scheduled task is triggered, the APScheduler adapter will generate"
+" an event and perform normal event propagation."
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:106
+#: cc7774fe098f4ee49e078f1957033e18
+msgid ""
+"This event's `type` attribute is always apscheduler, and it has a "
+"`plugin_class` attribute representing the plugin class that defined this "
+"scheduled task. You can use `type(self) == self.event.plugin_class` in "
+"the `rule()` method to ensure that this plugin only handles its own "
+"defined scheduled events."
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:109
+#: 14fc6e2df1bb48f59a4ba660aec82952
+msgid "Using Class Decorators (Recommended)"
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:112
+#: 74b6967abc544d8a99b13ae519782a4d
+msgid ""
+"In addition to the above method, you can also use class decorators to "
+"decorate an existing plugin as a scheduled task plugin."
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:136
+#: 1a8795a342a14794b0887f29841e4f89
+msgid "The above syntax is equivalent to:"
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:162
+#: e08bd93d1005478395933b2896f0fbfb
+msgid ""
+"As shown in the above example, setting the `override_rule` parameter to "
+"True can automatically override the `rule()` method and add the logic to "
+"handle the scheduled task events."
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:164
+#: 3a2dea4a607948459acc86571a29f3fb
+msgid "Tips"
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:166
+#: 48f9a55be8c848c897e402067dd98edc
+msgid ""
+"When the same scheduled task needs to wake up multiple plugins "
+"simultaneously, and multiple scheduled tasks are set, and you do not want"
+" them to interfere with each other, you can do as follows:"
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:168
+#: 0579919b2beb4978898c30c18c3e614d
+msgid "First Plugin:"
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:196
+#: 80974c5b90224cd4b3206e0eb22e7d87
+msgid "Second Plugin:"
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:217
+#: 9965e5df742a41248874a9b40ea2f5d8
+msgid ""
+"You need to set a unique `scheduler_flag` attribute for the plugin that "
+"defines the scheduled task. Of course, this attribute can also be named "
+"anything else. Then the second plugin can determine the value of "
+"`scheduler_flag` to judge whether the current event is a scheduled event "
+"defined by the first plugin."
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:220
+#: 3a7904d24b3d4678922caca009fc8e66
+msgid "Example"
+msgstr ""
+
+#: ../../source/pages/advanced/scheduler.md:222
+#: 178b10eb567242618a1845a243ade289
+msgid ""
+"Now let's try using the CQHTTP protocol adapter to send a message on a "
+"schedule."
+msgstr ""
+

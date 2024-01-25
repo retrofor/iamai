@@ -1,0 +1,109 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/advanced/hot-reload.md:1 56d4b80bae7945a6901739c66ea64ace
+msgid "Hot Reload"
+msgstr ""
+
+#: ../../source/pages/advanced/hot-reload.md:3 78947f4eb77e4256ac78f53592b75c1c
+msgid "Manual Cold Reload"
+msgstr ""
+
+#: ../../source/pages/advanced/hot-reload.md:5 32044009f1894dfb8ec99009bdff62ec
+msgid ""
+"iamai provides a `restart()` method to exit and restart the iamai. You "
+"can write a plugin like this to restart iamai:"
+msgstr ""
+
+#: ../../source/pages/advanced/hot-reload.md:26
+#: a180a3e54c6946ca82c6f0866a426bf2
+msgid ""
+"One detail to note is that using this function and manually exiting and "
+"restarting iamai have some subtle differences, mainly in that using this "
+"function will not clear plugin and global states."
+msgstr ""
+
+#: ../../source/pages/advanced/hot-reload.md:28
+#: 5fe78ee8e57946bcab147eda5acebf1e
+msgid "Reload Plugin"
+msgstr ""
+
+#: ../../source/pages/advanced/hot-reload.md:30
+#: fd4f4c9e93074e5f804bc9f16b9ce913
+msgid ""
+"In addition, iamai also provides a `reload_plugins()` method to reload "
+"all plugins. This method does not reload configuration files, adapters, "
+"etc."
+msgstr ""
+
+#: ../../source/pages/advanced/hot-reload.md:32
+#: 1c80586a45e44f2b807d9d41db89b7b4
+msgid "Automatic Hot Reload"
+msgstr ""
+
+#: ../../source/pages/advanced/hot-reload.md:34
+#: 30549b92de2943fc99d68da3ad8b53b1
+msgid ""
+"Since version 0.4.0, iamai has supported automatic hot reload. This means"
+" that when plugin files or configuration files are updated, iamai does "
+"not need to be restarted, and the changes will be automatically loaded."
+msgstr ""
+
+#: ../../source/pages/advanced/hot-reload.md:36
+#: 1f63ce67d54b4aa69e3accc6bac90b15
+msgid ""
+"This feature requires support from the `watchfiles` library, so please "
+"manually install this Python library."
+msgstr ""
+
+#: ../../source/pages/advanced/hot-reload.md:38
+#: b819c205a2444a66b91bbcf0fa2f5667
+msgid ""
+"When the configuration file is updated, the configuration file will be "
+"reloaded. If the bot table changes, the `restart()` method will be called"
+" to restart iamai."
+msgstr ""
+
+#: ../../source/pages/advanced/hot-reload.md:40
+#: 114883d272ef4a03ac801ca705bbe27f
+msgid ""
+"When plugin files in the directories set in `plugin_dirs` are added, "
+"modified, or deleted, iamai will automatically try to import, reload, or "
+"delete the corresponding plugins."
+msgstr ""
+
+#: ../../source/pages/advanced/hot-reload.md:42
+#: d318be7c11504216ad8cf054eeae3432
+msgid ""
+"Enabling this feature is very simple, just pass the `hot_reload` "
+"parameter when instantiating the `Bot` class."
+msgstr ""
+
+#: ../../source/pages/advanced/hot-reload.md:55
+#: eb61396b293f41aea61183c972903af4
+msgid ""
+"However, please note that this feature is still in early experimental "
+"stage. If you encounter any issues during use, please provide feedback. "
+"Also, this feature may slightly affect performance, so if your use case "
+"is highly performance-sensitive, do not enable this feature in production"
+" environments."
+msgstr ""
+

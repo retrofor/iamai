@@ -1,0 +1,301 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/api/iamai.adapter.onebot11.rst:2
+#: 8728d043f86444d2aa73c878bbe8591d
+msgid "iamai.adapter.onebot11 package"
+msgstr ""
+
+#: ../../source/pages/api/iamai.adapter.onebot11.rst:5
+#: b9e0759e689f48cda776e4caa8bd904c
+msgid "Submodules"
+msgstr ""
+
+#: ../../source/pages/api/iamai.adapter.onebot11.rst:16
+#: 426bfaad1a58491292b632f3b226e346
+msgid "Module contents"
+msgstr ""
+
+#: 4d4a9bfff56044a2adc3bc91454faeec e1e1f5d3232e4b2eb09d2b804343b060
+#: iamai.adapter.onebot11:1 iamai.adapter.onebot11.CQHTTPAdapter:1 of
+msgid "CQHTTP 协议适配器。"
+msgstr ""
+
+#: 6d5c562f3045456da949d938ab2df1a3 iamai.adapter.onebot11:3 of
+msgid ""
+"本适配器适配了 OneBot v11 协议。 "
+"协议详情请参考：[OneBot](https://github.com/howmanybots/onebot/blob/master/README.md)。"
+msgstr ""
+
+#: 39a7e4bded6143518154d096d61bfbdf iamai.adapter.onebot11.CQHTTPAdapter:1 of
+msgid ""
+"Bases: :py:class:`~iamai.adapter.utils.WebSocketAdapter`\\ "
+"[:py:class:`~iamai.adapter.onebot11.event.CQHTTPEvent`, "
+":py:class:`~iamai.adapter.onebot11.config.Config`]"
+msgstr ""
+
+#: dcfab2fb229e48969f2971f0d51b8b00 iamai.adapter.onebot11.config.Config:1 of
+msgid "Bases: :py:class:`~iamai.config.ConfigModel`"
+msgstr ""
+
+#: 711fbeb613e34f2693c6605d375b0119 iamai.adapter.onebot11.config.Config:1 of
+msgid "CQHTTP 配置类，将在适配器被加载时被混入到机器人主配置中。"
+msgstr ""
+
+#: 66a7c02269644c4a8e056772bfb453ec iamai.adapter.onebot11.config.Config:5 of
+msgid "适配器类型，需要和协议端配置相同。"
+msgstr ""
+
+#: 083e559004ef4e3ab6c18e57d26d45d3 090d7abc4b314cf38a64c0e0d563305a
+#: 1b713d106f0c4d1c98a1ec723e1ad888 79748ada40694fcbbecf1ef5c30d19cb
+#: 84ad0f1d65254c73bd697610aaa62371 e28c72868bcb42faa8482746ed0e7dd9
+#: e767cd5658b645b8951dec0e8582bc2a iamai.adapter.onebot11.config.Config of
+msgid "type"
+msgstr ""
+
+#: 61e2db98452e46aabf7d063d3f2d4e6e iamai.adapter.onebot11.config.Config:7 of
+msgid "Literal['ws', 'reverse-ws', 'ws-reverse']"
+msgstr ""
+
+#: 5d15481788474c33aa0b3dc807aac547 iamai.adapter.onebot11.config.Config:11 of
+msgid "本机域名。"
+msgstr ""
+
+#: c44f7997834343df80e5b78c2e4cc59a d2e9f4e6dffb4386afe636e85615d016
+#: e9c7e3b07adb411baeb449a391985180 iamai.adapter.onebot11.config.Config:13
+#: iamai.adapter.onebot11.config.Config:25
+#: iamai.adapter.onebot11.config.Config:43 of
+msgid "str"
+msgstr ""
+
+#: 6e58ed068463475b92034022057e3d2f iamai.adapter.onebot11.config.Config:17 of
+msgid "监听的端口。"
+msgstr ""
+
+#: 1792a528b7ef42a98a87951ac6ef6dcf 1ffd76af37b54551885e12baa3f5171d
+#: e160203d7ce5463497c2812976778dfc iamai.adapter.onebot11.config.Config:19
+#: iamai.adapter.onebot11.config.Config:31
+#: iamai.adapter.onebot11.config.Config:37 of
+msgid "int"
+msgstr ""
+
+#: 282e083f5c534972a6d99512d6289166 iamai.adapter.onebot11.config.Config:23 of
+msgid "WebSocket 路径，需和协议端配置相同。"
+msgstr ""
+
+#: f9bd71710d5b4f609433f247132f96be iamai.adapter.onebot11.config.Config:29 of
+msgid "重连等待时间。"
+msgstr ""
+
+#: 664ccab8d3ce451fa85968d1a850bcd2 iamai.adapter.onebot11.config.Config:35 of
+msgid "进行 API 调用时等待返回响应的超时时间。"
+msgstr ""
+
+#: cdd10532984c4d95b82cc47c055382ce iamai.adapter.onebot11.config.Config:41 of
+msgid "鉴权。"
+msgstr ""
+
+#: ../../docstring 9b752138e1154f4e94188050e705b338
+#: iamai.adapter.onebot11.CQHTTPAdapter.Config.model_config:1 of
+msgid ""
+"Configuration for the model, should be a dictionary conforming to "
+"[`ConfigDict`][pydantic.config.ConfigDict]."
+msgstr ""
+
+#: ../../docstring 337459c914cc4b0fa07f1bb002ffe957
+#: iamai.adapter.onebot11.CQHTTPAdapter.Config.model_fields:1 of
+msgid ""
+"Metadata about the fields defined on the model, mapping of field names to"
+" [`FieldInfo`][pydantic.fields.FieldInfo]."
+msgstr ""
+
+#: ../../docstring 645fe03777f54db8ad61e29a78a48be4
+#: iamai.adapter.onebot11.CQHTTPAdapter.Config.model_fields:4 of
+msgid "This replaces `Model.__fields__` from Pydantic V1."
+msgstr ""
+
+#: e5882899dc244700aa9dd2893b5aa967
+#: iamai.adapter.onebot11.CQHTTPAdapter.add_event_model:1 of
+msgid "添加自定义事件模型，事件模型类必须继承于 `CQHTTPEvent`。"
+msgstr ""
+
+#: 1741d2d3ca714f90910e017edfe9530f 19159bff32a44184ac6515eca46ba9fc
+#: 370aba3ea53342b387136d93b2bb1c99 acb0f0954f714335ad024e058a5e96a6
+#: ce7a0045e53e4d1399fd1dbbbc2cb2d8
+#: iamai.adapter.onebot11.CQHTTPAdapter.add_event_model
+#: iamai.adapter.onebot11.CQHTTPAdapter.call_api
+#: iamai.adapter.onebot11.CQHTTPAdapter.get_event_model
+#: iamai.adapter.onebot11.CQHTTPAdapter.handle_cqhttp_event
+#: iamai.adapter.onebot11.CQHTTPAdapter.send of
+msgid "Parameters"
+msgstr ""
+
+#: af831d5fe7fd4a78a0393035dba8616d
+#: iamai.adapter.onebot11.CQHTTPAdapter.add_event_model:3 of
+msgid "事件模型类。"
+msgstr ""
+
+#: aa7ac6a9f796495181ca314b675873d2
+#: iamai.adapter.onebot11.CQHTTPAdapter.call_api:1 of
+msgid "调用 CQHTTP API，协程会等待直到获得 API 响应。"
+msgstr ""
+
+#: bafdc693d81541479a32fd6b6c090aee
+#: iamai.adapter.onebot11.CQHTTPAdapter.call_api:3 of
+msgid "API 名称。"
+msgstr ""
+
+#: ba37aec18c7b4941bbc26f158694fdcc
+#: iamai.adapter.onebot11.CQHTTPAdapter.call_api:4 of
+msgid "API 参数。"
+msgstr ""
+
+#: 550727602962459ca5bae4d5357b00d2 6c46250e29844e17bbe9e819f7582838
+#: f5cdc5c510ea4c8fbb5f64c77a3e82ad
+#: iamai.adapter.onebot11.CQHTTPAdapter.call_api
+#: iamai.adapter.onebot11.CQHTTPAdapter.get_event_model
+#: iamai.adapter.onebot11.CQHTTPAdapter.send of
+msgid "Returns"
+msgstr ""
+
+#: 0a6ccc6d542f4e3f925e294f049413a5
+#: iamai.adapter.onebot11.CQHTTPAdapter.call_api:6 of
+msgid "API 响应中的 data 字段。"
+msgstr ""
+
+#: 784045dab497473a8b872693ae0f9797 ee6bc412737b4ba79b57a7fe807e26e7
+#: iamai.adapter.onebot11.CQHTTPAdapter.call_api
+#: iamai.adapter.onebot11.CQHTTPAdapter.send of
+msgid "Raises"
+msgstr ""
+
+#: df108b37387f44e98fa483b660a9bc00
+#: iamai.adapter.onebot11.CQHTTPAdapter.call_api:8 of
+msgid "网络错误。"
+msgstr ""
+
+#: d3c754e6c1254aafbeb0dce8600a2117
+#: iamai.adapter.onebot11.CQHTTPAdapter.call_api:9 of
+msgid "API 请求响应 404， API 不可用。"
+msgstr ""
+
+#: 112cd4fc22c8471f835ff9f9e71f3107
+#: iamai.adapter.onebot11.CQHTTPAdapter.call_api:10 of
+msgid "API 请求响应 failed， API 操作失败。"
+msgstr ""
+
+#: 991a07251a42410f9e29f22d3190bfc6
+#: iamai.adapter.onebot11.CQHTTPAdapter.call_api:11 of
+msgid "API 请求响应超时。"
+msgstr ""
+
+#: 19b87a293709428e921dd81fc6e96385
+#: iamai.adapter.onebot11.CQHTTPAdapter.get_event_model:1 of
+msgid "根据接收到的消息类型返回对应的事件类。"
+msgstr ""
+
+#: e4915d49e9c4449cb6c962a3d3468490
+#: iamai.adapter.onebot11.CQHTTPAdapter.get_event_model:3 of
+msgid "请求类型。"
+msgstr ""
+
+#: 62fe3a8899774a7ea0a254dedfca8183
+#: iamai.adapter.onebot11.CQHTTPAdapter.get_event_model:4 of
+msgid "事件类型。"
+msgstr ""
+
+#: 7f139edeea634d359180c3db7b4bdfcd
+#: iamai.adapter.onebot11.CQHTTPAdapter.get_event_model:5 of
+msgid "子类型。"
+msgstr ""
+
+#: 33c0c22fdc23417f930d45033871e4c8
+#: iamai.adapter.onebot11.CQHTTPAdapter.get_event_model:7 of
+msgid "对应的事件类。"
+msgstr ""
+
+#: 7235f8e1b3b54317ba1032e225213154
+#: iamai.adapter.onebot11.CQHTTPAdapter.handle_cqhttp_event:1 of
+msgid "处理 CQHTTP 事件。"
+msgstr ""
+
+#: deca6e8417f34f3d9112eb1a54e349b6
+#: iamai.adapter.onebot11.CQHTTPAdapter.handle_cqhttp_event:3 of
+msgid "接收到的信息。"
+msgstr ""
+
+#: c7942b4f0c5647378b98624250646e7b
+#: iamai.adapter.onebot11.CQHTTPAdapter.handle_websocket_msg:1 of
+msgid "处理 WebSocket 消息。"
+msgstr ""
+
+#: ed9feee5c8c04525a90fa9579cd75a15
+#: iamai.adapter.onebot11.CQHTTPAdapter.reverse_ws_connection_hook:1 of
+msgid "反向 WebSocket 连接建立时的钩子函数。"
+msgstr ""
+
+#: 6231ff9dc0b44dfe94824b8c03d610eb iamai.adapter.onebot11.CQHTTPAdapter.send:1
+#: of
+msgid "发送消息，调用 `send_private_msg` 或 `send_group_msg` API 发送消息。"
+msgstr ""
+
+#: 761f8bffed884d0c9aacc4546e292f26 iamai.adapter.onebot11.CQHTTPAdapter.send:3
+#: of
+msgid ""
+"消息内容，可以是 `str`, `Mapping`, `Iterable[Mapping]`, `CQHTTPMessageSegment`, "
+"`CQHTTPMessage。` 将使用 `CQHTTPMessage` 进行封装。"
+msgstr ""
+
+#: b1fc64b95da2402ea1baa89876f0fc7e iamai.adapter.onebot11.CQHTTPAdapter.send:6
+#: of
+msgid "消息类型。应该是 \"private\" 或者 \"group\"。"
+msgstr ""
+
+#: cd2f645de9d3438f86d11e9fe15b9397 iamai.adapter.onebot11.CQHTTPAdapter.send:7
+#: of
+msgid "发送对象的 ID， QQ 号码或者群号码。"
+msgstr ""
+
+#: 9b0dfe03b41b4814af2cafea24c4e684 iamai.adapter.onebot11.CQHTTPAdapter.send:9
+#: of
+msgid "API 响应。"
+msgstr ""
+
+#: 28333a8a669d410387c4a48b071c0c15
+#: iamai.adapter.onebot11.CQHTTPAdapter.send:11 of
+msgid "`message_type` 不是 \"private\" 或 \"group\"。"
+msgstr ""
+
+#: 8d92f30a6b5c4221be418377d9919530
+#: iamai.adapter.onebot11.CQHTTPAdapter.send:12 of
+msgid "同 `call_api()` 方法。"
+msgstr ""
+
+#: ab6fd2653ce64b0b960460e9d97e5112
+#: iamai.adapter.onebot11.CQHTTPAdapter.startup:1 of
+msgid "初始化适配器。"
+msgstr ""
+
+#: 010a2155f2b44863a66f7866cf7e9a86
+#: iamai.adapter.onebot11.CQHTTPAdapter.websocket_connect:1 of
+msgid "创建正向 WebSocket 连接。"
+msgstr ""
+

@@ -1,0 +1,209 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/api/iamai.adapter.kook.rst:2
+#: 8b95c125fb974913b1bb2635ffbfb755
+msgid "iamai.adapter.kook package"
+msgstr ""
+
+#: ../../source/pages/api/iamai.adapter.kook.rst:5
+#: a3e0a2d6bb814c52951cd7fcbcc4ed9e
+msgid "Subpackages"
+msgstr ""
+
+#: ../../source/pages/api/iamai.adapter.kook.rst:13
+#: 0e884f8d5bbd46c6946d15a34243b6d9
+msgid "Submodules"
+msgstr ""
+
+#: ../../source/pages/api/iamai.adapter.kook.rst:24
+#: 7ec1263cbba94d9a81b4ad1a848d838b
+msgid "Module contents"
+msgstr ""
+
+#: 5da949ea18c14842a74a701e34bb44be a50d0625c3374b74ae4be995a622aac9
+#: iamai.adapter.kook:1 iamai.adapter.kook.KookAdapter:1 of
+msgid "Kook 协议适配器。"
+msgstr ""
+
+#: 97d27c5e06be428a837fc4b1bc862d93 iamai.adapter.kook:3 of
+msgid "本适配器适配了 Kook 协议。 协议详情请参考: [Kook 开发者平台](https://developer.kookapp.cn/) 。"
+msgstr ""
+
+#: b45ecfe1d68044d18916bd54fd7086fa iamai.adapter.kook.KookAdapter:1 of
+msgid ""
+"Bases: :py:class:`~iamai.adapter.utils.WebSocketAdapter`\\ "
+"[:py:class:`~iamai.adapter.kook.event.KookEvent`, "
+":py:class:`~iamai.adapter.kook.config.Config`]"
+msgstr ""
+
+#: 08289e4860d040d5b960e883f00cc20e iamai.adapter.kook.config.Config:1 of
+msgid "Bases: :py:class:`~iamai.config.ConfigModel`"
+msgstr ""
+
+#: f9e2d0e858ac415c8f899757939915d6 iamai.adapter.kook.config.Config:1 of
+msgid "Kook 配置类，将在适配器被加载时被混入到机器人主配置中。"
+msgstr ""
+
+#: ea55f5cbce154f3da4662e47839cb43a iamai.adapter.kook.config.Config:5 of
+msgid "适配器类型，需要和协议端配置相同。"
+msgstr ""
+
+#: 303d3ee29d864b68a1cbba2a01ba7c61 4265bab940334364a3016095caa282b5
+#: 50d773102b034fc382b78afd22e41379 9b9ffd372ca5487d8d51d730cac1887f
+#: ea27cdb37c44479abf0efb26637f8396 f71dba85cad5444593add9fc94df4db3
+#: iamai.adapter.kook.config.Config of
+msgid "type"
+msgstr ""
+
+#: 1f4d3bf2e888401c99cf83905841349e iamai.adapter.kook.config.Config:7 of
+msgid "Literal['ws', 'wb']"
+msgstr ""
+
+#: 38de1b9a30de471cb1b5ab29f722064f iamai.adapter.kook.config.Config:11 of
+msgid "重连等待时间。"
+msgstr ""
+
+#: f89f45bf3a444a33885211a204fb5d01 fd57f01edde64c0997299b1b1d7d9ae8
+#: iamai.adapter.kook.config.Config:13 iamai.adapter.kook.config.Config:19 of
+msgid "int"
+msgstr ""
+
+#: a064794b08dd48c1888affbe57135b2f iamai.adapter.kook.config.Config:17 of
+msgid "进行 API 调用时等待返回响应的超时时间。"
+msgstr ""
+
+#: 830338cca1584c17bc5691ba66ffec66 iamai.adapter.kook.config.Config:23 of
+msgid "鉴权。"
+msgstr ""
+
+#: dbaafba7ea05459ca6a98facdbbe4c83 iamai.adapter.kook.config.Config:25 of
+msgid "str"
+msgstr ""
+
+#: 5a2834a6e28044f48afa34207dcacf3f iamai.adapter.kook.config.Config:29 of
+msgid "是否启用压缩，默认为 0，不启用。"
+msgstr ""
+
+#: 77b1f52d2ecc4777a6a43926a0b2d962 iamai.adapter.kook.config.Config:31 of
+msgid "Literal[0, 1]"
+msgstr ""
+
+#: b755b46ddac549898cf350fffb5d63f3 iamai.adapter.kook.config.Config:35 of
+msgid "是否显示原始数据，默认为 False，不显示。"
+msgstr ""
+
+#: 53c5064174a0425cae43f5f03cef8fda iamai.adapter.kook.config.Config:37 of
+msgid "bool"
+msgstr ""
+
+#: ../../docstring 1ddc915938724ba4bfa30594fcd9eb81
+#: iamai.adapter.kook.KookAdapter.Config.model_config:1 of
+msgid ""
+"Configuration for the model, should be a dictionary conforming to "
+"[`ConfigDict`][pydantic.config.ConfigDict]."
+msgstr ""
+
+#: ../../docstring f3a61a35d68b4c0385282ff4b5c96d87
+#: iamai.adapter.kook.KookAdapter.Config.model_fields:1 of
+msgid ""
+"Metadata about the fields defined on the model, mapping of field names to"
+" [`FieldInfo`][pydantic.fields.FieldInfo]."
+msgstr ""
+
+#: ../../docstring 8503324325714c4a8537d3f5a1ac8041
+#: iamai.adapter.kook.KookAdapter.Config.model_fields:4 of
+msgid "This replaces `Model.__fields__` from Pydantic V1."
+msgstr ""
+
+#: 2b40483dec7b4513b225c4bb522eb089
+#: iamai.adapter.kook.KookAdapter.handle_kook_event:1 of
+msgid "处理 kook 事件。"
+msgstr ""
+
+#: 52e4d57b4977441a9cfe82fcbbda351a 72f532e4ca5c4bc5a1097d333059edf6
+#: iamai.adapter.kook.KookAdapter.handle_kook_event
+#: iamai.adapter.kook.KookAdapter.send of
+msgid "Parameters"
+msgstr ""
+
+#: b0989094e70747f4a248365ffbd24318
+#: iamai.adapter.kook.KookAdapter.handle_kook_event:3 of
+msgid "接收到的信息。"
+msgstr ""
+
+#: b1e0e6e30d8c43de8225fea66657d03f
+#: iamai.adapter.kook.KookAdapter.handle_websocket_msg:1 of
+msgid "处理 WebSocket 消息。"
+msgstr ""
+
+#: f8c33bfe062946ca8a865c4d21baa014 iamai.adapter.kook.KookAdapter.send:1 of
+msgid "发送消息，调用 message/create 或 direct-message/create API 发送消息。"
+msgstr ""
+
+#: 8967d89466ad47479524701548509952 iamai.adapter.kook.KookAdapter.send:3 of
+msgid ""
+"消息内容，可以是 str, Mapping, Iterable[Mapping], 'KookMessageSegment', "
+"'KookMessage'。 将使用 `KookMessage` 进行封装。"
+msgstr ""
+
+#: 677a6186a44043f38c16285ce3a52877 iamai.adapter.kook.KookAdapter.send:6 of
+msgid "消息类型。应该是 GROUP 或者 PERSON。"
+msgstr ""
+
+#: 0a8a6c5cfc594b48b5be5678560705f1 iamai.adapter.kook.KookAdapter.send:7 of
+msgid "发送对象的 ID ，Kook 用户码或者Kook频道码。"
+msgstr ""
+
+#: 30fd9d5b0fc14809af76744cdcaa8fb0 iamai.adapter.kook.KookAdapter.send of
+msgid "Returns"
+msgstr ""
+
+#: 2af842cf211541cd986ab7f8ac2ad99d iamai.adapter.kook.KookAdapter.send:9 of
+msgid "API 响应。"
+msgstr ""
+
+#: 0b983fd4c9ac45769f5b60a63100fe0b iamai.adapter.kook.KookAdapter.send of
+msgid "Raises"
+msgstr ""
+
+#: f5b504d75f284b81aed8834fcf03ec5a iamai.adapter.kook.KookAdapter.send:11 of
+msgid "message_type 不是 'PERSON' 或 'GROUP'。"
+msgstr ""
+
+#: 7678733c7dc5496eb51db2c7c402b0e0 iamai.adapter.kook.KookAdapter.send:12 of
+msgid "同 `call_api()` 方法。"
+msgstr ""
+
+#: 11faaa5e3aee48a6a93533d683340fe8
+#: iamai.adapter.kook.KookAdapter.start_heartbeat:1 of
+msgid "每30s一次心跳 :return:"
+msgstr ""
+
+#: d3319d0f85f64472af7355ac42a3379f iamai.adapter.kook.KookAdapter.startup:1 of
+msgid "初始化适配器。"
+msgstr ""
+
+#: 31bc0c952bd84ba5aa995f0a6e844464
+#: iamai.adapter.kook.KookAdapter.websocket_connect:1 of
+msgid "创建正向 WebSocket 连接。"
+msgstr ""
+

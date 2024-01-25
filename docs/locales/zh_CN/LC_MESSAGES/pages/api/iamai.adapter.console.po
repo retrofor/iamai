@@ -1,0 +1,36 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/api/iamai.adapter.console.rst:2
+#: 4c4cca8305db4e9ea5674e9046f0c27c
+msgid "iamai.adapter.console package"
+msgstr ""
+
+#: ../../source/pages/api/iamai.adapter.console.rst:5
+#: 899c32acfc624c3badffb6c8c0396e91
+msgid "Submodules"
+msgstr ""
+
+#: ../../source/pages/api/iamai.adapter.console.rst:15
+#: 75233dbb849444c29ebc6e0ba5eb5627
+msgid "Module contents"
+msgstr ""
+

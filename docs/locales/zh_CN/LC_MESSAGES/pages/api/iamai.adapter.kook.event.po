@@ -1,0 +1,1407 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/api/iamai.adapter.kook.event.rst:2
+#: dd335c1d58fc42b490de1eb9c18185a8
+msgid "iamai.adapter.kook.event module"
+msgstr ""
+
+#: c8bf67833796432a8e12f9f0867e0f48 iamai.adapter.kook.event:1 of
+msgid "Kook 适配器事件。"
+msgstr ""
+
+#: 0e5c83d68d49419387f9e5bc417ff226 10b0e7e0ac894e74860981ea7bae093d
+#: 10e07aaa20354c58a8bddace373ff48b 218b43a083f542de94992366e9928a25
+#: 29871234a9b341f89491c4ad1ed461a6 30d183b750e042bbaccbc5ebc1e90c7f
+#: 57feb320e28a4c258b908ecb02a3f375 5c49ec84c8c34e5c82d4e5efd455d196
+#: 70d770505790437387c7b6f8db45c599 861ec947106247e8abc4a6a00139a7d2
+#: 86bc631bfdd24edbb66fc2e223f8cb85 930fe201be574e20b138ca752725e923
+#: 93d09d76022041358259fd4b11c0f9f7 972dbf34430b4ea2bcb40f2353a697f0
+#: a2d54a0b9dd54a38b40f0f47f400cbc3 bef9e136c574403987941810db67e1cb
+#: bf4ec5994ffa44b7ad06c11161e4c125 c58b69a59ab24b3f8b8e764dfb54e7b0
+#: cc87360cb987476bb0937ab4b5abce7b ccb67374c0b94b2b8aeb263ecec3842e
+#: cfcb72d1ed7b4632a044ed9d31b1cb1f d3f60b001bea40ab8becea89625835bb
+#: da9af591dce642739cf84d754fe50b6d dca94643f94b4fca848b20186bbdf9c3
+#: f03cacb57d254b779ecd76310a6cb8f1 f0f8f1c1576240f08efeba783498dedf
+#: fa9ad44cb7524c45951129bed57d3a0a iamai.adapter.kook.event.Attachment:1
+#: iamai.adapter.kook.event.Attachments:1
+#: iamai.adapter.kook.event.BaseMessage:1 iamai.adapter.kook.event.BlackList:1
+#: iamai.adapter.kook.event.ChannelMessagesReturn:1
+#: iamai.adapter.kook.event.ChannelRoleInfo:1
+#: iamai.adapter.kook.event.ChannelRoleReturn:1
+#: iamai.adapter.kook.event.DirectMessagesReturn:1
+#: iamai.adapter.kook.event.EventMessage:1 iamai.adapter.kook.event.Extra:1
+#: iamai.adapter.kook.event.GuilRoleReturn:1
+#: iamai.adapter.kook.event.GuildEmoji:1 iamai.adapter.kook.event.IntimacyImg:1
+#: iamai.adapter.kook.event.IntimacyIndexReturn:1
+#: iamai.adapter.kook.event.Invite:1 iamai.adapter.kook.event.Kmarkdown:1
+#: iamai.adapter.kook.event.ListReturn:1 iamai.adapter.kook.event.MentionInfo:1
+#: iamai.adapter.kook.event.MessageCreateReturn:1
+#: iamai.adapter.kook.event.Meta:1
+#: iamai.adapter.kook.event.PermissionOverwrite:1
+#: iamai.adapter.kook.event.PermissionUser:1 iamai.adapter.kook.event.Quote:1
+#: iamai.adapter.kook.event.Reaction:1 iamai.adapter.kook.event.TargetInfo:1
+#: iamai.adapter.kook.event.URL:1 iamai.adapter.kook.event.UserChat:1 of
+msgid "Bases: :py:class:`~pydantic.main.BaseModel`"
+msgstr ""
+
+#: ../../docstring 01847216a51a43dcb3ac674ee3d88aed
+#: 02adfe4772e84060b23b8c5cab432dd2 0308069a61ca4b2eb08e8d4c6cf8aeba
+#: 0f4004b606ba43258a34349e628a8535 122a78c6e6c44da39064fa71ddc1a85e
+#: 129f2ed148db4fab86a3d6c3555957d8 15e56c46f47a4056bac5a9a589ed7532
+#: 179cd44944a34aa68436f4eeaf838296 180b73eca86f45b4aa80ce614f4a9628
+#: 1be81bc6afac4cb891d3dbbf8ff0148f 1c736f00a94a4c909d7618e3a1c8b415
+#: 1e231814f5504b72b3bfb2abda8cb4ac 231d6c4ceadd48a1a3e0b0b3b5ce9357
+#: 25a10189c9db484b8e97e15cf57a3f30 2ada0ed587ba40c28da97e67a086111b
+#: 2ebaa454d3924ea69d754a3b933980f1 30cdd8a98b8d475eba28133be8c3137e
+#: 31f6aed4aacb4b6e90b7967cc4da6bfc 37eb79e34c98424e88ca0803b1cd87f5
+#: 38cb5b7166ad4f8aa180ddbc0c12a1d9 3a3f729b71e8432ea63ec36240dcb403
+#: 3afabcf85dbe4d21a7fdaa742e720fb6 3fc1e6a19dbf4b978485d3ea26b2c9b4
+#: 46ec5d03625a49cd803fc2da79269181 479379f24921494abe9a98a723b3620a
+#: 4fef033f11b9491db19fbac3ae444f90 50552a1807984cb7a20a006590e14f26
+#: 5204559ba73e487cbb5b08112975e297 525eba81579a4271a5d1e789a68605a2
+#: 55983adf0eec45b4a01215c8a0aef0e3 597b7255dac241c4a9ab8d5db2281c64
+#: 5a1e927e221e469fa5cf972f767ded6a 620bf970c9314ce19fdd5deb99f6f273
+#: 69f27481fdb0498b9c850718c8bcc328 70e63d80b91a4f749e0889dcb1e0f5c3
+#: 71a3f07bcba04f54a48660ddbae116b7 72e7c0e94e8d4e2fad8f65197c9f78ed
+#: 745d264f37e44e9c94cc999f627ce21f 7b647e4a4a1a4472bdc9e0ede66256f1
+#: 80fc671bf3b94fdcbd6d5cf0728ee0de 887455c2b65e49c89a04b3a27bce303b
+#: 896f4ccc61b34effb8edb50751adb166 8d4b6c12dd774eada9522fe2cfadb916
+#: 8da2d31c750e4e9890c500871a96272e 8ebdb617be5241afbd8017de2a1b565c
+#: 99a373b23b6946c0835ae71100d96b9a 9ab44583eda54ea1bdfef104a19e94f6
+#: 9cc72e3f264e467cb044263093ec8fce 9d56e4016dad437c8207e01ba15c9996
+#: a5b476f04c7940e4bbdeab5c2ab2a13e a6a3684157154e589ae880d56469be1d
+#: a6b707901b904826887dbac4cbf161de a6d6290f58684de5aa1b512aea0205fc
+#: a986c507c84d430aafd92c882f363bc1 acc2b1c47fd8406796b9f834dc188286
+#: b1b7d4d9fb9644e6bcb7474c580b2693 b623477668964d09b4e0101deba60905
+#: b89746a65e2b40ccb05e6f58cf696e53 bb1b5424832848e18a94affb7c1d7063
+#: bb3a536fdfbb4f75ac7b50b8ae29f6eb bd4bab0bc6b14ce09c7510b6cb1532be
+#: bd6c2857d756453fb248a75586bc5ea9 bead3fe49d004857ba19ab62588b9914
+#: c05e61dd5fd44bb6a719c5213c564f67 c26d7ecc6b284c75b36581bf79f77734
+#: c906a806af8c443d85250abf4cd20e91 c910b24766b948da87131569008c6f16
+#: cb5eab9629c14d5da1d923b5eb0646cc cce0d917dea04c1d81eeda17644272eb
+#: ce6ee055bba347eeaaa789d564630abc d915bc5e31c447cbae5db2bdd576811b
+#: daa4f1ce68ec4fc583399e0419cd60a0 dbdbf896e68d46e9aa1603efafaa87e7
+#: e533fdfdf12141d583dfd04ba4d53919 e6a8c24b4b9c4b87abb4f47347bfad58
+#: e6c0e63a1bd74461af5ebd69b56251dc e994ca0648fa45b484d2bf3ae57f1e83
+#: e9c9a7e67b4047f59204482375b215cc ee9b18a1cff14155916be56d294caf57
+#: ee9d746b4d504a90a2e0633c23930268 f14fc16b0c774849a10471502cb82427
+#: f1dc11fc9e9e4b4ab0689d9dcf91252c f63faa02738c46549372402b4fe8d81f
+#: f9aa2f87e7724e1bad1124bcb807b797
+#: iamai.adapter.kook.event.Attachment.model_config:1
+#: iamai.adapter.kook.event.Attachments.model_config:1
+#: iamai.adapter.kook.event.BaseMessage.model_config:1
+#: iamai.adapter.kook.event.BlackList.model_config:1
+#: iamai.adapter.kook.event.BlackListsReturn.model_config:1
+#: iamai.adapter.kook.event.CartBtnClickNoticeEvent.model_config:1
+#: iamai.adapter.kook.event.ChannelAddReactionEvent.model_config:1
+#: iamai.adapter.kook.event.ChannelAddedEvent.model_config:1
+#: iamai.adapter.kook.event.ChannelDeleteEvent.model_config:1
+#: iamai.adapter.kook.event.ChannelDeleteMessageEvent.model_config:1
+#: iamai.adapter.kook.event.ChannelDeletedReactionEvent.model_config:1
+#: iamai.adapter.kook.event.ChannelMessage.model_config:1
+#: iamai.adapter.kook.event.ChannelMessageEvent.model_config:1
+#: iamai.adapter.kook.event.ChannelMessagesReturn.model_config:1
+#: iamai.adapter.kook.event.ChannelNoticeEvent.model_config:1
+#: iamai.adapter.kook.event.ChannelPinnedMessageEvent.model_config:1
+#: iamai.adapter.kook.event.ChannelRoleInfo.model_config:1
+#: iamai.adapter.kook.event.ChannelRoleReturn.model_config:1
+#: iamai.adapter.kook.event.ChannelUnpinnedMessageEvent.model_config:1
+#: iamai.adapter.kook.event.ChannelUpdatedEvent.model_config:1
+#: iamai.adapter.kook.event.ChannelUpdatedMessageEvent.model_config:1
+#: iamai.adapter.kook.event.ChannelsReturn.model_config:1
+#: iamai.adapter.kook.event.DirectMessage.model_config:1
+#: iamai.adapter.kook.event.DirectMessagesReturn.model_config:1
+#: iamai.adapter.kook.event.EventMessage.model_config:1
+#: iamai.adapter.kook.event.Extra.model_config:1
+#: iamai.adapter.kook.event.GuilRoleReturn.model_config:1
+#: iamai.adapter.kook.event.GuildAddBlockListNoticeEvent.model_config:1
+#: iamai.adapter.kook.event.GuildDeleteBlockListNoticeEvent.model_config:1
+#: iamai.adapter.kook.event.GuildDeleteNoticeEvent.model_config:1
+#: iamai.adapter.kook.event.GuildEmoji.model_config:1
+#: iamai.adapter.kook.event.GuildEmojisReturn.model_config:1
+#: iamai.adapter.kook.event.GuildMemberDecreaseNoticeEvent.model_config:1
+#: iamai.adapter.kook.event.GuildMemberIncreaseNoticeEvent.model_config:1
+#: iamai.adapter.kook.event.GuildMemberNoticeEvent.model_config:1
+#: iamai.adapter.kook.event.GuildMemberOfflineNoticeEvent.model_config:1
+#: iamai.adapter.kook.event.GuildMemberOnlineNoticeEvent.model_config:1
+#: iamai.adapter.kook.event.GuildMemberUpdateNoticeEvent.model_config:1
+#: iamai.adapter.kook.event.GuildNoticeEvent.model_config:1
+#: iamai.adapter.kook.event.GuildRoleAddNoticeEvent.model_config:1
+#: iamai.adapter.kook.event.GuildRoleDeleteNoticeEvent.model_config:1
+#: iamai.adapter.kook.event.GuildRoleNoticeEvent.model_config:1
+#: iamai.adapter.kook.event.GuildRoleUpdateNoticeEvent.model_config:1
+#: iamai.adapter.kook.event.GuildUpdateNoticeEvent.model_config:1
+#: iamai.adapter.kook.event.GuildUsersRetrun.model_config:1
+#: iamai.adapter.kook.event.GuildsReturn.model_config:1
+#: iamai.adapter.kook.event.HeartbeatMetaEvent.model_config:1
+#: iamai.adapter.kook.event.IntimacyImg.model_config:1
+#: iamai.adapter.kook.event.IntimacyIndexReturn.model_config:1
+#: iamai.adapter.kook.event.Invite.model_config:1
+#: iamai.adapter.kook.event.InvitesReturn.model_config:1
+#: iamai.adapter.kook.event.Kmarkdown.model_config:1
+#: iamai.adapter.kook.event.KookEvent.model_config:1
+#: iamai.adapter.kook.event.LifecycleMetaEvent.model_config:1
+#: iamai.adapter.kook.event.ListReturn.model_config:1
+#: iamai.adapter.kook.event.MentionInfo.model_config:1
+#: iamai.adapter.kook.event.MessageCreateReturn.model_config:1
+#: iamai.adapter.kook.event.MessageEvent.model_config:1
+#: iamai.adapter.kook.event.Meta.model_config:1
+#: iamai.adapter.kook.event.MetaEvent.model_config:1
+#: iamai.adapter.kook.event.NoticeEvent.model_config:1
+#: iamai.adapter.kook.event.OriginEvent.model_config:1
+#: iamai.adapter.kook.event.PermissionOverwrite.model_config:1
+#: iamai.adapter.kook.event.PermissionUser.model_config:1
+#: iamai.adapter.kook.event.PrivateAddReactionEvent.model_config:1
+#: iamai.adapter.kook.event.PrivateDeleteMessageEvent.model_config:1
+#: iamai.adapter.kook.event.PrivateDeleteReactionEvent.model_config:1
+#: iamai.adapter.kook.event.PrivateMessageEvent.model_config:1
+#: iamai.adapter.kook.event.PrivateNoticeEvent.model_config:1
+#: iamai.adapter.kook.event.PrivateUpdateMessageEvent.model_config:1
+#: iamai.adapter.kook.event.Quote.model_config:1
+#: iamai.adapter.kook.event.Reaction.model_config:1
+#: iamai.adapter.kook.event.ReactionUser.model_config:1
+#: iamai.adapter.kook.event.RolesReturn.model_config:1
+#: iamai.adapter.kook.event.SelfExitGuildNoticeEvent.model_config:1
+#: iamai.adapter.kook.event.SelfJoinGuildNoticeEvent.model_config:1
+#: iamai.adapter.kook.event.TargetInfo.model_config:1
+#: iamai.adapter.kook.event.URL.model_config:1
+#: iamai.adapter.kook.event.UserChat.model_config:1
+#: iamai.adapter.kook.event.UserChatsReturn.model_config:1
+#: iamai.adapter.kook.event.UserInfoUpdateNoticeEvent.model_config:1
+#: iamai.adapter.kook.event.UserJoinAudioChannelEvent.model_config:1
+#: iamai.adapter.kook.event.UserJoinAudioChannelNoticeEvent.model_config:1
+#: iamai.adapter.kook.event.UserNoticeEvent.model_config:1 of
+msgid ""
+"Configuration for the model, should be a dictionary conforming to "
+"[`ConfigDict`][pydantic.config.ConfigDict]."
+msgstr ""
+
+#: ../../docstring 050ab83f05d94b24b1e69e76677278ad
+#: 09e1d44154b54e82a8b00c027c8251dc 0d3487b2e1ac4c6192c133c28087496e
+#: 0ee3e30b93bc427786b5c5c38dca3080 10d307d73f0640ab91e7fbe5e8b348d4
+#: 164a1b6aa9894c20a0ac11072a90135e 165d45ce22f74a57a6e1eee318dff62e
+#: 1a0b73fa62954400b4bbd141e364756f 1bf4f8896d544f5fabdfc649a8f7c38b
+#: 2077222cb00e4967ac37840cef782add 23b7e93787334e8784a427b2f21645b9
+#: 247beaa4bcb44d58b7c7e76ad691d0ab 25a56c30c0f24802be8c2b25ba00483d
+#: 263c1c0b4c414a2181da47bd90fcb492 2c445b236ff247e8924d32e97c8efe78
+#: 2f0ddb1cc73a4e07b0fa3caa3406d2fc 2fbadceaae944d1fb57c32cd02e16ae4
+#: 32291c3cd3f14762a58f35461cf5566f 34c7325ebc834d5db182cf1bea65bd9f
+#: 355c3bad11cf4beaa0794594cab461b1 38983f2ab97a42118829b3ccf42a951f
+#: 38a78517469d47f9b42a66d6e0c8a859 39f79c9fc4ef4697a194a3229eaa2d47
+#: 3d3861d7886441cf84c3770e5ed32230 3fa5bdb7f7a44178a390c8a43e12aba9
+#: 421a49d9e6da4bb890e9d9977f65ebe7 456733f8317d435e91e72df3dee31c64
+#: 4676bc27fe6f41c68a78c86622d29b53 4a57b50070d043798ceb163a8e869844
+#: 544decea854949bf9555dc16e1930319 628c20cab34f4dd0b759a6cbad566b23
+#: 6736115614d64c32b36dba743d021d86 68139dd351354e54b89b9565f191f39b
+#: 77307c91b2c7432da582855bc86c5320 7b9d2d124749419eae3b7b87f9f1208b
+#: 7ba2425a851e454cbd06f6c375be7777 7e522943a1c64da3829e4c89b6d0fa4b
+#: 7f2d6b87dee54271a37f1cd68bc7b355 84281b2cdf10478ba8189a53b1da13d2
+#: 87c43f00cc954d6da808bdee487886e8 8a2201da1c4944ce889a9ac1ffe70c65
+#: 8e897a7a1d2f4060af8e99b081049f84 92f2fe6fb24641b19abaffe4d2a53cd1
+#: 9382f20617d845588228bcf9d2db63a0 94a8dfbc42d94e9083b0c28efc8ee6b8
+#: 9ff0e001e5454b408bf6878577db30ef a189470285db4b33b7c798232f1a8732
+#: a2c4ef3d204c4e50b3ca5aae29d72c07 a8830d29fc9143b2b3f6d329564a9e5d
+#: aa341fd6e9da4979a2a3064c2c0ed24c ab3d4e55718e4d75aeae92a47bbbf753
+#: b3849a7db8984108b701d9083fbdc867 b3bfc97c67084b9aafdd65496a122cc0
+#: b40b081e18bc4a9187ae762d3e284aa9 b7de0222ffc2428292a77c84fc87a169
+#: b88bc4e8adef4b33bab19ab7ad711cb1 bb15da997fc24a3db335844bf1f8710f
+#: bdf78cb4b8be475a966cbbe58b159e6d beac3779ac3648f48d8ad8652c4d5f21
+#: bfb41125a0884998ae0dd96dfefa8b5b c82e7e352837452c9b5e7031204cfe72
+#: c843b360c91f4e7b88d1856235bffc71 cd67c25682dd4d87bbb4ef767d40f1b1
+#: cdbc42b3a03e4c87ab34d461173ac721 ce3b657f454b4b86be2a870006977d28
+#: d0151d10b7a44b2d87f49989ebc3d7d9 d1969527763c4c7d9d374a4fbcee3256
+#: d35389516f0c4e2ca53313e4ff21d3be dc133f26fce8417d8b9818043467ec80
+#: dea10b40205b48eda44774f0b9443bb8 e16ce9715b0b443fa275c8ac5ff70db5
+#: e172b3e20491432c8b46da069a064a6c e484bf0ed89743f28ac674272f51390a
+#: e510024545f9446e99454e8dc0b8f4a1 ea71527c7bfd48648a273bd027d4502d
+#: ec1ecd0b2ca84bc5a0480fa95fa85628 f037abbbaeb64d51b064c647f87167cb
+#: f04ca475e4074ee1b2b4d4983bd7b3cb f308a57a516f423bb2a7731e04347d8b
+#: f6a2bc7ba32447f89208a74536304414 f91deca93e4c4c35a8c5152acd6db844
+#: fc434b9bfe564fc9b45208a9b8c1d586 fcbdc7ab10fd4d6bb253476c4c7c2777
+#: fd9da5516e594572b3c5ff3f4d7e8d7b
+#: iamai.adapter.kook.event.Attachment.model_fields:1
+#: iamai.adapter.kook.event.Attachments.model_fields:1
+#: iamai.adapter.kook.event.BaseMessage.model_fields:1
+#: iamai.adapter.kook.event.BlackList.model_fields:1
+#: iamai.adapter.kook.event.BlackListsReturn.model_fields:1
+#: iamai.adapter.kook.event.CartBtnClickNoticeEvent.model_fields:1
+#: iamai.adapter.kook.event.ChannelAddReactionEvent.model_fields:1
+#: iamai.adapter.kook.event.ChannelAddedEvent.model_fields:1
+#: iamai.adapter.kook.event.ChannelDeleteEvent.model_fields:1
+#: iamai.adapter.kook.event.ChannelDeleteMessageEvent.model_fields:1
+#: iamai.adapter.kook.event.ChannelDeletedReactionEvent.model_fields:1
+#: iamai.adapter.kook.event.ChannelMessage.model_fields:1
+#: iamai.adapter.kook.event.ChannelMessageEvent.model_fields:1
+#: iamai.adapter.kook.event.ChannelMessagesReturn.model_fields:1
+#: iamai.adapter.kook.event.ChannelNoticeEvent.model_fields:1
+#: iamai.adapter.kook.event.ChannelPinnedMessageEvent.model_fields:1
+#: iamai.adapter.kook.event.ChannelRoleInfo.model_fields:1
+#: iamai.adapter.kook.event.ChannelRoleReturn.model_fields:1
+#: iamai.adapter.kook.event.ChannelUnpinnedMessageEvent.model_fields:1
+#: iamai.adapter.kook.event.ChannelUpdatedEvent.model_fields:1
+#: iamai.adapter.kook.event.ChannelUpdatedMessageEvent.model_fields:1
+#: iamai.adapter.kook.event.ChannelsReturn.model_fields:1
+#: iamai.adapter.kook.event.DirectMessage.model_fields:1
+#: iamai.adapter.kook.event.DirectMessagesReturn.model_fields:1
+#: iamai.adapter.kook.event.EventMessage.model_fields:1
+#: iamai.adapter.kook.event.Extra.model_fields:1
+#: iamai.adapter.kook.event.GuilRoleReturn.model_fields:1
+#: iamai.adapter.kook.event.GuildAddBlockListNoticeEvent.model_fields:1
+#: iamai.adapter.kook.event.GuildDeleteBlockListNoticeEvent.model_fields:1
+#: iamai.adapter.kook.event.GuildDeleteNoticeEvent.model_fields:1
+#: iamai.adapter.kook.event.GuildEmoji.model_fields:1
+#: iamai.adapter.kook.event.GuildEmojisReturn.model_fields:1
+#: iamai.adapter.kook.event.GuildMemberDecreaseNoticeEvent.model_fields:1
+#: iamai.adapter.kook.event.GuildMemberIncreaseNoticeEvent.model_fields:1
+#: iamai.adapter.kook.event.GuildMemberNoticeEvent.model_fields:1
+#: iamai.adapter.kook.event.GuildMemberOfflineNoticeEvent.model_fields:1
+#: iamai.adapter.kook.event.GuildMemberOnlineNoticeEvent.model_fields:1
+#: iamai.adapter.kook.event.GuildMemberUpdateNoticeEvent.model_fields:1
+#: iamai.adapter.kook.event.GuildNoticeEvent.model_fields:1
+#: iamai.adapter.kook.event.GuildRoleAddNoticeEvent.model_fields:1
+#: iamai.adapter.kook.event.GuildRoleDeleteNoticeEvent.model_fields:1
+#: iamai.adapter.kook.event.GuildRoleNoticeEvent.model_fields:1
+#: iamai.adapter.kook.event.GuildRoleUpdateNoticeEvent.model_fields:1
+#: iamai.adapter.kook.event.GuildUpdateNoticeEvent.model_fields:1
+#: iamai.adapter.kook.event.GuildUsersRetrun.model_fields:1
+#: iamai.adapter.kook.event.GuildsReturn.model_fields:1
+#: iamai.adapter.kook.event.HeartbeatMetaEvent.model_fields:1
+#: iamai.adapter.kook.event.IntimacyImg.model_fields:1
+#: iamai.adapter.kook.event.IntimacyIndexReturn.model_fields:1
+#: iamai.adapter.kook.event.Invite.model_fields:1
+#: iamai.adapter.kook.event.InvitesReturn.model_fields:1
+#: iamai.adapter.kook.event.Kmarkdown.model_fields:1
+#: iamai.adapter.kook.event.KookEvent.model_fields:1
+#: iamai.adapter.kook.event.LifecycleMetaEvent.model_fields:1
+#: iamai.adapter.kook.event.ListReturn.model_fields:1
+#: iamai.adapter.kook.event.MentionInfo.model_fields:1
+#: iamai.adapter.kook.event.MessageCreateReturn.model_fields:1
+#: iamai.adapter.kook.event.MessageEvent.model_fields:1
+#: iamai.adapter.kook.event.Meta.model_fields:1
+#: iamai.adapter.kook.event.MetaEvent.model_fields:1
+#: iamai.adapter.kook.event.NoticeEvent.model_fields:1
+#: iamai.adapter.kook.event.OriginEvent.model_fields:1
+#: iamai.adapter.kook.event.PermissionOverwrite.model_fields:1
+#: iamai.adapter.kook.event.PermissionUser.model_fields:1
+#: iamai.adapter.kook.event.PrivateAddReactionEvent.model_fields:1
+#: iamai.adapter.kook.event.PrivateDeleteMessageEvent.model_fields:1
+#: iamai.adapter.kook.event.PrivateDeleteReactionEvent.model_fields:1
+#: iamai.adapter.kook.event.PrivateMessageEvent.model_fields:1
+#: iamai.adapter.kook.event.PrivateNoticeEvent.model_fields:1
+#: iamai.adapter.kook.event.PrivateUpdateMessageEvent.model_fields:1
+#: iamai.adapter.kook.event.Quote.model_fields:1
+#: iamai.adapter.kook.event.Reaction.model_fields:1
+#: iamai.adapter.kook.event.ReactionUser.model_fields:1
+#: iamai.adapter.kook.event.RolesReturn.model_fields:1
+#: iamai.adapter.kook.event.SelfExitGuildNoticeEvent.model_fields:1
+#: iamai.adapter.kook.event.SelfJoinGuildNoticeEvent.model_fields:1
+#: iamai.adapter.kook.event.TargetInfo.model_fields:1
+#: iamai.adapter.kook.event.URL.model_fields:1
+#: iamai.adapter.kook.event.UserChat.model_fields:1
+#: iamai.adapter.kook.event.UserChatsReturn.model_fields:1
+#: iamai.adapter.kook.event.UserInfoUpdateNoticeEvent.model_fields:1
+#: iamai.adapter.kook.event.UserJoinAudioChannelEvent.model_fields:1
+#: iamai.adapter.kook.event.UserJoinAudioChannelNoticeEvent.model_fields:1
+#: iamai.adapter.kook.event.UserNoticeEvent.model_fields:1 of
+msgid ""
+"Metadata about the fields defined on the model, mapping of field names to"
+" [`FieldInfo`][pydantic.fields.FieldInfo]."
+msgstr ""
+
+#: ../../docstring 01de9019c2ea4531bcdab04aae5d5044
+#: 03dfaeb5ff7a44e9be9887f44ce9ad39 0504360edc5b459ca57d8a9d6d5b8b8d
+#: 0875463590fd40b2af3be7e26056d254 096054f72cf54d1db750d0f0b32fe47b
+#: 0a4944223f7042cb8e7678f63f28550d 0b95dd3fd42d42a7ba9903c30d62821d
+#: 10567bc5745e43afb659eaf0bca1a171 10fbf612411b46dcb3f8683d45907ead
+#: 163b11fe1433403aa3ea183de6026422 1841131e2be8483f965229f59520efda
+#: 1f263b8b0853489fa61547c8fca6fec1 21ce744e23f547c584009afbe94aafe7
+#: 22acc0c58f9e430484f2a65fbbce9e35 25f9cac7c3e6493b9d5b6e43c6c8a31a
+#: 2b25d49d83674a5e969d24efd990f384 2fd17eb4be544231a240c5b74ffb1472
+#: 3434d576c62845b9bcff219497c7bacf 3599f91fa7b940fb8d5e0643d2f43f68
+#: 382e48df726449aeb5e2cce7bc1458f8 3f42014e82e54765af89be16e5bcbc17
+#: 406f4631969747609c23cc666e2ce349 45075afe745a47f0a49f437c7ca3ad3e
+#: 46f9132b5c3742d583f7127061073def 47400b715ae54390ac6da74ca187d37d
+#: 4d01c5b09a55479fb0a6f01a249938f5 4e876c55498c4a1b81b86ca0277dfa37
+#: 52726fa108404ae0a5cdf615c42e2894 538688766c614da6a1d6ae93d7dd20af
+#: 58c83190421f49a0bf5718ffb1e4d35f 5910ed2dcf1d4876a2154da7915a85ae
+#: 5c74f57b4c1c488a89cfa1d481bc55ad 61e2daa4e6694d4cb5643cf7bd830c35
+#: 6329a140d41243e5a7adb6fd1378eb34 64e42fc655524f6696ac09724f90dd33
+#: 69bcccf3cdbd423dbf37f4b8b83e49eb 6af235043ac3432fa3c586053b729425
+#: 7026359505844239b14c58027302e6a3 7067a4a0ab364e6e97c0a4138d27e8db
+#: 71d2cd4482e04b8198c913291c73550f 7b180f80453f478d9658f914ec407e65
+#: 7e480865b85146a2a5e2afb996767c4d 817df96b861343189baa70f41b117eed
+#: 90ef03602ca5422e82d3342c20112972 912030bed6924e1c8657814ba6d33474
+#: 9187406f60af4c45a710c58a6defaa1f 94a2b02f4aa84aa5929f19b168b51e57
+#: 95874ec98bba42b28023b04eccaa0b40 99492553fbee4e9ba7e80d54f0a1d86c
+#: 9afd0f38ba1c43c99e40103f3cd78cc7 9eed761291a24bd88b2325283ac43420
+#: a5c2c7fd92d749bab940b983c9c3ccb6 a83b01b5f4ad4237bb9641cfbf1e320b
+#: abd4728e09254a78b075dd6cb13509a9 ac44ed13821849b9b821ad6a0a907530
+#: acc5169710e6455fa4c414b976ee5661 ad87f7207c9b4b06a09ca434b096391f
+#: b2fae331ef3b47499115edf022a029f9 b7ac931c206645dc913592586acd3880
+#: b8ad54bbcc8e49f88fa5c59a5729733c b8cfe1af44e844e5bbe6e7619a1a4c02
+#: b8d51f9bf7eb40f3b4e5d629e036584f b92c1eae5db94fb58ad361fef5e35671
+#: bc00ac099bff4f8fa7c65e628df586f2 c3d4ab882cfe41dd91b22699b79c2abd
+#: c4587a7eda9e4cf8a386a51e17ce36d6 c45bd07debb04de08f41725816c3e73e
+#: c88a0aed17284593b43cf61657c20d34 c89971be71f046a580a9c931a0721b12
+#: c98c80396d2148e5b695e6efcdc45792 cce9e954391b4218bb81118cbcc29d6d
+#: cf00f87c56cd480199496a607a4e7a69 d638f880789440268a47355261507c8e
+#: d882f9934abf4ad18ac1095d804c6260 e0dc278600a8400d94c2ba12686355f9
+#: e8e554dc8512490da6ef1466d3264971 eee44b54cbd049b497d13695cc885653
+#: f515255c80934583b5c53c78b0596e99 f6ace3a0e1a24c5d92b736ca68d72ba1
+#: f6cfa0c446914747a8d5bf6780378098 f8983cd755014728a09a2e08323b6357
+#: fadc317d50c04eb1a14ebbc973d39055 fb18a239b2434867ade0cd2900261afb
+#: ffa71016dc084b28a497318139f21d6b
+#: iamai.adapter.kook.event.Attachment.model_fields:4
+#: iamai.adapter.kook.event.Attachments.model_fields:4
+#: iamai.adapter.kook.event.BaseMessage.model_fields:4
+#: iamai.adapter.kook.event.BlackList.model_fields:4
+#: iamai.adapter.kook.event.BlackListsReturn.model_fields:4
+#: iamai.adapter.kook.event.CartBtnClickNoticeEvent.model_fields:4
+#: iamai.adapter.kook.event.ChannelAddReactionEvent.model_fields:4
+#: iamai.adapter.kook.event.ChannelAddedEvent.model_fields:4
+#: iamai.adapter.kook.event.ChannelDeleteEvent.model_fields:4
+#: iamai.adapter.kook.event.ChannelDeleteMessageEvent.model_fields:4
+#: iamai.adapter.kook.event.ChannelDeletedReactionEvent.model_fields:4
+#: iamai.adapter.kook.event.ChannelMessage.model_fields:4
+#: iamai.adapter.kook.event.ChannelMessageEvent.model_fields:4
+#: iamai.adapter.kook.event.ChannelMessagesReturn.model_fields:4
+#: iamai.adapter.kook.event.ChannelNoticeEvent.model_fields:4
+#: iamai.adapter.kook.event.ChannelPinnedMessageEvent.model_fields:4
+#: iamai.adapter.kook.event.ChannelRoleInfo.model_fields:4
+#: iamai.adapter.kook.event.ChannelRoleReturn.model_fields:4
+#: iamai.adapter.kook.event.ChannelUnpinnedMessageEvent.model_fields:4
+#: iamai.adapter.kook.event.ChannelUpdatedEvent.model_fields:4
+#: iamai.adapter.kook.event.ChannelUpdatedMessageEvent.model_fields:4
+#: iamai.adapter.kook.event.ChannelsReturn.model_fields:4
+#: iamai.adapter.kook.event.DirectMessage.model_fields:4
+#: iamai.adapter.kook.event.DirectMessagesReturn.model_fields:4
+#: iamai.adapter.kook.event.EventMessage.model_fields:4
+#: iamai.adapter.kook.event.Extra.model_fields:4
+#: iamai.adapter.kook.event.GuilRoleReturn.model_fields:4
+#: iamai.adapter.kook.event.GuildAddBlockListNoticeEvent.model_fields:4
+#: iamai.adapter.kook.event.GuildDeleteBlockListNoticeEvent.model_fields:4
+#: iamai.adapter.kook.event.GuildDeleteNoticeEvent.model_fields:4
+#: iamai.adapter.kook.event.GuildEmoji.model_fields:4
+#: iamai.adapter.kook.event.GuildEmojisReturn.model_fields:4
+#: iamai.adapter.kook.event.GuildMemberDecreaseNoticeEvent.model_fields:4
+#: iamai.adapter.kook.event.GuildMemberIncreaseNoticeEvent.model_fields:4
+#: iamai.adapter.kook.event.GuildMemberNoticeEvent.model_fields:4
+#: iamai.adapter.kook.event.GuildMemberOfflineNoticeEvent.model_fields:4
+#: iamai.adapter.kook.event.GuildMemberOnlineNoticeEvent.model_fields:4
+#: iamai.adapter.kook.event.GuildMemberUpdateNoticeEvent.model_fields:4
+#: iamai.adapter.kook.event.GuildNoticeEvent.model_fields:4
+#: iamai.adapter.kook.event.GuildRoleAddNoticeEvent.model_fields:4
+#: iamai.adapter.kook.event.GuildRoleDeleteNoticeEvent.model_fields:4
+#: iamai.adapter.kook.event.GuildRoleNoticeEvent.model_fields:4
+#: iamai.adapter.kook.event.GuildRoleUpdateNoticeEvent.model_fields:4
+#: iamai.adapter.kook.event.GuildUpdateNoticeEvent.model_fields:4
+#: iamai.adapter.kook.event.GuildUsersRetrun.model_fields:4
+#: iamai.adapter.kook.event.GuildsReturn.model_fields:4
+#: iamai.adapter.kook.event.HeartbeatMetaEvent.model_fields:4
+#: iamai.adapter.kook.event.IntimacyImg.model_fields:4
+#: iamai.adapter.kook.event.IntimacyIndexReturn.model_fields:4
+#: iamai.adapter.kook.event.Invite.model_fields:4
+#: iamai.adapter.kook.event.InvitesReturn.model_fields:4
+#: iamai.adapter.kook.event.Kmarkdown.model_fields:4
+#: iamai.adapter.kook.event.KookEvent.model_fields:4
+#: iamai.adapter.kook.event.LifecycleMetaEvent.model_fields:4
+#: iamai.adapter.kook.event.ListReturn.model_fields:4
+#: iamai.adapter.kook.event.MentionInfo.model_fields:4
+#: iamai.adapter.kook.event.MessageCreateReturn.model_fields:4
+#: iamai.adapter.kook.event.MessageEvent.model_fields:4
+#: iamai.adapter.kook.event.Meta.model_fields:4
+#: iamai.adapter.kook.event.MetaEvent.model_fields:4
+#: iamai.adapter.kook.event.NoticeEvent.model_fields:4
+#: iamai.adapter.kook.event.OriginEvent.model_fields:4
+#: iamai.adapter.kook.event.PermissionOverwrite.model_fields:4
+#: iamai.adapter.kook.event.PermissionUser.model_fields:4
+#: iamai.adapter.kook.event.PrivateAddReactionEvent.model_fields:4
+#: iamai.adapter.kook.event.PrivateDeleteMessageEvent.model_fields:4
+#: iamai.adapter.kook.event.PrivateDeleteReactionEvent.model_fields:4
+#: iamai.adapter.kook.event.PrivateMessageEvent.model_fields:4
+#: iamai.adapter.kook.event.PrivateNoticeEvent.model_fields:4
+#: iamai.adapter.kook.event.PrivateUpdateMessageEvent.model_fields:4
+#: iamai.adapter.kook.event.Quote.model_fields:4
+#: iamai.adapter.kook.event.Reaction.model_fields:4
+#: iamai.adapter.kook.event.ReactionUser.model_fields:4
+#: iamai.adapter.kook.event.RolesReturn.model_fields:4
+#: iamai.adapter.kook.event.SelfExitGuildNoticeEvent.model_fields:4
+#: iamai.adapter.kook.event.SelfJoinGuildNoticeEvent.model_fields:4
+#: iamai.adapter.kook.event.TargetInfo.model_fields:4
+#: iamai.adapter.kook.event.URL.model_fields:4
+#: iamai.adapter.kook.event.UserChat.model_fields:4
+#: iamai.adapter.kook.event.UserChatsReturn.model_fields:4
+#: iamai.adapter.kook.event.UserInfoUpdateNoticeEvent.model_fields:4
+#: iamai.adapter.kook.event.UserJoinAudioChannelEvent.model_fields:4
+#: iamai.adapter.kook.event.UserJoinAudioChannelNoticeEvent.model_fields:4
+#: iamai.adapter.kook.event.UserNoticeEvent.model_fields:4 of
+msgid "This replaces `Model.__fields__` from Pydantic V1."
+msgstr ""
+
+#: ../../docstring aab62896864444ad9198cc37d5b2d90d
+#: b66bf63f73f440a3a35f72ee20abd572 iamai.adapter.kook.event.Attachments:1
+#: iamai.adapter.kook.event.BaseMessage.attachments:1 of
+msgid "附加的多媒体数据"
+msgstr ""
+
+#: ../../docstring 4bd3b3c684824e2ca9622f4610054971
+#: iamai.adapter.kook.event.Attachments.name:1 of
+msgid "多媒体名"
+msgstr ""
+
+#: ../../docstring e81912c6c4d34e3dbaff89bf57987e44
+#: iamai.adapter.kook.event.Attachments.size:1 of
+msgid "大小 单位（B）"
+msgstr ""
+
+#: ../../docstring 02017354e0844b46b6e8a54ddf124a65
+#: iamai.adapter.kook.event.Attachments.type:1 of
+msgid "多媒体类型"
+msgstr ""
+
+#: ../../docstring df1c313c576f41b496720353eaf12565
+#: iamai.adapter.kook.event.Attachments.url:1 of
+msgid "多媒体地址"
+msgstr ""
+
+#: 742f5defe39e471d81ed04a314223c80 iamai.adapter.kook.event.AttrDict:1 of
+msgid "Bases: :py:class:`~collections.UserDict`"
+msgstr ""
+
+#: ../../docstring 8c850650e1f041ceb1f99430ce4800e7
+#: iamai.adapter.kook.event.BaseMessage.content:1 of
+msgid "消息内容"
+msgstr ""
+
+#: ../../docstring db4314bf46f94137a0a171247fb676a0
+#: iamai.adapter.kook.event.BaseMessage.create_at:1 of
+msgid "创建时间"
+msgstr ""
+
+#: ../../docstring 655e37a84b334ee89fa9aeee638ad550
+#: iamai.adapter.kook.event.BaseMessage.embeds:1 of
+msgid "超链接解析数据"
+msgstr ""
+
+#: ../../docstring 8e707ab8475f435ab88ba3688c57d4f2
+#: iamai.adapter.kook.event.BaseMessage.id_:1 of
+msgid "消息 ID"
+msgstr ""
+
+#: ../../docstring 4ebba2dd1c5a43b7b1d31a7cf8455108
+#: iamai.adapter.kook.event.BaseMessage.mention_info:1 of
+msgid "引用特定用户或特定角色的信息"
+msgstr ""
+
+#: ../../docstring fb5f83cbb5c440c6a4f3562cadaba09e
+#: iamai.adapter.kook.event.BaseMessage.quote:1 of
+msgid "引用数据"
+msgstr ""
+
+#: ../../docstring 859579ee75df47eeae410f53f5951662
+#: iamai.adapter.kook.event.BaseMessage.reactions:1 of
+msgid "回应数据"
+msgstr ""
+
+#: ../../docstring fe4ca52b8403477984be343098ddbd33
+#: iamai.adapter.kook.event.BaseMessage.read_status:1 of
+msgid "是否已读"
+msgstr ""
+
+#: ../../docstring a324685195ec4327a7470ae0650e0973
+#: iamai.adapter.kook.event.BaseMessage.type:1 of
+msgid "消息类型"
+msgstr ""
+
+#: ../../docstring 7263f67c271e410eac88114f04098fbd
+#: iamai.adapter.kook.event.BaseMessage.updated_at:1 of
+msgid "更新时间"
+msgstr ""
+
+#: 3032e8a7559745899cb961913b2cf972 iamai.adapter.kook.event.BlackList:1 of
+msgid "黑名单"
+msgstr ""
+
+#: ../../docstring 488bb7f19ca046e5ba5f27472cfd0c41
+#: iamai.adapter.kook.event.BlackList.created_time:1 of
+msgid "加入黑名单的时间戳(毫秒)"
+msgstr ""
+
+#: ../../docstring 0d61159c0e0f4b7cb5435c705c6023f4
+#: iamai.adapter.kook.event.BlackList.remark:1 of
+msgid "加入黑名单的原因"
+msgstr ""
+
+#: ../../docstring 4e638828a49d415cac4e0c1b9ff9166f
+#: 9dc495adf5904cd4adf484911983fb31 iamai.adapter.kook.event.BlackList.user:1
+#: iamai.adapter.kook.event.Invite.user:1 of
+msgid "用户"
+msgstr ""
+
+#: ../../docstring 98ac22e0d6e54af9aa22c3ac0af05874
+#: a7ff1db898f1496ba0e0da48da27f985
+#: iamai.adapter.kook.event.BlackList.user_id:1
+#: iamai.adapter.kook.event.GuilRoleReturn.user_id:1 of
+msgid "用户 id"
+msgstr ""
+
+#: 30b1e74bd3be40968b7c54bad38eb785 703f2713d6a14858837a4f5f3a097c1e
+#: 8527a8cc436347a2a0295f7af2a4ef77 a4c17df1bf264f048471115785b38bab
+#: d0aca6fedba2458f962dd98b2c41a4ae d40a236f8c7d480e9bf6333f7143ed66
+#: ecbb7b77a2f44d26b542e2b5cd0c9fd5 fc78b68faaf64436908cb16ac726a253
+#: iamai.adapter.kook.event.BlackListsReturn:1
+#: iamai.adapter.kook.event.ChannelsReturn:1
+#: iamai.adapter.kook.event.GuildEmojisReturn:1
+#: iamai.adapter.kook.event.GuildUsersRetrun:1
+#: iamai.adapter.kook.event.GuildsReturn:1
+#: iamai.adapter.kook.event.InvitesReturn:1
+#: iamai.adapter.kook.event.RolesReturn:1
+#: iamai.adapter.kook.event.UserChatsReturn:1 of
+msgid "Bases: :py:class:`~iamai.adapter.kook.event.ListReturn`"
+msgstr ""
+
+#: 2fd3f55ab17041ed9fb4e485e0f2833e iamai.adapter.kook.event.BlackListsReturn:1
+#: of
+msgid "获取黑名单列表返回信息"
+msgstr ""
+
+#: ../../docstring fd6f147b2db14abf89818e7ec99de5fb
+#: iamai.adapter.kook.event.BlackListsReturn.blacklists:1 of
+msgid "黑名单列表"
+msgstr ""
+
+#: 035621736a5e4da4aba06116e37bb17a 7005e30963d84e26a0e8a7ad2413ded3
+#: aa0f6b5b4dbd4f6a95cae3b92dc36b21 cbc70b65fe9b4d469bde5f21d28a0a52
+#: ccabeca16ea64337bcbac68b13dc087c d61f10beda9d471db9be3e300d5c5388
+#: ff95223db8dc4a468cdcb21b95b62b8c
+#: iamai.adapter.kook.event.CartBtnClickNoticeEvent:1
+#: iamai.adapter.kook.event.ChannelNoticeEvent:1
+#: iamai.adapter.kook.event.GuildNoticeEvent:1
+#: iamai.adapter.kook.event.PrivateNoticeEvent:1
+#: iamai.adapter.kook.event.SelfExitGuildNoticeEvent:1
+#: iamai.adapter.kook.event.SelfJoinGuildNoticeEvent:1
+#: iamai.adapter.kook.event.UserNoticeEvent:1 of
+msgid "Bases: :py:class:`~iamai.adapter.kook.event.NoticeEvent`"
+msgstr ""
+
+#: 069089f9c5e84f3cba782835f6a19848
+#: iamai.adapter.kook.event.CartBtnClickNoticeEvent:1 of
+msgid "Card 消息中的 Button 点击事件"
+msgstr ""
+
+#: 3a079ea4f6fd4afd90db33fe28c80b9b 569f2b6a243b4f36b6d7dbe88d938618
+#: 578b2d48729a4504839ee4e466274301 6195fbd1a47b4cd18025f0e199a3d85c
+#: 8fd07bf3a5534e3f8cc9a9b3a229771a a9d587deddba4f1aaa6fe3c4a32d2647
+#: b7d26bf154f14d9c9dfc69169ff7d1ac bcc557c653904e1b9e1bbaebe724572d
+#: e180c26c3dfd4f23bcfe75c53e353c2a
+#: iamai.adapter.kook.event.ChannelAddReactionEvent:1
+#: iamai.adapter.kook.event.ChannelAddedEvent:1
+#: iamai.adapter.kook.event.ChannelDeleteEvent:1
+#: iamai.adapter.kook.event.ChannelDeleteMessageEvent:1
+#: iamai.adapter.kook.event.ChannelDeletedReactionEvent:1
+#: iamai.adapter.kook.event.ChannelPinnedMessageEvent:1
+#: iamai.adapter.kook.event.ChannelUnpinnedMessageEvent:1
+#: iamai.adapter.kook.event.ChannelUpdatedEvent:1
+#: iamai.adapter.kook.event.ChannelUpdatedMessageEvent:1 of
+msgid "Bases: :py:class:`~iamai.adapter.kook.event.ChannelNoticeEvent`"
+msgstr ""
+
+#: 6c2ec94a34e243fa9986d81187038098
+#: iamai.adapter.kook.event.ChannelAddReactionEvent:1 of
+msgid "频道内用户添加 reaction"
+msgstr ""
+
+#: d35845e4a4734b95b487c591d42cd54f
+#: iamai.adapter.kook.event.ChannelAddedEvent:1 of
+msgid "新增频道"
+msgstr ""
+
+#: aee90d4584d746a7bafb90e0c77424e1
+#: iamai.adapter.kook.event.ChannelDeleteEvent:1 of
+msgid "删除频道"
+msgstr ""
+
+#: dc4e45b23ee5414cbd1437a7a1778442
+#: iamai.adapter.kook.event.ChannelDeleteMessageEvent:1 of
+msgid "频道消息被删除"
+msgstr ""
+
+#: 89465c1fe88a4256a29a331e63af4c20
+#: iamai.adapter.kook.event.ChannelDeletedReactionEvent:1 of
+msgid "频道内用户删除 reaction"
+msgstr ""
+
+#: 171e5482ca6e4d1497445db661b34209 821247bf4ee84d95adb985792ad89c67
+#: iamai.adapter.kook.event.ChannelMessage:1
+#: iamai.adapter.kook.event.DirectMessage:1 of
+msgid "Bases: :py:class:`~iamai.adapter.kook.event.BaseMessage`"
+msgstr ""
+
+#: 3b0a0f01789c4237b7e8181501f6e50a iamai.adapter.kook.event.ChannelMessage:1
+#: of
+msgid "频道消息"
+msgstr ""
+
+#: 0dda883fe51f40eab06ec641e3ff9fb9 59a3ce0709204bb991827a701e8c4500
+#: iamai.adapter.kook.event.ChannelMessageEvent:1
+#: iamai.adapter.kook.event.PrivateMessageEvent:1 of
+msgid "Bases: :py:class:`~iamai.adapter.kook.event.MessageEvent`"
+msgstr ""
+
+#: f7aae9f6a6da481986ee3e91d532d03a
+#: iamai.adapter.kook.event.ChannelMessageEvent:1 of
+msgid "公共频道消息"
+msgstr ""
+
+#: 5e928e35d7d7496fb0452777873952bf 97574c1426324c83be7f27f73e236008
+#: e3dc3be3cd2c44c38db7d138bc2f4e21
+#: iamai.adapter.kook.event.ChannelMessageEvent.reply:1
+#: iamai.adapter.kook.event.MessageEvent.reply:1
+#: iamai.adapter.kook.event.PrivateMessageEvent.reply:1 of
+msgid "回复消息。"
+msgstr ""
+
+#: 892bca06a4b243e480df8b6e87c01993 bf639230842e4587a55eb6897351284c
+#: c67232231dec448c8a61648d62f15329 dd88a0c84ec047d280b01ce0db109c01
+#: iamai.adapter.kook.event.ChannelMessageEvent.reply
+#: iamai.adapter.kook.event.MessageEvent.reply
+#: iamai.adapter.kook.event.PrivateMessageEvent.reply
+#: iamai.adapter.kook.event.get_event_class of
+msgid "Parameters"
+msgstr ""
+
+#: 47f74f576c5b4d3b88a98c55001d2d7f 8b7251976bc645a0b8da42c82e42b2dc
+#: af2a59f22a1b4b6789955ce3ceb2dd86
+#: iamai.adapter.kook.event.ChannelMessageEvent.reply:3
+#: iamai.adapter.kook.event.MessageEvent.reply:3
+#: iamai.adapter.kook.event.PrivateMessageEvent.reply:3 of
+msgid "回复消息的内容，同 `call_api()` 方法。"
+msgstr ""
+
+#: 0bcf78b7ebda4004a688cb8183d6b6bd 3cd0743c7b434750a2147edd1394e432
+#: 9f9c4292733b4cff9e8ed2178e1d46e0 b217fefaf047497f8758d69de354d98f
+#: dfd209a3937f402bb6cf8f961eb132c5
+#: iamai.adapter.kook.event.ChannelMessageEvent.reply
+#: iamai.adapter.kook.event.MessageEvent.get_plain_text
+#: iamai.adapter.kook.event.MessageEvent.reply
+#: iamai.adapter.kook.event.PrivateMessageEvent.reply
+#: iamai.adapter.kook.event.get_event_class of
+msgid "Returns"
+msgstr ""
+
+#: 16576380fba64c09a0504f1fafc2e51e 7f651adfdb254ad191ae9d52b13a5b5c
+#: f871e3ea3fe247afa0ce660c1d14cd28
+#: iamai.adapter.kook.event.ChannelMessageEvent.reply:5
+#: iamai.adapter.kook.event.MessageEvent.reply:5
+#: iamai.adapter.kook.event.PrivateMessageEvent.reply:5 of
+msgid "API 请求响应。"
+msgstr ""
+
+#: 6307c50265b84d7cb6e4cf2ca8f3bfa8 a4029b9775a246719e91275be97d3f66
+#: iamai.adapter.kook.event.ChannelMessagesReturn:1
+#: iamai.adapter.kook.event.DirectMessagesReturn:1 of
+msgid "获取私信聊天消息列表返回信息"
+msgstr ""
+
+#: 67effd1312dd4c9e81c6446197694caa
+#: iamai.adapter.kook.event.ChannelNoticeEvent:1 of
+msgid "频道消息事件"
+msgstr ""
+
+#: 770399d44e0f4a67b691652619f99a5d
+#: iamai.adapter.kook.event.ChannelPinnedMessageEvent:1 of
+msgid "新增频道置顶消息"
+msgstr ""
+
+#: 0c7cf7455cc04ecf9db9362716fe11ec iamai.adapter.kook.event.ChannelRoleInfo:1
+#: of
+msgid "频道角色权限详情"
+msgstr ""
+
+#: ../../docstring cd0d0504a2574e64ac17fac430cee7b6
+#: iamai.adapter.kook.event.ChannelRoleInfo.permission_overwrites:1 of
+msgid "针对角色在该频道的权限覆写规则组成的列表"
+msgstr ""
+
+#: ../../docstring a705ce2c88924516a9a5749e63ac6264
+#: iamai.adapter.kook.event.ChannelRoleInfo.permission_sync:1 of
+msgid "权限设置是否与分组同步, 1 or 0"
+msgstr ""
+
+#: ../../docstring f21d511f2b4b4102bac753718269e23a
+#: iamai.adapter.kook.event.ChannelRoleInfo.permission_users:1 of
+msgid "针对用户在该频道的权限覆写规则组成的列表"
+msgstr ""
+
+#: 1073e04b77cd4b1a9750527bf215b7e9
+#: iamai.adapter.kook.event.ChannelRoleReturn:1 of
+msgid "创建或更新频道角色权限返回信息"
+msgstr ""
+
+#: 91a38938d8b34a9dba5116b55291262a
+#: iamai.adapter.kook.event.ChannelUnpinnedMessageEvent:1 of
+msgid "取消频道置顶消息"
+msgstr ""
+
+#: 2b6174f4d4d44241941475863589fa75
+#: iamai.adapter.kook.event.ChannelUpdatedEvent:1 of
+msgid "修改频道信息"
+msgstr ""
+
+#: 19203c29360846ce90b32dfa00f9d3cf
+#: iamai.adapter.kook.event.ChannelUpdatedMessageEvent:1 of
+msgid "频道消息更新"
+msgstr ""
+
+#: 21c07ace83694db8825828d0b92bf65a eb1872a0d2444295bdf7b28d4a6d9d65
+#: iamai.adapter.kook.event.DirectMessage:1
+#: iamai.adapter.kook.event.PrivateMessageEvent:1 of
+msgid "私聊消息"
+msgstr ""
+
+#: ../../docstring 7174e60a9cb347e9bec7099850abbc26
+#: iamai.adapter.kook.event.DirectMessage.author_id:1 of
+msgid "作者的用户 ID"
+msgstr ""
+
+#: ../../docstring 9b53b35f377641ccbb1c78c21b2ae8fd
+#: iamai.adapter.kook.event.DirectMessage.from_type:1 of
+msgid "from_type"
+msgstr ""
+
+#: ../../docstring 175ad814797942b6ab6fd2dfe754b942
+#: iamai.adapter.kook.event.DirectMessage.msg_icon:1 of
+msgid "msg_icon"
+msgstr ""
+
+#: 1c63f8f5ebbe48ff9dd6e15ce31c5bf8 f0f81277b6b445f69e507be2888265a0
+#: iamai.adapter.kook.event.EventTypes:1 iamai.adapter.kook.event.SignalTypes:1
+#: of
+msgid "Bases: :py:class:`~enum.IntEnum`"
+msgstr ""
+
+#: a3b38334e7c5412a82176c34c6fd8e2b iamai.adapter.kook.event.EventTypes:1 of
+msgid "事件主要格式 Kook 协议事件，字段与 Kook 一致。各事件字段参考 `Kook 文档`"
+msgstr ""
+
+#: 138764be1df042aaa269f75df4fa848a f3fc499a57e84f1b8aafc88b7d75b7a8
+#: iamai.adapter.kook.event.Extra.Config:1
+#: iamai.adapter.kook.event.ResultStore:1 of
+msgid "Bases: :py:class:`object`"
+msgstr ""
+
+#: 3d5cc878dffb4de8bbf4c0fa919e09a0 iamai.adapter.kook.event.GuilRoleReturn:1
+#: of
+msgid "赋予或删除用户角色返回信息"
+msgstr ""
+
+#: ../../docstring cba1aca9835f4ab8831ea6cdfe6d4faa
+#: d366db912c3b41ff882d74112880c964
+#: iamai.adapter.kook.event.GuilRoleReturn.guild_id:1
+#: iamai.adapter.kook.event.Invite.guild_id:1 of
+msgid "服务器 id"
+msgstr ""
+
+#: ../../docstring 0244cbf4a0714d428ada96b289df9348
+#: iamai.adapter.kook.event.GuilRoleReturn.roles:1 of
+msgid "角色 id 的列表"
+msgstr ""
+
+#: 263d482cd57340808b4c5b3b3e29e3bf 452c86d8b78b4e938af89841797c2c3c
+#: 96e3d273702545d89352e302f1f960e9 97f8694e2b6f49aebc0ac7a7ea647977
+#: cdd8e20122a849ad8c480a26c8b0f823 e8f85761ef504377ab2d8e1e42961305
+#: iamai.adapter.kook.event.GuildAddBlockListNoticeEvent:1
+#: iamai.adapter.kook.event.GuildDeleteBlockListNoticeEvent:1
+#: iamai.adapter.kook.event.GuildDeleteNoticeEvent:1
+#: iamai.adapter.kook.event.GuildMemberNoticeEvent:1
+#: iamai.adapter.kook.event.GuildRoleNoticeEvent:1
+#: iamai.adapter.kook.event.GuildUpdateNoticeEvent:1 of
+msgid "Bases: :py:class:`~iamai.adapter.kook.event.GuildNoticeEvent`"
+msgstr ""
+
+#: 7a965ff31d5d44129b453f7a2a5393ee
+#: iamai.adapter.kook.event.GuildAddBlockListNoticeEvent:1 of
+msgid "服务器封禁用户"
+msgstr ""
+
+#: f583eebf115d48fa8ea7446973d197d0
+#: iamai.adapter.kook.event.GuildDeleteBlockListNoticeEvent:1 of
+msgid "服务器取消封禁用户"
+msgstr ""
+
+#: 248701967b7547d09d1758387dec6383
+#: iamai.adapter.kook.event.GuildDeleteNoticeEvent:1 of
+msgid "服务器删除"
+msgstr ""
+
+#: 5ee1237248394246ad36c2a08fa902cb iamai.adapter.kook.event.GuildEmoji:1 of
+msgid "服务器表情"
+msgstr ""
+
+#: ../../docstring fb98b95cba084c9bbab146e11528f0df
+#: iamai.adapter.kook.event.GuildEmoji.id_:1 of
+msgid "表情的 ID"
+msgstr ""
+
+#: ../../docstring 67ac5b2f5c9648388d5f86338e61cc67
+#: iamai.adapter.kook.event.GuildEmoji.name:1 of
+msgid "表情的名称"
+msgstr ""
+
+#: ../../docstring b6218c0996464b4490be7947e5996a30
+#: iamai.adapter.kook.event.GuildEmoji.user_info:1 of
+msgid "上传用户"
+msgstr ""
+
+#: d126ef428485497193dc0a2c09e0c22b
+#: iamai.adapter.kook.event.GuildEmojisReturn:1 of
+msgid "获取服务器表情列表返回信息"
+msgstr ""
+
+#: ../../docstring 20a7c484b82b490e93bf8033b636e6e0
+#: iamai.adapter.kook.event.GuildEmojisReturn.roles:1 of
+msgid "服务器表情列表"
+msgstr ""
+
+#: 0929431548af437185d669bc8561e4f9 64c4c63517df4f4b8a6893778cb17377
+#: 8d7ae5bb2f7e48c2939f874a2d27afe4 e294de677d8b4f909a0617940f4270b2
+#: f658fc70af094688865de1331f51557c
+#: iamai.adapter.kook.event.GuildMemberDecreaseNoticeEvent:1
+#: iamai.adapter.kook.event.GuildMemberIncreaseNoticeEvent:1
+#: iamai.adapter.kook.event.GuildMemberOfflineNoticeEvent:1
+#: iamai.adapter.kook.event.GuildMemberOnlineNoticeEvent:1
+#: iamai.adapter.kook.event.GuildMemberUpdateNoticeEvent:1 of
+msgid "Bases: :py:class:`~iamai.adapter.kook.event.GuildMemberNoticeEvent`"
+msgstr ""
+
+#: c9b2b8ab11424121bcbe0ef9b6698367
+#: iamai.adapter.kook.event.GuildMemberDecreaseNoticeEvent:1 of
+msgid "服务器成员退出"
+msgstr ""
+
+#: f0274317f75c4c23bf36ee9d8fd75e02
+#: iamai.adapter.kook.event.GuildMemberIncreaseNoticeEvent:1 of
+msgid "新成员加入服务器"
+msgstr ""
+
+#: be0250da03734324afca349749fdebfd
+#: iamai.adapter.kook.event.GuildMemberNoticeEvent:1 of
+msgid "服务器成员相关事件"
+msgstr ""
+
+#: dd80c245f2fb4546b272ebf1f09ed769
+#: iamai.adapter.kook.event.GuildMemberOfflineNoticeEvent:1 of
+msgid "服务器成员下线"
+msgstr ""
+
+#: a36f91b5e20046f9915daf7454b3d22d
+#: iamai.adapter.kook.event.GuildMemberOnlineNoticeEvent:1 of
+msgid "服务器成员上线"
+msgstr ""
+
+#: 79afe978fa7d43ff94bab10fa73729aa
+#: iamai.adapter.kook.event.GuildMemberUpdateNoticeEvent:1 of
+msgid "服务器成员信息更新(修改昵称)"
+msgstr ""
+
+#: e63fdf8dab224b3dafca9b56b6034e41 iamai.adapter.kook.event.GuildNoticeEvent:1
+#: of
+msgid "服务器相关事件"
+msgstr ""
+
+#: 4c711655eeaf4693b1550ddaec219684 9b75542129404e55ac2aff7309cd24fa
+#: f8529365258d4be7bc8d6e3fbff39111
+#: iamai.adapter.kook.event.GuildRoleAddNoticeEvent:1
+#: iamai.adapter.kook.event.GuildRoleDeleteNoticeEvent:1
+#: iamai.adapter.kook.event.GuildRoleUpdateNoticeEvent:1 of
+msgid "Bases: :py:class:`~iamai.adapter.kook.event.GuildRoleNoticeEvent`"
+msgstr ""
+
+#: 6e1e5230097d484f8afdacf45db2b1f6 d0476b55c4f04da19be601817e48dbc3
+#: fe1d4151aced4c9296d6839079790528
+#: iamai.adapter.kook.event.GuildRoleAddNoticeEvent:1
+#: iamai.adapter.kook.event.GuildRoleDeleteNoticeEvent:1
+#: iamai.adapter.kook.event.GuildRoleUpdateNoticeEvent:1 of
+msgid "服务器角色增加"
+msgstr ""
+
+#: b7922e77110e4e91a525df3f52ae9703
+#: iamai.adapter.kook.event.GuildRoleNoticeEvent:1 of
+msgid "服务器角色相关事件"
+msgstr ""
+
+#: 4d76f4abcd574c7a893cc314d53986ee
+#: iamai.adapter.kook.event.GuildUpdateNoticeEvent:1 of
+msgid "服务器信息更新"
+msgstr ""
+
+#: ae69e79e4ea9427cb8243d309b454a35 iamai.adapter.kook.event.GuildUsersRetrun:1
+#: of
+msgid "服务器中的用户列表"
+msgstr ""
+
+#: ../../docstring e4a5f8dea8224de9a82a2847c5263911
+#: iamai.adapter.kook.event.GuildUsersRetrun.offline_count:1 of
+msgid "离线用户数量"
+msgstr ""
+
+#: ../../docstring 5acb15020aeb4838b3c46297ead3c547
+#: iamai.adapter.kook.event.GuildUsersRetrun.online_count:1 of
+msgid "在线用户数量"
+msgstr ""
+
+#: ../../docstring 45e58328cbd043f8af33cc44bc138fe1
+#: iamai.adapter.kook.event.GuildUsersRetrun.user_count:1 of
+msgid "用户数量"
+msgstr ""
+
+#: ../../docstring b3f50e6787de4bdb96e968796a282c97
+#: iamai.adapter.kook.event.GuildUsersRetrun.users:1 of
+msgid "用户列表"
+msgstr ""
+
+#: 4c7c6ec46d704b8183116a1baecd3ff6 7963dc3d6e834a26be5ae8c532bd1352
+#: iamai.adapter.kook.event.HeartbeatMetaEvent:1
+#: iamai.adapter.kook.event.LifecycleMetaEvent:1 of
+msgid "Bases: :py:class:`~iamai.adapter.kook.event.MetaEvent`"
+msgstr ""
+
+#: 5d5c034c8aa84906bff990c77d64b025
+#: iamai.adapter.kook.event.HeartbeatMetaEvent:1 of
+msgid "心跳元事件"
+msgstr ""
+
+#: ../../docstring 08d116af61a04e61bad6a4e99d384c0e
+#: d9f96d4a7b674d199d471256f2b10190 iamai.adapter.kook.event.IntimacyImg:1
+#: iamai.adapter.kook.event.IntimacyIndexReturn.img_list:1 of
+msgid "形象图片的总列表"
+msgstr ""
+
+#: ../../docstring dbca4f8269c2407ba37a9ff42f906650
+#: iamai.adapter.kook.event.IntimacyImg.id_:1 of
+msgid "形象图片的 id"
+msgstr ""
+
+#: ../../docstring 9e1d7aa61476491495369bf92b3693ad
+#: iamai.adapter.kook.event.IntimacyImg.url:1 of
+msgid "形象图片的地址"
+msgstr ""
+
+#: 373f3c4168e9496d84a392eae66d52ae
+#: iamai.adapter.kook.event.IntimacyIndexReturn:1 of
+msgid "获取用户亲密度返回信息"
+msgstr ""
+
+#: ../../docstring 81d516b597454d32a5bba5d5ae36c7a5
+#: iamai.adapter.kook.event.IntimacyIndexReturn.img_url:1 of
+msgid "机器人给用户显示的形象图片地址"
+msgstr ""
+
+#: ../../docstring 3732b78fc1ae486b9708d7f43736007e
+#: iamai.adapter.kook.event.IntimacyIndexReturn.last_read:1 of
+msgid "用户上次查看的时间戳"
+msgstr ""
+
+#: ../../docstring 66320dab4a9d42e194f60ecd887d94f7
+#: iamai.adapter.kook.event.IntimacyIndexReturn.score:1 of
+msgid "亲密度，0-2200"
+msgstr ""
+
+#: ../../docstring 96714369bbe542af95fa0c36c03be6e5
+#: iamai.adapter.kook.event.IntimacyIndexReturn.social_info:1 of
+msgid "机器人显示给用户的社交信息"
+msgstr ""
+
+#: e4b4fd26e2f0427fa6515bbf331e9506 iamai.adapter.kook.event.Invite:1 of
+msgid "邀请信息"
+msgstr ""
+
+#: ../../docstring 3bdd5171bf164c319c5eb6cf0d554c9f
+#: iamai.adapter.kook.event.Invite.channel_id:1 of
+msgid "频道 id"
+msgstr ""
+
+#: ../../docstring 89d269c68b464e2aa6a935647de2f194
+#: iamai.adapter.kook.event.Invite.url:1 of
+msgid "地址"
+msgstr ""
+
+#: ../../docstring f8d01e27dcb44b9d85fe1b915956faed
+#: iamai.adapter.kook.event.Invite.url_code:1 of
+msgid "url code"
+msgstr ""
+
+#: 8c2f69fe79674defaeb7758b7ca12877 iamai.adapter.kook.event.InvitesReturn:1 of
+msgid "获取邀请列表返回信息"
+msgstr ""
+
+#: ../../docstring 2aa84b7e30d94101a25d509faf64060a
+#: iamai.adapter.kook.event.InvitesReturn.roles:1 of
+msgid "邀请列表"
+msgstr ""
+
+#: 711221801826421aa18cae48aef68035 9e652e3cbe9440c8a5a877276aa4495b
+#: iamai.adapter.kook.event.KookEvent:1 iamai.adapter.kook.event.MetaEvent:1 of
+msgid "Bases: :py:class:`~iamai.adapter.kook.event.OriginEvent`"
+msgstr ""
+
+#: e44e9c37928e471a838ac38508d792ea iamai.adapter.kook.event.KookEvent:1 of
+msgid "事件主要格式，来自 d 字段 Kook 协议事件，字段与 Kook 一致。各事件字段参考 `Kook 文档`"
+msgstr ""
+
+#: ../../docstring 89c1d9cf893d4b0c9a06b8bce9b00ea4
+#: iamai.adapter.kook.event.KookEvent.target_id:1 of
+msgid "发送目的"
+msgstr ""
+
+#: ../../docstring a6d96aee3193458786d87e4d05bd9c42
+#: iamai.adapter.kook.event.KookEvent.target_id:3 of
+msgid "频道消息类时, 代表的是频道 channel_id"
+msgstr ""
+
+#: ../../docstring 1efb299ced004807b953488fd3d60b19
+#: iamai.adapter.kook.event.KookEvent.target_id:5 of
+msgid "如果 channel_type 为 GROUP 组播且 type 为 255 系统消息时，则代表服务器 guild_id"
+msgstr ""
+
+#: ../../docstring eb44878659a74887924aef9fda0f05fc
+#: iamai.adapter.kook.event.KookEvent.type_:1 of
+msgid "文字消息 2:图片消息 3:视频消息 4:文件消息 8:音频消息 9:KMarkdown 10:card消息 255:系统消息 其它的暂未开放"
+msgstr ""
+
+#: ../../docstring 2b1a71fdd9274387a86df748ab65462a
+#: iamai.adapter.kook.event.KookEvent.type_ of
+msgid "type"
+msgstr ""
+
+#: ../../docstring 801d0930c43e45abb2ee6ddadc85341c
+#: iamai.adapter.kook.event.KookEvent.type_:11 of
+msgid "1"
+msgstr ""
+
+#: d1985a3511644d0485008bd5dc7513e1
+#: iamai.adapter.kook.event.LifecycleMetaEvent:1 of
+msgid "生命周期元事件"
+msgstr ""
+
+#: 07c9c949240843498251abd67c332618
+#: iamai.adapter.kook.event.MessageCreateReturn:1 of
+msgid "发送频道消息返回信息"
+msgstr ""
+
+#: ../../docstring fd6d958e830d427f9a21b480294fda4d
+#: iamai.adapter.kook.event.MessageCreateReturn.msg_id:1 of
+msgid "服务端生成的消息 id"
+msgstr ""
+
+#: ../../docstring 790f37f0210e4529bc8e8151a78f0403
+#: iamai.adapter.kook.event.MessageCreateReturn.msg_timestamp:1 of
+msgid "消息发送时间(服务器时间戳)"
+msgstr ""
+
+#: ../../docstring f3eb7b6242f647eea34fb5447304dde6
+#: iamai.adapter.kook.event.MessageCreateReturn.nonce:1 of
+msgid "随机字符串"
+msgstr ""
+
+#: 93041a610ce5479f9550c3ea2558849c e710e146bcd948a6bd24693fd9ccbc2f
+#: iamai.adapter.kook.event.MessageEvent:1
+#: iamai.adapter.kook.event.NoticeEvent:1 of
+msgid "Bases: :py:class:`~iamai.adapter.kook.event.KookEvent`"
+msgstr ""
+
+#: c9e9c5daabd44d9c84f5f74b19573346 iamai.adapter.kook.event.MessageEvent:1 of
+msgid "消息事件"
+msgstr ""
+
+#: fe5b2ce38b904e4f9ecc756e20e857e4
+#: iamai.adapter.kook.event.MessageEvent.get_plain_text:1 of
+msgid "获取消息的纯文本内容。"
+msgstr ""
+
+#: bd2701e52c144cfdbb577c8d9ec071d0
+#: iamai.adapter.kook.event.MessageEvent.get_plain_text:3 of
+msgid "消息的纯文本内容。"
+msgstr ""
+
+#: 88edae6489ca435190e5626bebe442ce iamai.adapter.kook.event.MetaEvent:1 of
+msgid "元事件"
+msgstr ""
+
+#: 195b504bf24e48188f6b2b96adf46838 iamai.adapter.kook.event.NoticeEvent:1 of
+msgid "通知事件"
+msgstr ""
+
+#: cb352808c80a47cfb9310c48a5d0ac21 iamai.adapter.kook.event.OriginEvent:1 of
+msgid "Bases: :py:class:`~iamai.event.Event[KookAdapter]`"
+msgstr ""
+
+#: c9595404c2e74a2392c52b507c766d62 iamai.adapter.kook.event.OriginEvent:1 of
+msgid "为了区分信令中非Event事件，增加了前置OriginEvent"
+msgstr ""
+
+#: 149f4cec6f054ba58e6354240fdde63c 70eee3b52d4647b98938e51ceafdc2ef
+#: e0bbfb25980e46aaa8bda96bebb8294b ff40454c1d22445cb8d21e8fca397b5d
+#: iamai.adapter.kook.event.PrivateAddReactionEvent:1
+#: iamai.adapter.kook.event.PrivateDeleteMessageEvent:1
+#: iamai.adapter.kook.event.PrivateDeleteReactionEvent:1
+#: iamai.adapter.kook.event.PrivateUpdateMessageEvent:1 of
+msgid "Bases: :py:class:`~iamai.adapter.kook.event.PrivateNoticeEvent`"
+msgstr ""
+
+#: eb3747453beb40e2a56439cc4275b52f
+#: iamai.adapter.kook.event.PrivateAddReactionEvent:1 of
+msgid "私聊内用户添加 reaction"
+msgstr ""
+
+#: 80f6c62d668f4573bd88cccbc8e18fd7
+#: iamai.adapter.kook.event.PrivateDeleteMessageEvent:1 of
+msgid "私聊消息删除"
+msgstr ""
+
+#: f9d9888b2f64494a923b603e0fb2aec5
+#: iamai.adapter.kook.event.PrivateDeleteReactionEvent:1 of
+msgid "私聊内用户取消 reaction"
+msgstr ""
+
+#: 38ebfb6e3315461aa7004c1ba8a49d7d
+#: iamai.adapter.kook.event.PrivateNoticeEvent:1 of
+msgid "私聊消息事件"
+msgstr ""
+
+#: ada9a9d4882346fca07ff64b8505780a
+#: iamai.adapter.kook.event.PrivateUpdateMessageEvent:1 of
+msgid "私聊消息更新"
+msgstr ""
+
+#: 2e9c880ab56746ab846fafdb7343d738 iamai.adapter.kook.event.Quote:1 of
+msgid "引用消息"
+msgstr ""
+
+#: ../../docstring c18c401629e24e54b024ee3d208d4234
+#: iamai.adapter.kook.event.Quote.author:1 of
+msgid "作者的用户信息"
+msgstr ""
+
+#: ../../docstring f4b3404be8c1440dbaaf06b2792cb639
+#: iamai.adapter.kook.event.Quote.content:1 of
+msgid "引用消息内容"
+msgstr ""
+
+#: ../../docstring 7d9a69f3362f49f9ba219ad61c920ece
+#: iamai.adapter.kook.event.Quote.create_at:1 of
+msgid "引用消息创建时间（毫秒）"
+msgstr ""
+
+#: ../../docstring c9cc50a6ef6d44aa9b76c4202d1d296e
+#: iamai.adapter.kook.event.Quote.id_:1 of
+msgid "引用消息 id"
+msgstr ""
+
+#: ../../docstring 5363b783b6674129affd9cf059f29274
+#: iamai.adapter.kook.event.Quote.type:1 of
+msgid "引用消息类型"
+msgstr ""
+
+#: b03aa81738434f59aa8600552a8251c6 iamai.adapter.kook.event.ReactionUser:1 of
+msgid "Bases: :py:class:`~iamai.adapter.kook.api.model.User`"
+msgstr ""
+
+#: 26d8cb7ae99e4996a305fedb485fcff1 iamai.adapter.kook.event.RolesReturn:1 of
+msgid "获取服务器角色列表返回信息"
+msgstr ""
+
+#: ../../docstring 7ae20ef2f83a46aea8b97251f0d0b942
+#: iamai.adapter.kook.event.RolesReturn.roles:1 of
+msgid "服务器角色列表"
+msgstr ""
+
+#: dc7f2e794de4458da829f34c1ecceb97
+#: iamai.adapter.kook.event.SelfExitGuildNoticeEvent:1 of
+msgid "自己退出服务器"
+msgstr ""
+
+#: 8de1ef9ad8d04cba8c2150348f205c9d
+#: iamai.adapter.kook.event.SelfExitGuildNoticeEvent:3 of
+msgid "当自己被踢出服务器或被拉黑或主动退出服务器时, 产生该事件"
+msgstr ""
+
+#: 1c922f9d2a964498b661a20063ece4b2
+#: iamai.adapter.kook.event.SelfJoinGuildNoticeEvent:1 of
+msgid "自己新加入服务器"
+msgstr ""
+
+#: e94a3ca03d8440b9a7963402dba734e2
+#: iamai.adapter.kook.event.SelfJoinGuildNoticeEvent:3 of
+msgid "当自己被邀请或主动加入新的服务器时, 产生该事件"
+msgstr ""
+
+#: a8b4d695a33541b7bc5cf57e2bffa194 iamai.adapter.kook.event.SignalTypes:1 of
+msgid "信令类型 Kook 协议信令，字段与 Kook 一致。各事件字段参考 `Kook 文档`"
+msgstr ""
+
+#: 21b0ee8ddbe54babb4bffc11100552a3 iamai.adapter.kook.event.TargetInfo:1 of
+msgid "私聊会话 目标用户信息"
+msgstr ""
+
+#: ../../docstring 400bbddc7bad431f80ae2da15a762ad9
+#: iamai.adapter.kook.event.TargetInfo.avatar:1 of
+msgid "头像图片链接"
+msgstr ""
+
+#: ../../docstring d49d8b955ae04db9a01c399b80efd2e1
+#: iamai.adapter.kook.event.TargetInfo.id_:1 of
+msgid "目标用户 ID"
+msgstr ""
+
+#: ../../docstring 3ee4a00e0b9040539fc55496964e5669
+#: iamai.adapter.kook.event.TargetInfo.online:1 of
+msgid "是否在线"
+msgstr ""
+
+#: ../../docstring ac8f2b440e0a4f9bb0891e7b08aba664
+#: iamai.adapter.kook.event.TargetInfo.username:1 of
+msgid "目标用户名"
+msgstr ""
+
+#: ../../docstring 9cac145bb54a4db6ba275a4e738f8b8d
+#: iamai.adapter.kook.event.URL.url:1 of
+msgid "资源的 url"
+msgstr ""
+
+#: 810e3c599e1b434d990d51dbc89fc536 iamai.adapter.kook.event.UserChat:1 of
+msgid "私聊会话"
+msgstr ""
+
+#: ../../docstring 418c04e1b7fc451fb1ecffb8cc03279e
+#: iamai.adapter.kook.event.UserChat.code:1 of
+msgid "私信会话 Code"
+msgstr ""
+
+#: ../../docstring 25002008a73846d08b055cee79f7733a
+#: iamai.adapter.kook.event.UserChat.last_read_time:1 of
+msgid "上次阅读消息的时间 (毫秒)"
+msgstr ""
+
+#: ../../docstring 9b85f84b5cba45368b1c219d37dd0c38
+#: iamai.adapter.kook.event.UserChat.latest_msg_time:1 of
+msgid "最新消息时间 (毫秒)"
+msgstr ""
+
+#: ../../docstring 1cafa2dbd91445aca54651038a3f1cf7
+#: iamai.adapter.kook.event.UserChat.target_info:1 of
+msgid "目标用户信息"
+msgstr ""
+
+#: ../../docstring 71da377669a748998bc405eddbcc6bbe
+#: iamai.adapter.kook.event.UserChat.unread_count:1 of
+msgid "未读消息数"
+msgstr ""
+
+#: 5659837d161243f48e0c934be228e8bc iamai.adapter.kook.event.UserChatsReturn:1
+#: of
+msgid "获取私信聊天会话列表返回信息"
+msgstr ""
+
+#: ../../docstring a429825d0ba04068ab7555413b3872e5
+#: iamai.adapter.kook.event.UserChatsReturn.user_chats:1 of
+msgid "私聊会话列表"
+msgstr ""
+
+#: 703ca965a1824b569e79bd2a20e3da3d 9e9077dc19b346c38787f958ef7f0a12
+#: f0f7ec99888747d5a22bf8b1121fe63e
+#: iamai.adapter.kook.event.UserInfoUpdateNoticeEvent:1
+#: iamai.adapter.kook.event.UserJoinAudioChannelEvent:1
+#: iamai.adapter.kook.event.UserJoinAudioChannelNoticeEvent:1 of
+msgid "Bases: :py:class:`~iamai.adapter.kook.event.UserNoticeEvent`"
+msgstr ""
+
+#: 065e980220374ec98d71a18a395b9738
+#: iamai.adapter.kook.event.UserInfoUpdateNoticeEvent:1 of
+msgid "用户信息更新"
+msgstr ""
+
+#: 8b383ab63035499caed4b0fca6bfbf6a
+#: iamai.adapter.kook.event.UserInfoUpdateNoticeEvent:8 of
+msgid "该事件与服务器无关, 遵循以下条件:"
+msgstr ""
+
+#: 627e890f69c146678de4ac8f603fc1bf
+#: iamai.adapter.kook.event.UserInfoUpdateNoticeEvent:4 of
+msgid "仅当用户的 用户名 或 头像 变更时"
+msgstr ""
+
+#: f73d4869d19d44129730635851d66ff4
+#: iamai.adapter.kook.event.UserInfoUpdateNoticeEvent:8 of
+msgid "仅通知与该用户存在关联的用户或 Bot"
+msgstr ""
+
+#: 762601daba6c470ea098d66f0602a70b
+#: iamai.adapter.kook.event.UserInfoUpdateNoticeEvent:6 of
+msgid "存在聊天会话"
+msgstr ""
+
+#: 6f5bcc3cdcb942cf86ac9663d3d3c8ce
+#: iamai.adapter.kook.event.UserInfoUpdateNoticeEvent:7 of
+msgid "双方好友关系"
+msgstr ""
+
+#: 001ae43ba45543948f4f216d7d17b86c
+#: iamai.adapter.kook.event.UserJoinAudioChannelEvent:1 of
+msgid "用户退出语音频道"
+msgstr ""
+
+#: 2fbdc62c10ec4ab08254ad22dfaf205e
+#: iamai.adapter.kook.event.UserJoinAudioChannelNoticeEvent:1 of
+msgid "用户加入语音频道"
+msgstr ""
+
+#: 117f28c616e54a01bdb42a2f37786c77 iamai.adapter.kook.event.UserNoticeEvent:1
+#: of
+msgid "用户相关事件列表"
+msgstr ""
+
+#: 24eb617b6cdb41ddbd457d5b7b58349f iamai.adapter.kook.event.get_event_class:1
+#: of
+msgid "根据接收到的消息类型返回对应的事件类。"
+msgstr ""
+
+#: 2e9b4be952144d298afb6cfe09446b58 iamai.adapter.kook.event.get_event_class:3
+#: of
+msgid "请求类型。"
+msgstr ""
+
+#: 3a5a31b17e654582a84953398434940f iamai.adapter.kook.event.get_event_class:4
+#: of
+msgid "事件类型。"
+msgstr ""
+
+#: e672309b5a1e4333bb6a4eec2ba2cc70 iamai.adapter.kook.event.get_event_class:5
+#: of
+msgid "子类型。"
+msgstr ""
+
+#: a37d80ceb1e0473ebd0c6f06c34aa784 iamai.adapter.kook.event.get_event_class:7
+#: of
+msgid "对应的事件类。"
+msgstr ""
+

@@ -1,0 +1,95 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/advanced/hook-function.md:1
+#: 247a8e46e78f47f7836ada5b00af8491
+msgid "Hook Functions"
+msgstr ""
+
+#: ../../source/pages/advanced/hook-function.md:3
+#: 3beea2d15b5e4e89bcb01e5f2d2520e2
+msgid ""
+"iamai provides same hook functions that can be used as decorators. Here's"
+" how to use them:"
+msgstr ""
+
+#: ../../source/pages/advanced/hook-function.md:18
+#: 8282398591c04f4883ca2fa4f76836c5
+msgid ""
+"::: tip Note If you are not sure what you are doing, please do not add "
+"hook functions. :::"
+msgstr ""
+
+#: ../../source/pages/advanced/hook-function.md:22
+#: 27b46546389a4b9facde39fa25309c47
+msgid "Bot-Related Hooks"
+msgstr ""
+
+#: ../../source/pages/advanced/hook-function.md:24
+#: 2aae60dbbb5d48fd9739448b4d99a464
+msgid "Bot Startup"
+msgstr ""
+
+#: ../../source/pages/advanced/hook-function.md:32
+#: 47cd7e2fd56740e78ca29bdb778f2b79
+msgid "Bot Exit"
+msgstr ""
+
+#: ../../source/pages/advanced/hook-function.md:40
+#: a264e516367d49bcb271e8da64095231
+msgid "::: warning Note This hook function is not a coroutine! :::"
+msgstr ""
+
+#: ../../source/pages/advanced/hook-function.md:44
+#: 2c7a9ab982f14ee8b9d47b3414fd97b8
+msgid "Adapter-Related Hooks"
+msgstr ""
+
+#: ../../source/pages/advanced/hook-function.md:46
+#: c5604484ffa44c57b5f1372074aeeced
+msgid "Adapter Initialization"
+msgstr ""
+
+#: ../../source/pages/advanced/hook-function.md:55
+#: e21f6773ef3044839c2fff071904a9b9
+msgid "Adapter Run"
+msgstr ""
+
+#: ../../source/pages/advanced/hook-function.md:64
+#: 9e89835e1dec4723b83c20d4f1d2287a
+msgid "Adapter Shutdown"
+msgstr ""
+
+#: ../../source/pages/advanced/hook-function.md:74
+#: 07b1d1bf1d0748629ceb7906581086b4
+msgid "Event Processing-Related Hooks"
+msgstr ""
+
+#: ../../source/pages/advanced/hook-function.md:76
+#: 7ee228db86fb45edae21de91c4c00668
+msgid "Event Processing"
+msgstr ""
+
+#: ../../source/pages/advanced/hook-function.md:85
+#: c5b9fc87fb6f40f48a03b8646dfb52fc
+msgid "Event PostProcessing"
+msgstr ""
+

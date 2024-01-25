@@ -1,0 +1,73 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/api/iamai.adapter.onebot11.exceptions.rst:2
+#: 423aeccca78d42978c7f13f4b74449e0
+msgid "iamai.adapter.onebot11.exceptions module"
+msgstr ""
+
+#: 896f094a341e46a8b0b7296497aced98 iamai.adapter.onebot11.exceptions:1 of
+msgid "CQHTTP 适配器异常。"
+msgstr ""
+
+#: 81c7da12711b4211a9d0f6abb724f136 8e227955b4924d0baef907615f4cce9d
+#: d4f714b35f04413ca6446eeae27e111b
+#: iamai.adapter.onebot11.exceptions.ActionFailed:1
+#: iamai.adapter.onebot11.exceptions.ApiTimeout:1
+#: iamai.adapter.onebot11.exceptions.NetworkError:1 of
+msgid "Bases: :py:class:`~iamai.adapter.onebot11.exceptions.CQHTTPException`"
+msgstr ""
+
+#: 98b67462b0174eea9ecfd519510572af
+#: iamai.adapter.onebot11.exceptions.ActionFailed:1 of
+msgid "API 请求成功响应，但响应表示 API 操作失败。"
+msgstr ""
+
+#: c89aef6f2a8b462293ce89525be25936
+#: iamai.adapter.onebot11.exceptions.ApiNotAvailable:1 of
+msgid "Bases: :py:class:`~iamai.adapter.onebot11.exceptions.ActionFailed`"
+msgstr ""
+
+#: 9bd0f8ac207e47da9de2e57e3a4cec04
+#: iamai.adapter.onebot11.exceptions.ApiNotAvailable:1 of
+msgid "API 请求返回 404，表示当前请求的 API 不可用或不存在。"
+msgstr ""
+
+#: 07734f52c0584cf1abc76d2fb393ee8b
+#: iamai.adapter.onebot11.exceptions.ApiTimeout:1 of
+msgid "API 请求响应超时。"
+msgstr ""
+
+#: b400f59687444505b6b941f311c353aa
+#: iamai.adapter.onebot11.exceptions.CQHTTPException:1 of
+msgid "Bases: :py:class:`~iamai.exceptions.AdapterException`"
+msgstr ""
+
+#: 327d3fe52e314f37954369d091538547
+#: iamai.adapter.onebot11.exceptions.CQHTTPException:1 of
+msgid "CQHTTP 异常基类。"
+msgstr ""
+
+#: 49276d3fe3164ee6bb9dda93e2efd244
+#: iamai.adapter.onebot11.exceptions.NetworkError:1 of
+msgid "网络异常。"
+msgstr ""
+

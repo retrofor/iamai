@@ -1,0 +1,161 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/api/iamai.adapter.dingtalk.event.rst:2
+#: e0fbc0b373d94d2e99fc748fd4d9ae84
+msgid "iamai.adapter.dingtalk.event module"
+msgstr ""
+
+#: 0dd240c8eefd4eb4852020137b1868ab iamai.adapter.dingtalk.event:1 of
+msgid "DingTalk 适配器事件。"
+msgstr ""
+
+#: c432c985fc12484b84ae033abdc4391e
+#: iamai.adapter.dingtalk.event.DingTalkEvent:1 of
+msgid "Bases: :py:class:`~iamai.event.MessageEvent[DingTalkAdapter]`"
+msgstr ""
+
+#: 097292a9641b482f9cc974c82dba4f2e
+#: iamai.adapter.dingtalk.event.DingTalkEvent:1 of
+msgid "DingTalk 事件基类"
+msgstr ""
+
+#: 7b521b7f78604caeb78e871638806c34
+#: iamai.adapter.dingtalk.event.DingTalkEvent.get_plain_text:1 of
+msgid "获取消息的纯文本内容。"
+msgstr ""
+
+#: 14f071d5075348208bbd0e7990e88fca bc71eca4bd104aba9cb160ac7f9269b2
+#: e901c2da254d453b856602d4dd886595
+#: iamai.adapter.dingtalk.event.DingTalkEvent.get_plain_text
+#: iamai.adapter.dingtalk.event.DingTalkEvent.is_same_sender
+#: iamai.adapter.dingtalk.event.DingTalkEvent.reply of
+msgid "Returns"
+msgstr ""
+
+#: cadf40c3a227437783831a96a086ad1f
+#: iamai.adapter.dingtalk.event.DingTalkEvent.get_plain_text:3 of
+msgid "消息的纯文本内容。"
+msgstr ""
+
+#: 4b60ebdf86aa402287d358ea454f4fdc
+#: iamai.adapter.dingtalk.event.DingTalkEvent.is_same_sender:1 of
+msgid "判断自身和另一个事件是否是同一个发送者。"
+msgstr ""
+
+#: 88d65b690ff44907afd5d1ffc085714d 90fc7286fe36489099699f6039cbcc14
+#: iamai.adapter.dingtalk.event.DingTalkEvent.is_same_sender
+#: iamai.adapter.dingtalk.event.DingTalkEvent.reply of
+msgid "Parameters"
+msgstr ""
+
+#: 0a856e868ab440669f235f6e05964a1b
+#: iamai.adapter.dingtalk.event.DingTalkEvent.is_same_sender:3 of
+msgid "另一个事件。"
+msgstr ""
+
+#: eadba190e13e4d68bca5942ca721cc35
+#: iamai.adapter.dingtalk.event.DingTalkEvent.is_same_sender:5 of
+msgid "是否是同一个发送者。"
+msgstr ""
+
+#: e4f4fc6353844788b7ce789762977f6d
+#: iamai.adapter.dingtalk.event.DingTalkEvent.message:1 of
+msgid "返回 message 字段。"
+msgstr ""
+
+#: ../../docstring 74d18e4dd14f4475beb346c5938b2c26
+#: a8b55f3348f9467cacde01a1c5940573 e8454f24dcd44e1bb8bf4b67cfaf5e6e
+#: iamai.adapter.dingtalk.event.DingTalkEvent.model_config:1
+#: iamai.adapter.dingtalk.event.Text.model_config:1
+#: iamai.adapter.dingtalk.event.UserInfo.model_config:1 of
+msgid ""
+"Configuration for the model, should be a dictionary conforming to "
+"[`ConfigDict`][pydantic.config.ConfigDict]."
+msgstr ""
+
+#: ../../docstring 6585819881d8401fa1a66316db89f098
+#: c54c0432a6d5423aab0fd2c4b9f22c92 d4a6d055b0474c7cbcbc6633623960ee
+#: iamai.adapter.dingtalk.event.DingTalkEvent.model_fields:1
+#: iamai.adapter.dingtalk.event.Text.model_fields:1
+#: iamai.adapter.dingtalk.event.UserInfo.model_fields:1 of
+msgid ""
+"Metadata about the fields defined on the model, mapping of field names to"
+" [`FieldInfo`][pydantic.fields.FieldInfo]."
+msgstr ""
+
+#: ../../docstring 1cd31ae755cf4187851ab01a45c6bc69
+#: 46bb11cf9ae34ae99d5ee487be55364d 514aac11e8774e9ab4a45edd90239556
+#: iamai.adapter.dingtalk.event.DingTalkEvent.model_fields:4
+#: iamai.adapter.dingtalk.event.Text.model_fields:4
+#: iamai.adapter.dingtalk.event.UserInfo.model_fields:4 of
+msgid "This replaces `Model.__fields__` from Pydantic V1."
+msgstr ""
+
+#: 39020f56f08544d3ab99d8a17b1742a9
+#: iamai.adapter.dingtalk.event.DingTalkEvent.reply:1 of
+msgid "回复消息。"
+msgstr ""
+
+#: f2622bf70c3b4563b9190568145a1f8b
+#: iamai.adapter.dingtalk.event.DingTalkEvent.reply:3 of
+msgid "回复消息的内容，可以是 `str`, `Dict` 或 `DingTalkMessage`。"
+msgstr ""
+
+#: ebed4dd6abe04a4ca6e62ec14649ad41
+#: iamai.adapter.dingtalk.event.DingTalkEvent.reply:4 of
+msgid "回复消息时 At 的对象，必须时 at 类型的 `DingTalkMessage`，或者符合标准的 `Dict`。"
+msgstr ""
+
+#: 3c9d48ccd70d46de905c13ac703e2e5f
+#: iamai.adapter.dingtalk.event.DingTalkEvent.reply:6 of
+msgid "调用 Webhook 地址后钉钉服务器的响应。"
+msgstr ""
+
+#: 141f90f87ad445a28ad53a3e544879f0
+#: iamai.adapter.dingtalk.event.DingTalkEvent.reply of
+msgid "Raises"
+msgstr ""
+
+#: 087b8a587dfe45bb96f2308ee9fbfa55
+#: iamai.adapter.dingtalk.event.DingTalkEvent.reply:8 of
+msgid "当前事件的 Webhook 地址已经过期。"
+msgstr ""
+
+#: 0459bd1dca234a59948ef700a40e1d08
+#: iamai.adapter.dingtalk.event.DingTalkEvent.reply:9 of
+msgid "同 `DingTalkAdapter.send()` 方法。"
+msgstr ""
+
+#: 9c81ab77b8214ba6847ede27ef1f3aae bee5edd67b3d474bb597a2c615ad17d0
+#: iamai.adapter.dingtalk.event.Text:1 iamai.adapter.dingtalk.event.UserInfo:1
+#: of
+msgid "Bases: :py:class:`~pydantic.main.BaseModel`"
+msgstr ""
+
+#: 4abf0acf66744c3e91050f158aa2032c iamai.adapter.dingtalk.event.Text:1 of
+msgid "文本消息"
+msgstr ""
+
+#: 052760f7c6a849a8890785deee7bf0b3 iamai.adapter.dingtalk.event.UserInfo:1 of
+msgid "用户信息"
+msgstr ""
+

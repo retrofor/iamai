@@ -1,0 +1,140 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/basic/basic-config.md:1 c47c3823c6c04d93bd65f60bd4066b0a
+msgid "Basic Configuration"
+msgstr ""
+
+#: ../../source/pages/basic/basic-config.md:3 06ade67dcce546239832257230fd5a73
+msgid "Configuration File"
+msgstr ""
+
+#: ../../source/pages/basic/basic-config.md:5 bf692b943d8f44acb879ca988f5bd32a
+msgid "All configurations for iamai are stored in `config.toml` file."
+msgstr ""
+
+#: ../../source/pages/basic/basic-config.md:7 10633e39590d4e18b9fa605b1ef90039
+msgid ""
+"The `config.toml` file is a standard [TOML](https://toml.io/) v1.0.0 "
+"file. TOML is a 'minimal' configuration file format that easy to read due"
+" to obvious semantics. It is recommended to have a basic understanding of"
+" the TOML language before proceeding."
+msgstr ""
+
+#: ../../source/pages/basic/basic-config.md:9 c2a52369b29f462197d0971b6ff74f78
+msgid ""
+"iamai configurations are stored in different tables within the "
+"config.toml file. iamai's own configurations are in the `bot` table, "
+"while all `adapter` and `plugin` configurations are stored in the "
+"`adapter` and `plugin` tables, respectively."
+msgstr ""
+
+#: ../../source/pages/basic/basic-config.md:11 91fa4c66dcbe47b1af071177e3514f57
+msgid "iamai iteself has the following configurations:"
+msgstr ""
+
+#: ../../source/pages/basic/basic-config.md:13 271d5a812fdf45a081a523e6b1739825
+msgid ""
+"**plugins** The list of plugins to be loaded , which will be loaded using"
+" the `Bot` class's `load_plugins()` method."
+msgstr ""
+
+#: ../../source/pages/basic/basic-config.md:16 872d7cb7583e423092ff26094104c561
+msgid ""
+"**plugin_dirs** The list of plugin directories to be loaded , which will "
+"be loaded using the `Bot` classes `load_plugins_from_dirs()` method."
+msgstr ""
+
+#: ../../source/pages/basic/basic-config.md:19 745a1ef2d9c54f8f97352383c78bbdf6
+msgid ""
+"**adapters** The list of adapters to be loaded, which will be loaded "
+"sequentially using the `Bot` classes `load_adapters()` method."
+msgstr ""
+
+#: ../../source/pages/basic/basic-config.md:22 a70978a07dff4f42bfadd80b254095c0
+msgid ""
+"Logging-related configurations are found in the `bot.log` table, as "
+"follows:"
+msgstr ""
+
+#: ../../source/pages/basic/basic-config.md:24 7ea64c06cec34dae877c003766c0b5be
+msgid "**level** The log level."
+msgstr ""
+
+#: ../../source/pages/basic/basic-config.md:27 e1e241eb755e4394a0a30a2f151ae5ee
+msgid ""
+"**verbose_exception** Detailed exception logging. When set to True, it "
+"will add the exception's Traceback。to the log."
+msgstr ""
+
+#: ../../source/pages/basic/basic-config.md:30 e9d49c8be0344a2db78c15fcb42a23ed
+msgid ""
+"Configurations for different adapters or plugins will be placed in sub-"
+"tables under `adapter` and `plugin`."
+msgstr ""
+
+#: ../../source/pages/basic/basic-config.md:32 0777a48f62424368a3feef51c39e2adc
+msgid ""
+"For example, a configuration file with the `cqhttp` adapter configuration"
+" looks like this:"
+msgstr ""
+
+#: ../../source/pages/basic/basic-config.md:55 29bc18f304c04e35804c2fd2cd83109b
+msgid ""
+"You can include any custom, undefined configuration options, and they "
+"will be loaded by iamai. These custom configurations can be used in "
+"plugins. For example, you can define `superuser` to represent a special "
+"user controlling the current machine, or use `nickname` to represent the "
+"nickname of the current bot."
+msgstr ""
+
+#: ../../source/pages/basic/basic-config.md:71 114daae4ce0442248ec9e2e9f054a668
+msgid ""
+"In a plugin, you can access the entire configuration using "
+"`self.bot.config`.For example:"
+msgstr ""
+
+#: ../../source/pages/basic/basic-config.md:93 5667a300594e4e73b4d70d2759fb3193
+msgid "Custom Configuration File or No Configuration File"
+msgstr ""
+
+#: ../../source/pages/basic/basic-config.md:95 fc62e2a1bd744e668723bbbd08d9994f
+msgid ""
+"You can provide a custom configuration file or use no configuration file "
+"by passing the config_file or config_dict attributes when instantiating "
+"the Bot object."
+msgstr ""
+
+#: ../../source/pages/basic/basic-config.md:97 4244422afae04c04b18667a3995680a2
+msgid ""
+"iamai will check the file extension of config_file, allowing either .toml"
+" or .json files. If the configuration file is a JSON file, it should be a"
+" standard JSON file encoded in UTF-8, with content equivalent to the TOML"
+" format configuration file."
+msgstr ""
+
+#: ../../source/pages/basic/basic-config.md:99 fae72789607e4b82992a42a2cc078846
+msgid ""
+"When specifying the config_dict attribute, iamai will no longer read from"
+" the configuration file and will directly read from the given "
+"configuration dictionary."
+msgstr ""
+

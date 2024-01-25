@@ -1,0 +1,57 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/api/iamai.adapter.console.config.rst:2
+#: fe14838d58eb47a9b17a0bc4a8838594
+msgid "iamai.adapter.console.config module"
+msgstr ""
+
+#: cf9405bfee1b4552a4b71f6d7a48ff3e iamai.adapter.console.config:1 of
+msgid "Console 适配器配置。"
+msgstr ""
+
+#: 74f6d517fdb145cf85914615dc445e9f iamai.adapter.console.config.Config:1 of
+msgid "Bases: :py:class:`~iamai.config.ConfigModel`"
+msgstr ""
+
+#: bf1ca593b10d4edf94902934beaaaeeb iamai.adapter.console.config.Config:1 of
+msgid "Console 配置类，将在适配器被加载时被混入到机器人主配置中。"
+msgstr ""
+
+#: ../../docstring 648c38d9fa1846b1be5ffcf534145088
+#: iamai.adapter.console.config.Config.model_config:1 of
+msgid ""
+"Configuration for the model, should be a dictionary conforming to "
+"[`ConfigDict`][pydantic.config.ConfigDict]."
+msgstr ""
+
+#: ../../docstring fbd19654b2c7464d8ba5b3fbc399c68c
+#: iamai.adapter.console.config.Config.model_fields:1 of
+msgid ""
+"Metadata about the fields defined on the model, mapping of field names to"
+" [`FieldInfo`][pydantic.fields.FieldInfo]."
+msgstr ""
+
+#: ../../docstring 77e9813e97b04d54bc6c7e38e75c0506
+#: iamai.adapter.console.config.Config.model_fields:4 of
+msgid "This replaces `Model.__fields__` from Pydantic V1."
+msgstr ""
+

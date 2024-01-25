@@ -1,0 +1,277 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/api/iamai.utils.rst:2 5c7db4779b8d487bb5cc5e0c956b934c
+msgid "iamai.utils module"
+msgstr ""
+
+#: 3b6194ff815943a4879ddf78d2fb68dd iamai.utils:1 of
+msgid "iamai 内部使用的实用工具。"
+msgstr ""
+
+#: 12c00ad53c5c4c28a011db3d0057b7f6 iamai.utils.ModulePathFinder:1 of
+msgid "Bases: :py:class:`~importlib.abc.MetaPathFinder`"
+msgstr ""
+
+#: 1b76825f4d8b47de92f5254b5348aaf6 iamai.utils.ModulePathFinder:1 of
+msgid "用于查找 iamai 组件的元路径查找器。"
+msgstr ""
+
+#: 80e51a6eb1804f948d5e7cafb7143384 iamai.utils.ModulePathFinder.find_spec:1 of
+msgid "用于查找指定模块的 `spec`。"
+msgstr ""
+
+#: dce94b1419734eb58b91464c1fcf480f iamai.utils.PydanticEncoder:1 of
+msgid "Bases: :py:class:`~json.encoder.JSONEncoder`"
+msgstr ""
+
+#: d1de4eabed91477eb72c5ba9846cbbcb iamai.utils.PydanticEncoder:1 of
+msgid "用于解析 `pydantic.BaseModel` 的 `JSONEncoder` 类。"
+msgstr ""
+
+#: 6157354c0c804a2388cfdd1046be0ea2 iamai.utils.PydanticEncoder.default:1 of
+msgid "返回 `o` 的可序列化对象。"
+msgstr ""
+
+#: 544a56c289494b45a45eef635950538e inspect.get_annotations:1 of
+msgid "Compute the annotations dict for an object."
+msgstr ""
+
+#: 182d639b3ff1434299ce1a78655369d1 inspect.get_annotations:3 of
+msgid ""
+"obj may be a callable, class, or module. Passing in an object of any "
+"other type raises TypeError."
+msgstr ""
+
+#: d84b4852e32e46c18d88c06f2af423d6 inspect.get_annotations:6 of
+msgid ""
+"Returns a dict.  get_annotations() returns a new dict every time it's "
+"called; calling it twice on the same object will return two different but"
+" equivalent dicts."
+msgstr ""
+
+#: 3488a748a6244e11b1fdf6fb1740dab3 inspect.get_annotations:10 of
+msgid "This function handles several details for you:"
+msgstr ""
+
+#: 719963368027407db102fc8989bfeed2 inspect.get_annotations:12 of
+msgid ""
+"If eval_str is true, values of type str will be un-stringized using "
+"eval().  This is intended for use with stringized annotations (\"from "
+"__future__ import annotations\")."
+msgstr ""
+
+#: f025a70d3ef04059a19090b18f573a90 inspect.get_annotations:16 of
+msgid ""
+"If obj doesn't have an annotations dict, returns an empty dict.  "
+"(Functions and methods always have an annotations dict; classes, modules,"
+" and other types of callables may not.)"
+msgstr ""
+
+#: 4bec318a4f494afcbfac9e27e4dbfb3f inspect.get_annotations:20 of
+msgid ""
+"Ignores inherited annotations on classes.  If a class doesn't have its "
+"own annotations dict, returns an empty dict."
+msgstr ""
+
+#: 7dad06bce23b4fda9b6b1ddd5bba35cd inspect.get_annotations:22 of
+msgid ""
+"All accesses to object members and dict values are done using getattr() "
+"and dict.get() for safety."
+msgstr ""
+
+#: f278bdc74ebe4feb94829838b8731bd1 inspect.get_annotations:24 of
+msgid "Always, always, always returns a freshly-created dict."
+msgstr ""
+
+#: 792ea06f4b7843c69ec6fd196e0996c3 inspect.get_annotations:26 of
+msgid ""
+"eval_str controls whether or not values of type str are replaced with the"
+" result of calling eval() on those values:"
+msgstr ""
+
+#: bbdf7a77a4634f77913265e08f793b77 inspect.get_annotations:29 of
+msgid "If eval_str is true, eval() is called on values of type str."
+msgstr ""
+
+#: 16bf8c6103b9457a9bee891300265c32 inspect.get_annotations:30 of
+msgid "If eval_str is false (the default), values of type str are unchanged."
+msgstr ""
+
+#: 49ea5f06c1c34751badfdf8064dee658 inspect.get_annotations:32 of
+msgid ""
+"globals and locals are passed in to eval(); see the documentation for "
+"eval() for more information.  If either globals or locals is None, this "
+"function may replace that value with a context-specific default, "
+"contingent on type(obj):"
+msgstr ""
+
+#: 2cb15c29e7a449d8a308a3a2c80e35d0 inspect.get_annotations:37 of
+msgid "If obj is a module, globals defaults to obj.__dict__."
+msgstr ""
+
+#: 0354734db4a048f99439bac0b0a0cb2c inspect.get_annotations:38 of
+msgid ""
+"If obj is a class, globals defaults to "
+"sys.modules[obj.__module__].__dict__ and locals defaults to the obj class"
+" namespace."
+msgstr ""
+
+#: 7440da8abf934544aa2b5f08d72c0593 inspect.get_annotations:41 of
+msgid ""
+"If obj is a callable, globals defaults to obj.__globals__, although if "
+"obj is a wrapped function (using functools.update_wrapper()) it is first "
+"unwrapped."
+msgstr ""
+
+#: d42f35644f9b43cb8b8ff3cd3b35c360 iamai.utils.get_classes_from_module:1 of
+msgid "从模块中查找指定类型的类。"
+msgstr ""
+
+#: 1b64cb5f688b4f55b6de13f0f87aa3b7 3a5a65daf9bb46b9a9db4da734df3213
+#: 494ad46e7ceb42b7950313d3d2547708 a5eccd7ed2c647f9a55dd91cf82833fa
+#: c5591b1618fe43df8d151c0fad4c2bac d479e821954b4ef9a6f49df131927efa
+#: faf5d65e567c44cd8501b0191349ed27 iamai.utils.get_classes_from_module
+#: iamai.utils.get_classes_from_module_name iamai.utils.is_config_class
+#: iamai.utils.samefile iamai.utils.sync_ctx_manager_wrapper
+#: iamai.utils.sync_func_wrapper iamai.utils.wrap_get_func of
+msgid "Parameters"
+msgstr ""
+
+#: 70f682affe9442edad5d57bc328de2b9 iamai.utils.get_classes_from_module:3 of
+msgid "Python 模块。"
+msgstr ""
+
+#: a6791d2f580846158e2248dd29ed7cfb ebf4fa4ad964462f81e95fd26be6801f
+#: iamai.utils.get_classes_from_module:4
+#: iamai.utils.get_classes_from_module_name:4 of
+msgid "要查找的类的超类。"
+msgstr ""
+
+#: 1bd3df9eb43b47debe334d4ffd1de14a 39cd47769cd14e1abf6d5dd15e645897
+#: 468edcff54204503927c5928b9b87ad8 6da3f40c90eb4cb5bb770f49ac2445e2
+#: 807a25b6b75d476aa50b26c45950913c b28d6b7e3a4946f8990493f1f86a26ad
+#: f19d47e70d9d44f5bf8d3c1f70b7c2ad iamai.utils.get_classes_from_module
+#: iamai.utils.get_classes_from_module_name iamai.utils.is_config_class
+#: iamai.utils.samefile iamai.utils.sync_ctx_manager_wrapper
+#: iamai.utils.sync_func_wrapper iamai.utils.wrap_get_func of
+msgid "Returns"
+msgstr ""
+
+#: afb391956e994f29b56dcf9bd1f18e57 iamai.utils.get_classes_from_module:6 of
+msgid "返回符合条件的类的列表。"
+msgstr ""
+
+#: f5472acbfa504999865defebf21192f0 iamai.utils.get_classes_from_module_name:1
+#: of
+msgid "从指定名称的模块中查找指定类型的类。"
+msgstr ""
+
+#: c564218f17f145c6bc39375e634236e2 iamai.utils.get_classes_from_module_name:3
+#: of
+msgid "模块名称，格式和 Python `import` 语句相同。"
+msgstr ""
+
+#: 03f77451b7c04463b866e93e6b6d5b26 iamai.utils.get_classes_from_module_name:5
+#: of
+msgid "是否重新加载模块。"
+msgstr ""
+
+#: bdc73224a4d44f2187411a8831cd365d iamai.utils.get_classes_from_module_name:7
+#: of
+msgid "返回由符合条件的类和模块组成的元组的列表。"
+msgstr ""
+
+#: 33622b5a0ff343fb8d483de762a9f732 iamai.utils.get_classes_from_module_name of
+msgid "Raises"
+msgstr ""
+
+#: e6608cfc088c4c688056a001df9d734f iamai.utils.get_classes_from_module_name:9
+#: of
+msgid "当导入模块过程中出现错误。"
+msgstr ""
+
+#: f1c16b6bd932486ab73ee5c84db95e70 iamai.utils.is_config_class:1 of
+msgid "判断一个对象是否是配置类。"
+msgstr ""
+
+#: f0d3fd234d9a4bc0af6bb174a179391c iamai.utils.is_config_class:3 of
+msgid "待判断的对象。"
+msgstr ""
+
+#: 2a3e289959514af7827dd52dd8b8b4b9 iamai.utils.is_config_class:5 of
+msgid "返回是否是配置类。"
+msgstr ""
+
+#: b9b9957898254cfda286172f7a6b8d08 iamai.utils.samefile:1 of
+msgid "一个 `os.path.samefile` 的简单包装。"
+msgstr ""
+
+#: 89e39a133cc2487ab861c821c795419f iamai.utils.samefile:3 of
+msgid "路径1。"
+msgstr ""
+
+#: b8e260c71d1c41dda5318787fdaf9677 iamai.utils.samefile:4 of
+msgid "路径2。"
+msgstr ""
+
+#: 201f585ba4dc43f3a6261ea7ff80ad3f iamai.utils.samefile:6 of
+msgid "如果两个路径是否指向相同的文件或目录。"
+msgstr ""
+
+#: 2979edc3df984d8cb36b3d37a050f20c iamai.utils.sync_ctx_manager_wrapper:1 of
+msgid "将同步上下文管理器包装为异步上下文管理器。"
+msgstr ""
+
+#: 90a01241217444ed8b111ddbd9e83c35 iamai.utils.sync_ctx_manager_wrapper:3 of
+msgid "待包装的同步上下文管理器。"
+msgstr ""
+
+#: 7b119060f0694a0597ec38aa75518bd8 878075333ae947588e231ac825bdb61a
+#: iamai.utils.sync_ctx_manager_wrapper:4 iamai.utils.sync_func_wrapper:4 of
+msgid "是否在独立的线程中运行同步函数。默认为 `False`。"
+msgstr ""
+
+#: 09578523e4ff482990f5b9e038664c84 iamai.utils.sync_ctx_manager_wrapper:6 of
+msgid "异步上下文管理器。"
+msgstr ""
+
+#: 310cc8d6c8344a01806770f76fde2982 iamai.utils.sync_func_wrapper:1 of
+msgid "包装一个同步函数为异步函数。"
+msgstr ""
+
+#: 10bfedaf11c14c73be615b8815c0eecf iamai.utils.sync_func_wrapper:3 of
+msgid "待包装的同步函数。"
+msgstr ""
+
+#: db15a4de3b8b49a7a55ba1126292e9ad ec5c3035afdd4f8c929365bb7a079eb0
+#: iamai.utils.sync_func_wrapper:6 iamai.utils.wrap_get_func:5 of
+msgid "异步函数。"
+msgstr ""
+
+#: 28e336f1110d4781b10c55f130e3d379 iamai.utils.wrap_get_func:1 of
+msgid "将 `get()` 函数接受的参数包装为一个异步函数。"
+msgstr ""
+
+#: 291c8e4572c0452890fa74b50561f551 iamai.utils.wrap_get_func:3 of
+msgid "`get()` 函数接受的参数。"
+msgstr ""
+

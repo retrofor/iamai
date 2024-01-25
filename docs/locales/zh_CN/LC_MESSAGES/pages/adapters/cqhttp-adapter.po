@@ -1,0 +1,165 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/adapters/cqhttp-adapter.md:1
+#: 3771e68af08149b780f7f88b36a95caf
+msgid "CQHTTP Protocol Adapter"
+msgstr ""
+
+#: ../../source/pages/adapters/cqhttp-adapter.md:3
+#: 6cd7cc3f77864d1da32b420bd2aae3da
+msgid "Installation"
+msgstr ""
+
+#: ../../source/pages/adapters/cqhttp-adapter.md:9
+#: cfc2034361aa4570923cb32f2852d952
+msgid "Configuring the Protocol Endpoint"
+msgstr ""
+
+#: ../../source/pages/adapters/cqhttp-adapter.md:11
+#: 9c19da4f11da4222b09db574d68bc6b5
+msgid ""
+"The CQHTTP protocol adapter is an adapter for the OneBot protocol "
+"(formerly known as the CKYU platform's CQHTTP protocol). It requires a "
+"protocol endpoint that is compatible with the OneBot protocol for "
+"communication. Here are some commonly used QQ protocol endpoints that "
+"support the OneBot protocol:"
+msgstr ""
+
+#: ../../source/pages/adapters/cqhttp-adapter.md:13
+#: 3290800cfbb04696a3fea562e388b812
+msgid "[go-cqhttp](https://github.com/Mrs4s/go-cqhttp)"
+msgstr ""
+
+#: ../../source/pages/adapters/cqhttp-adapter.md:14
+#: c0746375edbd4817b1cefb7fcc0ab779
+msgid ""
+"[mirai](https://github.com/mamoe/mirai) + [onebot-"
+"kotlin](https://github.com/yyuueexxiinngg/onebot-kotlin)"
+msgstr ""
+
+#: ../../source/pages/adapters/cqhttp-adapter.md:15
+#: ea587da0e47f4b97b2ba7533dff8d8d4
+msgid "[oicq](https://github.com/takayama-lily/oicq)"
+msgstr ""
+
+#: ../../source/pages/adapters/cqhttp-adapter.md:17
+#: 9ff06fa4ddbd4f9d9f58ddcb7d5d9db1
+msgid "Below is an example using go-cqhttp:"
+msgstr ""
+
+#: ../../source/pages/adapters/cqhttp-adapter.md:19
+#: 30478e591bf24ab2b9939ab719cfed6d
+msgid ""
+"Download the release version of go-cqhttp corresponding to your platform:"
+" Github Releases"
+msgstr ""
+
+#: ../../source/pages/adapters/cqhttp-adapter.md:20
+#: 90a0b84dd39a4fa99865b9c4e422308b
+msgid ""
+"Run `go-cqhttp` or `go-cqhttp.exe` to generate the default configuration "
+"file."
+msgstr ""
+
+#: ../../source/pages/adapters/cqhttp-adapter.md:21
+#: 76294ecab47d442c98f94005ee793101
+msgid "Edit the configuration file `config.yml` and restart the program."
+msgstr ""
+
+#: ../../source/pages/adapters/cqhttp-adapter.md:23
+#: 47f1dfe2893141ae8ed79d6a2a821fc0
+msgid ""
+"Currently, the CQHTTP adapter supports WebSocket connection and reverse "
+"WebSocket connection. The go-cqhttp configuration file should look like "
+"this:"
+msgstr ""
+
+#: ../../source/pages/adapters/cqhttp-adapter.md:56
+#: 8f74498054ac465893caa409fd0ea8c7
+msgid "Other items can remain as default."
+msgstr ""
+
+#: ../../source/pages/adapters/cqhttp-adapter.md:58
+#: febe2b48b45349a7a91a3471af1825b3
+msgid "Configuring iamai"
+msgstr ""
+
+#: ../../source/pages/adapters/cqhttp-adapter.md:60
+#: c26e4e91f9114997949d204bb0a5361d
+msgid ""
+"If you have installed and configured `go-cqhttp` as mentioned above and "
+"are using reverse WebSocket connection, there is no need to configure "
+"iamai separately."
+msgstr ""
+
+#: ../../source/pages/adapters/cqhttp-adapter.md:62
+#: 8773d491534c493aa2c8e09120111dfc
+msgid ""
+"If you have other specific requirements, you can edit `config.toml` for "
+"configuration, refer to [Basic Configuration](./basic-config.md) and "
+"[CQHTTP Configuration](/api/adapter/cqhttp/config.md)"
+msgstr ""
+
+#: ../../source/pages/adapters/cqhttp-adapter.md:64
+#: d92c5261e12e4f8caca27bad5844978b
+msgid "Running Tests"
+msgstr ""
+
+#: ../../source/pages/adapters/cqhttp-adapter.md:70
+#: 2ff0d14b59974758b0719d6d4e6a3352
+msgid "Sending Rich Text Messages"
+msgstr ""
+
+#: ../../source/pages/adapters/cqhttp-adapter.md:72
+#: 2ef39b765ca94c8897430a0a823bfd3d
+msgid ""
+"When writing plugins, besides sending regular text messages, you can also"
+" easily construct and send rich-text messages. Make sure you have read "
+"the Built-in Messages section before reading this section."
+msgstr ""
+
+#: ../../source/pages/adapters/cqhttp-adapter.md:93
+#: bbb47abcecf646f38f16347fdca2255c
+msgid ""
+"For more usage methods, please refer to [OneBot Message Segment "
+"Types](https://github.com/botuniverse/onebot-11/blob/master/message/segment.md)"
+" and [CQHTTP Messages](/api/adapter/cqhttp/message.md) ."
+msgstr ""
+
+#: ../../source/pages/adapters/cqhttp-adapter.md:95
+#: ed679d98e9864da3bd3d458d035ba3d6
+msgid "Calling OneBot API"
+msgstr ""
+
+#: ../../source/pages/adapters/cqhttp-adapter.md:97
+#: 20b39ab6b0754fbebebbc0e1aa29e188
+msgid "You can call OneBot API using following method :"
+msgstr ""
+
+#: ../../source/pages/adapters/cqhttp-adapter.md:112
+#: 7b05172cedaf461f9e0dde9a88bb08ca
+msgid ""
+"For more usage methods, please refer to [OneBot Public "
+"API](https://github.com/botuniverse/onebot-11/blob/master/api/public.md) "
+"."
+msgstr ""
+

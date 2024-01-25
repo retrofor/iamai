@@ -1,0 +1,258 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/api/iamai.adapter.gensokyo.message.rst:2
+#: 05450765ca154abd971a41f0c8182b8d
+msgid "iamai.adapter.gensokyo.message module"
+msgstr ""
+
+#: bc0098aec5704294935e846b35526c98 iamai.adapter.gensokyo.message:1 of
+msgid "GSK 适配器消息。"
+msgstr ""
+
+#: 1e907a55edde41beacd8329e925f9815 iamai.adapter.gensokyo.message.GSKMessage:1
+#: of
+msgid "Bases: :py:class:`~iamai.message.Message`\\ [GSKMessageSegment]"
+msgstr ""
+
+#: 171d913e0a744ae4af4833dad74f1617 iamai.adapter.gensokyo.message.GSKMessage:1
+#: of
+msgid "GSK 消息。"
+msgstr ""
+
+#: 3a2d00e2a6694e3c9a8f0a4f6351cee1
+#: iamai.adapter.gensokyo.message.GSKMessage.get_segment_class:1 of
+msgid "获取消息字段类。"
+msgstr ""
+
+#: 05edab7a870a4fb3927ed1e7a37eb63b 234719183d7b4266838c0b7757c1648d
+#: 60fd0c0a69bb4b3c8c34608d987358a5 a0dccbcb0be54db8a81b2d99f8cd3293
+#: f1de4ef164c549998fb31c7a8aac4a57
+#: iamai.adapter.gensokyo.message.GSKMessage.get_segment_class
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.from_str
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.get_cqcode
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.get_message_class
+#: iamai.adapter.gensokyo.message.escape of
+msgid "Returns"
+msgstr ""
+
+#: fe9911ee8dd84d2c92566efd4dae36e0
+#: iamai.adapter.gensokyo.message.GSKMessage.get_segment_class:3 of
+msgid "消息字段类。"
+msgstr ""
+
+#: ba225a1b99d54190a22655766e76b30f
+#: iamai.adapter.gensokyo.message.GSKMessageSegment:1 of
+msgid "Bases: :py:class:`~iamai.message.MessageSegment[GSKMessage]`"
+msgstr ""
+
+#: f39b9ffb2b4849bcb25f32c115d7aa7a
+#: iamai.adapter.gensokyo.message.GSKMessageSegment:1 of
+msgid "GSK 消息字段。"
+msgstr ""
+
+#: 257a1272f40e48bca33462374c34e805
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.anonymous:1 of
+msgid "匿名发消息"
+msgstr ""
+
+#: a80e27026896475cabb2a2617f56fac2
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.at:1 of
+msgid "@某人"
+msgstr ""
+
+#: 1295d22d3e0943dca6a2bb60f19462fd
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.contact:1 of
+msgid "推荐好友/推荐群"
+msgstr ""
+
+#: 759eaff5284e462690e40c6bd2a9cec3 b15c7298d150454f8733ef39e2be902b
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.contact_friend:1
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.contact_group:1 of
+msgid "推荐好友"
+msgstr ""
+
+#: f40a1289a1834aef975514139158702e
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.dice:1 of
+msgid "掷骰子魔法表情"
+msgstr ""
+
+#: b25e69473c574079ac9617f45a41f801
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.face:1 of
+msgid "QQ 表情"
+msgstr ""
+
+#: 26f8c657c8dc49488fa7cd6f5aa7309d
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.from_str:1 of
+msgid "用于将 `str` 转换为消息字段。"
+msgstr ""
+
+#: 2e82fbb5d78a437bb74a01bb7e282810 2fe953a3c32e4b4c90f7d96899b66ae8
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.from_str
+#: iamai.adapter.gensokyo.message.escape of
+msgid "Parameters"
+msgstr ""
+
+#: 2d787cb12d7e4233864124100b978752
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.from_str:3 of
+msgid "要解析为消息字段的数据。"
+msgstr ""
+
+#: a86e1dbcaba845c3aeac3cfe4a131aa2
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.from_str:5 of
+msgid "由 `str` 转换的消息字段。"
+msgstr ""
+
+#: 6259e1ac95bc439b811172a9b07a2868
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.get_cqcode:1 of
+msgid "获取此消息字段的 CQ 码形式。"
+msgstr ""
+
+#: 3fd74f5c02a54c188c9ffaaea99ed093
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.get_cqcode:3 of
+msgid "此消息字段的 CQ 码形式。"
+msgstr ""
+
+#: bda03e4caed646b4abf99db166429a57
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.get_message_class:1 of
+msgid "获取消息类。"
+msgstr ""
+
+#: 0ce8014e8fae49839361d7a1504bfc31
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.get_message_class:3 of
+msgid "消息类。"
+msgstr ""
+
+#: 3ed67b12f73e4db89fa72b43f91ada3a
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.image:1 of
+msgid "图片"
+msgstr ""
+
+#: 298c829e90d04f62a3ea9dd53fa47302
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.json_message:1 of
+msgid "JSON 消息"
+msgstr ""
+
+#: 573200deb99248d18483130cc5b5168e
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.location:1 of
+msgid "位置"
+msgstr ""
+
+#: ../../docstring 665a88591c6749499d313519546dcdb3
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.model_config:1 of
+msgid ""
+"Configuration for the model, should be a dictionary conforming to "
+"[`ConfigDict`][pydantic.config.ConfigDict]."
+msgstr ""
+
+#: ../../docstring 349a7e47b07741d2bc94f82f09006d37
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.model_fields:1 of
+msgid ""
+"Metadata about the fields defined on the model, mapping of field names to"
+" [`FieldInfo`][pydantic.fields.FieldInfo]."
+msgstr ""
+
+#: ../../docstring f98ede7bab9f4dc6a15c957c46a950fc
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.model_fields:4 of
+msgid "This replaces `Model.__fields__` from Pydantic V1."
+msgstr ""
+
+#: a24c6805f33e473fbf0bc6c10d7576fa
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.music:1 of
+msgid "音乐分享"
+msgstr ""
+
+#: 6149e43f94fb44218e8d551c1f59d146
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.music_custom:1 of
+msgid "音乐自定义分享"
+msgstr ""
+
+#: 8650fae3aec84cf59df3d9297fd78708
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.node:1 of
+msgid "合并转发节点"
+msgstr ""
+
+#: 3f566879201441cda45f56d6c0f76cf3
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.node_custom:1 of
+msgid "合并转发自定义节点"
+msgstr ""
+
+#: fa9c1ca8d04941bc89cc384e1de713a5
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.poke:1 of
+msgid "戳一戳"
+msgstr ""
+
+#: cfa3f0e4d3c2443685e5d8b0c519ad0a
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.record:1 of
+msgid "语音"
+msgstr ""
+
+#: fc6c044302bb4e31b13d2236e6297596
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.reply:1 of
+msgid "回复"
+msgstr ""
+
+#: 6985fff3358e440ca6a3a6476937a240
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.rps:1 of
+msgid "猜拳魔法表情"
+msgstr ""
+
+#: 02403017b58e44f5b9e17b2d4acb49ae
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.shake:1 of
+msgid "窗口抖动 (戳一戳)"
+msgstr ""
+
+#: 04d3df2d41a941a483bf0d496d488aa2
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.share:1 of
+msgid "链接分享"
+msgstr ""
+
+#: 2fb0786b1cde494fbf91a11d28b9f34b
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.text:1 of
+msgid "纯文本"
+msgstr ""
+
+#: fbec4c2649a74ce68a0722745e880cb8
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.video:1 of
+msgid "短视频"
+msgstr ""
+
+#: 83417d5ac59e4894a8f7fd82edb3aea3
+#: iamai.adapter.gensokyo.message.GSKMessageSegment.xml_message:1 of
+msgid "XML 消息"
+msgstr ""
+
+#: 4f49512b98d1431282187a3f9192a359 iamai.adapter.gensokyo.message.escape:1 of
+msgid "对 CQ 码中的特殊字符进行转义。"
+msgstr ""
+
+#: 8cc04adc260945d29a426567dbe65980 iamai.adapter.gensokyo.message.escape:3 of
+msgid "待转义的字符串。"
+msgstr ""
+
+#: 8a6984e5828a4f949f89ce95b7a168b0 iamai.adapter.gensokyo.message.escape:4 of
+msgid "是否转义 `,`。"
+msgstr ""
+
+#: 571574403ccb46f9b4221677b465a9f0 iamai.adapter.gensokyo.message.escape:6 of
+msgid "转义后的字符串。"
+msgstr ""
+

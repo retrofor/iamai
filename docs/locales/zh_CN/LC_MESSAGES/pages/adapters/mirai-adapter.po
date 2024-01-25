@@ -1,0 +1,129 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/adapters/mirai-adapter.md:1
+#: c66c456debe04f43a0094e9887ed0a23
+msgid "Mirai Protocol Adapter"
+msgstr ""
+
+#: ../../source/pages/adapters/mirai-adapter.md:3
+#: 8fc9c9785b7e481d80c3308b0624f69c
+msgid ""
+"The Mirai Protocol Adapter is an adapter for the [mirai-api-"
+"http](https://github.com/project-mirai/mirai-api-http) protocol. You need"
+" to install mirai-api-http following the instructions in its "
+"documentation."
+msgstr ""
+
+#: ../../source/pages/adapters/mirai-adapter.md:5
+#: d0649c9d18e344fe9f05ec48174cc3ea
+msgid ""
+"Please note that this adapter only supports mirai-api-http version 2.3 "
+"and above."
+msgstr ""
+
+#: ../../source/pages/adapters/mirai-adapter.md:7
+#: 488a185234a94265a082bc8ca74e56ad
+msgid ""
+"This adapter supports both the Websocket Adapter mode and the Reverse "
+"Websocket Adapter mode of mirai-api-http."
+msgstr ""
+
+#: ../../source/pages/adapters/mirai-adapter.md:9
+#: 05102e4653504d588bae267cad8153af
+msgid "Installation"
+msgstr ""
+
+#: ../../source/pages/adapters/mirai-adapter.md:15
+#: cc3d5a5847c4451d8931e85d33690193
+msgid "Configuring the Protocol Endpoint"
+msgstr ""
+
+#: ../../source/pages/adapters/mirai-adapter.md:17
+#: f4d55fff3701424695abf58c74321ccb
+msgid "Edit the `setting.yml` configuration file of mirai-api-http:"
+msgstr ""
+
+#: ../../source/pages/adapters/mirai-adapter.md:19
+#: ../../source/pages/adapters/mirai-adapter.md:62
+#: 1a8a950352bd4df2bf405505cf9dae58 8bd68929a2b34267a422db56685d515a
+msgid "Websocket Adapter Mode"
+msgstr ""
+
+#: ../../source/pages/adapters/mirai-adapter.md:35
+#: ../../source/pages/adapters/mirai-adapter.md:76
+#: 0285190517e34ce5906277cbd862379b 5d9f199efe6c4e64b7877e57e99d53ed
+msgid "Reverse Websocket Adapter Mode"
+msgstr ""
+
+#: ../../source/pages/adapters/mirai-adapter.md:56
+#: 4d254eecdee347df9b860ca39541dc56
+msgid "Configuring iamai"
+msgstr ""
+
+#: ../../source/pages/adapters/mirai-adapter.md:58
+#: 87ded9e15e7b45dc9df35204653464e6
+msgid "Edit the `config.toml` configuration file of iamai."
+msgstr ""
+
+#: ../../source/pages/adapters/mirai-adapter.md:60
+#: a4eec32e994f492aa4564151d21b09de
+msgid "For more options, please refer to the Mirai configuration."
+msgstr ""
+
+#: ../../source/pages/adapters/mirai-adapter.md:89
+#: 2f768c3fa72d4e0f89e2708b66727a2f
+msgid "Sending Rich Text Messages"
+msgstr ""
+
+#: ../../source/pages/adapters/mirai-adapter.md:91
+#: b5d5d83dd2c04fa396dab048915b6603
+msgid ""
+"Similar to the CQHTTP protocol adapter, the Mirai adapter can easily "
+"construct rich text messages."
+msgstr ""
+
+#: ../../source/pages/adapters/mirai-adapter.md:114
+#: 7568b79a487f4a01bcfcafbdd4dd4ad0
+msgid ""
+"For more usage, please refer to [mirai-api-http message segment "
+"types](https://docs.mirai.mamoe.net/mirai-api-http/api/MessageType.html) "
+"and Mirai messages."
+msgstr ""
+
+#: ../../source/pages/adapters/mirai-adapter.md:116
+#: 8974402a66204b8d82c2448ad54f7ba5
+msgid "Calling mirai-api-http API"
+msgstr ""
+
+#: ../../source/pages/adapters/mirai-adapter.md:118
+#: 0f6c36539b394ded9e7cf459bc43b0e4
+msgid "You can use the following method to call mirai-api-http API:"
+msgstr ""
+
+#: ../../source/pages/adapters/mirai-adapter.md:136
+#: 154443668b5845439eecbf6f3bd3c799
+msgid ""
+"For more usage, please refer to [mirai-api-http "
+"documentation](https://docs.mirai.mamoe.net/mirai-api-"
+"http/adapter/WebsocketAdapter.html) ."
+msgstr ""
+

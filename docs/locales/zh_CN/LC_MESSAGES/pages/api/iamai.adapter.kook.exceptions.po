@@ -1,0 +1,107 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/api/iamai.adapter.kook.exceptions.rst:2
+#: 59e9e4aae4aa47a580f866b3f63e98f6
+msgid "iamai.adapter.kook.exceptions module"
+msgstr ""
+
+#: b49eec86670942b69d95ff119e5c63c1 iamai.adapter.kook.exceptions:1 of
+msgid "Kook 适配器异常。"
+msgstr ""
+
+#: 1c4c9899b68341cb8ff5fb147ca5b229 254c485c02e84f168375970e88694833
+#: 2572031055be4065acea195294f47d12 43f489b5dcbb43b1be155fa93aa228b2
+#: 97fbee8321374e6fbd397d4d3aa90e9b acae953ff6f24e53a31b2349f123088d
+#: ef2de9aa9e3a47fb9894748a8b304d85 f3d5b20fbeee4a7bb228da4040ff06d5
+#: f96cac06a54e4886827c56394ba030b3
+#: iamai.adapter.kook.exceptions.ActionFailed:1
+#: iamai.adapter.kook.exceptions.ApiTimeout:1
+#: iamai.adapter.kook.exceptions.NetworkError:1
+#: iamai.adapter.kook.exceptions.RateLimitException:1
+#: iamai.adapter.kook.exceptions.ReconnectError:1
+#: iamai.adapter.kook.exceptions.TokenError:1
+#: iamai.adapter.kook.exceptions.UnauthorizedException:1
+#: iamai.adapter.kook.exceptions.UnsupportedMessageOperation:1
+#: iamai.adapter.kook.exceptions.UnsupportedMessageType:1 of
+msgid "Bases: :py:class:`~iamai.adapter.kook.exceptions.KookException`"
+msgstr ""
+
+#: 74d1c30d3d12435ebf762ae3ceffca8b
+#: iamai.adapter.kook.exceptions.ActionFailed:1 of
+msgid "API 请求成功响应，但响应表示 API 操作失败。"
+msgstr ""
+
+#: 7a95d35ba1fd463f9270874304e1bcbe
+#: iamai.adapter.kook.exceptions.ApiNotAvailable:1 of
+msgid "Bases: :py:class:`~iamai.adapter.kook.exceptions.ActionFailed`"
+msgstr ""
+
+#: 9b8e1db1b97941c58d503aa37a851852
+#: iamai.adapter.kook.exceptions.ApiNotAvailable:1 of
+msgid "API 请求返回 404，表示当前请求的 API 不可用或不存在。"
+msgstr ""
+
+#: ded0b055ce3e4daeaadb6bc5d21a0f29 iamai.adapter.kook.exceptions.ApiTimeout:1
+#: of
+msgid "API 请求响应超时。"
+msgstr ""
+
+#: a751c32de698473fbaf51d3d5006bfb5
+#: iamai.adapter.kook.exceptions.KookException:1 of
+msgid "Bases: :py:class:`~iamai.exceptions.AdapterException`"
+msgstr ""
+
+#: 666f5b643a8e40e495f292797080c871
+#: iamai.adapter.kook.exceptions.KookException:1 of
+msgid "Kook 异常基类。"
+msgstr ""
+
+#: e8bddfc587db4103b623a8b325273610
+#: iamai.adapter.kook.exceptions.NetworkError:1 of
+msgid "网络异常。"
+msgstr ""
+
+#: 3b61c12f96ef477b9313f69b5d6c7d1d 4bcb093393c445afa6aa4db9ac9891aa
+#: 9d51603dae9e433e9782c72c5987529f d46bc88504be4c99a55fd7f75e04922a
+#: iamai.adapter.kook.exceptions.ReconnectError
+#: iamai.adapter.kook.exceptions.TokenError
+#: iamai.adapter.kook.exceptions.UnsupportedMessageOperation
+#: iamai.adapter.kook.exceptions.UnsupportedMessageType of
+msgid "说明"
+msgstr ""
+
+#: 0541cad6ab724bf2b0fea6e18863abb5 906a5c17875340b9bd1d4710c519fed4
+#: iamai.adapter.kook.exceptions.ReconnectError:3
+#: iamai.adapter.kook.exceptions.TokenError:3 of
+msgid "服务端通知客户端, 代表该连接已失效, 请重新连接。客户端收到后应该主动断开当前连接。"
+msgstr ""
+
+#: 21e0862bdee747fbaf0edbf744e1bfe9
+#: iamai.adapter.kook.exceptions.UnsupportedMessageOperation:3 of
+msgid "在调用不支持的 Message 或 MessageSegment 操作时抛出，例如对图片类型的 MessageSegment 使用加运算。"
+msgstr ""
+
+#: 79e5c45d63e2497195698af85f7ff93a
+#: iamai.adapter.kook.exceptions.UnsupportedMessageType:3 of
+msgid "在发送不支持的消息类型时抛出，开黑啦 Bot 不支持发送音频消息。"
+msgstr ""
+

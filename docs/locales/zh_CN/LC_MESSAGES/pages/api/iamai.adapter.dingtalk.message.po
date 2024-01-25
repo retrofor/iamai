@@ -1,0 +1,137 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/api/iamai.adapter.dingtalk.message.rst:2
+#: af4f8ab19c7f421392cf9c80cf29325d
+msgid "iamai.adapter.dingtalk.message module"
+msgstr ""
+
+#: 88b924275a0f439a89d6b38afd7e3ff1 iamai.adapter.dingtalk.message:1 of
+msgid "DingTalk 适配器消息。"
+msgstr ""
+
+#: d8b9df4af7e4422398260655c53c76ca
+#: iamai.adapter.dingtalk.message.DingTalkMessage:1 of
+msgid "Bases: :py:class:`~iamai.message.MessageSegment`"
+msgstr ""
+
+#: 9ce7d57d86f84e80b93fda4692cda47c
+#: iamai.adapter.dingtalk.message.DingTalkMessage:1 of
+msgid "DingTalk 消息"
+msgstr ""
+
+#: 35599c8dad224a07861ddd7b3191f49c
+#: iamai.adapter.dingtalk.message.DingTalkMessage.action_card_multi_btns:1 of
+msgid "DingTalk 独立跳转 actionCard 消息"
+msgstr ""
+
+#: fbd787d933914b6994baedeb2983b2a5
+#: iamai.adapter.dingtalk.message.DingTalkMessage.action_card_single_btn:1 of
+msgid "DingTalk 整体跳转 actionCard 消息"
+msgstr ""
+
+#: 662c4999d2a04b389bd718e3ea50ce97
+#: iamai.adapter.dingtalk.message.DingTalkMessage.at:1 of
+msgid "DingTalk At 信息"
+msgstr ""
+
+#: 26f0e424c7bd4363b58452957423d556
+#: iamai.adapter.dingtalk.message.DingTalkMessage.feed_card:1 of
+msgid "DingTalk feedCard 消息"
+msgstr ""
+
+#: 58594b3f46d842b2a70386ede4f737c0
+#: iamai.adapter.dingtalk.message.DingTalkMessage.get_plain_text:1 of
+msgid "获取消息中的纯文本部分。"
+msgstr ""
+
+#: 6cc84a6c89774bd2b159213cf22a8256 c0ac09ea30264f8f9992d2898bb907b0
+#: cadb1532218449e3b227097b9a66df4e
+#: iamai.adapter.dingtalk.message.DingTalkMessage.get_plain_text
+#: iamai.adapter.dingtalk.message.DingTalkMessage.get_segment_class
+#: iamai.adapter.dingtalk.message.DingTalkMessage.ser_model of
+msgid "Returns"
+msgstr ""
+
+#: 39a1dbaa4dc1475c90ecc97cf2a4d9b0
+#: iamai.adapter.dingtalk.message.DingTalkMessage.get_plain_text:3 of
+msgid "消息中的纯文本部分。"
+msgstr ""
+
+#: 83f2544d76e842d48ef4c2b9c05f21d9
+#: iamai.adapter.dingtalk.message.DingTalkMessage.get_segment_class:1 of
+msgid "获取消息字段类。"
+msgstr ""
+
+#: 6f540f9910384ab1a956f13ec2a05009
+#: iamai.adapter.dingtalk.message.DingTalkMessage.get_segment_class:3 of
+msgid "消息字段类。"
+msgstr ""
+
+#: e539968948624d8e8585146b0a80a98a
+#: iamai.adapter.dingtalk.message.DingTalkMessage.link:1 of
+msgid "DingTalk link 消息"
+msgstr ""
+
+#: b094a0d510b341289a14e286b701bbf3
+#: iamai.adapter.dingtalk.message.DingTalkMessage.markdown:1 of
+msgid "DingTalk markdown 消息"
+msgstr ""
+
+#: ../../docstring 56156ea9d20b49109e794b9683ce32b1
+#: iamai.adapter.dingtalk.message.DingTalkMessage.model_config:1 of
+msgid ""
+"Configuration for the model, should be a dictionary conforming to "
+"[`ConfigDict`][pydantic.config.ConfigDict]."
+msgstr ""
+
+#: ../../docstring 3deb58ef0940414887ea4a1f62a8f896
+#: iamai.adapter.dingtalk.message.DingTalkMessage.model_fields:1 of
+msgid ""
+"Metadata about the fields defined on the model, mapping of field names to"
+" [`FieldInfo`][pydantic.fields.FieldInfo]."
+msgstr ""
+
+#: ../../docstring d274438d45194b4fa2cea8c84f0a94d3
+#: iamai.adapter.dingtalk.message.DingTalkMessage.model_fields:4 of
+msgid "This replaces `Model.__fields__` from Pydantic V1."
+msgstr ""
+
+#: 53cd453f429f43c190f012e37597d9ba
+#: iamai.adapter.dingtalk.message.DingTalkMessage.raw:1 of
+msgid "DingTalk 原始消息"
+msgstr ""
+
+#: 60b232f448eb42c594d302cc6e32f715
+#: iamai.adapter.dingtalk.message.DingTalkMessage.ser_model:1 of
+msgid "返回符合钉钉消息标准的消息字段字典。"
+msgstr ""
+
+#: d213edba1df54a56a377a991b0f4bb91
+#: iamai.adapter.dingtalk.message.DingTalkMessage.ser_model:3 of
+msgid "符合钉钉消息标准的消息字段字典。"
+msgstr ""
+
+#: c801d50e745243749ea800fc64d6947f
+#: iamai.adapter.dingtalk.message.DingTalkMessage.text:1 of
+msgid "DingTalk text 消息"
+msgstr ""
+

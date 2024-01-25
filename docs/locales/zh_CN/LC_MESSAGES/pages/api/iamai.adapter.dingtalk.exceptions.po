@@ -1,0 +1,56 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/api/iamai.adapter.dingtalk.exceptions.rst:2
+#: 4c63469e3d7a4941b1de4fe38fde5c6f
+msgid "iamai.adapter.dingtalk.exceptions module"
+msgstr ""
+
+#: 0905d7558d444a819d67e7b0a610f53e iamai.adapter.dingtalk.exceptions:1 of
+msgid "DingTalk 适配器异常。"
+msgstr ""
+
+#: 95e92e55abdf4ad0a9c3659b00aad72e
+#: iamai.adapter.dingtalk.exceptions.DingTalkException:1 of
+msgid "Bases: :py:class:`~iamai.exceptions.AdapterException`"
+msgstr ""
+
+#: a18022749aa54b8b85e1e58478f9ecf4
+#: iamai.adapter.dingtalk.exceptions.DingTalkException:1 of
+msgid "DingTalk 异常基类。"
+msgstr ""
+
+#: 964a9a0b30a948afa2d7d4ed4f079de6 a5c9d5f2fe774587b8f8398a8fe30d72
+#: iamai.adapter.dingtalk.exceptions.NetworkError:1
+#: iamai.adapter.dingtalk.exceptions.WebhookExpiredError:1 of
+msgid "Bases: :py:class:`~iamai.adapter.dingtalk.exceptions.DingTalkException`"
+msgstr ""
+
+#: 6db8ca41caf745d2a4856e26fdc0dd2c
+#: iamai.adapter.dingtalk.exceptions.NetworkError:1 of
+msgid "网络异常。"
+msgstr ""
+
+#: 14775670d2754e25bd635aaed5590069
+#: iamai.adapter.dingtalk.exceptions.WebhookExpiredError:1 of
+msgid "Webhook 地址已到期。"
+msgstr ""
+

@@ -1,0 +1,93 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/advanced/plugin-advanced.md:1
+#: e1768fb982054555b073c57ae6aacf97
+msgid "Advanced Plugin Features"
+msgstr ""
+
+#: ../../source/pages/advanced/plugin-advanced.md:3
+#: 1cfabcbe6d1f440983ee98fc863be04a
+msgid "Event Propogation Control"
+msgstr ""
+
+#: ../../source/pages/advanced/plugin-advanced.md:5
+#: 1d14b9df669c484a8a2eca490ca3d34a
+msgid ""
+"Sometimes, we may need to control the propagation of events. Besides the "
+"basic `block` attribute, which decides whether the event propagation "
+"continues after this plugin execution, iamai provides some methods for "
+"advanced logic control."
+msgstr ""
+
+#: ../../source/pages/advanced/plugin-advanced.md:7
+#: 8a1a68c415344966acdf730b344a9e08
+msgid "`skip()` Method"
+msgstr ""
+
+#: ../../source/pages/advanced/plugin-advanced.md:9
+#: 416d83a56873493b8ea8ec1351bad678
+msgid ""
+"The `skip()` method is used to skip the current plugin and continue event"
+" propagation. Typically, you could achieve a similar effect using the "
+"`return` statement in the `handle()` method. However, the `skip()` method"
+" simplifies certain operations in some cases. For example:"
+msgstr ""
+
+#: ../../source/pages/advanced/plugin-advanced.md:29
+#: 13edd2422102437b982bb9ccccbc40b2
+msgid ""
+"The `skip()` method can be called from any method within the plugin "
+"class, and it takes immediate effect."
+msgstr ""
+
+#: ../../source/pages/advanced/plugin-advanced.md:31
+#: c9702eda8eb6429ead1c5b88e5c0746c
+msgid "`stop()` Method"
+msgstr ""
+
+#: ../../source/pages/advanced/plugin-advanced.md:33
+#: 7c7da9f3699a45fd8b6c7017af647fd0
+msgid ""
+"The `stop()` method is used to end the current event propagation. "
+"However, please note that when this method is called, the current event "
+"propagation is not immediately terminated. Plugins with the same priority"
+" as the current one will still be executed. In other words, the `stop()` "
+"method prevents plugins with lower priority from being executed."
+msgstr ""
+
+#: ../../source/pages/advanced/plugin-advanced.md:35
+#: 5e6bb9d6028b4f5e862bd5b7231241c6
+msgid "`stop()` Method and `block` Attribute"
+msgstr ""
+
+#: ../../source/pages/advanced/plugin-advanced.md:37
+#: 208657bac5364af98ca99f7044d7039a
+msgid ""
+"You may notice that setting the block attribute to `True` and adding a "
+"`self.stop()` statement at the end of the `handle()` method do not have "
+"much difference. In most cases, they are indeed equivalent, except for "
+"one scenario. When an exception occurs in the handle() method, the final "
+"self.stop() statement will not be executed, but the block attribute will "
+"still take effect. In other words, setting block to True and the "
+"following example are roughly equivalent:"
+msgstr ""
+
