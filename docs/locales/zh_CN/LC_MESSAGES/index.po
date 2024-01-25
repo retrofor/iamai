@@ -50,7 +50,8 @@ msgid ""
 " you're developing intelligent systems or constructing robots for various"
 " platforms, iamai is your go-to solution for a unified and powerful "
 "development experience. Explore the possibilities with iamai today!"
-msgstr "Iamai 不仅是一个库；更是一个能够构建跨平台机器人的多模态人工智能工具包。"
+msgstr ""
+"Iamai 不仅是一个库；更是一个能够构建跨平台机器人的多模态人工智能工具包。"
 
 #: ../../source/index.md:9 f1b1dfbe861a41b881d16c2d37c256eb
 msgid ""
