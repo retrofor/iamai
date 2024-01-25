@@ -20,6 +20,6 @@ msgstr ""
 "Generated-By: Babel 2.14.0\n"
 
 #: ../../source/changelog.md:1 33cdb34132604b1bb469c058e4d79c24
-msgid "更新日志"
-msgstr ""
+msgid "Changelog"
+msgstr "变更日志"
 

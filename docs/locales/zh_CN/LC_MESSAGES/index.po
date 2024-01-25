@@ -45,12 +45,12 @@ msgstr ""
 
 #: ../../source/index.md:7 bdd2687e9ccd4f2795bad34c329a292c
 msgid ""
-"Iamai 不仅仅只是一个库; it's a comprehensive AI toolkit that brings "
+"Iamai is not just a library; it's a comprehensive AI toolkit that brings "
 "together multimodal machine learning and cross-platform robotics. Whether"
 " you're developing intelligent systems or constructing robots for various"
 " platforms, iamai is your go-to solution for a unified and powerful "
 "development experience. Explore the possibilities with iamai today!"
-msgstr ""
+msgstr "Iamai 不仅是一个库；更是一个能够构建跨平台机器人的多模态人工智能工具包。"
 
 #: ../../source/index.md:9 f1b1dfbe861a41b881d16c2d37c256eb
 msgid ""
