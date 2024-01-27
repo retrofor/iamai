@@ -77,19 +77,15 @@
   <img src="https://img.shields.io/github/languages/top/retrofor/iamai?style=social" >
 </p>
 
-## Introduction
-
 <!-- start intro -->
 
 Welcome to iamai, a powerful and comprehensive AI toolkit that seamlessly integrates multimodal machine learning capabilities with advanced tools for cross-platform robot development!
 
-> This library is designed to provide developers with a unified solution for creating intelligent systems that span multiple modalities and operate across diverse platforms.
+> 🌍 This library is designed to provide developers with a unified solution for creating intelligent systems that span multiple modalities and operate across diverse platforms. 
 
 <!-- end intro -->
 
 <!-- start index -->
-
-## Features
 
 - 🎪 **Interactive [docs](https://iamai.is-a.dev) &amp; [demos](https://iamai.is-a.dev/)**
 - 🕶 **Seamless migration**: Works for **both** [Rasa]() and [GPT]() and more...
@@ -100,126 +96,11 @@ Welcome to iamai, a powerful and comprehensive AI toolkit that seamlessly integr
 
 <!-- end index -->
 
-## Install
-
-STABLE VERSION
-
-```sh
-pdm add iamai
-```
-
-Or you can also install for TEST.
-
-TEST VERSION
-
-```sh
-git clone https://github.com/retrofor/iamai.git
-pdm install
-```
-
-### Adapters
-
-iamai itself is just a chatbot framework and additional protocol adapters are required to support specific protocols. You can use pip to install the protocol adapter:
-
-```shell
-pip install iamai-adapter-dingtalk
-pip install iamai-adapter-console
-pip install iamai-adapter-bililive
-pip install iamai-adapter-kook
-```
-
-## Usage
-
-since version 3.3.1, we recommend using the `iamai` shell command instead:
-
-```shell
-iamai new "my bot"
-cd "my bot"
-```
-
-then, you need load the transformer and use your models.
-
-### transformer(Use from the 🤗/transformers library)
-
-```python
-from transformers import AutoModelWithLMHead, AutoTokenizer
-# load models
-model = AutoModelWithLMHead.from_pretrained("gpt2")
-# load tokenizer
-tokenizer = AutoTokenizer.from_pretrained("gpt2")
-# transfor the text to token
-input_ids = tokenizer.encode("Hello, my name is IamAI!", add_special_tokens=True)
-# input the token to the models
-outputs = model.generate(input_ids)
-# get the text generated
-generated_text = tokenizer.decode(outputs[0])
-```
-
-You can use pre-built optimizers to speed up the model inference process, or you can write your own optimizer. However, it's important to note that the transformer model optimizer is a special type of optimizer that is designed specifically for optimizing parameters in transformer models, thereby improving their performance.
-
-To write a transformer model optimizer, you need to have an understanding of how optimizers work and be familiar with the structure of transformer models.
-
-The principle of optimizers can be referred to in the paper [&#34;Attention Is All You Need&#34;](https://arxiv.org/abs/1706.03762), and the structure of transformer models can be referred to in the paper [&#34;Transformer: A Novel Neural Network Architecture for Language Understanding&#34;](https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html?m=1). The implementation of optimizers can be referred to in the [AdamW optimizer](https://huggingface.co/transformers/v3.0.2/main_classes/optimizer_schedules.html) in the Hugging Face Transformers library.
-
-### Use the Inference API
-
-```python
-import requests
-
-API_URL = "https://api-inference.huggingface.co/models/xxx/xxxxx"
-headers = {"Authorization": "Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
-
-def query(payload):
- response = requests.post(API_URL, headers=headers, json=payload)
- return response.json()
-
-output = query({
- "inputs": "xxx",
-})
-```
-
-## Credits
-
-<details>
-
 First of all, in the field of machine learning, we drew inspiration from the excellent design of [Hugging Face](https://huggingface.co)'s [transformers](https://github.com/huggingface/transformers) 🤗 for the use of pre-trained models. We would like to express our gratitude to the authors of Hugging Face and their open-source community.
 
 Secondly, regarding the cross-platform robot framework, it is primarily based on [st](https://github.com/st1020)'s [alicebot](https://github.com/AliceBotProject/alicebot). We have made numerous adaptations to make it compatible with machine learning. We would like to thank the st and alicebot open-source communities for their contributions.
 
-To avoid any potential disputes or misunderstandings, we have listed the licenses of the projects we have used and express our gratitude towards them.
-
-### Machine Learning Framework
-
-<!-- MLF starts -->
-[huggingface/transformers](https://github.com/huggingface/transformers)(@v4.31.0: Llama v2, MusicGen, Bark, MMS, EnCodec, InstructBLIP, Umt5, MRa, vIvIt) with [Apache License 2.0](https://github.com/huggingface/transformers/blob/main/LICENSE). <img width='200' src='https://huggingface.co/datasets/huggingface/documentation-images/raw/main/transformers-logo-dark.svg'><br /> `🤗 Transformers: State-of-the-art Machine Learning for Pytorch, TensorFlow, and JAX.`
-
-[PaddlePaddle/PaddleNLP](https://github.com/PaddlePaddle/PaddleNLP)(@2.6.0) with [Apache License 2.0](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/LICENSE). <img width='200' src='https://user-images.githubusercontent.com/1371212/175816733-8ec25eb0-9af3-4380-9218-27c154518258.png'> <br />  `👑 Easy-to-use and powerful NLP and LLM library with 🤗 Awesome model zoo, supporting wide-range of NLP tasks from research to industrial applications, including 🗂Text Classification, 🔍 Neural Search, ❓ Question Answering, ℹ️ Information Extraction, 📄 Document Intelligence, 💌 Sentiment Analysis etc.`
-
-[scikit-learn](https://github.com/scikit-learn/scikit-learn)(>=1.3.1) with [BSD-3-Clause license](https://github.com/scikit-learn/scikit-learn/blob/main/COPYING). <img width='50' src='https://scikit-learn.org/stable/_static/scikit-learn-logo-small.png' /> `scikit-learn: machine learning in Python`
-<!-- MLF ends -->
-
-### Cross-Platform Robot Framework Dependencies
-
-<!-- CPRF starts -->
-[AliceBotProject/alicebot](https://github.com/AliceBotProject/alicebot)(@0.6.0) with [MIT](https://github.com/AliceBotProject/alicebot/blob/master/LICENSE). <img width='50' src='https://docs.alicebot.dev/logo.png'> <br /> `简单的 Python 异步多后端渐进式机器人框架`
-
-[aio-libs/aiohttp](https://github.com/aio-libs/aiohttp)(< 4.0.0, >= 3.8.0) with [Apache License 2.0](https://github.com/aio-libs/aiohttp/blob/master/LICENSE.txt). <img width='50' src='https://raw.githubusercontent.com/aio-libs/aiohttp/master/docs/aiohttp-plain.svg'> <br /> `Asynchronous HTTP client/server framework for asyncio and Python`
-
-[Delgan/loguru](https://github.com/Delgan/loguru)(< 0.8, >= 0.6) with [MIT](https://github.com/Delgan/loguru/blob/master/LICENSE). <img width='50' src='https://raw.githubusercontent.com/Delgan/loguru/master/docs/_static/img/logo.png'> <br /> `Python logging made (stupidly) simple`
-
-[pydantic/pydantic](https://github.com/pydantic/pydantic)(< 3.0, >= 1.10) with [MIT](https://github.com/pydantic/pydantic/blob/main/LICENSE). <br /> `Data validation using Python type hints`
-
-[yaml/pyyaml](https://github.com/yaml/pyyaml)(< 7.0, >= 6.0) with [MIT](https://github.com/yaml/pyyaml/blob/master/LICENSE). <br /> `Canonical source repository for PyYAML`
-
-[st1020/sophia-doc](https://github.com/st1020/sophia-doc)(>= 0.1.6) with [MIT](https://github.com/st1020/sophia-doc/blob/master/LICENSE). <br /> `A python package to automatically generate API documents for Python modules`
-
-[hukkin/tomli](https://github.com/hukkin/tomli)(< 3.0.0, >= 2.0.0) with [MIT](https://github.com/hukkin/tomli/blob/master/LICENSE). <br /> `A lil' TOML parser`
-
-[operatorequals/httpimport](https://github.com/operatorequals/httpimport)(>=1.3.1) with [Apache License 2.0](https://github.com/operatorequals/httpimport/blob/master/LICENSE). <br /> `Module for remote in-memory Python package/module loading through HTTP/S`
-<!-- CPRF ends -->
-
-</details>
-
+Other credits please see [credits.md](./credits.md).
 <!-- ## 特别的鸣谢
 
 我们很乐意在下面列出对IamAI的发展方向和动机有着[重大贡献](https://academic.jyunko.cn/2023/04/04/April-Fours-Day.html)的组织和个人。如果你认为你应该在这里，请至少要像Bryan不可思议那样在文章底栏留言或者发送邮件联系我们 :D
@@ -231,7 +112,7 @@ To avoid any potential disputes or misunderstandings, we have listed the license
 
 ## License
 
-[MIT](https://github.com/retrofor/iamai/blob/main/LICENSE) © 2023-PRESENT [Retrofor Wut?](https://github.com/retrofor).
+[MIT](https://github.com/retrofor/iamai/blob/main/LICENSE) © 2023-PRESENT [Retro for Wut?](https://github.com/retrofor).
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fretrofor%2Fiamai.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fretrofor%2Fiamai?ref=badge_shield)
 
