@@ -12,9 +12,9 @@
 </a>
 
 
-# iamai <img width="60" align="right" src="https://images.repography.com/40962158/retrofor/iamai/structure/afEhYzXo83AMGRNy9EzPPQcX9ECBKj2gOPhvmpzMFSg/DQMxDEhfNZdq6zFhjPa1G61Bg9g-DRhQiwNY-W2ZHVE_table.svg" />
+# Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform Robotics <img width="60" align="right" src="https://images.repography.com/40962158/retrofor/iamai/structure/afEhYzXo83AMGRNy9EzPPQcX9ECBKj2gOPhvmpzMFSg/DQMxDEhfNZdq6zFhjPa1G61Bg9g-DRhQiwNY-W2ZHVE_table.svg" />
 
-<p align="center"><i>Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform Robotics.</i></p>
+
 
 <!-- start intro -->
 
@@ -50,7 +50,7 @@ To avoid any potential disputes or misunderstandings, we have listed the license
 
 如果没有以上个人和组织的帮助，IamAI将不会有现在的样子。我们真的很感谢他们。 -->
 
-## License
+<hr />
 
 [MIT](https://github.com/retrofor/iamai/blob/main/LICENSE) © 2023-PRESENT [Retro for Wut?](https://github.com/retrofor).
 
