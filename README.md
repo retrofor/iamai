@@ -11,10 +11,9 @@
     <img src='https://readthedocs.org/projects/iamai/badge/?version=latest' alt='Documentation Status' />
 </a>
 
+<img width="60" align="right" src="https://images.repography.com/40962158/retrofor/iamai/structure/afEhYzXo83AMGRNy9EzPPQcX9ECBKj2gOPhvmpzMFSg/DQMxDEhfNZdq6zFhjPa1G61Bg9g-DRhQiwNY-W2ZHVE_table.svg" />
 
-# Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform Robotics <img width="60" align="right" src="https://images.repography.com/40962158/retrofor/iamai/structure/afEhYzXo83AMGRNy9EzPPQcX9ECBKj2gOPhvmpzMFSg/DQMxDEhfNZdq6zFhjPa1G61Bg9g-DRhQiwNY-W2ZHVE_table.svg" />
-
-
+# Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform Robotics 
 
 <!-- start intro -->
 
