@@ -50,5 +50,11 @@ API Documentation <pages/api/index.rst>
 pages/development/contributing
 Changelog <changelog>
 COPYING
-Credits <credits>
+```
+
+```{toctree}
+:caption: Thanks and credits
+:hidden:
+
+credits
 ```
