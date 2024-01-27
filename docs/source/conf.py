@@ -27,7 +27,7 @@ AUTHORS = ",".join([f"{aut['name']}<{aut['email']}>" for aut in AUTHOR_TABLE])
 project = PROJECT_NAME  # "IamAI"
 release = PROJECT_VERSION  # "latest"
 copyright = "2023-PRESENT, Retrofor Wut?"
-author = "Hsiang Nianian" # AUTHORS
+author = "Hsiang Nianian"  # AUTHORS
 
 # html_title = "Who am I? I am AI."
 
@@ -56,7 +56,7 @@ source_suffix = {
     ".md": "markdown",
 }
 
-locale_dirs = ['../locales/']   # path is example but recommended.
+locale_dirs = ["../locales/"]  # path is example but recommended.
 gettext_compact = False  # optional.
 gettext_uuid = True  # optional.
 
@@ -86,7 +86,8 @@ html_theme_options = {
             "class": "fa-brands fa-github",
         },
         {
-            "name": "Pypi",             "url": "https://pypi.org/project/iamai/",
+            "name": "Pypi",
+            "url": "https://pypi.org/project/iamai/",
             "html": "",
             "class": "fa-brands fa-python",
         },
