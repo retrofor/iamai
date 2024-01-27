@@ -2,8 +2,8 @@ name: api build
 
 on:
     push:
-        # tags:
-        #   - "v*"
+        tags:
+          - "v*"
     workflow_dispatch:
 
 jobs:
@@ -17,7 +17,7 @@ jobs:
         steps:
           - uses: actions/checkout@v3
     
-          - uses: pdm-project/setup-pdm@v3
+          - uses: pdm-project/setup-pdm@v4
             name: Setup PDM
             with:
               python-version: 3.9
@@ -35,12 +35,12 @@ jobs:
             env:
               iamai_DEV: "1"
     
-          # - name: Create Pull Request
-          #   uses: peter-evans/create-pull-request@v5
-          #   with:
-          #     token: ${{ secrets.GITHUB_TOKEN }}
-          #     commit-message: "chore(docs): update api docs"
-          #     title: "chore(docs): update api docs"
-          #     body: "automatic update api docs"
-          #     branch: docs/update-api-docs
-          #     base: master
+          - name: Create Pull Request
+            uses: peter-evans/create-pull-request@v5
+            with:
+              token: ${{ secrets.GITHUB_TOKEN }}
+              commit-message: "chore(docs): update api docs"
+              title: "chore(docs): update api docs"
+              body: "automatic update api docs"
+              branch: docs/update-api-docs
+              base: master
