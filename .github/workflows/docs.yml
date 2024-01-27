@@ -26,19 +26,21 @@ jobs:
             run: pdm install
     
           - name: Remove API Doc
-            run: rm -rf docs/pages/api
+            run: rm -rf docs/source/pages/api
+          - name: copy credits
+            run: cp credits.md docs/source/pages/credits.md
           - name: Build API Doc
-            run: pdm run sphinx-apidoc iamai -o docs/pages/api -f -e --tocfile index
+            run: pdm run sphinx-apidoc iamai -o docs/source/pages/api -f -e --tocfile index
             shell: bash
             env:
               iamai_DEV: "1"
     
-          # - name: Create Pull Request
-          #   uses: peter-evans/create-pull-request@v5
-          #   with:
-          #     token: ${{ secrets.GITHUB_TOKEN }}
-          #     commit-message: "chore(docs): update api docs"
-          #     title: "chore(docs): update api docs"
-          #     body: "automatic update api docs"
-          #     branch: docs/update-api-docs
-          #     base: master
+          - name: Create Pull Request
+            uses: peter-evans/create-pull-request@v5
+            with:
+              token: ${{ secrets.GITHUB_TOKEN }}
+              commit-message: "chore(docs): update api docs"
+              title: "chore(docs): update api docs"
+              body: "automatic update api docs"
+              branch: docs/update-api-docs
+              base: master

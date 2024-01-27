@@ -48,6 +48,7 @@ pages/adapters/dingtalk-adapter
 
 API Documentation <pages/api/index.rst>
 pages/development/contributing
-changelog
+Changelog <changelog>
 COPYING
+Thanks and Credits <credits>
 ```
