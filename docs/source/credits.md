@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>  <title>Attribution File for iamai (0153d6b3fd94e332300159eac35dd9bbaa9b6fe0)</title>
-  <link rel="stylesheet" href="/css/lib/github-markdown.css">
-</head>
-<body>
-<hr>
 <h1 id="3rd-party-software-for-iamai">3rd-Party Software for <a href="">iamai</a></h1>
 <p>The following 3rd-party software packages may be used by or distributed with <strong>iamai</strong>.  Any information relevant to third-party vendors listed below are collected using common, reasonable means.</p>
 <table>
@@ -3490,5 +3482,4 @@ one at http://mozilla.org/MPL/2.0/.
 licenses found in LICENSE.APACHE2 or LICENSE.MIT. Contributions to are
 made under the terms of *both* these licenses.
 
-</code></pre></body>
-</html>
+</code>

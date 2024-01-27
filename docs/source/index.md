@@ -50,5 +50,5 @@ API Documentation <pages/api/index.rst>
 pages/development/contributing
 Changelog <changelog>
 COPYING
-Thanks and Credits <credits>
+Credits <credits>
 ```
