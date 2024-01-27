@@ -58,7 +58,7 @@ def fetch_cprf_denpendices():
 
 
 if __name__ == "__main__":
-    readme = root / "README.md"
+    readme = root / "credits.md"
     readme_contents = readme.open().read()
     # MLF
     MLF = fetch_mlf_denpendices()
