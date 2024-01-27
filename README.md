@@ -6,7 +6,7 @@
 </a>
 <a href="https://pypi.python.org/pypi/iamai">
   <!-- <img src="https://img.shields.io/pypi/v/iamai?style=flat-square" alt="pypi"> -->
-  <img src="https://img.shields.io/badge/version-v0.0.2+march-blue?style=flat-square&logo=python" alt="python">
+  <img src="https://img.shields.io/badge/stable version-v0.0.2+march-blue?style=flat-square&logo=python" alt="python">
 </a><a href='https://iamai.is-a.dev/en/latest/?badge=latest'>
     <img src='https://readthedocs.org/projects/iamai/badge/?version=latest' alt='Documentation Status' />
 </a>
