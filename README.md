@@ -100,7 +100,8 @@ First of all, in the field of machine learning, we drew inspiration from the exc
 
 Secondly, regarding the cross-platform robot framework, it is primarily based on [st](https://github.com/st1020)'s [alicebot](https://github.com/AliceBotProject/alicebot). We have made numerous adaptations to make it compatible with machine learning. We would like to thank the st and alicebot open-source communities for their contributions.
 
-Other credits please see [credits.md](./credits.md).
+To avoid any potential disputes or misunderstandings, we have listed the licenses of the projects we have used and express our gratitude towards them. please see [credits.md](./credits.md).
+
 <!-- ## 特别的鸣谢
 
 我们很乐意在下面列出对IamAI的发展方向和动机有着[重大贡献](https://academic.jyunko.cn/2023/04/04/April-Fours-Day.html)的组织和个人。如果你认为你应该在这里，请至少要像Bryan不可思议那样在文章底栏留言或者发送邮件联系我们 :D
