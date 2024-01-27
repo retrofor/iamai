@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: iamai \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"POT-Creation-Date: 2024-01-27 19:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -21,6 +21,45 @@ msgstr ""
 
 #: ../../source/changelog.md:1 33cdb34132604b1bb469c058e4d79c24
 msgid "Changelog"
+msgstr "变更日志"
+
+#: ../../source/changelog.md:3 9c6bd5cbb1394f8c86ee0d871d4ce930
+msgid "[0.0.3a1](https://pypi.org/project/iamai/0.0.3/) 2024-01-27"
 msgstr ""
-"变更日志"
+
+#: ../../source/changelog.md:5 ../../source/changelog.md:12
+#: 4dae63e5327e4fc3904c0c43cdafc0ad 85ee9684f9af476db640fd4978452e3f
+msgid "Chore"
+msgstr ""
+
+#: ../../source/changelog.md:7 fb3dcaf7dc94430ca4761626188f3bfa
+msgid ""
+"[`910955`](https://github.com/retrofor/iamai/commit/91095581b78ae0162aa1f38a064e606600612eb4)"
+" update readme"
+msgstr ""
+
+#: ../../source/changelog.md:8 46b534b48ee14b10bd91e9c97cb2137b
+msgid ""
+"[`cd4e57`](https://github.com/retrofor/iamai/commit/cd4e579dc9cddc96b6a932c7ad5b1838f57bfd3f)"
+" update api docs"
+msgstr ""
+
+#: ../../source/changelog.md:10 273506890bd645fda61c5db0b59bb11a
+msgid "[0.0.2](https://pypi.org/project/iamai/0.0.2/) 2024-01-27"
+msgstr ""
+
+#: ../../source/changelog.md:14 29b35928b812465c809e485c5d4b6a44
+msgid ""
+"[`6c676dc`](https://github.com/retrofor/iamai/commit/6c676dc359d9b92cc3619b1668cbb4ae75692905)"
+" Merge branch 'master'"
+msgstr ""
+
+#: ../../source/changelog.md:17 9bc5a9a290904b0b80bb1e3b2bc9e193
+msgid "[0.0.1a1](https://pypi.org/project/iamai/0.0.1a1/) 2024-01-27"
+msgstr ""
+
+#: ../../source/changelog.md:19 ed8c64113dcd42ab8f5dade7d1761b0a
+#, fuzzy
+msgid "no changes."
+msgstr "变更日志"
 

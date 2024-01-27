@@ -1,0 +1,1307 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023-PRESENT, Retrofor Wut?
+# This file is distributed under the same license as the iamai package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: iamai \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-27 19:20+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: ../../source/pages/credits.md:32 ../../source/pages/credits.md:258
+#: ../../source/pages/credits.md:789 ../../source/pages/credits.md:919
+#: ../../source/pages/credits.md:1861 2bd6faaf511e4a3f85dd2877f1e927a7
+#: 431f8daa8d724fb78cca92c05112bc6c 9284d5e88c554b5ea9a58eac0fe26220
+#: b850d228445847d08bddfe2702f11460 b972ff1a6b684f01a7beed17ef70a32a
+msgid ""
+"Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);"
+"    you may not use this file except in compliance with the License.    "
+"You may obtain a copy of the License at"
+msgstr ""
+
+#: ../../source/pages/credits.md:38 ../../source/pages/credits.md:264
+#: ../../source/pages/credits.md:795 ../../source/pages/credits.md:925
+#: ../../source/pages/credits.md:1867 142d197bf0d34b86a1120ff4ed522c33
+#: 4d4ba7faf0e648e6bbef2e176a35f823 ba8de707a7464152b094190740e787e7
+#: d20a61a1764c4c64a14ead335e90095d da0f478b5b44470db227fe9f48968909
+msgid ""
+"Unless required by applicable law or agreed to in writing, software    "
+"distributed under the License is distributed on an &quot;AS IS&quot; "
+"BASIS,    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or"
+" implied.    See the License for the specific language governing "
+"permissions and    limitations under the License."
+msgstr ""
+
+#: ../../source/pages/credits.md:44 ../../source/pages/credits.md:270
+#: ../../source/pages/credits.md:297 ../../source/pages/credits.md:323
+#: ../../source/pages/credits.md:342 ../../source/pages/credits.md:369
+#: ../../source/pages/credits.md:395 ../../source/pages/credits.md:455
+#: ../../source/pages/credits.md:488 ../../source/pages/credits.md:594
+#: ../../source/pages/credits.md:801 ../../source/pages/credits.md:819
+#: ../../source/pages/credits.md:885 ../../source/pages/credits.md:912
+#: ../../source/pages/credits.md:931 ../../source/pages/credits.md:958
+#: ../../source/pages/credits.md:985 ../../source/pages/credits.md:1189
+#: ../../source/pages/credits.md:1245 ../../source/pages/credits.md:1272
+#: ../../source/pages/credits.md:1584 ../../source/pages/credits.md:1611
+#: ../../source/pages/credits.md:1638 ../../source/pages/credits.md:1665
+#: ../../source/pages/credits.md:1873 06ea23161a8447889fe10de897a8cbb7
+#: 0719af75c86d4e7d9ee4a5b5cc644b87 089612530782454db772f772dc485e19
+#: 0ed5b35233804476b1550bd84736a111 1b1f4b524d9d4531a72b0190c6afa75c
+#: 1f95920214f5485e8da64142e225a7a3 2fedb1a76aee461caa8949e190a5e4a4
+#: 33f9f847054b4f71a1e4b977439a8421 581074be4ba843a7a282afd304171b12
+#: 60e650cdc7464756abc3de782073f5ef 64a64a1b7c83440f945fa96ae2e9f501
+#: 6cc8aef832bd4504bfb4167be22cb8af 7c428e3a11b94d699c843ea4134f8dc6
+#: 814a933f2233463baddc742b7c9c8801 8f8cac946cb44332a6a925b13aad02e6
+#: 9c10734931f54a72bf50e64359b27c76 9f215904503d4db4b0c3723b609c1bfa
+#: aff8125c0992496bb141bf13e4008a77 bf30fe2543964567a11f696d65a13f13
+#: c5327dea32b54869bbe1a6d96cb5b75a cf8f74481d4647fc90908ac36f901a87
+#: dae42cb5995346929ef071327b2963b0 e5cb53124ba24a50ae7d58b0edce9fc5
+#: fa193b41a5b54f2b9187019d444923e3 faec45fa8009438bb76f9b778441eb68
+msgid "</code></pre><h4 id=\"other-licenses\">Other Licenses</h4>"
+msgstr ""
+
+#: ../../source/pages/credits.md:54 ../../source/pages/credits.md:286
+#: ../../source/pages/credits.md:313 ../../source/pages/credits.md:358
+#: ../../source/pages/credits.md:411 ../../source/pages/credits.md:531
+#: ../../source/pages/credits.md:840 ../../source/pages/credits.md:901
+#: ../../source/pages/credits.md:947 ../../source/pages/credits.md:974
+#: ../../source/pages/credits.md:998 ../../source/pages/credits.md:1230
+#: ../../source/pages/credits.md:1261 ../../source/pages/credits.md:1600
+#: ../../source/pages/credits.md:1627 ../../source/pages/credits.md:1654
+#: 01b18e640f75463e83dd62016b103773 07083efe1d294500b03788b53b82534a
+#: 0c46e91242824df2ab60de8173345234 228bae09d29248d4bdb1379b98eedc5f
+#: 26103fb8353f48fc916fc09b4e6f9abd 46317ef646164f26903d15f85f4471d6
+#: 47b83e91bfbf4e4991fde14030dc57d6 49f4f8c71e1f451696e98bb3dfafc5a0
+#: 581f4f3faca743f0990413f2c1dc5833 7090409aa8d14b239dd2e518c0bece94
+#: a0ae0fb15d99473f8f2c228cb23d08ce d01d8e7d76ec419893a38173402b326e
+#: d1b2676228344824a4f2ebfdec1d9fca d9ea13492e9341c69e9ff158ed7a0be2
+#: fb4b89b0a1434bda8558756a60f07e9a fce37c5a07c1421aa1057cd21adf996b
+msgid ""
+"The above copyright notice and this permission notice shall be included "
+"in all copies or substantial portions of the Software."
+msgstr ""
+
+#: ../../source/pages/credits.md:57 d4fe5fa2453b4b0990947b28ad35261a
+msgid ""
+"THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,"
+" EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF "
+"MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN"
+" NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,"
+" DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR "
+"OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE"
+" USE OR OTHER DEALINGS IN THE SOFTWARE. </code></pre><hr>"
+msgstr ""
+
+#: ../../source/pages/credits.md:72 ../../source/pages/credits.md:603
+#: ../../source/pages/credits.md:1018 ../../source/pages/credits.md:1675
+#: ../../source/pages/credits.md:1883 0cbba882e2dd4d2bb694f28d1345be71
+#: 4ad78dce7a14441fabc237c9eacd3e87 c678a0ef49514ae3a8d29a084ae4a9ea
+#: ca9b223f683e435bb6cdc22ff37a337f e5c9ae7c00d445078596c22cb564d8e2
+msgid "TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION"
+msgstr ""
+
+#: ../../source/pages/credits.md:74 ../../source/pages/credits.md:605
+#: ../../source/pages/credits.md:1020 ../../source/pages/credits.md:1677
+#: ../../source/pages/credits.md:1885 68fc0f7a42f54b47ac0e170d1e1f462d
+#: 914e8de31ca6498a8217036952f86780 95f0fc2d786b452bb5f412f8bb9c23c5
+#: 96a4c68930764115b884f647a059e9e8 f2b40ee5b3564971b2c5771d55c1084e
+msgid "Definitions."
+msgstr ""
+
+#: ../../source/pages/credits.md:76 ../../source/pages/credits.md:607
+#: ../../source/pages/credits.md:1022 ../../source/pages/credits.md:1679
+#: 4984507df23e44c9b7e94ea26b3a4a81 4a3e418fb881491f8f54b4a82a82287a
+#: f3841a27379e40e4bb7b90c34f50c27e f6a7897977bf49799c372f6dd8991651
+msgid ""
+"&quot;License&quot; shall mean the terms and conditions for use, "
+"reproduction, and distribution as defined by Sections 1 through 9 of this"
+" document."
+msgstr ""
+
+#: ../../source/pages/credits.md:79 ../../source/pages/credits.md:610
+#: ../../source/pages/credits.md:1025 ../../source/pages/credits.md:1682
+#: 189b5e4dc3b945ee820b6eadf37b9549 307dfadf4d2440989040e733fdfa8cd6
+#: 6f119bf5663d40d4a949db4186c6ef98 fe637a2d09904ac187a5b6fbc23e7a4b
+msgid ""
+"&quot;Licensor&quot; shall mean the copyright owner or entity authorized "
+"by the copyright owner that is granting the License."
+msgstr ""
+
+#: ../../source/pages/credits.md:82 ../../source/pages/credits.md:613
+#: ../../source/pages/credits.md:1028 ../../source/pages/credits.md:1685
+#: 28876eb1b9dc448a9ccf2b4d0611a954 39624357668c41cda54038da3d24b9cb
+#: 59d7ef8c67a24e0fb7f7cec07dcc2d8a c4551cf9934749d0bbeb19d41cef1aae
+msgid ""
+"&quot;Legal Entity&quot; shall mean the union of the acting entity and "
+"all other entities that control, are controlled by, or are under common "
+"control with that entity. For the purposes of this definition, "
+"&quot;control&quot; means (i) the power, direct or indirect, to cause the"
+" direction or management of such entity, whether by contract or "
+"otherwise, or (ii) ownership of fifty percent (50%) or more of the "
+"outstanding shares, or (iii) beneficial ownership of such entity."
+msgstr ""
+
+#: ../../source/pages/credits.md:90 ../../source/pages/credits.md:621
+#: ../../source/pages/credits.md:1036 ../../source/pages/credits.md:1693
+#: 0a314a094db448a6969183f5342835d9 b08c50643fa24042a47fdcb2a462df39
+#: beca568d03eb4ea593259c677b254ecb f2591c2ce5c0443984cde0a5eea34c44
+msgid ""
+"&quot;You&quot; (or &quot;Your&quot;) shall mean an individual or Legal "
+"Entity exercising permissions granted by this License."
+msgstr ""
+
+#: ../../source/pages/credits.md:93 ../../source/pages/credits.md:624
+#: ../../source/pages/credits.md:1039 ../../source/pages/credits.md:1696
+#: 061c2a342032479f960c88b39e912c03 2765e28e946d4ce3b475c77fad7c4a6f
+#: a8c5385c894343c7b5738a61f5447454 df2d3b1189c548de917232752cfeeed4
+msgid ""
+"&quot;Source&quot; form shall mean the preferred form for making "
+"modifications, including but not limited to software source code, "
+"documentation source, and configuration files."
+msgstr ""
+
+#: ../../source/pages/credits.md:97 ../../source/pages/credits.md:628
+#: ../../source/pages/credits.md:1043 ../../source/pages/credits.md:1700
+#: 64f9d384b321409c8bac10e30a5af128 a454120f71cf424f81d7080101115dc3
+#: aaa2f2c0e16245cc991b5d75ce2da9e6 f6104c26e5ec497799e228f3c5935659
+msgid ""
+"&quot;Object&quot; form shall mean any form resulting from mechanical "
+"transformation or translation of a Source form, including but not limited"
+" to compiled object code, generated documentation, and conversions to "
+"other media types."
+msgstr ""
+
+#: ../../source/pages/credits.md:102 ../../source/pages/credits.md:633
+#: ../../source/pages/credits.md:1048 ../../source/pages/credits.md:1705
+#: 1b103963dde7443fb220b111ba3cea47 45f2a820dd0b4429bfb994db5157f32d
+#: 90cd47bd1964443e8dfb9c68f2c0b3c0 aa9d0a4dd19049629c3a86169ef4f378
+msgid ""
+"&quot;Work&quot; shall mean the work of authorship, whether in Source or "
+"Object form, made available under the License, as indicated by a "
+"copyright notice that is included in or attached to the work (an example "
+"is provided in the Appendix below)."
+msgstr ""
+
+#: ../../source/pages/credits.md:107 ../../source/pages/credits.md:638
+#: ../../source/pages/credits.md:1053 ../../source/pages/credits.md:1710
+#: 5b2af4ef61d7431fa90cee44a798a12c 9979604fb1164e16a570e4a4cb57ded2
+#: 9c9d43c818954919ab3211f4a983d292 e1f6f7a6831f4a6faef4afa6ec0c3654
+msgid ""
+"&quot;Derivative Works&quot; shall mean any work, whether in Source or "
+"Object form, that is based on (or derived from) the Work and for which "
+"the editorial revisions, annotations, elaborations, or other "
+"modifications represent, as a whole, an original work of authorship. For "
+"the purposes of this License, Derivative Works shall not include works "
+"that remain separable from, or merely link (or bind by name) to the "
+"interfaces of, the Work and Derivative Works thereof."
+msgstr ""
+
+#: ../../source/pages/credits.md:115 ../../source/pages/credits.md:646
+#: ../../source/pages/credits.md:1061 ../../source/pages/credits.md:1718
+#: 32183f1f08ea406d9eca4751f8609f42 a6728eceb91c4c31b92cb92e230f2dda
+#: c9da8cf759f3437084f28d5a42af8bba f33ca3b7a6984d6eb0fdf35a107a4e7a
+msgid ""
+"&quot;Contribution&quot; shall mean any work of authorship, including the"
+" original version of the Work and any modifications or additions to that "
+"Work or Derivative Works thereof, that is intentionally submitted to "
+"Licensor for inclusion in the Work by the copyright owner or by an "
+"individual or Legal Entity authorized to submit on behalf of the "
+"copyright owner. For the purposes of this definition, "
+"&quot;submitted&quot; means any form of electronic, verbal, or written "
+"communication sent to the Licensor or its representatives, including but "
+"not limited to communication on electronic mailing lists, source code "
+"control systems, and issue tracking systems that are managed by, or on "
+"behalf of, the Licensor for the purpose of discussing and improving the "
+"Work, but excluding communication that is conspicuously marked or "
+"otherwise designated in writing by the copyright owner as &quot;Not a "
+"Contribution.&quot;"
+msgstr ""
+
+#: ../../source/pages/credits.md:129 ../../source/pages/credits.md:660
+#: ../../source/pages/credits.md:1075 ../../source/pages/credits.md:1732
+#: 3c9eb797dbd44607ac7fd7b63180955a 4e7fd49658494c79a86942d2eb2176e5
+#: 5ee05fa554f641ddb298410986799567 b203f4b651364e82a9628ea98a322fe2
+msgid ""
+"&quot;Contributor&quot; shall mean Licensor and any individual or Legal "
+"Entity on behalf of whom a Contribution has been received by Licensor and"
+" subsequently incorporated within the Work."
+msgstr ""
+
+#: ../../source/pages/credits.md:133 ../../source/pages/credits.md:664
+#: ../../source/pages/credits.md:1079 ../../source/pages/credits.md:1736
+#: ../../source/pages/credits.md:1944 38d085acb1944f338d87f6bd677b8623
+#: 669ef20d1825495d9198b34904122d4e 72f64562f10e49b0a0038c0db27fba66
+#: de49a01ce96043c0858ed7fd7fc867bb f8934f027b664e6c9406995231794d4d
+msgid ""
+"Grant of Copyright License. Subject to the terms and conditions of this "
+"License, each Contributor hereby grants to You a perpetual, worldwide, "
+"non-exclusive, no-charge, royalty-free, irrevocable copyright license to "
+"reproduce, prepare Derivative Works of, publicly display, publicly "
+"perform, sublicense, and distribute the Work and such Derivative Works in"
+" Source or Object form."
+msgstr ""
+
+#: ../../source/pages/credits.md:140 ../../source/pages/credits.md:671
+#: ../../source/pages/credits.md:1086 ../../source/pages/credits.md:1743
+#: ../../source/pages/credits.md:1951 3a219a5e281f433b882f713e1d0c2d2c
+#: 5f5e2dd46eda4bd1ad639aaa3a9643cc 95e366a977cf41a09bf6c8e69d441736
+#: cbf4770a9a1a48d3aea7d180fc58c7ae f1e8dc203b034d41aa798edcdb8b8967
+msgid ""
+"Grant of Patent License. Subject to the terms and conditions of this "
+"License, each Contributor hereby grants to You a perpetual, worldwide, "
+"non-exclusive, no-charge, royalty-free, irrevocable (except as stated in "
+"this section) patent license to make, have made, use, offer to sell, "
+"sell, import, and otherwise transfer the Work, where such license applies"
+" only to those patent claims licensable by such Contributor that are "
+"necessarily infringed by their Contribution(s) alone or by combination of"
+" their Contribution(s) with the Work to which such Contribution(s) was "
+"submitted. If You institute patent litigation against any entity "
+"(including a cross-claim or counterclaim in a lawsuit) alleging that the "
+"Work or a Contribution incorporated within the Work constitutes direct or"
+" contributory patent infringement, then any patent licenses granted to "
+"You under this License for that Work shall terminate as of the date such "
+"litigation is filed."
+msgstr ""
+
+#: ../../source/pages/credits.md:156 ../../source/pages/credits.md:687
+#: ../../source/pages/credits.md:1102 ../../source/pages/credits.md:1759
+#: ../../source/pages/credits.md:1967 12a81297dd9545d49d32b6c74dc1c682
+#: 151d321ac8f2420db1e3d92c921a8cec 51cc7b7d56344c18a4fd713e4968a5bc
+#: 5e9d84c1376948aa8f4896e3be743596 f5c74110567643f7aaa01dd648cb0c38
+msgid ""
+"Redistribution. You may reproduce and distribute copies of the Work or "
+"Derivative Works thereof in any medium, with or without modifications, "
+"and in Source or Object form, provided that You meet the following "
+"conditions:"
+msgstr ""
+
+#: ../../source/pages/credits.md:161 ../../source/pages/credits.md:692
+#: ../../source/pages/credits.md:1107 ../../source/pages/credits.md:1764
+#: ../../source/pages/credits.md:1972 015e8f0a0e244d0090e25bbdc55b91ea
+#: 2329c69afb1b4b0fa1440c5d5f51752a 9bbd0cc4ef1d4ed98aed80d76f4ca609
+#: bbc38e28fe224a19a42bb53b5a4f918e be9f249e59eb44059a255b92a2805265
+msgid ""
+"(a) You must give any other recipients of the Work or     Derivative "
+"Works a copy of this License; and"
+msgstr ""
+
+#: ../../source/pages/credits.md:164 ../../source/pages/credits.md:695
+#: ../../source/pages/credits.md:1110 ../../source/pages/credits.md:1767
+#: ../../source/pages/credits.md:1975 2b42ec7135f74ef388edbef3934ea85f
+#: 548fbeb9c1f8474f81425f726f9b7325 679bc4943c1d4686b263fd87db4147de
+#: 9fe0eeb536914d729bcac558d5d27120 c8cbdb0d2196465fbcf1692bd7db8ce0
+msgid ""
+"(b) You must cause any modified files to carry prominent notices     "
+"stating that You changed the files; and"
+msgstr ""
+
+#: ../../source/pages/credits.md:167 ../../source/pages/credits.md:698
+#: ../../source/pages/credits.md:1113 ../../source/pages/credits.md:1770
+#: ../../source/pages/credits.md:1978 36f780d0294a4886895a11af304f9247
+#: 68a1b4dc15254aefb27791c4b3595e72 843bee461c7d4f7d8c21f2e9582e864f
+#: 987ff7a194d74abaa2e3cc1934848245 99998eee24874e53950ae8c6e03dea7f
+msgid ""
+"(c) You must retain, in the Source form of any Derivative Works     that "
+"You distribute, all copyright, patent, trademark, and     attribution "
+"notices from the Source form of the Work,     excluding those notices "
+"that do not pertain to any part of     the Derivative Works; and"
+msgstr ""
+
+#: ../../source/pages/credits.md:173 ../../source/pages/credits.md:704
+#: ../../source/pages/credits.md:1119 ../../source/pages/credits.md:1776
+#: 3bdc6adcdd994f6bbc076a369e1364da 4f14959fef45424c949d1b1f1e81b3e2
+#: b7b9ba2d53f441f9be89c31feaf81c9f cfd298e6c50642b89833c29310064175
+msgid ""
+"(d) If the Work includes a &quot;NOTICE&quot; text file as part of its"
+"     distribution, then any Derivative Works that You distribute must"
+"     include a readable copy of the attribution notices contained     "
+"within such NOTICE file, excluding those notices that do not     pertain "
+"to any part of the Derivative Works, in at least one     of the following"
+" places: within a NOTICE text file distributed     as part of the "
+"Derivative Works; within the Source form or     documentation, if "
+"provided along with the Derivative Works; or,     within a display "
+"generated by the Derivative Works, if and     wherever such third-party "
+"notices normally appear. The contents     of the NOTICE file are for "
+"informational purposes only and     do not modify the License. You may "
+"add Your own attribution     notices within Derivative Works that You "
+"distribute, alongside     or as an addendum to the NOTICE text from the "
+"Work, provided     that such additional attribution notices cannot be "
+"construed     as modifying the License."
+msgstr ""
+
+#: ../../source/pages/credits.md:190 ../../source/pages/credits.md:721
+#: ../../source/pages/credits.md:1136 ../../source/pages/credits.md:1793
+#: ../../source/pages/credits.md:2001 00060f46ea7244b0a4910fbf90fabb1b
+#: 1b82e9f89b744bb29c9e6dd536cac27d 322a29f98252444a941bf6a436027d4b
+#: b3733261b94f4f069679056e710bfac8 b557c2c105f04a388356eb2959f78948
+msgid ""
+"You may add Your own copyright statement to Your modifications and may "
+"provide additional or different license terms and conditions for use, "
+"reproduction, or distribution of Your modifications, or for any such "
+"Derivative Works as a whole, provided Your use, reproduction, and "
+"distribution of the Work otherwise complies with the conditions stated in"
+" this License."
+msgstr ""
+
+#: ../../source/pages/credits.md:197 ../../source/pages/credits.md:728
+#: ../../source/pages/credits.md:1143 ../../source/pages/credits.md:1800
+#: ../../source/pages/credits.md:2008 221c6d5b252f4623bba02d1e9c3a2136
+#: 24d32913ae9743e580dd14ca2d4dbd30 7857f9f7101944f4a87d8d9f49e6e5cd
+#: dd1c0f6d3e9244129a36561977ca04cd e9885e6ce2e44d72976b05eb9dd84ffe
+msgid ""
+"Submission of Contributions. Unless You explicitly state otherwise, any "
+"Contribution intentionally submitted for inclusion in the Work by You to "
+"the Licensor shall be under the terms and conditions of this License, "
+"without any additional terms or conditions. Notwithstanding the above, "
+"nothing herein shall supersede or modify the terms of any separate "
+"license agreement you may have executed with Licensor regarding such "
+"Contributions."
+msgstr ""
+
+#: ../../source/pages/credits.md:205 ../../source/pages/credits.md:736
+#: ../../source/pages/credits.md:1151 ../../source/pages/credits.md:1808
+#: ../../source/pages/credits.md:2016 0737a73dc525414fb98c50503004a02b
+#: 192490598e3d41b1909a454ebdf1b5b8 1cad3758335b406faa09e838e3c396a3
+#: 61e424586f9f4d3db2752c90a4f57e3a c7c9340ccb034870b012d4b8474d995f
+msgid ""
+"Trademarks. This License does not grant permission to use the trade "
+"names, trademarks, service marks, or product names of the Licensor, "
+"except as required for reasonable and customary use in describing the "
+"origin of the Work and reproducing the content of the NOTICE file."
+msgstr ""
+
+#: ../../source/pages/credits.md:210 ../../source/pages/credits.md:741
+#: ../../source/pages/credits.md:1156 ../../source/pages/credits.md:1813
+#: 5ca61c04d3f04e73aadae3969b2fe4f1 a1339451ce084d4eaeb95b655674943e
+#: bcfc8abbc99c4967aec2636d92baef76 e202b07952524149ad0bd4a773ceffe6
+msgid ""
+"Disclaimer of Warranty. Unless required by applicable law or agreed to in"
+" writing, Licensor provides the Work (and each Contributor provides its "
+"Contributions) on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR "
+"CONDITIONS OF ANY KIND, either express or implied, including, without "
+"limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, "
+"MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. You are solely "
+"responsible for determining the appropriateness of using or "
+"redistributing the Work and assume any risks associated with Your "
+"exercise of permissions under this License."
+msgstr ""
+
+#: ../../source/pages/credits.md:220 ../../source/pages/credits.md:751
+#: ../../source/pages/credits.md:1166 ../../source/pages/credits.md:1823
+#: ../../source/pages/credits.md:2031 10ac7ab4d88a451f82b5442e027773a0
+#: 7eef73a06856414799632dca53eb046b 9363f203e32f4e3997bb0976f6361424
+#: ca952b7cfef14a21ae3ef62182e8327d fbfd3daaa62645e6a4490a7d257f0213
+msgid ""
+"Limitation of Liability. In no event and under no legal theory, whether "
+"in tort (including negligence), contract, or otherwise, unless required "
+"by applicable law (such as deliberate and grossly negligent acts) or "
+"agreed to in writing, shall any Contributor be liable to You for damages,"
+" including any direct, indirect, special, incidental, or consequential "
+"damages of any character arising as a result of this License or out of "
+"the use or inability to use the Work (including but not limited to "
+"damages for loss of goodwill, work stoppage, computer failure or "
+"malfunction, or any and all other commercial damages or losses), even if "
+"such Contributor has been advised of the possibility of such damages."
+msgstr ""
+
+#: ../../source/pages/credits.md:232 ../../source/pages/credits.md:763
+#: ../../source/pages/credits.md:1178 ../../source/pages/credits.md:1835
+#: ../../source/pages/credits.md:2043 44cc52463a1e418ab8944c0769c37d42
+#: 725f9447e0a04139b22c66afec9161ff 7a454be8868d4ff59ed440414cba5cb4
+#: adb7565e05e449adb75cf0278de76785 ef91eda7471843a9ac0e572a37ce3ef8
+msgid ""
+"Accepting Warranty or Additional Liability. While redistributing the Work"
+" or Derivative Works thereof, You may choose to offer, and charge a fee "
+"for, acceptance of support, warranty, indemnity, or other liability "
+"obligations and/or rights consistent with this License. However, in "
+"accepting such obligations, You may act only on Your own behalf and on "
+"Your sole responsibility, not on behalf of any other Contributor, and "
+"only if You agree to indemnify, defend, and hold each Contributor "
+"harmless for any liability incurred by, or claims asserted against, such "
+"Contributor by reason of your accepting any such warranty or additional "
+"liability."
+msgstr ""
+
+#: ../../source/pages/credits.md:243 ../../source/pages/credits.md:774
+#: ../../source/pages/credits.md:1846 08b22b921f094a32acd6228bbde91fc1
+#: 7b96fe40f50346eb85137679605cefa8 a67cb28024a74e859c5bd7cbda6cd144
+msgid "END OF TERMS AND CONDITIONS"
+msgstr ""
+
+#: ../../source/pages/credits.md:245 ../../source/pages/credits.md:776
+#: ../../source/pages/credits.md:1848 2b2d6abe06e04e70836cf18cb82c5592
+#: 6260a9094ed04d87a72e04e1a20c1552 fe23eda48e4e45c3a14df9f5e95bf5a1
+msgid "APPENDIX: How to apply the Apache License to your work."
+msgstr ""
+
+#: ../../source/pages/credits.md:256 ../../source/pages/credits.md:787
+#: d6d504d328844a65a2339fbe2965632f e6b3ff62712844c8bdb2fc4e9666ee31
+msgid "Copyright 2013-2019 Nikolay Kim and Andrew Svetlov"
+msgstr ""
+
+#: ../../source/pages/credits.md:277 ed7ef03e34374146b1310e950dfc9401
+msgid "Copyright (c) 2022 the contributors"
+msgstr ""
+
+#: ../../source/pages/credits.md:279 ../../source/pages/credits.md:306
+#: ../../source/pages/credits.md:351 ../../source/pages/credits.md:404
+#: ../../source/pages/credits.md:524 ../../source/pages/credits.md:833
+#: ../../source/pages/credits.md:894 ../../source/pages/credits.md:940
+#: ../../source/pages/credits.md:967 ../../source/pages/credits.md:1222
+#: ../../source/pages/credits.md:1254 ../../source/pages/credits.md:1593
+#: ../../source/pages/credits.md:1620 ../../source/pages/credits.md:1647
+#: 0c5db39590c1459998b5fc1ef64f4081 2efe770ee7fe4785b18acd7825d925f3
+#: 36f2a3f900374654b8c1adffda640306 4b86bcbfca3a480faf63f052d2d3c4b1
+#: 84dfaa69a26c40acbb5c8ba0076341d7 85ab1fd7863440d1a12d78d7879d0c6a
+#: 8c8f5041d4624bd89fd89930d7ad3297 921210766da84a01848f04be3efb78ce
+#: 922760cc545f4f28ac6ecdfff3efc1a3 bcda7450cedb477684a6e92c7a509482
+#: c2881c69702c4c3790a6149938d9b30d c925227af360472891584286d9b6efa8
+#: d6eb5133106c49579d650d2d595a550c e44b5686888345a09156f017fb780315
+msgid ""
+"Permission is hereby granted, free of charge, to any person obtaining a "
+"copy of this software and associated documentation files (the "
+"&quot;Software&quot;), to deal in the Software without restriction, "
+"including without limitation the rights to use, copy, modify, merge, "
+"publish, distribute, sublicense, and/or sell copies of the Software, and "
+"to permit persons to whom the Software is furnished to do so, subject to "
+"the following conditions:"
+msgstr ""
+
+#: ../../source/pages/credits.md:289 ../../source/pages/credits.md:316
+#: ../../source/pages/credits.md:361 ../../source/pages/credits.md:534
+#: ../../source/pages/credits.md:843 ../../source/pages/credits.md:904
+#: ../../source/pages/credits.md:950 ../../source/pages/credits.md:977
+#: ../../source/pages/credits.md:1233 ../../source/pages/credits.md:1264
+#: ../../source/pages/credits.md:1603 ../../source/pages/credits.md:1630
+#: ../../source/pages/credits.md:1657 11624572a378465883b97ec6361a6506
+#: 15147e22ea804999a8c6fccb94ffd24b 57552199489b4f9f94919f07297e7e4a
+#: 65384513225c46e5847f9234f0b758f1 a9d8da7e18954acb984157eeb894a59d
+#: b7fb6e065b9544d48923feebcebf89cb c77b8166d5104ab5af0e19196d065a1f
+#: cad0fe03999a42e495623164f0c5f106 cc6d73e4c86747dc9ce6ebc5a64eb743
+#: d4ca81845d3445a0b9e3c7430a9ad6ee d95327a45f554e36b6bb381a18bb6b01
+#: ef3af618ac764657bd2a8c69cfdb3100 fdd129c6d39c49b2ae6c7ab330a01786
+msgid ""
+"THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,"
+" EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF "
+"MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN"
+" NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,"
+" DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR "
+"OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE"
+" USE OR OTHER DEALINGS IN THE SOFTWARE."
+msgstr ""
+
+#: ../../source/pages/credits.md:304 19d89f35f2f749e6bf961facf70b3636
+msgid "Copyright (c) 2018 Alex Grönholm"
+msgstr ""
+
+#: ../../source/pages/credits.md:330 ef79bc447a2d4ea3a2e2abb0f324b1df
+msgid ""
+"Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);"
+" you may not use this file except in compliance with the License. You may"
+" obtain a copy of the License at"
+msgstr ""
+
+#: ../../source/pages/credits.md:334 9816c54d375145f09c4809ca671b03dd
+msgid "http://www.apache.org/licenses/LICENSE-2.0"
+msgstr ""
+
+#: ../../source/pages/credits.md:336 36be58dbfe89493a8cb7c9d3d7cabe9b
+msgid ""
+"Unless required by applicable law or agreed to in writing, software "
+"distributed under the License is distributed on an &quot;AS IS&quot; "
+"BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or "
+"implied. See the License for the specific language governing permissions "
+"and limitations under the License."
+msgstr ""
+
+#: ../../source/pages/credits.md:349 1158012822504ada82c29485dbb1f4fb
+msgid "Copyright (c) 2015 Hynek Schlawack and the attrs contributors"
+msgstr ""
+
+#: ../../source/pages/credits.md:376 c42dd5c850674f8da22132350dc03a79
+msgid "ca-bundle.crt -- Bundle of CA Root Certificates"
+msgstr ""
+
+#: ../../source/pages/credits.md:378 bafb3f9bf4d54e1299a699658d20c8bb
+msgid ""
+"This is a bundle of X.509 certificates of public Certificate Authorities "
+"(CA). These were automatically extracted from Mozilla&#39;s root "
+"certificates file (certdata.txt).  This file can be found in the mozilla "
+"source tree: https://hg.mozilla.org/mozilla-"
+"central/file/tip/security/nss/lib/ckfw/builtins/certdata.txt It contains "
+"the certificates in PEM format and therefore can be directly used with "
+"curl / libcurl / php_curl, or with an Apache+mod_ssl webserver for SSL "
+"client authentication. Just configure this file as the "
+"SSLCACertificateFile.#"
+msgstr ""
+
+#: ../../source/pages/credits.md:387 4ac4d78656cc4d9ea2a3f57de5a0b76b
+msgid ""
+"***** BEGIN LICENSE BLOCK ***** This Source Code Form is subject to the "
+"terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not"
+" distributed with this file, You can obtain one at "
+"http://mozilla.org/MPL/2.0/."
+msgstr ""
+
+#: ../../source/pages/credits.md:392 186bf58ad17b42038d77094a4e5c9691
+msgid ""
+"***** END LICENSE BLOCK ***** @(#) $RCSfile: certdata.txt,v $ $Revision: "
+"1.80 $ $Date: 2011/11/03 15:11:58 $"
+msgstr ""
+
+#: ../../source/pages/credits.md:402 42d780c093fb4a8c9916f625c1d6e102
+msgid "Copyright (c) 2019 TAHRI Ahmed R."
+msgstr ""
+
+#: ../../source/pages/credits.md:414 ../../source/pages/credits.md:1001
+#: 810d4ad1d0cf4266ac12a9fd456fcf80 d83d60172e9442f28ab68b599b5f3804
+msgid ""
+"THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,"
+" EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF "
+"MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN"
+" NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,"
+" DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR "
+"OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE"
+" USE OR OTHER DEALINGS IN THE SOFTWARE. </code></pre><h4 id=\"other-"
+"licenses\">Other Licenses</h4>"
+msgstr ""
+
+#: ../../source/pages/credits.md:428 ../../source/pages/credits.md:463
+#: ../../source/pages/credits.md:809 ../../source/pages/credits.md:860
+#: ../../source/pages/credits.md:1196 06e013ca62b54189a5af23280b7d309b
+#: 19f8ecf92d6145eb9967a0329445c8aa 39939fa41e424c4a8008aec999cdbe0a
+#: 3b9d1017df024d198d43843bcc98bd04 a0e9d10e18694bdb8e3f408b8cd57986
+msgid ""
+"Redistribution and use in source and binary forms, with or without "
+"modification, are permitted provided that the following conditions are "
+"met:"
+msgstr ""
+
+#: ../../source/pages/credits.md:432 faa60041ffc847d89449ef2d04b7ac95
+msgid ""
+"1\\.  Redistributions of source code must retain the above copyright     "
+"notice, this list of conditions and the following disclaimer."
+msgstr ""
+
+#: ../../source/pages/credits.md:435 efe74d299f7c4364ad47c4d6e6fcedb4
+msgid ""
+"2\\.  Redistributions in binary form must reproduce the above copyright"
+"     notice, this list of conditions and the following disclaimer in the"
+"     documentation and/or other materials provided with the distribution."
+msgstr ""
+
+#: ../../source/pages/credits.md:439 d7d15e3f1f0d4adf898b27ac4bd25314
+msgid ""
+"3\\.  Neither the name of the copyright holder nor the names of its     "
+"contributors may be used to endorse or promote products derived from     "
+"this software without specific prior written permission."
+msgstr ""
+
+#: ../../source/pages/credits.md:443 ../../source/pages/credits.md:477
+#: ../../source/pages/credits.md:817 ../../source/pages/credits.md:874
+#: 66f2c0719dbe44cbb73d440e3c6494b1 732eaca3447c4d09b30695d7f40af6c5
+#: a8d838f09dc145ca99df3d5e53ff4be3 dfb1dc3790b14703a35abf98a99fd71c
+msgid ""
+"THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "
+"&quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT "
+"NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR"
+" A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT "
+"HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, "
+"SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED "
+"TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR "
+"PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF "
+"LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING "
+"NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS "
+"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+msgstr ""
+
+#: ../../source/pages/credits.md:466 794dc5183a6a4afdaaae38d323d3ac26
+msgid ""
+"\\* Redistributions of source code must retain the above copyright "
+"notice, this   list of conditions and the following disclaimer."
+msgstr ""
+
+#: ../../source/pages/credits.md:469 fc00b24c004041e1879cad4e250ec7a4
+msgid ""
+"\\* Redistributions in binary form must reproduce the above copyright "
+"notice,   this list of conditions and the following disclaimer in the "
+"documentation   and/or other materials provided with the distribution."
+msgstr ""
+
+#: ../../source/pages/credits.md:473 bda5c9f04e094eaba5db4107505f75ce
+msgid ""
+"\\* Neither the name of the copyright holders, nor those of its "
+"contributors   may be used to endorse or promote products derived from "
+"this software without   specific prior written permission."
+msgstr ""
+
+#: ../../source/pages/credits.md:522 f49c18de714b487ba6fef2031d01ea9e
+msgid "Copyright (c) 2022 Alex Grönholm"
+msgstr ""
+
+#: ../../source/pages/credits.md:542 c3819a33ad4a49f1a337fae8db575ebe
+msgid ""
+"This project contains code copied from the Python standard library. The "
+"following is the required license notice for those parts."
+msgstr ""
+
+#: ../../source/pages/credits.md:545 ../../source/pages/credits.md:1376
+#: 1cf0888502e9475f85e8c25726f1d3c6 f30cc49061244e8894e0345f65a11044
+msgid "PYTHON SOFTWARE FOUNDATION LICENSE VERSION 2"
+msgstr ""
+
+#: ../../source/pages/credits.md:548 ../../source/pages/credits.md:1379
+#: 487733073cf64e139ede687687c154a2 84f39e6e6a074eef9ea0f855bf591afa
+msgid ""
+"1\\. This LICENSE AGREEMENT is between the Python Software Foundation "
+"(&quot;PSF&quot;), and the Individual or Organization "
+"(&quot;Licensee&quot;) accessing and otherwise using this software "
+"(&quot;Python&quot;) in source or binary form and its associated "
+"documentation."
+msgstr ""
+
+#: ../../source/pages/credits.md:553 669038e327254360b0c357c99676eb26
+msgid ""
+"2\\. Subject to the terms and conditions of this License Agreement, PSF "
+"hereby grants Licensee a nonexclusive, royalty-free, world-wide license "
+"to reproduce, analyze, test, perform and/or display publicly, prepare "
+"derivative works, distribute, and otherwise use Python alone or in any "
+"derivative version, provided, however, that PSF&#39;s License Agreement "
+"and PSF&#39;s notice of copyright, i.e., &quot;Copyright (c) 2001, 2002, "
+"2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, "
+"2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022 Python Software "
+"Foundation; All Rights Reserved&quot; are retained in Python alone or in "
+"any derivative version prepared by Licensee."
+msgstr ""
+
+#: ../../source/pages/credits.md:563 ../../source/pages/credits.md:1394
+#: 4871392115e248769328aba5cf03b096 94ed4d606b3640379c9d52bdc898712f
+msgid ""
+"3\\. In the event Licensee prepares a derivative work that is based on or"
+" incorporates Python or any part thereof, and wants to make the "
+"derivative work available to others as provided herein, then Licensee "
+"hereby agrees to include in any such work a brief summary of the changes "
+"made to Python."
+msgstr ""
+
+#: ../../source/pages/credits.md:569 ../../source/pages/credits.md:1400
+#: bcfefa515bb6406398d1cfd4de50c613 fffb354f5b7140fa820de28f22aa7317
+msgid ""
+"4\\. PSF is making Python available to Licensee on an &quot;AS IS&quot; "
+"basis.  PSF MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED.  "
+"BY WAY OF EXAMPLE, BUT NOT LIMITATION, PSF MAKES NO AND DISCLAIMS ANY "
+"REPRESENTATION OR WARRANTY OF MERCHANTABILITY OR FITNESS FOR ANY "
+"PARTICULAR PURPOSE OR THAT THE USE OF PYTHON WILL NOT INFRINGE ANY THIRD "
+"PARTY RIGHTS."
+msgstr ""
+
+#: ../../source/pages/credits.md:576 ../../source/pages/credits.md:1407
+#: 30e4ebf6322c4c61b761cd0f433aeb5c ffb588a5814d433fb7bf0c3071730065
+msgid ""
+"5\\. PSF SHALL NOT BE LIABLE TO LICENSEE OR ANY OTHER USERS OF PYTHON FOR"
+" ANY INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES OR LOSS AS A RESULT OF"
+" MODIFYING, DISTRIBUTING, OR OTHERWISE USING PYTHON, OR ANY DERIVATIVE "
+"THEREOF, EVEN IF ADVISED OF THE POSSIBILITY THEREOF."
+msgstr ""
+
+#: ../../source/pages/credits.md:581 ../../source/pages/credits.md:1412
+#: ../../source/pages/credits.md:1520 37cd946eb8174c32b60c3e12bdd59249
+#: 6207697250e146fc967884e99c722d29 7acbbc3f762545cea14681f61e9b1276
+msgid ""
+"6\\. This License Agreement will automatically terminate upon a material "
+"breach of its terms and conditions."
+msgstr ""
+
+#: ../../source/pages/credits.md:584 ../../source/pages/credits.md:1415
+#: 031c8a3b712743d49eb9f141135244e8 57c26d3a4bdd44c49baa6d141be5e485
+msgid ""
+"7\\. Nothing in this License Agreement shall be deemed to create any "
+"relationship of agency, partnership, or joint venture between PSF and "
+"Licensee.  This License Agreement does not grant permission to use PSF "
+"trademarks or trade name in a trademark sense to endorse or promote "
+"products or services of Licensee, or any third party."
+msgstr ""
+
+#: ../../source/pages/credits.md:590 ../../source/pages/credits.md:1421
+#: 184f6580da1b4aa3862c2f5840d04b8d ba005d1d7c874cd08a83f9e99a7be2cc
+msgid ""
+"8\\. By copying, installing or otherwise using Python, Licensee agrees to"
+" be bound by the terms and conditions of this License Agreement."
+msgstr ""
+
+#: ../../source/pages/credits.md:811 ba6f2984d9174c6589bb93eb1271f566
+msgid ""
+"\\* Redistributions of source code must retain the above copyright "
+"notice, this list of conditions and the following disclaimer."
+msgstr ""
+
+#: ../../source/pages/credits.md:813 7219b3fbe4ef4ff483ded53252937d4f
+msgid ""
+"\\* Redistributions in binary form must reproduce the above copyright "
+"notice, this list of conditions and the following disclaimer in the "
+"documentation and/or other materials provided with the distribution."
+msgstr ""
+
+#: ../../source/pages/credits.md:815 fe02858f7c2d4ef6bbc517a2b7cb26e6
+msgid ""
+"\\* Neither the name of the copyright holder nor the names of its "
+"contributors may be used to endorse or promote products derived from this"
+" software without specific prior written permission."
+msgstr ""
+
+#: ../../source/pages/credits.md:831 7d10b485ba3c4adc82a8de427c81f725
+msgid "Copyright (c) 2023 Retro for wut?"
+msgstr ""
+
+#: ../../source/pages/credits.md:851 f15a79554d414036b54de08aae580c81
+msgid "</code></pre><hr>"
+msgstr ""
+
+#: ../../source/pages/credits.md:857 78f02420b8da449291facb764e58db54
+msgid "Copyright (c) 2013-2021, Kim Davies All rights reserved."
+msgstr ""
+
+#: ../../source/pages/credits.md:863 9d5d79fabc3646d28638c1715188b0e6
+msgid ""
+"1\\. Redistributions of source code must retain the above copyright "
+"notice, this    list of conditions and the following disclaimer."
+msgstr ""
+
+#: ../../source/pages/credits.md:866 d3045f881a8c4e359befe1d00e65cb53
+msgid ""
+"2\\. Redistributions in binary form must reproduce the above copyright "
+"notice,    this list of conditions and the following disclaimer in the "
+"documentation    and/or other materials provided with the distribution."
+msgstr ""
+
+#: ../../source/pages/credits.md:870 7afb81379fa54decbeafce9a82808b2b
+msgid ""
+"3\\. Neither the name of the copyright holder nor the names of its    "
+"contributors may be used to endorse or promote products derived from    "
+"this software without specific prior written permission."
+msgstr ""
+
+#: ../../source/pages/credits.md:892 b7283e2745a24ae3ad69a4727e8865cd
+msgid "Copyright (c) 2017"
+msgstr ""
+
+#: ../../source/pages/credits.md:938 c27342785e6c4b47b940b21c02d20013
+msgid ""
+"Copyright (c) 2017 to present Pydantic Services Inc. and individual "
+"contributors."
+msgstr ""
+
+#: ../../source/pages/credits.md:965 80f9e24e134946b58a2f4d43d7395429
+msgid "Copyright (c) 2022 Samuel Colvin"
+msgstr ""
+
+#: ../../source/pages/credits.md:1199 77cb72d938e94214ae168432a6a03688
+msgid ""
+"Redistributions of source code must retain the above copyright notice, "
+"this list of conditions and the following disclaimer."
+msgstr ""
+
+#: ../../source/pages/credits.md:1202 53db61c0c94346de8b30c4a8dd5017f3
+msgid ""
+"Redistributions in binary form must reproduce the above copyright notice,"
+" this list of conditions and the following disclaimer in the "
+"documentation and/or other materials provided with the distribution."
+msgstr ""
+
+#: ../../source/pages/credits.md:1206 6c53f32ee62744c1ba5884d4ee886a12
+msgid ""
+"Neither the name of the copyright holder nor the names of its "
+"contributors may be used to endorse or promote products derived from this"
+" software without specific prior written permission."
+msgstr ""
+
+#: ../../source/pages/credits.md:1210 0bcd7528adf3413481d6da296271e957
+msgid ""
+"THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "
+"&quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT "
+"NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR"
+" A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT "
+"HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, "
+"SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED "
+"TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR "
+"PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF "
+"LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING "
+"NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS "
+"SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. "
+"</code></pre><pre><code>The MIT License (MIT)"
+msgstr ""
+
+#: ../../source/pages/credits.md:1241 f3567457d0504ef6bf01f2fbd307529a
+msgid ""
+"</code></pre><pre><code>This software is made available under the terms "
+"of *either* of the licenses found in LICENSE.APACHE2 or LICENSE.MIT. "
+"Contributions to are made under the terms of *both* these licenses."
+msgstr ""
+
+#: ../../source/pages/credits.md:1252 b62680df70a84893aacca2fcac75ce98
+msgid "Copyright (c) 2021 Taneli Hukkinen"
+msgstr ""
+
+#: ../../source/pages/credits.md:1307 66762e9eadf24982bf63d5d3154482dc
+msgid ""
+"Python was created in the early 1990s by Guido van Rossum at Stichting "
+"Mathematisch Centrum (CWI, see https://www.cwi.nl) in the Netherlands as "
+"a successor of a language called ABC.  Guido remains Python&#39;s "
+"principal author, although it includes many contributions from others."
+msgstr ""
+
+#: ../../source/pages/credits.md:1312 b16c0c453786417fb94c452d3151bae4
+msgid ""
+"In 1995, Guido continued his work on Python at the Corporation for "
+"National Research Initiatives (CNRI, see https://www.cnri.reston.va.us) "
+"in Reston, Virginia where he released several versions of the software."
+msgstr ""
+
+#: ../../source/pages/credits.md:1317 5ab35e8773d5432f9d78e8ff05fbbb24
+msgid ""
+"In May 2000, Guido and the Python core development team moved to "
+"BeOpen.com to form the BeOpen PythonLabs team.  In October of the same "
+"year, the PythonLabs team moved to Digital Creations, which became Zope "
+"Corporation.  In 2001, the Python Software Foundation (PSF, see "
+"https://www.python.org/psf/) was formed, a non-profit organization "
+"created specifically to own Python-related Intellectual Property. Zope "
+"Corporation was a sponsoring member of the PSF."
+msgstr ""
+
+#: ../../source/pages/credits.md:1325 ca537b8e63ae444db532a69ef8143353
+msgid ""
+"All Python releases are Open Source (see https://opensource.org for the "
+"Open Source Definition).  Historically, most, but not all, Python "
+"releases have also been GPL-compatible; the table below summarizes the "
+"various releases."
+msgstr ""
+
+#: ../../source/pages/credits.md:1345 b5c0eb99f46345f88f377ef976aba096
+msgid "Footnotes:"
+msgstr ""
+
+#: ../../source/pages/credits.md:1347 c740571b283a4bc8bcbf3ae6116f26ba
+msgid ""
+"(1) GPL-compatible doesn&#39;t mean that we&#39;re distributing Python "
+"under     the GPL.  All Python licenses, unlike the GPL, let you "
+"distribute     a modified version without making your changes open "
+"source.  The     GPL-compatible licenses make it possible to combine "
+"Python with     other software that is released under the GPL; the others"
+" don&#39;t."
+msgstr ""
+
+#: ../../source/pages/credits.md:1353 31b1676f2c1d449f8ac88fadcd727ec9
+msgid ""
+"(2) According to Richard Stallman, 1.6.1 is not GPL-compatible,     "
+"because its license has a choice of law clause.  According to     CNRI, "
+"however, Stallman&#39;s lawyer has told CNRI&#39;s lawyer that 1.6.1     "
+"is &quot;not incompatible&quot; with the GPL."
+msgstr ""
+
+#: ../../source/pages/credits.md:1358 339ad6873ea844ef82f2263ad1cef479
+msgid ""
+"Thanks to the many outside volunteers who have worked under Guido&#39;s "
+"direction to make these releases possible."
+msgstr ""
+
+#: ../../source/pages/credits.md:1362 7b16f8c33ac9442faea50c0dbf60a65a
+msgid "B. TERMS AND CONDITIONS FOR ACCESSING OR OTHERWISE USING PYTHON"
+msgstr ""
+
+#: ../../source/pages/credits.md:1365 15e241794fc44bf08266d2992f08a541
+msgid ""
+"Python software and documentation are licensed under the Python Software "
+"Foundation License Version 2."
+msgstr ""
+
+#: ../../source/pages/credits.md:1368 fab387c9aa6f4e908ab62cd8cbfcaf21
+msgid ""
+"Starting with Python 3.8.6, examples, recipes, and other code in the "
+"documentation are dual licensed under the PSF License Version 2 and the "
+"Zero-Clause BSD license."
+msgstr ""
+
+#: ../../source/pages/credits.md:1372 0a48ba767d704e26945f56c4579caadf
+msgid ""
+"Some software incorporated into Python is under different licenses. The "
+"licenses are listed with code falling under that license."
+msgstr ""
+
+#: ../../source/pages/credits.md:1384 1ba780f29b0f480197954740ea431003
+msgid ""
+"2\\. Subject to the terms and conditions of this License Agreement, PSF "
+"hereby grants Licensee a nonexclusive, royalty-free, world-wide license "
+"to reproduce, analyze, test, perform and/or display publicly, prepare "
+"derivative works, distribute, and otherwise use Python alone or in any "
+"derivative version, provided, however, that PSF&#39;s License Agreement "
+"and PSF&#39;s notice of copyright, i.e., &quot;Copyright (c) 2001, 2002, "
+"2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, "
+"2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023 Python Software "
+"Foundation; All Rights Reserved&quot; are retained in Python alone or in "
+"any derivative version prepared by Licensee."
+msgstr ""
+
+#: ../../source/pages/credits.md:1426 e3abe135786b42428b1e3b4f53da4000
+msgid "BEOPEN.COM LICENSE AGREEMENT FOR PYTHON 2.0"
+msgstr ""
+
+#: ../../source/pages/credits.md:1429 67ae97b98b274299990e5eb44efa8c33
+msgid "BEOPEN PYTHON OPEN SOURCE LICENSE AGREEMENT VERSION 1"
+msgstr ""
+
+#: ../../source/pages/credits.md:1431 9867c4898b0a4ec3a27bd9d81221cc50
+msgid ""
+"1\\. This LICENSE AGREEMENT is between BeOpen.com (&quot;BeOpen&quot;), "
+"having an office at 160 Saratoga Avenue, Santa Clara, CA 95051, and the "
+"Individual or Organization (&quot;Licensee&quot;) accessing and otherwise"
+" using this software in source or binary form and its associated "
+"documentation (&quot;the Software&quot;)."
+msgstr ""
+
+#: ../../source/pages/credits.md:1437 d45511e7e09d445b9634c460f5b0142c
+msgid ""
+"2\\. Subject to the terms and conditions of this BeOpen Python License "
+"Agreement, BeOpen hereby grants Licensee a non-exclusive, royalty-free, "
+"world-wide license to reproduce, analyze, test, perform and/or display "
+"publicly, prepare derivative works, distribute, and otherwise use the "
+"Software alone or in any derivative version, provided, however, that the "
+"BeOpen Python License is retained in the Software, alone or in any "
+"derivative version prepared by Licensee."
+msgstr ""
+
+#: ../../source/pages/credits.md:1445 d15eca0b78ac41a681ff9ba3cb34c754
+msgid ""
+"3\\. BeOpen is making the Software available to Licensee on an &quot;AS "
+"IS&quot; basis.  BEOPEN MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS "
+"OR IMPLIED.  BY WAY OF EXAMPLE, BUT NOT LIMITATION, BEOPEN MAKES NO AND "
+"DISCLAIMS ANY REPRESENTATION OR WARRANTY OF MERCHANTABILITY OR FITNESS "
+"FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF THE SOFTWARE WILL NOT "
+"INFRINGE ANY THIRD PARTY RIGHTS."
+msgstr ""
+
+#: ../../source/pages/credits.md:1452 88ed88c5ceb9441db3c1f6aca2909f77
+msgid ""
+"4\\. BEOPEN SHALL NOT BE LIABLE TO LICENSEE OR ANY OTHER USERS OF THE "
+"SOFTWARE FOR ANY INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES OR LOSS AS"
+" A RESULT OF USING, MODIFYING OR DISTRIBUTING THE SOFTWARE, OR ANY "
+"DERIVATIVE THEREOF, EVEN IF ADVISED OF THE POSSIBILITY THEREOF."
+msgstr ""
+
+#: ../../source/pages/credits.md:1457 a668b61c309d4076b66e54ef769c74ff
+msgid ""
+"5\\. This License Agreement will automatically terminate upon a material "
+"breach of its terms and conditions."
+msgstr ""
+
+#: ../../source/pages/credits.md:1460 bc8700662d5a4045bb0bc52d770bbde3
+msgid ""
+"6\\. This License Agreement shall be governed by and interpreted in all "
+"respects by the law of the State of California, excluding conflict of law"
+" provisions.  Nothing in this License Agreement shall be deemed to create"
+" any relationship of agency, partnership, or joint venture between BeOpen"
+" and Licensee.  This License Agreement does not grant permission to use "
+"BeOpen trademarks or trade names in a trademark sense to endorse or "
+"promote products or services of Licensee, or any third party.  As an "
+"exception, the &quot;BeOpen Python&quot; logos available at "
+"http://www.pythonlabs.com/logos.html may be used according to the "
+"permissions granted on that web page."
+msgstr ""
+
+#: ../../source/pages/credits.md:1471 5783e58818b0455b9337767183a62a84
+msgid ""
+"7\\. By copying, installing or otherwise using the software, Licensee "
+"agrees to be bound by the terms and conditions of this License Agreement."
+msgstr ""
+
+#: ../../source/pages/credits.md:1476 f914b9ecb6bf400b9589aa478acb0dfa
+msgid "CNRI LICENSE AGREEMENT FOR PYTHON 1.6.1"
+msgstr ""
+
+#: ../../source/pages/credits.md:1479 5f682c7b501a472ca96e7a796c12a9e0
+msgid ""
+"1\\. This LICENSE AGREEMENT is between the Corporation for National "
+"Research Initiatives, having an office at 1895 Preston White Drive, "
+"Reston, VA 20191 (&quot;CNRI&quot;), and the Individual or Organization "
+"(&quot;Licensee&quot;) accessing and otherwise using Python 1.6.1 "
+"software in source or binary form and its associated documentation."
+msgstr ""
+
+#: ../../source/pages/credits.md:1485 858da8f791c74e398ee52522666d8467
+msgid ""
+"2\\. Subject to the terms and conditions of this License Agreement, CNRI "
+"hereby grants Licensee a nonexclusive, royalty-free, world-wide license "
+"to reproduce, analyze, test, perform and/or display publicly, prepare "
+"derivative works, distribute, and otherwise use Python 1.6.1 alone or in "
+"any derivative version, provided, however, that CNRI&#39;s License "
+"Agreement and CNRI&#39;s notice of copyright, i.e., &quot;Copyright (c) "
+"1995-2001 Corporation for National Research Initiatives; All Rights "
+"Reserved&quot; are retained in Python 1.6.1 alone or in any derivative "
+"version prepared by Licensee.  Alternately, in lieu of CNRI&#39;s License"
+" Agreement, Licensee may substitute the following text (omitting the "
+"quotes): &quot;Python 1.6.1 is made available subject to the terms and "
+"conditions in CNRI&#39;s License Agreement.  This Agreement together with"
+" Python 1.6.1 may be located on the internet using the following unique, "
+"persistent identifier (known as a handle): 1895.22/1013.  This Agreement "
+"may also be obtained from a proxy server on the internet using the "
+"following URL: http://hdl.handle.net/1895.22/1013&quot;."
+msgstr ""
+
+#: ../../source/pages/credits.md:1502 9652177ed19b40a48b8833e9b90e8d08
+msgid ""
+"3\\. In the event Licensee prepares a derivative work that is based on or"
+" incorporates Python 1.6.1 or any part thereof, and wants to make the "
+"derivative work available to others as provided herein, then Licensee "
+"hereby agrees to include in any such work a brief summary of the changes "
+"made to Python 1.6.1."
+msgstr ""
+
+#: ../../source/pages/credits.md:1508 9d523a70f9a941ed8a150acfbcccef6f
+msgid ""
+"4\\. CNRI is making Python 1.6.1 available to Licensee on an &quot;AS "
+"IS&quot; basis.  CNRI MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR "
+"IMPLIED.  BY WAY OF EXAMPLE, BUT NOT LIMITATION, CNRI MAKES NO AND "
+"DISCLAIMS ANY REPRESENTATION OR WARRANTY OF MERCHANTABILITY OR FITNESS "
+"FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF PYTHON 1.6.1 WILL NOT "
+"INFRINGE ANY THIRD PARTY RIGHTS."
+msgstr ""
+
+#: ../../source/pages/credits.md:1515 014455c470da44ce891d55661f0d651c
+msgid ""
+"5\\. CNRI SHALL NOT BE LIABLE TO LICENSEE OR ANY OTHER USERS OF PYTHON "
+"1.6.1 FOR ANY INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES OR LOSS AS A "
+"RESULT OF MODIFYING, DISTRIBUTING, OR OTHERWISE USING PYTHON 1.6.1, OR "
+"ANY DERIVATIVE THEREOF, EVEN IF ADVISED OF THE POSSIBILITY THEREOF."
+msgstr ""
+
+#: ../../source/pages/credits.md:1523 1a4be0ae4eb74b25bf7861da7fa41c46
+msgid ""
+"7\\. This License Agreement shall be governed by the federal intellectual"
+" property law of the United States, including without limitation the "
+"federal copyright law, and, to the extent such U.S. federal law does not "
+"apply, by the law of the Commonwealth of Virginia, excluding "
+"Virginia&#39;s conflict of law provisions. Notwithstanding the foregoing,"
+" with regard to derivative works based on Python 1.6.1 that incorporate "
+"non-separable material that was previously distributed under the GNU "
+"General Public License (GPL), the law of the Commonwealth of Virginia "
+"shall govern this License Agreement only as to issues arising under or "
+"with respect to Paragraphs 4, 5, and 7 of this License Agreement.  "
+"Nothing in this License Agreement shall be deemed to create any "
+"relationship of agency, partnership, or joint venture between CNRI and "
+"Licensee.  This License Agreement does not grant permission to use CNRI "
+"trademarks or trade name in a trademark sense to endorse or promote "
+"products or services of Licensee, or any third party."
+msgstr ""
+
+#: ../../source/pages/credits.md:1540 8b4cb2fe6b8d4a8a920b51ddfc4a8ab1
+msgid ""
+"8\\. By clicking on the &quot;ACCEPT&quot; button where indicated, or by "
+"copying, installing or otherwise using Python 1.6.1, Licensee agrees to "
+"be bound by the terms and conditions of this License Agreement."
+msgstr ""
+
+#: ../../source/pages/credits.md:1547 e6833705c46a41dfa5733bfe053c5c86
+msgid "CWI LICENSE AGREEMENT FOR PYTHON 0.9.0 THROUGH 1.2"
+msgstr ""
+
+#: ../../source/pages/credits.md:1550 1171eea91d814006ad1b1c23f2dbd645
+msgid ""
+"Copyright (c) 1991 - 1995, Stichting Mathematisch Centrum Amsterdam, The "
+"Netherlands.  All rights reserved."
+msgstr ""
+
+#: ../../source/pages/credits.md:1553 e17b0b69afae4c3b819c839340952dc0
+msgid ""
+"Permission to use, copy, modify, and distribute this software and its "
+"documentation for any purpose and without fee is hereby granted, provided"
+" that the above copyright notice appear in all copies and that both that "
+"copyright notice and this permission notice appear in supporting "
+"documentation, and that the name of Stichting Mathematisch Centrum or CWI"
+" not be used in advertising or publicity pertaining to distribution of "
+"the software without specific, written prior permission."
+msgstr ""
+
+#: ../../source/pages/credits.md:1562 8aa2bab3f17f47c88c9e7ed8f70b4ff6
+msgid ""
+"STICHTING MATHEMATISCH CENTRUM DISCLAIMS ALL WARRANTIES WITH REGARD TO "
+"THIS SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND "
+"FITNESS, IN NO EVENT SHALL STICHTING MATHEMATISCH CENTRUM BE LIABLE FOR "
+"ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER "
+"RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF "
+"CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN "
+"CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE."
+msgstr ""
+
+#: ../../source/pages/credits.md:1570 60c18503e43a4ebcb1d4069d3e993bf0
+msgid "ZERO-CLAUSE BSD LICENSE FOR CODE IN THE PYTHON DOCUMENTATION"
+msgstr ""
+
+#: ../../source/pages/credits.md:1573 6fd063fdb8b14e26a80f273f095a5dc3
+msgid ""
+"Permission to use, copy, modify, and/or distribute this software for any "
+"purpose with or without fee is hereby granted."
+msgstr ""
+
+#: ../../source/pages/credits.md:1576 6bd5a91118eb4d15a691429b4dd3604a
+msgid ""
+"THE SOFTWARE IS PROVIDED &quot;AS IS&quot; AND THE AUTHOR DISCLAIMS ALL "
+"WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES "
+"OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE "
+"FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY "
+"DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER "
+"IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING "
+"OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE."
+msgstr ""
+
+#: ../../source/pages/credits.md:1591 1659ab4705b246f7b1799fecf4ea9665
+msgid "Copyright (c) 2008-2020 Andrey Petrov and contributors."
+msgstr ""
+
+#: ../../source/pages/credits.md:1618 a2fc149d6f9b4b7e9b0b21b36e9b514c
+msgid "Copyright (c) 2017, 2018, 2019, 2020, 2021, 2022 Samuel Colvin"
+msgstr ""
+
+#: ../../source/pages/credits.md:1645 73a59bb640984b50910ea63c4c8c0339
+msgid "Copyright (c) 2019 Delgan"
+msgstr ""
+
+#: ../../source/pages/credits.md:1859 2650aca2156542ef9ff768493000135e
+msgid "Copyright [yyyy] [name of copyright owner]"
+msgstr ""
+
+#: ../../source/pages/credits.md:1887 6179738746fb4781879f9ed08e85a029
+msgid ""
+"&amp;quot;License&amp;quot; shall mean the terms and conditions for use, "
+"reproduction, and distribution as defined by Sections 1 through 9 of this"
+" document."
+msgstr ""
+
+#: ../../source/pages/credits.md:1890 3477c8ec158340ce97005b86a3b8243a
+msgid ""
+"&amp;quot;Licensor&amp;quot; shall mean the copyright owner or entity "
+"authorized by the copyright owner that is granting the License."
+msgstr ""
+
+#: ../../source/pages/credits.md:1893 8c43a8a6bc6e462092b3b66b1f357ecc
+msgid ""
+"&amp;quot;Legal Entity&amp;quot; shall mean the union of the acting "
+"entity and all other entities that control, are controlled by, or are "
+"under common control with that entity. For the purposes of this "
+"definition, &amp;quot;control&amp;quot; means (i) the power, direct or "
+"indirect, to cause the direction or management of such entity, whether by"
+" contract or otherwise, or (ii) ownership of fifty percent (50%) or more "
+"of the outstanding shares, or (iii) beneficial ownership of such entity."
+msgstr ""
+
+#: ../../source/pages/credits.md:1901 344ce636ec61438684978d1ad502a6e9
+msgid ""
+"&amp;quot;You&amp;quot; (or &amp;quot;Your&amp;quot;) shall mean an "
+"individual or Legal Entity exercising permissions granted by this "
+"License."
+msgstr ""
+
+#: ../../source/pages/credits.md:1904 33eb55d44d8444bfa7a050761ab176fc
+msgid ""
+"&amp;quot;Source&amp;quot; form shall mean the preferred form for making "
+"modifications, including but not limited to software source code, "
+"documentation source, and configuration files."
+msgstr ""
+
+#: ../../source/pages/credits.md:1908 f1d4bb3de08d40b58c9e0b68e7704585
+msgid ""
+"&amp;quot;Object&amp;quot; form shall mean any form resulting from "
+"mechanical transformation or translation of a Source form, including but "
+"not limited to compiled object code, generated documentation, and "
+"conversions to other media types."
+msgstr ""
+
+#: ../../source/pages/credits.md:1913 4afcd835813c4ba49092ee50378b3286
+msgid ""
+"&amp;quot;Work&amp;quot; shall mean the work of authorship, whether in "
+"Source or Object form, made available under the License, as indicated by "
+"a copyright notice that is included in or attached to the work (an "
+"example is provided in the Appendix below)."
+msgstr ""
+
+#: ../../source/pages/credits.md:1918 b58e20d608c741ef9aca90b7ca395923
+msgid ""
+"&amp;quot;Derivative Works&amp;quot; shall mean any work, whether in "
+"Source or Object form, that is based on (or derived from) the Work and "
+"for which the editorial revisions, annotations, elaborations, or other "
+"modifications represent, as a whole, an original work of authorship. For "
+"the purposes of this License, Derivative Works shall not include works "
+"that remain separable from, or merely link (or bind by name) to the "
+"interfaces of, the Work and Derivative Works thereof."
+msgstr ""
+
+#: ../../source/pages/credits.md:1926 f37ecb3453ea46bcaeed5c24f558c026
+msgid ""
+"&amp;quot;Contribution&amp;quot; shall mean any work of authorship, "
+"including the original version of the Work and any modifications or "
+"additions to that Work or Derivative Works thereof, that is intentionally"
+" submitted to Licensor for inclusion in the Work by the copyright owner "
+"or by an individual or Legal Entity authorized to submit on behalf of the"
+" copyright owner. For the purposes of this definition, "
+"&amp;quot;submitted&amp;quot; means any form of electronic, verbal, or "
+"written communication sent to the Licensor or its representatives, "
+"including but not limited to communication on electronic mailing lists, "
+"source code control systems, and issue tracking systems that are managed "
+"by, or on behalf of, the Licensor for the purpose of discussing and "
+"improving the Work, but excluding communication that is conspicuously "
+"marked or otherwise designated in writing by the copyright owner as "
+"&amp;quot;Not a Contribution.&amp;quot;"
+msgstr ""
+
+#: ../../source/pages/credits.md:1940 73b8d37f3cea47efbea772b4502abe77
+msgid ""
+"&amp;quot;Contributor&amp;quot; shall mean Licensor and any individual or"
+" Legal Entity on behalf of whom a Contribution has been received by "
+"Licensor and subsequently incorporated within the Work."
+msgstr ""
+
+#: ../../source/pages/credits.md:1984 cc8767ded58c4d2185c76c8ff43cee92
+msgid ""
+"(d) If the Work includes a &amp;quot;NOTICE&amp;quot; text file as part "
+"of its     distribution, then any Derivative Works that You distribute "
+"must     include a readable copy of the attribution notices contained"
+"     within such NOTICE file, excluding those notices that do not     "
+"pertain to any part of the Derivative Works, in at least one     of the "
+"following places: within a NOTICE text file distributed     as part of "
+"the Derivative Works; within the Source form or     documentation, if "
+"provided along with the Derivative Works; or,     within a display "
+"generated by the Derivative Works, if and     wherever such third-party "
+"notices normally appear. The contents     of the NOTICE file are for "
+"informational purposes only and     do not modify the License. You may "
+"add Your own attribution     notices within Derivative Works that You "
+"distribute, alongside     or as an addendum to the NOTICE text from the "
+"Work, provided     that such additional attribution notices cannot be "
+"construed     as modifying the License."
+msgstr ""
+
+#: ../../source/pages/credits.md:2021 f7c89a126025491390c36480389511f0
+msgid ""
+"Disclaimer of Warranty. Unless required by applicable law or agreed to in"
+" writing, Licensor provides the Work (and each Contributor provides its "
+"Contributions) on an &amp;quot;AS IS&amp;quot; BASIS, WITHOUT WARRANTIES "
+"OR CONDITIONS OF ANY KIND, either express or implied, including, without "
+"limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, "
+"MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. You are solely "
+"responsible for determining the appropriateness of using or "
+"redistributing the Work and assume any risks associated with Your "
+"exercise of permissions under this License."
+msgstr ""
+
+#: ../../source/pages/credits.md:2054 a6b9d8e851954cb99cf18fd041ca6c28
+msgid "</code></pre><h3 id=\"apache-2-0\">Apache-2.0</h3>"
+msgstr ""
+
