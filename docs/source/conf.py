@@ -86,7 +86,8 @@ html_theme_options = {
             "class": "fa-brands fa-github",
         },
         {
-            "name": "Pypi",             "url": "https://pypi.org/project/iamai/",
+            "name": "Pypi",
+            "url": "https://pypi.org/project/iamai/",
             "html": "",
             "class": "fa-brands fa-python",
         },
