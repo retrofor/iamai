@@ -1,6 +1,6 @@
 [project]
 name = "iamai-adapter-kook"
-version = "0.0.2"
+version = "0.0.3a1"
 description = "kook adapter for iamai."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
@@ -17,7 +17,7 @@ classifiers = [
     "Topic :: Communications :: Chat",
 ]
 requires-python = ">=3.8"
-dependencies = ["iamai>=0.0.1"]
+dependencies = ["iamai>=0.0.2"]
 
 [project.urls]
 Homepage = "https://iamai.retrofor.space/"
