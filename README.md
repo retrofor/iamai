@@ -39,7 +39,7 @@ First of all, in the field of machine learning, we drew inspiration from the exc
 
 Secondly, regarding the cross-platform robot framework, it is primarily based on [st](https://github.com/st1020)'s [alicebot](https://github.com/AliceBotProject/alicebot). We have made numerous adaptations to make it compatible with machine learning. We would like to thank the st and alicebot open-source communities for their contributions.
 
-To avoid any potential disputes or misunderstandings, we have listed the licenses of the projects we have used and express our gratitude towards them. please see [credits.md](./credits.md).
+To avoid any potential disputes or misunderstandings, we have listed the licenses of the projects we have used and express our gratitude towards them. please see [credits.md](./docs/source/credits.md).
 
 <!-- ## 特别的鸣谢
 
