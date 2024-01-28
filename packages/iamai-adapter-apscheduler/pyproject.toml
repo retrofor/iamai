@@ -1,6 +1,6 @@
 [project]
 name = "iamai-adapter-apscheduler"
-version = "0.0.3a2"
+version = "0.0.3a3"
 description = "apscheduler adapter for iamai."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
