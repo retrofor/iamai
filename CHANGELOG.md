@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.0.3a3] - 2024-01-28
+### :wrench: Chores
+- [`84be7fd`](https://github.com/retrofor/iamai/commit/84be7fdae9f828e9422d209a1919a6bdbec29ac2) - **workflows**: remove step copy credits *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`9732bf1`](https://github.com/retrofor/iamai/commit/9732bf1c8bc617e324c0b1f1b2500caf78ba79b1) - **version**: bump version from 0.0.3a2 to 0.0.3a3 *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+
 ## [v0.0.3a2] - 2024-01-28
 ### :boom: BREAKING CHANGES
 - due to [`7f1ceea`](https://github.com/retrofor/iamai/commit/7f1ceea0763e6914a6d52b398ee9959f98470b52) - cancel building the credit with workflow *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*:
@@ -29,3 +35,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 [v0.0.3a2]: https://github.com/retrofor/iamai/compare/v0.0.3a1...v0.0.3a2
+[v0.0.3a3]: https://github.com/retrofor/iamai/compare/v0.0.3a2...v0.0.3a3
