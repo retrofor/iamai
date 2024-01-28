@@ -21,7 +21,7 @@ jobs:
           token: ${{ github.token }}
           tag: ${{ github.ref_name }}
           includeInvalidCommits: true
-          changelogFilePath: docs/source/changelog.md
+          changelogFilePath: CHANGELOG.md
           writeToFile: true
 
       - name: Create Release
