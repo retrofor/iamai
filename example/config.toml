@@ -1,0 +1,49 @@
+[bot]
+plugins = []
+plugin_dirs = ["plugins"]
+adapters = [
+    "iamai.adapter.kook",
+    # "iamai.adapter.gensokyo",
+    # "iamai.adapter.apscheduler",
+    # "iamai.adapter.bililive",
+    # "iamai.adapter.red",
+    # "iamai.adapter.dingtalk"
+]
+
+[bot.log]
+level = "DEBUG"
+verbose_exception = true
+
+[adapter.red]
+auto_fill = false
+show_raw = true
+port = 16532
+access_token = "7996c5051e74ac301ba9c98f69907a6409b649982e622de45149de2d8dce3663"
+
+[adapter.kook]
+adapter_type = "ws"
+api_timeout = 100
+access_token = "1/MjAzNDU=/IJcVYqbD6LRlix24AJ9lUw=="
+show_raw = true
+report_self_message = false
+
+[adapter.gensokyo]
+adapter_type = "reverse-ws"
+host = "127.0.0.1"
+port = 8080
+url = "/gsk/ws"
+show_raw = true
+app_id = "102075599"
+app_secret = "HYeWAZjhRxGLDrHS"
+
+[adapter.apscheduler]
+scheduler_config = { "apscheduler.timezone" = "Asia/Shanghai" }
+
+[adapter.bililive]
+room_id = 21752074
+session_data_path = 'bililive/session.json'
+
+[adapter.dingtalk]
+adapter_type = "http"
+app_secret = "FnQU_a88xRpmcs3oPNXSgoQgm4TidGduVqKhLHR7_NgF6MLBUUbwYdE6MkOFWZFb"
+app_key = "dingo7xu5djthkxpoick"
