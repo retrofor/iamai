@@ -137,8 +137,10 @@ node_modules/
 .vscode
 docs_build/**/*.rst
 docs_build/_build
-example/config.json
-example/config.toml
+examples/config.json
+examples/config.toml
+examples/logs
+examples/data/**/*
 iamai/adapter/**
 
 .pdm-python
@@ -147,6 +149,3 @@ iamai/adapter/**
 # pdm
 dist/**/*
 .pdm-build/**/*
-
-# tests
-example/logs
