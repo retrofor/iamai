@@ -6,7 +6,7 @@ groups = ["default", "docs"]
 cross_platform = true
 static_urls = false
 lock_version = "4.3"
-content_hash = "sha256:4e68832b42fdda640f5b6b7b65164b9ff4e6959f0c2039e89638f722fbe1f0fa"
+content_hash = "sha256:92d120d815dc84cca7c9d04c062a48bafcd29387688f0b4e5d85afcf7a356840"
 
 [[package]]
 name = "aiohttp"
@@ -313,16 +313,6 @@ summary = "Cross-platform colored terminal text."
 files = [
     {file = "colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"},
     {file = "colorama-0.4.6.tar.gz", hash = "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44"},
-]
-
-[[package]]
-name = "docstring-parser"
-version = "0.15"
-requires_python = ">=3.6,<4.0"
-summary = "Parse Python docstrings in reST, Google and Numpydoc format"
-files = [
-    {file = "docstring_parser-0.15-py3-none-any.whl", hash = "sha256:d1679b86250d269d06a99670924d6bce45adc00b08069dae8c47d98e89b667a9"},
-    {file = "docstring_parser-0.15.tar.gz", hash = "sha256:48ddc093e8b1865899956fcc03b03e66bb7240c310fac5af81814580c55bf682"},
 ]
 
 [[package]]
@@ -929,20 +919,6 @@ summary = "This package provides 29 stemmers for 28 languages generated from Sno
 files = [
     {file = "snowballstemmer-2.2.0-py2.py3-none-any.whl", hash = "sha256:c8e1716e83cc398ae16824e5572ae04e0d9fc2c6b985fb0f900f5f0c96ecba1a"},
     {file = "snowballstemmer-2.2.0.tar.gz", hash = "sha256:09b16deb8547d3412ad7b590689584cd0fe25ec8db3be37788be3810cbf19cb1"},
-]
-
-[[package]]
-name = "sophia-doc"
-version = "0.1.6"
-requires_python = ">=3.8"
-summary = "A python package to automatically generate API documents for Python modules."
-dependencies = [
-    "docstring-parser>=0.15",
-    "typing-extensions>=4.7.1",
-]
-files = [
-    {file = "sophia_doc-0.1.6-py3-none-any.whl", hash = "sha256:a41bf8a1db975fba5c10bb6432f4622bda5577eae22afce09d67dac2367c7c6a"},
-    {file = "sophia_doc-0.1.6.tar.gz", hash = "sha256:2e17362556c1ee1c35bf4e58b5dec20f1bcb8d5b46c275f25e34a053de7c02cc"},
 ]
 
 [[package]]
