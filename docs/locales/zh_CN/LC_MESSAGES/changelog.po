@@ -24,7 +24,7 @@ msgid "Changelog"
 msgstr "变更日志"
 
 #: ../../source/changelog.md:3 9c6bd5cbb1394f8c86ee0d871d4ce930
-msgid "[0.0.3a1](https://pypi.org/project/iamai/0.0.3/) 2024-01-27"
+msgid "[0.0.3a2](https://pypi.org/project/iamai/0.0.3/) 2024-01-27"
 msgstr ""
 
 #: ../../source/changelog.md:5 ../../source/changelog.md:12
