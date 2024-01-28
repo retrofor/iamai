@@ -137,15 +137,9 @@ node_modules/
 .vscode
 docs_build/**/*.rst
 docs_build/_build
-/tests/config.json
-/tests/config.toml
-/tests/data/session.token
-/docs/api/**/*.md
-/docs/.next
-tests/plugins/webui/__init__.py
-tests/plugins/webui/config.py
-iamai/adapter/github/
-iamai/adapter/cqhttp/
+example/config.json
+example/config.toml
+iamai/adapter/**
 
 .pdm-python
 %Project%retrofor%iamai/chat_history/history.sqlite
@@ -155,4 +149,4 @@ dist/**/*
 .pdm-build/**/*
 
 # tests
-tests/logs
+example/logs
