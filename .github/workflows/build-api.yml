@@ -34,13 +34,19 @@ jobs:
             shell: bash
             env:
               iamai_DEV: "1"
-    
-          - name: Create Pull Request
-            uses: peter-evans/create-pull-request@v5
+
+          - name: Commit CHANGELOG.md
+            uses: stefanzweifel/git-auto-commit-action@v4
             with:
-              token: ${{ secrets.GITHUB_TOKEN }}
-              commit-message: "chore(docs): update api docs"
-              title: "chore(docs): update api docs"
-              body: "automatic update api docs"
-              branch: docs/update-api-docs
-              base: master
+              branch: master
+              commit_message: "chore(docs): update api docs with sphinx-apidoc"
+    
+          # - name: Create Pull Request
+          #   uses: peter-evans/create-pull-request@v5
+          #   with:
+          #     token: ${{ secrets.GITHUB_TOKEN }}
+          #     commit-message: "chore(docs): update api docs"
+          #     title: "chore(docs): update api docs"
+          #     body: "automatic update api docs"
+          #     branch: docs/update-api-docs
+          #     base: master
