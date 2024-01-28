@@ -27,8 +27,8 @@ jobs:
     
           - name: Remove API Doc
             run: rm -rf docs/source/pages/api
-          - name: copy credits
-            run: cp credits.md docs/source/pages/credits.md
+          # - name: copy credits
+          #   run: cp credits.md docs/source/pages/credits.md
           - name: Build API Doc
             run: pdm run sphinx-apidoc iamai -o docs/source/pages/api -f -e --tocfile index
             shell: bash
