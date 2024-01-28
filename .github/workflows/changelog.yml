@@ -23,6 +23,7 @@ jobs:
           includeInvalidCommits: true
           changelogFilePath: CHANGELOG.md
           writeToFile: true
+          useGitmojis: false
 
       - name: Create Release
         uses: ncipollo/release-action@v1.12.0
