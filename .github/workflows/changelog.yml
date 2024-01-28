@@ -20,6 +20,9 @@ jobs:
         with:
           token: ${{ github.token }}
           tag: ${{ github.ref_name }}
+          includeInvalidCommits: true
+          changelogFilePath: docs/source/changelog.md
+          writeToFile: true
 
       - name: Create Release
         uses: ncipollo/release-action@v1.12.0
