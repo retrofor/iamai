@@ -2,6 +2,7 @@
 
 iamai 的基础模块，每一个 iamai 机器人即是一个 `Bot` 实例。
 """
+
 import asyncio
 import json
 import pkgutil
@@ -85,14 +86,20 @@ class Bot:
     plugin_state: Dict[str, Any]
     global_state: Dict[Any, Any]
 
-    _condition: asyncio.Condition  # 用于处理 get 的 Condition # pyright: ignore[reportUninitializedInstanceVariable]
+    _condition: (
+        asyncio.Condition
+    )  # 用于处理 get 的 Condition # pyright: ignore[reportUninitializedInstanceVariable]
     _current_event: Optional[Event[Any]]  # 当前待处理的 Event
 
     _restart_flag: bool  # 重新启动标志
     _module_path_finder: ModulePathFinder  # 用于查找 plugins 的模块元路径查找器
     _raw_config_dict: Dict[str, Any]  # 原始配置字典
-    _adapter_tasks: Set["asyncio.Task[None]"]  # 适配器任务集合，用于保持对适配器任务的引用
-    _handle_event_tasks: Set["asyncio.Task[None]"]  # 事件处理任务，用于保持对适配器任务的引用
+    _adapter_tasks: Set[
+        "asyncio.Task[None]"
+    ]  # 适配器任务集合，用于保持对适配器任务的引用
+    _handle_event_tasks: Set[
+        "asyncio.Task[None]"
+    ]  # 事件处理任务，用于保持对适配器任务的引用
 
     # 以下属性不会在重启时清除
     _config_file: Optional[str]  # 配置文件
@@ -102,7 +109,9 @@ class Bot:
     _extend_plugins: List[
         Union[Type[Plugin[Any, Any, Any]], str, Path]
     ]  # 使用 load_plugins() 方法程序化加载的插件列表
-    _extend_plugin_dirs: List[Path]  # 使用 load_plugins_from_dirs() 方法程序化加载的插件路径列表
+    _extend_plugin_dirs: List[
+        Path
+    ]  # 使用 load_plugins_from_dirs() 方法程序化加载的插件路径列表
     _extend_adapters: List[
         Union[Type[Adapter[Any, Any]], str]
     ]  # 使用 load_adapter() 方法程序化加载的适配器列表
@@ -535,8 +544,7 @@ class Bot:
         adapter_type: None = None,
         max_try_times: Optional[int] = None,
         timeout: Optional[Union[int, float]] = None,
-    ) -> Event[Any]:
-        ...
+    ) -> Event[Any]: ...
 
     @overload
     async def get(
@@ -547,8 +555,7 @@ class Bot:
         adapter_type: Type[Adapter[EventT, Any]],
         max_try_times: Optional[int] = None,
         timeout: Optional[Union[int, float]] = None,
-    ) -> EventT:
-        ...
+    ) -> EventT: ...
 
     @overload
     async def get(
@@ -559,8 +566,7 @@ class Bot:
         adapter_type: Optional[Type[AdapterT]] = None,
         max_try_times: Optional[int] = None,
         timeout: Optional[Union[int, float]] = None,
-    ) -> EventT:
-        ...
+    ) -> EventT: ...
 
     async def get(
         self,
@@ -851,12 +857,10 @@ class Bot:
         self._load_adapters(*adapters)
 
     @overload
-    def get_adapter(self, adapter: str) -> Adapter[Any, Any]:
-        ...
+    def get_adapter(self, adapter: str) -> Adapter[Any, Any]: ...
 
     @overload
-    def get_adapter(self, adapter: Type[AdapterT]) -> AdapterT:
-        ...
+    def get_adapter(self, adapter: Type[AdapterT]) -> AdapterT: ...
 
     def get_adapter(
         self, adapter: Union[str, Type[AdapterT]]
