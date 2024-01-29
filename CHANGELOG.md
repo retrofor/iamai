@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.0.3b1] - 2024-01-29
+### Refactors
+- [`1fa6516`](https://github.com/retrofor/iamai/commit/1fa6516950fc2c1a967154ea916c580efb352d39) - rename example to examples *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Chores
+- [`5d7f813`](https://github.com/retrofor/iamai/commit/5d7f81398bee5dd8926580e4f41baab35d0b38a4) - **docs**: update api docs *(PR [#273](https://github.com/retrofor/iamai/pull/273) by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`fe9b8cb`](https://github.com/retrofor/iamai/commit/fe9b8cbee74b1d470c6033550f99a9f6afbb8d2a) - **workflows**: disable useGitmojis *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`f5e26df`](https://github.com/retrofor/iamai/commit/f5e26df94e10254e55b9de7f632c069c10cc1433) - **workflows**: update api build steps *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`f222434`](https://github.com/retrofor/iamai/commit/f222434831b73f6a8a940498b670b45f33b96995) - **deps**: bump ncipollo/release-action from 1.12.0 to 1.13.0 *(PR [#275](https://github.com/retrofor/iamai/pull/275) by [@dependabot[bot]](https://github.com/apps/dependabot))*
+- [`aa61cf1`](https://github.com/retrofor/iamai/commit/aa61cf10d711c33c14ae22c641a96c6deec19570) - **deps**: bump stefanzweifel/git-auto-commit-action from 4 to 5 *(PR [#274](https://github.com/retrofor/iamai/pull/274) by [@dependabot[bot]](https://github.com/apps/dependabot))*
+
+
 ## [v0.0.3a3] - 2024-01-28
 ### :wrench: Chores
 - [`84be7fd`](https://github.com/retrofor/iamai/commit/84be7fdae9f828e9422d209a1919a6bdbec29ac2) - **workflows**: remove step copy credits *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
@@ -36,3 +48,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [v0.0.3a2]: https://github.com/retrofor/iamai/compare/v0.0.3a1...v0.0.3a2
 [v0.0.3a3]: https://github.com/retrofor/iamai/compare/v0.0.3a2...v0.0.3a3
+[v0.0.3b1]: https://github.com/retrofor/iamai/compare/v0.0.3a3...v0.0.3b1
