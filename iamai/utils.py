@@ -1,4 +1,5 @@
 """iamai 内部使用的实用工具。"""
+
 import asyncio
 import importlib
 import inspect

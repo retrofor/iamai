@@ -3,6 +3,7 @@
 本适配器适配了 Kook 协议。
 协议详情请参考: [Kook 开发者平台](https://developer.kookapp.cn/) 。
 """
+
 import re
 import sys
 import json
@@ -345,7 +346,10 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
                 break
             await self.websocket.send_json(
                 json.dumps(
-                    {"s": 2, "sn": ResultStore.get_sn(session)}  # 客户端目前收到的最新的消息 sn
+                    {
+                        "s": 2,
+                        "sn": ResultStore.get_sn(session),
+                    }  # 客户端目前收到的最新的消息 sn
                 )
             )
             logger.debug(f"HeartBeat sent {ResultStore.get_sn(session)} times!")
