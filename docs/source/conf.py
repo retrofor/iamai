@@ -93,3 +93,25 @@ html_theme_options = {
         },
     ],
 }
+
+#
+# The following code was added during an automated build on readthedocs.org
+# It is auto created and injected for every build. The result is based on the
+# conf.py.tmpl file found in the readthedocs.org codebase:
+# https://github.com/rtfd/readthedocs.org/blob/main/readthedocs/doc_builder/templates/doc_builder/conf.py.tmpl
+#
+# Note: this file shouldn't rely on extra dependencies.
+
+import importlib
+import sys
+import os.path
+
+# User's Sphinx configurations
+language_user = globals().get('language', None)
+latex_engine_user = globals().get('latex_engine', None)
+latex_elements_user = globals().get('latex_elements', None)
+
+# Remove this once xindy gets installed in Docker image and XINDYOPS
+# env variable is supported
+# https://github.com/rtfd/readthedocs-docker-images/pull/98
+latex_use_xindy = False

@@ -30,7 +30,10 @@ jobs:
           # - name: copy credits
           #   run: cp credits.md docs/source/pages/credits.md
           - name: Build API Doc
-            run: pdm run sphinx-apidoc iamai -o docs/source/pages/api -f -e --tocfile index
+            run: |
+              cd docs
+              make api build
+              # pdm run sphinx-apidoc -o docs/source/pages/api -f -e --tocfile index
             shell: bash
             env:
               iamai_DEV: "1"

@@ -3,12 +3,14 @@
 
 # You can set these variables from the command line, and also
 # from the environment for the first two.
-SPHINXOPTS    ?=
+SPHINXOPTS    ?= .
 SPHINXBUILD   ?= sphinx-build
-SOURCEDIR     = .
+SOURCEDIR     = source
 BUILDDIR      = _build
 SPHINXINTL    ?= sphinx-intl 
 lang		  ?= zh_CN
+SPHINXAPIDOCS ?= sphinx-apidoc
+SPHINX 		  ?= sphinx
 
 # Put it first so that "make" without argument is like "make help".
 help:
@@ -21,6 +23,18 @@ help:
 %: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
+# build translation files ``.pot``
+trans build:
+	@pdm run $(SPHINXBUILD) -b gettext . ./$(BUILDDIR)/gettext $(O)
+
 # update translation command
-translate:
-	@$(SPHINXINTL) update -p ./build/gettext -l $(lang) $(O)
+trans update:
+	@pdm run $(SPHINXINTL) update -p ./$(BUILDDIR)/gettext -l $(lang) $(O)
+
+# build api docs
+api build:
+	@pdm run $(SPHINXAPIDOCS) -o $(SOURCEDIR)/pages/api ../iamai ../packages -f -e --tocfile index $(O)
+
+# build docs
+docs build:
+	@pdm run $(SPHINXBUILD) "$(SOURCEDIR)" "$(BUILDDIR)" $(O)

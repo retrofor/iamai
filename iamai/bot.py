@@ -1,6 +1,6 @@
-"""iamai 机器人对象。
+"""iamai ``Bot`` Module
 
-iamai 的基础模块，每一个 iamai 机器人即是一个 `Bot` 实例。
+The basic module of iamai, each iamai robot is a ``Bot`` instance.
 """
 
 import asyncio

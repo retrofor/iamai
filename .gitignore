@@ -149,3 +149,6 @@ iamai/adapter/**
 # pdm
 dist/**/*
 .pdm-build/**/*
+
+# docs
+_build
