@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.0.3b2] - 2024-02-14
+### Bug Fixes
+- [`b8e1178`](https://github.com/retrofor/iamai/commit/b8e11784375b670293d4c4cc9f455a2c1c3a93dd) - change project readme file suffix *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Chores
+- [`83adf17`](https://github.com/retrofor/iamai/commit/83adf171f47a7927c2f156d0c2aa37a2aca40f50) - bump version to 003b2 *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+
 ## [v0.0.3b1] - 2024-01-29
 ### Refactors
 - [`1fa6516`](https://github.com/retrofor/iamai/commit/1fa6516950fc2c1a967154ea916c580efb352d39) - rename example to examples *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
@@ -49,3 +57,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.0.3a2]: https://github.com/retrofor/iamai/compare/v0.0.3a1...v0.0.3a2
 [v0.0.3a3]: https://github.com/retrofor/iamai/compare/v0.0.3a2...v0.0.3a3
 [v0.0.3b1]: https://github.com/retrofor/iamai/compare/v0.0.3a3...v0.0.3b1
+[v0.0.3b2]: https://github.com/retrofor/iamai/compare/v0.0.3b1...v0.0.3b2
