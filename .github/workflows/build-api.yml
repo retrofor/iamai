@@ -27,18 +27,17 @@ jobs:
     
           - name: Remove API Doc
             run: rm -rf docs/source/pages/api
-          # - name: copy credits
-          #   run: cp credits.md docs/source/pages/credits.md
+
           - name: Build API Doc
             run: |
-              cd docs
-              make api build
-              # pdm run sphinx-apidoc -o docs/source/pages/api -f -e --tocfile index
+              # cd docs
+              # make api build
+              pdm run sphinx-apidoc -o docs/source/pages/api iamai packages -f -e --tocfile index
             shell: bash
             env:
               iamai_DEV: "1"
 
-          - name: Commit CHANGELOG.md
+          - name: Commit 
             uses: stefanzweifel/git-auto-commit-action@v5
             with:
               branch: master

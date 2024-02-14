@@ -1,6 +1,6 @@
-"""iamai ``Bot`` Module
+"""iamai Bot Module
 
-The basic module of iamai, each iamai robot is a ``Bot`` instance.
+The basic module of iamai, each iamai robot is a ``Bot()`` instance.
 """
 
 import asyncio
