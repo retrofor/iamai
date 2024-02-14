@@ -4,7 +4,7 @@ version = "0.0.3b1"
 description = "Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform Robotics."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
-readme = "README.md"
+readme = "README.rst"
 keywords = [
     "bot",
     "red",
