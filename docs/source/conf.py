@@ -29,7 +29,7 @@ release = PROJECT_VERSION  # "latest"
 copyright = "2023-PRESENT, Retrofor Wut?"
 author = "Hsiang Nianian"  # AUTHORS
 
-html_title = "Comprehensive AI Toolkit -- IAMAI"
+html_title = "Comprehensive AI Toolkit"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
