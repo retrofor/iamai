@@ -33,12 +33,12 @@ jobs:
               # cd docs
               # make api build
               cp -r packages/iamai-adapter-apscheduler/iamai/adapter/apscheduler iamai/adapter/apscheduler
-              cp -r packages/iamai-adapter-apscheduler/iamai/adapter/bililive iamai/adapter/bililive
-              cp -r packages/iamai-adapter-apscheduler/iamai/adapter/console iamai/adapter/console
-              cp -r packages/iamai-adapter-apscheduler/iamai/adapter/gensokyo iamai/adapter/gensokyo
-              cp -r packages/iamai-adapter-apscheduler/iamai/adapter/kook iamai/adapter/kook
-              cp -r packages/iamai-adapter-apscheduler/iamai/adapter/onebot11 iamai/adapter/onebot11
-              cp -r packages/iamai-adapter-apscheduler/iamai/adapter/red iamai/adapter/red
+              cp -r packages/iamai-adapter-bililive/iamai/adapter/bililive iamai/adapter/bililive
+              cp -r packages/iamai-adapter-console/iamai/adapter/console iamai/adapter/console
+              cp -r packages/iamai-adapter-gensokyo/iamai/adapter/gensokyo iamai/adapter/gensokyo
+              cp -r packages/iamai-adapter-kook/iamai/adapter/kook iamai/adapter/kook
+              cp -r packages/iamai-adapter-onebot11/iamai/adapter/onebot11 iamai/adapter/onebot11
+              cp -r packages/iamai-adapter-red/iamai/adapter/red iamai/adapter/red
               pdm run sphinx-apidoc -o docs/source/pages/api iamai packages -f -e --tocfile index
             shell: bash
             env:
