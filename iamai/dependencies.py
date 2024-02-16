@@ -1,6 +1,6 @@
-"""iamai 依赖注入。
+"""iamai dependency injection.
 
-实现依赖注入相关功能。
+Implement dependency injection related functions.
 """
 
 import inspect
@@ -36,13 +36,13 @@ __all__ = ["Depends"]
 
 
 class InnerDepends:
-    """子依赖的内部实现。
+    """Internal implementation of subdependency.
 
-    用户无需关注此内部实现。
+    Users do not need to pay attention to this internal implementation.
 
     Attributes:
-        dependency: 依赖类。如果不指定则根据字段的类型注释自动判断。
-        use_cache: 是否使用缓存。默认为 `True`。
+        dependency: dependency class. If not specified, it will be automatically determined based on the type annotation of the field.
+        use_cache: whether to use cache. Defaults to ``True``.
     """
 
     dependency: Optional[Dependency[Any]]
@@ -63,14 +63,14 @@ class InnerDepends:
 def Depends(  # noqa: N802 # pylint: disable=invalid-name
     dependency: Optional[Dependency[_T]] = None, *, use_cache: bool = True
 ) -> _T:
-    """子依赖装饰器。
+    """Subdependency decorator.
 
     Args:
-        dependency: 依赖类。如果不指定则根据字段的类型注释自动判断。
-        use_cache: 是否使用缓存。默认为 `True`。
+        dependency: dependency class. If not specified, it will be automatically determined based on the type annotation of the field.
+        use_cache: whether to use cache. Defaults to ``True``.
 
     Returns:
-        返回内部子依赖对象。
+        Returns the internal child dependency object.
     """
     return InnerDepends(dependency=dependency, use_cache=use_cache)  # type: ignore
 
@@ -82,19 +82,19 @@ async def solve_dependencies(
     stack: AsyncExitStack,
     dependency_cache: Dict[Dependency[Any], Any],
 ) -> _T:
-    """解析子依赖。
+    """Resolve subdependencies.
 
     Args:
-        dependent: 依赖类。
-        use_cache: 是否使用缓存。
-        stack: `AsyncExitStack` 对象。
-        dependency_cache: 依赖缓存。
+        dependent: dependent class.
+        use_cache: whether to use cache.
+        stack: ``AsyncExitStack`` object.
+        dependency_cache: dependency cache.
 
     Raises:
-        TypeError: 解析错误。
+        TypeError: Parsing error.
 
     Returns:
-        解析完成子依赖的对象。
+        Object that resolves sub-dependencies.
     """
     if use_cache and dependent in dependency_cache:
         return dependency_cache[dependent]

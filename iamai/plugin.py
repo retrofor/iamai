@@ -34,7 +34,7 @@ __all__ = ["Plugin", "PluginLoadType"]
 
 
 class PluginLoadType(Enum):
-    """插件加载类型。"""
+    """Plugins loaded types."""
 
     DIR = "dir"
     NAME = "name"
@@ -43,21 +43,21 @@ class PluginLoadType(Enum):
 
 
 class Plugin(ABC, Generic[EventT, StateT, ConfigT]):
-    """所有 iamai 插件的基类。
+    """Base class for all iamai plugins.
 
     Attributes:
-        event: 当前正在被此插件处理的事件。
-        priority: 插件的优先级，数字越小表示优先级越高，默认为 0。
-        block: 插件执行结束后是否阻止事件的传播。`True` 表示阻止。
-        __plugin_load_type__: 插件加载类型，由 iamai 自动设置，反映了此插件是如何被加载的。
-        __plugin_file_path__: 当插件加载类型为 `PluginLoadType.CLASS` 时为 `None`，
-            否则为定义插件在的 Python 模块的位置。
+        event: The event currently being processed by this plugin.
+        priority: The priority of the plugin. The smaller the number, the higher the priority. The default is 0.
+        block: Whether to prevent the propagation of events after the plug-in is executed. ``True`` means blocking.
+        __plugin_load_type__: Plugin load type, automatically set by iamai, reflects how this plugin is loaded.
+        __plugin_file_path__: ``None`` when the plugin loading type is ``PluginLoadType.CLASS``,
+            Otherwise, the location of the Python module in which the plugin is defined.
     """
 
     priority: ClassVar[int] = 0
     block: ClassVar[bool] = False
 
-    # 不能使用 ClassVar 因为 PEP 526 不允许这样做
+    # Cannot use ClassVar because PEP 526 does not allow it
     Config: Type[ConfigT]
 
     __plugin_load_type__: ClassVar[PluginLoadType]
@@ -69,7 +69,7 @@ class Plugin(ABC, Generic[EventT, StateT, ConfigT]):
         event = Depends(Event)
 
     def __init_state__(self) -> Optional[StateT]:
-        """初始化插件状态。"""
+        """Initialize plugin state."""
 
     def __init_subclass__(
         cls,
@@ -77,11 +77,11 @@ class Plugin(ABC, Generic[EventT, StateT, ConfigT]):
         init_state: Optional[StateT] = None,
         **_kwargs: Any,
     ) -> None:
-        """初始化子类。
+        """Initialize subclasses.
 
         Args:
-            config: 配置类。
-            init_state: 初始状态。
+            config: Configuration class.
+            init_state: initial state.
         """
         super().__init_subclass__()
 
@@ -116,19 +116,19 @@ class Plugin(ABC, Generic[EventT, StateT, ConfigT]):
     @final
     @property
     def name(self) -> str:
-        """插件类名称。"""
+        """plugin class name."""
         return self.__class__.__name__
 
     @final
     @property
     def bot(self) -> "Bot":
-        """机器人对象。"""
+        """bot object."""
         return self.event.adapter.bot  # pylint: disable=no-member
 
     @final
     @property
     def config(self) -> ConfigT:
-        """插件配置。"""
+        """plugin configuration."""
         default: Any = None
         config_class = getattr(self, "Config", None)
         if is_config_class(config_class):
@@ -141,17 +141,17 @@ class Plugin(ABC, Generic[EventT, StateT, ConfigT]):
 
     @final
     def stop(self) -> NoReturn:
-        """停止当前事件传播。"""
+        """Stop propagation of current events."""
         raise StopException
 
     @final
     def skip(self) -> NoReturn:
-        """跳过自身继续当前事件传播。"""
+        """Skips itself and continues propagation of the current event."""
         raise SkipException
 
     @property
     def state(self) -> StateT:
-        """插件状态。"""
+        """plugin status."""
         return self.bot.plugin_state[self.name]
 
     @state.setter
@@ -161,13 +161,14 @@ class Plugin(ABC, Generic[EventT, StateT, ConfigT]):
 
     @abstractmethod
     async def handle(self) -> None:
-        """处理事件的方法。当 `rule()` 方法返回 `True` 时 iamai 会调用此方法。每个插件必须实现此方法。"""
+        """Method to handle events. iamai will call this method when the ``rule()`` method returns ``True``. Each plugin must implement this method."""
         raise NotImplementedError
 
     @abstractmethod
     async def rule(self) -> bool:
-        """匹配事件的方法。事件处理时，会按照插件的优先级依次调用此方法，当此方法返回 `True` 时将事件交由此插件处理。每个插件必须实现此方法。
+        """Method to match the event. When the event is processed, this method will be called in sequence according to the priority of the plugin. When this method returns ``True``, the event will be handed over to this plugin for processing. Each plugin must implement this method.
 
-        注意：不建议直接在此方法内实现对事件的处理，事件的具体处理请交由 `handle()` 方法。
+        .. note::
+            It is not recommended to implement event processing directly in this method. Please leave the specific processing of events to the ``handle()`` method.
         """
         raise NotImplementedError

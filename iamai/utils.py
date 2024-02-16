@@ -1,4 +1,4 @@
-"""iamai 内部使用的实用工具。"""
+"""A utility used internally by iamai."""
 
 import asyncio
 import importlib
@@ -65,7 +65,7 @@ StrOrBytesPath: TypeAlias = Union[str, bytes, "PathLike[str]", "PathLike[bytes]"
 
 
 class ModulePathFinder(MetaPathFinder):
-    """用于查找 iamai 组件的元路径查找器。"""
+    """Meta path finder for finding iamai components."""
 
     path: ClassVar[List[str]] = []
 
@@ -75,20 +75,20 @@ class ModulePathFinder(MetaPathFinder):
         path: Optional[Sequence[str]] = None,
         target: Optional[ModuleType] = None,
     ) -> Union[ModuleSpec, None]:
-        """用于查找指定模块的 `spec`。"""
+        """Used to find the ``spec`` of a specified module."""
         if path is None:
             path = []
         return PathFinder.find_spec(fullname, self.path + list(path), target)
 
 
 def is_config_class(config_class: Any) -> TypeGuard[Type[ConfigModel]]:
-    """判断一个对象是否是配置类。
+    """Determine whether an object is a configuration class.
 
     Args:
-        config_class: 待判断的对象。
+        config_class: The object to be judged.
 
     Returns:
-        返回是否是配置类。
+        Returns whether it is a configuration class.
     """
     return (
         inspect.isclass(config_class)
@@ -100,14 +100,14 @@ def is_config_class(config_class: Any) -> TypeGuard[Type[ConfigModel]]:
 
 
 def get_classes_from_module(module: ModuleType, super_class: _TypeT) -> List[_TypeT]:
-    """从模块中查找指定类型的类。
+    """Find a class of the specified type from the module.
 
     Args:
-        module: Python 模块。
-        super_class: 要查找的类的超类。
+        module: Python module.
+        super_class: The superclass of the class to be found.
 
     Returns:
-        返回符合条件的类的列表。
+        Returns a list of classes that meet the criteria.
     """
     classes: List[_TypeT] = []
     for _, module_attr in inspect.getmembers(module, inspect.isclass):
@@ -125,18 +125,18 @@ def get_classes_from_module(module: ModuleType, super_class: _TypeT) -> List[_Ty
 def get_classes_from_module_name(
     name: str, super_class: _TypeT, *, reload: bool = False
 ) -> List[Tuple[_TypeT, ModuleType]]:
-    """从指定名称的模块中查找指定类型的类。
+    """Find a class of the specified type from the module with the specified name.
 
     Args:
-        name: 模块名称，格式和 Python `import` 语句相同。
-        super_class: 要查找的类的超类。
-        reload: 是否重新加载模块。
+        name: module name, the format is the same as the Python ``import`` statement.
+        super_class: The superclass of the class to be found.
+        reload: Whether to reload the module.
 
     Returns:
-        返回由符合条件的类和模块组成的元组的列表。
+        Returns a list of tuples consisting of classes and modules that meet the criteria.
 
     Raises:
-        ImportError: 当导入模块过程中出现错误。
+        ImportError: An error occurred while importing the module.
     """
     try:
         importlib.invalidate_caches()
@@ -145,32 +145,32 @@ def get_classes_from_module_name(
             importlib.reload(module)
         return [(x, module) for x in get_classes_from_module(module, super_class)]
     except KeyboardInterrupt:
-        # 不捕获 KeyboardInterrupt
-        # 捕获 KeyboardInterrupt 会阻止用户关闭 Python 当正在导入的模块陷入死循环时
+        # Do not capture KeyboardInterrupt
+        # Catching KeyboardInterrupt will prevent the user from closing Python when the module being imported is stuck in an infinite loop
         raise
     except BaseException as e:
         raise ImportError(e, traceback.format_exc()) from e
 
 
 class PydanticEncoder(json.JSONEncoder):
-    """用于解析 `pydantic.BaseModel` 的 `JSONEncoder` 类。"""
+    """``JSONEncoder`` class for parsing ``pydantic.BaseModel``."""
 
     def default(self, o: Any) -> Any:
-        """返回 `o` 的可序列化对象。"""
+        """Returns a serializable object of ``o``."""
         if isinstance(o, BaseModel):
             return o.model_dump(mode="json")
         return super().default(o)
 
 
 def samefile(path1: StrOrBytesPath, path2: StrOrBytesPath) -> bool:
-    """一个 `os.path.samefile` 的简单包装。
+    """A simple wrapper around ``os.path.samefile``.
 
     Args:
-        path1: 路径1。
-        path2: 路径2。
+        path1: path1.
+        path2: path 2.
 
     Returns:
-        如果两个路径是否指向相同的文件或目录。
+        If two paths point to the same file or directory.
     """
     try:
         return path1 == path2 or os.path.samefile(path1, path2)  # noqa: PTH121
@@ -181,14 +181,14 @@ def samefile(path1: StrOrBytesPath, path2: StrOrBytesPath) -> bool:
 def sync_func_wrapper(
     func: Callable[_P, _R], *, to_thread: bool = False
 ) -> Callable[_P, Coroutine[None, None, _R]]:
-    """包装一个同步函数为异步函数。
+    """Wrap a synchronous function as an asynchronous function.
 
     Args:
-        func: 待包装的同步函数。
-        to_thread: 是否在独立的线程中运行同步函数。默认为 `False`。
+        func: synchronous function to be packaged.
+        to_thread: Whether to run the synchronization function in a separate thread. Defaults to ``False``.
 
     Returns:
-        异步函数。
+        Asynchronous functions.
     """
     if to_thread:
 
@@ -209,14 +209,14 @@ def sync_func_wrapper(
 async def sync_ctx_manager_wrapper(
     cm: ContextManager[_T], *, to_thread: bool = False
 ) -> AsyncGenerator[_T, None]:
-    """将同步上下文管理器包装为异步上下文管理器。
+    """Wrap a synchronous context manager into an asynchronous context manager.
 
     Args:
-        cm: 待包装的同步上下文管理器。
-        to_thread: 是否在独立的线程中运行同步函数。默认为 `False`。
+        cm: The synchronization context manager to be wrapped.
+        to_thread: Whether to run the synchronization function in a separate thread. Defaults to ``False``.
 
     Returns:
-        异步上下文管理器。
+        Asynchronous context manager.
     """
     try:
         yield await sync_func_wrapper(cm.__enter__, to_thread=to_thread)()
@@ -232,13 +232,13 @@ async def sync_ctx_manager_wrapper(
 def wrap_get_func(
     func: Optional[Callable[[EventT], Union[bool, Awaitable[bool]]]]
 ) -> Callable[[EventT], Awaitable[bool]]:
-    """将 `get()` 函数接受的参数包装为一个异步函数。
+    """Wrap the parameters accepted by the ``get()`` function into an asynchronous function.
 
     Args:
-        func: `get()` 函数接受的参数。
+        func: The parameters accepted by the ``get()`` function.
 
     Returns:
-        异步函数。
+        Asynchronous functions.
     """
     if func is None:
         return sync_func_wrapper(lambda _: True)
@@ -254,17 +254,17 @@ else:  # pragma: no cover
     def get_annotations(
         obj: Union[Callable[..., object], Type[Any], ModuleType]
     ) -> Dict[str, Any]:
-        """计算一个对象的标注字典。
+        """Compute the annotation dictionary of an object.
 
         Args:
-            obj: 一个可调用对象、类或模块。
+            obj: A callable object, class, or module.
 
         Raises:
-            TypeError: `obj` 不是一个可调用对象、类或模块。
-            ValueError: 对象的 `__annotations__` 不是一个字典或 `None`。
+            TypeError: ``obj`` is not a callable object, class or module.
+            ValueError: Object's ``__annotations__`` is not a dictionary or ``None``.
 
         Returns:
-            对象的标注字典。
+            Annotation dictionary for objects.
         """
         ann: Union[Dict[str, Any], None]
 

@@ -1,6 +1,6 @@
-"""iamai 配置。
+"""Configuration module.
 
-iamai 使用 [pydantic](https://pydantic-docs.helpmanual.io/) 来读取配置。
+iamai uses `pydantic <https://pydantic-docs.helpmanual.io/>`_ to read configuration.
 """
 
 from typing import Set, Union
@@ -18,10 +18,10 @@ __all__ = [
 
 
 class ConfigModel(BaseModel):
-    """iamai 配置模型。
+    """iamai configuration model.
 
     Attributes:
-        __config_name__: 配置名称。
+        __config_name__: Configuration name.
     """
 
     model_config = ConfigDict(extra="allow")
@@ -30,11 +30,11 @@ class ConfigModel(BaseModel):
 
 
 class LogConfig(ConfigModel):
-    """iamai 日志相关设置。
+    """iamai log related settings.
 
     Attributes:
-        level: 日志级别。
-        verbose_exception: 详细的异常记录，设置为 `True` 时会在日志中添加异常的 Traceback。
+        level: log level.
+        verbose_exception: Detailed exception record. When set to ``True``, exception Traceback will be added to the log.
     """
 
     level: Union[str, int] = "DEBUG"
@@ -42,13 +42,13 @@ class LogConfig(ConfigModel):
 
 
 class BotConfig(ConfigModel):
-    """Bot 配置。
+    """Bot configuration.
 
     Attributes:
-        plugins: 将被加载的插件列表，将被 `Bot` 类的 `load_plugins()` 方法加载。
-        plugin_dirs: 将被加载的插件目录列表，将被 `Bot` 类的 `load_plugins_from_dirs()` 方法加载。
-        adapters: 将被加载的适配器列表，将依次被 `Bot` 类的 `load_adapters()` 方法加载。
-        log: iamai 日志相关设置。
+        plugins: List of plugins to be loaded, which will be loaded by the ``load_plugins()`` method of the ``Bot`` class.
+        plugin_dirs: List of plugin directories to be loaded, which will be loaded by the ``load_plugins_from_dirs()`` method of the ``Bot`` class.
+        adapters: A list of adapters to be loaded, which will be loaded in turn by the ``load_adapters()`` method of the ``Bot`` class.
+        log: iamai log related settings.
     """
 
     plugins: Set[str] = Field(default_factory=set)
@@ -58,18 +58,18 @@ class BotConfig(ConfigModel):
 
 
 class PluginConfig(ConfigModel):
-    """插件配置。"""
+    """Plugin configuration."""
 
 
 class AdapterConfig(ConfigModel):
-    """适配器配置。"""
+    """Adapter configuration."""
 
 
 class MainConfig(ConfigModel):
-    """iamai 配置。
+    """iamai configuration.
 
     Attributes:
-        bot: iamai 的主要配置。
+        bot: the main configuration of iamai.
     """
 
     bot: BotConfig = BotConfig()

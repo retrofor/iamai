@@ -1,4 +1,4 @@
-"""iamai Bot Module
+"""Bot Module
 
 The basic module of iamai, each iamai robot is a ``Bot()`` instance.
 """
@@ -66,17 +66,17 @@ HANDLED_SIGNALS = (
 
 
 class Bot:
-    """iamai 机器人对象，定义了机器人的基本方法。
+    """iamai ``Bot`` class object, defines the basic functionality  for interacting.
 
-    读取并储存配置 `Config`，加载适配器 `Adapter` 和插件 `Plugin`，并进行事件分发。
+    Read and save configuration ``Config``, load adapters ``Adapter`` and plugins ``Plugin``, then distribute the events.
 
     Attributes:
-        config: 机器人配置。
-        should_exit: 机器人是否应该进入准备退出状态。
-        adapters: 当前已经加载的适配器的列表。
-        plugins_priority_dict: 插件优先级字典。
-        plugin_state: 插件状态。
-        global_state: 全局状态。
+        config: Bot configuration.
+        should_exit: Whether the bot should enter the ready-to-exit state.
+        adapters: List of currently loaded adapters.
+        plugins_priority_dict: Plugin priority dictionary.
+        plugin_state: Plugin status.
+        global_state: Global status.
     """
 
     config: MainConfig
@@ -88,33 +88,33 @@ class Bot:
 
     _condition: (
         asyncio.Condition
-    )  # 用于处理 get 的 Condition # pyright: ignore[reportUninitializedInstanceVariable]
-    _current_event: Optional[Event[Any]]  # 当前待处理的 Event
+    )  # Condition used to handle get # pyright: ignore[reportUninitializedInstanceVariable]
+    _current_event: Optional[Event[Any]]  # Event currently pending
 
-    _restart_flag: bool  # 重新启动标志
-    _module_path_finder: ModulePathFinder  # 用于查找 plugins 的模块元路径查找器
-    _raw_config_dict: Dict[str, Any]  # 原始配置字典
+    _restart_flag: bool  # Restart flag
+    _module_path_finder: ModulePathFinder  # Module metapath finder for finding plugins
+    _raw_config_dict: Dict[str, Any]  # Original configuration dictionary
     _adapter_tasks: Set[
         "asyncio.Task[None]"
-    ]  # 适配器任务集合，用于保持对适配器任务的引用
+    ]  # Adapter task collection, used to hold references to adapter tasks
     _handle_event_tasks: Set[
         "asyncio.Task[None]"
-    ]  # 事件处理任务，用于保持对适配器任务的引用
+    ]  # Event handling task, used to keep a reference to the adapter task
 
-    # 以下属性不会在重启时清除
-    _config_file: Optional[str]  # 配置文件
-    _config_dict: Optional[Dict[str, Any]]  # 配置字典
-    _hot_reload: bool  # 热重载
+    # The following properties are not cleared on reboot
+    _config_file: Optional[str]  # Configuration file
+    _config_dict: Optional[Dict[str, Any]]  # Configuration dictionary
+    _hot_reload: bool  # Hot-Reload
 
     _extend_plugins: List[
         Union[Type[Plugin[Any, Any, Any]], str, Path]
-    ]  # 使用 load_plugins() 方法程序化加载的插件列表
+    ]  # A list of plugins loaded programmatically using the ``load_plugins()`` method
     _extend_plugin_dirs: List[
         Path
-    ]  # 使用 load_plugins_from_dirs() 方法程序化加载的插件路径列表
+    ]  # List of plugin paths loaded programmatically using the ``load_plugins_from_dirs()`` method
     _extend_adapters: List[
         Union[Type[Adapter[Any, Any]], str]
-    ]  # 使用 load_adapter() 方法程序化加载的适配器列表
+    ]  # A list of adapters loaded programmatically using the ``load_adapter()`` method
     _bot_run_hooks: List[BotHook]
     _bot_exit_hooks: List[BotHook]
     _adapter_startup_hooks: List[AdapterHook]
@@ -130,15 +130,15 @@ class Bot:
         config_dict: Optional[Dict[str, Any]] = None,
         hot_reload: bool = False,
     ) -> None:
-        """初始化 iamai，读取配置文件，创建配置，加载适配器和插件。
+        """Initialize iamai, read configuration files, create configurations, load adapters and plug-ins.
 
         Args:
-            config_file: 配置文件，如不指定则使用默认的 `config.toml`。
-                若指定为 `None`，则不加载配置文件。
-            config_dict: 配置字典，默认为 `None。`
-                若指定字典，则会忽略 `config_file` 配置，不再读取配置文件。
-            hot_reload: 热重载。
-                启用后将自动检查 `plugin_dir` 中的插件文件更新，并在更新时自动重新加载。
+            config_file: Configuration file, if not specified, the default ``config.toml`` will be used.
+                If specified as ``None``, the configuration file will not be loaded.
+            config_dict: Configuration dictionary, default is ``None``.
+                If a dictionary is specified, the ``config_file`` configuration will be ignored and the configuration file will no longer be read.
+            hot_reload: hot reload.
+                When enabled, plugin files in ``plugin_dir`` will be automatically checked for updates and automatically reloaded when updated.
         """
         self.config = MainConfig()
         self.plugins_priority_dict = defaultdict(list)
@@ -172,11 +172,11 @@ class Bot:
 
     @property
     def plugins(self) -> List[Type[Plugin[Any, Any, Any]]]:
-        """当前已经加载的插件的列表。"""
+        """List of currently loaded plugins."""
         return list(chain(*self.plugins_priority_dict.values()))
 
     def run(self) -> None:
-        """运行 iamai，监听并拦截系统退出信号，更新机器人配置。"""
+        """Run iamai, monitor and intercept system exit signals, and update robot configuration."""
         self._restart_flag = True
         while self._restart_flag:
             self._restart_flag = False
@@ -187,38 +187,38 @@ class Bot:
                 self._load_adapters(*self._extend_adapters)
 
     def restart(self) -> None:
-        """退出并重新运行 iamai。"""
+        """Exit and rerun iamai."""
         logger.info("Restarting iamai...")
         self._restart_flag = True
         self.should_exit.set()
 
     async def _run(self) -> None:
-        """运行 iamai。"""
+        """Run iamai."""
         self.should_exit = asyncio.Event()
         self._condition = asyncio.Condition()
 
-        # 监听并拦截系统退出信号，从而完成一些善后工作后再关闭程序
+        # Monitor and intercept system exit signals to complete some aftermath work before closing the program
         if threading.current_thread() is threading.main_thread():  # pragma: no cover
-            # Signal 仅能在主线程中被处理。
+            # Signals can only be processed in the main thread
             try:
                 loop = asyncio.get_running_loop()
                 for sig in HANDLED_SIGNALS:
                     loop.add_signal_handler(sig, self._handle_exit)
             except NotImplementedError:
-                # add_signal_handler 仅在 Unix 下可用，以下对于 Windows。
+                # add_signal_handler is only available under Unix, below for Windows
                 for sig in HANDLED_SIGNALS:
                     signal.signal(sig, self._handle_exit)
 
-        # 加载配置文件
+        # Load configuration file
         self._reload_config_dict()
 
-        # 加载插件和适配器
+        # Load plugins and adapters
         self._load_plugins_from_dirs(*self.config.bot.plugin_dirs)
         self._load_plugins(*self.config.bot.plugins)
         self._load_adapters(*self.config.bot.adapters)
         self._update_config()
 
-        # 启动 iamai
+        # Run iamai
         logger.info("Running iamai...")
 
         hot_reload_task = None
@@ -267,7 +267,7 @@ class Bot:
     def _remove_plugin_by_path(
         self, file: Path
     ) -> List[Type[Plugin[Any, Any, Any]]]:  # pragma: no cover
-        """根据路径删除已加载的插件。"""
+        """Remove loaded plugins based on path."""
         removed_plugins: List[Type[Plugin[Any, Any, Any]]] = []
         for plugins in self.plugins_priority_dict.values():
             _removed_plugins = list(
@@ -288,7 +288,7 @@ class Bot:
         return removed_plugins
 
     async def _run_hot_reload(self) -> None:  # pragma: no cover
-        """热重载。"""
+        """Hot reload."""
         try:
             from watchfiles import Change, awatch
         except ImportError:
@@ -311,11 +311,11 @@ class Bot:
             ),
             stop_event=self.should_exit,
         ):
-            # 按照 Change.deleted, Change.modified, Change.added 的顺序处理
-            # 以确保发生重命名时先处理删除再处理新增
+            # Processed in the order of Change.deleted, Change.modified, Change.added
+            # To ensure that when renaming occurs, deletions are processed first and then additions are processed
             for change_type, file_ in sorted(changes, key=lambda x: x[0], reverse=True):
                 file = Path(file_)
-                # 更改配置文件
+                # Change configuration file
                 if (
                     self._config_file is not None
                     and samefile(self._config_file, file)
@@ -331,15 +331,15 @@ class Bot:
                         self.restart()
                     continue
 
-                # 更改插件文件夹
+                # Change plugin folder
                 if change_type == Change.deleted:
-                    # 针对删除操作特殊处理
+                    # Special handling for deletion operations
                     if file.suffix != ".py":
                         file = file / "__init__.py"
                 else:
                     if file.is_dir() and (file / "__init__.py").is_file():
-                        # 当新增一个目录，且此目录中包含 __init__.py 文件
-                        # 说明此时发生的是添加一个 Python 包，则视为添加了此包的 __init__.py 文件
+                        # When a new directory is added and this directory contains the ``__init__.py`` file
+                        # It means that what happens at this time is that a Python package is added, and the ``__init__.py`` file of this package is deemed to be added
                         file = file / "__init__.py"
                     if not (file.is_file() and file.suffix == ".py"):
                         continue
@@ -364,7 +364,7 @@ class Bot:
                     self._update_config()
 
     def _update_config(self) -> None:
-        """更新 config，合并入来自 Plugin 和 Adapter 的 Config。"""
+        """Updated config to incorporate Config from Plugin and Adapter."""
 
         def update_config(
             source: Union[List[Type[Plugin[Any, Any, Any]]], List[Adapter[Any, Any]]],
@@ -393,12 +393,12 @@ class Bot:
             adapter=update_config(self.adapters, "AdapterConfig", AdapterConfig),
             __base__=MainConfig,
         )(**self._raw_config_dict)
-        # 更新 log 级别
+        # Update the level of logging
         logger.remove()
         logger.add(sys.stderr, level=self.config.bot.log.level)
 
     def _reload_config_dict(self) -> None:
-        """重新加载配置文件。"""
+        """Reload the configuration file."""
         self._raw_config_dict = {}
 
         if self._config_dict is not None:
@@ -428,7 +428,7 @@ class Bot:
         self._update_config()
 
     def reload_plugins(self) -> None:
-        """手动重新加载所有插件。"""
+        """Manually reload all plugins."""
         self.plugins_priority_dict.clear()
         self._load_plugins(*self.config.bot.plugins)
         self._load_plugins_from_dirs(*self.config.bot.plugin_dirs)
@@ -437,7 +437,7 @@ class Bot:
         self._update_config()
 
     def _handle_exit(self, *_args: Any) -> None:  # pragma: no cover
-        """当机器人收到退出信号时，根据情况进行处理。"""
+        """When the robot receives the exit signal, it will handle it according to the situation."""
         logger.info("Stopping iamai...")
         if self.should_exit.is_set():
             logger.warning("Force Exit iamai...")
@@ -452,14 +452,14 @@ class Bot:
         handle_get: bool = True,
         show_log: bool = True,
     ) -> None:
-        """被适配器对象调用，根据优先级分发事件给所有插件，并处理插件的 `stop` 、 `skip` 等信号。
+        """Called by the adapter object, distributes events to all plug-ins according to priority, and handles plug-in signals such as ``stop`` and ``skip``.
 
-        此方法不应该被用户手动调用。
+        This method should not be called manually by the user.
 
         Args:
-            current_event: 当前待处理的 `Event`。
-            handle_get: 当前事件是否可以被 get 方法捕获，默认为 `True`。
-            show_log: 是否在日志中显示，默认为 `True`。
+            current_event: The currently pending ``Event``.
+            handle_get: Whether the current event can be captured by the get method, the default is ``True``.
+            show_log: Whether to display in the log, the default is ``True``.
         """
         if show_log:
             logger.info(
@@ -520,10 +520,10 @@ class Bot:
                                 if _plugin.block:
                                     stop = True
                 except SkipException:
-                    # 插件要求跳过自身继续当前事件传播
+                    # The plug-in requires that it skips itself and continues the current event propagation
                     continue
                 except StopException:
-                    # 插件要求停止当前事件传播
+                    # Plugin requires stopping current event propagation
                     stop = True
                 except Exception as e:
                     self.error_or_exception(f'Exception in plugin "{plugin}":', e)
@@ -577,22 +577,22 @@ class Bot:
         max_try_times: Optional[int] = None,
         timeout: Optional[Union[int, float]] = None,
     ) -> Event[Any]:
-        """获取满足指定条件的的事件，协程会等待直到适配器接收到满足条件的事件、超过最大事件数或超时。
+        """Get events that meet the specified conditions. The coroutine will wait until the adapter receives events that meet the conditions, exceeds the maximum number of events, or times out.
 
         Args:
-            func: 协程或者函数，函数会被自动包装为协程执行。
-                要求接受一个事件作为参数，返回布尔值。当协程返回 `True` 时返回当前事件。
-                当为 `None` 时相当于输入对于任何事件均返回真的协程，即返回适配器接收到的下一个事件。
-            event_type: 当指定时，只接受指定类型的事件，先于 func 条件生效。默认为 `None`。
-            adapter_type: 当指定时，只接受指定适配器产生的事件，先于 func 条件生效。默认为 `None`。
-            max_try_times: 最大事件数。
-            timeout: 超时时间。
+            func: Coroutine or function, the function will be automatically packaged as a coroutine for execution.
+                Requires an event to be accepted as a parameter and returns a Boolean value. Returns the current event when the coroutine returns ``True``.
+                When ``None`` is equivalent to the input coroutine returning true for any event, that is, returning the next event received by the adapter.
+            event_type: When specified, only events of the specified type are accepted, taking effect before the func condition. Defaults to ``None``.
+            adapter_type: When specified, only events generated by the specified adapter will be accepted, taking effect before the func condition. Defaults to ``None``.
+            max_try_times: Maximum number of events.
+            timeout: timeout period.
 
         Returns:
-            返回满足 `func` 条件的事件。
+            Returns events that satisfy the condition of ``func``.
 
         Raises:
-            GetEventTimeout: 超过最大事件数或超时。
+            GetEventTimeout: Maximum number of events exceeded or timeout.
         """
         _func = wrap_get_func(func)
 
@@ -642,7 +642,7 @@ class Bot:
         plugin_load_type: PluginLoadType,
         plugin_file_path: Optional[str],
     ) -> None:
-        """加载插件类。"""
+        """Load a plugin class"""
         priority = getattr(plugin_class, "priority", None)
         if isinstance(priority, int) and priority >= 0:
             for _plugin in self.plugins:
@@ -672,7 +672,7 @@ class Bot:
         plugin_load_type: PluginLoadType,
         reload: bool = False,
     ) -> None:
-        """从模块名称中插件模块。"""
+        """Load plugins from the given module."""
         try:
             plugin_classes = get_classes_from_module_name(
                 module_name, Plugin, reload=reload
@@ -693,17 +693,17 @@ class Bot:
         plugin_load_type: Optional[PluginLoadType] = None,
         reload: bool = False,
     ) -> None:
-        """加载插件。
+        """Load plugins.
 
         Args:
-            *plugins: 插件类、插件模块名称或者插件模块文件路径。类型可以是 `Type[Plugin]`, `str` 或 `pathlib.Path`。
-                如果为 `Type[Plugin]` 类型时，将作为插件类进行加载。
-                如果为 `str` 类型时，将作为插件模块名称进行加载，格式和 Python `import` 语句相同。
-                    例如：`path.of.plugin`。
-                如果为 `pathlib.Path` 类型时，将作为插件模块文件路径进行加载。
-                    例如：`pathlib.Path("path/of/plugin")`。
-            plugin_load_type: 插件加载类型，如果为 `None` 则自动判断，否则使用指定的类型。
-            reload: 是否重新加载模块。
+            *plugins: plug-in class, plug-in module name or plug-in module file path. Type can be ``Type[Plugin]``, ``str`` or ``pathlib.Path``.
+                If it is ``Type[Plugin]``, it will be loaded as a plug-in class.
+                If it is of type ``str``, it will be loaded as the plug-in module name, and the format is the same as the Python ``import`` statement.
+                    For example: ``path.of.plugin``.
+                If it is of type ``pathlib.Path``, it will be loaded as the plug-in module file path.
+                    For example: ``pathlib.Path("path/of/plugin")``.
+            plugin_load_type: Plug-in loading type, if it is ``None``, it will be automatically determined, otherwise the specified type will be used.
+            reload: Whether to reload the module.
         """
         for plugin_ in plugins:
             try:
@@ -766,26 +766,26 @@ class Bot:
     def load_plugins(
         self, *plugins: Union[Type[Plugin[Any, Any, Any]], str, Path]
     ) -> None:
-        """加载插件。
+        """Load the plugin.
 
         Args:
-            *plugins: 插件类、插件模块名称或者插件模块文件路径。
-                类型可以是 `Type[Plugin]`, `str` 或 `pathlib.Path`。
-                如果为 `Type[Plugin]` 类型时，将作为插件类进行加载。
-                如果为 `str` 类型时，将作为插件模块名称进行加载，格式和 Python `import` 语句相同。
-                    例如：`path.of.plugin`。
-                如果为 `pathlib.Path` 类型时，将作为插件模块文件路径进行加载。
-                    例如：`pathlib.Path("path/of/plugin")`。
+            *plugins: ``Plugin`` class, plugin module name or plug-in module file path. 
+                Type can be ``Type[Plugin]``, ``str`` or ``pathlib.Path``.
+                If it is ``Type[Plugin]``, it will be loaded as a plug-in class.
+                If it is of type ``str``, it will be loaded as the plug-in module name, and the format is the same as the Python ``import`` statement.
+                    For example: ``path.of.plugin``.
+                If it is of type ``pathlib.Path``, it will be loaded as the plug-in module file path.
+                    For example: ``pathlib.Path("path/of/plugin")``.
         """
         self._extend_plugins.extend(plugins)
-        return self._load_plugins(*plugins)
 
+        return self._load_plugins(*plugins)
     def _load_plugins_from_dirs(self, *dirs: Path) -> None:
-        """从目录中加载插件，以 `_` 开头的模块中的插件不会被导入。路径可以是相对路径或绝对路径。
+        """Load plug-ins from the directory. Plug-ins in modules starting with ``_`` will not be imported. The path can be a relative path or an absolute path.
 
         Args:
-            *dirs: 储存包含插件的模块的模块路径。
-                例如：`pathlib.Path("path/of/plugins/")` 。
+            *dirs: Module paths that store modules containing plugins.
+                For example: ``pathlib.Path("path/of/plugins/")`` .
         """
         dir_list = [str(x.resolve()) for x in dirs]
         logger.info(f'Loading plugins from dirs "{", ".join(map(str, dir_list))}"')
@@ -797,23 +797,23 @@ class Bot:
                 )
 
     def load_plugins_from_dirs(self, *dirs: Path) -> None:
-        """从目录中加载插件，以 `_` 开头的模块中的插件不会被导入。路径可以是相对路径或绝对路径。
+        """Load plug-ins from the directory. Plug-ins in modules starting with ``_`` will not be imported. The path can be a relative path or an absolute path.
 
         Args:
-            *dirs: 储存包含插件的模块的模块路径。
-                例如：`pathlib.Path("path/of/plugins/")` 。
+            *dirs: Module paths that store modules containing plugins.
+                For example: ``pathlib.Path("path/of/plugins/")`` .
         """
         self._extend_plugin_dirs.extend(dirs)
         self._load_plugins_from_dirs(*dirs)
 
     def _load_adapters(self, *adapters: Union[Type[Adapter[Any, Any]], str]) -> None:
-        """加载适配器。
+        """Load adapter.
 
         Args:
-            *adapters: 适配器类或适配器名称，类型可以是 `Type[Adapter]` 或 `str`。
-                如果为 `Type[Adapter]` 类型时，将作为适配器类进行加载。
-                如果为 `str` 类型时，将作为适配器模块名称进行加载，格式和 Python `import` 语句相同。
-                    例如：`path.of.adapter`。
+            *adapters: Adapter class or adapter name, type can be ``Type[Adapter]`` or ``str``.
+                If it is of type ``Type[Adapter]``, it will be loaded as an adapter class.
+                If it is of type ``str``, it will be loaded as the adapter module name, and the format is the same as the Python ``import`` statement.
+                    For example: ``path.of.adapter``.
         """
         for adapter_ in adapters:
             adapter_object: Adapter[Any, Any]
@@ -845,13 +845,13 @@ class Bot:
                 )
 
     def load_adapters(self, *adapters: Union[Type[Adapter[Any, Any]], str]) -> None:
-        """加载适配器。
+        """Load adapter.
 
         Args:
-            *adapters: 适配器类或适配器名称，类型可以是 `Type[Adapter]` 或 `str`。
-                如果为 `Type[Adapter]` 类型时，将作为适配器类进行加载。
-                如果为 `str` 类型时，将作为适配器模块名称进行加载，格式和 Python `import` 语句相同。
-                    例如：`path.of.adapter`。
+            *adapters: Adapter class or adapter name, type can be ``Type[Adapter]`` or ``str``.
+                If it is of type ``Type[Adapter]``, it will be loaded as an adapter class.
+                If it is of type ``str``, it will be loaded as the adapter module name, and the format is the same as the Python ``import`` statement.
+                    For example: ``path.of.adapter``.
         """
         self._extend_adapters.extend(adapters)
         self._load_adapters(*adapters)
@@ -865,16 +865,16 @@ class Bot:
     def get_adapter(
         self, adapter: Union[str, Type[AdapterT]]
     ) -> Union[Adapter[Any, Any], AdapterT]:
-        """按照名称或适配器类获取已经加载的适配器。
+        """Get the loaded adapter by name or adapter class.
 
         Args:
-            adapter: 适配器名称或适配器类。
+            adapter: adapter name or adapter class.
 
         Returns:
-            获取到的适配器对象。
+            The obtained adapter object.
 
         Raises:
-            LookupError: 找不到此名称的适配器对象。
+            LookupError: No adapter object with this name found.
         """
         for _adapter in self.adapters:
             if isinstance(adapter, str):
@@ -885,16 +885,16 @@ class Bot:
         raise LookupError(f'Can not find adapter named "{adapter}"')
 
     def get_plugin(self, name: str) -> Type[Plugin[Any, Any, Any]]:
-        """按照名称获取已经加载的插件类。
+        """Get the loaded plugin class by name.
 
         Args:
-            name: 插件名称
+            name: plugin name
 
         Returns:
-            获取到的插件类。
+            The obtained plug-in class.
 
         Raises:
-            LookupError: 找不到此名称的插件类。
+            LookupError: The plugin class with this name cannot be found.
         """
         for _plugin in self.plugins:
             if _plugin.__name__ == name:
@@ -904,11 +904,11 @@ class Bot:
     def error_or_exception(
         self, message: str, exception: Exception
     ) -> None:  # pragma: no cover
-        """根据当前 Bot 的配置输出 error 或者 exception 日志。
+        """Output error or exception logs based on the current Bot configuration.
 
         Args:
-            message: 消息。
-            exception: 异常。
+            message: message.
+            exception: Exception.
         """
         if self.config.bot.log.verbose_exception:
             logger.exception(message)
@@ -916,85 +916,85 @@ class Bot:
             logger.error(f"{message} {exception!r}")
 
     def bot_run_hook(self, func: BotHook) -> BotHook:
-        """注册一个 Bot 启动时的函数。
+        """Register a function when Bot starts.
 
         Args:
-            func: 被注册的函数。
+            func: the registered function.
 
         Returns:
-            被注册的函数。
+            The registered function.
         """
         self._bot_run_hooks.append(func)
         return func
 
     def bot_exit_hook(self, func: BotHook) -> BotHook:
-        """注册一个 Bot 退出时的函数。
+        """Register a function when the Bot exits.
 
         Args:
-            func: 被注册的函数。
+            func: the registered function.
 
         Returns:
-            被注册的函数。
+            The registered function.
         """
         self._bot_exit_hooks.append(func)
         return func
 
     def adapter_startup_hook(self, func: AdapterHook) -> AdapterHook:
-        """注册一个适配器初始化时的函数。
+        """Register a function during adapter initialization.
 
         Args:
-            func: 被注册的函数。
+            func: the registered function.
 
         Returns:
-            被注册的函数。
+            The registered function.
         """
         self._adapter_startup_hooks.append(func)
         return func
 
     def adapter_run_hook(self, func: AdapterHook) -> AdapterHook:
-        """注册一个适配器运行时的函数。
+        """Register an adapter runtime function.
 
         Args:
-            func: 被注册的函数。
+            func: the registered function.
 
         Returns:
-            被注册的函数。
+            The registered function.
         """
         self._adapter_run_hooks.append(func)
         return func
 
     def adapter_shutdown_hook(self, func: AdapterHook) -> AdapterHook:
-        """注册一个适配器关闭时的函数。
+        """Register a function when the adapter is closed.
 
         Args:
-            func: 被注册的函数。
+            func: the registered function.
 
         Returns:
-            被注册的函数。
+            The registered function.
         """
         self._adapter_shutdown_hooks.append(func)
         return func
 
     def event_preprocessor_hook(self, func: EventHook) -> EventHook:
-        """注册一个事件预处理函数。
+        """Register an event preprocessing function.
 
         Args:
-            func: 被注册的函数。
+            func: the registered function.
 
         Returns:
-            被注册的函数。
+            The registered function.
         """
         self._event_preprocessor_hooks.append(func)
         return func
 
     def event_postprocessor_hook(self, func: EventHook) -> EventHook:
-        """注册一个事件后处理函数。
+        """Register a post-event processing function.
 
         Args:
-            func: 被注册的函数。
+            func: the registered function.
 
         Returns:
-            被注册的函数。
+            The registered function.
         """
         self._event_postprocessor_hooks.append(func)
         return func

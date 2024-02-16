@@ -1,6 +1,6 @@
-"""iamai 事件。
+"""iamai event.
 
-事件类的基类。适配器开发者应实现此事件类基类的子类。
+Base class for event classes. Adapter developers should implement a subclass of this event class base class.
 """
 
 from abc import ABC, abstractmethod
@@ -15,12 +15,12 @@ __all__ = ["Event", "MessageEvent"]
 
 
 class Event(ABC, BaseModel, Generic[AdapterT]):
-    """事件类的基类。
+    """The base class of event classes.
 
     Attributes:
-        adapter: 产生当前事件的适配器对象。
-        type: 事件类型。
-        __handled__: 表示事件是否被处理过了，用于适配器处理。警告：请勿手动更改此属性的值。
+        adapter: The adapter object that generated the current event.
+        type: event type.
+        __handled__: Indicates whether the event has been handled, used for adapter processing. Warning: Do not change the value of this property manually.
     """
 
     model_config = ConfigDict(extra="allow")
@@ -33,53 +33,53 @@ class Event(ABC, BaseModel, Generic[AdapterT]):
     __handled__: bool = False
 
     def __str__(self) -> str:
-        """返回事件的文本表示。
+        """Returns the textual representation of the event.
 
         Returns:
-            事件的文本表示。
+            A textual representation of the event.
         """
         return f"Event<{self.type}>"
 
     def __repr__(self) -> str:
-        """返回事件的描述。
+        """Returns the description of the event.
 
         Returns:
-            事件的描述。
+            Description of the event.
         """
         return self.__str__()
 
 
 class MessageEvent(Event[AdapterT], Generic[AdapterT]):
-    """通用的消息事件类的基类。"""
+    """Base class for general message event classes."""
 
     @abstractmethod
     def get_plain_text(self) -> str:
-        """获取消息的纯文本内容。
+        """Get the plain text content of the message.
 
         Returns:
-            消息的纯文本内容。
+            The plain text content of the message.
         """
 
     @abstractmethod
     async def reply(self, message: str) -> Any:
-        """回复消息。
+        """Reply message.
 
         Args:
-            message: 回复消息的内容。
+            message: The content of the reply message.
 
         Returns:
-            回复消息动作的响应。
+            The response to the reply message action.
         """
 
     @abstractmethod
     async def is_same_sender(self, other: Self) -> bool:
-        """判断自身和另一个事件是否是同一个发送者。
+        """Determine whether itself and another event are the same sender.
 
         Args:
-            other: 另一个事件。
+            other: another event.
 
         Returns:
-            是否是同一个发送者。
+            Is it the same sender?
         """
 
     async def get(
@@ -88,20 +88,21 @@ class MessageEvent(Event[AdapterT], Generic[AdapterT]):
         max_try_times: Optional[int] = None,
         timeout: Optional[Union[int, float]] = None,
     ) -> Self:
-        """获取用户回复消息。
+        """Get the user's reply message.
 
-        相当于 `Bot` 的 `get()`，条件为适配器、事件类型、发送人相同。
+        Equivalent to `get()` of ``Bot``, the condition is that the adapter, event type and sender are the same.
 
         Args:
-            max_try_times: 最大事件数。
-            timeout: 超时时间。
+            max_try_times: Maximum number of events.
+            timeout: timeout period.
 
         Returns:
-            用户回复的消息事件。
+            Message event that the user replies to.
 
         Raises:
-            GetEventTimeout: 超过最大事件数或超时。
+            GetEventTimeout: Maximum number of events exceeded or timeout.
         """
+
         return await self.adapter.get(
             self.is_same_sender,
             event_type=type(self),
@@ -115,18 +116,19 @@ class MessageEvent(Event[AdapterT], Generic[AdapterT]):
         max_try_times: Optional[int] = None,
         timeout: Optional[Union[int, float]] = None,
     ) -> Self:
-        """询问消息。
+        """Ask for news.
 
-        表示回复一个消息后获取用户的回复。
-        相当于 `reply()` 后执行 `get()`。
+        Indicates getting the user's reply after replying to a message.
+        Equivalent to executing ``get()`` after ``reply()``.
 
         Args:
-            message: 回复消息的内容。
-            max_try_times: 最大事件数。
-            timeout: 超时时间。
+            message: The content of the reply message.
+            max_try_times: Maximum number of events.
+            timeout: timeout period.
 
         Returns:
-            用户回复的消息事件。
+            Message event that the user replies to.
         """
+
         await self.reply(message)
         return await self.get(max_try_times=max_try_times, timeout=timeout)

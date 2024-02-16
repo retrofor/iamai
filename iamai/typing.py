@@ -1,6 +1,6 @@
-"""iamai 类型提示支持。
+"""iamai type hint support.
 
-此模块定义了部分 iamai 使用的类型。
+This module defines some of the types used by iamai.
 """
 
 # ruff: noqa: TCH001

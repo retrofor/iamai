@@ -1,7 +1,7 @@
-"""iamai 消息。
+"""iamai message module.
 
-实现了常用的基本消息 `Message` 和消息字段 `MessageSegment` 模型供适配器使用。
-适配器开发者可以根据需要实现此模块中消息类的子类或定义与此不同的消息类型，但建议若可行的话应尽量使用此模块中消息类的子类。
+Implemented the commonly used basic message ``Message`` and message field ``MessageSegment`` models for adapter use.
+Adapter developers can implement subclasses of the message classes in this module or define different message types as needed, but it is recommended that subclasses of the message classes in this module be used if possible.
 """
 
 from abc import ABC, abstractmethod
@@ -38,24 +38,24 @@ __all__ = [
 MessageT = TypeVar("MessageT", bound="Message[Any]")
 MessageSegmentT = TypeVar("MessageSegmentT", bound="MessageSegment[Any]")
 
-# 可以转化为 Message 的类型
+# Type that can be converted to Message
 BuildMessageType = Union[List[MessageSegmentT], MessageSegmentT, str, Mapping[str, Any]]
 
 
 class Message(ABC, List[MessageSegmentT]):
-    """消息。
+    """Message.
 
-    本类是 `List` 的子类，并重写了 `__init__()` 方法，
-    可以直接处理 `str`, `Mapping`, `MessageSegment`, `List[MessageSegment]`。
-    本类重载了 `+` 和 `+=` 运算符，可以直接和 `Message`, `MessageSegment` 等类型的对象执行取和运算。
-    适配器开发者需要继承本类并重写 `get_segment_class()` 方法。
+    This class is a subclass of ``List`` and overrides the ``__init__()`` method.
+    Can handle `str`, ``Mapping``, ``MessageSegment``, ``List[MessageSegment]`` directly.
+    This class overloads the ``+`` and ``+=`` operators, and can directly perform sum operations with objects of ``Message``, ``MessageSegment`` and other types of objects.
+    Adapter developers need to inherit this class and override the ``get_segment_class()`` method.
     """
 
     def __init__(self, *messages: BuildMessageType[MessageSegmentT]) -> None:
-        """初始化。
+        """initialization.
 
         Args:
-            *messages: 可以被转化为消息的数据。
+            *messages: Data that can be converted into messages.
         """
         segment_class = self.get_segment_class()
         for message in messages:
@@ -76,17 +76,17 @@ class Message(ABC, List[MessageSegmentT]):
     @classmethod
     @abstractmethod
     def get_segment_class(cls) -> Type[MessageSegmentT]:
-        """获取消息字段类。
+        """Get the message field class.
 
         Returns:
-            消息字段类。
+            Message field class.
         """
 
     @classmethod
     def __get_pydantic_core_schema__(
         cls, _source: Type[Any], handler: GetCoreSchemaHandler
     ) -> core_schema.CoreSchema:
-        """Pydantic 自定义模式。"""
+        """Pydantic custom mode."""
         return core_schema.union_schema(
             [
                 core_schema.is_instance_schema(cls),
@@ -100,64 +100,64 @@ class Message(ABC, List[MessageSegmentT]):
         )
 
     def __repr__(self) -> str:
-        """返回消息的描述。
+        """Return the description of the message.
 
         Returns:
-            消息的描述。
+            Description of the message.
         """
         return f"Message:[{','.join(map(repr, self))}]"
 
     def __str__(self) -> str:
-        """返回消息的文本表示。
+        """Returns the textual representation of the message.
 
         Returns:
-            消息的文本表示。
+            The textual representation of the message.
         """
         return "".join(map(str, self))
 
     def __contains__(self, item: object) -> bool:
-        """判断消息中是否包含指定文本或消息字段。
+        """Determine whether the message contains the specified text or message field.
 
         Args:
-            item: 文本或消息字段。
+            item: text or message field.
 
         Returns:
-            消息中是否包含指定文本或消息字段。
+            Whether the specified text or message field is included in the message.
         """
         if isinstance(item, str):
             return item in str(self)
         return super().__contains__(item)
 
     def __add__(self, other: BuildMessageType[MessageSegmentT]) -> Self:  # type: ignore
-        """自定义消息与其他对象相加的方法。
+        """Method for adding custom messages to other objects.
 
         Args:
-            other: 其他对象。
+            other: other objects.
 
         Returns:
-            相加的结果。
+            The result of the addition.
         """
         return self.__class__(self).__iadd__(other)
 
     def __radd__(self, other: BuildMessageType[MessageSegmentT]) -> Self:
-        """自定义消息与其他对象相加的方法。
+        """Method for adding custom messages to other objects.
 
         Args:
-            other: 其他对象。
+            other: other objects.
 
         Returns:
-            相加的结果。
+            The result of the addition.
         """
         return self.__class__(other).__iadd__(self)
 
     def __iadd__(self, other: BuildMessageType[MessageSegmentT]) -> Self:  # type: ignore
-        """自定义消息与其他对象相加的方法。
+        """Method for adding custom messages to other objects.
 
         Args:
-            other: 其他对象。
+            other: other objects.
 
         Returns:
-            相加的结果。
+            The result of the addition.
         """
         try:
             self.extend(self.__class__(other))
@@ -168,22 +168,22 @@ class Message(ABC, List[MessageSegmentT]):
         return self
 
     def is_text(self) -> bool:
-        """是否是纯文本消息。"""
+        """Whether it is a plain text message."""
         return all(x.is_text() for x in self)
 
     def get_plain_text(self) -> str:
-        """获取消息中的纯文本部分。
+        """Get the plain text part of the message.
 
         Returns:
-            消息中的纯文本部分。
+            The plain text portion of the message.
         """
         return "".join(map(str, filter(lambda x: x.is_text(), self)))
 
     def copy(self) -> Self:
-        """返回自身的浅复制。
+        """Return a shallow copy of itself.
 
         Returns:
-            自身的浅复制。
+            A shallow copy of itself.
         """
         return self.__class__(self)
 
@@ -193,19 +193,19 @@ class Message(ABC, List[MessageSegmentT]):
         start: Optional[SupportsIndex] = None,
         end: Optional[SupportsIndex] = None,
     ) -> bool:
-        """实现类似字符串的 `startswith()` 方法。
+        """Implement string-like ``startswith()`` method.
 
-        当 `prefix` 类型是 `str` 时，会将自身转换为 `str` 类型，再调用 `str` 类型的 `startswith()` 方法。
-        当 `prefix` 类型是 `MessageSegment` 时，`start` 和 `end` 参数将不其作用，
-            会判断列表的第一个消息字段是否和 `prefix` 相等。
+        When the ``prefix`` type is ``str``, it will convert itself to the ``str`` type, and then call the ``startswith()`` method of the ``str`` type.
+        When the ``prefix`` type is ``MessageSegment``, the ``start`` and `end` parameters will have no effect,
+            It will be judged whether the first message field of the list is equal to ``prefix``.
 
         Args:
-            prefix: 前缀。
-            start: 开始检查位置。
-            end: 停止检查位置。
+            prefix: prefix.
+            start: Start checking the position.
+            end: Stop checking the position.
 
         Returns:
-            检查结果。
+            test result.
         """  # noqa: D402
         if isinstance(prefix, str):
             return str(self).startswith(prefix, start, end)
@@ -221,19 +221,19 @@ class Message(ABC, List[MessageSegmentT]):
         start: Optional[SupportsIndex] = None,
         end: Optional[SupportsIndex] = None,
     ) -> bool:
-        """实现类似字符串的 `endswith()` 方法。
+        """Implement string-like ``endswith()`` method.
 
-        当 `suffix` 类型是 `str` 时，会将自身转换为 `str` 类型，再调用 `str` 类型的 `endswith()` 方法。
-        当 `suffix` 类型是 MessageSegment 时，`start` 和 `end` 参数将不其作用，
-            会判断列表的最后一个消息字段是否和 `suffix` 相等。
+        When the ``suffix`` type is `str`, it will convert itself to the ``str`` type, and then call the ``endswith()`` method of the ``str`` type.
+        When the ``suffix`` type is MessageSegment, the `start` and ``end`` parameters will have no effect.
+            Will determine whether the last message field in the list is equal to `suffix`.
 
         Args:
-            suffix: 后缀。
-            start: 开始检查位置。
-            end: 停止检查位置。
+            suffix: suffix.
+            start: Start checking the position.
+            end: Stop checking the position.
 
         Returns:
-            检查结果。
+            test result.
         """  # noqa: D402
         if isinstance(suffix, str):
             return str(self).endswith(suffix, start, end)
@@ -257,19 +257,19 @@ class Message(ABC, List[MessageSegmentT]):
         new: Optional[Union[str, MessageSegmentT]],
         count: int = -1,
     ) -> Self:
-        """实现类似字符串的 `replace()` 方法。
+        """Implement string-like ``replace()`` method.
 
-        当 `old` 为 `str` 类型时，`new` 也必须是 `str`，本方法将仅对 `is_text()` 为 `True` 的消息字段进行处理。
-        当 `old` 为 MessageSegment 类型时，`new` 可以是 `MessageSegment` 或 `None`，本方法将对所有消息字段进行处理，
-            并替换符合条件的消息字段。`None` 表示删除匹配到的消息字段。
+        When ``old`` is of type ``str``, ``new`` must also be ``str``, and this method will only process the message fields where ``is_text()`` is ``True``.
+        When ``old`` is of MessageSegment type, ``new`` can be ``MessageSegment`` or ``None``, and this method will process all message fields.
+            And replace the message fields that meet the criteria. ``None`` means to delete the matching message field.
 
         Args:
-            old: 被匹配的字符串或消息字段。
-            new: 被替换为的字符串或消息字段。
-            count: 替换的次数。
+            old: The matched string or message field.
+            new: The string or message field to be replaced.
+            count: the number of replacements.
 
         Returns:
-            替换后的消息对象。
+            The replaced message object.
         """  # noqa: D402
         if isinstance(old, str):
             if not isinstance(new, str):
@@ -293,19 +293,19 @@ class Message(ABC, List[MessageSegmentT]):
         raise TypeError("type of old must be str or MessageSegment")
 
     def _replace_str(self, old: str, new: str, count: int = -1) -> Self:
-        """实现类似字符串的 `replace()` 方法。
+        """Implement string-like ``replace()`` method.
 
-        本方法将被 `replace()` 方法调用以处理 `str` 类型的替换，
-        默认将 `MessageSegment` 对象的 `data['text']` 视为存放纯文本的位置。
-        适配器开发者可自行重写此方法以适配其他情况。
+        This method will be called by the ``replace()`` method to handle replacement of type ``str``,
+        By default, the ``data['text']`` of the ``MessageSegment`` object is treated as a location to store plain text.
+        Adapter developers can override this method to adapt to other situations.
 
         Args:
-            old: 被匹配的字符串或消息字段。
-            new: 被替换为的字符串或消息字段。
-            count: 替换的次数。
+            old: The matched string or message field.
+            new: The string or message field to be replaced.
+            count: the number of replacements.
 
         Returns:
-            替换后的消息对象。
+            The replaced message object.
         """
         temp_msg = self.__class__(*(x.model_copy(deep=True) for x in self))
         for index, item in enumerate(temp_msg):
@@ -324,16 +324,16 @@ class Message(ABC, List[MessageSegmentT]):
 
 
 class MessageSegment(ABC, BaseModel, Mapping[str, Any], Generic[MessageT]):
-    """消息字段。
+    """Message field.
 
-    本类实现了所有 `Mapping` 类型的方法，这些方法全部是对 `data` 属性的操作。
-    本类重写了 `+` 和 `+=` 运算符，可以直接和 `Message`, `MessageSegment` 等类型的对象执行取和运算，返回 `Message` 对象。
-    适配器开发者需要继承本类并重写 `get_message_class()` 方法。
+    This class implements all ``Mapping`` type methods, all of which operate on the ``data`` attribute.
+    This class overrides the ``+`` and ``+=`` operators, and can directly perform sum operations with objects of types such as ``Message``, ``MessageSegment`` and return a ``Message`` object.
+    Adapter developers need to inherit this class and override the ``get_message_class()`` method.
 
     Attributes:
-        type: 消息字段类型。
-        data: 消息字段内容。
-    """
+        type: message field type.
+        data: message field content.
+     """
 
     type: str
     data: Dict[str, Any] = Field(default_factory=dict)
@@ -341,177 +341,176 @@ class MessageSegment(ABC, BaseModel, Mapping[str, Any], Generic[MessageT]):
     @classmethod
     @abstractmethod
     def get_message_class(cls) -> Type[MessageT]:
-        """获取消息类。
+        """Get the message class.
 
         Returns:
-            消息类。
+            Message class.
         """
 
     @classmethod
     @abstractmethod
     def from_str(cls, msg: str) -> Self:
-        """用于将 `str` 转换为消息字段，子类应重写此方法。
+        """Used to convert ``str`` to a message field, subclasses should override this method.
 
         Args:
-            msg: 要解析为消息字段的数据。
+            msg: Data to be parsed into message fields.
 
         Returns:
-            由 `str` 转换的消息字段。
-        """
+            Message fields converted by ``str``.
+         """
 
     @classmethod
     def from_mapping(cls, msg: Mapping[Any, Any]) -> Self:
-        """用于将 `Mapping` 转换为消息字段。
+        """Used to convert ``Mapping`` into message fields.
 
-        如有需要，子类可重写此方法以更改对 `Mapping` 的默认行为。
+        Subclasses can override this method to change the default behavior for ``Mapping`` if necessary.
 
         Args:
-            msg: 要解析为消息字段的数据。
+            msg: Data to be parsed into message fields.
 
         Returns:
-            由 Mapping 转换的消息字段。
+            Message fields converted by Mapping.
         """
         return cls(**msg)
 
     def __str__(self) -> str:
-        """返回消息字段的文本表示。
+        """Returns the text representation of the message field.
 
         Returns:
-            消息字段的文本表示。
+            Text representation of the message field.
         """
         return str(self.data)
 
     def __repr__(self) -> str:
-        """返回消息字段的描述。
+        """Returns the description of the message field.
 
         Returns:
-            消息字段的描述。
+            Description of message fields.
         """
         return f"MessageSegment<{self.type}>:{self!s}"
 
     def __getitem__(self, key: str) -> Any:
-        """取索引。相当于对 `data` 属性进行此操作。
+        """Get the index. It is equivalent to doing this operation on the ``data`` attribute.
 
         Args:
-            key: 键。
+            key: key.
 
         Returns:
-            `data` 字典对应索引的值。
+            `data` The value of the corresponding index in the dictionary.
         """
         return self.data[key]
 
     def __setitem__(self, key: str, value: Any) -> None:
-        """设置指定索引的值。相当于对 `data` 属性进行此操作。
+        """Set the value of the specified index. Equivalent to doing this on the ``data`` attribute.
 
         Args:
-            key: 键。
-            value: 值。
+            key: key.
+            value: value.
         """
         self.data[key] = value
 
     def __delitem__(self, key: str) -> None:
-        """删除索引。相当于对 `data` 属性进行此操作。
+        """Delete the index. Equivalent to doing this operation on the ``data`` attribute.
 
         Args:
-            key: 键。
+            key: key.
         """
         del self.data[key]
 
     def __len__(self) -> int:
-        """取长度。相当于对 `data` 属性进行此操作。
+        """Get the length. Equivalent to doing this operation on the ``data` attribute.
 
         Returns:
-            `data` 字典的长度。
+            `data` The length of the dictionary.
         """
         return len(self.data)
 
     def __iter__(self) -> Iterator[str]:  # type: ignore
-        """迭代。相当于对 `data` 属性进行此操作。
+        """Iterate. Equivalent to doing this operation on the ``data`` attribute.
 
         Returns:
-            `data` 字典的迭代器。
+            ``data`` Iterator for dictionary.
         """
         yield from self.data.__iter__()
 
     def __contains__(self, key: object) -> bool:
-        """索引是否包含在对象内。相当于对 `data` 属性进行此操作。
+        """Whether the index is included in the object. Equivalent to doing this on the ``data`` attribute.
 
         Args:
-            key: 键。
+            key: key.
 
         Returns:
-            索引是否包含在 `data` 字典内。
+            Whether the index is contained in the ``data`` dictionary.
         """
         return key in self.data
 
     def __eq__(self, other: object) -> bool:
-        """判断是否相等。
+        """Determine whether they are equal.
 
         Args:
-            other: 其他对象。
+            other: other objects.
 
         Returns:
-            是否相等。
+            are equal.
         """
         return (
             type(other) is self.__class__  # pylint: disable=unidiomatic-typecheck
             and self.type == other.type
             and self.data == other.data
         )
-
     def __ne__(self, other: object) -> bool:
-        """判断是否不相等。
+         """Determine whether they are not equal.
 
         Args:
-            other: 其他对象。
+            other: other objects.
 
         Returns:
-            是否不相等。
+            Whether they are not equal.
         """
-        return not self.__eq__(other)
+         return not self.__eq__(other)
 
     def __add__(self, other: Any) -> MessageT:
-        """自定义消息字段与其他对象相加的方法。
+        """Method for adding custom message fields to other objects.
 
         Args:
-            other: 其他对象。
+            other: other objects.
 
         Returns:
-            相加的结果。
+            The result of the addition.
         """
         return self.get_message_class()(self) + other
 
     def __radd__(self, other: Any) -> MessageT:
-        """自定义消息字段与其他对象相加的方法。
+        """Method for adding custom message fields to other objects.
 
         Args:
-            other: 其他对象。
+            other: other objects.
 
         Returns:
-            相加的结果。
+            The result of the addition.
         """
         return self.get_message_class()(other) + self
 
     def get(self, key: str, default: Any = None) -> Any:
-        """如果 `key` 存在于 `data` 字典中则返回 `key` 的值，否则返回 `default`。"""
+        """Returns the value of ``key`` if ``key`` exists in the ``data`` dictionary, otherwise returns ``default``."""
         return self.data.get(key, default)
 
     def keys(self) -> KeysView[str]:
-        """返回由 `data` 字典键组成的一个新视图。"""
+        """Returns a new view consisting of ``data`` dictionary keys."""
         return self.data.keys()
 
     def values(self) -> ValuesView[Any]:
-        """返回由 `data` 字典值组成的一个新视图。"""
+        """Returns a new view consisting of ``data`` dictionary values."""
         return self.data.values()
 
     def items(self) -> ItemsView[str, Any]:
-        """返回由 `data` 字典项 (`(键, 值)` 对) 组成的一个新视图。"""
+        """Returns a new view consisting of ``data`` dictionary items (``(key, value)`` pairs)."""
         return self.data.items()
 
     def is_text(self) -> bool:
-        """是否是纯文本消息字段。
+        """ is a plain text message field.
 
         Returns:
-            是否是纯文本消息字段。
+            Whether it is a plain text message field.
         """
         return self.type == "text"

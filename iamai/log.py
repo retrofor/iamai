@@ -1,7 +1,7 @@
-"""iamai 日志。
+"""iamai log.
 
-iamai 使用 [loguru](https://github.com/Delgan/loguru) 来记录日志信息。
-自定义 logger 请参考 [loguru](https://github.com/Delgan/loguru) 文档。
+iamai uses `loguru <https://github.com/Delgan/loguru>`_ to record log information.
+To customize the logger, please refer to the `loguru <https://github.com/Delgan/loguru>`_ document.
 """
 
 import os
@@ -24,7 +24,7 @@ def error_or_exception(message: str, exception: Exception, verbose: bool):
         sys.stderr,
         format="<magenta>{time:YYYY-MM-DD HH:mm:ss.SSS}</magenta> <level>[{level}]</level> > <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",
     )
-    logger.add(sink=log_path, level="INFO", rotation="10 MB")  # 每个日志文件最大为 10MB
+    logger.add(sink=log_path, level="INFO", rotation="10 MB")
     if verbose:
         logger.exception(message)
     else:
