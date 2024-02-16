@@ -32,6 +32,7 @@ jobs:
             run: |
               # cd docs
               # make api build
+              rm -rf docs/source/pages/api
               cp -r packages/iamai-adapter-apscheduler/iamai/adapter/apscheduler iamai/adapter/apscheduler
               cp -r packages/iamai-adapter-bililive/iamai/adapter/bililive iamai/adapter/bililive
               cp -r packages/iamai-adapter-console/iamai/adapter/console iamai/adapter/console
