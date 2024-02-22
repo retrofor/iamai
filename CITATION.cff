@@ -10,7 +10,7 @@ preferred-citation:
   type: conference-paper
   authors:
   - family-names: Hsiang
-    given-names: Nianian
+    given-names: Nianian 
   booktitle: "Build a bradge between AI and RobotFramework"
   month: 8
   start: 1
