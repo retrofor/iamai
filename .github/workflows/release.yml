@@ -39,7 +39,7 @@ jobs:
 
       - run: pdm publish
         shell: bash
-        working-directory: ./packages/iamai-adapter-onebot11
+        working-directory: ./packages/iamai-adapter-cqhttp
 
       - run: pdm publish
         shell: bash

@@ -51,7 +51,7 @@ for _, model in inspect.getmembers(event, inspect.isclass):
 class CQHTTPAdapter(WebSocketAdapter[CQHTTPEvent, Config]):
     """CQHTTP 协议适配器。"""
 
-    name = "onebot11"
+    name = "cqhttp"
     Config = Config
 
     event_models: ClassVar[EventModels] = DEFAULT_EVENT_MODELS

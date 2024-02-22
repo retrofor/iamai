@@ -1,7 +1,7 @@
 [project]
-name = "iamai-adapter-onebot11"
+name = "iamai-adapter-cqhttp"
 version = "0.0.3a3"
-description = "OneBot(V11) adapter for iamai."
+description = "CQHTTP adapter for iamai."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
 readme = "README.md"
@@ -27,7 +27,7 @@ Changelog = "https://iamai.is-a.dev/changelog.html"
 
 [tool.hatch.build]
 exclude = ["iamai/__init__.py", "iamai/adapter/__init__.py"]
-include = ["iamai/adapter/onebot11"]
+include = ["iamai/adapter/cqhttp"]
 
 [build-system]
 requires = ["hatchling"]
