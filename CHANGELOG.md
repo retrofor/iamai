@@ -4,6 +4,38 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.0.3b3] - 2024-02-22
+### BREAKING CHANGES
+- due to [`4e8a96f`](https://github.com/retrofor/iamai/commit/4e8a96f25665c08314d5e68e338327fa3f65e25a) - rename adapter "onebot11" -> "cqhttp" *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*:
+
+  rename adapter "onebot11" -> "cqhttp"
+
+
+### Bug Fixes
+- [`23d0894`](https://github.com/retrofor/iamai/commit/23d0894c3edba5c88c55082a0dd345267a266c8a) - **readme**: format rst *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`22b40d0`](https://github.com/retrofor/iamai/commit/22b40d0af7e0b0255411f9cef749c3dbe95a3c7f) - **workflow**: build api for all packages *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`e366a34`](https://github.com/retrofor/iamai/commit/e366a34f270890e260c12eee4b96a9e85defd5f6) - remove `readme` key and add `long_description_content`. *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`5a1c0e2`](https://github.com/retrofor/iamai/commit/5a1c0e21094857bf8f997823b8067d27887d11e2) - **workflow**: resolve cp -r not specified error *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`0309a33`](https://github.com/retrofor/iamai/commit/0309a33d20634e00828d081dba53ff01a83bab45) - **workflow**: rename dir name *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`d191c0c`](https://github.com/retrofor/iamai/commit/d191c0ccbbebfe90d78659f05b3699a7562b3a49) - **project**: update url and readme file *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Refactors
+- [`4e8a96f`](https://github.com/retrofor/iamai/commit/4e8a96f25665c08314d5e68e338327fa3f65e25a) - **adapter**: rename adapter "onebot11" -> "cqhttp" *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Chores
+- [`283d1af`](https://github.com/retrofor/iamai/commit/283d1af748a1c309bd6c38b1aabf820e9b56d1e3) - **docs**: update api docs with sphinx-apidoc *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`c7bda67`](https://github.com/retrofor/iamai/commit/c7bda6707669d21141f0af88a7dadfffa4b3783e) - **workflow**: update api build step *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`a69aff7`](https://github.com/retrofor/iamai/commit/a69aff74c1d3f967f9825910d2de13f2243517c7) - **docs**: update conf.py *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`b024674`](https://github.com/retrofor/iamai/commit/b0246747ddc95eced7a68a9f04f22ac2a8e6cf7f) - **docs**: change html title *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`607af84`](https://github.com/retrofor/iamai/commit/607af845fa41c4c9c9612512092494c399a896be) - optimize all comments *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`aa14246`](https://github.com/retrofor/iamai/commit/aa14246e0c44fe752d0e372bdbd9654008db45f3) - **docs**: update api docs with sphinx-apidoc *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`22bfbed`](https://github.com/retrofor/iamai/commit/22bfbed1dc21384139ad527e8c689692a73e419f) - **workflow**: delete api dir *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`1216d89`](https://github.com/retrofor/iamai/commit/1216d89493fd259f4c3df8c9b55c1b956f17acf5) - **docs**: format changelog *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`a67637f`](https://github.com/retrofor/iamai/commit/a67637f2936aa0c19ae3b9f0a3b6712b70c9decd) - **docs**: fix file name *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`7172a20`](https://github.com/retrofor/iamai/commit/7172a204c218ec7da69a6504b6ac20c792b94f6a) - **adapter**: apscheduler adpater update deps *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`6d4ef4a`](https://github.com/retrofor/iamai/commit/6d4ef4a60e98ba66528e629eb0f9a76e072d0d24) - **packages**: update LICENSE *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+
 ## [v0.0.3b2] - 2024-02-14
 ### Bug Fixes
 - [`b8e1178`](https://github.com/retrofor/iamai/commit/b8e11784375b670293d4c4cc9f455a2c1c3a93dd) - change project readme file suffix *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
@@ -58,3 +90,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.0.3a3]: https://github.com/retrofor/iamai/compare/v0.0.3a2...v0.0.3a3
 [v0.0.3b1]: https://github.com/retrofor/iamai/compare/v0.0.3a3...v0.0.3b1
 [v0.0.3b2]: https://github.com/retrofor/iamai/compare/v0.0.3b1...v0.0.3b2
+[v0.0.3b3]: https://github.com/retrofor/iamai/compare/v0.0.3b2...v0.0.3b3
