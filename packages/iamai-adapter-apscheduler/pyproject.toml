@@ -20,10 +20,10 @@ requires-python = ">=3.8"
 dependencies = ["iamai>=0.0.2"]
 
 [project.urls]
-Homepage = "https://iamai.retrofor.space/"
+Homepage = "https://iamai.is-a.dev/"
 Documentation = "https://iamai.retrofor.space/"
 Repository = "https://github.com/retrofor/iamai"
-Changelog = "https://iamai.retrofor.space/changelog.html"
+Changelog = "https://iamai.is-a.dev/changelog.html"
 
 [tool.hatch.build]
 exclude = ["iamai/__init__.py", "iamai/adapter/__init__.py"]

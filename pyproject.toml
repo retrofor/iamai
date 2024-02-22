@@ -4,8 +4,8 @@ version = "0.0.3b2"
 description = "Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform Robotics."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
-long_description_content_type = "text/x-rst"
-long_description_content = "README.rst"
+readme.content-type = "text/x-rst"
+readme.file = "README.rst"
 keywords = [
     "bot",
     "red",
@@ -87,7 +87,7 @@ dev = [
     "-e iamai-adapter-console @ {root:uri}/packages/iamai-adapter-console",
     "-e iamai-adapter-dingtalk @ {root:uri}/packages/iamai-adapter-dingtalk",
     "-e iamai-adapter-apscheduler @ {root:uri}/packages/iamai-adapter-apscheduler",
-    "-e iamai-adapter-gensokyo @ {root:uri}/packages/iamai-adapter-gensokyo"
+    "-e iamai-adapter-gensokyo @ {root:uri}/packages/iamai-adapter-gensokyo",
 ]
 typing = [ # used only in type check
     "watchfiles",
