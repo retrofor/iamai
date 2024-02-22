@@ -45,7 +45,7 @@ This documentation is based on Alicebot `Docs <https://docs.alicebot.dev>`_, but
 
    API Documentation <pages/api/index.rst>
    Contributing <pages/development/contributing.rst>
-   Changelog <changelog>
+   Changelog <changelog.rst>
    COPYING <COPYING.rst>
 
 .. toctree::
