@@ -17,7 +17,10 @@ classifiers = [
     "Topic :: Communications :: Chat",
 ]
 requires-python = ">=3.8"
-dependencies = ["iamai>=0.0.2"]
+dependencies = [
+    "iamai>=0.0.2",
+    "apscheduler>=3.10.4",
+]
 
 [project.urls]
 Homepage = "https://iamai.is-a.dev/"
