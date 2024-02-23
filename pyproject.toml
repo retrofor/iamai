@@ -41,7 +41,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-onebot11 = ["iamai-adapter-onebot11"]
+cqhttp = ["iamai-adapter-cqhttp"]
 bililive = ["iamai-adapter-bililive"]
 dingtalk = ["iamai-adapter-dingtalk"]
 apscheduler = ["iamai-adapter-apscheduler"]
@@ -52,7 +52,7 @@ gensokyo = ["iamai-adapter-gensokyo"]
 hot_reload = ["watchfiles"]
 all = [
     "iamai-adapter-bililive",
-    "iamai-adapter-onebot11",
+    "iamai-adapter-cqhttp",
     "iamai-adapter-dingtalk",
     "iamai-adapter-apscheduler",
     "iamai-adapter-gensokyo",
@@ -83,7 +83,7 @@ dev = [
     "-e iamai-adapter-red @ {root:uri}/packages/iamai-adapter-red",
     "-e iamai-adapter-bililive @ {root:uri}/packages/iamai-adapter-bililive",
     "-e iamai-adapter-kook @ {root:uri}/packages/iamai-adapter-kook",
-    "-e iamai-adapter-onebot11 @ {root:uri}/packages/iamai-adapter-onebot11",
+    "-e iamai-adapter-cqhttp @ {root:uri}/packages/iamai-adapter-cqhttp",
     "-e iamai-adapter-console @ {root:uri}/packages/iamai-adapter-console",
     "-e iamai-adapter-dingtalk @ {root:uri}/packages/iamai-adapter-dingtalk",
     "-e iamai-adapter-apscheduler @ {root:uri}/packages/iamai-adapter-apscheduler",
