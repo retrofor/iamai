@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.0.3b5] - 2024-02-23
+### Bug Fixes
+- [`76fa3e0`](https://github.com/retrofor/iamai/commit/76fa3e0cf3f1120df68c817c0a3e2cb9f23e631e) - **workflow**: rename "onebot11" to "cqhttp" *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Chores
+- [`4fe3918`](https://github.com/retrofor/iamai/commit/4fe39182a361eb60b559ee57a3a956e0757a1128) - **readme**: upate *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`bae16f4`](https://github.com/retrofor/iamai/commit/bae16f4025bfaa0c8296924865f232c0234699c5) - **readme**: update *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`281cf90`](https://github.com/retrofor/iamai/commit/281cf904379797b9fec74e9621d92fb751fce88a) - **project**: update readme.text *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`663a70f`](https://github.com/retrofor/iamai/commit/663a70ffb1bbdaaebc425629f53d49f073d2cf26) - **project**: bump version into 0.0.3b4 *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`6565229`](https://github.com/retrofor/iamai/commit/65652292cf7de7f772e19f82eb502a68c986df28) - **project**: bump version to 0.0.3b5 *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+
 ## [v0.0.3b3] - 2024-02-22
 ### BREAKING CHANGES
 - due to [`4e8a96f`](https://github.com/retrofor/iamai/commit/4e8a96f25665c08314d5e68e338327fa3f65e25a) - rename adapter "onebot11" -> "cqhttp" *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*:
@@ -91,3 +103,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.0.3b1]: https://github.com/retrofor/iamai/compare/v0.0.3a3...v0.0.3b1
 [v0.0.3b2]: https://github.com/retrofor/iamai/compare/v0.0.3b1...v0.0.3b2
 [v0.0.3b3]: https://github.com/retrofor/iamai/compare/v0.0.3b2...v0.0.3b3
+[v0.0.3b5]: https://github.com/retrofor/iamai/compare/v0.0.3b3...v0.0.3b5
