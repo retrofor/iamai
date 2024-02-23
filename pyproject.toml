@@ -1,6 +1,6 @@
 [project]
 name = "iamai"
-version = "0.0.3b3"
+version = "0.0.3b4"
 description = "Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform Robotics."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
