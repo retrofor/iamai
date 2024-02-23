@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.0.3rc3] - 2024-02-23
+### BREAKING CHANGES
+- due to [`a09bf3f`](https://github.com/retrofor/iamai/commit/a09bf3f8a25693c0f28f1e332c4391529fa69f16) - rewrite kook, apscheduler adapter *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*:
+
+  rewrite kook, apscheduler adapter
+
+
+### Refactors
+- [`a09bf3f`](https://github.com/retrofor/iamai/commit/a09bf3f8a25693c0f28f1e332c4391529fa69f16) - **adapter**: rewrite kook, apscheduler adapter *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Chores
+- [`e3f9845`](https://github.com/retrofor/iamai/commit/e3f98452af7178d767cd72335fe4a6febd0cd042) - **project**: bump version to 0.0.3rc3 *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+
 ## [v0.0.3b5] - 2024-02-23
 ### Bug Fixes
 - [`76fa3e0`](https://github.com/retrofor/iamai/commit/76fa3e0cf3f1120df68c817c0a3e2cb9f23e631e) - **workflow**: rename "onebot11" to "cqhttp" *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
@@ -104,3 +118,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.0.3b2]: https://github.com/retrofor/iamai/compare/v0.0.3b1...v0.0.3b2
 [v0.0.3b3]: https://github.com/retrofor/iamai/compare/v0.0.3b2...v0.0.3b3
 [v0.0.3b5]: https://github.com/retrofor/iamai/compare/v0.0.3b3...v0.0.3b5
+[v0.0.3rc3]: https://github.com/retrofor/iamai/compare/v0.0.3rc1...v0.0.3rc3
