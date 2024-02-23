@@ -1,5 +1,4 @@
 """DingTalk 适配器配置。"""
-
 from iamai.config import ConfigModel
 
 __all__ = ["Config"]

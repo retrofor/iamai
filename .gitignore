@@ -140,8 +140,7 @@ docs_build/_build
 examples/config.json
 examples/config.toml
 examples/logs
-examples/data/**/*
-iamai/adapter/**
+examples/data/*
 
 .pdm-python
 %Project%retrofor%iamai/chat_history/history.sqlite
@@ -152,3 +151,5 @@ dist/**/*
 
 # docs
 _build
+
+# iamai/adapter/**/*

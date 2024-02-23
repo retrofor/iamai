@@ -9,7 +9,6 @@ TODO:
     - [ ] onebot 适配
     - [ ] api
 """
-
 import os
 import re
 import sys

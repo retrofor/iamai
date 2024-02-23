@@ -1,5 +1,4 @@
 """GSK 适配器事件。"""
-
 # pyright: reportIncompatibleVariableOverride=false
 
 from typing import (

@@ -3,7 +3,6 @@
 本适配器适配了 gensokyo obv11 协议。
 协议详情请参考：[OneBot](https://github.com/howmanybots/onebot/blob/master/README.md)。
 """
-
 import asyncio
 import inspect
 import json
@@ -102,11 +101,9 @@ class GSKAdapter(WebSocketAdapter[GSKEvent, Config]):
         logger.info("Tying to connect to WebSocket server...")
         async with self.session.ws_connect(
             f"ws://{self.host}:{self.port}/",
-            headers=(
-                {"Authorization": f"Bearer {self.config.access_token}"}
-                if self.config.access_token
-                else None
-            ),
+            headers={"Authorization": f"Bearer {self.config.access_token}"}
+            if self.config.access_token
+            else None,
         ) as self.websocket:
             await self.handle_websocket()
 

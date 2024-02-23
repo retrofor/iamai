@@ -1,5 +1,4 @@
 """Kook 适配器配置。"""
-
 from typing import Literal
 
 from iamai.config import ConfigModel
@@ -12,13 +11,13 @@ class Config(ConfigModel):
         adapter_type: 适配器类型，需要和协议端配置相同。
         reconnect_interval: 重连等待时间。
         api_timeout: 进行 API 调用时等待返回响应的超时时间。
-        access_token: 鉴权。
-        compress: 是否启用压缩，默认为 0，不启用。
+        access_token: 鉴权密钥。
+        compress: 是否启用压缩，默认为 0，(建议)不启用。
         show_raw: 是否显示原始数据，默认为 False，不显示。
     """
 
     __config_name__ = "kook"
-    adapter_type: Literal["ws", "wb"] = "ws"
+    adapter_type: Literal["ws"] = "ws"
     reconnect_interval: int = 3
     api_timeout: int = 1000
     access_token: str = ""

@@ -1,5 +1,4 @@
 """GSK 适配器配置。"""
-
 from typing import Literal
 
 from iamai.config import ConfigModel

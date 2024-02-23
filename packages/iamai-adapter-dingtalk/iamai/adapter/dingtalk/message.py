@@ -1,5 +1,4 @@
 """DingTalk 适配器消息。"""
-
 from typing import Any, Dict, List, Optional
 
 from pydantic import model_serializer

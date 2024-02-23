@@ -1,5 +1,4 @@
 """DingTalk 适配器事件。"""
-
 import time
 from typing import TYPE_CHECKING, Any, Dict, List, Literal, Optional, Union
 from typing_extensions import Self

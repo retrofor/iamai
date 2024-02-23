@@ -1,7 +1,6 @@
 """Console适配器。
 
 """
-
 from asyncio import Condition
 
 from iamai.event import Event

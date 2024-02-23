@@ -1,5 +1,4 @@
 """APScheduler 适配器配置。"""
-
 from typing import Any, Dict
 
 from pydantic import Field

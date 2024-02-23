@@ -1,11 +1,11 @@
 [project]
 name = "iamai"
-version = "0.0.3rc1"
+version = "0.0.3rc2"
 description = "Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform Robotics."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
 readme.content-type = "text/x-rst"
-readme.text = """See the documentation."""
+readme.text = """See the `documentation <https://iamai.is-a.dev/>`_."""
 keywords = [
     "bot",
     "red",
@@ -74,10 +74,6 @@ iamai = "iamai.cli:iamai"
 [tool.black]
 target-version = ["py38", "py39", "py310", "py311"]
 
-[tool.hatch.build.targets.sdist]
-include = ["/README.rst", "/iamai"]
-
-
 [tool.pdm.dev-dependencies]
 dev = [
     "-e iamai-adapter-red @ {root:uri}/packages/iamai-adapter-red",
@@ -105,6 +101,9 @@ docs = [
     "sphinx-intl>=2.1.0",
 ]
 test = ["pytest", "pytest-asyncio", "pytest-xdist", "pytest-cov"]
+
+[tool.hatch.build.targets.sdist]
+include = ["/README.rst", "/iamai"]
 
 [build-system]
 requires = ["hatchling"]

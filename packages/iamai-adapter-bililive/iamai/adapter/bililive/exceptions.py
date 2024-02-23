@@ -1,5 +1,4 @@
 """Bililive 适配器异常。"""
-
 from typing import Optional
 
 from iamai.exceptions import AdapterException

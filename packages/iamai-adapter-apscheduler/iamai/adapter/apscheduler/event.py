@@ -1,5 +1,4 @@
 """APScheduler 适配器事件。"""
-
 from typing import TYPE_CHECKING, Any, Dict, Optional, Type, Union
 
 from apscheduler.job import Job

@@ -249,10 +249,7 @@ class BLiveClient:
             ) as res:
                 if res.status != 200:
                     logger.warning(
-                        "room %d getConf失败：%d %s",
-                        self._room_id,
-                        res.status,
-                        res.reason,
+                        "room %d getConf失败：%d %s", self._room_id, res.status, res.reason
                     )
                     return False
                 data = await res.json()
@@ -339,9 +336,7 @@ class BLiveClient:
                             logger.warn(f"{self.room_id} 程序被強制取消。")
                             raise
                         except Exception:
-                            logger.exception(
-                                "room %d 处理消息时发生错误：", self.room_id
-                            )
+                            logger.exception("room %d 处理消息时发生错误：", self.room_id)
 
             except asyncio.CancelledError:
                 break

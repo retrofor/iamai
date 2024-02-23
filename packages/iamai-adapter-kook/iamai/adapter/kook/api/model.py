@@ -7,37 +7,20 @@ class User(BaseModel):
     """
     开黑啦 User 字段
 
-    https://developer.kaiheila.cn/doc/objects
+    https://developer.kookapp.cn/doc/objects#%E7%94%A8%E6%88%B7User
     """
 
-    id_: Optional[str] = Field(None, alias="id")
-    """用户的 id"""
-    username: Optional[str] = None
-    """用户的名称"""
-    nickname: Optional[str] = None
-    """用户在当前服务器的昵称"""
-    identify_num: Optional[str] = None
-    """用户名的认证数字，用户名正常为：user_name#identify_num"""
-    online: Optional[bool] = None
-    """当前是否在线"""
-    bot: Optional[bool] = None
-    """是否为机器人"""
-    os: Optional[str] = None
-    """os"""
-    status: Optional[int] = None
-    """用户的状态,`0`和`1`代表正常，`10`代表被封禁"""
-    avatar: Optional[str] = None
-    """用户的头像的 url 地址"""
-    vip_avatar: Optional[str] = None
-    """	vip 用户的头像的 url 地址，可能为 gif 动图"""
-    mobile_verified: Optional[bool] = None
-    """是否手机号已验证"""
-    roles: Optional[List[int]] = None
-    """用户在当前服务器中的角色 id 组成的列表"""
-    joined_at: Optional[int] = None
-    """加入服务器时间"""
-    active_time: Optional[int] = None
-    """上次在线时间"""
+    id_: Optional[str] = Field(alias="id")
+    username: Optional[str]
+    nickname: Optional[str]
+    identify_num: Optional[str]
+    online: Optional[bool]
+    bot: Optional[bool]
+    status: Optional[int]
+    avatar: Optional[str]
+    vip_avatar: Optional[str]
+    mobile_verified: Optional[bool]
+    roles: Optional[List[int]]
 
 
 class Role(BaseModel):
