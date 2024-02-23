@@ -1,7 +1,7 @@
-iamai.adapter.onebot11.event module
+iamai.adapter.cqhttp.message module
 ===================================
 
-.. automodule:: iamai.adapter.onebot11.event
+.. automodule:: iamai.adapter.cqhttp.message
    :members:
    :undoc-members:
    :show-inheritance:

@@ -10,9 +10,9 @@ Subpackages
    iamai.adapter.apscheduler
    iamai.adapter.bililive
    iamai.adapter.console
+   iamai.adapter.cqhttp
    iamai.adapter.gensokyo
    iamai.adapter.kook
-   iamai.adapter.onebot11
    iamai.adapter.red
 
 Submodules
