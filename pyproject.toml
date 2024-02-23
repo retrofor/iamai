@@ -5,7 +5,7 @@ description = "Comprehensive AI Toolkit for Multimodal Learning and Cross-Platfo
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
 readme.content-type = "text/x-rst"
-readme.file = "README.rst"
+readme.text = """See the documentation."""
 keywords = [
     "bot",
     "red",
