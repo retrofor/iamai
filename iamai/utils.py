@@ -230,7 +230,7 @@ async def sync_ctx_manager_wrapper(
 
 
 def wrap_get_func(
-    func: Optional[Callable[[EventT], Union[bool, Awaitable[bool]]]]
+    func: Optional[Callable[[EventT], Union[bool, Awaitable[bool]]]],
 ) -> Callable[[EventT], Awaitable[bool]]:
     """Wrap the parameters accepted by the ``get()`` function into an asynchronous function.
 
@@ -252,7 +252,7 @@ if sys.version_info >= (3, 10):  # pragma: no cover
 else:  # pragma: no cover
 
     def get_annotations(
-        obj: Union[Callable[..., object], Type[Any], ModuleType]
+        obj: Union[Callable[..., object], Type[Any], ModuleType],
     ) -> Dict[str, Any]:
         """Compute the annotation dictionary of an object.
 

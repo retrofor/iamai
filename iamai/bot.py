@@ -86,9 +86,7 @@ class Bot:
     plugin_state: Dict[str, Any]
     global_state: Dict[Any, Any]
 
-    _condition: (
-        asyncio.Condition
-    )  # Condition used to handle get # pyright: ignore[reportUninitializedInstanceVariable]
+    _condition: asyncio.Condition  # Condition used to handle get # pyright: ignore[reportUninitializedInstanceVariable]
     _current_event: Optional[Event[Any]]  # Event currently pending
 
     _restart_flag: bool  # Restart flag
@@ -769,7 +767,7 @@ class Bot:
         """Load the plugin.
 
         Args:
-            *plugins: ``Plugin`` class, plugin module name or plug-in module file path. 
+            *plugins: ``Plugin`` class, plugin module name or plug-in module file path.
                 Type can be ``Type[Plugin]``, ``str`` or ``pathlib.Path``.
                 If it is ``Type[Plugin]``, it will be loaded as a plug-in class.
                 If it is of type ``str``, it will be loaded as the plug-in module name, and the format is the same as the Python ``import`` statement.
@@ -780,6 +778,7 @@ class Bot:
         self._extend_plugins.extend(plugins)
 
         return self._load_plugins(*plugins)
+
     def _load_plugins_from_dirs(self, *dirs: Path) -> None:
         """Load plug-ins from the directory. Plug-ins in modules starting with ``_`` will not be imported. The path can be a relative path or an absolute path.
 

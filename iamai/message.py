@@ -333,7 +333,7 @@ class MessageSegment(ABC, BaseModel, Mapping[str, Any], Generic[MessageT]):
     Attributes:
         type: message field type.
         data: message field content.
-     """
+    """
 
     type: str
     data: Dict[str, Any] = Field(default_factory=dict)
@@ -357,7 +357,7 @@ class MessageSegment(ABC, BaseModel, Mapping[str, Any], Generic[MessageT]):
 
         Returns:
             Message fields converted by ``str``.
-         """
+        """
 
     @classmethod
     def from_mapping(cls, msg: Mapping[Any, Any]) -> Self:
@@ -458,8 +458,9 @@ class MessageSegment(ABC, BaseModel, Mapping[str, Any], Generic[MessageT]):
             and self.type == other.type
             and self.data == other.data
         )
+
     def __ne__(self, other: object) -> bool:
-         """Determine whether they are not equal.
+        """Determine whether they are not equal.
 
         Args:
             other: other objects.
@@ -467,7 +468,7 @@ class MessageSegment(ABC, BaseModel, Mapping[str, Any], Generic[MessageT]):
         Returns:
             Whether they are not equal.
         """
-         return not self.__eq__(other)
+        return not self.__eq__(other)
 
     def __add__(self, other: Any) -> MessageT:
         """Method for adding custom message fields to other objects.
@@ -508,7 +509,7 @@ class MessageSegment(ABC, BaseModel, Mapping[str, Any], Generic[MessageT]):
         return self.data.items()
 
     def is_text(self) -> bool:
-        """ is a plain text message field.
+        """is a plain text message field.
 
         Returns:
             Whether it is a plain text message field.
