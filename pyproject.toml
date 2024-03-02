@@ -42,7 +42,6 @@ dependencies = [
     "watchfiles>=0.21.0",
     "requests>=2.31.0",
     "click>=8.1.7",
-    "pip>=24.0",
 ]
 
 [project.optional-dependencies]
@@ -81,7 +80,6 @@ target-version = ["py38", "py39", "py310", "py311"]
 
 [tool.pdm.dev-dependencies]
 dev = [
-    "-e iamai-adapter-red @ file:///${PROJECT_ROOT}/packages/iamai-adapter-red",
     "-e iamai-adapter-bililive @ file:///${PROJECT_ROOT}/packages/iamai-adapter-bililive",
     "-e iamai-adapter-kook @ file:///${PROJECT_ROOT}/packages/iamai-adapter-kook",
     "-e iamai-adapter-cqhttp @ file:///${PROJECT_ROOT}/packages/iamai-adapter-cqhttp",
@@ -89,29 +87,39 @@ dev = [
     "-e iamai-adapter-dingtalk @ file:///${PROJECT_ROOT}/packages/iamai-adapter-dingtalk",
     "-e iamai-adapter-apscheduler @ file:///${PROJECT_ROOT}/packages/iamai-adapter-apscheduler",
     "-e iamai-adapter-gensokyo @ file:///${PROJECT_ROOT}/packages/iamai-adapter-gensokyo",
-]
-typing = [ # used only in type check
-    "watchfiles",
-    "trio>=0.22.2", # watchfiles used this lib
+    "iamai-adapter-red @ file:///${PROJECT_ROOT}/packages/iamai-adapter-red",
+    "pip>=24.0",
 ]
 lint = [
-    "black",
+    "black>=24.2.0",
     "ruff>=0.3.0",
-    "mypy",
-    "pylint",
-    "pylint-pydantic",
+    "mypy>=1.8.0",
+    "pylint>=3.1.0",
+    "pylint-pydantic>=0.3.2",
 ]
 docs = [
-    "tomlkit",
+    "tomlkit>=0.12.4",
     "sphinx>=7.1.2",
-    "furo>=2023.9.10",
+    "furo>=2024.1.29",
     "sphinx-autobuild>=2021.3.14",
     "myst-parser>=2.0.0",
     "tomli>=2.0.1",
     "sphinx-design>=0.5.0",
     "sphinx-intl>=2.1.0",
+    "lint>=1.2.1",
+    "black>=24.2.0",
+    "ruff>=0.3.0",
+    "mypy>=1.8.0",
+    "pylint>=3.1.0",
+    "pylint-pydantic>=0.3.2",
 ]
-test = ["pytest", "pytest-asyncio", "pytest-xdist", "pytest-cov"]
+test = [
+    "pytest>=8.0.2",
+    "pytest-asyncio>=0.23.5",
+    "pytest-xdist>=3.5.0",
+    "pytest-cov>=4.1.0",
+]
+typing = ["watchfiles>=0.21.0", "trio>=0.24.0"]
 
 [tool.maturin]
 features = ["pyo3/extension-module"]
