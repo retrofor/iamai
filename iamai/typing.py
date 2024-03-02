@@ -6,16 +6,16 @@ This module defines some of the types used by iamai.
 # ruff: noqa: TCH001
 from typing import TYPE_CHECKING, Awaitable, Callable, Optional, TypeVar
 
-from iamai.message import BuildMessageType, MessageSegmentT, MessageT
+from .message import BuildMessageType, MessageSegmentT, MessageT
 
 if TYPE_CHECKING:
     from typing import Any
 
-    from iamai.adapter import Adapter
-    from iamai.bot import Bot
-    from iamai.config import ConfigModel
-    from iamai.event import Event
-    from iamai.plugin import Plugin
+    from .adapter import Adapter
+    from .bot import Bot
+    from .config import ConfigModel
+    from .event import Event
+    from .plugin import Plugin
 
 __all__ = [
     "StateT",

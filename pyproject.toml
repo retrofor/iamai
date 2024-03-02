@@ -87,7 +87,7 @@ dev = [
     "-e iamai-adapter-dingtalk @ file:///${PROJECT_ROOT}/packages/iamai-adapter-dingtalk",
     "-e iamai-adapter-apscheduler @ file:///${PROJECT_ROOT}/packages/iamai-adapter-apscheduler",
     "-e iamai-adapter-gensokyo @ file:///${PROJECT_ROOT}/packages/iamai-adapter-gensokyo",
-    "iamai-adapter-red @ file:///${PROJECT_ROOT}/packages/iamai-adapter-red",
+    "-e iamai-adapter-red @ file:///${PROJECT_ROOT}/packages/iamai-adapter-red",
     "pip>=24.0",
 ]
 lint = [

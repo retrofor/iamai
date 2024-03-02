@@ -131,7 +131,7 @@ def plugin(install, search, uninstall):
     if not os.path.exists(config_path):
         click.echo(
             click.style(
-                f"Error: 'config.toml' not found. Use 'iamai new' command first.",
+                "Error: 'config.toml' not found. Use 'iamai new' command first.",
                 fg="red",
             )
         )

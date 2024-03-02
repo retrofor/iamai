@@ -37,8 +37,8 @@ from typing_extensions import ParamSpec, TypeAlias, TypeGuard
 
 from pydantic import BaseModel
 
-from iamai.config import ConfigModel
-from iamai.typing import EventT
+from .config import ConfigModel
+from .typing import EventT
 
 if TYPE_CHECKING:
     from os import PathLike

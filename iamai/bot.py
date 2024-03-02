@@ -30,20 +30,20 @@ from typing import (
 
 from pydantic import ValidationError, create_model
 
-from iamai.adapter import Adapter
-from iamai.config import AdapterConfig, ConfigModel, MainConfig, PluginConfig
-from iamai.dependencies import solve_dependencies
-from iamai.event import Event
-from iamai.exceptions import (
+from .adapter import Adapter
+from .config import AdapterConfig, ConfigModel, MainConfig, PluginConfig
+from .dependencies import solve_dependencies
+from .event import Event
+from .exceptions import (
     GetEventTimeout,
     LoadModuleError,
     SkipException,
     StopException,
 )
-from iamai.log import logger
-from iamai.plugin import Plugin, PluginLoadType
-from iamai.typing import AdapterHook, AdapterT, BotHook, EventHook, EventT
-from iamai.utils import (
+from .log import logger
+from .plugin import Plugin, PluginLoadType
+from .typing import AdapterHook, AdapterT, BotHook, EventHook, EventT
+from .utils import (
     ModulePathFinder,
     get_classes_from_module_name,
     is_config_class,
