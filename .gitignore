@@ -152,4 +152,5 @@ dist/**/*
 # docs
 _build
 
-# iamai/adapter/**/*
+# ruff
+.ruff_cache/
