@@ -1,0 +1,64 @@
+name: Release-Packages
+
+on:
+  push:
+    tags:
+      - "v*"
+  # release:
+  #   types: [published]
+  workflow_dispatch:
+
+jobs:
+  build-packages:
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: pdm-project/setup-pdm@v4
+        name: Setup PDM
+        with:
+          python-version: 3.9
+          cache: true
+
+      - name: Install dependencies
+        run: pdm install
+
+      # - run: pdm publish
+      #   shell: bash
+        
+      - run: pdm publish
+        shell: bash
+        working-directory: ./packages/iamai-adapter-apscheduler
+
+      - run: pdm publish
+        shell: bash
+        working-directory: ./packages/iamai-adapter-kook
+
+      - run: pdm publish
+        shell: bash
+        working-directory: ./packages/iamai-adapter-cqhttp
+
+      - run: pdm publish
+        shell: bash
+        working-directory: ./packages/iamai-adapter-dingtalk
+
+      - run: pdm publish
+        shell: bash
+        working-directory: ./packages/iamai-adapter-bililive
+
+      - run: pdm publish
+        shell: bash
+        working-directory: ./packages/iamai-adapter-console
+
+      - run: pdm publish
+        shell: bash
+        working-directory: ./packages/iamai-adapter-red
+
+      - run: pdm publish
+        shell: bash
+        working-directory: ./packages/iamai-adapter-gensokyo
+
+

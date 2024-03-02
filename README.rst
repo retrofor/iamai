@@ -1,14 +1,4 @@
-.. image:: https://img.shields.io/discord/1063871387527303188?style=flat-square
-   :target: https://discord.gg/9vG9352RXS
-
-.. image:: https://img.shields.io/badge/-QQ群%20761859776-002FA7?style=flat-square&logo=Tencent QQ&logoColor=white
-   :target: https://jq.qq.com/?_wv=1027&k=OOUmgrqx
-
-.. image:: https://img.shields.io/badge/stable version-v0.0.2+march-blue?style=flat-square&logo=python
-   :target: https://pypi.python.org/pypi/iamai
-
-.. image:: https://readthedocs.org/projects/iamai/badge/?version=latest
-   :target: https://iamai.is-a.dev/en/latest/?badge=latest
+|discord| |qgroup| |py_v| |ruff| |docs_status|
 
 .. image:: https://images.repography.com/40962158/retrofor/iamai/structure/afEhYzXo83AMGRNy9EzPPQcX9ECBKj2gOPhvmpzMFSg/DQMxDEhfNZdq6zFhjPa1G61Bg9g-DRhQiwNY-W2ZHVE_table.svg
    :width: 60
@@ -22,6 +12,7 @@ Welcome to iamai, a powerful and comprehensive AI toolkit that seamlessly integr
 
   🌍 This library is designed to provide developers with a unified solution for creating intelligent systems that span multiple modalities and operate across diverse platforms.
 
+- 🦀 Rust based tool, fast and simple.
 - 🎪 Interactive docs & demos
 - 🕶 Seamless migration: Works for both Rasa and GPT and more...
 - ⚡ Fully tree shakeable: Only take what you want, bundle size
@@ -56,4 +47,15 @@ To avoid any potential disputes or misunderstandings, we have listed the license
 .. |FOSSA Badge| image:: https://app.fossa.com/api/projects/git%2Bgithub.com%2Fretrofor%2Fiamai.svg?type=large
    :target: https://app.fossa.com/projects/git%2Bgithub.com%2Fretrofor%2Fiamai?ref=badge_large
 .. |docs| image:: https://readthedocs.org/projects/iamai/badge/?version=latest
+   :target: https://iamai.is-a.dev/en/latest/?badge=latest
+.. |ruff| image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json
+   :target: https://github.com/astral-sh/ruff
+   :alt: Ruff
+.. |discord| image:: https://img.shields.io/discord/1063871387527303188?style=flat-square
+   :target: https://discord.gg/9vG9352RXS
+.. |qgroup| image:: https://img.shields.io/badge/-QQ群%20761859776-002FA7?style=flat-square&logo=Tencent QQ&logoColor=white
+   :target: https://jq.qq.com/?_wv=1027&k=OOUmgrqx
+.. |py_v| image:: https://img.shields.io/badge/stable version-v0.0.2+march-blue?style=flat-square&logo=python
+   :target: https://pypi.python.org/pypi/iamai
+.. |docs_status| image:: https://readthedocs.org/projects/iamai/badge/?version=latest
    :target: https://iamai.is-a.dev/en/latest/?badge=latest

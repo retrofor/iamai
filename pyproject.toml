@@ -1,6 +1,10 @@
+[build-system]
+requires = ["maturin>=1.4,<2.0"]
+build-backend = "maturin"
+
 [project]
 name = "iamai"
-version = "0.0.3rc3"
+dynamic = ["version"]
 description = "Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform Robotics."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
@@ -38,6 +42,7 @@ dependencies = [
     "watchfiles>=0.21.0",
     "requests>=2.31.0",
     "click>=8.1.7",
+    "pip>=24.0",
 ]
 
 [project.optional-dependencies]
@@ -76,20 +81,26 @@ target-version = ["py38", "py39", "py310", "py311"]
 
 [tool.pdm.dev-dependencies]
 dev = [
-    "-e iamai-adapter-red @ {root:uri}/packages/iamai-adapter-red",
-    "-e iamai-adapter-bililive @ {root:uri}/packages/iamai-adapter-bililive",
-    "-e iamai-adapter-kook @ {root:uri}/packages/iamai-adapter-kook",
-    "-e iamai-adapter-cqhttp @ {root:uri}/packages/iamai-adapter-cqhttp",
-    "-e iamai-adapter-console @ {root:uri}/packages/iamai-adapter-console",
-    "-e iamai-adapter-dingtalk @ {root:uri}/packages/iamai-adapter-dingtalk",
-    "-e iamai-adapter-apscheduler @ {root:uri}/packages/iamai-adapter-apscheduler",
-    "-e iamai-adapter-gensokyo @ {root:uri}/packages/iamai-adapter-gensokyo",
+    "-e iamai-adapter-red @ file:///${PROJECT_ROOT}/packages/iamai-adapter-red",
+    "-e iamai-adapter-bililive @ file:///${PROJECT_ROOT}/packages/iamai-adapter-bililive",
+    "-e iamai-adapter-kook @ file:///${PROJECT_ROOT}/packages/iamai-adapter-kook",
+    "-e iamai-adapter-cqhttp @ file:///${PROJECT_ROOT}/packages/iamai-adapter-cqhttp",
+    "-e iamai-adapter-console @ file:///${PROJECT_ROOT}/packages/iamai-adapter-console",
+    "-e iamai-adapter-dingtalk @ file:///${PROJECT_ROOT}/packages/iamai-adapter-dingtalk",
+    "-e iamai-adapter-apscheduler @ file:///${PROJECT_ROOT}/packages/iamai-adapter-apscheduler",
+    "-e iamai-adapter-gensokyo @ file:///${PROJECT_ROOT}/packages/iamai-adapter-gensokyo",
 ]
 typing = [ # used only in type check
     "watchfiles",
     "trio>=0.22.2", # watchfiles used this lib
 ]
-lint = ["black", "ruff", "mypy", "pylint", "pylint-pydantic"]
+lint = [
+    "black",
+    "ruff>=0.3.0",
+    "mypy",
+    "pylint",
+    "pylint-pydantic",
+]
 docs = [
     "tomlkit",
     "sphinx>=7.1.2",
@@ -102,9 +113,5 @@ docs = [
 ]
 test = ["pytest", "pytest-asyncio", "pytest-xdist", "pytest-cov"]
 
-[tool.hatch.build.targets.sdist]
-include = ["/README.rst", "/iamai"]
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+[tool.maturin]
+features = ["pyo3/extension-module"]
