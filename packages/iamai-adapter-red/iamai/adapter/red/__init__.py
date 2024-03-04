@@ -3,6 +3,7 @@
 本适配器适配了 red 协议。
 协议详情请参考: [RedProtocol](https://chrononeko.github.io/QQNTRedProtocol/) 。
 """
+
 import os
 import json
 import asyncio
@@ -70,9 +71,11 @@ class RedAdapter(WebSocketAdapter[RedEvent, Config]):
         logger.info("Tying to connect to WebSocket server...")
         async with self.session.ws_connect(
             f"ws://{self.host}:{self.port}/",
-            headers={"Authorization": f"Bearer {self.access_token}"}
-            if self.access_token
-            else None,
+            headers=(
+                {"Authorization": f"Bearer {self.access_token}"}
+                if self.access_token
+                else None
+            ),
         ) as self.websocket:
             connect = {
                 "type": "meta::connect",

@@ -32,6 +32,7 @@ class ApiClient:
             ChannelRoleInfo: 频道角色权限详情
         """
         ...
+
     async def channelRole_update(
         self,
         *,
@@ -95,6 +96,7 @@ class ApiClient:
             msg_id (str): 消息 id
         """
         ...
+
     async def directMessage_deleteReaction(
         self, *, msg_id: str, emoji: str, user_id: Optional[str] = ...
     ) -> None: ...
@@ -126,6 +128,7 @@ class ApiClient:
             DirectMessagesReturn：获取私信聊天消息列表返回信息
         """
         ...
+
     async def directMessage_reactionList(
         self, *, msg_id: str, emoji: str
     ) -> List[ReactionUser]: ...
@@ -143,6 +146,7 @@ class ApiClient:
                 回复某条消息的msgId. 如果为空,则代表删除回复,不传则无影响.
         """
         ...
+
     async def directMessage_view(
         self, *, chat_code: str, msg_id: str
     ) -> DirectMessage: ...
@@ -216,6 +220,7 @@ class ApiClient:
             GuildsReturn: 当前用户加入的服务器列表返回信息
         """
         ...
+
     async def guild_nickname(
         self,
         *,
@@ -254,6 +259,7 @@ class ApiClient:
             GuildsReturn: 服务器中的用户列表返回信息
         """
         ...
+
     async def guild_view(self, *, guild_id: str) -> Guild:
         """获取服务器详情
 
@@ -264,6 +270,7 @@ class ApiClient:
             Guild: 服务器详情
         """
         ...
+
     async def intimacy_index(self, *, user_id: str) -> IntimacyIndexReturn: ...
     async def intimacy_update(
         self,
@@ -342,6 +349,7 @@ class ApiClient:
     async def user_offline(self) -> None:
         """下线机器人"""
         ...
+
     async def user_view(
         self, *, user_id: str, guild_id: Optional[str] = ...
     ) -> User: ...
