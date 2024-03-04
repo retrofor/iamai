@@ -86,7 +86,9 @@ class Bot:
     plugin_state: Dict[str, Any]
     global_state: Dict[Any, Any]
 
-    _condition: asyncio.Condition  # Condition used to handle get # pyright: ignore[reportUninitializedInstanceVariable]
+    _condition: (
+        asyncio.Condition
+    )  # Condition used to handle get # pyright: ignore[reportUninitializedInstanceVariable]
     _current_event: Optional[Event[Any]]  # Event currently pending
 
     _restart_flag: bool  # Restart flag

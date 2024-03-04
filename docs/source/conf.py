@@ -107,9 +107,9 @@ import sys
 import os.path
 
 # User's Sphinx configurations
-language_user = globals().get('language', None)
-latex_engine_user = globals().get('latex_engine', None)
-latex_elements_user = globals().get('latex_elements', None)
+language_user = globals().get("language", None)
+latex_engine_user = globals().get("latex_engine", None)
+latex_elements_user = globals().get("latex_elements", None)
 
 # Remove this once xindy gets installed in Docker image and XINDYOPS
 # env variable is supported

@@ -1,4 +1,5 @@
 """GSK 适配器异常。"""
+
 from typing import Any, ClassVar, Dict
 
 from iamai.exceptions import AdapterException
