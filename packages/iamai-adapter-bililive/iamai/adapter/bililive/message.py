@@ -1,4 +1,5 @@
 """Bililive 适配器消息。"""
+
 import json
 from io import StringIO
 from dataclasses import dataclass

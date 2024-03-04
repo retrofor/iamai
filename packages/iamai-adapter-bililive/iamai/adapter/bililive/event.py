@@ -1,4 +1,5 @@
 """Bililive 适配器事件。"""
+
 import asyncio
 import inspect
 from enum import IntEnum

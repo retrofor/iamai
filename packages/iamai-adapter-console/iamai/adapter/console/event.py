@@ -1,4 +1,5 @@
 """Console 适配器事件。"""
+
 import inspect
 from datetime import datetime
 from typing import (

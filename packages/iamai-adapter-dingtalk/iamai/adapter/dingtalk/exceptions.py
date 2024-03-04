@@ -1,4 +1,5 @@
 """DingTalk 适配器异常。"""
+
 from iamai.exceptions import AdapterException
 
 __all__ = ["DingTalkException", "NetworkError", "WebhookExpiredError"]
