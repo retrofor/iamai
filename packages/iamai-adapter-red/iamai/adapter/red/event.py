@@ -1,4 +1,5 @@
 """Red 适配器事件。"""
+
 import inspect
 from enum import IntEnum
 from datetime import datetime, timedelta
@@ -44,8 +45,7 @@ class EmojiZplan(BaseModel):
     bytesReserveInfo: str
 
 
-class ThumbPath(BaseModel):
-    ...
+class ThumbPath(BaseModel): ...
 
 
 class TextElement(BaseModel):
