@@ -15,6 +15,7 @@ Welcome to iamai, a powerful and comprehensive AI toolkit that seamlessly integr
 - 🔩 Flexible: Configurable event filters and targets
 - 🔌 Optional Add-ons: Apscheduler, etc.
 - 👍 Cross-platform: dingtalk etc.
+
 .. index-end
 
 First of all, in the field of machine learning, we drew inspiration from the excellent design of `Hugging Face`_'s `transformers`_ for the use of pre-trained models. We would like to express our gratitude to the authors of Hugging Face and their open-source community.
