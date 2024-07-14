@@ -34,7 +34,6 @@ To avoid any potential disputes or misunderstandings, we have listed the license
 
 .. |Structure| image:: https://images.repography.com/40962158/retrofor/iamai/structure/afEhYzXo83AMGRNy9EzPPQcX9ECBKj2gOPhvmpzMFSg/DQMxDEhfNZdq6zFhjPa1G61Bg9g-DRhQiwNY-W2ZHVE_table.svg
    :width: 60
-   :align: right
 .. _`Hugging Face`: https://huggingface.co
 .. _`transformers`: https://github.com/huggingface/transformers
 .. _`st`: https://github.com/st1020
