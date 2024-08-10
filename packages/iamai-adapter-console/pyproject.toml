@@ -1,6 +1,6 @@
 [project]
 name = "iamai-adapter-console"
-version = "0.0.3rc4"
+version = "0.0.3-rc.4"
 description = "Console adapter for iamai."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }

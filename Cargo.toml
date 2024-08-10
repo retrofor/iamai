@@ -1,6 +1,6 @@
 [package]
 name = "iamai"
-version = "0.0.3rc4"
+version = "0.0.3-rc.4"
 edition = "2021"
 description = "Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform Robotics."
 license = "MIT"
