@@ -1,11 +1,7 @@
 |discord| |qgroup| |py_v| |ruff| |docs_status|
 
-.. image:: https://images.repography.com/40962158/retrofor/iamai/structure/afEhYzXo83AMGRNy9EzPPQcX9ECBKj2gOPhvmpzMFSg/DQMxDEhfNZdq6zFhjPa1G61Bg9g-DRhQiwNY-W2ZHVE_table.svg
-   :width: 60
-   :align: right
-
-Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform Robotics
-============================================================================
+Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform Robotics |Structure|
+========================================================================================
 
 .. index-start
 Welcome to iamai, a powerful and comprehensive AI toolkit that seamlessly integrates multimodal machine learning capabilities with advanced tools for cross-platform robot development!
@@ -19,6 +15,7 @@ Welcome to iamai, a powerful and comprehensive AI toolkit that seamlessly integr
 - 🔩 Flexible: Configurable event filters and targets
 - 🔌 Optional Add-ons: Apscheduler, etc.
 - 👍 Cross-platform: dingtalk etc.
+
 .. index-end
 
 First of all, in the field of machine learning, we drew inspiration from the excellent design of `Hugging Face`_'s `transformers`_ for the use of pre-trained models. We would like to express our gratitude to the authors of Hugging Face and their open-source community.
@@ -35,6 +32,8 @@ To avoid any potential disputes or misunderstandings, we have listed the license
 
 |FOSSA Badge|
 
+.. |Structure| image:: https://images.repography.com/40962158/retrofor/iamai/structure/afEhYzXo83AMGRNy9EzPPQcX9ECBKj2gOPhvmpzMFSg/DQMxDEhfNZdq6zFhjPa1G61Bg9g-DRhQiwNY-W2ZHVE_table.svg
+   :width: 60
 .. _`Hugging Face`: https://huggingface.co
 .. _`transformers`: https://github.com/huggingface/transformers
 .. _`st`: https://github.com/st1020
