@@ -3,10 +3,9 @@
 
 [metadata]
 groups = ["default", "dev"]
-cross_platform = true
-static_urls = false
-lock_version = "4.3"
-content_hash = "sha256:c87a67fa60dd9170fa8c2237074eca62d8dc39ef2947f14ac0622987770c3a6d"
+strategy = ["cross_platform"]
+lock_version = "4.4.1"
+content_hash = "sha256:f068cb8d022e3eee64f4219d4dfcc4a436cb19f941f44ef6c081958610596f81"
 
 [[package]]
 name = "aiohttp"
@@ -376,72 +375,6 @@ files = [
 ]
 
 [[package]]
-name = "iamai-adapter-bililive"
-version = "0.0.3rc3"
-requires_python = ">=3.8"
-editable = true
-path = "./packages/iamai-adapter-bililive"
-summary = "bililive adapter for iamai."
-dependencies = [
-    "iamai>=0.0.2",
-]
-
-[[package]]
-name = "iamai-adapter-cqhttp"
-version = "0.0.3rc3"
-requires_python = ">=3.8"
-editable = true
-path = "./packages/iamai-adapter-cqhttp"
-summary = "CQHTTP adapter for iamai."
-dependencies = [
-    "iamai>=0.0.2",
-]
-
-[[package]]
-name = "iamai-adapter-dingtalk"
-version = "0.0.3rc3"
-requires_python = ">=3.8"
-editable = true
-path = "./packages/iamai-adapter-dingtalk"
-summary = "Dingtalk adapter for iamai."
-dependencies = [
-    "iamai>=0.0.2",
-]
-
-[[package]]
-name = "iamai-adapter-gensokyo"
-version = "0.0.3rc3"
-requires_python = ">=3.8"
-editable = true
-path = "./packages/iamai-adapter-gensokyo"
-summary = "Gensokyo adapter for iamai."
-dependencies = [
-    "iamai>=0.0.2",
-]
-
-[[package]]
-name = "iamai-adapter-kook"
-version = "0.0.3rc3"
-requires_python = ">=3.8"
-editable = true
-path = "./packages/iamai-adapter-kook"
-summary = "kook adapter for iamai."
-dependencies = [
-    "iamai>=0.0.2",
-]
-
-[[package]]
-name = "iamai-adapter-red"
-version = "0.0.3rc3"
-requires_python = ">=3.8"
-editable = true
-path = "./packages/iamai-adapter-red"
-summary = "Red adapter for iamai."
-dependencies = [
-    "iamai>=0.0.2",
-]
-
-[[package]]
 name = "idna"
 version = "3.6"
 requires_python = ">=3.5"
@@ -552,17 +485,17 @@ files = [
 
 [[package]]
 name = "pip"
-version = "24.0"
-requires_python = ">=3.7"
+version = "24.2"
+requires_python = ">=3.8"
 summary = "The PyPA recommended tool for installing Python packages."
 files = [
-    {file = "pip-24.0-py3-none-any.whl", hash = "sha256:ba0d021a166865d2265246961bec0152ff124de910c5cc39f1156ce3fa7c69dc"},
-    {file = "pip-24.0.tar.gz", hash = "sha256:ea9bd1a847e8c5774a5777bb398c19e80bcd4e2aa16a4b301b718fe6f593aba2"},
+    {file = "pip-24.2-py3-none-any.whl", hash = "sha256:2cd581cf58ab7fcfca4ce8efa6dcacd0de5bf8d0a3eb9ec927e07405f4d9e2a2"},
+    {file = "pip-24.2.tar.gz", hash = "sha256:5b5e490b5e9cb275c879595064adce9ebd31b854e3e803740b72f9ccf34a45b8"},
 ]
 
 [[package]]
 name = "pydantic"
-version = "2.6.3"
+version = "2.6.4"
 requires_python = ">=3.8"
 summary = "Data validation using Python type hints"
 dependencies = [
@@ -571,8 +504,8 @@ dependencies = [
     "typing-extensions>=4.6.1",
 ]
 files = [
-    {file = "pydantic-2.6.3-py3-none-any.whl", hash = "sha256:72c6034df47f46ccdf81869fddb81aade68056003900a8724a4f160700016a2a"},
-    {file = "pydantic-2.6.3.tar.gz", hash = "sha256:e07805c4c7f5c6826e33a1d4c9d47950d7eaf34868e2690f8594d2e30241f11f"},
+    {file = "pydantic-2.6.4-py3-none-any.whl", hash = "sha256:cc46fce86607580867bdc3361ad462bab9c222ef042d3da86f2fb333e1d916c5"},
+    {file = "pydantic-2.6.4.tar.gz", hash = "sha256:b1704e0847db01817624a6b86766967f552dd9dbf3afba4004409f908dcc84e6"},
 ]
 
 [[package]]

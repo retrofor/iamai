@@ -161,7 +161,7 @@ def install_package(package_name, directory):
 
             with open(target_path, "wb") as file:
                 for chunk in response.iter_content(chunk_size=8192):
-                    file.write(chunk)
+                    file.write(chunk) 
         else:
             subprocess.run(["pip", "install", package_name])
 
@@ -242,6 +242,4 @@ def search_packages_with_dependency(dependency_name):
     else:
         click.echo(f"No packages found with '{dependency_name}' in iamai dependencies.")
 
-
-if __name__ == "__main__":
-    iamai()
+  

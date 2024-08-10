@@ -21,6 +21,8 @@ keywords = [
     "apscheduler",
     "bilibili",
     "bilibili-live",
+    "rust",
+    "pyo3",
 ]
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -80,15 +82,7 @@ target-version = ["py38", "py39", "py310", "py311"]
 
 [tool.pdm.dev-dependencies]
 dev = [
-    "-e iamai-adapter-bililive @ file:///${PROJECT_ROOT}/packages/iamai-adapter-bililive",
-    "-e iamai-adapter-kook @ file:///${PROJECT_ROOT}/packages/iamai-adapter-kook",
-    "-e iamai-adapter-cqhttp @ file:///${PROJECT_ROOT}/packages/iamai-adapter-cqhttp",
-    "-e iamai-adapter-console @ file:///${PROJECT_ROOT}/packages/iamai-adapter-console",
-    "-e iamai-adapter-dingtalk @ file:///${PROJECT_ROOT}/packages/iamai-adapter-dingtalk",
-    "-e iamai-adapter-apscheduler @ file:///${PROJECT_ROOT}/packages/iamai-adapter-apscheduler",
-    "-e iamai-adapter-gensokyo @ file:///${PROJECT_ROOT}/packages/iamai-adapter-gensokyo",
-    "-e iamai-adapter-red @ file:///${PROJECT_ROOT}/packages/iamai-adapter-red",
-    "pip>=24.0",
+    "pip>=24.2",
 ]
 lint = [
     "black>=24.2.0",
@@ -123,3 +117,67 @@ typing = ["watchfiles>=0.21.0", "trio>=0.24.0"]
 
 [tool.maturin]
 features = ["pyo3/extension-module"]
+module-name = "iamai.libcore"
+
+[tool.ruff]
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+
+# Same as Black.
+line-length = 88
+indent-width = 4
+
+# Assume Python 3.8
+target-version = "py38"
+
+[tool.ruff.lint]
+# Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
+select = ["E4", "E7", "E9", "F"]
+ignore = []
+
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
