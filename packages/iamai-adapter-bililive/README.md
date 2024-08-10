@@ -1,8 +1,8 @@
 <div align="center">
-  <a href="https://docs.iamai.dev/"><img src="https://raw.githubusercontent.com/retrofor/iamai/master/docs/public/logo.png" width="200" height="200" alt="logo"></a>
+  <a href="https://docs.iamai.is-a.dev/"><img src="https://mirror.ghproxy.com/raw.githubusercontent.com/retrofor/iamai/master/docs/_static/logo.png" width="200" height="200" alt="logo"></a>
 
-# iamai-Adapter-Bililive
+# iamai-adapter-bililive
 
-**Bililive 平台适配**
+**BiliLive 平台适配**
 
 </div>
