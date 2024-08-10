@@ -44,7 +44,7 @@ class UnsupportedMessageType(KookException):
     """
     :说明:
 
-      在发送不支持的消息类型时抛出，开黑啦 Bot 不支持发送音频消息。
+        在发送不支持的消息类型时抛出，开黑啦 Bot 不支持发送音频消息。
     """
 
     def __init__(self, message: str = ""):
