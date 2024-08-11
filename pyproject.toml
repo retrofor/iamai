@@ -86,14 +86,13 @@ dev = [
     "pip>=24.2",
 ]
 lint = [
-    "black>=24.2.0",
     "ruff>=0.3.0",
     "mypy>=1.8.0",
     "pylint>=3.1.0",
     "pylint-pydantic>=0.3.2",
 ]
 docs = [
-    "tomlkit>=0.12.4",
+    "tomlkit>=0.13.0",
     "sphinx>=7.1.2",
     "furo>=2024.1.29",
     "sphinx-autobuild>=2021.3.14",
