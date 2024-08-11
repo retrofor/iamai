@@ -1,6 +1,7 @@
 name: api build
 
 on:
+    pull_request:
     push:
         tags:
           - "v*"
