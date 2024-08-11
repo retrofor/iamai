@@ -13,7 +13,7 @@ from enum import IntEnum
 # code from xfgryujk
 from abc import abstractmethod
 from collections import namedtuple
-from typing import *  # ??这是什么粗暴的import方式
+from typing import *  # ??这是什么粗暴的import方式  # noqa: F403
 
 import aiohttp
 

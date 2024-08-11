@@ -2,7 +2,7 @@
 
 from asyncio import Condition
 
-from iamai.event import Event
+from iamai.event import Event  # noqa: F401
 from iamai.adapter import Adapter
 
 from .config import Config

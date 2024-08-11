@@ -1,32 +1,25 @@
 """Bililive 适配器事件。"""
 
-import asyncio
 import inspect
 from enum import IntEnum
-from email import message
-from collections import UserDict
 from typing import (
     TYPE_CHECKING,
     Any,
     Dict,
     List,
     Type,
-    Tuple,
     Union,
     Literal,
     TypeVar,
     Optional,
 )
 
-from isort import literal
-from pydantic import Field, HttpUrl, BaseModel, validator, root_validator
 
 from iamai.event import Event
 
-from .message import Message, BililiveMessage
+from .message import BililiveMessage
 
 if TYPE_CHECKING:
-    from . import BililiveAdapter
     from .message import T_BililiveMSG
 
 T_BililiveEvent = TypeVar("T_BililiveEvent", bound="BililiveEvent")

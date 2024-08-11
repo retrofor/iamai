@@ -17,15 +17,14 @@ from typing import (  # type: ignore
     Optional,
 )
 
-from pydantic import Field, HttpUrl, BaseModel, validator, root_validator
+from pydantic import Field, HttpUrl, BaseModel, validator
 
 from iamai.event import Event
 
 from .api import Role, User, Emoji, Guild, Channel
-from .message import KookMessage, MessageDeserializer
+from .message import KookMessage
 
 if TYPE_CHECKING:
-    from . import KookAdapter
     from .message import T_KookMSG
 
 T_KookEvent = TypeVar("T_KookEvent", bound="KookEvent")

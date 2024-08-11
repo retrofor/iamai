@@ -1,7 +1,5 @@
 """Console 适配器配置。"""
 
-from typing import Any, Dict
-
 from iamai.config import ConfigModel
 
 

@@ -3,7 +3,6 @@ import re
 import json
 import pathlib
 
-import httpx
 from python_graphql_client import GraphqlClient
 
 root = pathlib.Path(__file__).parent.resolve()

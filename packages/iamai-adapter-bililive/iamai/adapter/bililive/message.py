@@ -1,14 +1,10 @@
 """Bililive 适配器消息。"""
 
-import json
-from io import StringIO
-from dataclasses import dataclass
-from typing_extensions import deprecated
-from typing import Any, Dict, Type, Tuple, Union, Mapping, Iterable, Optional, cast
+from typing import Type, Union, Mapping, Iterable
 
 from iamai.message import Message, MessageSegment
 
-from .exceptions import *
+from .exceptions import *  # noqa: F403
 
 __all__ = ["T_BililiveMSG", "BililiveMessage", "BililiveMessageSegment"]
 

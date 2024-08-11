@@ -47,7 +47,7 @@ class BM25:
         return scores
 
     def search_top_k(self, query, k=5):
-        scores = self.score(query)
+        scores = self.score(query)  # noqa: F841
         results = []
         for i, word in enumerate(query):
             sub_query = query[i:]

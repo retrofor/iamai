@@ -1,10 +1,8 @@
 """red 协议配置。"""
 
 import os
-from ast import List
 from os.path import join
 from pathlib import Path
-from typing import Optional
 
 from iamai.config import ConfigModel
 

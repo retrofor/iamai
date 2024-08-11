@@ -24,7 +24,7 @@ from iamai.message import BuildMessageType
 from .message import CQHTTPMessage, CQHTTPMessageSegment
 
 if TYPE_CHECKING:
-    from . import CQHTTPAdapter
+    pass
 
 
 class Sender(BaseModel):

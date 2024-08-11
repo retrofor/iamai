@@ -1,7 +1,6 @@
 import re
-from typing import Type, Union, Literal, Iterable, Optional, TypedDict
 
-from iamai.message import Message, MessageSegment
+from iamai.message import MessageSegment
 
 
 class ConsoleMessage(MessageSegment[None]):

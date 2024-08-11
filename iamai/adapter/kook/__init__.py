@@ -5,9 +5,9 @@ For details of the agreement, please refer to: [Kook Developer Platform](https:/
 """
 
 import re
-import sys
+import sys  # noqa: F401
 import json
-import time
+import time  # noqa: F401
 import zlib
 import asyncio
 from functools import partial
@@ -21,24 +21,24 @@ from iamai.adapter.utils import WebSocketAdapter
 from iamai.log import logger, error_or_exception
 
 from .config import Config
-from .message import MessageDeserializer, rev_msg_type_map
+from .message import MessageDeserializer, rev_msg_type_map  # noqa: F401
 from .api.handle import User, get_api_method, get_api_restype
 from .exceptions import (
-    ApiTimeout,
+    ApiTimeout,  # noqa: F401
     TokenError,
     ActionFailed,
-    NetworkError,
+    NetworkError,  # noqa: F401
     ReconnectError,
-    ApiNotAvailable,
+    ApiNotAvailable,  # noqa: F401
 )
 from .event import (
     KookEvent,
-    EventTypes,
-    OriginEvent,
+    EventTypes,  # noqa: F401
+    OriginEvent,  # noqa: F401
     ResultStore,
     SignalTypes,
-    _kook_events,
-    get_event_class,
+    _kook_events,  # noqa: F401
+    get_event_class,  # noqa: F401
 )
 
 if TYPE_CHECKING:
@@ -234,7 +234,7 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
         Args:
             msg: received message.
         """
-        post_type = data.get("type")
+        post_type = data.get("type")  # noqa: F841
 
         kook_event = KookEvent(adapter=self, **data)
 
