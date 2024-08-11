@@ -51,12 +51,12 @@ jobs:
               branch: master
               commit_message: "chore(docs): update api docs with sphinx-apidoc"
     
-          - name: Create Pull Request
-            uses: peter-evans/create-pull-request@v5
-            with:
-              token: ${{ secrets.ACCESS_TOKEN }}
-              commit-message: "docs(api): update api docs"
-              title: "docs(api): update api docs"
-              body: "automatic update api docs"
-              branch: docs/update-api-docs
-              base: master
+          # - name: Create Pull Request
+          #   uses: peter-evans/create-pull-request@v5
+          #   with:
+          #     token: ${{ secrets.ACCESS_TOKEN }}
+          #     commit-message: "docs(api): update api docs"
+          #     title: "docs(api): update api docs"
+          #     body: "automatic update api docs"
+          #     branch: docs/update-api-docs
+          #     base: master
