@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.0.4] - 2024-08-11
+### Chores
+- [`e4f6b7b`](https://github.com/retrofor/iamai/commit/e4f6b7bcfbc00b73d7b43ea747e1f4fe06bb05ee) - bump version in to 0.0.4 *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+
 ## [v0.0.3-rc.4] - 2024-08-11
 ### BREAKING CHANGES
 - due to [`9e9aeed`](https://github.com/retrofor/iamai/commit/9e9aeed12a501901425d6b782879c1260b608d1f) - fix @actions/upload_artifact@v4 breaking changes for upload same name files *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*:
@@ -148,3 +153,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.0.3b5]: https://github.com/retrofor/iamai/compare/v0.0.3b3...v0.0.3b5
 [v0.0.3rc3]: https://github.com/retrofor/iamai/compare/v0.0.3rc1...v0.0.3rc3
 [v0.0.3-rc.4]: https://github.com/retrofor/iamai/compare/v0.0.3rc3...v0.0.3-rc.4
+[v0.0.4]: https://github.com/retrofor/iamai/compare/v0.0.3...v0.0.4
