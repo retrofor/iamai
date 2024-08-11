@@ -8,8 +8,9 @@ dynamic = ["version"]
 description = "Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform Robotics."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
-readme.content-type = "text/x-rst"
-readme.text = """See the `documentation <https://iamai.is-a.dev/>`_."""
+# readme.content-type = "text/x-rst"
+# readme.text = """See the `documentation <https://iamai.is-a.dev/>`_."""
+readme = "README.rst"
 keywords = [
     "bot",
     "red",
