@@ -4,7 +4,7 @@ from typing import Type, Union, Mapping, Iterable
 
 from iamai.message import Message, MessageSegment
 
-from .exceptions import *
+from .exceptions import *  # noqa: F403
 
 __all__ = ["T_BililiveMSG", "BililiveMessage", "BililiveMessageSegment"]
 

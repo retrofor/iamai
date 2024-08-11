@@ -16,7 +16,7 @@ T_ConsoleEvent = TypeVar("T_ConsoleEvent", bound="ConsoleEvent")
 if TYPE_CHECKING:
     pass  # type: ignore[class]
 
-__all__ = ["ConsoleEvent", "MessageEvent", "User", "Robot"]
+__all__ = ["ConsoleEvent", "MessageEvent", "User", "Robot"]  # noqa: F822
 
 
 class User(BaseModel, frozen=True):

@@ -34,7 +34,7 @@ Bilibili Client Operation
 
 
 async def login(session: ClientSession) -> bool:
-    if get_cookies("bili_jct") != None:
+    if get_cookies("bili_jct") != None:  # noqa: E711
         # 無需重複獲取
         logging.info("先前已經登入，因此無需再度登入。")
         return True

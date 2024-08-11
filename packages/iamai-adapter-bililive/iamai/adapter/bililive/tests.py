@@ -20,7 +20,7 @@ sender = LiveRoom(ROOMID, credential=credential)
 async def recv(event):
     # 发送者UID
     print(event)
-    uid = event["data"]["info"][2][0]
+    uid = event["data"]["info"][2][0]  # noqa: F841
     # 排除自己发送的弹幕
     # if uid == UID:
     #     return

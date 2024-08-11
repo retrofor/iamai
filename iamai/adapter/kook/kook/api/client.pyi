@@ -1,28 +1,28 @@
-from .model import *
+from .model import *  # noqa: F403
 
 class ApiClient:
-    async def asset_create(self, *, file) -> URL: ...
+    async def asset_create(self, *, file) -> URL: ...  # noqa: F405
     async def blacklist_create(
         self,
         *,
         guild_id: str,
         target_id: str,
-        remark: Optional[str] = ...,
-        del_msg_days: Optional[str] = ...,
+        remark: Optional[str] = ...,  # noqa: F405
+        del_msg_days: Optional[str] = ...,  # noqa: F405
     ) -> None: ...
     async def blacklist_delete(self, *, guild_id: str, target_id: str) -> None: ...
-    async def blacklist_list(self, *, guild_id: str) -> BlackListsReturn: ...
+    async def blacklist_list(self, *, guild_id: str) -> BlackListsReturn: ...  # noqa: F405
     async def channelRole_create(
-        self, *, channel_id: str, type: Optional[str] = ..., value: Optional[str] = ...
-    ) -> ChannelRoleReturn: ...
+        self, *, channel_id: str, type: Optional[str] = ..., value: Optional[str] = ...  # noqa: F405
+    ) -> ChannelRoleReturn: ...  # noqa: F405
     async def channelRole_delete(
         self,
         *,
         channel_id: str,
-        type: Optional[str] = ...,
-        value: Optional[str] = ...,
+        type: Optional[str] = ...,  # noqa: F405
+        value: Optional[str] = ...,  # noqa: F405
     ) -> None: ...
-    async def channelRole_index(self, *, channel_id: str) -> ChannelRoleInfo:
+    async def channelRole_index(self, *, channel_id: str) -> ChannelRoleInfo:  # noqa: F405
         """获取频道角色权限详情
 
         Args:
@@ -37,58 +37,58 @@ class ApiClient:
         self,
         *,
         channel_id: str,
-        type: Optional[str] = ...,
-        value: Optional[str] = ...,
-        allow: Optional[int] = ...,
-        deny: Optional[int] = ...,
-    ) -> ChannelRoleReturn: ...
+        type: Optional[str] = ...,  # noqa: F405
+        value: Optional[str] = ...,  # noqa: F405
+        allow: Optional[int] = ...,  # noqa: F405
+        deny: Optional[int] = ...,  # noqa: F405
+    ) -> ChannelRoleReturn: ...  # noqa: F405
     async def channel_create(
         self,
         *,
         guild_id: str,
         name: str,
-        parent_id: Optional[str] = ...,
-        type: Optional[int] = ...,
-        limit_amount: Optional[int] = ...,
-        voice_quality: Optional[str] = ...,
-        is_category: Optional[int] = ...,
-    ) -> Channel: ...
+        parent_id: Optional[str] = ...,  # noqa: F405
+        type: Optional[int] = ...,  # noqa: F405
+        limit_amount: Optional[int] = ...,  # noqa: F405
+        voice_quality: Optional[str] = ...,  # noqa: F405
+        is_category: Optional[int] = ...,  # noqa: F405
+    ) -> Channel: ...  # noqa: F405
     async def channel_delete(self, *, channel_id: str) -> None: ...
     async def channel_update(
         self,
         *,
         channel_id: str,
-        name: Optional[str] = ...,
-        topic: Optional[str] = ...,
-        slow_mode: Optional[int] = ...,
-    ) -> Channel: ...
+        name: Optional[str] = ...,  # noqa: F405
+        topic: Optional[str] = ...,  # noqa: F405
+        slow_mode: Optional[int] = ...,  # noqa: F405
+    ) -> Channel: ...  # noqa: F405
     async def channel_list(
         self,
         *,
         guild_id: str,
-        type: Optional[int] = ...,
-        page: Optional[int] = ...,
-        page_size: Optional[int] = ...,
-    ) -> ChannelsReturn: ...
+        type: Optional[int] = ...,  # noqa: F405
+        page: Optional[int] = ...,  # noqa: F405
+        page_size: Optional[int] = ...,  # noqa: F405
+    ) -> ChannelsReturn: ...  # noqa: F405
     async def channel_moveUser(
         self,
         *,
         target_id: str,
-        user_ids: List[int],
+        user_ids: List[int],  # noqa: F405
     ) -> None: ...
-    async def channel_userList(self, *, channel_id: str) -> List[User]: ...
-    async def channel_view(self, *, target_id: str) -> Channel: ...
+    async def channel_userList(self, *, channel_id: str) -> List[User]: ...  # noqa: F405
+    async def channel_view(self, *, target_id: str) -> Channel: ...  # noqa: F405
     async def directMessage_addReaction(self, *, msg_id: str, emoji: str) -> None: ...
     async def directMessage_create(
         self,
         *,
         content: str,
-        type: Optional[int] = ...,
-        target_id: Optional[str] = ...,
-        chat_code: Optional[str] = ...,
-        quote: Optional[str] = ...,
-        nonce: Optional[str] = ...,
-    ) -> MessageCreateReturn: ...
+        type: Optional[int] = ...,  # noqa: F405
+        target_id: Optional[str] = ...,  # noqa: F405
+        chat_code: Optional[str] = ...,  # noqa: F405
+        quote: Optional[str] = ...,  # noqa: F405
+        nonce: Optional[str] = ...,  # noqa: F405
+    ) -> MessageCreateReturn: ...  # noqa: F405
     async def directMessage_delete(self, *, msg_id: str) -> None:
         """删除私信聊天消息
 
@@ -98,18 +98,18 @@ class ApiClient:
         ...
 
     async def directMessage_deleteReaction(
-        self, *, msg_id: str, emoji: str, user_id: Optional[str] = ...
+        self, *, msg_id: str, emoji: str, user_id: Optional[str] = ...  # noqa: F405
     ) -> None: ...
     async def directMessage_list(
         self,
         *,
-        chat_code: Optional[str] = ...,
-        target_id: Optional[str] = ...,
-        msg_id: Optional[str] = ...,
-        flag: Optional[str] = ...,
-        page: Optional[int] = ...,
-        page_size: Optional[int] = ...,
-    ) -> DirectMessagesReturn:
+        chat_code: Optional[str] = ...,  # noqa: F405
+        target_id: Optional[str] = ...,  # noqa: F405
+        msg_id: Optional[str] = ...,  # noqa: F405
+        flag: Optional[str] = ...,  # noqa: F405
+        page: Optional[int] = ...,  # noqa: F405
+        page_size: Optional[int] = ...,  # noqa: F405
+    ) -> DirectMessagesReturn:  # noqa: F405
         """获取私信聊天消息列表
 
         Args:
@@ -131,9 +131,9 @@ class ApiClient:
 
     async def directMessage_reactionList(
         self, *, msg_id: str, emoji: str
-    ) -> List[ReactionUser]: ...
+    ) -> List[ReactionUser]: ...  # noqa: F405
     async def directMessage_update(
-        self, *, content: str, msg_id: Optional[str] = ..., quote: Optional[str] = ...
+        self, *, content: str, msg_id: Optional[str] = ..., quote: Optional[str] = ...  # noqa: F405
     ) -> None:
         """更新私信聊天消息
 
@@ -149,19 +149,19 @@ class ApiClient:
 
     async def directMessage_view(
         self, *, chat_code: str, msg_id: str
-    ) -> DirectMessage: ...
-    async def gateway_index(self, *, compress: Optional[int] = ...) -> URL: ...
+    ) -> DirectMessage: ...  # noqa: F405
+    async def gateway_index(self, *, compress: Optional[int] = ...) -> URL: ...  # noqa: F405
     async def guildEmoji_create(
-        self, *, guild_id: str, emoji: Optional[bytes] = ..., name: Optional[str] = ...
-    ) -> GuildEmoji: ...
+        self, *, guild_id: str, emoji: Optional[bytes] = ..., name: Optional[str] = ...  # noqa: F405
+    ) -> GuildEmoji: ...  # noqa: F405
     async def guildEmoji_delete(self, *, id: str) -> None: ...
     async def guildEmoji_list(
         self,
         *,
         guild_id: str,
-        page: Optional[int] = ...,
-        page_size: Optional[int] = ...,
-    ) -> GuildEmojisReturn: ...
+        page: Optional[int] = ...,  # noqa: F405
+        page_size: Optional[int] = ...,  # noqa: F405
+    ) -> GuildEmojisReturn: ...  # noqa: F405
     async def guildEmoji_update(self, *, id: str, name: str) -> None: ...
     async def guildMute_create(
         self, *, guild_id: str = ..., target_id: str = ..., type: int = ...
@@ -170,45 +170,45 @@ class ApiClient:
         self, *, guild_id: str = ..., target_id: str = ..., type: int = ...
     ) -> None: ...
     async def guildMute_list(
-        self, *, guild_id: str, return_type: Optional[str] = ...
+        self, *, guild_id: str, return_type: Optional[str] = ...  # noqa: F405
     ) -> None: ...
     async def guildRole_create(
-        self, *, guild_id: str, name: Optional[str] = ...
-    ) -> Role: ...
+        self, *, guild_id: str, name: Optional[str] = ...  # noqa: F405
+    ) -> Role: ...  # noqa: F405
     async def guildRole_delete(self, *, guild_id: str, role_id: int) -> None: ...
     async def guildRole_grant(
         self, *, guild_id: str, user_id: str, role_id: int
-    ) -> GuilRoleReturn: ...
+    ) -> GuilRoleReturn: ...  # noqa: F405
     async def guildRole_list(
         self,
         *,
         guild_id: str,
-        page: Optional[int] = ...,
-        page_size: Optional[int] = ...,
-    ) -> RolesReturn: ...
+        page: Optional[int] = ...,  # noqa: F405
+        page_size: Optional[int] = ...,  # noqa: F405
+    ) -> RolesReturn: ...  # noqa: F405
     async def guildRole_revoke(
         self, *, guild_id: str, user_id: str, role_id: int
-    ) -> GuilRoleReturn: ...
+    ) -> GuilRoleReturn: ...  # noqa: F405
     async def guildRole_update(
         self,
         *,
         guild_id: str,
         role_id: int,
-        name: Optional[str] = ...,
-        color: Optional[int] = ...,
-        hoist: Optional[int] = ...,
-        mentionable: Optional[int] = ...,
-        permissions: Optional[int] = ...,
-    ) -> Role: ...
+        name: Optional[str] = ...,  # noqa: F405
+        color: Optional[int] = ...,  # noqa: F405
+        hoist: Optional[int] = ...,  # noqa: F405
+        mentionable: Optional[int] = ...,  # noqa: F405
+        permissions: Optional[int] = ...,  # noqa: F405
+    ) -> Role: ...  # noqa: F405
     async def guild_kickout(self, *, guild_id: str, target_id: str) -> None: ...
     async def guild_leave(self, *, guild_id: str) -> None: ...
     async def guild_list(
         self,
         *,
-        page: Optional[int] = ...,
-        page_size: Optional[int] = ...,
-        sort: Optional[str] = ...,
-    ) -> GuildsReturn:
+        page: Optional[int] = ...,  # noqa: F405
+        page_size: Optional[int] = ...,  # noqa: F405
+        sort: Optional[str] = ...,  # noqa: F405
+    ) -> GuildsReturn:  # noqa: F405
         """获取当前用户加入的服务器列表
 
         Args:
@@ -225,23 +225,23 @@ class ApiClient:
         self,
         *,
         guild_id: str = ...,
-        nickname: Optional[str] = ...,
-        user_id: Optional[str] = ...,
+        nickname: Optional[str] = ...,  # noqa: F405
+        user_id: Optional[str] = ...,  # noqa: F405
     ) -> None: ...
     async def guild_userList(
         self,
         *,
         guild_id: str,
-        channel_id: Optional[str] = ...,
-        search: Optional[str] = ...,
-        role_id: Optional[int] = ...,
-        mobile_verified: Optional[int] = ...,
-        active_time: Optional[int] = ...,
-        joined_at: Optional[int] = ...,
-        page: Optional[int] = ...,
-        page_size: Optional[int] = ...,
-        filter_user_id: Optional[str] = ...,
-    ) -> GuildUsersRetrun:
+        channel_id: Optional[str] = ...,  # noqa: F405
+        search: Optional[str] = ...,  # noqa: F405
+        role_id: Optional[int] = ...,  # noqa: F405
+        mobile_verified: Optional[int] = ...,  # noqa: F405
+        active_time: Optional[int] = ...,  # noqa: F405
+        joined_at: Optional[int] = ...,  # noqa: F405
+        page: Optional[int] = ...,  # noqa: F405
+        page_size: Optional[int] = ...,  # noqa: F405
+        filter_user_id: Optional[str] = ...,  # noqa: F405
+    ) -> GuildUsersRetrun:  # noqa: F405
         """获取服务器中的用户列表
 
         Args:
@@ -260,7 +260,7 @@ class ApiClient:
         """
         ...
 
-    async def guild_view(self, *, guild_id: str) -> Guild:
+    async def guild_view(self, *, guild_id: str) -> Guild:  # noqa: F405
         """获取服务器详情
 
         Args:
@@ -271,85 +271,85 @@ class ApiClient:
         """
         ...
 
-    async def intimacy_index(self, *, user_id: str) -> IntimacyIndexReturn: ...
+    async def intimacy_index(self, *, user_id: str) -> IntimacyIndexReturn: ...  # noqa: F405
     async def intimacy_update(
         self,
         *,
         user_id: str,
-        score: Optional[int] = ...,
-        social_info: Optional[str] = ...,
-        img_id: Optional[str] = ...,
+        score: Optional[int] = ...,  # noqa: F405
+        social_info: Optional[str] = ...,  # noqa: F405
+        img_id: Optional[str] = ...,  # noqa: F405
     ) -> None: ...
     async def invite_create(
         self,
         *,
-        guild_id: Optional[str] = ...,
-        channel_id: Optional[str] = ...,
-        duration: Optional[int] = ...,
-        setting_times: Optional[int] = ...,
-    ) -> URL: ...
+        guild_id: Optional[str] = ...,  # noqa: F405
+        channel_id: Optional[str] = ...,  # noqa: F405
+        duration: Optional[int] = ...,  # noqa: F405
+        setting_times: Optional[int] = ...,  # noqa: F405
+    ) -> URL: ...  # noqa: F405
     async def invite_delete(
         self,
         *,
         url_code: str,
-        guild_id: Optional[str] = ...,
-        channel_id: Optional[str] = ...,
+        guild_id: Optional[str] = ...,  # noqa: F405
+        channel_id: Optional[str] = ...,  # noqa: F405
     ) -> None: ...
     async def invite_list(
         self,
         *,
-        guild_id: Optional[str] = ...,
-        channel_id: Optional[str] = ...,
-        page: Optional[int] = ...,
-        page_size: Optional[int] = ...,
-    ) -> InvitesReturn: ...
+        guild_id: Optional[str] = ...,  # noqa: F405
+        channel_id: Optional[str] = ...,  # noqa: F405
+        page: Optional[int] = ...,  # noqa: F405
+        page_size: Optional[int] = ...,  # noqa: F405
+    ) -> InvitesReturn: ...  # noqa: F405
     async def message_addReaction(self, *, msg_id: str, emoji: str) -> None: ...
     async def message_create(
         self,
         *,
         content: str,
         target_id: str,
-        type: Optional[int] = ...,
-        quote: Optional[str] = ...,
-        nonce: Optional[str] = ...,
-        temp_target_id: Optional[str] = ...,
-    ) -> MessageCreateReturn: ...
+        type: Optional[int] = ...,  # noqa: F405
+        quote: Optional[str] = ...,  # noqa: F405
+        nonce: Optional[str] = ...,  # noqa: F405
+        temp_target_id: Optional[str] = ...,  # noqa: F405
+    ) -> MessageCreateReturn: ...  # noqa: F405
     async def message_delete(self, *, msg_id: str) -> None: ...
     async def message_deleteReaction(
-        self, *, msg_id: str, emoji: str, user_id: Optional[str] = ...
+        self, *, msg_id: str, emoji: str, user_id: Optional[str] = ...  # noqa: F405
     ) -> None: ...
     async def message_list(
         self,
         *,
         target_id: str,
-        msg_id: Optional[str] = ...,
-        pin: Optional[int] = ...,
-        flag: Optional[str] = ...,
-        page_size: Optional[int] = ...,
-    ) -> ChannelMessagesReturn: ...
+        msg_id: Optional[str] = ...,  # noqa: F405
+        pin: Optional[int] = ...,  # noqa: F405
+        flag: Optional[str] = ...,  # noqa: F405
+        page_size: Optional[int] = ...,  # noqa: F405
+    ) -> ChannelMessagesReturn: ...  # noqa: F405
     async def message_reactionList(
         self, *, msg_id: str, emoji: str
-    ) -> List[ReactionUser]: ...
+    ) -> List[ReactionUser]: ...  # noqa: F405
     async def message_update(
         self,
         *,
         msg_id: str,
         content: str,
-        quote: Optional[str] = ...,
-        temp_target_id: Optional[str] = ...,
+        quote: Optional[str] = ...,  # noqa: F405
+        temp_target_id: Optional[str] = ...,  # noqa: F405
     ) -> None: ...
-    async def message_view(self, *, msg_id: str) -> ChannelMessage: ...
-    async def userChat_create(self, *, target_id: str) -> UserChat: ...
+    async def message_view(self, *, msg_id: str) -> ChannelMessage: ...  # noqa: F405
+    async def userChat_create(self, *, target_id: str) -> UserChat: ...  # noqa: F405
     async def userChat_delete(self, *, chat_code: str) -> None: ...
     async def userChat_list(
-        self, *, page: Optional[int] = ..., page_size: Optional[int] = ...
-    ) -> UserChatsReturn: ...
-    async def userChat_view(self, *, chat_code: str) -> UserChat: ...
-    async def user_me(self) -> User: ...
+        self, *, page: Optional[int] = ..., page_size: Optional[int] = ...  # noqa: F405
+    ) -> UserChatsReturn: ...  # noqa: F405
+    async def userChat_view(self, *, chat_code: str) -> UserChat: ...  # noqa: F405
+    async def user_me(self) -> User: ...  # noqa: F405
     async def user_offline(self) -> None:
         """下线机器人"""
         ...
 
     async def user_view(
-        self, *, user_id: str, guild_id: Optional[str] = ...
-    ) -> User: ...
+        self, *, user_id: str, guild_id: Optional[str] = ...  # noqa: F405
+    ) -> User: ...  # noqa: F405

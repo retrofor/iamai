@@ -102,8 +102,8 @@ html_theme_options = {
 #
 # Note: this file shouldn't rely on extra dependencies.
 
-import sys
-import os.path
+import sys  # noqa: E402
+import os.path  # noqa: E402
 
 # User's Sphinx configurations
 language_user = globals().get("language", None)

@@ -13,16 +13,16 @@ from typing import TYPE_CHECKING, Any, Dict, Literal
 
 import yaml
 import aiohttp
-from itsdangerous import exc
+from itsdangerous import exc  # noqa: F401
 
 from iamai.log import logger
 from iamai.adapter.utils import WebSocketAdapter
 
 from .api import HANDLE
-from .exceptions import *
+from .exceptions import *  # noqa: F403
 from .message import RedMessage
 from .config import USER_CONFIG, Config
-from .event import MsgType, RedEvent, get_event_class
+from .event import MsgType, RedEvent, get_event_class  # noqa: F401
 
 if TYPE_CHECKING:
     from .message import T_RedMSG  # type: ignore
@@ -121,7 +121,7 @@ class RedAdapter(WebSocketAdapter[RedEvent, Config]):
                             .get("textElement")
                             .get("content")
                         )
-                    except:
+                    except:  # noqa: E722
                         data["message"] = msg_data.get("elements")[0].get("summary")
                     logger.info(f"Event Received: {data}")
                 # elif (

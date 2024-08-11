@@ -1,3 +1,3 @@
 from iamai import libcore
 
-l = libcore
+l = libcore  # noqa: E741

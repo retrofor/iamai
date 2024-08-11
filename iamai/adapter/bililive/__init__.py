@@ -11,36 +11,36 @@ TODO:
 """
 
 import os
-import re
+import re  # noqa: F401
 import sys
 import json
 import time
 import zlib
 import struct
 import asyncio
-from math import log
+from math import log  # noqa: F401
 from functools import partial
 from abc import abstractmethod
 from collections import namedtuple
-from os.path import join, split, abspath, dirname
-from typing import TYPE_CHECKING, Any, Dict, NamedTuple
+from os.path import join, split, abspath, dirname  # noqa: F401
+from typing import TYPE_CHECKING, Any, Dict, NamedTuple  # noqa: F401
 
 import qrcode
 import aiohttp
 from genericpath import exists
 from aiohttp.client import ClientSession
 
-from iamai.utils import DataclassEncoder
+from iamai.utils import DataclassEncoder  # noqa: F401
 from iamai.adapter.utils import WebSocketAdapter
 from iamai.log import logger, error_or_exception
 
-from .event import *
-from .message import *
+from .event import *  # noqa: F403
+from .message import *  # noqa: F403
 from .config import Config
 from .event import get_event_class
 
 if TYPE_CHECKING:
-    from .message import T_BililiveMSG
+    from .message import T_BililiveMSG  # noqa: F401
 
 __all__ = ["BililiveAdapter"]
 
@@ -80,7 +80,7 @@ WS_BODY_PROTOCOL_VERSION_DEFLATE = 2
 user_cookies = aiohttp.cookiejar.CookieJar()
 
 
-class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
+class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):  # noqa: F405
     """bililive 协议适配器。"""
 
     name: str = "bililive"
@@ -125,7 +125,7 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
                         self._uid = get_cookies("DedeUserID")
                         self.jct = get_cookies("bili_jct")
 
-                        if self._uid == None or self.jct == None:
+                        if self._uid == None or self.jct == None:  # noqa: E711
                             logger.error(
                                 "Unable to get cookies, please check your cookies."
                             )
@@ -183,7 +183,7 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
                         header = HeaderTuple(*HEADER_STRUCT.unpack_from(data, offset))
                     except struct.error:
                         break
-                    if header.operation == Operation.HEARTBEAT_REPLY:
+                    if header.operation == Operation.HEARTBEAT_REPLY:  # noqa: F405
                         popularity = int.from_bytes(
                             data[
                                 offset + HEADER_STRUCT.size : offset
@@ -193,7 +193,7 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
                             "big",
                         )
                         await self._on_receive_popularity(popularity)
-                    elif header.operation == Operation.SEND_MSG_REPLY:
+                    elif header.operation == Operation.SEND_MSG_REPLY:  # noqa: F405
                         body = data[
                             offset + HEADER_STRUCT.size : offset + header.pack_len
                         ]
@@ -219,9 +219,9 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
                                 logger.debug(f"body: {body}")
                                 raise
 
-                    elif header.operation == Operation.AUTH_REPLY:
+                    elif header.operation == Operation.AUTH_REPLY:  # noqa: F405
                         await self.websocket.send_bytes(
-                            self._make_packet({}, Operation.HEARTBEAT)
+                            self._make_packet({}, Operation.HEARTBEAT)  # noqa: F405
                         )
 
                     else:
@@ -270,7 +270,7 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
             "clientver": "1.14.3",
             "type": 2,
         }
-        await self.websocket.send_bytes(self._make_packet(auth_params, Operation.AUTH))
+        await self.websocket.send_bytes(self._make_packet(auth_params, Operation.AUTH))  # noqa: F405
 
     @staticmethod
     def _make_packet(data, operation):
@@ -327,7 +327,7 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
         danmaku: str,
         fontsize: int = 25,
         color: int = 0xFFFFFF,
-        pos: DanmakuPosition = DanmakuPosition.NORMAL,
+        pos: DanmakuPosition = DanmakuPosition.NORMAL,  # noqa: F405
     ) -> bool:
         # don't know what the hell is bubble
         return await self.send_danmu(
@@ -366,7 +366,7 @@ def rawData_to_jsonData(data: bytes):
 
 
 async def login(session: ClientSession) -> bool:
-    if get_cookies("bili_jct") != None:
+    if get_cookies("bili_jct") != None:  # noqa: E711
         logger.info("Aleady login!")
         return True
     try:
