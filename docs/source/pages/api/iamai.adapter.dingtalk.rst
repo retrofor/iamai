@@ -1,6 +1,14 @@
 iamai.adapter.dingtalk package
 ==============================
 
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   iamai.adapter.dingtalk.dingtalk
+
 Submodules
 ----------
 
