@@ -4,6 +4,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.0.3-rc.4] - 2024-08-11
+### BREAKING CHANGES
+- due to [`9e9aeed`](https://github.com/retrofor/iamai/commit/9e9aeed12a501901425d6b782879c1260b608d1f) - fix @actions/upload_artifact@v4 breaking changes for upload same name files *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*:
+
+  fix @actions/upload_artifact@v4 breaking changes for upload same name files
+
+
+### Bug Fixes
+- [`48d4a55`](https://github.com/retrofor/iamai/commit/48d4a55d7de5c52d22f863067a08c2d2bb8487c4) - dynamic fix compile error *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`8588182`](https://github.com/retrofor/iamai/commit/8588182bd89f00ff500fe3762bb5091a0733bed8) - **adapter**: refactor kook adapter event, exceptions *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Refactors
+- [`df1bf4d`](https://github.com/retrofor/iamai/commit/df1bf4d916de9790a13332d271e5aa3236ccaa1d) - **project**: build with rust *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Chores
+- [`dd5aa72`](https://github.com/retrofor/iamai/commit/dd5aa720b0a1e6925a70242398b91cda3f10833c) - **docs**: update api docs with sphinx-apidoc *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`81de1d6`](https://github.com/retrofor/iamai/commit/81de1d694398658c9e619c36fbca40130a0f4f55) - **project**: remove useless files *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`5db979b`](https://github.com/retrofor/iamai/commit/5db979bb8e0b759fc934ae82dd4d1638589f5421) - **lint**: format with ruff *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`ed5a1a0`](https://github.com/retrofor/iamai/commit/ed5a1a0b21d34acaebe133ff1900090b09041fc0) - **deps**: update dependencies *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`4314aa9`](https://github.com/retrofor/iamai/commit/4314aa900b489e5b4ed1110e5aa4109ba3cb657a) - add .ruff_cache to the ignore list *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`1ae75c8`](https://github.com/retrofor/iamai/commit/1ae75c8761f659c0830e2abadd0b510cf6ee526b) - **lint**: format code *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`3f881c8`](https://github.com/retrofor/iamai/commit/3f881c8d3ef5d86e876019a9bf305f4860578aeb) - **deps**: bump actions/download-artifact from 3 to 4 *(PR [#280](https://github.com/retrofor/iamai/pull/280) by [@dependabot[bot]](https://github.com/apps/dependabot))*
+- [`ee0070c`](https://github.com/retrofor/iamai/commit/ee0070cf0c0852fc1fe9d35bf8be048d37f4333c) - **deps**: bump actions/upload-artifact from 3 to 4 *(PR [#279](https://github.com/retrofor/iamai/pull/279) by [@dependabot[bot]](https://github.com/apps/dependabot))*
+- [`34c8b52`](https://github.com/retrofor/iamai/commit/34c8b5230c14813de7d92d3750bef356c59b51f0) - bump version into 0.0.3-rc4 *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`7d1e1ab`](https://github.com/retrofor/iamai/commit/7d1e1ab203326dd3dfdec11b0164966d99baa884) - rename version *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`00d0bdb`](https://github.com/retrofor/iamai/commit/00d0bdbdfa0a1bcaccb19ae3d6dbc28b2203aeba) - rename version *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+
 ## [v0.0.3rc3] - 2024-02-23
 ### BREAKING CHANGES
 - due to [`a09bf3f`](https://github.com/retrofor/iamai/commit/a09bf3f8a25693c0f28f1e332c4391529fa69f16) - rewrite kook, apscheduler adapter *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*:
@@ -119,3 +147,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.0.3b3]: https://github.com/retrofor/iamai/compare/v0.0.3b2...v0.0.3b3
 [v0.0.3b5]: https://github.com/retrofor/iamai/compare/v0.0.3b3...v0.0.3b5
 [v0.0.3rc3]: https://github.com/retrofor/iamai/compare/v0.0.3rc1...v0.0.3rc3
+[v0.0.3-rc.4]: https://github.com/retrofor/iamai/compare/v0.0.3rc3...v0.0.3-rc.4
