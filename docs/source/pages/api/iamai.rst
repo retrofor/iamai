@@ -23,6 +23,7 @@ Submodules
    iamai.dependencies
    iamai.event
    iamai.exceptions
+   iamai.libcore
    iamai.log
    iamai.message
    iamai.plugin
