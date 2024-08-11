@@ -33,7 +33,7 @@ jobs:
               # cd docs
               # make api build
               rm -rf docs/source/pages/api
-              for adapter in apscheduler bililive console gensokyo kook cqhttp red onebot11
+              for adapter in apscheduler bililive console cqhttp dingtalk gensokyo kook red
               do
                   cp -r "packages/iamai-adapter-$adapter/iamai/adapter/$adapter" "iamai/adapter/$adapter"
               done
