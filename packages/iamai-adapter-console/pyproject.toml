@@ -1,6 +1,6 @@
 [project]
 name = "iamai-adapter-console"
-version = "0.0.3"
+version = "0.0.4"
 description = "Console adapter for iamai."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
@@ -16,8 +16,8 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Topic :: Communications :: Chat",
 ]
-requires-python = ">=3.8"
-dependencies = ["iamai>=0.0.2"]
+requires-python = ">=3.9"
+dependencies = ["iamai>=0.0.3"]
 
 [project.urls]
 Homepage = "https://iamai.is-a.dev/"
