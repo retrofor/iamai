@@ -1,6 +1,14 @@
 iamai.adapter.red package
 =========================
 
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   iamai.adapter.red.red
+
 Submodules
 ----------
 

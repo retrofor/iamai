@@ -1,6 +1,14 @@
 iamai.adapter.console package
 =============================
 
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   iamai.adapter.console.console
+
 Submodules
 ----------
 

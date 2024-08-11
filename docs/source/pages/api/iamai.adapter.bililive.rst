@@ -1,6 +1,14 @@
 iamai.adapter.bililive package
 ==============================
 
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   iamai.adapter.bililive.bililive
+
 Submodules
 ----------
 
