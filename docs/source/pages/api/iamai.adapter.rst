@@ -11,6 +11,7 @@ Subpackages
    iamai.adapter.bililive
    iamai.adapter.console
    iamai.adapter.cqhttp
+   iamai.adapter.dingtalk
    iamai.adapter.gensokyo
    iamai.adapter.kook
    iamai.adapter.red
