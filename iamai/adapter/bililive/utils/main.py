@@ -29,7 +29,7 @@ async def start_bot(room: int):
             jct = get_cookies("bili_jct")
 
             if uid == None or jct == None:
-                logging.error(f"获取 cookies 失败")
+                logging.error("获取 cookies 失败")
                 return
             if not session_exist:
                 for cookie in user_cookies:
@@ -43,12 +43,12 @@ async def start_bot(room: int):
                 room_id=room, uid=int(uid), session=session, loop=session._loop
             )
             await bot.init_room()
-            logging.info(f"機器人已啟動。")
+            logging.info("機器人已啟動。")
             await bot.start()
             # while True:
             #    await asyncio.sleep(60)
             await bot.close()
-            logging.info(f"機器人已關閉。")
+            logging.info("機器人已關閉。")
         else:
             exit()
 

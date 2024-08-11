@@ -24,7 +24,7 @@ from iamai.message import BuildMessageType
 from .message import GSKMessage, GSKMessageSegment
 
 if TYPE_CHECKING:
-    from . import GSKAdapter
+    pass
 
 
 class Sender(BaseModel):

@@ -9,7 +9,7 @@ from iamai.event import Event
 from iamai.plugin import Plugin
 
 if TYPE_CHECKING:
-    from . import APSchedulerAdapter
+    pass
 
 
 __all__ = ["APSchedulerEvent"]

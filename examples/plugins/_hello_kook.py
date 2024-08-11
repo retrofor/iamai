@@ -1,6 +1,5 @@
 from iamai import Plugin
-from iamai.log import logger
-from iamai.adapter.kook.message import KookMessage, KookMessageSegment
+from iamai.adapter.kook.message import KookMessageSegment
 
 
 class HalloKook(Plugin):

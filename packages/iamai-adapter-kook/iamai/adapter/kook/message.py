@@ -3,7 +3,7 @@
 import json
 from io import StringIO
 from dataclasses import dataclass
-from typing_extensions import override, deprecated
+from typing_extensions import deprecated
 from typing import (  # type: ignore
     Any,
     Dict,
@@ -13,13 +13,11 @@ from typing import (  # type: ignore
     Mapping,
     Iterable,
     Optional,
-    cast,
 )
 
-from iamai.log import logger
 from iamai.message import Message, MessageSegment
 
-from .exceptions import UnsupportedMessageType, UnsupportedMessageOperation
+from .exceptions import UnsupportedMessageType
 
 __all__ = [
     "T_KookMSG",

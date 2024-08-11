@@ -1,7 +1,4 @@
-import time
-
 from iamai import Plugin
-from iamai.log import logger
 from iamai.adapter.apscheduler import scheduler_decorator
 
 

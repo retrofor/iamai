@@ -5,14 +5,13 @@ from enum import IntEnum
 from datetime import datetime, timedelta
 from typing import TYPE_CHECKING, Any, Dict, Type, Union, Literal, TypeVar, Optional
 
-from pydantic import Field, BaseModel
+from pydantic import BaseModel
 
 from iamai.event import Event
 
 from .message import T_RedMSG, RedMessage
 
 if TYPE_CHECKING:
-    from . import RedAdapter
     from .message import T_RedMSG
 
 T_RedEvent = TypeVar("T_RedEvent", bound="RedEvent")
