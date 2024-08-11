@@ -21,5 +21,5 @@ __all__ = [
     "Event",
     "MessageEvent",
     "Plugin",
-    "libcore"
+    "libcore",
 ]

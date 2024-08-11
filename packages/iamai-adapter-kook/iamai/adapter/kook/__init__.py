@@ -107,9 +107,9 @@ class KookAdapter(WebSocketAdapter[KookEvent, Config]):
         if response.status_code == 200:
             logger.success("Successed to get GateWay.")
             self._gateway_response = response.json()
-            self.bot.global_state["adapter"]["kook"]["bot_info"] = (
-                await self._get_self_data(self.config.access_token)
-            )
+            self.bot.global_state["adapter"]["kook"][
+                "bot_info"
+            ] = await self._get_self_data(self.config.access_token)
             self.self_id = self.bot.global_state["adapter"]["kook"]["bot_info"].id_
             self.self_name = self.bot.global_state["adapter"]["kook"][
                 "bot_info"

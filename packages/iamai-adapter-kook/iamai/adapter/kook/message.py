@@ -245,7 +245,9 @@ class MessageSerializer:
 
         if len(self.message) != 1:
             # 转化为卡片消息发送
-            return MessageSerializer(KookMessage(_convert_to_card_message(self.message))).serialize()  # type: ignore
+            return MessageSerializer(
+                KookMessage(_convert_to_card_message(self.message))
+            ).serialize()  # type: ignore
 
         msg_type = self.message[0].type
         msg_type_code = msg_type_map[msg_type]

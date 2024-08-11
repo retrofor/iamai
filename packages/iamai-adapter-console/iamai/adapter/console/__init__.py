@@ -1,6 +1,4 @@
-"""Console适配器。
-
-"""
+"""Console适配器。"""
 
 from asyncio import Condition
 

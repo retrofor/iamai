@@ -186,8 +186,7 @@ class BililiveAdapter(WebSocketAdapter[BililiveEvent, Config]):
                     if header.operation == Operation.HEARTBEAT_REPLY:
                         popularity = int.from_bytes(
                             data[
-                                offset
-                                + HEADER_STRUCT.size : offset
+                                offset + HEADER_STRUCT.size : offset
                                 + HEADER_STRUCT.size
                                 + 4
                             ],
