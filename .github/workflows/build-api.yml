@@ -33,9 +33,10 @@ jobs:
               # cd docs
               # make api build
               rm -rf docs/source/pages/api
-              foreach ($adapter in "apscheduler", "bililive", "console", "gensokyo", "kook", "cqhttp", "red", "onebot11") {
+              for adapter in apscheduler bililive console gensokyo kook cqhttp red onebot11
+              do
                   cp -r "packages/iamai-adapter-$adapter/iamai/adapter/$adapter" "iamai/adapter/$adapter"
-              }
+              done
               pdm run sphinx-apidoc -o docs/source/pages/api iamai packages -f -e --tocfile index
             shell: bash
             env:
