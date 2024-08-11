@@ -1,31 +1,20 @@
 """Console 适配器事件。"""
 
-import inspect
-from datetime import datetime
 from typing import (
     TYPE_CHECKING,
-    Any,
-    Dict,
-    List,
-    Type,
-    Tuple,
-    Union,
-    Literal,
     TypeVar,
-    Optional,
 )
 
 from pydantic import BaseModel
 
 from iamai.event import Event
-from iamai.plugin import Plugin
 
-from .message import Message, ConsoleMessage, MessageSegment
+from .message import Message
 
 T_ConsoleEvent = TypeVar("T_ConsoleEvent", bound="ConsoleEvent")
 
 if TYPE_CHECKING:
-    from . import ConsoleAdapter  # type: ignore[class]
+    pass  # type: ignore[class]
 
 __all__ = ["ConsoleEvent", "MessageEvent", "User", "Robot"]
 

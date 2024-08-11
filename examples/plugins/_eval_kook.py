@@ -4,8 +4,6 @@ from iamai.models.BM25 import BM25
 from iamai.adapter.kook.message import (
     KookMessage,
     KookMessageSegment,
-    escape_kmarkdown,
-    unescape_kmarkdown,
 )
 
 documents = [
