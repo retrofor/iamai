@@ -39,6 +39,12 @@ jobs:
                   cp -r "packages/iamai-adapter-$adapter/iamai/adapter/$adapter" "iamai/adapter/$adapter"
               done
               pdm run sphinx-apidoc -o docs/source/pages/api iamai packages -f -e --tocfile index
+              for adapter in apscheduler bililive console cqhttp dingtalk gensokyo kook red
+              do
+                  rm -rf "iamai/adapter/$adapter"
+              done
+              cd iamai/adapter
+              ls
             shell: bash
             env:
               iamai_DEV: "1"
