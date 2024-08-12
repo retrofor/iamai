@@ -1,14 +1,6 @@
 iamai.adapter.cqhttp package
 ============================
 
-Subpackages
------------
-
-.. toctree::
-   :maxdepth: 4
-
-   iamai.adapter.cqhttp.cqhttp
-
 Submodules
 ----------
 

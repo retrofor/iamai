@@ -1,14 +1,6 @@
 iamai.adapter.apscheduler package
 =================================
 
-Subpackages
------------
-
-.. toctree::
-   :maxdepth: 4
-
-   iamai.adapter.apscheduler.apscheduler
-
 Submodules
 ----------
 
