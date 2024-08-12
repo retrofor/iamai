@@ -1,14 +1,6 @@
 iamai.adapter.gensokyo package
 ==============================
 
-Subpackages
------------
-
-.. toctree::
-   :maxdepth: 4
-
-   iamai.adapter.gensokyo.gensokyo
-
 Submodules
 ----------
 

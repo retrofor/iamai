@@ -8,7 +8,6 @@ Subpackages
    :maxdepth: 4
 
    iamai.adapter.kook.api
-   iamai.adapter.kook.kook
 
 Submodules
 ----------
