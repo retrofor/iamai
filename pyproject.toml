@@ -42,7 +42,6 @@ dependencies = [
     "aiohttp>=3.9.1",
     "loguru>=0.7.0,<0.8.0",
     "typing-extensions>=4.8.0",
-    "watchfiles>=0.21.0",
     "requests>=2.31.0",
     "rich>=13.7.1",
     "click>=8.1.7",
@@ -87,6 +86,7 @@ dev = [
     "pip>=24.2",
     "maturin>=1.7.0",
     "uv>=0.4.7",
+    "typing>=3.7.4.3",
 ]
 lint = [
     "ruff>=0.3.0",
@@ -196,12 +196,5 @@ iamai-adapter-apscheduler = { workspace = true }
 
 [tool.uv.workspace]
 members = [
-    "packages/iamai-adapter-cqhttp",
-    "packages/iamai-adapter-bililive",
-    "packages/iamai-adapter-gensokyo",
-    "packages/iamai-adapter-red",
-    "packages/iamai-adapter-console",
-    "packages/iamai-adapter-kook",
-    "packages/iamai-adapter-dingtalk",
-    "packages/iamai-adapter-apscheduler",
+    "packages/*",
 ]
