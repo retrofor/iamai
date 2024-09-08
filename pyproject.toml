@@ -6,7 +6,7 @@ build-backend = "maturin"
 name = "iamai"
 dynamic = ["version"]
 description = "Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform Robotics."
-authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
+authors = [{ name = "HsiangNianian", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
 readme.content-type = "text/x-rst"
 readme.text = """See the `documentation <https://iamai.is-a.dev/>`_."""
@@ -45,6 +45,7 @@ dependencies = [
     "watchfiles>=0.21.0",
     "requests>=2.31.0",
     "rich>=13.7.1",
+    "click>=8.1.7",
 ]
 
 [project.optional-dependencies]
@@ -76,7 +77,7 @@ Repository = "https://github.com/retrofor/iamai"
 Changelog = "https://iamai.is-a.dev/en/latest/changelog.html#"
 
 [project.scripts]
-iamai = "iamai.cli:iamai"
+iamai = "iamai.__main__:main"
 
 [tool.black]
 target-version = ["py38", "py39", "py310", "py311"]
@@ -84,6 +85,8 @@ target-version = ["py38", "py39", "py310", "py311"]
 [tool.pdm.dev-dependencies]
 dev = [
     "pip>=24.2",
+    "maturin>=1.7.0",
+    "uv>=0.4.7",
 ]
 lint = [
     "ruff>=0.3.0",
@@ -180,3 +183,25 @@ skip-magic-trailing-comma = false
 
 # Like Black, automatically detect the appropriate line ending.
 line-ending = "auto"
+
+[tool.uv.sources]
+iamai-adapter-cqhttp = { workspace = true }
+iamai-adapter-bililive = { workspace = true }
+iamai-adapter-gensokyo = { workspace = true }
+iamai-adapter-red = { workspace = true }
+iamai-adapter-console = { workspace = true }
+iamai-adapter-kook = { workspace = true }
+iamai-adapter-dingtalk = { workspace = true }
+iamai-adapter-apscheduler = { workspace = true }
+
+[tool.uv.workspace]
+members = [
+    "packages/iamai-adapter-cqhttp",
+    "packages/iamai-adapter-bililive",
+    "packages/iamai-adapter-gensokyo",
+    "packages/iamai-adapter-red",
+    "packages/iamai-adapter-console",
+    "packages/iamai-adapter-kook",
+    "packages/iamai-adapter-dingtalk",
+    "packages/iamai-adapter-apscheduler",
+]

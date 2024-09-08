@@ -35,3 +35,6 @@ include = ["iamai/adapter/apscheduler"]
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.uv.sources]
+iamai = { workspace = true }
