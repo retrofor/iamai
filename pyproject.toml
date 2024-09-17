@@ -108,6 +108,7 @@ docs = [
     "ruff>=0.3.0",
     "pylint>=3.1.0",
     "pylint-pydantic>=0.3.2",
+    "sphinx-last-updated-by-git>=0.3.8",
 ]
 test = [
     "pytest>=8.0.2",
@@ -116,16 +117,16 @@ test = [
     "pytest-cov>=4.1.0",
 ]
 typing = ["watchfiles>=0.21.0", "trio>=0.24.0"]
-adapters = [
-    "-e ./iamai/packages/iamai-adapter-cqhttp#egg=iamai-adapter-cqhttp",
-    "-e ./iamai/packages/iamai-adapter-bililive#egg=iamai-adapter-bililive",
-    "-e ./iamai/packages/iamai-adapter-console#egg=iamai-adapter-console",
-    "-e ./iamai/packages/iamai-adapter-dingtalk#egg=iamai-adapter-dingtalk",
-    "-e ./iamai/packages/iamai-adapter-red#egg=iamai-adapter-red",
-    "-e ./iamai/packages/iamai-adapter-apscheduler#egg=iamai-adapter-apscheduler",
-    "-e ./iamai/packages/iamai-adapter-gensokyo#egg=iamai-adapter-gensokyo",
-    "-e ./iamai/packages/iamai-adapter-kook#egg=iamai-adapter-kook",
-]
+# adapters = [
+#     "-e ./iamai/packages/iamai-adapter-cqhttp#egg=iamai-adapter-cqhttp",
+#     "-e ./iamai/packages/iamai-adapter-bililive#egg=iamai-adapter-bililive",
+#     "-e ./iamai/packages/iamai-adapter-console#egg=iamai-adapter-console",
+#     "-e ./iamai/packages/iamai-adapter-dingtalk#egg=iamai-adapter-dingtalk",
+#     "-e ./iamai/packages/iamai-adapter-red#egg=iamai-adapter-red",
+#     "-e ./iamai/packages/iamai-adapter-apscheduler#egg=iamai-adapter-apscheduler",
+#     "-e ./iamai/packages/iamai-adapter-gensokyo#egg=iamai-adapter-gensokyo",
+#     "-e ./iamai/packages/iamai-adapter-kook#egg=iamai-adapter-kook",
+# ]
 
 [tool.maturin]
 features = ["pyo3/extension-module"]
