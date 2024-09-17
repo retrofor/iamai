@@ -116,10 +116,21 @@ test = [
     "pytest-cov>=4.1.0",
 ]
 typing = ["watchfiles>=0.21.0", "trio>=0.24.0"]
+adapters = [
+    "-e ./iamai/packages/iamai-adapter-cqhttp#egg=iamai-adapter-cqhttp",
+    "-e ./iamai/packages/iamai-adapter-bililive#egg=iamai-adapter-bililive",
+    "-e ./iamai/packages/iamai-adapter-console#egg=iamai-adapter-console",
+    "-e ./iamai/packages/iamai-adapter-dingtalk#egg=iamai-adapter-dingtalk",
+    "-e ./iamai/packages/iamai-adapter-red#egg=iamai-adapter-red",
+    "-e ./iamai/packages/iamai-adapter-apscheduler#egg=iamai-adapter-apscheduler",
+    "-e ./iamai/packages/iamai-adapter-gensokyo#egg=iamai-adapter-gensokyo",
+    "-e ./iamai/packages/iamai-adapter-kook#egg=iamai-adapter-kook",
+]
 
 [tool.maturin]
 features = ["pyo3/extension-module"]
 module-name = "iamai.libcore"
+# include = [{ path = "iamai/**/*", format = "sdist" }, "README.rst"]
 
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.
@@ -185,14 +196,14 @@ skip-magic-trailing-comma = false
 line-ending = "auto"
 
 [tool.uv.sources]
-iamai-adapter-cqhttp = { workspace = true }
 iamai-adapter-bililive = { workspace = true }
-iamai-adapter-gensokyo = { workspace = true }
-iamai-adapter-red = { workspace = true }
 iamai-adapter-console = { workspace = true }
 iamai-adapter-kook = { workspace = true }
 iamai-adapter-dingtalk = { workspace = true }
+iamai-adapter-red = { workspace = true }
+iamai-adapter-gensokyo = { workspace = true }
 iamai-adapter-apscheduler = { workspace = true }
+iamai-adapter-cqhttp = { workspace = true }
 
 [tool.uv.workspace]
 members = [

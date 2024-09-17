@@ -24,6 +24,20 @@ Secondly, regarding the cross-platform robot framework, it is primarily based on
 
 To avoid any potential disputes or misunderstandings, we have listed the licenses of the projects we have used and express our gratitude towards them. Please see `credits.pdf`_.
 
+*Cite This Software*
+
+.. code:: bibtex
+
+   @inproceedings{Hsiang_IamAI_A_Python_2023,
+   author = {Hsiang, Nianian},
+   month = aug,
+   pages = {1--10},
+   publisher = {Association for AICMUniversity},
+   title = {{IamAI: A Python Library for Artificial Intelligence and RobotFramework}},
+   url = {https://pub.aicmu.ac.cn},
+   year = {2023}
+   }
+
 ----
 
 `MIT`_ © 2023-PRESENT `Retro for Wut?`_.

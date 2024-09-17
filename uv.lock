@@ -377,7 +377,6 @@ dependencies = [
     { name = "rich" },
     { name = "tomli", marker = "python_full_version < '3.11'" },
     { name = "typing-extensions" },
-    { name = "watchfiles" },
 ]
 
 [package.optional-dependencies]
@@ -420,6 +419,16 @@ red = [
     { name = "iamai-adapter-red" },
 ]
 
+[package.dev-dependencies]
+dev = [
+    { name = "iamai-adapter-apscheduler" },
+    { name = "iamai-adapter-bililive" },
+    { name = "iamai-adapter-console" },
+    { name = "iamai-adapter-cqhttp" },
+    { name = "iamai-adapter-kook" },
+    { name = "iamai-adapter-red" },
+]
+
 [package.metadata]
 requires-dist = [
     { name = "aiohttp", specifier = ">=3.9.1" },
@@ -446,9 +455,18 @@ requires-dist = [
     { name = "rich", specifier = ">=13.7.1" },
     { name = "tomli", marker = "python_full_version < '3.11'", specifier = ">=2.0.0,<3.0.0" },
     { name = "typing-extensions", specifier = ">=4.8.0" },
-    { name = "watchfiles", specifier = ">=0.21.0" },
     { name = "watchfiles", marker = "extra == 'all'" },
     { name = "watchfiles", marker = "extra == 'hot-reload'" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "iamai-adapter-apscheduler", editable = "packages/iamai-adapter-apscheduler" },
+    { name = "iamai-adapter-bililive", editable = "packages/iamai-adapter-bililive" },
+    { name = "iamai-adapter-console", editable = "packages/iamai-adapter-console" },
+    { name = "iamai-adapter-cqhttp", editable = "packages/iamai-adapter-cqhttp" },
+    { name = "iamai-adapter-kook", editable = "packages/iamai-adapter-kook" },
+    { name = "iamai-adapter-red", editable = "packages/iamai-adapter-red" },
 ]
 
 [[package]]

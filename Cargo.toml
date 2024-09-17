@@ -15,4 +15,5 @@ crate-type = ["cdylib"]
 
 [dependencies]
 pyo3 = { version = "0.19.2", features = ["abi3-py39"] }
+rand = "0.8.5"
 time = "0.3.36"

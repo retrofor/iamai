@@ -1,4 +1,5 @@
 use pyo3::prelude::*;
+use rand::Rng;
 
 /// Formats the sum of two numbers as string.
 #[pyfunction]
