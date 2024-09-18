@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: iamai \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"POT-Creation-Date: 2024-09-18 11:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -17,10 +17,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.16.0\n"
 
-#: ../../source/pages/development/contributing.md:1
-#: 9de45ff0958f47d8bcdbfb6c61bae1c1
-msgid "Contributing"
+#: ../../source/pages/development/contributing.rst:1
+#: c108313b7ac84047a8d1f83d40217f2b
+msgid "# Contributing"
 msgstr ""
+
+#~ msgid "Contributing"
+#~ msgstr ""
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: iamai \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"POT-Creation-Date: 2024-09-18 11:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -17,295 +17,197 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../source/pages/api/iamai.adapter.gensokyo.rst:2
-#: 4855f965fc4a459493d1ff3519e3ecbd
+#: fd215ecb83264d55921f545fc4a17084
 msgid "iamai.adapter.gensokyo package"
 msgstr ""
 
 #: ../../source/pages/api/iamai.adapter.gensokyo.rst:5
-#: f1c8b820c88047848797a55b7f23913d
+#: b95bb76ea5664de8a18239f72d8aa514
 msgid "Submodules"
 msgstr ""
 
 #: ../../source/pages/api/iamai.adapter.gensokyo.rst:16
-#: 5f00c40fc7724399ba2a3092b4e2f6e4
+#: a300356fd74e41e6b82d5fe6f4efb708
 msgid "Module contents"
 msgstr ""
 
-#: af85fa7d699a4822b37c4a375dee1f3b iamai.adapter.gensokyo:1 of
-msgid "gensokyo *ob11 协议适配器。"
-msgstr ""
+#~ msgid "gensokyo *ob11 协议适配器。"
+#~ msgstr ""
 
-#: 8611e31de2c542bba65b5cb710fc4ebc iamai.adapter.gensokyo:3 of
-msgid ""
-"本适配器适配了 gensokyo obv11 协议。 "
-"协议详情请参考：[OneBot](https://github.com/howmanybots/onebot/blob/master/README.md)。"
-msgstr ""
+#~ msgid ""
+#~ "本适配器适配了 gensokyo obv11 协议。 "
+#~ "协议详情请参考：[OneBot](https://github.com/howmanybots/onebot/blob/master/README.md)。"
+#~ msgstr ""
 
-#: 0f70ca6e13a04987981eca836f35ca50 iamai.adapter.gensokyo.GSKAdapter:1 of
-msgid ""
-"Bases: :py:class:`~iamai.adapter.utils.WebSocketAdapter`\\ "
-"[:py:class:`~iamai.adapter.gensokyo.event.GSKEvent`, "
-":py:class:`~iamai.adapter.gensokyo.config.Config`]"
-msgstr ""
+#~ msgid ""
+#~ "Bases: :py:class:`~iamai.adapter.utils.WebSocketAdapter`\\ "
+#~ "[:py:class:`~iamai.adapter.gensokyo.event.GSKEvent`, "
+#~ ":py:class:`~iamai.adapter.gensokyo.config.Config`]"
+#~ msgstr ""
 
-#: fa61dfe214c4487f8f4ab035d0087432 iamai.adapter.gensokyo.GSKAdapter:1 of
-msgid "GSK 协议适配器。"
-msgstr ""
+#~ msgid "GSK 协议适配器。"
+#~ msgstr ""
 
-#: af2621e7d5ef478e998055e5342d5c42 iamai.adapter.gensokyo.config.Config:1 of
-msgid "Bases: :py:class:`~iamai.config.ConfigModel`"
-msgstr ""
+#~ msgid "Bases: :py:class:`~iamai.config.ConfigModel`"
+#~ msgstr ""
 
-#: 4810c088b18a487c82effb0f33cde095 iamai.adapter.gensokyo.config.Config:1 of
-msgid "GSK 配置类，将在适配器被加载时被混入到机器人主配置中。"
-msgstr ""
+#~ msgid "GSK 配置类，将在适配器被加载时被混入到机器人主配置中。"
+#~ msgstr ""
 
-#: 9bb2f410851b4031a338e9dd4b01bb55 iamai.adapter.gensokyo.config.Config:5 of
-msgid "适配器类型，需要和协议端配置相同。"
-msgstr ""
+#~ msgid "适配器类型，需要和协议端配置相同。"
+#~ msgstr ""
 
-#: 29bbeed45fc14cbe9ae99da848986a5d 34d966d595d8498e9cf2d94885280585
-#: 652fde50bd45414b9beb57ba9b389d8e 8e102f4b460947d98cdba0046b68aeea
-#: 99cab64f95eb47fab0f0576b5a0fd5f2 a4b69b26258c44ea842d7ac5e9fcad53
-#: af79047a7389487b8b4369d2e35b888b iamai.adapter.gensokyo.config.Config of
-msgid "type"
-msgstr ""
+#~ msgid "type"
+#~ msgstr ""
 
-#: 42a4d10c8e8e43a986fed3be0d560180 iamai.adapter.gensokyo.config.Config:7 of
-msgid "Literal['ws', 'reverse-ws', 'ws-reverse']"
-msgstr ""
+#~ msgid "Literal['ws', 'reverse-ws', 'ws-reverse']"
+#~ msgstr ""
 
-#: 40c55a3295ae4a6d8cf54c97d0be8fe0 iamai.adapter.gensokyo.config.Config:11 of
-msgid "本机域名。"
-msgstr ""
+#~ msgid "本机域名。"
+#~ msgstr ""
 
-#: 4b4419b11ea84beb8b9f80d72fe484bb b7785beb920844a19ab1f2f4f9442e0f
-#: ee898c4d794d4c4b8b642cbe072034ce iamai.adapter.gensokyo.config.Config:13
-#: iamai.adapter.gensokyo.config.Config:25
-#: iamai.adapter.gensokyo.config.Config:43 of
-msgid "str"
-msgstr ""
+#~ msgid "str"
+#~ msgstr ""
 
-#: 6809a3fbb6514d6392cb95e750425b40 iamai.adapter.gensokyo.config.Config:17 of
-msgid "监听的端口。"
-msgstr ""
+#~ msgid "监听的端口。"
+#~ msgstr ""
 
-#: 1c6e7c08f05549c9a5449e35c5b317ed 334b485607d148ec8863b0e99bb89dc2
-#: ff3c03f70b9d439ab82e26f8cdc12a70 iamai.adapter.gensokyo.config.Config:19
-#: iamai.adapter.gensokyo.config.Config:31
-#: iamai.adapter.gensokyo.config.Config:37 of
-msgid "int"
-msgstr ""
+#~ msgid "int"
+#~ msgstr ""
 
-#: 6a371469c038456e87362a56ae605aa2 iamai.adapter.gensokyo.config.Config:23 of
-msgid "WebSocket 路径，需和协议端配置相同。"
-msgstr ""
+#~ msgid "WebSocket 路径，需和协议端配置相同。"
+#~ msgstr ""
 
-#: e8e91d9c480c415f97ec7f0040c4d846 iamai.adapter.gensokyo.config.Config:29 of
-msgid "重连等待时间。"
-msgstr ""
+#~ msgid "重连等待时间。"
+#~ msgstr ""
 
-#: 591d8a6827214f6787aa901f5b42dfc2 iamai.adapter.gensokyo.config.Config:35 of
-msgid "进行 API 调用时等待返回响应的超时时间。"
-msgstr ""
+#~ msgid "进行 API 调用时等待返回响应的超时时间。"
+#~ msgstr ""
 
-#: a49937b4889542dfb1ad3463f398d956 iamai.adapter.gensokyo.config.Config:41 of
-msgid "鉴权。"
-msgstr ""
+#~ msgid "鉴权。"
+#~ msgstr ""
 
-#: ../../docstring ec055554cdae496e873fddb05624557d
-#: iamai.adapter.gensokyo.GSKAdapter.Config.model_config:1 of
-msgid ""
-"Configuration for the model, should be a dictionary conforming to "
-"[`ConfigDict`][pydantic.config.ConfigDict]."
-msgstr ""
+#~ msgid ""
+#~ "Configuration for the model, should be"
+#~ " a dictionary conforming to "
+#~ "[`ConfigDict`][pydantic.config.ConfigDict]."
+#~ msgstr ""
 
-#: ../../docstring a735072801e6485687c1af8e13347ab7
-#: iamai.adapter.gensokyo.GSKAdapter.Config.model_fields:1 of
-msgid ""
-"Metadata about the fields defined on the model, mapping of field names to"
-" [`FieldInfo`][pydantic.fields.FieldInfo]."
-msgstr ""
+#~ msgid ""
+#~ "Metadata about the fields defined on "
+#~ "the model, mapping of field names "
+#~ "to [`FieldInfo`][pydantic.fields.FieldInfo]."
+#~ msgstr ""
 
-#: ../../docstring 4e04a77d2bdb4ed1bdcd10e0668ff0aa
-#: iamai.adapter.gensokyo.GSKAdapter.Config.model_fields:4 of
-msgid "This replaces `Model.__fields__` from Pydantic V1."
-msgstr ""
+#~ msgid "This replaces `Model.__fields__` from Pydantic V1."
+#~ msgstr ""
 
-#: 4cfa3088bd834b83855ac18823cc3c5b
-#: iamai.adapter.gensokyo.GSKAdapter.add_event_model:1 of
-msgid "添加自定义事件模型，事件模型类必须继承于 `GSKEvent`。"
-msgstr ""
+#~ msgid "添加自定义事件模型，事件模型类必须继承于 `GSKEvent`。"
+#~ msgstr ""
 
-#: 262c6ae9329549e2931a71045c39ceec 6393fbe8800c4ac9a5e0db77e3f67065
-#: 663289457052434e8ced21da73da0cd4 b536cfb1bd864fc597a6cff0213f80c3
-#: f395f1d973944eb5846b6e056ddc8528
-#: iamai.adapter.gensokyo.GSKAdapter.add_event_model
-#: iamai.adapter.gensokyo.GSKAdapter.call_api
-#: iamai.adapter.gensokyo.GSKAdapter.get_event_model
-#: iamai.adapter.gensokyo.GSKAdapter.handle_gsk_event
-#: iamai.adapter.gensokyo.GSKAdapter.send of
-msgid "Parameters"
-msgstr ""
+#~ msgid "Parameters"
+#~ msgstr ""
 
-#: cd02ba3ccad54a2c8c5ee48b0669660f
-#: iamai.adapter.gensokyo.GSKAdapter.add_event_model:3 of
-msgid "事件模型类。"
-msgstr ""
+#~ msgid "事件模型类。"
+#~ msgstr ""
 
-#: bf32ed8864aa4360be8c6eb0d4646bb8
-#: iamai.adapter.gensokyo.GSKAdapter.call_api:1 of
-msgid "调用 GSK API，协程会等待直到获得 API 响应。"
-msgstr ""
+#~ msgid "调用 GSK API，协程会等待直到获得 API 响应。"
+#~ msgstr ""
 
-#: f93e45584ab348c5a4ae4fd7bf4e4563
-#: iamai.adapter.gensokyo.GSKAdapter.call_api:3 of
-msgid "API 名称。"
-msgstr ""
+#~ msgid "API 名称。"
+#~ msgstr ""
 
-#: dc69056771324decb61e1f71e5fccac0
-#: iamai.adapter.gensokyo.GSKAdapter.call_api:4 of
-msgid "API 参数。"
-msgstr ""
+#~ msgid "API 参数。"
+#~ msgstr ""
 
-#: 27259a306b674934ab917ac29b64ee04 5ffcd54b755b456098b116b23a974644
-#: bd2d4587959049df846f2085b7166686 iamai.adapter.gensokyo.GSKAdapter.call_api
-#: iamai.adapter.gensokyo.GSKAdapter.get_event_model
-#: iamai.adapter.gensokyo.GSKAdapter.send of
-msgid "Returns"
-msgstr ""
+#~ msgid "Returns"
+#~ msgstr ""
 
-#: 27d95077fe504689805a4e287c85d914
-#: iamai.adapter.gensokyo.GSKAdapter.call_api:6 of
-msgid "API 响应中的 data 字段。"
-msgstr ""
+#~ msgid "API 响应中的 data 字段。"
+#~ msgstr ""
 
-#: 0e3f0f44d42f48938d31b2e304776085 b563b4ec2c024083b51b9c79ee620666
-#: iamai.adapter.gensokyo.GSKAdapter.call_api
-#: iamai.adapter.gensokyo.GSKAdapter.send of
-msgid "Raises"
-msgstr ""
+#~ msgid "Raises"
+#~ msgstr ""
 
-#: f00b1d3b92e847d2a54f5355752595cb
-#: iamai.adapter.gensokyo.GSKAdapter.call_api:8 of
-msgid "网络错误。"
-msgstr ""
+#~ msgid "网络错误。"
+#~ msgstr ""
 
-#: 8740128f38ec491d84b412288fe8cf72
-#: iamai.adapter.gensokyo.GSKAdapter.call_api:9 of
-msgid "API 请求响应 404， API 不可用。"
-msgstr ""
+#~ msgid "API 请求响应 404， API 不可用。"
+#~ msgstr ""
 
-#: 026252ae3b6c486ba097b4e83126ea7a
-#: iamai.adapter.gensokyo.GSKAdapter.call_api:10 of
-msgid "API 请求响应 failed， API 操作失败。"
-msgstr ""
+#~ msgid "API 请求响应 failed， API 操作失败。"
+#~ msgstr ""
 
-#: bf1d5212cb4e4b45bc0df4488b2ed50b
-#: iamai.adapter.gensokyo.GSKAdapter.call_api:11 of
-msgid "API 请求响应超时。"
-msgstr ""
+#~ msgid "API 请求响应超时。"
+#~ msgstr ""
 
-#: e330ed54710f4a1a8c3a294206a1bd1a
-#: iamai.adapter.gensokyo.GSKAdapter.get_access_token:1 of
-msgid "异步获取登录凭证"
-msgstr ""
+#~ msgid "异步获取登录凭证"
+#~ msgstr ""
 
-#: 12dc606155d5457fbd89aa738c29a6f2
-#: iamai.adapter.gensokyo.GSKAdapter.get_access_token:3 of
-msgid ""
-"https://bots.qq.com/app/getAppAccessToken 属性      类型      必填      说明 "
-"appId   string  是       在开放平台管理端上获得。 clientSecret    string  是       "
-"在开放平台管理端上获得。"
-msgstr ""
+#~ msgid ""
+#~ "https://bots.qq.com/app/getAppAccessToken 属性      类型"
+#~ "      必填      说明 appId   string  是"
+#~ "       在开放平台管理端上获得。 clientSecret    string  是"
+#~ "       在开放平台管理端上获得。"
+#~ msgstr ""
 
-#: 40e6850636144371927c4b81ce0d8c8a
-#: iamai.adapter.gensokyo.GSKAdapter.get_event_model:1 of
-msgid "根据接收到的消息类型返回对应的事件类。"
-msgstr ""
+#~ msgid "根据接收到的消息类型返回对应的事件类。"
+#~ msgstr ""
 
-#: ffd993e7d347497a92270c9fdb428bdf
-#: iamai.adapter.gensokyo.GSKAdapter.get_event_model:3 of
-msgid "请求类型。"
-msgstr ""
+#~ msgid "请求类型。"
+#~ msgstr ""
 
-#: 8b958fb389644c468e329329658dd443
-#: iamai.adapter.gensokyo.GSKAdapter.get_event_model:4 of
-msgid "事件类型。"
-msgstr ""
+#~ msgid "事件类型。"
+#~ msgstr ""
 
-#: 04ae22be94644e09bb6bf9a6e43f2d8f
-#: iamai.adapter.gensokyo.GSKAdapter.get_event_model:5 of
-msgid "子类型。"
-msgstr ""
+#~ msgid "子类型。"
+#~ msgstr ""
 
-#: 5dbcfab9297a44b0ac978dabbbc4509c
-#: iamai.adapter.gensokyo.GSKAdapter.get_event_model:7 of
-msgid "对应的事件类。"
-msgstr ""
+#~ msgid "对应的事件类。"
+#~ msgstr ""
 
-#: e205ed5b970a4e929f68798ace843ab2
-#: iamai.adapter.gensokyo.GSKAdapter.handle_gsk_event:1 of
-msgid "处理 GSK 事件。"
-msgstr ""
+#~ msgid "处理 GSK 事件。"
+#~ msgstr ""
 
-#: 3430d23bdd6348c19bd75d43ac1036ee
-#: iamai.adapter.gensokyo.GSKAdapter.handle_gsk_event:3 of
-msgid "接收到的信息。"
-msgstr ""
+#~ msgid "接收到的信息。"
+#~ msgstr ""
 
-#: 4e147d132a2a4ca4bcc445b2d20fd620
-#: iamai.adapter.gensokyo.GSKAdapter.handle_websocket_msg:1 of
-msgid "处理 WebSocket 消息。"
-msgstr ""
+#~ msgid "处理 WebSocket 消息。"
+#~ msgstr ""
 
-#: 422102c4877c470fb03c54e89c63877d
-#: iamai.adapter.gensokyo.GSKAdapter.reverse_ws_connection_hook:1 of
-msgid "反向 WebSocket 连接建立时的钩子函数。"
-msgstr ""
+#~ msgid "反向 WebSocket 连接建立时的钩子函数。"
+#~ msgstr ""
 
-#: 6f5d8f8108644a0ea4557c9c78325db7 iamai.adapter.gensokyo.GSKAdapter.send:1 of
-msgid "发送消息，调用 `send_private_msg` 或 `send_group_msg` API 发送消息。"
-msgstr ""
+#~ msgid "发送消息，调用 `send_private_msg` 或 `send_group_msg` API 发送消息。"
+#~ msgstr ""
 
-#: 3934507f78414482a2a950bb09be512f iamai.adapter.gensokyo.GSKAdapter.send:3 of
-msgid ""
-"消息内容，可以是 `str`, `Mapping`, `Iterable[Mapping]`, `GSKMessageSegment`, "
-"`GSKMessage。` 将使用 `GSKMessage` 进行封装。"
-msgstr ""
+#~ msgid ""
+#~ "消息内容，可以是 `str`, `Mapping`, `Iterable[Mapping]`, "
+#~ "`GSKMessageSegment`, `GSKMessage。` 将使用 `GSKMessage`"
+#~ " 进行封装。"
+#~ msgstr ""
 
-#: f81a237b334846f686a4adbfdeca8012 iamai.adapter.gensokyo.GSKAdapter.send:6 of
-msgid "消息类型。应该是 \"private\" 或者 \"group\"。"
-msgstr ""
+#~ msgid "消息类型。应该是 \"private\" 或者 \"group\"。"
+#~ msgstr ""
 
-#: 1cfea623c548430fbbb995cb947e25d5 iamai.adapter.gensokyo.GSKAdapter.send:7 of
-msgid "发送对象的 ID， QQ 号码或者群号码。"
-msgstr ""
+#~ msgid "发送对象的 ID， QQ 号码或者群号码。"
+#~ msgstr ""
 
-#: 1403834c5a494efa9bfa91a4748efb44 iamai.adapter.gensokyo.GSKAdapter.send:9 of
-msgid "API 响应。"
-msgstr ""
+#~ msgid "API 响应。"
+#~ msgstr ""
 
-#: dab61d62de9447a2804bf27b86273228 iamai.adapter.gensokyo.GSKAdapter.send:11
-#: of
-msgid "`message_type` 不是 \"private\" 或 \"group\"。"
-msgstr ""
+#~ msgid "`message_type` 不是 \"private\" 或 \"group\"。"
+#~ msgstr ""
 
-#: a495f475ba2941d189d7e3bd5444b406 iamai.adapter.gensokyo.GSKAdapter.send:12
-#: of
-msgid "同 `call_api()` 方法。"
-msgstr ""
+#~ msgid "同 `call_api()` 方法。"
+#~ msgstr ""
 
-#: b2e1c0fb5fa94bb58ff4304c9df72231 iamai.adapter.gensokyo.GSKAdapter.startup:1
-#: of
-msgid "初始化适配器。"
-msgstr ""
+#~ msgid "初始化适配器。"
+#~ msgstr ""
 
-#: d9f2ff13ce984fd3a6d7901a6da32dfe
-#: iamai.adapter.gensokyo.GSKAdapter.websocket_connect:1 of
-msgid "创建正向 WebSocket 连接。"
-msgstr ""
+#~ msgid "创建正向 WebSocket 连接。"
+#~ msgstr ""
 

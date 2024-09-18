@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: iamai \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"POT-Creation-Date: 2024-09-18 11:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -17,119 +17,175 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.16.0\n"
 
-#: ../../source/pages/starting/getting-started.md:1
-#: b08075013ac4417bb6dd20d1ae785595
+#: ../../source/pages/starting/getting-started.rst:3
+#: 39d246c063874b3e941f495fea92e37b
 msgid "Quick Start"
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:3
-#: 9841cd4610994f11956c17cd34f1e15d
+#: ../../source/pages/starting/getting-started.rst:6
+#: 8d600dee00424071b5983e5ab7368356
 msgid "Installation"
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:9
-#: c27d681352d44adca011ca510ffa06f0
+#: ../../source/pages/starting/getting-started.rst:9
+#: 92ccbf0a831a406cbcf90611fb12dd96
+msgid "iamai only supports Python 3.8+ versions."
+msgstr ""
+
+#: ../../source/pages/starting/getting-started.rst:13
+#: f81277247963427ba3818fb8a084f4f2
 msgid "Install using the Python package manager (pip):"
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:15
-#: 523785165bab4e598bdac685dadb8572
-msgid "Install the latest development version from GitHub"
+#: ../../source/pages/starting/getting-started.rst:21
+#: d4a159e49f594f4290e6a6daee9d4b6d
+msgid "Install the latest development version from GitHub."
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:24
-#: aa772cea04354046ae6c08012cc93810
+#: ../../source/pages/starting/getting-started.rst:32
+#: e54e6871466548218a8e7bc302915642
 msgid "Installing Adapters"
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:26
-#: 98c639e50a0c4ef290836d123a11a40c
+#: ../../source/pages/starting/getting-started.rst:34
+#: 36729f40d20b4a73a88f6c2bc56a397d
 msgid ""
 "iamai itself is just a chatbot framework and requires additional "
-"installation of adapters for supporting specific protocols. You can use "
-"pip to install protcol adapters:"
+"installation of adapters for supporting specific protocols."
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:34
-#: 0463e98a69e84b8e8249012fee78a78f
+#: ../../source/pages/starting/getting-started.rst:36
+#: 5b3757c0a92642cfa0d7dcb9eef4586d
+msgid "You can use pip to install protcol adapters ::"
+msgstr ""
+
+#: ../../source/pages/starting/getting-started.rst:43
+#: 942da3b5d07147a994718015ca547ecd
 msgid ""
 "Alternatively, you can install iamai along with the corresponding "
-"adapters at the same time, like this:"
+"adapters at the same time, like this ::"
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:42
-#: dcbcb441a7c343ab8c5491699148b77f
+#: ../../source/pages/starting/getting-started.rst:51
+#: 8be14e3036f04f8aac130c47c4a8b150
 msgid "First Project"
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:44
-#: 00e7fcc90c1c498cbe991ffdb5fa004b
+#: ../../source/pages/starting/getting-started.rst:53
+#: 39c9ae0bfda048718fdbb7279af66a35
+msgid "Todo"
+msgstr ""
+
+#: ../../source/pages/starting/getting-started.rst:54
+#: 688d2f4b24674273befc6bcaac7ea4c9
+msgid "support atleast 5 adapters"
+msgstr ""
+
+#: ../../source/pages/starting/getting-started.rst:56
+#: 714e155c103741bcbef99d051b5a53e4
 msgid ""
 "This section will guide you to build a simple iamai bot project from "
 "scratch."
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:46
-#: 7d1a9da239644506b37513b6359d417e
-msgid "Create and enter a new directory"
+#: ../../source/pages/starting/getting-started.rst:58
+#: 66f486ffc1be427c9720980e0b3325d0
+msgid "Create and enter a new directory ::"
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:51
-#: a26a73bd88ea4d5aa63dfbf96681891c
-msgid "Create a `main.py` file and write the following content:"
+#: ../../source/pages/starting/getting-started.rst:60
+#: ef11576bec834ffcae6e0a1c1de323e5
+msgid "mkdir iamai-starter && cd iamai-starter"
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:61
-#: 41aace87abc547c290ea4eeae5491936
+#: ../../source/pages/starting/getting-started.rst:62
+#: ac8935ac77c642d4a66999e809ca25b9
+msgid "Create a `main.py` file and write the following content."
+msgstr ""
+
+#: ../../source/pages/starting/getting-started.rst:74
+#: fb31899b6cf84d6493e73fb23bccb2e3
 msgid ""
 "Create a `config.toml` file and write the following content inside that "
 "file:"
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:69
-#: dfd384241726469ab50aac2cc22252ae
-msgid "Create a `plugins` directory"
+#: ../../source/pages/starting/getting-started.rst:83
+#: 5e1d75177ed949beb5363bfde9b46008
+msgid "Create a `plugins` directory ::"
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:74
-#: 54a77c79742c4683b25786745c960b40
-msgid "Try Running `main.py` !"
+#: ../../source/pages/starting/getting-started.rst:85
+#: b467303d23e1435fbd75592be0977214
+msgid "mkdir plugins"
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:80
-#: a8fcd79f8b494bf08104981a8980f5c4
-msgid "You should see the following output log:"
+#: ../../source/pages/starting/getting-started.rst:87
+#: 5b4b4d62fe8c4ef98e900b6d6bf72dde
+msgid "Try Running `main.py` ::"
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:88
-#: b34f1cb5e3ac490f9facdd0d9db230b6
+#: ../../source/pages/starting/getting-started.rst:89
+#: 0f0f435b2c7c4943b800b744cd15c118
+msgid "python main.py"
+msgstr ""
+
+#: ../../source/pages/starting/getting-started.rst:91
+#: 5967a473147143e7bbcbe466a3c72f6f
+msgid "You should see the following output log ::"
+msgstr ""
+
+#: ../../source/pages/starting/getting-started.rst:99
+#: 7ea7d07be4c749258756c98b6a108b44
 msgid "Directory Structure"
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:90
-#: a3a0b93aeef144f7910771c14316a308
+#: ../../source/pages/starting/getting-started.rst:101
+#: 26d5b1e758254ccb9bfea0dfa34807eb
 msgid "iamai recommends the following directory structure:"
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:92
-#: ac911250171648b58560d11c58fa1a4b
-msgid "import { FileTree } from 'nextra/components'"
+#: ../../source/pages/starting/getting-started.rst:107
+#: 1b86b5a53ae54e74a2ff1072971152d0
+msgid "<FileTree>"
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:102
-#: 066db5df5d364cc580f69c0949d0755f
+#: ../../source/pages/starting/getting-started.rst:104
+#: 455f7d258a8e41489c2a1390cb75c782
+msgid "<FileTree.Folder name=\"plugins (The plugins dir)\" defaultOpen>"
+msgstr ""
+
+#: ../../source/pages/starting/getting-started.rst:105
+#: 4f44c891e8ea42b7a3fdf5ffa6396ea8
+msgid "<FileTree.File name=\"xxx.py\" />"
+msgstr ""
+
+#: ../../source/pages/starting/getting-started.rst:106
+#: 426bdf36ac88401f894f8f7150da4d5a
+msgid ""
+"</FileTree.Folder> <FileTree.File name=\"config.toml (The configuration "
+"file)\" /> <FileTree.File name=\"main.py\" />"
+msgstr ""
+
+#: ../../source/pages/starting/getting-started.rst:109
+#: 2e6f419b6d7a433185e4d7ee778f1ca1
+msgid "</FileTree>"
+msgstr ""
+
+#: ../../source/pages/starting/getting-started.rst:111
+#: 1fcad359f42d4acfb19ba7c45ee86166
 msgid "The `main.py` and `config.toml` files are as shown above."
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:104
-#: 872f3599bf884c999dc6477566403ac6
+#: ../../source/pages/starting/getting-started.rst:114
+#: bfdc5cb1e82a452db3abad82e4cf17d1
 msgid "Configuring the Protocol Enpoint"
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:106
-#: 95e7c153d78c4dc89e9555762c1f3b23
+#: ../../source/pages/starting/getting-started.rst:116
+#: 01ab0d6b3106407f82df5d47f5d478fe
 msgid ""
 "The above example uses the `iamai.adapter.cqhttp` protocol adapter, which"
 " is an adapter for the OneBot v11 protocol (formerly known as the CKYU "
@@ -138,47 +194,85 @@ msgid ""
 "QQ protocol endpoints that support the OneBot protocol:"
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:108
-#: 5b12705519bc4394adced96e132aff2e
+#: ../../source/pages/starting/getting-started.rst:118
+#: 22378093ef8449d1a245268d4ce8ec9b
 msgid "[go-cqhttp](https://github.com/Mrs4s/go-cqhttp)"
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:109
-#: 3ead53e84035423b8c5d12a05ca2cce9
+#: ../../source/pages/starting/getting-started.rst:119
+#: e38bf545a1044267b52d5ef2000a525a
 msgid ""
 "[mirai](https://github.com/mamoe/mirai) + [onebot-"
 "kotlin](https://github.com/yyuueexxiinngg/onebot-kotlin)"
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:110
-#: a3c3aa8114e34b648c5ab6f8b21a93a8
+#: ../../source/pages/starting/getting-started.rst:120
+#: ee5eabc71d0b4df38af02799cc456d87
 msgid "[oicq](https://github.com/takayama-lily/oicq)"
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:112
-#: d08e6a8baf264f2793306c48526f69cc
+#: ../../source/pages/starting/getting-started.rst:122
+#: 511e20b3b4564d0fb797d429dd31947a
 msgid ""
 "For more information, see the [CQHTTP Protocol Usage Guide](./cqhttp-"
 "adapter.md) ."
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:114
-#: be86af9a0efe41b88620fe58e888e404
+#: ../../source/pages/starting/getting-started.rst:124
+#: d2a8d59834544744a54ac93e076ea2eb
 msgid ""
 "You can also install other protocols adapters or try writing your own "
 "protocol adapter."
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:116
-#: 6dc89e0c24fd4462b7121941e7a3227e
-msgid "Development Tips"
+#: ../../source/pages/starting/getting-started.rst:126
+#: 56bacc61b8db4eaabec5e81f8227e435
+msgid "## Development Tips"
 msgstr ""
 
-#: ../../source/pages/starting/getting-started.md:118
-#: e4fe35a57e5a49d9b553f7069d3c0dbc
+#: ../../source/pages/starting/getting-started.rst:128
+#: 0a5bd45ffcf346e385cacf09255006f3
 msgid ""
 "When developing with iamai, it is recommended to use an IDE with type "
 "checking, such as PyCharm, VSCode, etc. This can help you make full use "
 "of iamai's type hints."
 msgstr ""
+
+#~ msgid "Install the latest development version from GitHub"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "iamai itself is just a chatbot "
+#~ "framework and requires additional installation"
+#~ " of adapters for supporting specific "
+#~ "protocols. You can use pip to "
+#~ "install protcol adapters:"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Alternatively, you can install iamai "
+#~ "along with the corresponding adapters at"
+#~ " the same time, like this:"
+#~ msgstr ""
+
+#~ msgid "Create and enter a new directory"
+#~ msgstr ""
+
+#~ msgid "Create a `main.py` file and write the following content:"
+#~ msgstr ""
+
+#~ msgid "Create a `plugins` directory"
+#~ msgstr ""
+
+#~ msgid "Try Running `main.py` !"
+#~ msgstr ""
+
+#~ msgid "You should see the following output log:"
+#~ msgstr ""
+
+#~ msgid "import { FileTree } from 'nextra/components'"
+#~ msgstr ""
+
+#~ msgid "Development Tips"
+#~ msgstr ""
 

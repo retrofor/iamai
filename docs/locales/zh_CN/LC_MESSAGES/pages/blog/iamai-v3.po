@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: iamai \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"POT-Creation-Date: 2024-09-18 11:39+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -17,13 +17,21 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.16.0\n"
 
-#: ../../source/pages/blog/iamai-v3.md:7 29953e923221443f9112ca40e31a7d45
+#: ../../source/pages/blog/iamai-v3.rst:1 def74f53b44446d388ce3434dff56d3a
+msgid ""
+"--- image: https://assets.vercel.com/image/upload/v1630059453/swr/v1.png "
+"description: 'Almost 2 years ago we open sourced SWR, the tiny data-"
+"fetching React library that people love. Today we are reaching another "
+"milestone: the 1.0 version of SWR.' date: August 27th, 2021 ---"
+msgstr ""
+
+#: ../../source/pages/blog/iamai-v3.rst:8 b96fd4c652c84627837984fd2ad5e03f
 msgid "IamAI v3.0"
 msgstr ""
 
-#: ../../source/pages/blog/iamai-v3.md:9 4348388a10bc4f3cada5be0f6fa04a17
+#: ../../source/pages/blog/iamai-v3.rst:10 fb26b68f967542f08cb56e419389f92b
 msgid "hi"
 msgstr ""
 

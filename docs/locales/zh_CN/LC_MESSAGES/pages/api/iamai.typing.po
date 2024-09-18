@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: iamai \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"POT-Creation-Date: 2024-09-18 11:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -17,17 +17,15 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.16.0\n"
 
-#: ../../source/pages/api/iamai.typing.rst:2 cf5fa63d72474dedb84d529665530cbc
+#: ../../source/pages/api/iamai.typing.rst:2 c9647323cfad42f1b5f9ea8c22ba6d6d
 msgid "iamai.typing module"
 msgstr ""
 
-#: 4ea9e48c9b74483f9a9c1de57f93731d iamai.typing:1 of
-msgid "iamai 类型提示支持。"
-msgstr ""
+#~ msgid "iamai 类型提示支持。"
+#~ msgstr ""
 
-#: 69da0f80b0b1442dba595fe16e6008e4 iamai.typing:3 of
-msgid "此模块定义了部分 iamai 使用的类型。"
-msgstr ""
+#~ msgid "此模块定义了部分 iamai 使用的类型。"
+#~ msgstr ""
 

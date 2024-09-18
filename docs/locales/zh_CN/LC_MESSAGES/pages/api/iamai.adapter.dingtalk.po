@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: iamai \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"POT-Creation-Date: 2024-09-18 11:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -17,212 +17,143 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../source/pages/api/iamai.adapter.dingtalk.rst:2
-#: fe53cb7d5e1e4e93b08669a01583040f
+#: 76cdba68cedf4ceda898b4abb0edb920
 msgid "iamai.adapter.dingtalk package"
 msgstr ""
 
 #: ../../source/pages/api/iamai.adapter.dingtalk.rst:5
-#: ffece975ef90462aa622f951fa4ff5e7
+#: 71a8b0175a404b94b8b3f788286bbe22
 msgid "Submodules"
 msgstr ""
 
 #: ../../source/pages/api/iamai.adapter.dingtalk.rst:16
-#: 5a8f3d427616499bbf665f02a06dd3b5
+#: 2d0d295116d5466ca96af694ee30ca5f
 msgid "Module contents"
 msgstr ""
 
-#: 3fd0465460ed4362af164986a91422cc iamai.adapter.dingtalk:1 of
-msgid "DingTalk 协议适配器。"
-msgstr ""
+#~ msgid "DingTalk 协议适配器。"
+#~ msgstr ""
 
-#: 70ff9b33e5184d06ad71956c4871ff53 iamai.adapter.dingtalk:3 of
-msgid ""
-"本适配器适配了钉钉企业自建机器人协议。 "
-"协议详情请参考：[钉钉开放平台](https://open.dingtalk.com/document/robots/robot-"
-"overview)。"
-msgstr ""
+#~ msgid ""
+#~ "本适配器适配了钉钉企业自建机器人协议。 "
+#~ "协议详情请参考：[钉钉开放平台](https://open.dingtalk.com/document/robots/robot-"
+#~ "overview)。"
+#~ msgstr ""
 
-#: b8a91bee118a45d8bc4386479a4c5e24 iamai.adapter.dingtalk.DingTalkAdapter:1 of
-msgid ""
-"Bases: :py:class:`~iamai.adapter.Adapter`\\ "
-"[:py:class:`~iamai.adapter.dingtalk.event.DingTalkEvent`, "
-":py:class:`~iamai.adapter.dingtalk.config.Config`]"
-msgstr ""
+#~ msgid ""
+#~ "Bases: :py:class:`~iamai.adapter.Adapter`\\ "
+#~ "[:py:class:`~iamai.adapter.dingtalk.event.DingTalkEvent`, "
+#~ ":py:class:`~iamai.adapter.dingtalk.config.Config`]"
+#~ msgstr ""
 
-#: 2710b499aeff45b7ac21ccdc26c7412b iamai.adapter.dingtalk.DingTalkAdapter:1 of
-msgid "钉钉协议适配器。"
-msgstr ""
+#~ msgid "钉钉协议适配器。"
+#~ msgstr ""
 
-#: a513e48a810a4fdeacb7f6313fd653fe iamai.adapter.dingtalk.config.Config:1 of
-msgid "Bases: :py:class:`~iamai.config.ConfigModel`"
-msgstr ""
+#~ msgid "Bases: :py:class:`~iamai.config.ConfigModel`"
+#~ msgstr ""
 
-#: 17ac6a4807a04568b1a0810230d23870 iamai.adapter.dingtalk.config.Config:1 of
-msgid "DingTalk 配置类，将在适配器被加载时被混入到机器人主配置中。"
-msgstr ""
+#~ msgid "DingTalk 配置类，将在适配器被加载时被混入到机器人主配置中。"
+#~ msgstr ""
 
-#: 44a8b08647924afa83174d5377fb8add iamai.adapter.dingtalk.config.Config:5 of
-msgid "本机域名。"
-msgstr ""
+#~ msgid "本机域名。"
+#~ msgstr ""
 
-#: 2a3e731f2971424d900e983e51b0dc2b 563de663276b46c0a0d1bf61af0d133d
-#: 61690fff11694ca099144608fa84c318 8396fe41c24e47b0acf505ef7eb00912
-#: ecc4314688f746b9a0ccf3fefc4b3fa2 iamai.adapter.dingtalk.config.Config of
-msgid "type"
-msgstr ""
+#~ msgid "type"
+#~ msgstr ""
 
-#: 2224fed88e9e4f09964ed1c3b54f2052 39a191c2a3964e6db52f5b4422c8c70a
-#: f12b25c83e584503ab5d3427a4c0366a iamai.adapter.dingtalk.config.Config:7
-#: iamai.adapter.dingtalk.config.Config:19
-#: iamai.adapter.dingtalk.config.Config:31 of
-msgid "str"
-msgstr ""
+#~ msgid "str"
+#~ msgstr ""
 
-#: f9e15f91ae664235805b623a4e879f06 iamai.adapter.dingtalk.config.Config:11 of
-msgid "监听的端口。"
-msgstr ""
+#~ msgid "监听的端口。"
+#~ msgstr ""
 
-#: 405ed1c779224f12838d22e58ea4850e f6baaa65734d43918d9afe231b0d3c1d
-#: iamai.adapter.dingtalk.config.Config:13
-#: iamai.adapter.dingtalk.config.Config:25 of
-msgid "int"
-msgstr ""
+#~ msgid "int"
+#~ msgstr ""
 
-#: 66ba976347e742d4adb1d811525f6961 iamai.adapter.dingtalk.config.Config:17 of
-msgid "路径。"
-msgstr ""
+#~ msgid "路径。"
+#~ msgstr ""
 
-#: d2cf624e91bb4636b70a67f4e3274e13 iamai.adapter.dingtalk.config.Config:23 of
-msgid "进行 API 调用时等待返回响应的超时时间。"
-msgstr ""
+#~ msgid "进行 API 调用时等待返回响应的超时时间。"
+#~ msgstr ""
 
-#: beb6fa3ec36e42f2bed3b989f922d994 iamai.adapter.dingtalk.config.Config:29 of
-msgid "机器人的 `appSecret`。"
-msgstr ""
+#~ msgid "机器人的 `appSecret`。"
+#~ msgstr ""
 
-#: ../../docstring 370dd155807c4d06b27ec31b93418dee
-#: iamai.adapter.dingtalk.DingTalkAdapter.Config.model_config:1 of
-msgid ""
-"Configuration for the model, should be a dictionary conforming to "
-"[`ConfigDict`][pydantic.config.ConfigDict]."
-msgstr ""
+#~ msgid ""
+#~ "Configuration for the model, should be"
+#~ " a dictionary conforming to "
+#~ "[`ConfigDict`][pydantic.config.ConfigDict]."
+#~ msgstr ""
 
-#: ../../docstring dc80cc0cb173457b8b768ab8a40abfbb
-#: iamai.adapter.dingtalk.DingTalkAdapter.Config.model_fields:1 of
-msgid ""
-"Metadata about the fields defined on the model, mapping of field names to"
-" [`FieldInfo`][pydantic.fields.FieldInfo]."
-msgstr ""
+#~ msgid ""
+#~ "Metadata about the fields defined on "
+#~ "the model, mapping of field names "
+#~ "to [`FieldInfo`][pydantic.fields.FieldInfo]."
+#~ msgstr ""
 
-#: ../../docstring a8f47f87024d4174929937fb9355ae2d
-#: iamai.adapter.dingtalk.DingTalkAdapter.Config.model_fields:4 of
-msgid "This replaces `Model.__fields__` from Pydantic V1."
-msgstr ""
+#~ msgid "This replaces `Model.__fields__` from Pydantic V1."
+#~ msgstr ""
 
-#: 12eca142a8cb41748826a5f2abe7e0d0
-#: iamai.adapter.dingtalk.DingTalkAdapter.get_sign:1 of
-msgid "计算签名。"
-msgstr ""
+#~ msgid "计算签名。"
+#~ msgstr ""
 
-#: 241f7c46e8864512a1d776aafe939c07 3a0b984abb634b27b947806453b0a9aa
-#: d8bb86a05f0d4759bb73517baab545c1
-#: iamai.adapter.dingtalk.DingTalkAdapter.get_sign
-#: iamai.adapter.dingtalk.DingTalkAdapter.handler
-#: iamai.adapter.dingtalk.DingTalkAdapter.send of
-msgid "Parameters"
-msgstr ""
+#~ msgid "Parameters"
+#~ msgstr ""
 
-#: 8cfbae2a82c645ed93bedd01a80d2c4d
-#: iamai.adapter.dingtalk.DingTalkAdapter.get_sign:3 of
-msgid "时间戳。"
-msgstr ""
+#~ msgid "时间戳。"
+#~ msgstr ""
 
-#: 97c966bba5d24bd8b51812a9f22488f9 d7aa7373be044c69a3c09553665eca71
-#: iamai.adapter.dingtalk.DingTalkAdapter.get_sign
-#: iamai.adapter.dingtalk.DingTalkAdapter.send of
-msgid "Returns"
-msgstr ""
+#~ msgid "Returns"
+#~ msgstr ""
 
-#: 90a9d572428347d18552ca4653b1cf6b
-#: iamai.adapter.dingtalk.DingTalkAdapter.get_sign:5 of
-msgid "签名。"
-msgstr ""
+#~ msgid "签名。"
+#~ msgstr ""
 
-#: f10c0256ba374e47bfec7f89259f5c7c
-#: iamai.adapter.dingtalk.DingTalkAdapter.handler:1 of
-msgid "处理 aiohttp 服务器的接收。"
-msgstr ""
+#~ msgid "处理 aiohttp 服务器的接收。"
+#~ msgstr ""
 
-#: a8fd38019a4d43d0bb29397b667ec54b
-#: iamai.adapter.dingtalk.DingTalkAdapter.handler:3 of
-msgid "aiohttp 服务器的 `Request` 对象。"
-msgstr ""
+#~ msgid "aiohttp 服务器的 `Request` 对象。"
+#~ msgstr ""
 
-#: 05914ea2d3fc41c28af67e6230b70590
-#: iamai.adapter.dingtalk.DingTalkAdapter.run:1 of
-msgid "运行 aiohttp 服务器。"
-msgstr ""
+#~ msgid "运行 aiohttp 服务器。"
+#~ msgstr ""
 
-#: 6456542ff9664dfc9f6adbb613394e83
-#: iamai.adapter.dingtalk.DingTalkAdapter.send:1 of
-msgid "发送消息。"
-msgstr ""
+#~ msgid "发送消息。"
+#~ msgstr ""
 
-#: badf9be2f3294c32b5633126f7f6cc94
-#: iamai.adapter.dingtalk.DingTalkAdapter.send:3 of
-msgid "Webhook 网址。"
-msgstr ""
+#~ msgid "Webhook 网址。"
+#~ msgstr ""
 
-#: 2bffe74f6b3542c5adc3332e07561703
-#: iamai.adapter.dingtalk.DingTalkAdapter.send:4 of
-msgid "聊天类型，\"1\" 表示单聊，\"2\" 表示群聊。"
-msgstr ""
+#~ msgid "聊天类型，\"1\" 表示单聊，\"2\" 表示群聊。"
+#~ msgstr ""
 
-#: 3a8110d391ae475aa75b336c44b8d905
-#: iamai.adapter.dingtalk.DingTalkAdapter.send:5 of
-msgid "消息。"
-msgstr ""
+#~ msgid "消息。"
+#~ msgstr ""
 
-#: 398ae03075b640ba97c25c996469dcf5
-#: iamai.adapter.dingtalk.DingTalkAdapter.send:6 of
-msgid "At 对象，仅在群聊时生效，默认为空。"
-msgstr ""
+#~ msgid "At 对象，仅在群聊时生效，默认为空。"
+#~ msgstr ""
 
-#: fd41bea35fb048448ee3b95cb0c7b660
-#: iamai.adapter.dingtalk.DingTalkAdapter.send:8 of
-msgid "钉钉服务器的响应。"
-msgstr ""
+#~ msgid "钉钉服务器的响应。"
+#~ msgstr ""
 
-#: 0f7bea684dcc4763b8d4475c359c9daf iamai.adapter.dingtalk.DingTalkAdapter.send
-#: of
-msgid "Raises"
-msgstr ""
+#~ msgid "Raises"
+#~ msgstr ""
 
-#: e3c78b5078a74e75bb0878b6ffeb9f6b
-#: iamai.adapter.dingtalk.DingTalkAdapter.send:10 of
-msgid "传入参数类型错误。"
-msgstr ""
+#~ msgid "传入参数类型错误。"
+#~ msgstr ""
 
-#: 6d84433a788d4d14b4300e68a2a30088
-#: iamai.adapter.dingtalk.DingTalkAdapter.send:11 of
-msgid "传入参数值错误。"
-msgstr ""
+#~ msgid "传入参数值错误。"
+#~ msgstr ""
 
-#: 007ff543c55f484ab5c40d2dd6439f25
-#: iamai.adapter.dingtalk.DingTalkAdapter.send:12 of
-msgid "调用 Webhook 地址时网络错误。"
-msgstr ""
+#~ msgid "调用 Webhook 地址时网络错误。"
+#~ msgstr ""
 
-#: 80657486bd8d4fe88bc0fed1307b1ba5
-#: iamai.adapter.dingtalk.DingTalkAdapter.shutdown:1 of
-msgid "清理 aiohttp AppRunner。"
-msgstr ""
+#~ msgid "清理 aiohttp AppRunner。"
+#~ msgstr ""
 
-#: 936b7990a5e7439d898e0fcb2082d2dd
-#: iamai.adapter.dingtalk.DingTalkAdapter.startup:1 of
-msgid "创建 aiohttp Application。"
-msgstr ""
+#~ msgid "创建 aiohttp Application。"
+#~ msgstr ""
 

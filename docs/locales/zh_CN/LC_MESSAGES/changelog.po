@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: iamai \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-27 19:20+0800\n"
+"POT-Creation-Date: 2024-09-18 11:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -17,52 +17,615 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.16.0\n"
 
-#: ../../source/changelog.md:1 33cdb34132604b1bb469c058e4d79c24
+#: ../../../CHANGELOG.md:2 a1a337a69ff244ddbcf69339fd3b1a8d
 msgid "Changelog"
 msgstr "变更日志"
 
-#: ../../source/changelog.md:3 9c6bd5cbb1394f8c86ee0d871d4ce930
-msgid "[0.0.3a1](https://pypi.org/project/iamai/0.0.3/) 2024-01-27"
+#: ../../../CHANGELOG.md:3 9c298ea83820496b9380b22dc848f45b
+msgid "All notable changes to this project will be documented in this file."
 msgstr ""
 
-#: ../../source/changelog.md:5 ../../source/changelog.md:12
-#: 4dae63e5327e4fc3904c0c43cdafc0ad 85ee9684f9af476db640fd4978452e3f
-msgid "Chore"
-msgstr ""
-
-#: ../../source/changelog.md:7 fb3dcaf7dc94430ca4761626188f3bfa
+#: ../../../CHANGELOG.md:5 ca234094eb794f919d6e501135cbd7ce
 msgid ""
-"[`910955`](https://github.com/retrofor/iamai/commit/91095581b78ae0162aa1f38a064e606600612eb4)"
-" update readme"
+"The format is based on [Keep a "
+"Changelog](https://keepachangelog.com/en/1.0.0/), and this project "
+"adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)."
 msgstr ""
 
-#: ../../source/changelog.md:8 46b534b48ee14b10bd91e9c97cb2137b
+#: ../../../CHANGELOG.md:8 279ed445213647ae9ada7616b1152f6f
+msgid "[v0.0.4] - 2024-08-11"
+msgstr ""
+
+#: ../../../CHANGELOG.md:9 ../../../CHANGELOG.md:27 ../../../CHANGELOG.md:51
+#: ../../../CHANGELOG.md:59 ../../../CHANGELOG.md:85 ../../../CHANGELOG.md:103
+#: ../../../CHANGELOG.md:111 103bb0d084334db1b14434ab596f1d7b
+#: 49544ac18b5d47b1bbddf63bc256a911 572548930869497c96933c48e2a80042
+#: e01171a5ad0f4b39ac489e083ca71be1 e56c1ba1fcc94774a9440ac78f83c1a0
+#: ebb0ed8ce9fc4a128d0d23dfcd27c6a5 f08ebc906d724693ad92fd9fd20cb0fd
+msgid "Chores"
+msgstr ""
+
+#: ../../../CHANGELOG.md:10 765bca24587b4ae0b811a67573082727
 msgid ""
-"[`cd4e57`](https://github.com/retrofor/iamai/commit/cd4e579dc9cddc96b6a932c7ad5b1838f57bfd3f)"
-" update api docs"
+"[`e4f6b7b`](https://github.com/retrofor/iamai/commit/e4f6b7bcfbc00b73d7b43ea747e1f4fe06bb05ee)"
+" - bump version in to 0.0.4 *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
 msgstr ""
 
-#: ../../source/changelog.md:10 273506890bd645fda61c5db0b59bb11a
-msgid "[0.0.2](https://pypi.org/project/iamai/0.0.2/) 2024-01-27"
+#: ../../../CHANGELOG.md:13 38514b504d264770b671936245b1ed93
+msgid "[v0.0.3-rc.4] - 2024-08-11"
 msgstr ""
 
-#: ../../source/changelog.md:14 29b35928b812465c809e485c5d4b6a44
-msgid ""
-"[`6c676dc`](https://github.com/retrofor/iamai/commit/6c676dc359d9b92cc3619b1668cbb4ae75692905)"
-" Merge branch 'master'"
-msgstr ""
-
-#: ../../source/changelog.md:17 9bc5a9a290904b0b80bb1e3b2bc9e193
-msgid "[0.0.1a1](https://pypi.org/project/iamai/0.0.1a1/) 2024-01-27"
-msgstr ""
-
-#: ../../source/changelog.md:19 ed8c64113dcd42ab8f5dade7d1761b0a
+#: ../../../CHANGELOG.md:14 ../../../CHANGELOG.md:42 ../../../CHANGELOG.md:68
+#: 04709a95e7e54707ae9299b1c498780c 092f4b07cce0483588b801910462acd8
+#: 254d2e41721a4689a56dadb999539b4d
 #, fuzzy
-msgid "no changes."
+msgid "BREAKING CHANGES"
 msgstr "变更日志"
 
+#: ../../../CHANGELOG.md:15 48000634af894142957c0aa82e97d269
+msgid ""
+"due to "
+"[`9e9aeed`](https://github.com/retrofor/iamai/commit/9e9aeed12a501901425d6b782879c1260b608d1f)"
+" - fix @actions/upload_artifact@v4 breaking changes for upload same name "
+"files *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*:"
+msgstr ""
+
+#: ../../../CHANGELOG.md:17 12ad31a727a043dab6364555652e405f
+msgid ""
+"fix @actions/upload_artifact@v4 breaking changes for upload same name "
+"files"
+msgstr ""
+
+#: ../../../CHANGELOG.md:20 ../../../CHANGELOG.md:56 ../../../CHANGELOG.md:74
+#: ../../../CHANGELOG.md:100 666db299228740848a5454025d540872
+#: 884d03000a094e35bd3307a6bcc9f7ac e73250baee58433284cf361a3371078e
+#: f97dccc0a2734c92a28a89431b248356
+msgid "Bug Fixes"
+msgstr ""
+
+#: ../../../CHANGELOG.md:21 a9d684f622a6471a89afe051a2e634e5
+msgid ""
+"[`48d4a55`](https://github.com/retrofor/iamai/commit/48d4a55d7de5c52d22f863067a08c2d2bb8487c4)"
+" - dynamic fix compile error *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:22 8fa755eeb582479da16601fe5c86e705
+msgid ""
+"[`8588182`](https://github.com/retrofor/iamai/commit/8588182bd89f00ff500fe3762bb5091a0733bed8)"
+" - **adapter**: refactor kook adapter event, exceptions *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:24 ../../../CHANGELOG.md:48 ../../../CHANGELOG.md:82
+#: ../../../CHANGELOG.md:108 086b558de8f045d5a41cabda58997d89
+#: 32af8e6620a2476683e61a4abec43bfc 36c8a3078afd45369ec7d2260eed9d22
+#: ac8240b1cd0e4a2eba0a2d9056431e1d
+msgid "Refactors"
+msgstr ""
+
+#: ../../../CHANGELOG.md:25 311b3c90b8b7401dbec56d7f0ff29297
+msgid ""
+"[`df1bf4d`](https://github.com/retrofor/iamai/commit/df1bf4d916de9790a13332d271e5aa3236ccaa1d)"
+" - **project**: build with rust *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:28 87eb8db29b75498c95fe1b35fbd0101f
+msgid ""
+"[`dd5aa72`](https://github.com/retrofor/iamai/commit/dd5aa720b0a1e6925a70242398b91cda3f10833c)"
+" - **docs**: update api docs with sphinx-apidoc *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:29 900778b392974e7b883df132fa37fde7
+msgid ""
+"[`81de1d6`](https://github.com/retrofor/iamai/commit/81de1d694398658c9e619c36fbca40130a0f4f55)"
+" - **project**: remove useless files *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:30 1a79bcd5fa334ac787033f5954e0dbf5
+msgid ""
+"[`5db979b`](https://github.com/retrofor/iamai/commit/5db979bb8e0b759fc934ae82dd4d1638589f5421)"
+" - **lint**: format with ruff *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:31 084b9275de094edea1f2e9db85c655bc
+msgid ""
+"[`ed5a1a0`](https://github.com/retrofor/iamai/commit/ed5a1a0b21d34acaebe133ff1900090b09041fc0)"
+" - **deps**: update dependencies *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:32 31a761094068454281f1816665c9d7c8
+msgid ""
+"[`4314aa9`](https://github.com/retrofor/iamai/commit/4314aa900b489e5b4ed1110e5aa4109ba3cb657a)"
+" - add .ruff_cache to the ignore list *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:33 2f016b972142489f8f96d808562d5209
+msgid ""
+"[`1ae75c8`](https://github.com/retrofor/iamai/commit/1ae75c8761f659c0830e2abadd0b510cf6ee526b)"
+" - **lint**: format code *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:34 02a2aaaedb904582acf2c18d5d4fe48f
+msgid ""
+"[`3f881c8`](https://github.com/retrofor/iamai/commit/3f881c8d3ef5d86e876019a9bf305f4860578aeb)"
+" - **deps**: bump actions/download-artifact from 3 to 4 *(PR "
+"[#280](https://github.com/retrofor/iamai/pull/280) by "
+"[@dependabot[bot]](https://github.com/apps/dependabot))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:35 736be1ca5ce643269bc6a09cbae40ae5
+msgid ""
+"[`ee0070c`](https://github.com/retrofor/iamai/commit/ee0070cf0c0852fc1fe9d35bf8be048d37f4333c)"
+" - **deps**: bump actions/upload-artifact from 3 to 4 *(PR "
+"[#279](https://github.com/retrofor/iamai/pull/279) by "
+"[@dependabot[bot]](https://github.com/apps/dependabot))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:36 fc32f3d72d4a41a381a361c5bddc5bab
+msgid ""
+"[`34c8b52`](https://github.com/retrofor/iamai/commit/34c8b5230c14813de7d92d3750bef356c59b51f0)"
+" - bump version into 0.0.3-rc4 *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:37 d093f8fda1d644e895f1d40798d12187
+msgid ""
+"[`7d1e1ab`](https://github.com/retrofor/iamai/commit/7d1e1ab203326dd3dfdec11b0164966d99baa884)"
+" - rename version *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:38 122e2fa85f19403e8b1c7fa0dc877694
+msgid ""
+"[`00d0bdb`](https://github.com/retrofor/iamai/commit/00d0bdbdfa0a1bcaccb19ae3d6dbc28b2203aeba)"
+" - rename version *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:41 2cd1017cf18b4e21900c9ae15de7be53
+msgid "[v0.0.3rc3] - 2024-02-23"
+msgstr ""
+
+#: ../../../CHANGELOG.md:43 def2cf2be9934493b948478da48c8b37
+msgid ""
+"due to "
+"[`a09bf3f`](https://github.com/retrofor/iamai/commit/a09bf3f8a25693c0f28f1e332c4391529fa69f16)"
+" - rewrite kook, apscheduler adapter *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*:"
+msgstr ""
+
+#: ../../../CHANGELOG.md:45 761c966943cc402886ccdea27478fbc1
+msgid "rewrite kook, apscheduler adapter"
+msgstr ""
+
+#: ../../../CHANGELOG.md:49 bdefb78914b04cc8aa71e46600fd84bb
+msgid ""
+"[`a09bf3f`](https://github.com/retrofor/iamai/commit/a09bf3f8a25693c0f28f1e332c4391529fa69f16)"
+" - **adapter**: rewrite kook, apscheduler adapter *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:52 1ca6ab1b987f453c8f097644361cd695
+msgid ""
+"[`e3f9845`](https://github.com/retrofor/iamai/commit/e3f98452af7178d767cd72335fe4a6febd0cd042)"
+" - **project**: bump version to 0.0.3rc3 *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:55 aa8adf3dfecc4a80978786a0da4cd6c3
+msgid "[v0.0.3b5] - 2024-02-23"
+msgstr ""
+
+#: ../../../CHANGELOG.md:57 392b4ae57041438b8b644ba98c7007f2
+msgid ""
+"[`76fa3e0`](https://github.com/retrofor/iamai/commit/76fa3e0cf3f1120df68c817c0a3e2cb9f23e631e)"
+" - **workflow**: rename \"onebot11\" to \"cqhttp\" *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:60 8bb1a476029740f6bda60c0f898a18ad
+msgid ""
+"[`4fe3918`](https://github.com/retrofor/iamai/commit/4fe39182a361eb60b559ee57a3a956e0757a1128)"
+" - **readme**: upate *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:61 68e0ea2215f1407c8b954c75cf4f3d9d
+msgid ""
+"[`bae16f4`](https://github.com/retrofor/iamai/commit/bae16f4025bfaa0c8296924865f232c0234699c5)"
+" - **readme**: update *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:62 20328294d4a04ea0ac56292d190c9d28
+msgid ""
+"[`281cf90`](https://github.com/retrofor/iamai/commit/281cf904379797b9fec74e9621d92fb751fce88a)"
+" - **project**: update readme.text *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:63 26819a9235aa43e497ea04807c274099
+msgid ""
+"[`663a70f`](https://github.com/retrofor/iamai/commit/663a70ffb1bbdaaebc425629f53d49f073d2cf26)"
+" - **project**: bump version into 0.0.3b4 *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:64 46cf795e54a644a1acfa4daef5620b50
+msgid ""
+"[`6565229`](https://github.com/retrofor/iamai/commit/65652292cf7de7f772e19f82eb502a68c986df28)"
+" - **project**: bump version to 0.0.3b5 *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:67 5418edcdb9a742b99c1271ad289eeb02
+msgid "[v0.0.3b3] - 2024-02-22"
+msgstr ""
+
+#: ../../../CHANGELOG.md:69 97f1fdbff50149ceb77ec715e64da505
+msgid ""
+"due to "
+"[`4e8a96f`](https://github.com/retrofor/iamai/commit/4e8a96f25665c08314d5e68e338327fa3f65e25a)"
+" - rename adapter \"onebot11\" -> \"cqhttp\" *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*:"
+msgstr ""
+
+#: ../../../CHANGELOG.md:71 72eeb590ca394052a8b6d51cc9c5a71a
+msgid "rename adapter \"onebot11\" -> \"cqhttp\""
+msgstr ""
+
+#: ../../../CHANGELOG.md:75 27fd1ba42e9d4330a5c361b05f9b9283
+msgid ""
+"[`23d0894`](https://github.com/retrofor/iamai/commit/23d0894c3edba5c88c55082a0dd345267a266c8a)"
+" - **readme**: format rst *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:76 94b773fb91974f07af03138e7e2e9618
+msgid ""
+"[`22b40d0`](https://github.com/retrofor/iamai/commit/22b40d0af7e0b0255411f9cef749c3dbe95a3c7f)"
+" - **workflow**: build api for all packages *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:77 abbefdc0f7284accab1c05cd2b998edb
+msgid ""
+"[`e366a34`](https://github.com/retrofor/iamai/commit/e366a34f270890e260c12eee4b96a9e85defd5f6)"
+" - remove `readme` key and add `long_description_content`. *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:78 5a9e1f5a537c4123ac366731d9ceea46
+msgid ""
+"[`5a1c0e2`](https://github.com/retrofor/iamai/commit/5a1c0e21094857bf8f997823b8067d27887d11e2)"
+" - **workflow**: resolve cp -r not specified error *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:79 0da1502d1aae4692afea86b431ecc0bc
+msgid ""
+"[`0309a33`](https://github.com/retrofor/iamai/commit/0309a33d20634e00828d081dba53ff01a83bab45)"
+" - **workflow**: rename dir name *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:80 71e9c61deb1c4108a4c5347b95d327ad
+msgid ""
+"[`d191c0c`](https://github.com/retrofor/iamai/commit/d191c0ccbbebfe90d78659f05b3699a7562b3a49)"
+" - **project**: update url and readme file *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:83 70bde04157ef479b94816d8142ff5b67
+msgid ""
+"[`4e8a96f`](https://github.com/retrofor/iamai/commit/4e8a96f25665c08314d5e68e338327fa3f65e25a)"
+" - **adapter**: rename adapter \"onebot11\" -> \"cqhttp\" *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:86 d448501829794535838730f4e7cd767e
+msgid ""
+"[`283d1af`](https://github.com/retrofor/iamai/commit/283d1af748a1c309bd6c38b1aabf820e9b56d1e3)"
+" - **docs**: update api docs with sphinx-apidoc *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:87 8c18ea13a48d4249b5db854a86d9111d
+msgid ""
+"[`c7bda67`](https://github.com/retrofor/iamai/commit/c7bda6707669d21141f0af88a7dadfffa4b3783e)"
+" - **workflow**: update api build step *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:88 f27f3a8396f54e0ca5beea3fa9327f71
+msgid ""
+"[`a69aff7`](https://github.com/retrofor/iamai/commit/a69aff74c1d3f967f9825910d2de13f2243517c7)"
+" - **docs**: update conf.py *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:89 8129e88c8125426d866fc7029b7bd0ac
+msgid ""
+"[`b024674`](https://github.com/retrofor/iamai/commit/b0246747ddc95eced7a68a9f04f22ac2a8e6cf7f)"
+" - **docs**: change html title *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:90 e59244ced70e42e9b549b479771e0996
+msgid ""
+"[`607af84`](https://github.com/retrofor/iamai/commit/607af845fa41c4c9c9612512092494c399a896be)"
+" - optimize all comments *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:91 129debf52c7f492a812c945cdbae2b2e
+msgid ""
+"[`aa14246`](https://github.com/retrofor/iamai/commit/aa14246e0c44fe752d0e372bdbd9654008db45f3)"
+" - **docs**: update api docs with sphinx-apidoc *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:92 2fb9c4f50e0749be823a6bd6f8bc848e
+msgid ""
+"[`22bfbed`](https://github.com/retrofor/iamai/commit/22bfbed1dc21384139ad527e8c689692a73e419f)"
+" - **workflow**: delete api dir *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:93 bb305118e44549019d61524b13e303a2
+msgid ""
+"[`1216d89`](https://github.com/retrofor/iamai/commit/1216d89493fd259f4c3df8c9b55c1b956f17acf5)"
+" - **docs**: format changelog *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:94 9ae89bf10d6a4ccebaf5361525619e8e
+msgid ""
+"[`a67637f`](https://github.com/retrofor/iamai/commit/a67637f2936aa0c19ae3b9f0a3b6712b70c9decd)"
+" - **docs**: fix file name *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:95 ade44f74fd134e208071bd5577f69332
+msgid ""
+"[`7172a20`](https://github.com/retrofor/iamai/commit/7172a204c218ec7da69a6504b6ac20c792b94f6a)"
+" - **adapter**: apscheduler adpater update deps *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:96 9a4d61b9c11944e4bf3f95e26aa51f69
+msgid ""
+"[`6d4ef4a`](https://github.com/retrofor/iamai/commit/6d4ef4a60e98ba66528e629eb0f9a76e072d0d24)"
+" - **packages**: update LICENSE *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:99 7a274055547f4dbfad890bcc4d6bbe8c
+msgid "[v0.0.3b2] - 2024-02-14"
+msgstr ""
+
+#: ../../../CHANGELOG.md:101 0603d69da2e742f1a67614b02238029a
+msgid ""
+"[`b8e1178`](https://github.com/retrofor/iamai/commit/b8e11784375b670293d4c4cc9f455a2c1c3a93dd)"
+" - change project readme file suffix *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:104 294ded9e84e5467ea0d4ceffe1003f05
+msgid ""
+"[`83adf17`](https://github.com/retrofor/iamai/commit/83adf171f47a7927c2f156d0c2aa37a2aca40f50)"
+" - bump version to 003b2 *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:107 5d3da0fd67154c768f5143668346d9d9
+msgid "[v0.0.3b1] - 2024-01-29"
+msgstr ""
+
+#: ../../../CHANGELOG.md:109 bc5dba28e6994113bbd94c6db065b171
+msgid ""
+"[`1fa6516`](https://github.com/retrofor/iamai/commit/1fa6516950fc2c1a967154ea916c580efb352d39)"
+" - rename example to examples *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:112 2920603339b14a1887df7193bfa55533
+msgid ""
+"[`5d7f813`](https://github.com/retrofor/iamai/commit/5d7f81398bee5dd8926580e4f41baab35d0b38a4)"
+" - **docs**: update api docs *(PR "
+"[#273](https://github.com/retrofor/iamai/pull/273) by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:113 06a6832b717347169acf504d049a9fde
+msgid ""
+"[`fe9b8cb`](https://github.com/retrofor/iamai/commit/fe9b8cbee74b1d470c6033550f99a9f6afbb8d2a)"
+" - **workflows**: disable useGitmojis *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:114 aa372cabe5af41c7b9bbe415704d2bad
+msgid ""
+"[`f5e26df`](https://github.com/retrofor/iamai/commit/f5e26df94e10254e55b9de7f632c069c10cc1433)"
+" - **workflows**: update api build steps *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:115 b7ae140187894f18a100992a85ed4dc6
+msgid ""
+"[`f222434`](https://github.com/retrofor/iamai/commit/f222434831b73f6a8a940498b670b45f33b96995)"
+" - **deps**: bump ncipollo/release-action from 1.12.0 to 1.13.0 *(PR "
+"[#275](https://github.com/retrofor/iamai/pull/275) by "
+"[@dependabot[bot]](https://github.com/apps/dependabot))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:116 a303ee3ae0bd43f5899469d88fd107cf
+msgid ""
+"[`aa61cf1`](https://github.com/retrofor/iamai/commit/aa61cf10d711c33c14ae22c641a96c6deec19570)"
+" - **deps**: bump stefanzweifel/git-auto-commit-action from 4 to 5 *(PR "
+"[#274](https://github.com/retrofor/iamai/pull/274) by "
+"[@dependabot[bot]](https://github.com/apps/dependabot))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:119 4bcb5152cad04c698e610d8984e78c0a
+msgid "[v0.0.3a3] - 2024-01-28"
+msgstr ""
+
+#: ../../../CHANGELOG.md:120 ../../../CHANGELOG.md:138
+#: 6ff2db7874e940bbbba90e10e30268a6 ffc05b1e18ae4783aa888485f1c22ff6
+msgid ":wrench: Chores"
+msgstr ""
+
+#: ../../../CHANGELOG.md:121 224340e91b354524aac10458e3b04246
+msgid ""
+"[`84be7fd`](https://github.com/retrofor/iamai/commit/84be7fdae9f828e9422d209a1919a6bdbec29ac2)"
+" - **workflows**: remove step copy credits *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:122 4a880a287aee4e808a591e3a682a99c2
+msgid ""
+"[`9732bf1`](https://github.com/retrofor/iamai/commit/9732bf1c8bc617e324c0b1f1b2500caf78ba79b1)"
+" - **version**: bump version from 0.0.3a2 to 0.0.3a3 *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:125 60cd2b2a983b4d43a9688cab86402c23
+msgid "[v0.0.3a2] - 2024-01-28"
+msgstr ""
+
+#: ../../../CHANGELOG.md:126 57e9615830d842f8898e019776710a9d
+msgid ":boom: BREAKING CHANGES"
+msgstr ""
+
+#: ../../../CHANGELOG.md:127 12b4de8da089462c9e6ed4d547ec6e4b
+msgid ""
+"due to "
+"[`7f1ceea`](https://github.com/retrofor/iamai/commit/7f1ceea0763e6914a6d52b398ee9959f98470b52)"
+" - cancel building the credit with workflow *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*:"
+msgstr ""
+
+#: ../../../CHANGELOG.md:129 04ec38f0669f4564a596706983c72d2a
+msgid "cancel building the credit with workflow"
+msgstr ""
+
+#: ../../../CHANGELOG.md:132 c89f5f887ffa4956b79fcdbaf5056bee
+msgid ":bug: Bug Fixes"
+msgstr ""
+
+#: ../../../CHANGELOG.md:133 81b62773ff7941619000d877fddfb304
+msgid ""
+"[`ea0ada8`](https://github.com/retrofor/iamai/commit/ea0ada86ac23f805cd76b3e45d6971fed638468a)"
+" - **workflow**: rename changelog.md to CHANGELOG.md and replace the path"
+" *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:135 765856e1c9924a7f8fd29d5612eeea58
+msgid ":recycle: Refactors"
+msgstr ""
+
+#: ../../../CHANGELOG.md:136 0e835c1016564fb69f1751a0c5481986
+msgid ""
+"[`59adea4`](https://github.com/retrofor/iamai/commit/59adea4e43ac2c2a20e44b7622ee9c05670b728b)"
+" - **example**: rename tests dir to examples dir *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:139 49f1ed23834b4ea289f02679c9cf1f83
+msgid ""
+"[`0428f79`](https://github.com/retrofor/iamai/commit/0428f79806188399cdd09f9cc459841228429923)"
+" - **workflow**: change regex pattern *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:140 3fbbe980ad2640448be73533703dc3bb
+msgid ""
+"[`4651ea8`](https://github.com/retrofor/iamai/commit/4651ea8a81a449e4398a641664bb831bd6b7b518)"
+" - **workflow**: revoke changelog.md *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:141 c08982734c684ff4bdc4403fd30c7781
+msgid ""
+"[`a15ab94`](https://github.com/retrofor/iamai/commit/a15ab948c12ae5be9dc6d2133ec85b793927d6a4)"
+" - **deps**: remove sophia-doc *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:142 b30321aa626743ab94ddc54dbb424ca4
+msgid ""
+"[`7f1ceea`](https://github.com/retrofor/iamai/commit/7f1ceea0763e6914a6d52b398ee9959f98470b52)"
+" - **credits**: cancel building the credit with workflow *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:143 6946335c8da440ed93333a673cc7f749
+msgid ""
+"[`6048e01`](https://github.com/retrofor/iamai/commit/6048e01a34ba795e2b98d46bb9a9d0421dcad377)"
+" - **workflows**: delete relese-drafter.yml *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:144 1dac83a1422049ddaa45f1ab13887066
+msgid ""
+"[`bba1a90`](https://github.com/retrofor/iamai/commit/bba1a902f63b8ce3208f588e19dd1f95b0d8e578)"
+" - update ignored files *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:145 b7d58cdc493a4a04956c7dbed321c58a
+msgid ""
+"[`4b3fadf`](https://github.com/retrofor/iamai/commit/4b3fadfcb09c8f6c41ab794e10e45ece535c9a98)"
+" - delete example/config.toml *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
+#: ../../../CHANGELOG.md:146 1b06e308f3d946478b128e3aee0fe737
+msgid ""
+"[`b3679ba`](https://github.com/retrofor/iamai/commit/b3679ba5beabe4ea913dda4507b5e795dcc39c4d)"
+" - **version**: bump version 0.0.3a1 to 0.0.3a2 *(commit by "
+"[@HsiangNianian](https://github.com/HsiangNianian))*"
+msgstr ""
+
 #~ msgid "[0.0.3a2](https://pypi.org/project/iamai/0.0.3/) 2024-01-27"
+#~ msgstr ""
+
+#~ msgid "[0.0.3a1](https://pypi.org/project/iamai/0.0.3/) 2024-01-27"
+#~ msgstr ""
+
+#~ msgid "Chore"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "[`910955`](https://github.com/retrofor/iamai/commit/91095581b78ae0162aa1f38a064e606600612eb4)"
+#~ " update readme"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "[`cd4e57`](https://github.com/retrofor/iamai/commit/cd4e579dc9cddc96b6a932c7ad5b1838f57bfd3f)"
+#~ " update api docs"
+#~ msgstr ""
+
+#~ msgid "[0.0.2](https://pypi.org/project/iamai/0.0.2/) 2024-01-27"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "[`6c676dc`](https://github.com/retrofor/iamai/commit/6c676dc359d9b92cc3619b1668cbb4ae75692905)"
+#~ " Merge branch 'master'"
+#~ msgstr ""
+
+#~ msgid "[0.0.1a1](https://pypi.org/project/iamai/0.0.1a1/) 2024-01-27"
 #~ msgstr ""
 

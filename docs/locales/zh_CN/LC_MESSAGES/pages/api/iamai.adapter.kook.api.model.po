@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: iamai \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"POT-Creation-Date: 2024-09-18 11:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -17,985 +17,466 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../source/pages/api/iamai.adapter.kook.api.model.rst:2
-#: c5582e420b6644bcb788346c358147f5
+#: 54f7cbaeb0a643aa80f7b9b63839dbb2
 msgid "iamai.adapter.kook.api.model module"
 msgstr ""
 
-#: 095dbc96a40544f99a26557836474608 14d2094d39a043cc8f4bd0661d5d4d60
-#: 1764f45119c749b2ae296ac2c607ad2f 17f01318b36c4a61bb5fa98533ada2a2
-#: 22f36d0e1e4e4db69c50c82171080f2e 233177db1f0f4b869a7fad2754c562c1
-#: 246180296bc8492f96a77313f2aa3dde 24bf50b1d9e6472685966aa15e8d9666
-#: 338400cee089457081d1d46709d3d143 35b79c27505e437aa87eb0a37047228e
-#: 3b27102cc20443ee8c23c83e4c29b970 3e28910511164fe88c6e6f366909efb3
-#: 3e337d279b704f698b9a030386e2020f 51d385b048664882b5a1bcbf9ceb8eca
-#: 71043481a4164aafa6ac3f21d0cda4f8 8260cf061c4d44af85212b4ab0b0cc60
-#: 837da29e4777487791e37ae78a1fdb53 8550ed07e94e4e50aeceb4a91005b9ec
-#: a2e5109e74224e8d94cf1a30f189f3c2 bf28b1ec195a462b9237db8cfc2e821a
-#: d3e5d43f12fb4cde9a8c3485aa42a45a d4d458d77eba422f872c7290b8abcaf7
-#: deaf259342344715be9a3a998dd37b34 ed654419fe5645559782a7df2b6beacc
-#: ee04591224da4602b1e139047230641b f7bd661946c940f39d340dcd3402568d
-#: fd967d5c229e45bdaeb728dfd72dca54 iamai.adapter.kook.api.model.Attachments:1
-#: iamai.adapter.kook.api.model.BaseMessage:1
-#: iamai.adapter.kook.api.model.BlackList:1
-#: iamai.adapter.kook.api.model.ChannelMessagesReturn:1
-#: iamai.adapter.kook.api.model.ChannelRoleInfo:1
-#: iamai.adapter.kook.api.model.ChannelRoleReturn:1
-#: iamai.adapter.kook.api.model.DirectMessagesReturn:1
-#: iamai.adapter.kook.api.model.Emoji:1
-#: iamai.adapter.kook.api.model.GuilRoleReturn:1
-#: iamai.adapter.kook.api.model.Guild:1
-#: iamai.adapter.kook.api.model.GuildEmoji:1
-#: iamai.adapter.kook.api.model.IntimacyImg:1
-#: iamai.adapter.kook.api.model.IntimacyIndexReturn:1
-#: iamai.adapter.kook.api.model.Invite:1
-#: iamai.adapter.kook.api.model.ListReturn:1
-#: iamai.adapter.kook.api.model.MentionInfo:1
-#: iamai.adapter.kook.api.model.MessageCreateReturn:1
-#: iamai.adapter.kook.api.model.Meta:1
-#: iamai.adapter.kook.api.model.PermissionOverwrite:1
-#: iamai.adapter.kook.api.model.PermissionUser:1
-#: iamai.adapter.kook.api.model.Quote:1 iamai.adapter.kook.api.model.Reaction:1
-#: iamai.adapter.kook.api.model.Role:1
-#: iamai.adapter.kook.api.model.TargetInfo:1 iamai.adapter.kook.api.model.URL:1
-#: iamai.adapter.kook.api.model.User:1 iamai.adapter.kook.api.model.UserChat:1
-#: of
-msgid "Bases: :py:class:`~pydantic.main.BaseModel`"
-msgstr ""
-
-#: ../../docstring 72f9c7ffc36540e8b1ef02285320b942
-#: 764368d8b2c04a09abeb95b7e82c9980 iamai.adapter.kook.api.model.Attachments:1
-#: iamai.adapter.kook.api.model.BaseMessage.attachments:1 of
-msgid "附加的多媒体数据"
-msgstr ""
-
-#: ../../docstring 0aca7b695e8a47a78a144e38b18b5af3
-#: 0b4c84d8496042c9b0e5de9670d92ba7 111a0ae8ee8f4c7d922188af0eea92e8
-#: 1bf28f1f1ba84366ab30c8feabfc684b 228f556455694867a38b7a88ef593ca3
-#: 28c7cec164b9495e827dffc1f7e81e0b 3b23ec268fa04905854e49c8fbafb680
-#: 4898ca8ff7fb462687f7ea861b0c208e 530964e59abf40f29fa0a820c94e6458
-#: 651f7abb39164d2aab0563dfb101ecf2 6b8f1ed1e46748959fcb5adff21bf2e4
-#: 71e283327d624d2fba60ce34d5aec09c 7505956330a8442e9d9904a465d0c6df
-#: 79d8c997fde8491ab8727ec9152ead93 7a147081887344ab9f4c7ca21b844eca
-#: 7e6ef81560ad4048a75fc0267ea8f245 8cf36a64bcf141b592599f078cce45d8
-#: 8d4298426f924f5b8d582c8062b83b03 96ae6fc4de8a48e083640d81a372ab3e
-#: 986cb864023f4157ada8741b4b46ce24 a94acd459fba4339bf94580d9be8d2d2
-#: ad552f82beb24e6da514ddad3e1035db b0848d097f84452c890185501cd5a538
-#: b83c4ffd2deb405d8107b0ef87db86fc cd8ade1ee74841ddbf2102eb8753d013
-#: d0186fe8a3b645f6ad4b9ae26124bf52 da59b126597940b2951a868259428764
-#: e0ceb05cb6aa4fce9e5a0e032f33152f e297d31e0ad741ef84fd487294d5dd19
-#: e3e57fecbf684b56a2e4e7c657c91608 e62c7ea3846348f5939cc92cb62a3b62
-#: eae8e0f793c04885a098918cc6e3f013 ee113bb2ca0241b5a0c63b241b454a83
-#: f1736843ba7546f1940e774738c1f6a9 f6209d5ea9e74a19a457ae9cf73f834c
-#: f690b1e3211848f29f7a767f43417f16 f86bdd96df1543dbb93e7c88341e4e16
-#: fbf091ad558c4a51affd69f7ff61b44d ff7dbfe346544eb599941d68795e210c
-#: iamai.adapter.kook.api.model.Attachments.model_config:1
-#: iamai.adapter.kook.api.model.BaseMessage.model_config:1
-#: iamai.adapter.kook.api.model.BlackList.model_config:1
-#: iamai.adapter.kook.api.model.BlackListsReturn.model_config:1
-#: iamai.adapter.kook.api.model.Channel.model_config:1
-#: iamai.adapter.kook.api.model.ChannelMessage.model_config:1
-#: iamai.adapter.kook.api.model.ChannelMessagesReturn.model_config:1
-#: iamai.adapter.kook.api.model.ChannelRoleInfo.model_config:1
-#: iamai.adapter.kook.api.model.ChannelRoleReturn.model_config:1
-#: iamai.adapter.kook.api.model.ChannelsReturn.model_config:1
-#: iamai.adapter.kook.api.model.DirectMessage.model_config:1
-#: iamai.adapter.kook.api.model.DirectMessagesReturn.model_config:1
-#: iamai.adapter.kook.api.model.Emoji.model_config:1
-#: iamai.adapter.kook.api.model.GuilRoleReturn.model_config:1
-#: iamai.adapter.kook.api.model.Guild.model_config:1
-#: iamai.adapter.kook.api.model.GuildEmoji.model_config:1
-#: iamai.adapter.kook.api.model.GuildEmojisReturn.model_config:1
-#: iamai.adapter.kook.api.model.GuildUsersRetrun.model_config:1
-#: iamai.adapter.kook.api.model.GuildsReturn.model_config:1
-#: iamai.adapter.kook.api.model.IntimacyImg.model_config:1
-#: iamai.adapter.kook.api.model.IntimacyIndexReturn.model_config:1
-#: iamai.adapter.kook.api.model.Invite.model_config:1
-#: iamai.adapter.kook.api.model.InvitesReturn.model_config:1
-#: iamai.adapter.kook.api.model.ListReturn.model_config:1
-#: iamai.adapter.kook.api.model.MentionInfo.model_config:1
-#: iamai.adapter.kook.api.model.MessageCreateReturn.model_config:1
-#: iamai.adapter.kook.api.model.Meta.model_config:1
-#: iamai.adapter.kook.api.model.PermissionOverwrite.model_config:1
-#: iamai.adapter.kook.api.model.PermissionUser.model_config:1
-#: iamai.adapter.kook.api.model.Quote.model_config:1
-#: iamai.adapter.kook.api.model.Reaction.model_config:1
-#: iamai.adapter.kook.api.model.ReactionUser.model_config:1
-#: iamai.adapter.kook.api.model.Role.model_config:1
-#: iamai.adapter.kook.api.model.RolesReturn.model_config:1
-#: iamai.adapter.kook.api.model.TargetInfo.model_config:1
-#: iamai.adapter.kook.api.model.URL.model_config:1
-#: iamai.adapter.kook.api.model.User.model_config:1
-#: iamai.adapter.kook.api.model.UserChat.model_config:1
-#: iamai.adapter.kook.api.model.UserChatsReturn.model_config:1 of
-msgid ""
-"Configuration for the model, should be a dictionary conforming to "
-"[`ConfigDict`][pydantic.config.ConfigDict]."
-msgstr ""
-
-#: ../../docstring 07d686b954f64088945cf349b84742d2
-#: 0e88feb0ebcb424885cdd88c49010dd9 15e35b4a168d48a191e156cf827f45e9
-#: 1c2d224268be4e26917c9708d7732166 31463c68673c48bc890518a377c0dc21
-#: 37596ee1ed97429c9d26dbc8a872f42c 384bec40c8574332a77092dbdd76345d
-#: 40ce6c3b244e4c5bb35d928ce629312c 48020005662a460a81f8dff929b54b71
-#: 482a47562cff488baa06acbf4549c538 4885f6e9d184478e9646c305c7130c97
-#: 503571c7f4b844949a03570fef7b4dfe 55a14129b9f54486a3c4a889b70ff0f1
-#: 56c3213aed724e8b86a7eb26b50d4a43 5e0278049a494be3826f26b2c6abcfc2
-#: 6340a988cea242f4a0a2adfdb8d0172c 6be5bfc00af842879e74b5578febbeb5
-#: 7c7df9e88be44e7d87298f99930d3add 7c8f8b0dea614105b3de3900911c21ce
-#: 7fa3e28dead548cd8975dd9949f4f948 805cccd7605a49a8b50806a2d62fa971
-#: 8335bd254d514f078921d1f30f825b32 862f31773a7147b2a5be2eab1c822c6f
-#: 8a18243ad67549098a9a71f58911358e 8f387515e0434862a1bcc1f1463b7748
-#: 9a9f4b1b70414b8ab217fbda5185b90b a464f16d04084926bcd979dae86ddb1d
-#: a9049811fa5b47b9af4dc80622624856 ac55a74204e8477c94f12cfa739ea302
-#: b4b198235bbf44808a39f46e07292471 bcf89f0f07774e9bab07ded0c6e1c521
-#: be418563163d488d987e667351557ee0 c09ecc3086954026941522cdb7b441a4
-#: c7322ddee6134925bb3c15bc2980c16d c99b3e6c993b40368be80604b5f848f3
-#: e90dc0a28b854db7820943de73ac1958 ebdecaabfa7e475cbf20e60e5aef2fb2
-#: ed151df003c64e33a411e656cc6e8748 f0f5a9e7da5a40d99e9194f82bf8d467
-#: iamai.adapter.kook.api.model.Attachments.model_fields:1
-#: iamai.adapter.kook.api.model.BaseMessage.model_fields:1
-#: iamai.adapter.kook.api.model.BlackList.model_fields:1
-#: iamai.adapter.kook.api.model.BlackListsReturn.model_fields:1
-#: iamai.adapter.kook.api.model.Channel.model_fields:1
-#: iamai.adapter.kook.api.model.ChannelMessage.model_fields:1
-#: iamai.adapter.kook.api.model.ChannelMessagesReturn.model_fields:1
-#: iamai.adapter.kook.api.model.ChannelRoleInfo.model_fields:1
-#: iamai.adapter.kook.api.model.ChannelRoleReturn.model_fields:1
-#: iamai.adapter.kook.api.model.ChannelsReturn.model_fields:1
-#: iamai.adapter.kook.api.model.DirectMessage.model_fields:1
-#: iamai.adapter.kook.api.model.DirectMessagesReturn.model_fields:1
-#: iamai.adapter.kook.api.model.Emoji.model_fields:1
-#: iamai.adapter.kook.api.model.GuilRoleReturn.model_fields:1
-#: iamai.adapter.kook.api.model.Guild.model_fields:1
-#: iamai.adapter.kook.api.model.GuildEmoji.model_fields:1
-#: iamai.adapter.kook.api.model.GuildEmojisReturn.model_fields:1
-#: iamai.adapter.kook.api.model.GuildUsersRetrun.model_fields:1
-#: iamai.adapter.kook.api.model.GuildsReturn.model_fields:1
-#: iamai.adapter.kook.api.model.IntimacyImg.model_fields:1
-#: iamai.adapter.kook.api.model.IntimacyIndexReturn.model_fields:1
-#: iamai.adapter.kook.api.model.Invite.model_fields:1
-#: iamai.adapter.kook.api.model.InvitesReturn.model_fields:1
-#: iamai.adapter.kook.api.model.ListReturn.model_fields:1
-#: iamai.adapter.kook.api.model.MentionInfo.model_fields:1
-#: iamai.adapter.kook.api.model.MessageCreateReturn.model_fields:1
-#: iamai.adapter.kook.api.model.Meta.model_fields:1
-#: iamai.adapter.kook.api.model.PermissionOverwrite.model_fields:1
-#: iamai.adapter.kook.api.model.PermissionUser.model_fields:1
-#: iamai.adapter.kook.api.model.Quote.model_fields:1
-#: iamai.adapter.kook.api.model.Reaction.model_fields:1
-#: iamai.adapter.kook.api.model.ReactionUser.model_fields:1
-#: iamai.adapter.kook.api.model.Role.model_fields:1
-#: iamai.adapter.kook.api.model.RolesReturn.model_fields:1
-#: iamai.adapter.kook.api.model.TargetInfo.model_fields:1
-#: iamai.adapter.kook.api.model.URL.model_fields:1
-#: iamai.adapter.kook.api.model.User.model_fields:1
-#: iamai.adapter.kook.api.model.UserChat.model_fields:1
-#: iamai.adapter.kook.api.model.UserChatsReturn.model_fields:1 of
-msgid ""
-"Metadata about the fields defined on the model, mapping of field names to"
-" [`FieldInfo`][pydantic.fields.FieldInfo]."
-msgstr ""
-
-#: ../../docstring 0c8819b702e944b89796adb6f76b4dcd
-#: 1b5b9b5be7a1490e92466ff2f63b818f 2642316b14c54b6eaf3cab65f0840243
-#: 28668c9cdf2b4b2b912596d3b112030d 34733f3275764ec4b3d36da80310645b
-#: 378cc1807b1046ab9831ee73d56ec474 4d3dfd2eda664b818975306da1a338a0
-#: 4da82d22588e439e9190f8b9c2100b78 5c914f09d32c460ca68928dbb385fbb5
-#: 604a55f3323f4e9a9bf5325a1b1708b8 61b366cdb26f40518229fc8cba2ba16b
-#: 62f7e4104a9742b690bf85ea65227052 63300e5bc5ac4b92be7effde0dab3363
-#: 6894af22f90d4cc6bb5a1697b408066a 69eef9d643fa4fa299684a23eef83ada
-#: 6c90fe87023a4076bd6f82d88c3fe0f9 6e1c90618a6c42a8a09890a4a5601176
-#: 72ec9e76f1dd487596d2bd057f2590f9 7cca521f31ab409cbb232ec94ad87d1e
-#: 7d82725c382c4a2fa595befd3e7f9435 87b9d9abdfb04fd7b8aead75b8ab484a
-#: 92f2258e043f452fa8a73dc31c8fae16 9fc51e5c9d78476d89dde8819d57effe
-#: aabe44e9bba241f993a6fee75e0b09bb b04a83a8dd2747c39382c3dbb1556811
-#: bf497ed94d264eecbc01afba197a6370 c34d85f155e74910a2015882d226c06a
-#: c9469040849742719141597d869abc09 dd8ebe8d833d4b8eaa2beb2e12f78698
-#: deb346238aee4233a19a639830eb427f e5e452e798e343f48e365434db17a80c
-#: e7860d1b30ba43399d8179d38e154bfe e80c42da18cb4e639d1e3efe4734c22d
-#: ec161fd54478454db4def69e7904126b edd1b7539c204ab8859bd3d4b04d95c5
-#: f03294844f6d422382026ee0e858af56 f191f784c4a545e8a09347b7d665f217
-#: f86b8a5197dd46199ef7eca9c6dd3af4 fb38e88d8d9b4e15a0ba2389eebfa6da
-#: iamai.adapter.kook.api.model.Attachments.model_fields:4
-#: iamai.adapter.kook.api.model.BaseMessage.model_fields:4
-#: iamai.adapter.kook.api.model.BlackList.model_fields:4
-#: iamai.adapter.kook.api.model.BlackListsReturn.model_fields:4
-#: iamai.adapter.kook.api.model.Channel.model_fields:4
-#: iamai.adapter.kook.api.model.ChannelMessage.model_fields:4
-#: iamai.adapter.kook.api.model.ChannelMessagesReturn.model_fields:4
-#: iamai.adapter.kook.api.model.ChannelRoleInfo.model_fields:4
-#: iamai.adapter.kook.api.model.ChannelRoleReturn.model_fields:4
-#: iamai.adapter.kook.api.model.ChannelsReturn.model_fields:4
-#: iamai.adapter.kook.api.model.DirectMessage.model_fields:4
-#: iamai.adapter.kook.api.model.DirectMessagesReturn.model_fields:4
-#: iamai.adapter.kook.api.model.Emoji.model_fields:4
-#: iamai.adapter.kook.api.model.GuilRoleReturn.model_fields:4
-#: iamai.adapter.kook.api.model.Guild.model_fields:4
-#: iamai.adapter.kook.api.model.GuildEmoji.model_fields:4
-#: iamai.adapter.kook.api.model.GuildEmojisReturn.model_fields:4
-#: iamai.adapter.kook.api.model.GuildUsersRetrun.model_fields:4
-#: iamai.adapter.kook.api.model.GuildsReturn.model_fields:4
-#: iamai.adapter.kook.api.model.IntimacyImg.model_fields:4
-#: iamai.adapter.kook.api.model.IntimacyIndexReturn.model_fields:4
-#: iamai.adapter.kook.api.model.Invite.model_fields:4
-#: iamai.adapter.kook.api.model.InvitesReturn.model_fields:4
-#: iamai.adapter.kook.api.model.ListReturn.model_fields:4
-#: iamai.adapter.kook.api.model.MentionInfo.model_fields:4
-#: iamai.adapter.kook.api.model.MessageCreateReturn.model_fields:4
-#: iamai.adapter.kook.api.model.Meta.model_fields:4
-#: iamai.adapter.kook.api.model.PermissionOverwrite.model_fields:4
-#: iamai.adapter.kook.api.model.PermissionUser.model_fields:4
-#: iamai.adapter.kook.api.model.Quote.model_fields:4
-#: iamai.adapter.kook.api.model.Reaction.model_fields:4
-#: iamai.adapter.kook.api.model.ReactionUser.model_fields:4
-#: iamai.adapter.kook.api.model.Role.model_fields:4
-#: iamai.adapter.kook.api.model.RolesReturn.model_fields:4
-#: iamai.adapter.kook.api.model.TargetInfo.model_fields:4
-#: iamai.adapter.kook.api.model.URL.model_fields:4
-#: iamai.adapter.kook.api.model.User.model_fields:4
-#: iamai.adapter.kook.api.model.UserChat.model_fields:4
-#: iamai.adapter.kook.api.model.UserChatsReturn.model_fields:4 of
-msgid "This replaces `Model.__fields__` from Pydantic V1."
-msgstr ""
-
-#: ../../docstring 71b15c20b2e546ce95d894d45346e02c
-#: iamai.adapter.kook.api.model.Attachments.name:1 of
-msgid "多媒体名"
-msgstr ""
-
-#: ../../docstring e097ddfd00a94e398d9ff16f4477815c
-#: iamai.adapter.kook.api.model.Attachments.size:1 of
-msgid "大小 单位（B）"
-msgstr ""
-
-#: ../../docstring 7cfc080fd082484a8c0805da5972748c
-#: iamai.adapter.kook.api.model.Attachments.type:1 of
-msgid "多媒体类型"
-msgstr ""
-
-#: ../../docstring e1783ad18b67446080c471d193a0a189
-#: iamai.adapter.kook.api.model.Attachments.url:1 of
-msgid "多媒体地址"
-msgstr ""
-
-#: ../../docstring 702d6e5ded734f13ab2e02d7e38bf263
-#: iamai.adapter.kook.api.model.BaseMessage.content:1 of
-msgid "消息内容"
-msgstr ""
-
-#: ../../docstring b48608259b9e481aa899ba746f3fb272
-#: iamai.adapter.kook.api.model.BaseMessage.create_at:1 of
-msgid "创建时间"
-msgstr ""
-
-#: ../../docstring c9b2ba28cf26484c9a339a64ad81739e
-#: iamai.adapter.kook.api.model.BaseMessage.embeds:1 of
-msgid "超链接解析数据"
-msgstr ""
-
-#: ../../docstring 9be7bf068a1a42cab38f50a643705f0e
-#: iamai.adapter.kook.api.model.BaseMessage.id_:1 of
-msgid "消息 ID"
-msgstr ""
-
-#: ../../docstring ac0302d83443465e8cd3786d440493e3
-#: iamai.adapter.kook.api.model.BaseMessage.mention_info:1 of
-msgid "引用特定用户或特定角色的信息"
-msgstr ""
-
-#: ../../docstring 2c840eaea6b349139b46f9610ff463b8
-#: iamai.adapter.kook.api.model.BaseMessage.quote:1 of
-msgid "引用数据"
-msgstr ""
-
-#: ../../docstring 544b86eb78d84b7e91f152838d0c2def
-#: iamai.adapter.kook.api.model.BaseMessage.reactions:1 of
-msgid "回应数据"
-msgstr ""
-
-#: ../../docstring 2447117447fe4b7ea7d00b7e8c035e1b
-#: iamai.adapter.kook.api.model.BaseMessage.read_status:1 of
-msgid "是否已读"
-msgstr ""
-
-#: ../../docstring 2c2a4e6588724742a683574f9149c479
-#: iamai.adapter.kook.api.model.BaseMessage.type:1 of
-msgid "消息类型"
-msgstr ""
-
-#: ../../docstring 7ab01a6a06354686b47158c71b8e1cac
-#: iamai.adapter.kook.api.model.BaseMessage.updated_at:1 of
-msgid "更新时间"
-msgstr ""
-
-#: 223ef68968d742909f0fe48c95bc5666 iamai.adapter.kook.api.model.BlackList:1 of
-msgid "黑名单"
-msgstr ""
-
-#: ../../docstring a61617f1ea804bdd91e525986c7979da
-#: iamai.adapter.kook.api.model.BlackList.created_time:1 of
-msgid "加入黑名单的时间戳(毫秒)"
-msgstr ""
-
-#: ../../docstring 72625bb058574f65b4efee18d6c2d5d8
-#: iamai.adapter.kook.api.model.BlackList.remark:1 of
-msgid "加入黑名单的原因"
-msgstr ""
-
-#: ../../docstring 9d6547d9fbed4adb8c73625c0aa36434
-#: abf0bbf7a1504202a00b98b0c1ca1a24
-#: iamai.adapter.kook.api.model.BlackList.user:1
-#: iamai.adapter.kook.api.model.Invite.user:1 of
-msgid "用户"
-msgstr ""
-
-#: ../../docstring 33aca844184542ae91f329d65d6bca71
-#: 9a71489faefc421abd624ab7b8228cf0
-#: iamai.adapter.kook.api.model.BlackList.user_id:1
-#: iamai.adapter.kook.api.model.GuilRoleReturn.user_id:1 of
-msgid "用户 id"
-msgstr ""
-
-#: 207b850f3f0c402a92fd2a7cf850de69 23aa6388b90f48a9a687832bd68c81d8
-#: 61bd49d41b3243a0b9d8f89bc9144cf0 9e34a20e65384a1196507065ccd49ebd
-#: a0a7c5f935aa4e418daa403eab44dedc b233cc6e55a34bbfac13aa2d7e9e7d2b
-#: ca5d2ecb787a49b5aea3d3dd99c0e0a7 f7a71143976349ed8b4807eb86878b07
-#: iamai.adapter.kook.api.model.BlackListsReturn:1
-#: iamai.adapter.kook.api.model.ChannelsReturn:1
-#: iamai.adapter.kook.api.model.GuildEmojisReturn:1
-#: iamai.adapter.kook.api.model.GuildUsersRetrun:1
-#: iamai.adapter.kook.api.model.GuildsReturn:1
-#: iamai.adapter.kook.api.model.InvitesReturn:1
-#: iamai.adapter.kook.api.model.RolesReturn:1
-#: iamai.adapter.kook.api.model.UserChatsReturn:1 of
-msgid "Bases: :py:class:`~iamai.adapter.kook.api.model.ListReturn`"
-msgstr ""
-
-#: 058c4c7a71f74bb399a6b5161cef0910
-#: iamai.adapter.kook.api.model.BlackListsReturn:1 of
-msgid "获取黑名单列表返回信息"
-msgstr ""
-
-#: ../../docstring 04820fe45df440f8bb9a3cf15ec5866b
-#: iamai.adapter.kook.api.model.BlackListsReturn.blacklists:1 of
-msgid "黑名单列表"
-msgstr ""
-
-#: 51dedb0d436a40d89db3e38aad8d79c3 iamai.adapter.kook.api.model.Channel:1 of
-msgid "Bases: :py:class:`~iamai.adapter.kook.api.model.ChannelRoleInfo`"
-msgstr ""
-
-#: 6d3b694eee424674bb14a6ce5a7d0fd1 iamai.adapter.kook.api.model.Channel:1 of
-msgid "开黑啦 频道 字段"
-msgstr ""
-
-#: ../../docstring 09e0d340b4a345bca55cb4e121da286b
-#: 0d795b644a364555b84d42c8899e0964 37f64d1cf77f427184a37ddfdfc8ce18
-#: 90b91d7c58ba43a1bf853c640bbe9c2b
-#: iamai.adapter.kook.api.model.Channel.guild_id:1
-#: iamai.adapter.kook.api.model.GuilRoleReturn.guild_id:1
-#: iamai.adapter.kook.api.model.Guild.id_:1
-#: iamai.adapter.kook.api.model.Invite.guild_id:1 of
-msgid "服务器 id"
-msgstr ""
-
-#: ../../docstring af7aa1246b844ca6a4850171a2971139
-#: iamai.adapter.kook.api.model.Channel.has_password:1 of
-msgid "是否有密码"
-msgstr ""
-
-#: ../../docstring 1b7d6b848c7349a4b1ff8f3e5820978f
-#: a2baeb17575f4edc839a31430dd3b496 iamai.adapter.kook.api.model.Channel.id_:1
-#: iamai.adapter.kook.api.model.Invite.channel_id:1 of
-msgid "频道 id"
-msgstr ""
-
-#: ../../docstring b57aa78a36374e3fb4cf8a0fa3193fd3
-#: iamai.adapter.kook.api.model.Channel.is_category:1 of
-msgid "是否为分组，事件中为 int 格式"
-msgstr ""
-
-#: ../../docstring 3a7180f44621412f83ab6c8731c0a7a1
-#: iamai.adapter.kook.api.model.Channel.level:1 of
-msgid "排序 level"
-msgstr ""
-
-#: ../../docstring d314643e50b04a208e250c3ec5f275e8
-#: iamai.adapter.kook.api.model.Channel.limit_amount:1 of
-msgid "人数限制"
-msgstr ""
-
-#: ../../docstring ea00635e33d24701ab53e2012759b124
-#: iamai.adapter.kook.api.model.Channel.master_id:1 of
-msgid "master id"
-msgstr ""
-
-#: ../../docstring a6d1bee9dda0412589b113e67b270329
-#: iamai.adapter.kook.api.model.Channel.name:1 of
-msgid "频道名称"
-msgstr ""
-
-#: ../../docstring c450c2727b234ec9a940515abdcf550f
-#: iamai.adapter.kook.api.model.Channel.parent_id:1 of
-msgid "上级分组的 id"
-msgstr ""
-
-#: ../../docstring 2ee6722c1edb4b9fbc82a5fcc9b9f7d8
-#: iamai.adapter.kook.api.model.Channel.slow_mode:1 of
-msgid "慢速模式下限制发言的最短时间间隔, 单位为秒(s)"
-msgstr ""
-
-#: ../../docstring 64b2dcf547b9456487015a94d16f9809
-#: iamai.adapter.kook.api.model.Channel.topic:1 of
-msgid "频道简介"
-msgstr ""
-
-#: ../../docstring 87317a68e7e54ebb8201f258583980a2
-#: iamai.adapter.kook.api.model.Channel.type:1 of
-msgid "1 文字频道, 2 语音频道"
-msgstr ""
-
-#: ../../docstring 60fd31d9fae645e5bf8e700439d4645d
-#: iamai.adapter.kook.api.model.Channel.type of
-msgid "type"
-msgstr ""
-
-#: ../../docstring 33894369ae1d415588b505e8141b3df5
-#: iamai.adapter.kook.api.model.Channel.type:3 of
-msgid "频道类型"
-msgstr ""
-
-#: ../../docstring a9b17ee85d3b42e097d33f10c9065fe9
-#: iamai.adapter.kook.api.model.Channel.user_id:1 of
-msgid "创建者 id"
-msgstr ""
-
-#: 109a3ad2028942ed8a02d3206b69bec3 e172db02a02c47a3949f63ec6b07b3ec
-#: iamai.adapter.kook.api.model.ChannelMessage:1
-#: iamai.adapter.kook.api.model.DirectMessage:1 of
-msgid "Bases: :py:class:`~iamai.adapter.kook.api.model.BaseMessage`"
-msgstr ""
-
-#: 6d8d78b533e24c42a510f4b76573b9da
-#: iamai.adapter.kook.api.model.ChannelMessage:1 of
-msgid "频道消息"
-msgstr ""
-
-#: 5e5bb8530fd1404bbf3801d0da687275 fd82e09e268d4df78d15f1d70cc19106
-#: iamai.adapter.kook.api.model.ChannelMessagesReturn:1
-#: iamai.adapter.kook.api.model.DirectMessagesReturn:1 of
-msgid "获取私信聊天消息列表返回信息"
-msgstr ""
-
-#: 60ce3b1fa5d04a8185fadfa42de10dd0
-#: iamai.adapter.kook.api.model.ChannelRoleInfo:1 of
-msgid "频道角色权限详情"
-msgstr ""
-
-#: ../../docstring bb352ee6c5154b5abfd3c472b2ac9dcc
-#: iamai.adapter.kook.api.model.ChannelRoleInfo.permission_overwrites:1 of
-msgid "针对角色在该频道的权限覆写规则组成的列表"
-msgstr ""
-
-#: ../../docstring b31dbfd480c4484e9b56b8bddbd3c83d
-#: iamai.adapter.kook.api.model.ChannelRoleInfo.permission_sync:1 of
-msgid "权限设置是否与分组同步, 1 or 0"
-msgstr ""
-
-#: ../../docstring cfaa65b8aa8e46a695bebb3d811324ce
-#: iamai.adapter.kook.api.model.ChannelRoleInfo.permission_users:1 of
-msgid "针对用户在该频道的权限覆写规则组成的列表"
-msgstr ""
-
-#: 475e445cf6334945830cd912c6ec3789
-#: iamai.adapter.kook.api.model.ChannelRoleReturn:1 of
-msgid "创建或更新频道角色权限返回信息"
-msgstr ""
-
-#: 93d2d62b9f4f49edb28743045f0851ae
-#: iamai.adapter.kook.api.model.DirectMessage:1 of
-msgid "私聊消息"
-msgstr ""
-
-#: ../../docstring 2db5145259224661bd71db1cda0b5026
-#: iamai.adapter.kook.api.model.DirectMessage.author_id:1 of
-msgid "作者的用户 ID"
-msgstr ""
-
-#: ../../docstring 37bc6079be084a11bd6b53993330504c
-#: iamai.adapter.kook.api.model.DirectMessage.from_type:1 of
-msgid "from_type"
-msgstr ""
-
-#: ../../docstring d1789934da0c4697977d06528f0e6399
-#: iamai.adapter.kook.api.model.DirectMessage.msg_icon:1 of
-msgid "msg_icon"
-msgstr ""
-
-#: a93b778c0dac4e07a6e1b39fda532ba1
-#: iamai.adapter.kook.api.model.GuilRoleReturn:1 of
-msgid "赋予或删除用户角色返回信息"
-msgstr ""
-
-#: ../../docstring a6f783c2c63c496e9162ca2ea0bf9914
-#: iamai.adapter.kook.api.model.GuilRoleReturn.roles:1 of
-msgid "角色 id 的列表"
-msgstr ""
-
-#: 15861992b4ba4ed4b956ac4c5511ebef iamai.adapter.kook.api.model.Guild:1 of
-msgid "服务器"
-msgstr ""
-
-#: ../../docstring 91ec2eade60a4af59aaeab289646f56b
-#: iamai.adapter.kook.api.model.Guild.channels:1 of
-msgid "频道列表"
-msgstr ""
-
-#: ../../docstring bce1d57bd8584056b889ac16697993f4
-#: iamai.adapter.kook.api.model.Guild.default_channel_id:1 of
-msgid "默认频道 id"
-msgstr ""
-
-#: ../../docstring 7a30bb5c3ea54b2fbc735905257623aa
-#: iamai.adapter.kook.api.model.Guild.enable_open:1 of
-msgid "是否为公开服务器"
-msgstr ""
-
-#: ../../docstring ca67e181c2fc4e03997aebcaabe369e3
-#: iamai.adapter.kook.api.model.Guild.icon:1 of
-msgid "服务器 icon 的地址"
-msgstr ""
-
-#: ../../docstring 5a78817b62184d1da8935feb6e452027
-#: iamai.adapter.kook.api.model.Guild.name:1 of
-msgid "服务器名称"
-msgstr ""
-
-#: ../../docstring 66f85a44131748c58d464df82d3526a4
-#: iamai.adapter.kook.api.model.Guild.notify_type:1 of
-msgid "通知类型"
-msgstr ""
-
-#: ../../docstring 6c145d6dfa004d22a5549009927742c9
-#: iamai.adapter.kook.api.model.Guild.notify_type:3 of
-msgid "`0`代表默认使用服务器通知设置"
-msgstr ""
-
-#: ../../docstring 6447842d1b9e42ca9c0a8fe44ca8a904
-#: iamai.adapter.kook.api.model.Guild.notify_type:5 of
-msgid "`1`代表接收所有通知"
-msgstr ""
-
-#: ../../docstring 10617367f1984d488ddc69d27f9da2ba
-#: iamai.adapter.kook.api.model.Guild.notify_type:7 of
-msgid "`2`代表仅@被提及"
-msgstr ""
-
-#: ../../docstring 83ddade0a24e47dba849eeddbf442cc8
-#: iamai.adapter.kook.api.model.Guild.notify_type:9 of
-msgid "`3`代表不接收通知"
-msgstr ""
-
-#: ../../docstring 0a273742387442c9bf53d2556beff459
-#: iamai.adapter.kook.api.model.Guild.open_id:1 of
-msgid "公开服务器 id"
-msgstr ""
-
-#: ../../docstring a72b0050ed8a426c84b599f3c10a10bf
-#: iamai.adapter.kook.api.model.Guild.region:1 of
-msgid "服务器默认使用语音区域"
-msgstr ""
-
-#: ../../docstring 09ca08444fce4bac94584634c67a1362
-#: iamai.adapter.kook.api.model.Guild.roles:1 of
-msgid "角色列表"
-msgstr ""
-
-#: ../../docstring b7275e9ffa894f1a9d70c261325aec45
-#: iamai.adapter.kook.api.model.Guild.topic:1 of
-msgid "服务器主题"
-msgstr ""
-
-#: ../../docstring 788ee21e87d6407483c836ef01443955
-#: iamai.adapter.kook.api.model.Guild.user_id:1 of
-msgid "服务器主的 id"
-msgstr ""
-
-#: ../../docstring 0cc7f19b91f44640968979b954e28f57
-#: iamai.adapter.kook.api.model.Guild.welcome_channel_id:1 of
-msgid "欢迎频道 id"
-msgstr ""
-
-#: b0f78cceca114f548ce1c4beaf1c2430 iamai.adapter.kook.api.model.GuildEmoji:1
-#: of
-msgid "服务器表情"
-msgstr ""
-
-#: ../../docstring f8346f5a00114f9eafcb665bd98df1e5
-#: iamai.adapter.kook.api.model.GuildEmoji.id_:1 of
-msgid "表情的 ID"
-msgstr ""
-
-#: ../../docstring f886355644494d02b0af0a3f63c0597a
-#: iamai.adapter.kook.api.model.GuildEmoji.name:1 of
-msgid "表情的名称"
-msgstr ""
-
-#: ../../docstring 51e3c8d45519490eb49dccfa1ba04d09
-#: iamai.adapter.kook.api.model.GuildEmoji.user_info:1 of
-msgid "上传用户"
-msgstr ""
-
-#: aa378ed0154647d28d0a136ae8fbbe8b
-#: iamai.adapter.kook.api.model.GuildEmojisReturn:1 of
-msgid "获取服务器表情列表返回信息"
-msgstr ""
-
-#: ../../docstring 26135c281e5245fcbd7d67322ad0d75e
-#: iamai.adapter.kook.api.model.GuildEmojisReturn.roles:1 of
-msgid "服务器表情列表"
-msgstr ""
-
-#: cf1ca6c6cf6c4ce0b96be63544e2e6a3
-#: iamai.adapter.kook.api.model.GuildUsersRetrun:1 of
-msgid "服务器中的用户列表"
-msgstr ""
-
-#: ../../docstring 089f3227e5b04eb4bff1888baf763af7
-#: iamai.adapter.kook.api.model.GuildUsersRetrun.offline_count:1 of
-msgid "离线用户数量"
-msgstr ""
-
-#: ../../docstring 1a58061de728439bb92ed8ffd7314f0f
-#: iamai.adapter.kook.api.model.GuildUsersRetrun.online_count:1 of
-msgid "在线用户数量"
-msgstr ""
-
-#: ../../docstring 80d4b50eb1a040b2ac91e44c63451200
-#: iamai.adapter.kook.api.model.GuildUsersRetrun.user_count:1 of
-msgid "用户数量"
-msgstr ""
-
-#: ../../docstring 4025952911a94410ac5df39ce8de4163
-#: iamai.adapter.kook.api.model.GuildUsersRetrun.users:1 of
-msgid "用户列表"
-msgstr ""
-
-#: ../../docstring 8d324626bde949118bfa55cdc80f024d
-#: dbfdfe22a14546c8b4d08233a8de3336 iamai.adapter.kook.api.model.IntimacyImg:1
-#: iamai.adapter.kook.api.model.IntimacyIndexReturn.img_list:1 of
-msgid "形象图片的总列表"
-msgstr ""
-
-#: ../../docstring 93829bd78ac74f439dc33aca3363f4aa
-#: iamai.adapter.kook.api.model.IntimacyImg.id_:1 of
-msgid "形象图片的 id"
-msgstr ""
-
-#: ../../docstring 4b426b260fbd4c5d9ed344c7984e6a77
-#: iamai.adapter.kook.api.model.IntimacyImg.url:1 of
-msgid "形象图片的地址"
-msgstr ""
-
-#: 8c25394625234a2b8936f1ab9a5823e9
-#: iamai.adapter.kook.api.model.IntimacyIndexReturn:1 of
-msgid "获取用户亲密度返回信息"
-msgstr ""
-
-#: ../../docstring d242661bd58b4cb993f25c98a21b84ca
-#: iamai.adapter.kook.api.model.IntimacyIndexReturn.img_url:1 of
-msgid "机器人给用户显示的形象图片地址"
-msgstr ""
-
-#: ../../docstring 82eb6e2ab8f641158e38a54eb48b2db0
-#: iamai.adapter.kook.api.model.IntimacyIndexReturn.last_read:1 of
-msgid "用户上次查看的时间戳"
-msgstr ""
-
-#: ../../docstring bc33b7c5d5104eb9a2a1297cfc2648ce
-#: iamai.adapter.kook.api.model.IntimacyIndexReturn.score:1 of
-msgid "亲密度，0-2200"
-msgstr ""
-
-#: ../../docstring a1f7576e9cf54266bbad46b9468b077e
-#: iamai.adapter.kook.api.model.IntimacyIndexReturn.social_info:1 of
-msgid "机器人显示给用户的社交信息"
-msgstr ""
-
-#: 7facbd61a6ad4d8cb1bd92c1309ac7f9 iamai.adapter.kook.api.model.Invite:1 of
-msgid "邀请信息"
-msgstr ""
-
-#: ../../docstring 0e6e76af74af4f9fa6f4b0e0adf05308
-#: iamai.adapter.kook.api.model.Invite.url:1 of
-msgid "地址"
-msgstr ""
-
-#: ../../docstring 27f7ded09fe94a84b7c86cc6cc68039d
-#: iamai.adapter.kook.api.model.Invite.url_code:1 of
-msgid "url code"
-msgstr ""
-
-#: c14ce92c127747518220a619bf7b33de
-#: iamai.adapter.kook.api.model.InvitesReturn:1 of
-msgid "获取邀请列表返回信息"
-msgstr ""
-
-#: ../../docstring 8575bf7fea404f3cacddb2727b4c2c4d
-#: iamai.adapter.kook.api.model.InvitesReturn.roles:1 of
-msgid "邀请列表"
-msgstr ""
-
-#: ca32606afce049688e85062f63ff483d
-#: iamai.adapter.kook.api.model.MessageCreateReturn:1 of
-msgid "发送频道消息返回信息"
-msgstr ""
-
-#: ../../docstring d0bb88c835034914aead46ceec1f613b
-#: iamai.adapter.kook.api.model.MessageCreateReturn.msg_id:1 of
-msgid "服务端生成的消息 id"
-msgstr ""
-
-#: ../../docstring 6d5f3b31488e4bf08c2662e036fd72b5
-#: iamai.adapter.kook.api.model.MessageCreateReturn.msg_timestamp:1 of
-msgid "消息发送时间(服务器时间戳)"
-msgstr ""
-
-#: ../../docstring 0d3d47f2e45347f79858d483de3b2b0d
-#: iamai.adapter.kook.api.model.MessageCreateReturn.nonce:1 of
-msgid "随机字符串"
-msgstr ""
-
-#: e5899e48ce7544599f02276999d928ae iamai.adapter.kook.api.model.Quote:1 of
-msgid "引用消息"
-msgstr ""
-
-#: ../../docstring 36fb147b542c4d4cae16c31816fb8c6e
-#: iamai.adapter.kook.api.model.Quote.author:1 of
-msgid "作者的用户信息"
-msgstr ""
-
-#: ../../docstring 96d15edcea604e8cb0a9c11b30471769
-#: iamai.adapter.kook.api.model.Quote.content:1 of
-msgid "引用消息内容"
-msgstr ""
-
-#: ../../docstring 1a52d0da078a43d491ac0935080feab1
-#: iamai.adapter.kook.api.model.Quote.create_at:1 of
-msgid "引用消息创建时间（毫秒）"
-msgstr ""
-
-#: ../../docstring f1d44653291c42c4a66319d95474309b
-#: iamai.adapter.kook.api.model.Quote.id_:1 of
-msgid "引用消息 id"
-msgstr ""
-
-#: ../../docstring f8bbc7f275794dbba11acab7b53fd224
-#: iamai.adapter.kook.api.model.Quote.type:1 of
-msgid "引用消息类型"
-msgstr ""
-
-#: 5c95000a99774904a5ce959eebe80ed8 iamai.adapter.kook.api.model.ReactionUser:1
-#: of
-msgid "Bases: :py:class:`~iamai.adapter.kook.api.model.User`"
-msgstr ""
-
-#: d56046d4c9d147d090382c1cf5631d90 iamai.adapter.kook.api.model.Role:1 of
-msgid "角色"
-msgstr ""
-
-#: ../../docstring dda9f2cc850541d4bd448efaba3e7a94
-#: iamai.adapter.kook.api.model.Role.color:1 of
-msgid "颜色色值"
-msgstr ""
-
-#: ../../docstring 857725e749ff4802a7be2db6707b2cb4
-#: iamai.adapter.kook.api.model.Role.hoist:1 of
-msgid "是否为角色设定(与普通成员分开显示)"
-msgstr ""
-
-#: ../../docstring 8b4573a744e541c5a73b508609a69991
-#: iamai.adapter.kook.api.model.Role.mentionable:1 of
-msgid "是否允许任何人@提及此角色"
-msgstr ""
-
-#: ../../docstring 510e6a59ea5c4f6a90d242cc278e8454
-#: iamai.adapter.kook.api.model.Role.name:1 of
-msgid "角色名称"
-msgstr ""
-
-#: ../../docstring 30b12488fde044929027e11a38394195
-#: iamai.adapter.kook.api.model.Role.permissions:1 of
-msgid "权限码"
-msgstr ""
-
-#: ../../docstring 2f516a506cfa4e2d8ad4fb6a1a790c33
-#: iamai.adapter.kook.api.model.Role.position:1 of
-msgid "顺序位置"
-msgstr ""
-
-#: ../../docstring b4404a47dcfe4b6ca4122de3001f5c26
-#: iamai.adapter.kook.api.model.Role.role_id:1 of
-msgid "角色 id"
-msgstr ""
-
-#: f48082be7b4644f2a959a471d0fd4f01 iamai.adapter.kook.api.model.RolesReturn:1
-#: of
-msgid "获取服务器角色列表返回信息"
-msgstr ""
-
-#: ../../docstring a084321b9804455c91d439ef2ecb6188
-#: iamai.adapter.kook.api.model.RolesReturn.roles:1 of
-msgid "服务器角色列表"
-msgstr ""
-
-#: 81559c0b2c264760afb591f97e70d697 iamai.adapter.kook.api.model.TargetInfo:1
-#: of
-msgid "私聊会话 目标用户信息"
-msgstr ""
-
-#: ../../docstring 65d1fde06cd04d7286f32c4bac93ac1c
-#: iamai.adapter.kook.api.model.TargetInfo.avatar:1 of
-msgid "头像图片链接"
-msgstr ""
-
-#: ../../docstring ab1a2cbe992e489bb83dbd1d59726e6f
-#: iamai.adapter.kook.api.model.TargetInfo.id_:1 of
-msgid "目标用户 ID"
-msgstr ""
-
-#: ../../docstring d3b942f9954546269ba2eb0a4a03f04d
-#: iamai.adapter.kook.api.model.TargetInfo.online:1 of
-msgid "是否在线"
-msgstr ""
-
-#: ../../docstring e152fdc1782c4a908a6e84e0020afbc8
-#: iamai.adapter.kook.api.model.TargetInfo.username:1 of
-msgid "目标用户名"
-msgstr ""
-
-#: ../../docstring 23d604db68564260b80e7d2c96478c6e
-#: iamai.adapter.kook.api.model.URL.url:1 of
-msgid "资源的 url"
-msgstr ""
-
-#: 2d493a50fbde4419a2065e3cc529cf14 iamai.adapter.kook.api.model.User:1 of
-msgid "开黑啦 User 字段"
-msgstr ""
-
-#: 230561d993ac4ea3a9260b8c9d01db55 iamai.adapter.kook.api.model.User:3 of
-msgid "https://developer.kaiheila.cn/doc/objects"
-msgstr ""
-
-#: ../../docstring 88b572c408fa4cb888b45176bbbb9d88
-#: iamai.adapter.kook.api.model.User.active_time:1 of
-msgid "上次在线时间"
-msgstr ""
-
-#: ../../docstring 348d598707264a9d864bbee5c2d735cf
-#: iamai.adapter.kook.api.model.User.avatar:1 of
-msgid "用户的头像的 url 地址"
-msgstr ""
-
-#: ../../docstring 63acc8d3ecb1485896b773aa9cea4727
-#: iamai.adapter.kook.api.model.User.bot:1 of
-msgid "是否为机器人"
-msgstr ""
-
-#: ../../docstring b2b8b4c72da64cd586bface982b822af
-#: iamai.adapter.kook.api.model.User.id_:1 of
-msgid "用户的 id"
-msgstr ""
-
-#: ../../docstring 78bda5af86b64245bd196c73f93dc017
-#: iamai.adapter.kook.api.model.User.identify_num:1 of
-msgid "用户名的认证数字，用户名正常为：user_name#identify_num"
-msgstr ""
-
-#: ../../docstring 5e5d6c2a4251446eb0ab2a28f1c2cb00
-#: iamai.adapter.kook.api.model.User.joined_at:1 of
-msgid "加入服务器时间"
-msgstr ""
-
-#: ../../docstring be215bb3be5c4fdf8ab0d9a30b35c97e
-#: iamai.adapter.kook.api.model.User.mobile_verified:1 of
-msgid "是否手机号已验证"
-msgstr ""
-
-#: ../../docstring 9c49dd31705c451dbbe396706497760a
-#: iamai.adapter.kook.api.model.User.nickname:1 of
-msgid "用户在当前服务器的昵称"
-msgstr ""
-
-#: ../../docstring f31d92e7f53a4beea0f6cc818267e3ac
-#: iamai.adapter.kook.api.model.User.online:1 of
-msgid "当前是否在线"
-msgstr ""
-
-#: ../../docstring 5a1a5ba851704574ae8373f1cb0fe3b7
-#: iamai.adapter.kook.api.model.User.os:1 of
-msgid "os"
-msgstr ""
-
-#: ../../docstring d459ecfab6b14fca8551d95eeb2fa3b2
-#: iamai.adapter.kook.api.model.User.roles:1 of
-msgid "用户在当前服务器中的角色 id 组成的列表"
-msgstr ""
-
-#: ../../docstring 40fcd891888c46c9839402a6f4a3e165
-#: iamai.adapter.kook.api.model.User.status:1 of
-msgid "用户的状态,`0`和`1`代表正常，`10`代表被封禁"
-msgstr ""
-
-#: ../../docstring b894250a1a374c7e9a984e1108e78ccf
-#: iamai.adapter.kook.api.model.User.username:1 of
-msgid "用户的名称"
-msgstr ""
-
-#: ../../docstring 1ec83b00667f4317a4c7e92f06597aad
-#: iamai.adapter.kook.api.model.User.vip_avatar:1 of
-msgid "vip 用户的头像的 url 地址，可能为 gif 动图"
-msgstr ""
-
-#: 4156775f45924de8a3b0010c6657fc27 iamai.adapter.kook.api.model.UserChat:1 of
-msgid "私聊会话"
-msgstr ""
-
-#: ../../docstring c67e62c49d3142399562c3074e7f2505
-#: iamai.adapter.kook.api.model.UserChat.code:1 of
-msgid "私信会话 Code"
-msgstr ""
-
-#: ../../docstring f63d84ed6f834094a0cfb289db57358f
-#: iamai.adapter.kook.api.model.UserChat.last_read_time:1 of
-msgid "上次阅读消息的时间 (毫秒)"
-msgstr ""
-
-#: ../../docstring 60645194a79646ae937ecb792fd722c6
-#: iamai.adapter.kook.api.model.UserChat.latest_msg_time:1 of
-msgid "最新消息时间 (毫秒)"
-msgstr ""
-
-#: ../../docstring 97af1cff3fa24affa7252412bcecc07d
-#: iamai.adapter.kook.api.model.UserChat.target_info:1 of
-msgid "目标用户信息"
-msgstr ""
-
-#: ../../docstring 99d3808111f843a789e10f809545ac8a
-#: iamai.adapter.kook.api.model.UserChat.unread_count:1 of
-msgid "未读消息数"
-msgstr ""
-
-#: d3d8249032da4e208857bf98e4f97acd
-#: iamai.adapter.kook.api.model.UserChatsReturn:1 of
-msgid "获取私信聊天会话列表返回信息"
-msgstr ""
-
-#: ../../docstring b26d8fb36e4e40b9bbb9b17099d560ca
-#: iamai.adapter.kook.api.model.UserChatsReturn.user_chats:1 of
-msgid "私聊会话列表"
-msgstr ""
+#~ msgid "Bases: :py:class:`~pydantic.main.BaseModel`"
+#~ msgstr ""
+
+#~ msgid "附加的多媒体数据"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Configuration for the model, should be"
+#~ " a dictionary conforming to "
+#~ "[`ConfigDict`][pydantic.config.ConfigDict]."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Metadata about the fields defined on "
+#~ "the model, mapping of field names "
+#~ "to [`FieldInfo`][pydantic.fields.FieldInfo]."
+#~ msgstr ""
+
+#~ msgid "This replaces `Model.__fields__` from Pydantic V1."
+#~ msgstr ""
+
+#~ msgid "多媒体名"
+#~ msgstr ""
+
+#~ msgid "大小 单位（B）"
+#~ msgstr ""
+
+#~ msgid "多媒体类型"
+#~ msgstr ""
+
+#~ msgid "多媒体地址"
+#~ msgstr ""
+
+#~ msgid "消息内容"
+#~ msgstr ""
+
+#~ msgid "创建时间"
+#~ msgstr ""
+
+#~ msgid "超链接解析数据"
+#~ msgstr ""
+
+#~ msgid "消息 ID"
+#~ msgstr ""
+
+#~ msgid "引用特定用户或特定角色的信息"
+#~ msgstr ""
+
+#~ msgid "引用数据"
+#~ msgstr ""
+
+#~ msgid "回应数据"
+#~ msgstr ""
+
+#~ msgid "是否已读"
+#~ msgstr ""
+
+#~ msgid "消息类型"
+#~ msgstr ""
+
+#~ msgid "更新时间"
+#~ msgstr ""
+
+#~ msgid "黑名单"
+#~ msgstr ""
+
+#~ msgid "加入黑名单的时间戳(毫秒)"
+#~ msgstr ""
+
+#~ msgid "加入黑名单的原因"
+#~ msgstr ""
+
+#~ msgid "用户"
+#~ msgstr ""
+
+#~ msgid "用户 id"
+#~ msgstr ""
+
+#~ msgid "Bases: :py:class:`~iamai.adapter.kook.api.model.ListReturn`"
+#~ msgstr ""
+
+#~ msgid "获取黑名单列表返回信息"
+#~ msgstr ""
+
+#~ msgid "黑名单列表"
+#~ msgstr ""
+
+#~ msgid "Bases: :py:class:`~iamai.adapter.kook.api.model.ChannelRoleInfo`"
+#~ msgstr ""
+
+#~ msgid "开黑啦 频道 字段"
+#~ msgstr ""
+
+#~ msgid "服务器 id"
+#~ msgstr ""
+
+#~ msgid "是否有密码"
+#~ msgstr ""
+
+#~ msgid "频道 id"
+#~ msgstr ""
+
+#~ msgid "是否为分组，事件中为 int 格式"
+#~ msgstr ""
+
+#~ msgid "排序 level"
+#~ msgstr ""
+
+#~ msgid "人数限制"
+#~ msgstr ""
+
+#~ msgid "master id"
+#~ msgstr ""
+
+#~ msgid "频道名称"
+#~ msgstr ""
+
+#~ msgid "上级分组的 id"
+#~ msgstr ""
+
+#~ msgid "慢速模式下限制发言的最短时间间隔, 单位为秒(s)"
+#~ msgstr ""
+
+#~ msgid "频道简介"
+#~ msgstr ""
+
+#~ msgid "1 文字频道, 2 语音频道"
+#~ msgstr ""
+
+#~ msgid "type"
+#~ msgstr ""
+
+#~ msgid "频道类型"
+#~ msgstr ""
+
+#~ msgid "创建者 id"
+#~ msgstr ""
+
+#~ msgid "Bases: :py:class:`~iamai.adapter.kook.api.model.BaseMessage`"
+#~ msgstr ""
+
+#~ msgid "频道消息"
+#~ msgstr ""
+
+#~ msgid "获取私信聊天消息列表返回信息"
+#~ msgstr ""
+
+#~ msgid "频道角色权限详情"
+#~ msgstr ""
+
+#~ msgid "针对角色在该频道的权限覆写规则组成的列表"
+#~ msgstr ""
+
+#~ msgid "权限设置是否与分组同步, 1 or 0"
+#~ msgstr ""
+
+#~ msgid "针对用户在该频道的权限覆写规则组成的列表"
+#~ msgstr ""
+
+#~ msgid "创建或更新频道角色权限返回信息"
+#~ msgstr ""
+
+#~ msgid "私聊消息"
+#~ msgstr ""
+
+#~ msgid "作者的用户 ID"
+#~ msgstr ""
+
+#~ msgid "from_type"
+#~ msgstr ""
+
+#~ msgid "msg_icon"
+#~ msgstr ""
+
+#~ msgid "赋予或删除用户角色返回信息"
+#~ msgstr ""
+
+#~ msgid "角色 id 的列表"
+#~ msgstr ""
+
+#~ msgid "服务器"
+#~ msgstr ""
+
+#~ msgid "频道列表"
+#~ msgstr ""
+
+#~ msgid "默认频道 id"
+#~ msgstr ""
+
+#~ msgid "是否为公开服务器"
+#~ msgstr ""
+
+#~ msgid "服务器 icon 的地址"
+#~ msgstr ""
+
+#~ msgid "服务器名称"
+#~ msgstr ""
+
+#~ msgid "通知类型"
+#~ msgstr ""
+
+#~ msgid "`0`代表默认使用服务器通知设置"
+#~ msgstr ""
+
+#~ msgid "`1`代表接收所有通知"
+#~ msgstr ""
+
+#~ msgid "`2`代表仅@被提及"
+#~ msgstr ""
+
+#~ msgid "`3`代表不接收通知"
+#~ msgstr ""
+
+#~ msgid "公开服务器 id"
+#~ msgstr ""
+
+#~ msgid "服务器默认使用语音区域"
+#~ msgstr ""
+
+#~ msgid "角色列表"
+#~ msgstr ""
+
+#~ msgid "服务器主题"
+#~ msgstr ""
+
+#~ msgid "服务器主的 id"
+#~ msgstr ""
+
+#~ msgid "欢迎频道 id"
+#~ msgstr ""
+
+#~ msgid "服务器表情"
+#~ msgstr ""
+
+#~ msgid "表情的 ID"
+#~ msgstr ""
+
+#~ msgid "表情的名称"
+#~ msgstr ""
+
+#~ msgid "上传用户"
+#~ msgstr ""
+
+#~ msgid "获取服务器表情列表返回信息"
+#~ msgstr ""
+
+#~ msgid "服务器表情列表"
+#~ msgstr ""
+
+#~ msgid "服务器中的用户列表"
+#~ msgstr ""
+
+#~ msgid "离线用户数量"
+#~ msgstr ""
+
+#~ msgid "在线用户数量"
+#~ msgstr ""
+
+#~ msgid "用户数量"
+#~ msgstr ""
+
+#~ msgid "用户列表"
+#~ msgstr ""
+
+#~ msgid "形象图片的总列表"
+#~ msgstr ""
+
+#~ msgid "形象图片的 id"
+#~ msgstr ""
+
+#~ msgid "形象图片的地址"
+#~ msgstr ""
+
+#~ msgid "获取用户亲密度返回信息"
+#~ msgstr ""
+
+#~ msgid "机器人给用户显示的形象图片地址"
+#~ msgstr ""
+
+#~ msgid "用户上次查看的时间戳"
+#~ msgstr ""
+
+#~ msgid "亲密度，0-2200"
+#~ msgstr ""
+
+#~ msgid "机器人显示给用户的社交信息"
+#~ msgstr ""
+
+#~ msgid "邀请信息"
+#~ msgstr ""
+
+#~ msgid "地址"
+#~ msgstr ""
+
+#~ msgid "url code"
+#~ msgstr ""
+
+#~ msgid "获取邀请列表返回信息"
+#~ msgstr ""
+
+#~ msgid "邀请列表"
+#~ msgstr ""
+
+#~ msgid "发送频道消息返回信息"
+#~ msgstr ""
+
+#~ msgid "服务端生成的消息 id"
+#~ msgstr ""
+
+#~ msgid "消息发送时间(服务器时间戳)"
+#~ msgstr ""
+
+#~ msgid "随机字符串"
+#~ msgstr ""
+
+#~ msgid "引用消息"
+#~ msgstr ""
+
+#~ msgid "作者的用户信息"
+#~ msgstr ""
+
+#~ msgid "引用消息内容"
+#~ msgstr ""
+
+#~ msgid "引用消息创建时间（毫秒）"
+#~ msgstr ""
+
+#~ msgid "引用消息 id"
+#~ msgstr ""
+
+#~ msgid "引用消息类型"
+#~ msgstr ""
+
+#~ msgid "Bases: :py:class:`~iamai.adapter.kook.api.model.User`"
+#~ msgstr ""
+
+#~ msgid "角色"
+#~ msgstr ""
+
+#~ msgid "颜色色值"
+#~ msgstr ""
+
+#~ msgid "是否为角色设定(与普通成员分开显示)"
+#~ msgstr ""
+
+#~ msgid "是否允许任何人@提及此角色"
+#~ msgstr ""
+
+#~ msgid "角色名称"
+#~ msgstr ""
+
+#~ msgid "权限码"
+#~ msgstr ""
+
+#~ msgid "顺序位置"
+#~ msgstr ""
+
+#~ msgid "角色 id"
+#~ msgstr ""
+
+#~ msgid "获取服务器角色列表返回信息"
+#~ msgstr ""
+
+#~ msgid "服务器角色列表"
+#~ msgstr ""
+
+#~ msgid "私聊会话 目标用户信息"
+#~ msgstr ""
+
+#~ msgid "头像图片链接"
+#~ msgstr ""
+
+#~ msgid "目标用户 ID"
+#~ msgstr ""
+
+#~ msgid "是否在线"
+#~ msgstr ""
+
+#~ msgid "目标用户名"
+#~ msgstr ""
+
+#~ msgid "资源的 url"
+#~ msgstr ""
+
+#~ msgid "开黑啦 User 字段"
+#~ msgstr ""
+
+#~ msgid "https://developer.kaiheila.cn/doc/objects"
+#~ msgstr ""
+
+#~ msgid "上次在线时间"
+#~ msgstr ""
+
+#~ msgid "用户的头像的 url 地址"
+#~ msgstr ""
+
+#~ msgid "是否为机器人"
+#~ msgstr ""
+
+#~ msgid "用户的 id"
+#~ msgstr ""
+
+#~ msgid "用户名的认证数字，用户名正常为：user_name#identify_num"
+#~ msgstr ""
+
+#~ msgid "加入服务器时间"
+#~ msgstr ""
+
+#~ msgid "是否手机号已验证"
+#~ msgstr ""
+
+#~ msgid "用户在当前服务器的昵称"
+#~ msgstr ""
+
+#~ msgid "当前是否在线"
+#~ msgstr ""
+
+#~ msgid "os"
+#~ msgstr ""
+
+#~ msgid "用户在当前服务器中的角色 id 组成的列表"
+#~ msgstr ""
+
+#~ msgid "用户的状态,`0`和`1`代表正常，`10`代表被封禁"
+#~ msgstr ""
+
+#~ msgid "用户的名称"
+#~ msgstr ""
+
+#~ msgid "vip 用户的头像的 url 地址，可能为 gif 动图"
+#~ msgstr ""
+
+#~ msgid "私聊会话"
+#~ msgstr ""
+
+#~ msgid "私信会话 Code"
+#~ msgstr ""
+
+#~ msgid "上次阅读消息的时间 (毫秒)"
+#~ msgstr ""
+
+#~ msgid "最新消息时间 (毫秒)"
+#~ msgstr ""
+
+#~ msgid "目标用户信息"
+#~ msgstr ""
+
+#~ msgid "未读消息数"
+#~ msgstr ""
+
+#~ msgid "获取私信聊天会话列表返回信息"
+#~ msgstr ""
+
+#~ msgid "私聊会话列表"
+#~ msgstr ""
 

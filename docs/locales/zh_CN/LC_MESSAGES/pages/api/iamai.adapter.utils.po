@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: iamai \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"POT-Creation-Date: 2024-09-18 11:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -17,136 +17,82 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../source/pages/api/iamai.adapter.utils.rst:2
-#: 7e8bc87056e74987a5e29d2ed856b10d
+#: 9d7f0e76f7c2448dbbb1da2460b70eb2
 msgid "iamai.adapter.utils module"
 msgstr ""
 
-#: 4e8d3e22c4ef4b499c0e4ee0465247e8 iamai.adapter.utils:1 of
-msgid "适配器实用工具。"
-msgstr ""
+#~ msgid "适配器实用工具。"
+#~ msgstr ""
 
-#: 205a64df13044d6dbf72d79eba029b36 iamai.adapter.utils:3 of
-msgid "这里定义了一些在编写适配器时常用的基类，适配器开发者可以直接继承自这里的类或者用作参考。"
-msgstr ""
+#~ msgid "这里定义了一些在编写适配器时常用的基类，适配器开发者可以直接继承自这里的类或者用作参考。"
+#~ msgstr ""
 
-#: 7681895cbf0f4d2099ea3168185ae214 iamai.adapter.utils.HttpClientAdapter:1 of
-msgid ""
-"Bases: :py:class:`~iamai.adapter.utils.PollingAdapter`\\ "
-"[:py:obj:`~iamai.typing.EventT`, :py:obj:`~iamai.typing.ConfigT`]"
-msgstr ""
+#~ msgid ""
+#~ "Bases: :py:class:`~iamai.adapter.utils.PollingAdapter`\\ "
+#~ "[:py:obj:`~iamai.typing.EventT`, "
+#~ ":py:obj:`~iamai.typing.ConfigT`]"
+#~ msgstr ""
 
-#: d13a9c814ff1439fb5c1df40c997e889 iamai.adapter.utils.HttpClientAdapter:1 of
-msgid "HTTP 客户端适配器示例。"
-msgstr ""
+#~ msgid "HTTP 客户端适配器示例。"
+#~ msgstr ""
 
-#: 7ef2e3f984a74ff8a44ff25cbae0cf15 dbe347e4e36547e28ff5ef779c3b3ae1
-#: iamai.adapter.utils.HttpClientAdapter.on_tick:1
-#: iamai.adapter.utils.PollingAdapter.on_tick:1 of
-msgid "当轮询发生。"
-msgstr ""
+#~ msgid "当轮询发生。"
+#~ msgstr ""
 
-#: 3591e78bdc8d4a808bcd79e148776018 8b5cc339ccb1471398f2a9df8d4e3f75
-#: d3707f83c26142a29c52fb964554a7e3 e8a097bd1ec346afaf260c022d69b2b1
-#: iamai.adapter.utils.HttpClientAdapter.shutdown:1
-#: iamai.adapter.utils.HttpServerAdapter.shutdown:1
-#: iamai.adapter.utils.WebSocketAdapter.shutdown:1
-#: iamai.adapter.utils.WebSocketServerAdapter.shutdown:1 of
-msgid "关闭并清理连接。"
-msgstr ""
+#~ msgid "关闭并清理连接。"
+#~ msgstr ""
 
-#: 15ecdd15daf740c29d318a1e9163a534 5b7ce23350144225af8be5d55a20eb51
-#: 774a61605f054908855cf0788f4e6743 839b55f2b950473abcd02a179f639910
-#: iamai.adapter.utils.HttpClientAdapter.startup:1
-#: iamai.adapter.utils.HttpServerAdapter.startup:1
-#: iamai.adapter.utils.WebSocketAdapter.startup:1
-#: iamai.adapter.utils.WebSocketServerAdapter.startup:1 of
-msgid "初始化适配器。"
-msgstr ""
+#~ msgid "初始化适配器。"
+#~ msgstr ""
 
-#: 4bf2e077d3e0456bb7548096520755c4 64f1abc46e374dfeb8fcbbaa8674d234
-#: 94c377c7dc44439d853e136827690053 b0ae663a0b23447ab30d2c3fd673a921
-#: cc029b12fb6d4184a32b6f9595206779 iamai.adapter.utils.HttpServerAdapter:1
-#: iamai.adapter.utils.PollingAdapter:1 iamai.adapter.utils.WebSocketAdapter:1
-#: iamai.adapter.utils.WebSocketClientAdapter:1
-#: iamai.adapter.utils.WebSocketServerAdapter:1 of
-msgid ""
-"Bases: :py:class:`~iamai.adapter.Adapter`\\ "
-"[:py:obj:`~iamai.typing.EventT`, :py:obj:`~iamai.typing.ConfigT`]"
-msgstr ""
+#~ msgid ""
+#~ "Bases: :py:class:`~iamai.adapter.Adapter`\\ "
+#~ "[:py:obj:`~iamai.typing.EventT`, "
+#~ ":py:obj:`~iamai.typing.ConfigT`]"
+#~ msgstr ""
 
-#: f9243dc5dff84de1b3b9dd980fedf106 iamai.adapter.utils.HttpServerAdapter:1 of
-msgid "HTTP 服务端适配器示例。"
-msgstr ""
+#~ msgid "HTTP 服务端适配器示例。"
+#~ msgstr ""
 
-#: 9aa55922bd5f4b4fa16f469fc28a9bfe adfb3bff1b09415a8d4c86bdecad86e8
-#: iamai.adapter.utils.HttpServerAdapter.handle_response:1
-#: iamai.adapter.utils.WebSocketClientAdapter.handle_response:1 of
-msgid "处理响应。"
-msgstr ""
+#~ msgid "处理响应。"
+#~ msgstr ""
 
-#: 13d53c3b9bbb4fab8b49d8381d7a170d 33ddf8bfea644a428a38b32fdf8196eb
-#: 4d85933d90af4942921b52e2e4e78167 d274a3d97c4a4f6faddc671b82c24d1f
-#: d4a3dc87bd4b46a8a6f98668407773cb iamai.adapter.utils.HttpServerAdapter.run:1
-#: iamai.adapter.utils.PollingAdapter.run:1
-#: iamai.adapter.utils.WebSocketAdapter.run:1
-#: iamai.adapter.utils.WebSocketClientAdapter.run:1
-#: iamai.adapter.utils.WebSocketServerAdapter.run:1 of
-msgid "运行适配器。"
-msgstr ""
+#~ msgid "运行适配器。"
+#~ msgstr ""
 
-#: 527c561b4c574a7a9b854b675ae76d53 iamai.adapter.utils.PollingAdapter:1 of
-msgid "轮询式适配器示例。"
-msgstr ""
+#~ msgid "轮询式适配器示例。"
+#~ msgstr ""
 
-#: 7d3e9f1d072d411ab62d78acf4884c3e iamai.adapter.utils.WebSocketAdapter:1 of
-msgid "WebSocket 适配器示例。"
-msgstr ""
+#~ msgid "WebSocket 适配器示例。"
+#~ msgstr ""
 
-#: 29fd92cbd3e448648af4fbcb8dc3469c iamai.adapter.utils.WebSocketAdapter:3 of
-msgid "同时支持 WebSocket 客户端和服务端。"
-msgstr ""
+#~ msgid "同时支持 WebSocket 客户端和服务端。"
+#~ msgstr ""
 
-#: ff956a06d16141ebace4159e9b21f9bb
-#: iamai.adapter.utils.WebSocketAdapter.handle_reverse_ws_response:1 of
-msgid "处理 aiohttp WebSocket 服务器的接收。"
-msgstr ""
+#~ msgid "处理 aiohttp WebSocket 服务器的接收。"
+#~ msgstr ""
 
-#: 9550d2d08fa841288b6a7f4aed73b4b2 d82ed0bb1eb948688bf261f2bdea73e1
-#: iamai.adapter.utils.WebSocketAdapter.handle_websocket:1
-#: iamai.adapter.utils.WebSocketServerAdapter.handle_response:1 of
-msgid "处理 WebSocket。"
-msgstr ""
+#~ msgid "处理 WebSocket。"
+#~ msgstr ""
 
-#: 3837303f7d7a48a794256bce62a468ff
-#: iamai.adapter.utils.WebSocketAdapter.handle_websocket_msg:1 of
-msgid "处理 WebSocket 消息。"
-msgstr ""
+#~ msgid "处理 WebSocket 消息。"
+#~ msgstr ""
 
-#: 4f77334258354f5f85d32a1209b7da79
-#: iamai.adapter.utils.WebSocketAdapter.reverse_ws_connection_hook:1 of
-msgid "反向 WebSocket 连接建立时的钩子函数。"
-msgstr ""
+#~ msgid "反向 WebSocket 连接建立时的钩子函数。"
+#~ msgstr ""
 
-#: 3aaf50b691094e9dbed48b95045f0c94
-#: iamai.adapter.utils.WebSocketAdapter.websocket_connect:1 of
-msgid "创建正向 WebSocket 连接。"
-msgstr ""
+#~ msgid "创建正向 WebSocket 连接。"
+#~ msgstr ""
 
-#: 159602649fd04e36ab057602d6bb1f60
-#: iamai.adapter.utils.WebSocketClientAdapter:1 of
-msgid "WebSocket 客户端适配器示例。"
-msgstr ""
+#~ msgid "WebSocket 客户端适配器示例。"
+#~ msgstr ""
 
-#: daaefe4f412b4f869d97ba352bff1d75
-#: iamai.adapter.utils.WebSocketServerAdapter:1 of
-msgid "WebSocket 服务端适配器示例。"
-msgstr ""
+#~ msgid "WebSocket 服务端适配器示例。"
+#~ msgstr ""
 
-#: 3150b0d0c38c4aa3802a2d3c6d063681
-#: iamai.adapter.utils.WebSocketServerAdapter.handle_ws_response:1 of
-msgid "处理 WebSocket 响应。"
-msgstr ""
+#~ msgid "处理 WebSocket 响应。"
+#~ msgstr ""
 

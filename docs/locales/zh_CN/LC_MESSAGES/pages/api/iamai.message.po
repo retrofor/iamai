@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: iamai \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"POT-Creation-Date: 2024-09-18 11:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -17,292 +17,215 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.16.0\n"
 
-#: ../../source/pages/api/iamai.message.rst:2 9d6bfcb2562247cd94428b3378c9fc01
+#: ../../source/pages/api/iamai.message.rst:2 3086c95694354ba0b99594fda9c1e2cc
 msgid "iamai.message module"
 msgstr ""
 
-#: a10ff44241a94708ac81945e1f04622a iamai.message:1 of
-msgid "iamai 消息。"
-msgstr ""
+#~ msgid "iamai 消息。"
+#~ msgstr ""
 
-#: 971d27227e65474d930869bd63ed1d6e iamai.message:3 of
-msgid ""
-"实现了常用的基本消息 `Message` 和消息字段 `MessageSegment` 模型供适配器使用。 "
-"适配器开发者可以根据需要实现此模块中消息类的子类或定义与此不同的消息类型，但建议若可行的话应尽量使用此模块中消息类的子类。"
-msgstr ""
+#~ msgid ""
+#~ "实现了常用的基本消息 `Message` 和消息字段 `MessageSegment` "
+#~ "模型供适配器使用。 "
+#~ "适配器开发者可以根据需要实现此模块中消息类的子类或定义与此不同的消息类型，但建议若可行的话应尽量使用此模块中消息类的子类。"
+#~ msgstr ""
 
-#: 298db5a568e84c9482053a34546560a2 iamai.message.Message:1 of
-msgid ""
-"Bases: :py:class:`~abc.ABC`, :py:class:`~typing.List`\\ "
-"[:py:obj:`~iamai.message.MessageSegmentT`]"
-msgstr ""
+#~ msgid ""
+#~ "Bases: :py:class:`~abc.ABC`, :py:class:`~typing.List`\\"
+#~ " [:py:obj:`~iamai.message.MessageSegmentT`]"
+#~ msgstr ""
 
-#: 77727ab8abfd4c2593c42e323c16d1d0 iamai.message.Message:1 of
-msgid "消息。"
-msgstr ""
+#~ msgid "消息。"
+#~ msgstr ""
 
-#: 239da5ade1814af2b1237ead2c40728e iamai.message.Message:3 of
-msgid ""
-"本类是 `List` 的子类，并重写了 `__init__()` 方法， 可以直接处理 `str`, `Mapping`, "
-"`MessageSegment`, `List[MessageSegment]`。 本类重载了 `+` 和 `+=` 运算符，可以直接和 "
-"`Message`, `MessageSegment` 等类型的对象执行取和运算。 适配器开发者需要继承本类并重写 "
-"`get_segment_class()` 方法。"
-msgstr ""
+#~ msgid ""
+#~ "本类是 `List` 的子类，并重写了 `__init__()` 方法， "
+#~ "可以直接处理 `str`, `Mapping`, `MessageSegment`, "
+#~ "`List[MessageSegment]`。 本类重载了 `+` 和 `+=` "
+#~ "运算符，可以直接和 `Message`, `MessageSegment` 等类型的对象执行取和运算。"
+#~ " 适配器开发者需要继承本类并重写 `get_segment_class()` 方法。"
+#~ msgstr ""
 
-#: b2be1b13110f4572855a7d05a14e4c2f iamai.message.Message.copy:1 of
-msgid "返回自身的浅复制。"
-msgstr ""
+#~ msgid "返回自身的浅复制。"
+#~ msgstr ""
 
-#: 15a026e978f343ae83560dd9ee6de433 180a61cd6eff43f5a13a2090248ebd7c
-#: 769a3ac763e04da69c7184e1af2f3bfe 7e31d98c296549a29f3da4dde758954f
-#: 8392a11404e34c928d767b5c6aff66a4 c79e324a1ce74f3ba104740d389b9546
-#: d9e2af34437444fba18cf6f3b960c2ed db0a3f2b4e5c4bb99b3acb99adda8aeb
-#: f2fd7899b2624651a8e4d9bd96504eb5 fa2960cc7ee7486890e3e3cd40a5c3b8
-#: iamai.message.Message.copy iamai.message.Message.endswith
-#: iamai.message.Message.get_plain_text iamai.message.Message.get_segment_class
-#: iamai.message.Message.replace iamai.message.Message.startswith
-#: iamai.message.MessageSegment.from_mapping
-#: iamai.message.MessageSegment.from_str
-#: iamai.message.MessageSegment.get_message_class
-#: iamai.message.MessageSegment.is_text of
-msgid "Returns"
-msgstr ""
+#~ msgid "Returns"
+#~ msgstr ""
 
-#: b5bcaa42f77f48d0981e9f5ef649bf7b iamai.message.Message.copy:3 of
-msgid "自身的浅复制。"
-msgstr ""
+#~ msgid "自身的浅复制。"
+#~ msgstr ""
 
-#: 16b095fe209c4e6da06dbc6b78718512 iamai.message.Message.endswith:1 of
-msgid "实现类似字符串的 `endswith()` 方法。"
-msgstr ""
+#~ msgid "实现类似字符串的 `endswith()` 方法。"
+#~ msgstr ""
 
-#: 9adab0df935e4d07bb48dafe9f899d87 iamai.message.Message.endswith:3 of
-msgid ""
-"当 `suffix` 类型是 `str` 时，会将自身转换为 `str` 类型，再调用 `str` 类型的 `endswith()` 方法。 当 "
-"`suffix` 类型是 MessageSegment 时，`start` 和 `end` 参数将不其作用，"
-msgstr ""
+#~ msgid ""
+#~ "当 `suffix` 类型是 `str` 时，会将自身转换为 `str` "
+#~ "类型，再调用 `str` 类型的 `endswith()` 方法。 当 "
+#~ "`suffix` 类型是 MessageSegment 时，`start` 和 "
+#~ "`end` 参数将不其作用，"
+#~ msgstr ""
 
-#: 72f6b08952fc43adacdf2c0e35010f2e iamai.message.Message.endswith:5 of
-msgid "会判断列表的最后一个消息字段是否和 `suffix` 相等。"
-msgstr ""
+#~ msgid "会判断列表的最后一个消息字段是否和 `suffix` 相等。"
+#~ msgstr ""
 
-#: 28a7d69c410342628acefc90f5d918db 6f09d8d4b5d44818bfa9a6b61328ceb1
-#: 80d01b382afb41ac8e0aa95f32b3c5b7 934e47a01946427d8cced8cb7ab9fe51
-#: cd86ac8c14be4cfe9f12f07e34dca660 iamai.message.Message.endswith
-#: iamai.message.Message.replace iamai.message.Message.startswith
-#: iamai.message.MessageSegment.from_mapping
-#: iamai.message.MessageSegment.from_str of
-msgid "Parameters"
-msgstr ""
+#~ msgid "Parameters"
+#~ msgstr ""
 
-#: f4325e05e3554703b6aaa1a9aad07322 iamai.message.Message.endswith:7 of
-msgid "后缀。"
-msgstr ""
+#~ msgid "后缀。"
+#~ msgstr ""
 
-#: 3753d83e94f24883bcfe5f0129219550 876a4f0bc89a47e7b4a7a510f5ed560f
-#: iamai.message.Message.endswith:8 iamai.message.Message.startswith:8 of
-msgid "开始检查位置。"
-msgstr ""
+#~ msgid "开始检查位置。"
+#~ msgstr ""
 
-#: 41f2f25fccb1479d8368dc8a3b23e67b a36919394ead4334bb99a73d95bddf3a
-#: iamai.message.Message.endswith:9 iamai.message.Message.startswith:9 of
-msgid "停止检查位置。"
-msgstr ""
+#~ msgid "停止检查位置。"
+#~ msgstr ""
 
-#: 88f153482d774a1dad4dca03621e7f6d aaa78561b9584bc1a896efb95bb9b3eb
-#: iamai.message.Message.endswith:11 iamai.message.Message.startswith:11 of
-msgid "检查结果。"
-msgstr ""
+#~ msgid "检查结果。"
+#~ msgstr ""
 
-#: 80dc90ed54af4f9385cd2572f70fbf0b iamai.message.Message.get_plain_text:1 of
-msgid "获取消息中的纯文本部分。"
-msgstr ""
+#~ msgid "获取消息中的纯文本部分。"
+#~ msgstr ""
 
-#: da47bfd234544931b522470b22d9f704 iamai.message.Message.get_plain_text:3 of
-msgid "消息中的纯文本部分。"
-msgstr ""
+#~ msgid "消息中的纯文本部分。"
+#~ msgstr ""
 
-#: 0e2f7dfeaa4541bfa0d2f8397b2e831a iamai.message.Message.get_segment_class:1
-#: of
-msgid "获取消息字段类。"
-msgstr ""
+#~ msgid "获取消息字段类。"
+#~ msgstr ""
 
-#: 859695f20d184dfc995647cef3b0d685 iamai.message.Message.get_segment_class:3
-#: of
-msgid "消息字段类。"
-msgstr ""
+#~ msgid "消息字段类。"
+#~ msgstr ""
 
-#: a40683aa1b49496fba0b4079204a5d25 iamai.message.Message.is_text:1 of
-msgid "是否是纯文本消息。"
-msgstr ""
+#~ msgid "是否是纯文本消息。"
+#~ msgstr ""
 
-#: 30f25c1c44ea4a85b1eb5a9abefeed6f iamai.message.Message.replace:1 of
-msgid "实现类似字符串的 `replace()` 方法。"
-msgstr ""
+#~ msgid "实现类似字符串的 `replace()` 方法。"
+#~ msgstr ""
 
-#: 359e461bc53e459baad9838905048fe3 iamai.message.Message.replace:3 of
-msgid ""
-"当 `old` 为 `str` 类型时，`new` 也必须是 `str`，本方法将仅对 `is_text()` 为 `True` "
-"的消息字段进行处理。 当 `old` 为 MessageSegment 类型时，`new` 可以是 `MessageSegment` 或 "
-"`None`，本方法将对所有消息字段进行处理，"
-msgstr ""
+#~ msgid ""
+#~ "当 `old` 为 `str` 类型时，`new` 也必须是 "
+#~ "`str`，本方法将仅对 `is_text()` 为 `True` 的消息字段进行处理。"
+#~ " 当 `old` 为 MessageSegment 类型时，`new` "
+#~ "可以是 `MessageSegment` 或 `None`，本方法将对所有消息字段进行处理，"
+#~ msgstr ""
 
-#: a891fee0162c49f7900a09cee28e0fc1 iamai.message.Message.replace:5 of
-msgid "并替换符合条件的消息字段。`None` 表示删除匹配到的消息字段。"
-msgstr ""
+#~ msgid "并替换符合条件的消息字段。`None` 表示删除匹配到的消息字段。"
+#~ msgstr ""
 
-#: 6e11bd3e7ce745e497cf02629451f64f iamai.message.Message.replace:7 of
-msgid "被匹配的字符串或消息字段。"
-msgstr ""
+#~ msgid "被匹配的字符串或消息字段。"
+#~ msgstr ""
 
-#: c3f3fc1c3e4f413383e03497cf497261 iamai.message.Message.replace:8 of
-msgid "被替换为的字符串或消息字段。"
-msgstr ""
+#~ msgid "被替换为的字符串或消息字段。"
+#~ msgstr ""
 
-#: aa0d362637cb48b895abe116c3398055 iamai.message.Message.replace:9 of
-msgid "替换的次数。"
-msgstr ""
+#~ msgid "替换的次数。"
+#~ msgstr ""
 
-#: 1adf2d63e5bc473f917b9ab8d6b45d14 iamai.message.Message.replace:11 of
-msgid "替换后的消息对象。"
-msgstr ""
+#~ msgid "替换后的消息对象。"
+#~ msgstr ""
 
-#: 5eee300ab034482e9bbb63378717e32c iamai.message.Message.startswith:1 of
-msgid "实现类似字符串的 `startswith()` 方法。"
-msgstr ""
+#~ msgid "实现类似字符串的 `startswith()` 方法。"
+#~ msgstr ""
 
-#: eda266b02e7d4413a3be7977f0961780 iamai.message.Message.startswith:3 of
-msgid ""
-"当 `prefix` 类型是 `str` 时，会将自身转换为 `str` 类型，再调用 `str` 类型的 `startswith()` 方法。 "
-"当 `prefix` 类型是 `MessageSegment` 时，`start` 和 `end` 参数将不其作用，"
-msgstr ""
+#~ msgid ""
+#~ "当 `prefix` 类型是 `str` 时，会将自身转换为 `str` "
+#~ "类型，再调用 `str` 类型的 `startswith()` 方法。 当"
+#~ " `prefix` 类型是 `MessageSegment` 时，`start` 和"
+#~ " `end` 参数将不其作用，"
+#~ msgstr ""
 
-#: 1ac29a30ab0c40d597a8a6f0f86e8614 iamai.message.Message.startswith:5 of
-msgid "会判断列表的第一个消息字段是否和 `prefix` 相等。"
-msgstr ""
+#~ msgid "会判断列表的第一个消息字段是否和 `prefix` 相等。"
+#~ msgstr ""
 
-#: 97a80d0223974168b7aacddafe49bad7 iamai.message.Message.startswith:7 of
-msgid "前缀。"
-msgstr ""
+#~ msgid "前缀。"
+#~ msgstr ""
 
-#: ad1a480b67d545c783b3f5bbedf1715c iamai.message.MessageSegment:1 of
-msgid ""
-"Bases: :py:class:`~abc.ABC`, :py:class:`~pydantic.main.BaseModel`, "
-":py:class:`~typing.Mapping`\\ [:py:class:`str`, :py:obj:`~typing.Any`], "
-":py:class:`~typing.Generic`\\ [:py:obj:`~iamai.message.MessageT`]"
-msgstr ""
+#~ msgid ""
+#~ "Bases: :py:class:`~abc.ABC`, "
+#~ ":py:class:`~pydantic.main.BaseModel`, "
+#~ ":py:class:`~typing.Mapping`\\ [:py:class:`str`, "
+#~ ":py:obj:`~typing.Any`], :py:class:`~typing.Generic`\\ "
+#~ "[:py:obj:`~iamai.message.MessageT`]"
+#~ msgstr ""
 
-#: decba29c567348e694a988d81fe1da97 iamai.message.MessageSegment:1 of
-msgid "消息字段。"
-msgstr ""
+#~ msgid "消息字段。"
+#~ msgstr ""
 
-#: 424be69b2c384dbebae71794a3f6c942 iamai.message.MessageSegment:3 of
-msgid ""
-"本类实现了所有 `Mapping` 类型的方法，这些方法全部是对 `data` 属性的操作。 本类重写了 `+` 和 `+=` 运算符，可以直接和"
-" `Message`, `MessageSegment` 等类型的对象执行取和运算，返回 `Message` 对象。 "
-"适配器开发者需要继承本类并重写 `get_message_class()` 方法。"
-msgstr ""
+#~ msgid ""
+#~ "本类实现了所有 `Mapping` 类型的方法，这些方法全部是对 `data` 属性的操作。"
+#~ " 本类重写了 `+` 和 `+=` 运算符，可以直接和 "
+#~ "`Message`, `MessageSegment` 等类型的对象执行取和运算，返回 "
+#~ "`Message` 对象。 适配器开发者需要继承本类并重写 `get_message_class()`"
+#~ " 方法。"
+#~ msgstr ""
 
-#: 5f7bddd354074ccd991941c3c02ede6b iamai.message.MessageSegment:9 of
-msgid "消息字段类型。"
-msgstr ""
+#~ msgid "消息字段类型。"
+#~ msgstr ""
 
-#: 109984dfe0f14d10862c9b5b3d924a1e ff961826e0c64853b7080663e36c4362
-#: iamai.message.MessageSegment of
-msgid "type"
-msgstr ""
+#~ msgid "type"
+#~ msgstr ""
 
-#: 9baa2a4d2afd4465a561b7cbad13ede1 iamai.message.MessageSegment:11 of
-msgid "str"
-msgstr ""
+#~ msgid "str"
+#~ msgstr ""
 
-#: 8140f001865f4d0d8ca9b667aa901e99 iamai.message.MessageSegment:15 of
-msgid "消息字段内容。"
-msgstr ""
+#~ msgid "消息字段内容。"
+#~ msgstr ""
 
-#: 17b17fc987344563aa8f8002064e6479 iamai.message.MessageSegment:17 of
-msgid "Dict[str, Any]"
-msgstr ""
+#~ msgid "Dict[str, Any]"
+#~ msgstr ""
 
-#: f083fc4bfec646e0b7cbdf3073c24f3f iamai.message.MessageSegment.from_mapping:1
-#: of
-msgid "用于将 `Mapping` 转换为消息字段。"
-msgstr ""
+#~ msgid "用于将 `Mapping` 转换为消息字段。"
+#~ msgstr ""
 
-#: 4d98e711f5224c3fae2e5ff9479d6475 iamai.message.MessageSegment.from_mapping:3
-#: of
-msgid "如有需要，子类可重写此方法以更改对 `Mapping` 的默认行为。"
-msgstr ""
+#~ msgid "如有需要，子类可重写此方法以更改对 `Mapping` 的默认行为。"
+#~ msgstr ""
 
-#: 4c4ac6e4344046bcbe99b7b961a43ced 8093b404e14d4581a6f91b19e3b4ea50
-#: iamai.message.MessageSegment.from_mapping:5
-#: iamai.message.MessageSegment.from_str:3 of
-msgid "要解析为消息字段的数据。"
-msgstr ""
+#~ msgid "要解析为消息字段的数据。"
+#~ msgstr ""
 
-#: b3bd56852a7846b0a4835a5220adb4b7 iamai.message.MessageSegment.from_mapping:7
-#: of
-msgid "由 Mapping 转换的消息字段。"
-msgstr ""
+#~ msgid "由 Mapping 转换的消息字段。"
+#~ msgstr ""
 
-#: 8ce5b5d3a3b043e3bd3d9b1bf785b587 iamai.message.MessageSegment.from_str:1 of
-msgid "用于将 `str` 转换为消息字段，子类应重写此方法。"
-msgstr ""
+#~ msgid "用于将 `str` 转换为消息字段，子类应重写此方法。"
+#~ msgstr ""
 
-#: 673d0b1921b04b31b7dfc8db4e58bbfe iamai.message.MessageSegment.from_str:5 of
-msgid "由 `str` 转换的消息字段。"
-msgstr ""
+#~ msgid "由 `str` 转换的消息字段。"
+#~ msgstr ""
 
-#: 22296b9aaba84cdbbee93ba75e710d85 iamai.message.MessageSegment.get:1 of
-msgid "如果 `key` 存在于 `data` 字典中则返回 `key` 的值，否则返回 `default`。"
-msgstr ""
+#~ msgid "如果 `key` 存在于 `data` 字典中则返回 `key` 的值，否则返回 `default`。"
+#~ msgstr ""
 
-#: c0538bb37f0c40f29f4c5c0747973e6d
-#: iamai.message.MessageSegment.get_message_class:1 of
-msgid "获取消息类。"
-msgstr ""
+#~ msgid "获取消息类。"
+#~ msgstr ""
 
-#: 044d6397a4614858b16c4b93298270df
-#: iamai.message.MessageSegment.get_message_class:3 of
-msgid "消息类。"
-msgstr ""
+#~ msgid "消息类。"
+#~ msgstr ""
 
-#: 8a14570870164e60a08b64a5b5cfdf15 cf08405fdb404adaa4dc918a0516bd72
-#: iamai.message.MessageSegment.is_text:1
-#: iamai.message.MessageSegment.is_text:3 of
-msgid "是否是纯文本消息字段。"
-msgstr ""
+#~ msgid "是否是纯文本消息字段。"
+#~ msgstr ""
 
-#: 227d5a86f2904f19b1d426d14e832493 iamai.message.MessageSegment.items:1 of
-msgid "返回由 `data` 字典项 (`(键, 值)` 对) 组成的一个新视图。"
-msgstr ""
+#~ msgid "返回由 `data` 字典项 (`(键, 值)` 对) 组成的一个新视图。"
+#~ msgstr ""
 
-#: 8459845c87b449d1ab898c0cbcd7f397 iamai.message.MessageSegment.keys:1 of
-msgid "返回由 `data` 字典键组成的一个新视图。"
-msgstr ""
+#~ msgid "返回由 `data` 字典键组成的一个新视图。"
+#~ msgstr ""
 
-#: ../../docstring c65249e4cfa0473eac728a7883f2b555
-#: iamai.message.MessageSegment.model_config:1 of
-msgid ""
-"Configuration for the model, should be a dictionary conforming to "
-"[`ConfigDict`][pydantic.config.ConfigDict]."
-msgstr ""
+#~ msgid ""
+#~ "Configuration for the model, should be"
+#~ " a dictionary conforming to "
+#~ "[`ConfigDict`][pydantic.config.ConfigDict]."
+#~ msgstr ""
 
-#: ../../docstring 619fc2b4909748fa80c318c4bfe78e04
-#: iamai.message.MessageSegment.model_fields:1 of
-msgid ""
-"Metadata about the fields defined on the model, mapping of field names to"
-" [`FieldInfo`][pydantic.fields.FieldInfo]."
-msgstr ""
+#~ msgid ""
+#~ "Metadata about the fields defined on "
+#~ "the model, mapping of field names "
+#~ "to [`FieldInfo`][pydantic.fields.FieldInfo]."
+#~ msgstr ""
 
-#: ../../docstring 1c444d08d30e4cecb1fb3315565c3f8f
-#: iamai.message.MessageSegment.model_fields:4 of
-msgid "This replaces `Model.__fields__` from Pydantic V1."
-msgstr ""
+#~ msgid "This replaces `Model.__fields__` from Pydantic V1."
+#~ msgstr ""
 
-#: 1bcf530c4a844a01b802491c77ae9125 iamai.message.MessageSegment.values:1 of
-msgid "返回由 `data` 字典值组成的一个新视图。"
-msgstr ""
+#~ msgid "返回由 `data` 字典值组成的一个新视图。"
+#~ msgstr ""
 

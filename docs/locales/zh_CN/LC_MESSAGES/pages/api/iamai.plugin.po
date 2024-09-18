@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: iamai \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"POT-Creation-Date: 2024-09-18 11:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -17,118 +17,90 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.16.0\n"
 
-#: ../../source/pages/api/iamai.plugin.rst:2 7fef3c8749d64816a6919e24918b5e94
+#: ../../source/pages/api/iamai.plugin.rst:2 9980c9b79dad4be3baa5c869030621cf
 msgid "iamai.plugin module"
 msgstr ""
 
-#: ea9fbbb5b3e14419b15314242bca3889 iamai.plugin:1 of
-msgid "iamai 插件。"
-msgstr ""
+#~ msgid "iamai 插件。"
+#~ msgstr ""
 
-#: 0500357ff5ed4beb9cab94533b715834 iamai.plugin:3 of
-msgid "所有 iamai 插件的基类。所有用户编写的插件必须继承自 `Plugin` 类。"
-msgstr ""
+#~ msgid "所有 iamai 插件的基类。所有用户编写的插件必须继承自 `Plugin` 类。"
+#~ msgstr ""
 
-#: 6a5616ac3c4147eb89886cadfa36cc97 iamai.plugin.Plugin:1 of
-msgid ""
-"Bases: :py:class:`~abc.ABC`, :py:class:`~typing.Generic`\\ "
-"[:py:obj:`~iamai.typing.EventT`, :py:obj:`~iamai.typing.StateT`, "
-":py:obj:`~iamai.typing.ConfigT`]"
-msgstr ""
+#~ msgid ""
+#~ "Bases: :py:class:`~abc.ABC`, :py:class:`~typing.Generic`\\"
+#~ " [:py:obj:`~iamai.typing.EventT`, "
+#~ ":py:obj:`~iamai.typing.StateT`, :py:obj:`~iamai.typing.ConfigT`]"
+#~ msgstr ""
 
-#: b636d10d99224ae69f75063f85f0e7e0 iamai.plugin.Plugin:1 of
-msgid "所有 iamai 插件的基类。"
-msgstr ""
+#~ msgid "所有 iamai 插件的基类。"
+#~ msgstr ""
 
-#: d31de1a305d1492aa6cc4262c5ef4fa3 iamai.plugin.Plugin:5 of
-msgid "当前正在被此插件处理的事件。"
-msgstr ""
+#~ msgid "当前正在被此插件处理的事件。"
+#~ msgstr ""
 
-#: 1ec7955807934145bddf198c2ef12b36 5970034dcc2e451aa9dc2d05546efae9
-#: 7b62e83921e441bc9a6229417b819a26 7ca9db27457849b1aa70cee47701c995
-#: ab7e0a6db067430bb19413d9c90bb4f8 iamai.plugin.Plugin of
-msgid "type"
-msgstr ""
+#~ msgid "type"
+#~ msgstr ""
 
-#: 6139405e29f04017aaf9902fec74798d iamai.plugin.Plugin:7 of
-msgid "iamai.typing.EventT"
-msgstr ""
+#~ msgid "iamai.typing.EventT"
+#~ msgstr ""
 
-#: 402af2df0019481cacd3cd38e5edb9c5 iamai.plugin.Plugin:11 of
-msgid "插件的优先级，数字越小表示优先级越高，默认为 0。"
-msgstr ""
+#~ msgid "插件的优先级，数字越小表示优先级越高，默认为 0。"
+#~ msgstr ""
 
-#: 1c119953e3fc4df79c97e28f08ff06ea iamai.plugin.Plugin:13 of
-msgid "ClassVar[int]"
-msgstr ""
+#~ msgid "ClassVar[int]"
+#~ msgstr ""
 
-#: 0b3f0580336a4746a2edce32ac9b5151 iamai.plugin.Plugin:17 of
-msgid "插件执行结束后是否阻止事件的传播。`True` 表示阻止。"
-msgstr ""
+#~ msgid "插件执行结束后是否阻止事件的传播。`True` 表示阻止。"
+#~ msgstr ""
 
-#: 6ec9fbc55143450ebb97769de767d040 iamai.plugin.Plugin:19 of
-msgid "ClassVar[bool]"
-msgstr ""
+#~ msgid "ClassVar[bool]"
+#~ msgstr ""
 
-#: aa295c2545d44ff190f8b8566aa658ce iamai.plugin.Plugin:23 of
-msgid "插件加载类型，由 iamai 自动设置，反映了此插件是如何被加载的。"
-msgstr ""
+#~ msgid "插件加载类型，由 iamai 自动设置，反映了此插件是如何被加载的。"
+#~ msgstr ""
 
-#: 8876ce4e0eab41479c499198f6648ea0 iamai.plugin.Plugin:25 of
-msgid "ClassVar[iamai.plugin.PluginLoadType]"
-msgstr ""
+#~ msgid "ClassVar[iamai.plugin.PluginLoadType]"
+#~ msgstr ""
 
-#: 872ab0e50d2b484e97156df3db5b62c8 iamai.plugin.Plugin:29 of
-msgid "当插件加载类型为 `PluginLoadType.CLASS` 时为 `None`， 否则为定义插件在的 Python 模块的位置。"
-msgstr ""
+#~ msgid "当插件加载类型为 `PluginLoadType.CLASS` 时为 `None`， 否则为定义插件在的 Python 模块的位置。"
+#~ msgstr ""
 
-#: 5c549979cbb444899a838a2ee8302b2e iamai.plugin.Plugin:32 of
-msgid "ClassVar[str | None]"
-msgstr ""
+#~ msgid "ClassVar[str | None]"
+#~ msgstr ""
 
-#: 8ff7a2f6108a4113ac5137934ab095d4 iamai.plugin.Plugin.bot:1 of
-msgid "机器人对象。"
-msgstr ""
+#~ msgid "机器人对象。"
+#~ msgstr ""
 
-#: 1bd7b8727d2c4960ac6d9857006adf41 iamai.plugin.Plugin.config:1 of
-msgid "插件配置。"
-msgstr ""
+#~ msgid "插件配置。"
+#~ msgstr ""
 
-#: fc8447a27b3d4305bb75d2a848d0101c iamai.plugin.Plugin.handle:1 of
-msgid "处理事件的方法。当 `rule()` 方法返回 `True` 时 iamai 会调用此方法。每个插件必须实现此方法。"
-msgstr ""
+#~ msgid "处理事件的方法。当 `rule()` 方法返回 `True` 时 iamai 会调用此方法。每个插件必须实现此方法。"
+#~ msgstr ""
 
-#: eab924f195a743c1bd5cfaec1b145f9d iamai.plugin.Plugin.name:1 of
-msgid "插件类名称。"
-msgstr ""
+#~ msgid "插件类名称。"
+#~ msgstr ""
 
-#: 6a10bfc1718d4c4db8abbae7a016ddbb iamai.plugin.Plugin.rule:1 of
-msgid "匹配事件的方法。事件处理时，会按照插件的优先级依次调用此方法，当此方法返回 `True` 时将事件交由此插件处理。每个插件必须实现此方法。"
-msgstr ""
+#~ msgid "匹配事件的方法。事件处理时，会按照插件的优先级依次调用此方法，当此方法返回 `True` 时将事件交由此插件处理。每个插件必须实现此方法。"
+#~ msgstr ""
 
-#: 9469645d8f424b65a2f81ffded79cc21 iamai.plugin.Plugin.rule:3 of
-msgid "注意：不建议直接在此方法内实现对事件的处理，事件的具体处理请交由 `handle()` 方法。"
-msgstr ""
+#~ msgid "注意：不建议直接在此方法内实现对事件的处理，事件的具体处理请交由 `handle()` 方法。"
+#~ msgstr ""
 
-#: 7a09be77870e4183819cd90e55eba3c6 iamai.plugin.Plugin.skip:1 of
-msgid "跳过自身继续当前事件传播。"
-msgstr ""
+#~ msgid "跳过自身继续当前事件传播。"
+#~ msgstr ""
 
-#: 2b8964f0e4f84aa786a9bfe6c3b25178 iamai.plugin.Plugin.state:1 of
-msgid "插件状态。"
-msgstr ""
+#~ msgid "插件状态。"
+#~ msgstr ""
 
-#: a3b1d5d183dd47fcbfbb93aa960cb843 iamai.plugin.Plugin.stop:1 of
-msgid "停止当前事件传播。"
-msgstr ""
+#~ msgid "停止当前事件传播。"
+#~ msgstr ""
 
-#: 896dd7c254454c4b84f499104b67f6dd iamai.plugin.PluginLoadType:1 of
-msgid "Bases: :py:class:`~enum.Enum`"
-msgstr ""
+#~ msgid "Bases: :py:class:`~enum.Enum`"
+#~ msgstr ""
 
-#: b837c0b82f72461f9c6b128afc15d6af iamai.plugin.PluginLoadType:1 of
-msgid "插件加载类型。"
-msgstr ""
+#~ msgid "插件加载类型。"
+#~ msgstr ""
 

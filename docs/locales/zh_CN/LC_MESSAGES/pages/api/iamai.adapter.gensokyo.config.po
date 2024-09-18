@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: iamai \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"POT-Creation-Date: 2024-09-18 11:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -17,94 +17,67 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../source/pages/api/iamai.adapter.gensokyo.config.rst:2
-#: ba6ea222d8d346f3a9132c36aa556109
+#: 707cbd526a3645c0bb839534202e4357
 msgid "iamai.adapter.gensokyo.config module"
 msgstr ""
 
-#: 276319d956ba4117a5f42859322f2c71 iamai.adapter.gensokyo.config:1 of
-msgid "GSK 适配器配置。"
-msgstr ""
+#~ msgid "GSK 适配器配置。"
+#~ msgstr ""
 
-#: 263a589cdf4f42eb85fbdb99529c5f47 iamai.adapter.gensokyo.config.Config:1 of
-msgid "Bases: :py:class:`~iamai.config.ConfigModel`"
-msgstr ""
+#~ msgid "Bases: :py:class:`~iamai.config.ConfigModel`"
+#~ msgstr ""
 
-#: d46fa811c64c4789b43652fae59db512 iamai.adapter.gensokyo.config.Config:1 of
-msgid "GSK 配置类，将在适配器被加载时被混入到机器人主配置中。"
-msgstr ""
+#~ msgid "GSK 配置类，将在适配器被加载时被混入到机器人主配置中。"
+#~ msgstr ""
 
-#: 080ca240b935403689e9e1f50a24d48d iamai.adapter.gensokyo.config.Config:5 of
-msgid "适配器类型，需要和协议端配置相同。"
-msgstr ""
+#~ msgid "适配器类型，需要和协议端配置相同。"
+#~ msgstr ""
 
-#: 28edd909f8b94991af9fc51db0459c55 8c7adca2ed4e4146bd8932b597dcad4b
-#: 9b0cd5c87e294a79ac09ff61435799ae b39fac32b72f4841bacb9da0d3c69f89
-#: c689bd4dbc35407ca953cc236e2f6b5c cd9f5a0cd3f342acaa9af405ab6040f2
-#: fb5aa89817404a6c932c5d5f2b27b1fe iamai.adapter.gensokyo.config.Config of
-msgid "type"
-msgstr ""
+#~ msgid "type"
+#~ msgstr ""
 
-#: dee18b403e864ffcbd8f7af848f0592a iamai.adapter.gensokyo.config.Config:7 of
-msgid "Literal['ws', 'reverse-ws', 'ws-reverse']"
-msgstr ""
+#~ msgid "Literal['ws', 'reverse-ws', 'ws-reverse']"
+#~ msgstr ""
 
-#: 25897c60e6414637bdc92f0860c63d4f iamai.adapter.gensokyo.config.Config:11 of
-msgid "本机域名。"
-msgstr ""
+#~ msgid "本机域名。"
+#~ msgstr ""
 
-#: 2cd11de321a74d18ba0072d8adf49293 9d5cc17c56d5408b879f4c65f53d78ef
-#: b272160686584b77bee06b8d14cfaa45 iamai.adapter.gensokyo.config.Config:13
-#: iamai.adapter.gensokyo.config.Config:25
-#: iamai.adapter.gensokyo.config.Config:43 of
-msgid "str"
-msgstr ""
+#~ msgid "str"
+#~ msgstr ""
 
-#: 606abda192aa4a3d89d25c505ad00381 iamai.adapter.gensokyo.config.Config:17 of
-msgid "监听的端口。"
-msgstr ""
+#~ msgid "监听的端口。"
+#~ msgstr ""
 
-#: 0fe81579555545a8b769a4e0680b32b7 a46df477fae847eb8f78e1da93067df5
-#: e55070c682484e768e14b7606c08f84f iamai.adapter.gensokyo.config.Config:19
-#: iamai.adapter.gensokyo.config.Config:31
-#: iamai.adapter.gensokyo.config.Config:37 of
-msgid "int"
-msgstr ""
+#~ msgid "int"
+#~ msgstr ""
 
-#: 6cf7f883281b4a7c997ab3f1012a856a iamai.adapter.gensokyo.config.Config:23 of
-msgid "WebSocket 路径，需和协议端配置相同。"
-msgstr ""
+#~ msgid "WebSocket 路径，需和协议端配置相同。"
+#~ msgstr ""
 
-#: ec4a30e953c343ca815f04bedc3a93a1 iamai.adapter.gensokyo.config.Config:29 of
-msgid "重连等待时间。"
-msgstr ""
+#~ msgid "重连等待时间。"
+#~ msgstr ""
 
-#: d188fd5d76a54c8587ee4c6bcaf8083d iamai.adapter.gensokyo.config.Config:35 of
-msgid "进行 API 调用时等待返回响应的超时时间。"
-msgstr ""
+#~ msgid "进行 API 调用时等待返回响应的超时时间。"
+#~ msgstr ""
 
-#: 8e2fa2a6c3c042afb5036f580dd97c7f iamai.adapter.gensokyo.config.Config:41 of
-msgid "鉴权。"
-msgstr ""
+#~ msgid "鉴权。"
+#~ msgstr ""
 
-#: ../../docstring 89d456ea45634b7cb164aa733c7dd95f
-#: iamai.adapter.gensokyo.config.Config.model_config:1 of
-msgid ""
-"Configuration for the model, should be a dictionary conforming to "
-"[`ConfigDict`][pydantic.config.ConfigDict]."
-msgstr ""
+#~ msgid ""
+#~ "Configuration for the model, should be"
+#~ " a dictionary conforming to "
+#~ "[`ConfigDict`][pydantic.config.ConfigDict]."
+#~ msgstr ""
 
-#: ../../docstring 75c726aafdb64314b8ab8bed0861746a
-#: iamai.adapter.gensokyo.config.Config.model_fields:1 of
-msgid ""
-"Metadata about the fields defined on the model, mapping of field names to"
-" [`FieldInfo`][pydantic.fields.FieldInfo]."
-msgstr ""
+#~ msgid ""
+#~ "Metadata about the fields defined on "
+#~ "the model, mapping of field names "
+#~ "to [`FieldInfo`][pydantic.fields.FieldInfo]."
+#~ msgstr ""
 
-#: ../../docstring 87ad739f985f4a8193c320b6d5c71b67
-#: iamai.adapter.gensokyo.config.Config.model_fields:4 of
-msgid "This replaces `Model.__fields__` from Pydantic V1."
-msgstr ""
+#~ msgid "This replaces `Model.__fields__` from Pydantic V1."
+#~ msgstr ""
 

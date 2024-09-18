@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: iamai \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"POT-Creation-Date: 2024-09-18 11:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -17,93 +17,70 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../source/pages/api/iamai.adapter.kook.config.rst:2
-#: ea74c84593bb4419b805d6b14580025e
+#: 73929649a42446ec8425a5d9df56dd3c
 msgid "iamai.adapter.kook.config module"
 msgstr ""
 
-#: 69778c1fb02a4ea9b84f6c8ca60c3f0e iamai.adapter.kook.config:1 of
-msgid "Kook 适配器配置。"
-msgstr ""
+#~ msgid "Kook 适配器配置。"
+#~ msgstr ""
 
-#: 7f4d3739c3724dfb8a82e41df3f49443 iamai.adapter.kook.config.Config:1 of
-msgid "Bases: :py:class:`~iamai.config.ConfigModel`"
-msgstr ""
+#~ msgid "Bases: :py:class:`~iamai.config.ConfigModel`"
+#~ msgstr ""
 
-#: af3602916728460ba6d0a272de8e00bd iamai.adapter.kook.config.Config:1 of
-msgid "Kook 配置类，将在适配器被加载时被混入到机器人主配置中。"
-msgstr ""
+#~ msgid "Kook 配置类，将在适配器被加载时被混入到机器人主配置中。"
+#~ msgstr ""
 
-#: 09ff02a1d0df4328b8ed680ae8cea585 iamai.adapter.kook.config.Config:5 of
-msgid "适配器类型，需要和协议端配置相同。"
-msgstr ""
+#~ msgid "适配器类型，需要和协议端配置相同。"
+#~ msgstr ""
 
-#: 2ef9d69f29304e63a825c4885dd5c6d8 46731a69246c4086bfed3ff8d0f0434d
-#: 7050def2f89f48ada83b7fc18db6d6ce ad2654e4a57b412ca0a29305a75e64ef
-#: c3318c6fd2364127bc505841b0291ebd ca8fa72ef13741c9954a3e271b14875f
-#: iamai.adapter.kook.config.Config of
-msgid "type"
-msgstr ""
+#~ msgid "type"
+#~ msgstr ""
 
-#: f7b5c855da5d47a1918cf7ed60406993 iamai.adapter.kook.config.Config:7 of
-msgid "Literal['ws', 'wb']"
-msgstr ""
+#~ msgid "Literal['ws', 'wb']"
+#~ msgstr ""
 
-#: 8ec79e2bd95d4be39d1a4823cbb60751 iamai.adapter.kook.config.Config:11 of
-msgid "重连等待时间。"
-msgstr ""
+#~ msgid "重连等待时间。"
+#~ msgstr ""
 
-#: 0b7356044a144f319ab7784f7204e658 e900ce59fce34bc7b1af6306dd55880a
-#: iamai.adapter.kook.config.Config:13 iamai.adapter.kook.config.Config:19 of
-msgid "int"
-msgstr ""
+#~ msgid "int"
+#~ msgstr ""
 
-#: db033d50e0be4453834e05595adf86e6 iamai.adapter.kook.config.Config:17 of
-msgid "进行 API 调用时等待返回响应的超时时间。"
-msgstr ""
+#~ msgid "进行 API 调用时等待返回响应的超时时间。"
+#~ msgstr ""
 
-#: de83bdaf26914d1aa9824bd8c797dd81 iamai.adapter.kook.config.Config:23 of
-msgid "鉴权。"
-msgstr ""
+#~ msgid "鉴权。"
+#~ msgstr ""
 
-#: 5ec13c45d2a14636a27d1641700ed1ea iamai.adapter.kook.config.Config:25 of
-msgid "str"
-msgstr ""
+#~ msgid "str"
+#~ msgstr ""
 
-#: 219d1d43b748464fa4ee17170a48a8e7 iamai.adapter.kook.config.Config:29 of
-msgid "是否启用压缩，默认为 0，不启用。"
-msgstr ""
+#~ msgid "是否启用压缩，默认为 0，不启用。"
+#~ msgstr ""
 
-#: a3b52416978b4fb896ec5aa77f22bc69 iamai.adapter.kook.config.Config:31 of
-msgid "Literal[0, 1]"
-msgstr ""
+#~ msgid "Literal[0, 1]"
+#~ msgstr ""
 
-#: 6eca58bd80c942e68298ff6e0a887310 iamai.adapter.kook.config.Config:35 of
-msgid "是否显示原始数据，默认为 False，不显示。"
-msgstr ""
+#~ msgid "是否显示原始数据，默认为 False，不显示。"
+#~ msgstr ""
 
-#: cc719afa3a594604ae046746da120a44 iamai.adapter.kook.config.Config:37 of
-msgid "bool"
-msgstr ""
+#~ msgid "bool"
+#~ msgstr ""
 
-#: ../../docstring 8e3d6bff6d87493fa454a4c7a9ac0334
-#: iamai.adapter.kook.config.Config.model_config:1 of
-msgid ""
-"Configuration for the model, should be a dictionary conforming to "
-"[`ConfigDict`][pydantic.config.ConfigDict]."
-msgstr ""
+#~ msgid ""
+#~ "Configuration for the model, should be"
+#~ " a dictionary conforming to "
+#~ "[`ConfigDict`][pydantic.config.ConfigDict]."
+#~ msgstr ""
 
-#: ../../docstring 442fd55017984b95856103083cfea3f4
-#: iamai.adapter.kook.config.Config.model_fields:1 of
-msgid ""
-"Metadata about the fields defined on the model, mapping of field names to"
-" [`FieldInfo`][pydantic.fields.FieldInfo]."
-msgstr ""
+#~ msgid ""
+#~ "Metadata about the fields defined on "
+#~ "the model, mapping of field names "
+#~ "to [`FieldInfo`][pydantic.fields.FieldInfo]."
+#~ msgstr ""
 
-#: ../../docstring c5f8db244b77482ea6645e0c369a1fe8
-#: iamai.adapter.kook.config.Config.model_fields:4 of
-msgid "This replaces `Model.__fields__` from Pydantic V1."
-msgstr ""
+#~ msgid "This replaces `Model.__fields__` from Pydantic V1."
+#~ msgstr ""
 

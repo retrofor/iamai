@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2023-PRESENT, Retrofor Wut?
-# This file is distributed under the same license as the iamai package.
+# This file is distributed under the same license as the IamAI package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: iamai \n"
+"Project-Id-Version: IamAI \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-09-18 11:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -19,11 +19,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
 
-#: ../../source/pages/api/iamai.adapter.kook.api.client.rst:2
-#: 78f15d3f8bef409fb05c3db4edca9f49
-msgid "iamai.adapter.kook.api.client module"
+#: ../../source/pages/api/iamai.adapter.cqhttp.event.rst:2
+#: 629dff87cb064c648faf5deacb760460
+msgid "iamai.adapter.cqhttp.event module"
 msgstr ""
-
-#~ msgid "Bases: :py:class:`object`"
-#~ msgstr ""
 

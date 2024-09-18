@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: iamai \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"POT-Creation-Date: 2024-09-18 11:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -17,57 +17,37 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../source/pages/api/iamai.adapter.gensokyo.exceptions.rst:2
-#: a897a38fa91743feacef208e3c4dcdc9
+#: ba26731fc5694d2983c654f463b16a3d
 msgid "iamai.adapter.gensokyo.exceptions module"
 msgstr ""
 
-#: 0b4ef9e12b8e443d9261fbd0b09de6e1 iamai.adapter.gensokyo.exceptions:1 of
-msgid "GSK 适配器异常。"
-msgstr ""
+#~ msgid "GSK 适配器异常。"
+#~ msgstr ""
 
-#: 3bb15f256f4f4b88957ea4610c7db240 841a81fcdc12418a97f53383958cf360
-#: ac24ddef7ecb4f71820a68062910ade4
-#: iamai.adapter.gensokyo.exceptions.ActionFailed:1
-#: iamai.adapter.gensokyo.exceptions.ApiTimeout:1
-#: iamai.adapter.gensokyo.exceptions.NetworkError:1 of
-msgid "Bases: :py:class:`~iamai.adapter.gensokyo.exceptions.GSKException`"
-msgstr ""
+#~ msgid "Bases: :py:class:`~iamai.adapter.gensokyo.exceptions.GSKException`"
+#~ msgstr ""
 
-#: aea89688a5164ea3a2ba6731fd811b49
-#: iamai.adapter.gensokyo.exceptions.ActionFailed:1 of
-msgid "API 请求成功响应，但响应表示 API 操作失败。"
-msgstr ""
+#~ msgid "API 请求成功响应，但响应表示 API 操作失败。"
+#~ msgstr ""
 
-#: 74ba1ea86a0b4c629ab86ec617e6d0d9
-#: iamai.adapter.gensokyo.exceptions.ApiNotAvailable:1 of
-msgid "Bases: :py:class:`~iamai.adapter.gensokyo.exceptions.ActionFailed`"
-msgstr ""
+#~ msgid "Bases: :py:class:`~iamai.adapter.gensokyo.exceptions.ActionFailed`"
+#~ msgstr ""
 
-#: d8a0230f2f11419f8ab44dc40e9238d0
-#: iamai.adapter.gensokyo.exceptions.ApiNotAvailable:1 of
-msgid "API 请求返回 404，表示当前请求的 API 不可用或不存在。"
-msgstr ""
+#~ msgid "API 请求返回 404，表示当前请求的 API 不可用或不存在。"
+#~ msgstr ""
 
-#: de7068fb9624483f95fa08b541570773
-#: iamai.adapter.gensokyo.exceptions.ApiTimeout:1 of
-msgid "API 请求响应超时。"
-msgstr ""
+#~ msgid "API 请求响应超时。"
+#~ msgstr ""
 
-#: 5f041a0228bc493791847e1ead624cf2
-#: iamai.adapter.gensokyo.exceptions.GSKException:1 of
-msgid "Bases: :py:class:`~iamai.exceptions.AdapterException`"
-msgstr ""
+#~ msgid "Bases: :py:class:`~iamai.exceptions.AdapterException`"
+#~ msgstr ""
 
-#: 634df3593e6b48228ad9934caf5414fb
-#: iamai.adapter.gensokyo.exceptions.GSKException:1 of
-msgid "GSK 异常基类。"
-msgstr ""
+#~ msgid "GSK 异常基类。"
+#~ msgstr ""
 
-#: 9aa2bc18daa9476bb61348916b92319b
-#: iamai.adapter.gensokyo.exceptions.NetworkError:1 of
-msgid "网络异常。"
-msgstr ""
+#~ msgid "网络异常。"
+#~ msgstr ""
 

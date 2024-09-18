@@ -4,6 +4,7 @@ description: 'Almost 2 years ago we open sourced SWR, the tiny data-fetching Rea
 date: August 27th, 2021
 ---
 
-## IamAI v3.0
+IamAI v3.0
+===========
 
 hi

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: iamai \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"POT-Creation-Date: 2024-09-18 11:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -17,67 +17,52 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../source/pages/api/iamai.exceptions.rst:2
-#: 63011ad85dc348c9bf31a6c097ed6787
+#: 7b357a673afa4486b8ee19ffec653a25
 msgid "iamai.exceptions module"
 msgstr ""
 
-#: f6204d70f82d434bafdfe2cb99b7181d iamai.exceptions:1 of
-msgid "iamai 异常。"
-msgstr ""
+#~ msgid "iamai 异常。"
+#~ msgstr ""
 
-#: 6b1b971486b24450ac91065ab8ebf996 iamai.exceptions:3 of
-msgid ""
-"下列是 iamai 运行过程中可能会抛出的异常。这些异常大部分不需要用户处理， iamai 会自动捕获并处理。 "
-"对于适配器开发者，所有适配器抛出的异常都应该继承自 `AdapterException` 。"
-msgstr ""
+#~ msgid ""
+#~ "下列是 iamai 运行过程中可能会抛出的异常。这些异常大部分不需要用户处理， iamai "
+#~ "会自动捕获并处理。 对于适配器开发者，所有适配器抛出的异常都应该继承自 `AdapterException` "
+#~ "。"
+#~ msgstr ""
 
-#: 2cf9658a22e64cbc9e6991d079bb4f63 51aa6fafcfc845ed8b754f2d31a97f5b
-#: 73c0a5b528bf4216809cd99f86704045 iamai.exceptions.AdapterException:1
-#: iamai.exceptions.GetEventTimeout:1 iamai.exceptions.LoadModuleError:1 of
-msgid "Bases: :py:class:`~iamai.exceptions.iamaiException`"
-msgstr ""
+#~ msgid "Bases: :py:class:`~iamai.exceptions.iamaiException`"
+#~ msgstr ""
 
-#: 704735dac74f4dd585aeb457e9990790 iamai.exceptions.AdapterException:1 of
-msgid "由适配器抛出的异常基类，所有适配器抛出的异常都应该继承自此类。"
-msgstr ""
+#~ msgid "由适配器抛出的异常基类，所有适配器抛出的异常都应该继承自此类。"
+#~ msgstr ""
 
-#: c0986131e8774fbea8085b79195f3e48 iamai.exceptions.EventException:1 of
-msgid "Bases: :py:class:`BaseException`"
-msgstr ""
+#~ msgid "Bases: :py:class:`BaseException`"
+#~ msgstr ""
 
-#: 632ca5a3f6d1423e81d3ad46455e5442 iamai.exceptions.EventException:1 of
-msgid "事件处理过程中由插件抛出的异常，用于控制事件的传播，会被 iamai 自动捕获并处理。"
-msgstr ""
+#~ msgid "事件处理过程中由插件抛出的异常，用于控制事件的传播，会被 iamai 自动捕获并处理。"
+#~ msgstr ""
 
-#: da152126c0804304a7302cddd008993a iamai.exceptions.GetEventTimeout:1 of
-msgid "当 get 方法超时使被抛出。"
-msgstr ""
+#~ msgid "当 get 方法超时使被抛出。"
+#~ msgstr ""
 
-#: 9ca8c53beeff496c8ff866bc1aba0442 iamai.exceptions.LoadModuleError:1 of
-msgid "加载模块错误，在指定模块中找不到特定类型的类或模块中存在多个符合条件的类时抛出。"
-msgstr ""
+#~ msgid "加载模块错误，在指定模块中找不到特定类型的类或模块中存在多个符合条件的类时抛出。"
+#~ msgstr ""
 
-#: 61768a3f801c4422aeb22c2c0168f21c 6a1d8f0dad2d4101b6865819f7557b2c
-#: iamai.exceptions.SkipException:1 iamai.exceptions.StopException:1 of
-msgid "Bases: :py:class:`~iamai.exceptions.EventException`"
-msgstr ""
+#~ msgid "Bases: :py:class:`~iamai.exceptions.EventException`"
+#~ msgstr ""
 
-#: c3d94084075f4b4bb856e46bb9716039 iamai.exceptions.SkipException:1 of
-msgid "跳过当前插件继续当前事件传播。"
-msgstr ""
+#~ msgid "跳过当前插件继续当前事件传播。"
+#~ msgstr ""
 
-#: 44109f66940a483abe7e5d6980bee6b5 iamai.exceptions.StopException:1 of
-msgid "停止当前事件传播。"
-msgstr ""
+#~ msgid "停止当前事件传播。"
+#~ msgstr ""
 
-#: 497b06c378be4c39b6bd6d1010bed87d iamai.exceptions.iamaiException:1 of
-msgid "Bases: :py:class:`Exception`"
-msgstr ""
+#~ msgid "Bases: :py:class:`Exception`"
+#~ msgstr ""
 
-#: 62fd438dd3b3474e9b022c43da72b79a iamai.exceptions.iamaiException:1 of
-msgid "所有 iamai 发生的异常的基类。"
-msgstr ""
+#~ msgid "所有 iamai 发生的异常的基类。"
+#~ msgstr ""
 

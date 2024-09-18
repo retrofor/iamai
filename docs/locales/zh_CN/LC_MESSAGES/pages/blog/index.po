@@ -1,14 +1,15 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2023-PRESENT, Retrofor Wut?
-# This file is distributed under the same license as the iamai package.
+# This file is distributed under the same license as the Comprehensive AI
+# Toolkit package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: iamai \n"
+"Project-Id-Version: Comprehensive AI Toolkit \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-18 11:23+0800\n"
+"POT-Creation-Date: 2024-09-18 11:39+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -19,11 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
 
-#: ../../source/pages/api/iamai.adapter.kook.api.client.rst:2
-#: 78f15d3f8bef409fb05c3db4edca9f49
-msgid "iamai.adapter.kook.api.client module"
+#: ../../source/pages/blog/index.rst:2 f39b1e498ddb44bcb19776acd2167ad6
+msgid "Blog"
 msgstr ""
-
-#~ msgid "Bases: :py:class:`object`"
-#~ msgstr ""
 

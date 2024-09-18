@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: iamai \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"POT-Creation-Date: 2024-09-18 11:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -17,72 +17,51 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../source/pages/api/iamai.adapter.console.message.rst:2
-#: 19ac08e678744ad498d50a25e4e4d2c4
+#: 2c1a5a0edf514b9abc2d5e040d535163
 msgid "iamai.adapter.console.message module"
 msgstr ""
 
-#: 3209a70281394bf7ae383ad3c577824b
-#: iamai.adapter.console.message.ConsoleMessage:1 of
-msgid "Bases: :py:class:`~iamai.message.MessageSegment[NoneType]`"
-msgstr ""
+#~ msgid "Bases: :py:class:`~iamai.message.MessageSegment[NoneType]`"
+#~ msgstr ""
 
-#: 0d77d3dbe8f9417cbe25ae0f642744d4
-#: iamai.adapter.console.message.ConsoleMessage:1 of
-msgid "Console 适配器消息。"
-msgstr ""
+#~ msgid "Console 适配器消息。"
+#~ msgstr ""
 
-#: 5f840083cbbc4b519897ef1c21077064 c2301216722a4d999009247f94dc3858
-#: iamai.adapter.console.message.ConsoleMessage.is_text:1
-#: iamai.adapter.console.message.ConsoleMessage.is_text:3 of
-msgid "是否是纯文本消息字段。"
-msgstr ""
+#~ msgid "是否是纯文本消息字段。"
+#~ msgstr ""
 
-#: 6f321f1673794d7dbba1d8fbcd26c541
-#: iamai.adapter.console.message.ConsoleMessage.is_text of
-msgid "Returns"
-msgstr ""
+#~ msgid "Returns"
+#~ msgstr ""
 
-#: ../../docstring 5c30b8bb803c4b2ca1eae31b19513e28
-#: iamai.adapter.console.message.ConsoleMessage.model_config:1 of
-msgid ""
-"Configuration for the model, should be a dictionary conforming to "
-"[`ConfigDict`][pydantic.config.ConfigDict]."
-msgstr ""
+#~ msgid ""
+#~ "Configuration for the model, should be"
+#~ " a dictionary conforming to "
+#~ "[`ConfigDict`][pydantic.config.ConfigDict]."
+#~ msgstr ""
 
-#: ../../docstring ab38b336a2984d8c839a7d4bb753f754
-#: iamai.adapter.console.message.ConsoleMessage.model_fields:1 of
-msgid ""
-"Metadata about the fields defined on the model, mapping of field names to"
-" [`FieldInfo`][pydantic.fields.FieldInfo]."
-msgstr ""
+#~ msgid ""
+#~ "Metadata about the fields defined on "
+#~ "the model, mapping of field names "
+#~ "to [`FieldInfo`][pydantic.fields.FieldInfo]."
+#~ msgstr ""
 
-#: ../../docstring c4a079a3230049f8b5e981f00429dd3e
-#: iamai.adapter.console.message.ConsoleMessage.model_fields:4 of
-msgid "This replaces `Model.__fields__` from Pydantic V1."
-msgstr ""
+#~ msgid "This replaces `Model.__fields__` from Pydantic V1."
+#~ msgstr ""
 
-#: 022b36b1fd334b648ed7ff0d20c2238d iamai.adapter.console.message.escape_tag:1
-#: of
-msgid "用于记录带颜色日志时转义 `<tag>` 类型特殊标签"
-msgstr ""
+#~ msgid "用于记录带颜色日志时转义 `<tag>` 类型特殊标签"
+#~ msgstr ""
 
-#: 56609612397c4657b8e73ea3a51dc580 iamai.adapter.console.message.escape_tag:3
-#: of
-msgid ""
-"参考: [loguru color "
-"标签](https://loguru.readthedocs.io/en/stable/api/logger.html#color)"
-msgstr ""
+#~ msgid ""
+#~ "参考: [loguru color "
+#~ "标签](https://loguru.readthedocs.io/en/stable/api/logger.html#color)"
+#~ msgstr ""
 
-#: e4336e8b20f34b5d9f391dba8fde2f1a iamai.adapter.console.message.escape_tag:5
-#: of
-msgid "参数:"
-msgstr ""
+#~ msgid "参数:"
+#~ msgstr ""
 
-#: 6734221e3a804dafa74574e5a1eec496 iamai.adapter.console.message.escape_tag:6
-#: of
-msgid "s: 需要转义的字符串"
-msgstr ""
+#~ msgid "s: 需要转义的字符串"
+#~ msgstr ""
 

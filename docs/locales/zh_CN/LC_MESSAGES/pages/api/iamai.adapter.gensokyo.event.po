@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: iamai \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"POT-Creation-Date: 2024-09-18 11:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -17,480 +17,189 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../source/pages/api/iamai.adapter.gensokyo.event.rst:2
-#: 54eb8328d59a4adbb7b5319080d2bd67
+#: 6f91760296a946449c63ec9c861bc899
 msgid "iamai.adapter.gensokyo.event module"
 msgstr ""
 
-#: d3ed939fc2244b58a49d5e69c7f46caa iamai.adapter.gensokyo.event:1 of
-msgid "GSK 适配器事件。"
-msgstr ""
+#~ msgid "GSK 适配器事件。"
+#~ msgstr ""
 
-#: 222f4fd649c546178267c15abba9ee54 582c8d82dbb04a68804049779be39f9f
-#: 72a4c260b6d441909c83385d01f8ca86 aa25358017424d5baba8f55dda8c28d6
-#: iamai.adapter.gensokyo.event.Anonymous:1 iamai.adapter.gensokyo.event.File:1
-#: iamai.adapter.gensokyo.event.Sender:1 iamai.adapter.gensokyo.event.Status:1
-#: of
-msgid "Bases: :py:class:`~pydantic.main.BaseModel`"
-msgstr ""
+#~ msgid "Bases: :py:class:`~pydantic.main.BaseModel`"
+#~ msgstr ""
 
-#: de6e0f6e30f2425ca1efdcecd13e70b0 iamai.adapter.gensokyo.event.Anonymous:1 of
-msgid "匿名信息"
-msgstr ""
+#~ msgid "匿名信息"
+#~ msgstr ""
 
-#: ../../docstring 020a925161e44236a4e1e1ec3eaa0bb2
-#: 064ef40f8f9c4f9ba2f4f8ded42476e8 0803336438904794b61b7b6cf5ce6de0
-#: 17da00e1666e4f8fbf5bce4d4039f63d 1a679ab6dfdb4a28baa51dc4275c928d
-#: 1e30cd366e384432990d45c48bf9c64c 35e74d2c2709466682b84f0dab8368ea
-#: 3dec7a40bd244e0c97dad21c800fb4e1 3e6d25f5b60e4c31b51f1b14e7eb53a4
-#: 4c8967f1e15d4d6bb7750b92d00e26d1 566fa4c761904aee8f4ce0ea0546fa26
-#: 575742da96e642338bdd01d1781793a4 627fec80c8a44b368b29daca2724bf95
-#: 68c994c9b9e04fba97b85fabf080141e 711052b00f0f44c2b913a25c2f59d300
-#: 78f74ee7d8af4125bd5ef360cddd2072 7f9e8dd77aff49f6a84d02c8e2cb9138
-#: 8455abb9c5d64f47bbf5114332d2a435 90d799f9e147434a9e63bc7a17c3451c
-#: af98c161c91b4f49b3ff34a706a3e7ad cb563d2911404abfac9b5edf36cf99c0
-#: d1ecdf8e6ff84456904b5613641fed19 dbb59bf3f2804f588bd23e03f00a9216
-#: e24ba2dfd8b64f8c88a360257580120c eed28bdce51440aaa0dee4f207952698
-#: f6958bbeda074603b8f52d84de6343a7 facb1d54bcb1463da0ead29ee971ef93
-#: iamai.adapter.gensokyo.event.Anonymous.model_config:1
-#: iamai.adapter.gensokyo.event.File.model_config:1
-#: iamai.adapter.gensokyo.event.FriendAddNoticeEvent.model_config:1
-#: iamai.adapter.gensokyo.event.FriendRecallNoticeEvent.model_config:1
-#: iamai.adapter.gensokyo.event.FriendRequestEvent.model_config:1
-#: iamai.adapter.gensokyo.event.GSKEvent.model_config:1
-#: iamai.adapter.gensokyo.event.GroupAdminNoticeEvent.model_config:1
-#: iamai.adapter.gensokyo.event.GroupBanNoticeEvent.model_config:1
-#: iamai.adapter.gensokyo.event.GroupDecreaseNoticeEvent.model_config:1
-#: iamai.adapter.gensokyo.event.GroupHonorNotifyEvent.model_config:1
-#: iamai.adapter.gensokyo.event.GroupIncreaseNoticeEvent.model_config:1
-#: iamai.adapter.gensokyo.event.GroupLuckyKingNotifyEvent.model_config:1
-#: iamai.adapter.gensokyo.event.GroupMessageEvent.model_config:1
-#: iamai.adapter.gensokyo.event.GroupRecallNoticeEvent.model_config:1
-#: iamai.adapter.gensokyo.event.GroupRequestEvent.model_config:1
-#: iamai.adapter.gensokyo.event.GroupUploadNoticeEvent.model_config:1
-#: iamai.adapter.gensokyo.event.HeartbeatMetaEvent.model_config:1
-#: iamai.adapter.gensokyo.event.LifecycleMetaEvent.model_config:1
-#: iamai.adapter.gensokyo.event.MessageEvent.model_config:1
-#: iamai.adapter.gensokyo.event.MetaEvent.model_config:1
-#: iamai.adapter.gensokyo.event.NoticeEvent.model_config:1
-#: iamai.adapter.gensokyo.event.NotifyEvent.model_config:1
-#: iamai.adapter.gensokyo.event.PokeNotifyEvent.model_config:1
-#: iamai.adapter.gensokyo.event.PrivateMessageEvent.model_config:1
-#: iamai.adapter.gensokyo.event.RequestEvent.model_config:1
-#: iamai.adapter.gensokyo.event.Sender.model_config:1
-#: iamai.adapter.gensokyo.event.Status.model_config:1 of
-msgid ""
-"Configuration for the model, should be a dictionary conforming to "
-"[`ConfigDict`][pydantic.config.ConfigDict]."
-msgstr ""
+#~ msgid ""
+#~ "Configuration for the model, should be"
+#~ " a dictionary conforming to "
+#~ "[`ConfigDict`][pydantic.config.ConfigDict]."
+#~ msgstr ""
 
-#: ../../docstring 071a980ec6d1424ca31cffefe2d94652
-#: 0b8e2e9c25d84197bd2fc8e859284e16 19f2859855a4438d973e0b69d33954d7
-#: 2707ebf13e0c46369264f3b76ef1ecb6 437f325e285b4a35bf11fa398144e007
-#: 480e4a6f7a9b4e00810054ccd4646bc5 6cdfae323a104f6d8d7e7bd6c8903f77
-#: 7848621276a549449945cb83b44bd301 835f1af0557444c2a5655ecbb550bd15
-#: 84ee07e7ab274fd5af302145edfbca50 8637c50215904e11aaa666a425bd654c
-#: 8cec491a432643baae32c633b85616e8 96374acb94194d73a7804aec3bfbb3f3
-#: a068cc156aa04196bfdfdac339ecb965 a4b9a0cead044220bd3a1947d2c44c1b
-#: a96e3c175f0c423c92b94975eec61049 adaa14fe886848d084d1155fd554d12e
-#: af02164cbfda48df8e535d33193e8ba2 c81e42ae6a974f7ab7f8d37ae341a43a
-#: caa4ca353f9f47b49499bfdde7df9b30 caa77106ad6a46af9dfbc1c361ad2f80
-#: cb876c692a944a3da1b46487a66009d2 cd17626f261f4df8a3a3a286a13d178d
-#: ddd332d860354f93977bea0a37f52d41 eaeb874bf5484e6e9e7be0e7a82337ae
-#: ed708339e05544808f1065635661af88 f27b4aed078d41499eca1077e2e4a25e
-#: iamai.adapter.gensokyo.event.Anonymous.model_fields:1
-#: iamai.adapter.gensokyo.event.File.model_fields:1
-#: iamai.adapter.gensokyo.event.FriendAddNoticeEvent.model_fields:1
-#: iamai.adapter.gensokyo.event.FriendRecallNoticeEvent.model_fields:1
-#: iamai.adapter.gensokyo.event.FriendRequestEvent.model_fields:1
-#: iamai.adapter.gensokyo.event.GSKEvent.model_fields:1
-#: iamai.adapter.gensokyo.event.GroupAdminNoticeEvent.model_fields:1
-#: iamai.adapter.gensokyo.event.GroupBanNoticeEvent.model_fields:1
-#: iamai.adapter.gensokyo.event.GroupDecreaseNoticeEvent.model_fields:1
-#: iamai.adapter.gensokyo.event.GroupHonorNotifyEvent.model_fields:1
-#: iamai.adapter.gensokyo.event.GroupIncreaseNoticeEvent.model_fields:1
-#: iamai.adapter.gensokyo.event.GroupLuckyKingNotifyEvent.model_fields:1
-#: iamai.adapter.gensokyo.event.GroupMessageEvent.model_fields:1
-#: iamai.adapter.gensokyo.event.GroupRecallNoticeEvent.model_fields:1
-#: iamai.adapter.gensokyo.event.GroupRequestEvent.model_fields:1
-#: iamai.adapter.gensokyo.event.GroupUploadNoticeEvent.model_fields:1
-#: iamai.adapter.gensokyo.event.HeartbeatMetaEvent.model_fields:1
-#: iamai.adapter.gensokyo.event.LifecycleMetaEvent.model_fields:1
-#: iamai.adapter.gensokyo.event.MessageEvent.model_fields:1
-#: iamai.adapter.gensokyo.event.MetaEvent.model_fields:1
-#: iamai.adapter.gensokyo.event.NoticeEvent.model_fields:1
-#: iamai.adapter.gensokyo.event.NotifyEvent.model_fields:1
-#: iamai.adapter.gensokyo.event.PokeNotifyEvent.model_fields:1
-#: iamai.adapter.gensokyo.event.PrivateMessageEvent.model_fields:1
-#: iamai.adapter.gensokyo.event.RequestEvent.model_fields:1
-#: iamai.adapter.gensokyo.event.Sender.model_fields:1
-#: iamai.adapter.gensokyo.event.Status.model_fields:1 of
-msgid ""
-"Metadata about the fields defined on the model, mapping of field names to"
-" [`FieldInfo`][pydantic.fields.FieldInfo]."
-msgstr ""
+#~ msgid ""
+#~ "Metadata about the fields defined on "
+#~ "the model, mapping of field names "
+#~ "to [`FieldInfo`][pydantic.fields.FieldInfo]."
+#~ msgstr ""
 
-#: ../../docstring 026ae11f9309449eb14e0b096dd0226f
-#: 03f59295ff4a4d1e87743e201dff3100 0db3eec0606b45f79a0c21ebc794a7a2
-#: 1cdc089dbab94699a90d342ad1e3181d 2435762fba2e49519c9e0b867dca4dfe
-#: 28e5a93c392c4563b3d9346da761482f 29ca7e2ea48d4b3b88c6042fca8783f9
-#: 2cb201ea9bcf4e63b2f99a46ca0340cc 3666e44d16344268a85bde32f0d32ede
-#: 39485987a918437c890d6c77fe4085b5 3cf56bdba6914d1abce6c7e9a398d793
-#: 41cb5e0d1a2c459f9299108b74292fcb 443464ecbce3479c90ee44fad89ac1d7
-#: 463894959ecb40f19a9b9d31fe6bd888 4ff9822743544bee9e8f86276e690443
-#: 61e9d6cbf94e47b3afa80873a81496b9 67b3770219834772a85efb3fc17d63c5
-#: 8729d6529c6b44ef8ea8b365ce609a6d 8b87a4f9f04741798a7a8a407857d2f1
-#: 8eb0a0f7b0054d4ca799e50d9b40d597 abb7c478a7974020b4757d252ae95854
-#: b387a32882874df18c0e9ad30c66229b b3a0013c8d214e52bcc560c7e7544597
-#: c3e11020304c4ca9a2716672a5d61a9a cc2309c5c0534a528fa814a4688ad118
-#: e535b67c5713423aa5ed20066993e513 faa8ce94b4904c91be500ac551480a24
-#: iamai.adapter.gensokyo.event.Anonymous.model_fields:4
-#: iamai.adapter.gensokyo.event.File.model_fields:4
-#: iamai.adapter.gensokyo.event.FriendAddNoticeEvent.model_fields:4
-#: iamai.adapter.gensokyo.event.FriendRecallNoticeEvent.model_fields:4
-#: iamai.adapter.gensokyo.event.FriendRequestEvent.model_fields:4
-#: iamai.adapter.gensokyo.event.GSKEvent.model_fields:4
-#: iamai.adapter.gensokyo.event.GroupAdminNoticeEvent.model_fields:4
-#: iamai.adapter.gensokyo.event.GroupBanNoticeEvent.model_fields:4
-#: iamai.adapter.gensokyo.event.GroupDecreaseNoticeEvent.model_fields:4
-#: iamai.adapter.gensokyo.event.GroupHonorNotifyEvent.model_fields:4
-#: iamai.adapter.gensokyo.event.GroupIncreaseNoticeEvent.model_fields:4
-#: iamai.adapter.gensokyo.event.GroupLuckyKingNotifyEvent.model_fields:4
-#: iamai.adapter.gensokyo.event.GroupMessageEvent.model_fields:4
-#: iamai.adapter.gensokyo.event.GroupRecallNoticeEvent.model_fields:4
-#: iamai.adapter.gensokyo.event.GroupRequestEvent.model_fields:4
-#: iamai.adapter.gensokyo.event.GroupUploadNoticeEvent.model_fields:4
-#: iamai.adapter.gensokyo.event.HeartbeatMetaEvent.model_fields:4
-#: iamai.adapter.gensokyo.event.LifecycleMetaEvent.model_fields:4
-#: iamai.adapter.gensokyo.event.MessageEvent.model_fields:4
-#: iamai.adapter.gensokyo.event.MetaEvent.model_fields:4
-#: iamai.adapter.gensokyo.event.NoticeEvent.model_fields:4
-#: iamai.adapter.gensokyo.event.NotifyEvent.model_fields:4
-#: iamai.adapter.gensokyo.event.PokeNotifyEvent.model_fields:4
-#: iamai.adapter.gensokyo.event.PrivateMessageEvent.model_fields:4
-#: iamai.adapter.gensokyo.event.RequestEvent.model_fields:4
-#: iamai.adapter.gensokyo.event.Sender.model_fields:4
-#: iamai.adapter.gensokyo.event.Status.model_fields:4 of
-msgid "This replaces `Model.__fields__` from Pydantic V1."
-msgstr ""
+#~ msgid "This replaces `Model.__fields__` from Pydantic V1."
+#~ msgstr ""
 
-#: 79002dd29b4445bfa83951ec48ad4276 iamai.adapter.gensokyo.event.File:1 of
-msgid "文件信息"
-msgstr ""
+#~ msgid "文件信息"
+#~ msgstr ""
 
-#: 3140f2af692f42fb8dfa5275ebe1362a 3e7b264d464740c79fde028ba10d2486
-#: 639e0a21367a407e85bc4476e35442ec 7e3d95c5bc2e4e138c2ffb093a8e2943
-#: 9a365a9d9c0e4b7a95154a044c31bb87 a3d5bff1d55544499ce37b2624ba93a1
-#: c877608165414b84a7e7d923814e8952 f18c8c1575f148fd8eb18f7a3ec6b50c
-#: f96f0a26507c412c92be53b57a0ee29f
-#: iamai.adapter.gensokyo.event.FriendAddNoticeEvent:1
-#: iamai.adapter.gensokyo.event.FriendRecallNoticeEvent:1
-#: iamai.adapter.gensokyo.event.GroupAdminNoticeEvent:1
-#: iamai.adapter.gensokyo.event.GroupBanNoticeEvent:1
-#: iamai.adapter.gensokyo.event.GroupDecreaseNoticeEvent:1
-#: iamai.adapter.gensokyo.event.GroupIncreaseNoticeEvent:1
-#: iamai.adapter.gensokyo.event.GroupRecallNoticeEvent:1
-#: iamai.adapter.gensokyo.event.GroupUploadNoticeEvent:1
-#: iamai.adapter.gensokyo.event.NotifyEvent:1 of
-msgid "Bases: :py:class:`~iamai.adapter.gensokyo.event.NoticeEvent`"
-msgstr ""
+#~ msgid "Bases: :py:class:`~iamai.adapter.gensokyo.event.NoticeEvent`"
+#~ msgstr ""
 
-#: 505fe85caf23470793c9ac8f51519929
-#: iamai.adapter.gensokyo.event.FriendAddNoticeEvent:1 of
-msgid "好友添加"
-msgstr ""
+#~ msgid "好友添加"
+#~ msgstr ""
 
-#: 48dcbe8c60ba45b382b0da4a4751e6d3
-#: iamai.adapter.gensokyo.event.FriendRecallNoticeEvent:1 of
-msgid "好友消息撤回"
-msgstr ""
+#~ msgid "好友消息撤回"
+#~ msgstr ""
 
-#: 7777e781f8224d7184ff12b64b8cc6f5 b6da5a8795f84378bf2d9ae868878ede
-#: iamai.adapter.gensokyo.event.FriendRequestEvent:1
-#: iamai.adapter.gensokyo.event.GroupRequestEvent:1 of
-msgid "Bases: :py:class:`~iamai.adapter.gensokyo.event.RequestEvent`"
-msgstr ""
+#~ msgid "Bases: :py:class:`~iamai.adapter.gensokyo.event.RequestEvent`"
+#~ msgstr ""
 
-#: 395cab20540545c3bce5a8ead76b6f30
-#: iamai.adapter.gensokyo.event.FriendRequestEvent:1 of
-msgid "加好友请求"
-msgstr ""
+#~ msgid "加好友请求"
+#~ msgstr ""
 
-#: 09018c2043f84a05bbd985726dbd8d18 2efa24e433f741e69137a209f27cf13e
-#: 49fa21e447ee4a4da43b5ffc9cfbe084
-#: iamai.adapter.gensokyo.event.FriendRequestEvent.approve:1
-#: iamai.adapter.gensokyo.event.GroupRequestEvent.approve:1
-#: iamai.adapter.gensokyo.event.RequestEvent.approve:1 of
-msgid "同意请求。"
-msgstr ""
+#~ msgid "同意请求。"
+#~ msgstr ""
 
-#: 0f1c89c483254c6eb00b5e85dd7bafc4 23f74b32bd9f469baeefa2f9269b2aa3
-#: 573304475d52465c966485934423a40b 5af0251316f048f294706faabb62595f
-#: 648af48617394142b11dc18c79c8534d fe975d599b2243c191968a7cd0a2109a
-#: iamai.adapter.gensokyo.event.FriendRequestEvent.approve
-#: iamai.adapter.gensokyo.event.GroupMessageEvent.reply
-#: iamai.adapter.gensokyo.event.GroupRequestEvent.refuse
-#: iamai.adapter.gensokyo.event.MessageEvent.is_same_sender
-#: iamai.adapter.gensokyo.event.MessageEvent.reply
-#: iamai.adapter.gensokyo.event.PrivateMessageEvent.reply of
-msgid "Parameters"
-msgstr ""
+#~ msgid "Parameters"
+#~ msgstr ""
 
-#: 7128b48c9b3d4045a128077df85b0e35
-#: iamai.adapter.gensokyo.event.FriendRequestEvent.approve:3 of
-msgid "好友备注。"
-msgstr ""
+#~ msgid "好友备注。"
+#~ msgstr ""
 
-#: 0fcc68ce987a44ebab21b061b60d7b78 287ac0c6772d4fd4814b4228d0df69ac
-#: 4bcac2216a6c48ff89f47d265f2e6c61 4eb6f0a3db0148e98f2001f0cecc7f43
-#: 65a3d8024b3940449d8e2010e798f1fa 8eb8b28ce46e46d6921dfec0c8ee3670
-#: 8fadf39eafdc4fa8802768ee4325467b abb5547288084a64b0d45af48ec7305c
-#: b08bea6753004c969f612ffe3e1192d9 b4f2db04d7f64705ad7120d60a4f22a6
-#: da418ec458a9496b89cc131f0781b3dd e32e09bdeaa046dabcf14fb314b4e5c7
-#: iamai.adapter.gensokyo.event.FriendRequestEvent.approve
-#: iamai.adapter.gensokyo.event.FriendRequestEvent.refuse
-#: iamai.adapter.gensokyo.event.GSKEvent.get_event_type
-#: iamai.adapter.gensokyo.event.GroupMessageEvent.reply
-#: iamai.adapter.gensokyo.event.GroupRequestEvent.approve
-#: iamai.adapter.gensokyo.event.GroupRequestEvent.refuse
-#: iamai.adapter.gensokyo.event.MessageEvent.get_plain_text
-#: iamai.adapter.gensokyo.event.MessageEvent.is_same_sender
-#: iamai.adapter.gensokyo.event.MessageEvent.reply
-#: iamai.adapter.gensokyo.event.PrivateMessageEvent.reply
-#: iamai.adapter.gensokyo.event.RequestEvent.approve
-#: iamai.adapter.gensokyo.event.RequestEvent.refuse of
-msgid "Returns"
-msgstr ""
+#~ msgid "Returns"
+#~ msgstr ""
 
-#: 167d97a72fdd414885897f5d6035e1d0 6604594c0c204feb976a565757832306
-#: 6ebe4713d2654fb6a151ae2a9a1b7e5f 7b244c26105e43e4872086f74470a950
-#: 92f8c9368b3349b4b8adabb81303b1fc af80b3caf98842a7be7ecf5811146879
-#: b1137bd40b354dd79ca68beaf7443a59 ed2aceb1b76d4077804d6750fafd097b
-#: f465ff2e823644409205c8ab3fa3b926
-#: iamai.adapter.gensokyo.event.FriendRequestEvent.approve:5
-#: iamai.adapter.gensokyo.event.FriendRequestEvent.refuse:3
-#: iamai.adapter.gensokyo.event.GroupMessageEvent.reply:5
-#: iamai.adapter.gensokyo.event.GroupRequestEvent.approve:3
-#: iamai.adapter.gensokyo.event.GroupRequestEvent.refuse:5
-#: iamai.adapter.gensokyo.event.MessageEvent.reply:5
-#: iamai.adapter.gensokyo.event.PrivateMessageEvent.reply:5
-#: iamai.adapter.gensokyo.event.RequestEvent.approve:3
-#: iamai.adapter.gensokyo.event.RequestEvent.refuse:3 of
-msgid "API 请求响应。"
-msgstr ""
+#~ msgid "API 请求响应。"
+#~ msgstr ""
 
-#: 888df87872d745988c7a77b48033b35a 9c584ea9e3e64a7a902c6b1fa742c10e
-#: a38f8066f39b47e79919070bf1578d46
-#: iamai.adapter.gensokyo.event.FriendRequestEvent.refuse:1
-#: iamai.adapter.gensokyo.event.GroupRequestEvent.refuse:1
-#: iamai.adapter.gensokyo.event.RequestEvent.refuse:1 of
-msgid "拒绝请求。"
-msgstr ""
+#~ msgid "拒绝请求。"
+#~ msgstr ""
 
-#: f9f938a103b648f381f651b51a422151 iamai.adapter.gensokyo.event.GSKEvent:1 of
-msgid "Bases: :py:class:`~iamai.event.Event[GSKAdapter]`"
-msgstr ""
+#~ msgid "Bases: :py:class:`~iamai.event.Event[GSKAdapter]`"
+#~ msgstr ""
 
-#: 62ca75ed9e4948429e710951aaea4ce5 iamai.adapter.gensokyo.event.GSKEvent:1 of
-msgid "GSK 事件基类"
-msgstr ""
+#~ msgid "GSK 事件基类"
+#~ msgstr ""
 
-#: a92fc54f7bac45ad88c91853075424a2
-#: iamai.adapter.gensokyo.event.GSKEvent.get_event_type:1 of
-msgid "获取事件类型。"
-msgstr ""
+#~ msgid "获取事件类型。"
+#~ msgstr ""
 
-#: 650955fd74084bb79c19195657f4ab54
-#: iamai.adapter.gensokyo.event.GSKEvent.get_event_type:3 of
-msgid "事件类型。"
-msgstr ""
+#~ msgid "事件类型。"
+#~ msgstr ""
 
-#: 925033377baf43edaf86e0b8668df606
-#: iamai.adapter.gensokyo.event.GSKEvent.to_me:1 of
-msgid "当前事件的 `user_id` 是否等于 `self_id`。"
-msgstr ""
+#~ msgid "当前事件的 `user_id` 是否等于 `self_id`。"
+#~ msgstr ""
 
-#: 6e3cb2372b9042f8b60b50d674a7b48a
-#: iamai.adapter.gensokyo.event.GroupAdminNoticeEvent:1 of
-msgid "群管理员变动"
-msgstr ""
+#~ msgid "群管理员变动"
+#~ msgstr ""
 
-#: f67a0f5dda1148498058832d685ac98f
-#: iamai.adapter.gensokyo.event.GroupBanNoticeEvent:1 of
-msgid "群禁言"
-msgstr ""
+#~ msgid "群禁言"
+#~ msgstr ""
 
-#: 74120ca506904c50bd4f7506a3d9c04e
-#: iamai.adapter.gensokyo.event.GroupDecreaseNoticeEvent:1 of
-msgid "群成员减少"
-msgstr ""
+#~ msgid "群成员减少"
+#~ msgstr ""
 
-#: 816bdc4dafbf48a2bd9a7b99fc5fed08 a1ed61a8a20740d7b453337282b4487e
-#: bdb3cba689d8488482d4168401053ce0
-#: iamai.adapter.gensokyo.event.GroupHonorNotifyEvent:1
-#: iamai.adapter.gensokyo.event.GroupLuckyKingNotifyEvent:1
-#: iamai.adapter.gensokyo.event.PokeNotifyEvent:1 of
-msgid "Bases: :py:class:`~iamai.adapter.gensokyo.event.NotifyEvent`"
-msgstr ""
+#~ msgid "Bases: :py:class:`~iamai.adapter.gensokyo.event.NotifyEvent`"
+#~ msgstr ""
 
-#: bbea937abf9b4643974820686f14ea9b
-#: iamai.adapter.gensokyo.event.GroupHonorNotifyEvent:1 of
-msgid "群成员荣誉变更"
-msgstr ""
+#~ msgid "群成员荣誉变更"
+#~ msgstr ""
 
-#: b4ec4a7e72f2472aa3c1756074217411
-#: iamai.adapter.gensokyo.event.GroupIncreaseNoticeEvent:1 of
-msgid "群成员增加"
-msgstr ""
+#~ msgid "群成员增加"
+#~ msgstr ""
 
-#: 157c5572098d41809331147049924b24
-#: iamai.adapter.gensokyo.event.GroupLuckyKingNotifyEvent:1 of
-msgid "群红包运气王"
-msgstr ""
+#~ msgid "群红包运气王"
+#~ msgstr ""
 
-#: 1152584c4b1642a294cd4b3eceb3c54a 71c5a90dc397451ea8959f6d7bab661f
-#: iamai.adapter.gensokyo.event.GroupMessageEvent:1
-#: iamai.adapter.gensokyo.event.PrivateMessageEvent:1 of
-msgid "Bases: :py:class:`~iamai.adapter.gensokyo.event.MessageEvent`"
-msgstr ""
+#~ msgid "Bases: :py:class:`~iamai.adapter.gensokyo.event.MessageEvent`"
+#~ msgstr ""
 
-#: 94f52f5674be492fb350b5ef775dfbf5
-#: iamai.adapter.gensokyo.event.GroupMessageEvent:1 of
-msgid "群消息"
-msgstr ""
+#~ msgid "群消息"
+#~ msgstr ""
 
-#: 25bc1887510d43c5958894af0dda413c 36f8a9ae19bf47a28611261debac420f
-#: 41cfa44d6ac443eb8d063390c97a796e
-#: iamai.adapter.gensokyo.event.GroupMessageEvent.reply:1
-#: iamai.adapter.gensokyo.event.MessageEvent.reply:1
-#: iamai.adapter.gensokyo.event.PrivateMessageEvent.reply:1 of
-msgid "回复消息。"
-msgstr ""
+#~ msgid "回复消息。"
+#~ msgstr ""
 
-#: 855758e362884c119c10a17b251fa041 bbf33c194129459998f8a9bbb6832c37
-#: c07850ee53b6478e9c0ef5e0a024c7d9
-#: iamai.adapter.gensokyo.event.GroupMessageEvent.reply:3
-#: iamai.adapter.gensokyo.event.MessageEvent.reply:3
-#: iamai.adapter.gensokyo.event.PrivateMessageEvent.reply:3 of
-msgid "回复消息的内容，同 `call_api()` 方法。"
-msgstr ""
+#~ msgid "回复消息的内容，同 `call_api()` 方法。"
+#~ msgstr ""
 
-#: 74b973503cb4439bb98cb7959d63d90e
-#: iamai.adapter.gensokyo.event.GroupRecallNoticeEvent:1 of
-msgid "群消息撤回"
-msgstr ""
+#~ msgid "群消息撤回"
+#~ msgstr ""
 
-#: d52bbf2cf9b14f9ca5841b4faa3cbec6
-#: iamai.adapter.gensokyo.event.GroupRequestEvent:1 of
-msgid "加群请求 / 邀请"
-msgstr ""
+#~ msgid "加群请求 / 邀请"
+#~ msgstr ""
 
-#: 1119451cccf840ce848f4e547376d39b
-#: iamai.adapter.gensokyo.event.GroupRequestEvent.refuse:3 of
-msgid "拒绝原因。"
-msgstr ""
+#~ msgid "拒绝原因。"
+#~ msgstr ""
 
-#: 129cffa2c2704893bb62a78c7ec010e9
-#: iamai.adapter.gensokyo.event.GroupUploadNoticeEvent:1 of
-msgid "群文件上传"
-msgstr ""
+#~ msgid "群文件上传"
+#~ msgstr ""
 
-#: f9a10ee7dc1e4cabae29d96d7fb6cd02 fe4089e96b2845d1b7d2db1e1bf06213
-#: iamai.adapter.gensokyo.event.HeartbeatMetaEvent:1
-#: iamai.adapter.gensokyo.event.LifecycleMetaEvent:1 of
-msgid "Bases: :py:class:`~iamai.adapter.gensokyo.event.MetaEvent`"
-msgstr ""
+#~ msgid "Bases: :py:class:`~iamai.adapter.gensokyo.event.MetaEvent`"
+#~ msgstr ""
 
-#: 6f7c9dc4b17942d993bd597a081cb22f
-#: iamai.adapter.gensokyo.event.HeartbeatMetaEvent:1 of
-msgid "心跳"
-msgstr ""
+#~ msgid "心跳"
+#~ msgstr ""
 
-#: 829c89910d644701aea2c9de537fadf0
-#: iamai.adapter.gensokyo.event.LifecycleMetaEvent:1 of
-msgid "生命周期"
-msgstr ""
+#~ msgid "生命周期"
+#~ msgstr ""
 
-#: c88eb41f1c7d4f83bfefdf21f8957a3a iamai.adapter.gensokyo.event.MessageEvent:1
-#: of
-msgid ""
-"Bases: :py:class:`~iamai.adapter.gensokyo.event.GSKEvent`, "
-":py:class:`~iamai.event.MessageEvent[GSKAdapter]`"
-msgstr ""
+#~ msgid ""
+#~ "Bases: :py:class:`~iamai.adapter.gensokyo.event.GSKEvent`, "
+#~ ":py:class:`~iamai.event.MessageEvent[GSKAdapter]`"
+#~ msgstr ""
 
-#: 311dace32b6f413096a6a5b41eedc022 iamai.adapter.gensokyo.event.MessageEvent:1
-#: of
-msgid "消息事件"
-msgstr ""
+#~ msgid "消息事件"
+#~ msgstr ""
 
-#: 09c4f3d9ba7d43d399e4ac455e36d275
-#: iamai.adapter.gensokyo.event.MessageEvent.get_plain_text:1 of
-msgid "获取消息的纯文本内容。"
-msgstr ""
+#~ msgid "获取消息的纯文本内容。"
+#~ msgstr ""
 
-#: 2d16eba867a5475498be77cc47c24360
-#: iamai.adapter.gensokyo.event.MessageEvent.get_plain_text:3 of
-msgid "消息的纯文本内容。"
-msgstr ""
+#~ msgid "消息的纯文本内容。"
+#~ msgstr ""
 
-#: 368fe2781dc04494ad274df2a309dc4b
-#: iamai.adapter.gensokyo.event.MessageEvent.is_same_sender:1 of
-msgid "判断自身和另一个事件是否是同一个发送者。"
-msgstr ""
+#~ msgid "判断自身和另一个事件是否是同一个发送者。"
+#~ msgstr ""
 
-#: 1dafca0c81d6405482eeb68646514559
-#: iamai.adapter.gensokyo.event.MessageEvent.is_same_sender:3 of
-msgid "另一个事件。"
-msgstr ""
+#~ msgid "另一个事件。"
+#~ msgstr ""
 
-#: b7874b3f5b9a4667a0c353b84de5fd29
-#: iamai.adapter.gensokyo.event.MessageEvent.is_same_sender:5 of
-msgid "是否是同一个发送者。"
-msgstr ""
+#~ msgid "是否是同一个发送者。"
+#~ msgstr ""
 
-#: 4eed511c594d4bb49c79589e98c3809e 57d82d5e55824f19ad69185d0e0481c3
-#: ab0cc8d928df4c928eb1f034d5bb3785 iamai.adapter.gensokyo.event.MetaEvent:1
-#: iamai.adapter.gensokyo.event.NoticeEvent:1
-#: iamai.adapter.gensokyo.event.RequestEvent:1 of
-msgid "Bases: :py:class:`~iamai.adapter.gensokyo.event.GSKEvent`"
-msgstr ""
+#~ msgid "Bases: :py:class:`~iamai.adapter.gensokyo.event.GSKEvent`"
+#~ msgstr ""
 
-#: 5f1fd10084aa44788e0e0149eca44a9e iamai.adapter.gensokyo.event.MetaEvent:1 of
-msgid "元事件"
-msgstr ""
+#~ msgid "元事件"
+#~ msgstr ""
 
-#: 342e2e52a4c2439ea04ce2131dc110bb iamai.adapter.gensokyo.event.NoticeEvent:1
-#: of
-msgid "通知事件"
-msgstr ""
+#~ msgid "通知事件"
+#~ msgstr ""
 
-#: 8728503ac4094ae4aba918382e816a7c iamai.adapter.gensokyo.event.NotifyEvent:1
-#: of
-msgid "提醒事件"
-msgstr ""
+#~ msgid "提醒事件"
+#~ msgstr ""
 
-#: fc1530263779440d8f77b45baeb6af1b
-#: iamai.adapter.gensokyo.event.PokeNotifyEvent:1 of
-msgid "戳一戳"
-msgstr ""
+#~ msgid "戳一戳"
+#~ msgstr ""
 
-#: 08d40f7e0577437daa5fa0d38b5dba74
-#: iamai.adapter.gensokyo.event.PrivateMessageEvent:1 of
-msgid "私聊消息"
-msgstr ""
+#~ msgid "私聊消息"
+#~ msgstr ""
 
-#: 5fab18e8d8f84c118ce2dec639d077f7 iamai.adapter.gensokyo.event.RequestEvent:1
-#: of
-msgid "请求事件"
-msgstr ""
+#~ msgid "请求事件"
+#~ msgstr ""
 
-#: 089f451b3faf429d90ec567f862f097a iamai.adapter.gensokyo.event.Sender:1 of
-msgid "发送人信息"
-msgstr ""
+#~ msgid "发送人信息"
+#~ msgstr ""
 
-#: 544b0a849cf04bb78f37b698ca08d42c iamai.adapter.gensokyo.event.Status:1 of
-msgid "状态信息"
-msgstr ""
+#~ msgid "状态信息"
+#~ msgstr ""
 

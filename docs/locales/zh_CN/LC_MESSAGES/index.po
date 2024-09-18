@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: iamai \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-27 19:20+0800\n"
+"POT-Creation-Date: 2024-09-18 11:39+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -17,41 +17,109 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.16.0\n"
 
-#: ../../source/index.md:17
+#: ../../source/index.rst:17
 msgid "Basic"
 msgstr ""
 
-#: ../../source/index.md:26
+#: ../../source/index.rst:25
 msgid "Advanced"
 msgstr ""
 
-#: ../../source/index.md:36
+#: ../../source/index.rst:34
 msgid "Adapters"
 msgstr ""
 
-#: ../../source/index.md:45
+#: ../../source/index.rst:42
 msgid "API Documentation"
 msgstr ""
 
-#: ../../source/index.md:45
+#: ../../source/index.rst:42
+msgid "Contributing"
+msgstr ""
+
+#: ../../source/index.rst:42
 msgid "Changelog"
 msgstr ""
 
-#: ../../source/index.md:45
-msgid "Thanks and Credits"
+#: ../../source/index.rst:42
+msgid "COPYING"
 msgstr ""
 
-#: ../../source/index.md:45
+#: ../../source/index.rst:42
 msgid "Development"
 msgstr ""
 
-#: ../../source/index.md:1 ab64723c324647738023326a880f61ac
-msgid "Iamai"
+#: ../../source/index.rst:51
+msgid "Assets Library"
 msgstr ""
 
-#: ../../source/index.md:7 bdd2687e9ccd4f2795bad34c329a292c
+#: ../../source/index.rst:51
+msgid "Development Blog"
+msgstr ""
+
+#: ../../source/index.rst:51
+msgid "Community"
+msgstr ""
+
+#: ../../source/index.rst:58
+msgid "Credits"
+msgstr ""
+
+#: ../../source/index.rst:58
+msgid "Thanks and credits"
+msgstr ""
+
+#: ../../source/index.rst:2 01a1c50ebeb5470388113e1baa506c8d
+msgid ""
+"Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform "
+"Robotics"
+msgstr ""
+
+#: ../../../README.rst:2 ee3ce58eabc9452c87adfc9282bd911d
+msgid ""
+"Welcome to iamai, a powerful and comprehensive AI toolkit that seamlessly"
+" integrates multimodal machine learning capabilities with advanced tools "
+"for cross-platform robot development!"
+msgstr ""
+
+#: ../../../README.rst:4 d61ddd703dfc469280f481a0ad615b19
+msgid ""
+"🌍 This library is designed to provide developers with a unified solution "
+"for creating intelligent systems that span multiple modalities and "
+"operate across diverse platforms."
+msgstr ""
+
+#: ../../../README.rst:6 43e37bb2390e44058b0c10a2bc4d4ba1
+msgid "🦀 Rust based tool, fast and simple."
+msgstr ""
+
+#: ../../../README.rst:7 fa9215e7538d47a2bd4f5155eab62fe8
+msgid "🎪 Interactive docs & demos"
+msgstr ""
+
+#: ../../../README.rst:8 93c3402891574072829a6a586cd7b73e
+msgid "🕶 Seamless migration: Works for both Rasa and GPT and more..."
+msgstr ""
+
+#: ../../../README.rst:9 aa965eacd7a94710ae1640d66e94ae0a
+msgid "⚡ Fully tree shakeable: Only take what you want, bundle size"
+msgstr ""
+
+#: ../../../README.rst:10 9fca6ac95ccc423186ef3c9a0f31f323
+msgid "🔩 Flexible: Configurable event filters and targets"
+msgstr ""
+
+#: ../../../README.rst:11 fd5d439add1e4536933c0684821ddd6e
+msgid "🔌 Optional Add-ons: Apscheduler, etc."
+msgstr ""
+
+#: ../../../README.rst:12 b83f8f309fd74b439c459fcd18679802
+msgid "👍 Cross-platform: dingtalk etc."
+msgstr ""
+
+#: ../../source/index.rst:8 a978bf0048b3494eb869037457844aa4
 msgid ""
 "Iamai is not just a library; it's a comprehensive AI toolkit that brings "
 "together multimodal machine learning and cross-platform robotics. Whether"
@@ -60,11 +128,18 @@ msgid ""
 "development experience. Explore the possibilities with iamai today!"
 msgstr "Iamai 不仅是一个库；更是一个能够构建跨平台机器人的多模态人工智能工具包。"
 
-#: ../../source/index.md:9 f1b1dfbe861a41b881d16c2d37c256eb
+#: ../../source/index.rst:10 afe4d8e5f4054238bdd2ced05afe8144
+#, fuzzy
 msgid ""
-"This documentation is based on Alicebot "
-"[Docs](https://docs.alicebot.dev), but with some modifications and "
+"This documentation is based on Alicebot `Docs "
+"<https://docs.alicebot.dev>`_, but with some modifications and "
 "improvements. It still has many shortcomings and is currently under "
 "reconstruction."
 msgstr "此文档基于 Alicebot [文档](https://docs.alicebot.dev)，但是有一些修正和改进。并且仍然处于维护状态。"
+
+#~ msgid "Thanks and Credits"
+#~ msgstr ""
+
+#~ msgid "Iamai"
+#~ msgstr ""
 

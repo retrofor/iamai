@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: iamai \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"POT-Creation-Date: 2024-09-18 11:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -17,154 +17,96 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.16.0\n"
 
-#: ../../source/pages/api/iamai.config.rst:2 e2d892da2d004e1597896c9b0b179087
+#: ../../source/pages/api/iamai.config.rst:2 539c2e904b624cf98726ca674cb39ab8
 msgid "iamai.config module"
 msgstr ""
 
-#: 5cb40bb8d3c14d7da83f55c137653ad2 ba298896f42440df99db68b3be7e60fc
-#: iamai.config:1 iamai.config.MainConfig:1 of
-msgid "iamai 配置。"
-msgstr ""
+#~ msgid "iamai 配置。"
+#~ msgstr ""
 
-#: 2867f08146694d2db6a72b92186b45ff iamai.config:3 of
-msgid "iamai 使用 [pydantic](https://pydantic-docs.helpmanual.io/) 来读取配置。"
-msgstr ""
+#~ msgid "iamai 使用 [pydantic](https://pydantic-docs.helpmanual.io/) 来读取配置。"
+#~ msgstr ""
 
-#: 3147fd0410124d5bb92f99a3a28a6e41 677fbc9fcff24cbeafb93c8bb2a7e2d9
-#: 6cf9a8e0d64f4419b05cd7ab36bfadd8 bbaa023c57be46cb80647b51a1ba55b9
-#: c5ea8fb5694c4f44a43d975bd535ca6b iamai.config.AdapterConfig:1
-#: iamai.config.BotConfig:1 iamai.config.LogConfig:1 iamai.config.MainConfig:1
-#: iamai.config.PluginConfig:1 of
-msgid "Bases: :py:class:`~iamai.config.ConfigModel`"
-msgstr ""
+#~ msgid "Bases: :py:class:`~iamai.config.ConfigModel`"
+#~ msgstr ""
 
-#: ed7f96e8c356438a870bec00834d81de iamai.config.AdapterConfig:1 of
-msgid "适配器配置。"
-msgstr ""
+#~ msgid "适配器配置。"
+#~ msgstr ""
 
-#: ../../docstring 14bf2052d6c24bed99cc7ca6cdae9570
-#: 6937ee1e15454879a93d44d4ee66e09e 780e76f80b5e4993b33403a37157bdb9
-#: 9d3f8e210dbd4aa095a2d9121aa4983f b16bebe717f140a498988c3860629a47
-#: e1b0d53e53474bb7bf3cf58bdef49860 iamai.config.AdapterConfig.model_config:1
-#: iamai.config.BotConfig.model_config:1
-#: iamai.config.ConfigModel.model_config:1
-#: iamai.config.LogConfig.model_config:1 iamai.config.MainConfig.model_config:1
-#: iamai.config.PluginConfig.model_config:1 of
-msgid ""
-"Configuration for the model, should be a dictionary conforming to "
-"[`ConfigDict`][pydantic.config.ConfigDict]."
-msgstr ""
+#~ msgid ""
+#~ "Configuration for the model, should be"
+#~ " a dictionary conforming to "
+#~ "[`ConfigDict`][pydantic.config.ConfigDict]."
+#~ msgstr ""
 
-#: ../../docstring 01ce1fbadd2c4b72b9f33adbdf70fd70
-#: 2393c9c2f1ff4ec8910057f4249ea1d7 40ff8981b4144417aed261c64b394bf2
-#: 570bea9101674cc2baf3ee83e850e335 824aec1c0e1c430e96f4ce87970d8c4a
-#: f8aa946400f6419c9a94d0d714eee1cd iamai.config.AdapterConfig.model_fields:1
-#: iamai.config.BotConfig.model_fields:1
-#: iamai.config.ConfigModel.model_fields:1
-#: iamai.config.LogConfig.model_fields:1 iamai.config.MainConfig.model_fields:1
-#: iamai.config.PluginConfig.model_fields:1 of
-msgid ""
-"Metadata about the fields defined on the model, mapping of field names to"
-" [`FieldInfo`][pydantic.fields.FieldInfo]."
-msgstr ""
+#~ msgid ""
+#~ "Metadata about the fields defined on "
+#~ "the model, mapping of field names "
+#~ "to [`FieldInfo`][pydantic.fields.FieldInfo]."
+#~ msgstr ""
 
-#: ../../docstring 2d8dc28f11e94fa6bda4963ade997125
-#: 2f4657d13aef4561bc10b839374a66f7 c6f45d530fad443dbf9e29dc9a7fce2d
-#: c9b39ab8a77c4e9e9ba0e8313eef83e7 ed4973557ee2436b903d7a2c822eed30
-#: fed51f7028ee41f594f6c334170956c4 iamai.config.AdapterConfig.model_fields:4
-#: iamai.config.BotConfig.model_fields:4
-#: iamai.config.ConfigModel.model_fields:4
-#: iamai.config.LogConfig.model_fields:4 iamai.config.MainConfig.model_fields:4
-#: iamai.config.PluginConfig.model_fields:4 of
-msgid "This replaces `Model.__fields__` from Pydantic V1."
-msgstr ""
+#~ msgid "This replaces `Model.__fields__` from Pydantic V1."
+#~ msgstr ""
 
-#: d4559cd2b9db42feb9d7cdae12bc7f29 iamai.config.BotConfig:1 of
-msgid "Bot 配置。"
-msgstr ""
+#~ msgid "Bot 配置。"
+#~ msgstr ""
 
-#: a63646d360c44ee1a344923a1e519b4c iamai.config.BotConfig:5 of
-msgid "将被加载的插件列表，将被 `Bot` 类的 `load_plugins()` 方法加载。"
-msgstr ""
+#~ msgid "将被加载的插件列表，将被 `Bot` 类的 `load_plugins()` 方法加载。"
+#~ msgstr ""
 
-#: 0fd5a0220bda4661ae2e7f5657ecf329 2b7399df0af24184a7cb02e50a452f3c
-#: 3ec25508808d4121a3c7d940916a663d 66cccc3ee66a4c0589561737e53c400a
-#: 6b514078529e4bb79e035d3ec2a2be50 6ecde95739234de0ba9f4d3e4d8eaa0c
-#: 976b7581623747d0b9e37837415090dc d2a73923e1f04258bcbf3fcf99591960
-#: iamai.config.BotConfig iamai.config.ConfigModel iamai.config.LogConfig
-#: iamai.config.MainConfig of
-msgid "type"
-msgstr ""
+#~ msgid "type"
+#~ msgstr ""
 
-#: 372bb3b8bdcf472ab2cc82208769a87f 478b7443aa7545809d997ab354dba626
-#: iamai.config.BotConfig:7 iamai.config.BotConfig:19 of
-msgid "Set[str]"
-msgstr ""
+#~ msgid "Set[str]"
+#~ msgstr ""
 
-#: 7ca8e1656c7a4feea52b8f82e6de41d5 iamai.config.BotConfig:11 of
-msgid "将被加载的插件目录列表，将被 `Bot` 类的 `load_plugins_from_dirs()` 方法加载。"
-msgstr ""
+#~ msgid "将被加载的插件目录列表，将被 `Bot` 类的 `load_plugins_from_dirs()` 方法加载。"
+#~ msgstr ""
 
-#: 5a992c2cb2cf42a092733814a8c2e30c iamai.config.BotConfig:13 of
-msgid "Set[pathlib.Path]"
-msgstr ""
+#~ msgid "Set[pathlib.Path]"
+#~ msgstr ""
 
-#: f5279ae5ca0041b99e6acb4de225bab5 iamai.config.BotConfig:17 of
-msgid "将被加载的适配器列表，将依次被 `Bot` 类的 `load_adapters()` 方法加载。"
-msgstr ""
+#~ msgid "将被加载的适配器列表，将依次被 `Bot` 类的 `load_adapters()` 方法加载。"
+#~ msgstr ""
 
-#: dc332304afe94eafb6ec5cb8b8053245 dd7c5063ec5c4d23aa5951d1a3a175d9
-#: iamai.config.BotConfig:23 iamai.config.LogConfig:1 of
-msgid "iamai 日志相关设置。"
-msgstr ""
+#~ msgid "iamai 日志相关设置。"
+#~ msgstr ""
 
-#: 14f54550a307421eb8219582c6385dbf iamai.config.BotConfig:25 of
-msgid "iamai.config.LogConfig"
-msgstr ""
+#~ msgid "iamai.config.LogConfig"
+#~ msgstr ""
 
-#: 231ffe62be6940ec91abf3cb1f63f614 iamai.config.ConfigModel:1 of
-msgid "Bases: :py:class:`~pydantic.main.BaseModel`"
-msgstr ""
+#~ msgid "Bases: :py:class:`~pydantic.main.BaseModel`"
+#~ msgstr ""
 
-#: 0b2f460c0f34465bb0e6712529f79900 iamai.config.ConfigModel:1 of
-msgid "iamai 配置模型。"
-msgstr ""
+#~ msgid "iamai 配置模型。"
+#~ msgstr ""
 
-#: e9f323297c5a4f7ca3e456fab16e6a71 iamai.config.ConfigModel:5 of
-msgid "配置名称。"
-msgstr ""
+#~ msgid "配置名称。"
+#~ msgstr ""
 
-#: bb1bac6ad4fc48058627049670b73a89 iamai.config.ConfigModel:7 of
-msgid "str"
-msgstr ""
+#~ msgid "str"
+#~ msgstr ""
 
-#: 86d54996ed664719975825bb1ab8192d iamai.config.LogConfig:5 of
-msgid "日志级别。"
-msgstr ""
+#~ msgid "日志级别。"
+#~ msgstr ""
 
-#: edfb0619a93541a1b2cbb19df06a4eeb iamai.config.LogConfig:7 of
-msgid "str | int"
-msgstr ""
+#~ msgid "str | int"
+#~ msgstr ""
 
-#: 88c814813f3f425685c8b18cd076bc5a iamai.config.LogConfig:11 of
-msgid "详细的异常记录，设置为 `True` 时会在日志中添加异常的 Traceback。"
-msgstr ""
+#~ msgid "详细的异常记录，设置为 `True` 时会在日志中添加异常的 Traceback。"
+#~ msgstr ""
 
-#: 1bc72f3c736c4d7589106cd70f4dc25a iamai.config.LogConfig:13 of
-msgid "bool"
-msgstr ""
+#~ msgid "bool"
+#~ msgstr ""
 
-#: 60904584449f48b6ac72a9adb0c4c5be iamai.config.MainConfig:5 of
-msgid "iamai 的主要配置。"
-msgstr ""
+#~ msgid "iamai 的主要配置。"
+#~ msgstr ""
 
-#: 175158e839a4493fbf9b04d12669bc05 iamai.config.MainConfig:7 of
-msgid "iamai.config.BotConfig"
-msgstr ""
+#~ msgid "iamai.config.BotConfig"
+#~ msgstr ""
 
-#: 4d0bca00d5d74e0197302c98087ddbea iamai.config.PluginConfig:1 of
-msgid "插件配置。"
-msgstr ""
+#~ msgid "插件配置。"
+#~ msgstr ""
 

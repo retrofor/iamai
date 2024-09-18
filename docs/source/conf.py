@@ -12,20 +12,20 @@ else:
     import tomli as tomllib
 
 DATA = None
-PYPROJECT = os.path.join("..", "..", "pyproject.toml")
+PYPROJECT = os.path.join("..", "..", "cargo.toml")
 with open(PYPROJECT, "r", encoding="utf8") as f:
     pyproject = f.read()
     DATA = tomllib.loads(pyproject)
-# print(DATA)
-PROJECT_VERSION = "latest" # DATA["project"]["version"]
-PROJECT_NAME = "IamAI" # DATA["project"]["name"]
+print(DATA)
+PROJECT_VERSION = DATA["package"]["version"]
+# PROJECT_NAME = DATA["project"]["name"]
 # AUTHOR_TABLE = DATA["project"]["authors"]
 # AUTHORS = ",".join([f"{aut['name']}<{aut['email']}>" for aut in AUTHOR_TABLE])
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = PROJECT_NAME  # "IamAI"
+project = "Comprehensive AI Toolkit" # PROJECT_NAME
 release = PROJECT_VERSION  # "latest"
 copyright = "2023-PRESENT, Retrofor Wut?"
 author = "HsiangNianian"  # AUTHORS

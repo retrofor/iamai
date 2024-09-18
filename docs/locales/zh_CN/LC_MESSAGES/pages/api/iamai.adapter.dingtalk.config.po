@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: iamai \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"POT-Creation-Date: 2024-09-18 11:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -17,80 +17,58 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../source/pages/api/iamai.adapter.dingtalk.config.rst:2
-#: 590088f5546a45c39ec75b2e319f4335
+#: 00ae455814ef4121a29b888ac76da8ff
 msgid "iamai.adapter.dingtalk.config module"
 msgstr ""
 
-#: 885ae3fdb55c4696ae7033abb27232cb iamai.adapter.dingtalk.config:1 of
-msgid "DingTalk 适配器配置。"
-msgstr ""
+#~ msgid "DingTalk 适配器配置。"
+#~ msgstr ""
 
-#: f4bb9aab657b49caa52983eadfee0de0 iamai.adapter.dingtalk.config.Config:1 of
-msgid "Bases: :py:class:`~iamai.config.ConfigModel`"
-msgstr ""
+#~ msgid "Bases: :py:class:`~iamai.config.ConfigModel`"
+#~ msgstr ""
 
-#: 5d56f556322244948c48d5566186ec79 iamai.adapter.dingtalk.config.Config:1 of
-msgid "DingTalk 配置类，将在适配器被加载时被混入到机器人主配置中。"
-msgstr ""
+#~ msgid "DingTalk 配置类，将在适配器被加载时被混入到机器人主配置中。"
+#~ msgstr ""
 
-#: c4071b9968284128bc24856cda5081bc iamai.adapter.dingtalk.config.Config:5 of
-msgid "本机域名。"
-msgstr ""
+#~ msgid "本机域名。"
+#~ msgstr ""
 
-#: 04e4b26cc10845ad987c2ef29a57518c 511a00b0ca324e53afad6e34f005030f
-#: 635b17647b1d41a8949fc20bbec42bbd 9d153ac129ba46d4a59ac7a499aaee30
-#: af7275ba80714585bcb2d08fbcc2babe iamai.adapter.dingtalk.config.Config of
-msgid "type"
-msgstr ""
+#~ msgid "type"
+#~ msgstr ""
 
-#: 135fc6651a6645a0814dda2612aec48d d77e8004050e486888850f79a98f8b70
-#: f2057bfa46384987a7e8df9ccbb3672d iamai.adapter.dingtalk.config.Config:7
-#: iamai.adapter.dingtalk.config.Config:19
-#: iamai.adapter.dingtalk.config.Config:31 of
-msgid "str"
-msgstr ""
+#~ msgid "str"
+#~ msgstr ""
 
-#: 022572f3b6164c80b5180b41682de1ce iamai.adapter.dingtalk.config.Config:11 of
-msgid "监听的端口。"
-msgstr ""
+#~ msgid "监听的端口。"
+#~ msgstr ""
 
-#: 3d70c6eef5554532a923bd7158600c43 410225dc792a425e9b781639ae51a46b
-#: iamai.adapter.dingtalk.config.Config:13
-#: iamai.adapter.dingtalk.config.Config:25 of
-msgid "int"
-msgstr ""
+#~ msgid "int"
+#~ msgstr ""
 
-#: 758b83c267a94dc4b295bb237c6499b6 iamai.adapter.dingtalk.config.Config:17 of
-msgid "路径。"
-msgstr ""
+#~ msgid "路径。"
+#~ msgstr ""
 
-#: 5874f11e97de4b3a994ebff5db13e7b3 iamai.adapter.dingtalk.config.Config:23 of
-msgid "进行 API 调用时等待返回响应的超时时间。"
-msgstr ""
+#~ msgid "进行 API 调用时等待返回响应的超时时间。"
+#~ msgstr ""
 
-#: 5221c2049dd54959bd8f30cede1c086f iamai.adapter.dingtalk.config.Config:29 of
-msgid "机器人的 `appSecret`。"
-msgstr ""
+#~ msgid "机器人的 `appSecret`。"
+#~ msgstr ""
 
-#: ../../docstring 0a0ebbc6d5594e49901459f6e526df94
-#: iamai.adapter.dingtalk.config.Config.model_config:1 of
-msgid ""
-"Configuration for the model, should be a dictionary conforming to "
-"[`ConfigDict`][pydantic.config.ConfigDict]."
-msgstr ""
+#~ msgid ""
+#~ "Configuration for the model, should be"
+#~ " a dictionary conforming to "
+#~ "[`ConfigDict`][pydantic.config.ConfigDict]."
+#~ msgstr ""
 
-#: ../../docstring 092886f57b01450d8269e765dc611ee2
-#: iamai.adapter.dingtalk.config.Config.model_fields:1 of
-msgid ""
-"Metadata about the fields defined on the model, mapping of field names to"
-" [`FieldInfo`][pydantic.fields.FieldInfo]."
-msgstr ""
+#~ msgid ""
+#~ "Metadata about the fields defined on "
+#~ "the model, mapping of field names "
+#~ "to [`FieldInfo`][pydantic.fields.FieldInfo]."
+#~ msgstr ""
 
-#: ../../docstring 982666db79ad4fb0a0006032c0d63d4c
-#: iamai.adapter.dingtalk.config.Config.model_fields:4 of
-msgid "This replaces `Model.__fields__` from Pydantic V1."
-msgstr ""
+#~ msgid "This replaces `Model.__fields__` from Pydantic V1."
+#~ msgstr ""
 

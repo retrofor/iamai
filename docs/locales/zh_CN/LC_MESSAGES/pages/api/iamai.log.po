@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: iamai \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 09:11+0800\n"
+"POT-Creation-Date: 2024-09-18 11:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_CN\n"
@@ -17,19 +17,18 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.16.0\n"
 
-#: ../../source/pages/api/iamai.log.rst:2 941efd7e10fb43c292e97cfaf630791e
+#: ../../source/pages/api/iamai.log.rst:2 9a37d331a6594c88ad47845441a07acc
 msgid "iamai.log module"
 msgstr ""
 
-#: e2b51a2dd12c4ebc9ee754797c18f72e iamai.log:1 of
-msgid "iamai 日志。"
-msgstr ""
+#~ msgid "iamai 日志。"
+#~ msgstr ""
 
-#: b021010fa9354b5d89a01c41f2073b66 iamai.log:3 of
-msgid ""
-"iamai 使用 [loguru](https://github.com/Delgan/loguru) 来记录日志信息。 自定义 logger "
-"请参考 [loguru](https://github.com/Delgan/loguru) 文档。"
-msgstr ""
+#~ msgid ""
+#~ "iamai 使用 [loguru](https://github.com/Delgan/loguru) "
+#~ "来记录日志信息。 自定义 logger 请参考 "
+#~ "[loguru](https://github.com/Delgan/loguru) 文档。"
+#~ msgstr ""
 

@@ -26,9 +26,10 @@ help:
 # build translation files ``.pot``
 trans build:
 	@pdm run $(SPHINXBUILD) -b gettext . ./$(BUILDDIR)/gettext $(O)
-
+	# make -e SPHINXOPTS="-D language='de'" html
 # update translation command
 trans update:
+	@$(SPHINXBUILD) -M gettext "$(SOURCEDIR)" "$(BUILDDIR)" $(O)
 	@pdm run $(SPHINXINTL) update -p ./$(BUILDDIR)/gettext -l $(lang) $(O)
 
 # build api docs

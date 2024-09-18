@@ -49,6 +49,13 @@ This documentation is based on Alicebot `Docs <https://docs.alicebot.dev>`_, but
    COPYING <COPYING.rst>
 
 .. toctree::
+   :caption: Community
+   :hidden:
+
+   Assets Library <pages/community/assets-library.rst>
+   Development Blog <pages/blog/index.rst>
+
+.. toctree::
    :caption: Thanks and credits
    :hidden:
 
