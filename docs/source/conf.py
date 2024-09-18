@@ -61,6 +61,7 @@ source_suffix = {
 locale_dirs = ["../locales/"]  # path is example but recommended.
 gettext_compact = False  # optional.
 gettext_uuid = True  # optional.
+translation_progress_classes = True
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
