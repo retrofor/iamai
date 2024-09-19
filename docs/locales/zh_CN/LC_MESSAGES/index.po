@@ -21,103 +21,103 @@ msgstr ""
 
 #: ../../source/index.rst:17
 msgid "Basic"
-msgstr ""
+msgstr "基础"
 
 #: ../../source/index.rst:25
 msgid "Advanced"
-msgstr ""
+msgstr "进阶"
 
 #: ../../source/index.rst:34
 msgid "Adapters"
-msgstr ""
+msgstr "适配器"
 
 #: ../../source/index.rst:42
 msgid "API Documentation"
-msgstr ""
+msgstr "API 文档"
 
 #: ../../source/index.rst:42
 msgid "Contributing"
-msgstr ""
+msgstr "贡献手册"
 
 #: ../../source/index.rst:42
 msgid "Changelog"
-msgstr ""
+msgstr "更新日志"
 
 #: ../../source/index.rst:42
 msgid "COPYING"
-msgstr ""
+msgstr "许可证"
 
 #: ../../source/index.rst:42
 msgid "Development"
-msgstr ""
+msgstr "开发指引"
 
 #: ../../source/index.rst:51
 msgid "Assets Library"
-msgstr ""
+msgstr "资产库"
 
 #: ../../source/index.rst:51
 msgid "Development Blog"
-msgstr ""
+msgstr "开发博客"
 
 #: ../../source/index.rst:51
 msgid "Community"
-msgstr ""
+msgstr "社区"
 
 #: ../../source/index.rst:58
 msgid "Credits"
-msgstr ""
+msgstr "致谢"
 
 #: ../../source/index.rst:58
 msgid "Thanks and credits"
-msgstr ""
+msgstr "致谢"
 
 #: ../../source/index.rst:2 01a1c50ebeb5470388113e1baa506c8d
 msgid ""
 "Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform "
 "Robotics"
-msgstr ""
+msgstr "多模态学习与跨平台机器人开发的 AI 工具包"
 
 #: ../../../README.rst:2 ee3ce58eabc9452c87adfc9282bd911d
 msgid ""
 "Welcome to iamai, a powerful and comprehensive AI toolkit that seamlessly"
 " integrates multimodal machine learning capabilities with advanced tools "
 "for cross-platform robot development!"
-msgstr ""
+msgstr "欢迎使用 iamai，这是一个强大的、全面的 AI 工具包，能够无缝集成多模态机器学习能力与跨平台机器人开发工具！"
 
 #: ../../../README.rst:4 d61ddd703dfc469280f481a0ad615b19
 msgid ""
 "🌍 This library is designed to provide developers with a unified solution "
 "for creating intelligent systems that span multiple modalities and "
 "operate across diverse platforms."
-msgstr ""
+msgstr "🌍 该库旨在为开发者提供一个统一的解决方案，用于创建跨多个模态的智能系统，并在不同平台上运行。"
 
 #: ../../../README.rst:6 43e37bb2390e44058b0c10a2bc4d4ba1
 msgid "🦀 Rust based tool, fast and simple."
-msgstr ""
+msgstr "🦀 基于 Rust 的工具，快速且简单。"
 
 #: ../../../README.rst:7 fa9215e7538d47a2bd4f5155eab62fe8
 msgid "🎪 Interactive docs & demos"
-msgstr ""
+msgstr "🎪 交互式文档和演示"
 
 #: ../../../README.rst:8 93c3402891574072829a6a586cd7b73e
 msgid "🕶 Seamless migration: Works for both Rasa and GPT and more..."
-msgstr ""
+msgstr "🕶 无缝迁移：适用于 Rasa 和 GPT 等..."
 
 #: ../../../README.rst:9 aa965eacd7a94710ae1640d66e94ae0a
 msgid "⚡ Fully tree shakeable: Only take what you want, bundle size"
-msgstr ""
+msgstr "⚡ 完全模块化：只取所需，打包大小"
 
 #: ../../../README.rst:10 9fca6ac95ccc423186ef3c9a0f31f323
 msgid "🔩 Flexible: Configurable event filters and targets"
-msgstr ""
+msgstr "🔩 灵活：可配置的事件过滤器和目标"
 
 #: ../../../README.rst:11 fd5d439add1e4536933c0684821ddd6e
 msgid "🔌 Optional Add-ons: Apscheduler, etc."
-msgstr ""
+msgstr "🔌 可选插件：Apscheduler 等"
 
 #: ../../../README.rst:12 b83f8f309fd74b439c459fcd18679802
-msgid "👍 Cross-platform: dingtalk etc."
-msgstr ""
+msgid "👍 Cross-platform: kook, onebot11, dingtalk etc."
+msgstr "👍 跨平台：kook, onebot11, 钉钉等"
 
 #: ../../source/index.rst:8 a978bf0048b3494eb869037457844aa4
 msgid ""
@@ -126,7 +126,10 @@ msgid ""
 " you're developing intelligent systems or constructing robots for various"
 " platforms, iamai is your go-to solution for a unified and powerful "
 "development experience. Explore the possibilities with iamai today!"
-msgstr "Iamai 不仅是一个库；更是一个能够构建跨平台机器人的多模态人工智能工具包。"
+msgstr ""
+"Iamai 不仅是一个库；更是一个能够构建跨平台机器人的多模态人工智能工具包。"
+"无论您是在开发智能系统还是构建各种平台的机器人，iamai 都是一个统一且强大的开发解决方案。"
+"立即探索 iamai 的无限可能！"
 
 #: ../../source/index.rst:10 afe4d8e5f4054238bdd2ced05afe8144
 #, fuzzy
