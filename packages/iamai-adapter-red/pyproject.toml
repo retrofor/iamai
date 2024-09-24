@@ -1,6 +1,6 @@
 [project]
 name = "iamai-adapter-red"
-version = "0.1.5"
+version = "0.1.6"
 description = "Red adapter for iamai."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
