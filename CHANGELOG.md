@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.1.6] - 2024-09-24
+### New Features
+- [`9e7052d`](https://github.com/retrofor/iamai/commit/9e7052d89ca0ef34fd74eeb0bfb9d49b22ccf9da) - update docker workflow to push image to ghcr and log in with github token *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Bug Fixes
+- [`5d71933`](https://github.com/retrofor/iamai/commit/5d719338e6e365812662ca8f41d71d27f0fd0736) - update workflow to build and push docker image with ghcr and login with github token *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Chores
+- [`e8aa048`](https://github.com/retrofor/iamai/commit/e8aa048379810363adc95e41c9016621e51363cb) - update docker workflow to newer actions and remove sensitive info *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`4e5a751`](https://github.com/retrofor/iamai/commit/4e5a751f9976b3e604bdbccfc44769b7b0e6c6d3) - update docker workflow to push image to all registries *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`9400bbe`](https://github.com/retrofor/iamai/commit/9400bbe519e0cf7e3b7f02ea2c98d07b1ba186e7) - update versions and dependencies in pyproject.toml files *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+
 ## [v0.1.4] - 2024-09-24
 ### New Features
 - [`01daf68`](https://github.com/retrofor/iamai/commit/01daf68a15bd92198ec18fa9ca9291e9115dbd80) - update dependencies and modify api build actions *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
@@ -183,3 +196,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.0.3-rc.4]: https://github.com/retrofor/iamai/compare/v0.0.3rc3...v0.0.3-rc.4
 [v0.0.4]: https://github.com/retrofor/iamai/compare/v0.0.3...v0.0.4
 [v0.1.4]: https://github.com/retrofor/iamai/compare/v0.0.4...v0.1.4
+[v0.1.6]: https://github.com/retrofor/iamai/compare/v0.1.5...v0.1.6
