@@ -33,8 +33,8 @@ jobs:
         run: sudo docker build . --file Dockerfile.prod --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
 
       - name: Log in to registry
-        run: echo "${{ secrets.ACCESS_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-        #
+        run: echo "${{ secrets.ACCESS_TOKEN }}" | sudo docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
       - name: Push image
         run: |
           IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
@@ -45,7 +45,7 @@ jobs:
           if [ -n "${{ github.event.inputs.version }}" ]; then
             VERSION=${{ github.event.inputs.version }} 
           else
-            VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+            VERSION=$(echo "${{ github.ref }}")
           fi
 
           # This strips the "v" prefix from the tag name.
@@ -54,5 +54,5 @@ jobs:
           [ "$VERSION" == "master" ] && VERSION=latest
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
-          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+          sudo docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           sudo docker push $IMAGE_ID:$VERSION
