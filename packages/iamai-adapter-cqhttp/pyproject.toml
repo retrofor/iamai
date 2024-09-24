@@ -1,6 +1,6 @@
 [project]
 name = "iamai-adapter-cqhttp"
-version = "0.1.4"
+version = "0.1.5"
 description = "CQHTTP adapter for iamai."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
