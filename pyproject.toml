@@ -85,7 +85,6 @@ target-version = ["py38", "py39", "py310", "py311"]
 dev = [
     "pip>=24.2",
     "maturin>=1.7.0",
-    "uv>=0.4.7",
     "typing>=3.7.4.3",
 ]
 lint = [
@@ -195,18 +194,3 @@ skip-magic-trailing-comma = false
 
 # Like Black, automatically detect the appropriate line ending.
 line-ending = "auto"
-
-[tool.uv.sources]
-iamai-adapter-bililive = { workspace = true }
-iamai-adapter-console = { workspace = true }
-iamai-adapter-kook = { workspace = true }
-iamai-adapter-dingtalk = { workspace = true }
-iamai-adapter-red = { workspace = true }
-iamai-adapter-gensokyo = { workspace = true }
-iamai-adapter-apscheduler = { workspace = true }
-iamai-adapter-cqhttp = { workspace = true }
-
-[tool.uv.workspace]
-members = [
-    "packages/*",
-]
