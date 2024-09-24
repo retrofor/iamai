@@ -37,7 +37,7 @@ classifiers = [
 ]
 requires-python = ">=3.9"
 dependencies = [
-    "tomli>=2.0.0、",
+    "tomli>=2.0.0",
     "pydantic>=2.0.3,<3.0.0",
     "aiohttp>=3.9.1",
     "loguru>=0.7.0,<0.8.0",
