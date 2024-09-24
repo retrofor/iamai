@@ -1,5 +1,8 @@
 FROM python:3.10
 
+LABEL maintainer="HsiangNianian <i@jyunko.cn>"
+LABEL org.opencontainers.image.description="A simple iamai examples with python 3.10"
+
 WORKDIR /app
 
 ADD /examples /app/

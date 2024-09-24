@@ -1,6 +1,6 @@
 [project]
 name = "iamai-adapter-apscheduler"
-version = "0.0.4"
+version = "0.1.4"
 description = "apscheduler adapter for iamai."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
@@ -18,7 +18,7 @@ classifiers = [
 ]
 requires-python = ">=3.9"
 dependencies = [
-    "iamai>=0.0.3",
+    "iamai>=0.0.4",
     "apscheduler>=3.10.4",
 ]
 
@@ -35,6 +35,3 @@ include = ["iamai/adapter/apscheduler"]
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
-
-[tool.uv.sources]
-iamai = { workspace = true }

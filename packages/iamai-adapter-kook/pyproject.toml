@@ -1,6 +1,6 @@
 [project]
 name = "iamai-adapter-kook"
-version = "0.0.4"
+version = "0.1.4"
 description = "kook adapter for iamai."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
@@ -17,7 +17,7 @@ classifiers = [
     "Topic :: Communications :: Chat",
 ]
 requires-python = ">=3.9"
-dependencies = ["iamai>=0.0.3"]
+dependencies = ["iamai>=0.0.4"]
 
 [project.urls]
 Homepage = "https://iamai.is-a.dev/"
@@ -32,6 +32,3 @@ include = ["iamai/adapter/kook"]
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
-
-[tool.uv.sources]
-iamai = { workspace = true }
