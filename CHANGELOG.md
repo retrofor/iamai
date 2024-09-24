@@ -4,6 +4,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.1.4] - 2024-09-24
+### New Features
+- [`01daf68`](https://github.com/retrofor/iamai/commit/01daf68a15bd92198ec18fa9ca9291e9115dbd80) - update dependencies and modify api build actions *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`a9660d6`](https://github.com/retrofor/iamai/commit/a9660d6627fa72966e99a617eb80d707e8843af6) - update dependencies and fix legacy documents *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`0600301`](https://github.com/retrofor/iamai/commit/0600301c31e87868f1329a56bc3534a555aa6c33) - **docs**: hardcode project info for sphinx *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`59f567e`](https://github.com/retrofor/iamai/commit/59f567ec0214fa14dbd73fca764a48726f9d46e3) - **docs**: update changelog and remove unused adapters *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`e06b50d`](https://github.com/retrofor/iamai/commit/e06b50d0dedf66f7185fb9e935efd309a844cabf) - **docs**: update requirements and add sphinx-last-updated-by-git *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`c8f4937`](https://github.com/retrofor/iamai/commit/c8f493727f6f5f3f8634c174bb844ff27dac5bf9) - **docs**: update credits with Apache 2.0 and other licenses *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`f715368`](https://github.com/retrofor/iamai/commit/f715368caeacd07111b2d969523f3581fd3ce659) - **docs**: enable translation progress classes in sphinx *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`ae74d3a`](https://github.com/retrofor/iamai/commit/ae74d3a5384e8beb928ec0c0cd604de59a2cd708) - **docs**: hardcode project info for sphinx *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`913b48d`](https://github.com/retrofor/iamai/commit/913b48dd4148f9301dd5c1d5f7e7414839aaa778) - **docs**: update translations and add missing strings to the Chinese version *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`fb7bba3`](https://github.com/retrofor/iamai/commit/fb7bba35204e2839900427f6392ea7c8ed388c4e) - **docs**: update pdm installation command in gitpod *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`52cad91`](https://github.com/retrofor/iamai/commit/52cad9139de4589bbad9038f8baf95d4de5df9ef) - **build**: update dependencies for pdm lock file *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`3d17553`](https://github.com/retrofor/iamai/commit/3d17553411ceb1b643eff369c881c7c84dadb6ac) - **build**: update base image and install python dependencies *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`3e0fc94`](https://github.com/retrofor/iamai/commit/3e0fc945626f63c196a8b988a936caa84553553f) - update iamai and adapter versions and dependencies *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Bug Fixes
+- [`6c1eb3e`](https://github.com/retrofor/iamai/commit/6c1eb3e953af01f10ea1e61ceaca31c5ec153ed1) - legacy documents remained due to the wrong step in workflow *(PR [#287](https://github.com/retrofor/iamai/pull/287) by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Chores
+- [`3740ef1`](https://github.com/retrofor/iamai/commit/3740ef13df2b3ea5e22f82e7f26c2e22655e0a8f) - **docs**: update api docs with sphinx-apidoc *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`52b107d`](https://github.com/retrofor/iamai/commit/52b107d11571628154b4561ea1e624434dbc1722) - **readme**: add bibtex for cite usage *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`f503686`](https://github.com/retrofor/iamai/commit/f5036866e7e2ca39521f7eeead706c0889e58778) - **workflow**: remove branches from release workflow *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`fdbe7ec`](https://github.com/retrofor/iamai/commit/fdbe7ecf7454db10bb82925bafbf47922709ea1f) - update license MIT -> AGPL3.0 *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`3d56903`](https://github.com/retrofor/iamai/commit/3d56903a0c4ea5d34d609eb22a871bb9373007a7) - delete uv.lock *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`bb3da6f`](https://github.com/retrofor/iamai/commit/bb3da6fe0bbf1595c1b12c19e97fcbc6ca6263ff) - update dependencies and target versions in pyproject.toml *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+
 ## [v0.0.4] - 2024-08-11
 ### Chores
 - [`e4f6b7b`](https://github.com/retrofor/iamai/commit/e4f6b7bcfbc00b73d7b43ea747e1f4fe06bb05ee) - bump version in to 0.0.4 *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
@@ -154,3 +182,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.0.3rc3]: https://github.com/retrofor/iamai/compare/v0.0.3rc1...v0.0.3rc3
 [v0.0.3-rc.4]: https://github.com/retrofor/iamai/compare/v0.0.3rc3...v0.0.3-rc.4
 [v0.0.4]: https://github.com/retrofor/iamai/compare/v0.0.3...v0.0.4
+[v0.1.4]: https://github.com/retrofor/iamai/compare/v0.0.4...v0.1.4
