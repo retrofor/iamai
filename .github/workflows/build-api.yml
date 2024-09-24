@@ -22,7 +22,6 @@ jobs:
             name: Setup PDM
             with:
               python-version: 3.9
-              cache: true
           - name: Install dependencies
             run: pdm install -dG docs
     

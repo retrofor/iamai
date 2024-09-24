@@ -14,7 +14,7 @@ def install(plugin_name):
 @cli.command()
 def version():
     """显示iamai版本"""
-    click.echo("iamai版本: 1.0.0")
+    click.echo("iamai版本: 0.1.5")
 
 def cli_func(*args):
     cli(*args)
