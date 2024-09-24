@@ -152,6 +152,7 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     needs: [linux, musllinux, windows, macos, sdist]
+    environment: release
     steps:
       - uses: actions/download-artifact@v4
       - name: Publish to PyPI If ref/tags/v* is pushed
