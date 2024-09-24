@@ -20,7 +20,7 @@ jobs:
       - uses: pdm-project/setup-pdm@v4
         name: Setup PDM
         with:
-          python-version: 3.x
+          python-version: 3.9
           cache: true
 
       - name: Install dependencies
