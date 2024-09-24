@@ -1,0 +1,8 @@
+FROM python:3.10
+
+WORKDIR /app
+COPY . /examples
+
+RUN pip install iamai
+
+CMD ["pdm", "run", "main.py"]
