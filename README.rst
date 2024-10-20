@@ -68,7 +68,7 @@ To avoid any potential disputes or misunderstandings, we have listed the license
    :target: https://discord.gg/9vG9352RXS
 .. |qgroup| image:: https://img.shields.io/badge/-QQ群%20761859776-002FA7?style=flat-square&logo=Tencent QQ&logoColor=white
    :target: https://jq.qq.com/?_wv=1027&k=OOUmgrqx
-.. |py_v| image:: https://img.shields.io/badge/stable%20version-v0.0.4%20Siamese-blue?style=flat-square&logo=python
+.. |py_v| image:: https://img.shields.io/badge/v0.1.6%20Ragdoll-LTS-blue?style=flat-square&logo=python
    :target: https://pypi.python.org/pypi/iamai
 .. |docs_status| image:: https://readthedocs.org/projects/iamai/badge/?version=latest
    :target: https://iamai.is-a.dev/en/latest/?badge=latest
