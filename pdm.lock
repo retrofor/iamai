@@ -5,7 +5,7 @@
 groups = ["default", "dev", "docs", "lint", "test", "typing"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:739187654e2be58147b56b571ad5767a28e880840e3da20bf1b662fae653c3c7"
+content_hash = "sha256:26557966429ef524a84145e2019017efdbf761830dbece52acf8722c98f21d4c"
 
 [[metadata.targets]]
 requires_python = ">=3.9"
@@ -1476,16 +1476,6 @@ dependencies = [
 files = [
     {file = "pytest_xdist-3.6.1-py3-none-any.whl", hash = "sha256:9ed4adfb68a016610848639bb7e02c9352d5d9f03d04809919e2dafc3be4cca7"},
     {file = "pytest_xdist-3.6.1.tar.gz", hash = "sha256:ead156a4db231eec769737f57668ef58a2084a34b2e55c4a8fa20d861107300d"},
-]
-
-[[package]]
-name = "python-i18n"
-version = "0.3.9"
-summary = "Translation library for Python"
-groups = ["default"]
-files = [
-    {file = "python-i18n-0.3.9.tar.gz", hash = "sha256:df97f3d2364bf3a7ebfbd6cbefe8e45483468e52a9e30b909c6078f5f471e4e8"},
-    {file = "python_i18n-0.3.9-py3-none-any.whl", hash = "sha256:bda5b8d889ebd51973e22e53746417bd32783c9bd6780fd27cadbb733915651d"},
 ]
 
 [[package]]
