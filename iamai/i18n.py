@@ -2,6 +2,7 @@ import os
 import polib
 import gettext
 from typing import List
+from gettext import GNUTranslations
 
 localedir = os.path.join(os.path.dirname(__file__), "locale")
 
@@ -9,7 +10,17 @@ def setup_gettext(
     domain: str = os.path.basename(__file__).strip(".py"),
     localedir: str = localedir,
     languages: List[str] = ["en"],
-):
+) -> GNUTranslations:
+    """Setup gettext
+
+    Args:
+        domain (str, optional): Defaults to `os.path.basename(__file__).strip(".py")`.
+        localedir (str, optional): Defaults to `localedir`.
+        languages (List[str], optional): Defaults to `["en"]`.
+
+    Returns:
+        GNUTranslations: The translation object
+    """
     try:
         # Try to bind the specified domain
         translation = gettext.translation(domain, localedir, languages=languages)
@@ -29,7 +40,13 @@ def setup_gettext(
     return translation.gettext
 
 
-def compile_mo_files(localedir, domain):
+def compile_mo_files(localedir: str, domain: str) -> None:
+    """Compile .po files to .mo files
+
+    Args:
+        localedir (str): locale directory
+        domain (str): locale domain
+    """
     for lang in os.listdir(localedir):
         po_path = os.path.join(localedir, lang, "LC_MESSAGES", f"{domain}.po")
         mo_path = os.path.join(localedir, lang, "LC_MESSAGES", f"{domain}.mo")
