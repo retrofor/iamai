@@ -1,11 +1,49 @@
+import os
+import polib
 import gettext
+from typing import List
 
-t = gettext.translation("iamai", "/locale")
+localedir = os.path.join(os.path.dirname(__file__), "locale")
+
+def setup_gettext(
+    domain: str = os.path.basename(__file__).strip(".py"),
+    localedir: str = localedir,
+    languages: List[str] = ["en"],
+):
+    try:
+        # Try to bind the specified domain
+        translation = gettext.translation(domain, localedir, languages=languages)
+        compile_mo_files(localedir, domain)
+        print("translation found.")
+    except FileNotFoundError:
+        # Fallback to the default domain 'messages' if the specified domain is not found
+        _domain = "messages"
+        translation = gettext.translation(
+            _domain, localedir, languages=languages, fallback=True
+        )
+        compile_mo_files(localedir, _domain)
+        print("translation not found, fallback to default domain 'messages'")
+
+    # Install the translation object globally
+    translation.install()
+    return translation.gettext
 
 
-def _(message):
-    return t.gettext(message)
+def compile_mo_files(localedir, domain):
+    for lang in os.listdir(localedir):
+        po_path = os.path.join(localedir, lang, "LC_MESSAGES", f"{domain}.po")
+        mo_path = os.path.join(localedir, lang, "LC_MESSAGES", f"{domain}.mo")
+        print(lang, mo_path, po_path)
+        if os.path.exists(po_path):
+            # Compile if .mo file doesn't exist or is older than the .po file
+            if not os.path.exists(mo_path) or os.path.getmtime(
+                po_path
+            ) > os.path.getmtime(mo_path):
+                po = polib.pofile(po_path)
+                po.save_as_mofile(mo_path)
+                print(f"Compiled {po_path} to {mo_path}")
 
 
 if __name__ == "__main__":
-    print(_("hello world"))
+    _ = setup_gettext(domain="1", languages=["zh"])
+    print(_("hello {name}").format(name="baka"))

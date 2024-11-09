@@ -44,6 +44,7 @@ dependencies = [
     "requests>=2.31.0",
     "rich>=13.7.1",
     "click>=8.1.7",
+    "polib>=1.2.0",
 ]
 
 [project.optional-dependencies]

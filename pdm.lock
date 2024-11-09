@@ -5,7 +5,7 @@
 groups = ["default", "adapters", "dev", "docs", "lint", "test", "typing"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:03868646e319d375fd26c4ce6ddfec81261a3f49e6e81b0ba5556af44a9eda74"
+content_hash = "sha256:1f2d8bbfedf7884ef1fbad0f4235e92742914f7c1d01608ea01934a130cb64ce"
 
 [[metadata.targets]]
 requires_python = ">=3.9"
@@ -1301,6 +1301,16 @@ groups = ["test"]
 files = [
     {file = "pluggy-1.5.0-py3-none-any.whl", hash = "sha256:44e1ad92c8ca002de6377e165f3e0f1be63266ab4d554740532335b9d75ea669"},
     {file = "pluggy-1.5.0.tar.gz", hash = "sha256:2cffa88e94fdc978c4c574f15f9e59b7f4201d439195c3715ca9e2486f1d0cf1"},
+]
+
+[[package]]
+name = "polib"
+version = "1.2.0"
+summary = "A library to manipulate gettext files (po and mo files)."
+groups = ["default"]
+files = [
+    {file = "polib-1.2.0-py2.py3-none-any.whl", hash = "sha256:1c77ee1b81feb31df9bca258cbc58db1bbb32d10214b173882452c73af06d62d"},
+    {file = "polib-1.2.0.tar.gz", hash = "sha256:f3ef94aefed6e183e342a8a269ae1fc4742ba193186ad76f175938621dbfc26b"},
 ]
 
 [[package]]
