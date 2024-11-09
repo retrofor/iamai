@@ -1,7 +1,7 @@
 import os
 import polib
 import gettext
-from typing import List
+from typing import Set
 from gettext import GNUTranslations
 
 localedir = os.path.join(os.path.dirname(__file__), "locale")
@@ -9,7 +9,7 @@ localedir = os.path.join(os.path.dirname(__file__), "locale")
 def setup_gettext(
     domain: str = os.path.basename(__file__).strip(".py"),
     localedir: str = localedir,
-    languages: List[str] = ["en"],
+    languages: Set[str] = {"en"},
 ) -> GNUTranslations:
     """Setup gettext
 
@@ -62,5 +62,5 @@ def compile_mo_files(localedir: str, domain: str) -> None:
 
 
 if __name__ == "__main__":
-    _ = setup_gettext(domain="1", languages=["zh"])
+    _ = setup_gettext(domain="1", languages={"zh"})
     print(_("hello {name}").format(name="baka"))

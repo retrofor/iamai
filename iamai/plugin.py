@@ -1,6 +1,6 @@
-"""iamai 插件。
+"""iamai plugins
 
-所有 iamai 插件的基类。所有用户编写的插件必须继承自 `Plugin` 类。
+This module contains the base class for all iamai plugins.
 """
 
 import inspect

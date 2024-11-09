@@ -39,6 +39,17 @@ class LogConfig(ConfigModel):
 
     level: Union[str, int] = "DEBUG"
     verbose_exception: bool = False
+    
+
+class LanguageConfig(ConfigModel):
+    """Language configuration.
+
+    Attributes:
+        language: The language of the bot.
+    """
+    all: Set[str] = Field(default_factory=set)
+    shell: Set[str] = Field(default_factory=set)
+    reply: Set[str] = Field(default_factory=set)
 
 
 class BotConfig(ConfigModel):
@@ -55,6 +66,7 @@ class BotConfig(ConfigModel):
     plugin_dirs: Set[DirectoryPath] = Field(default_factory=set)
     adapters: Set[str] = Field(default_factory=set)
     log: LogConfig = LogConfig()
+    language: LanguageConfig = LanguageConfig()
 
 
 class PluginConfig(ConfigModel):
