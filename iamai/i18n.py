@@ -1,7 +1,7 @@
 import os
 import polib
 import gettext
-from typing import Set
+from typing import List
 from gettext import GNUTranslations
 
 localedir = os.path.join(os.path.dirname(__file__), "locale")
@@ -9,7 +9,7 @@ localedir = os.path.join(os.path.dirname(__file__), "locale")
 def setup_gettext(
     domain: str = os.path.basename(__file__).strip(".py"),
     localedir: str = localedir,
-    languages: Set[str] = {"en"},
+    languages: List[str] = ["en"],
 ) -> GNUTranslations:
     """Setup gettext
 
@@ -23,17 +23,17 @@ def setup_gettext(
     """
     try:
         # Try to bind the specified domain
-        translation = gettext.translation(domain, localedir, languages=languages)
         compile_mo_files(localedir, domain)
-        print("translation found.")
+        translation = gettext.translation(domain, localedir, languages=languages)
+        # print("translation found.")
     except FileNotFoundError:
         # Fallback to the default domain 'messages' if the specified domain is not found
         _domain = "messages"
+        compile_mo_files(localedir, _domain)
         translation = gettext.translation(
             _domain, localedir, languages=languages, fallback=True
         )
-        compile_mo_files(localedir, _domain)
-        print("translation not found, fallback to default domain 'messages'")
+        # print("translation not found, fallback to default domain 'messages'")
 
     # Install the translation object globally
     translation.install()
@@ -62,5 +62,5 @@ def compile_mo_files(localedir: str, domain: str) -> None:
 
 
 if __name__ == "__main__":
-    _ = setup_gettext(domain="1", languages={"zh"})
-    print(_("hello {name}").format(name="baka"))
+    _ = setup_gettext(languages=["zh"])
+    print(_("Version: {version}").format(version="baka"))

@@ -20,3 +20,4 @@ msgstr "你好世界"
 
 msgid "hello {name}"
 msgstr "你好 {name}"
+

@@ -5,6 +5,7 @@ The basic module of iamai, each iamai robot is a ``Bot()`` instance.
 
 import asyncio
 import json
+import os
 import pkgutil
 import signal
 import sys
@@ -27,7 +28,7 @@ from typing import (
     Union,
     overload,
 )
-
+from gettext import GNUTranslations
 from pydantic import ValidationError, create_model
 
 from .adapter import Adapter
@@ -42,6 +43,7 @@ from .exceptions import (
 )
 from .log import logger
 from .plugin import Plugin, PluginLoadType
+from .i18n import setup_gettext
 from .typing import AdapterHook, AdapterT, BotHook, EventHook, EventT
 from .utils import (
     ModulePathFinder,
@@ -50,6 +52,7 @@ from .utils import (
     samefile,
     wrap_get_func,
 )
+from .const import __version__
 
 if sys.version_info >= (3, 11):  # pragma: no cover
     import tomllib
@@ -169,6 +172,17 @@ class Bot:
         sys.meta_path.insert(0, self._module_path_finder)
 
     @property
+    def _(self) -> GNUTranslations:
+        # logger.warning(f"{self.config.bot.locale}")
+        _domain = os.path.basename(__file__).strip(".py")
+        return setup_gettext(domain=_domain, languages=self.config.bot.locale)
+
+    @property
+    def locale(self) -> List[str]:
+        """Get the current language of the bot."""
+        return list(self.config.bot.locale)
+
+    @property
     def plugins(self) -> List[Type[Plugin[Any, Any, Any]]]:
         """List of currently loaded plugins."""
         return list(chain(*self.plugins_priority_dict.values()))
@@ -186,7 +200,7 @@ class Bot:
 
     def restart(self) -> None:
         """Exit and rerun iamai."""
-        logger.info("Restarting iamai...")
+        logger.info(self._("Restarting iamai..."))
         self._restart_flag = True
         self.should_exit.set()
 
@@ -217,7 +231,8 @@ class Bot:
         self._update_config()
 
         # Run iamai
-        logger.info("Running iamai...")
+        logger.info(self._("Running iamai..."))
+        logger.info(self._("Version: {version}").format(version=__version__))
 
         hot_reload_task = None
         if self._hot_reload:  # pragma: no cover
@@ -233,7 +248,11 @@ class Bot:
                 try:
                     await _adapter.startup()
                 except Exception as e:
-                    self.error_or_exception(f"Startup adapter {_adapter!r} failed:", e)
+                    self.error_or_exception(
+                        self._("Startup adapter {_adapter!r} failed: {error}").format(
+                            _adapte=_adapter, error=e
+                        )
+                    )
 
             for _adapter in self.adapters:
                 for adapter_run_hook_func in self._adapter_run_hooks:
@@ -280,8 +299,11 @@ class Bot:
             for plugin_ in _removed_plugins:
                 plugins.remove(plugin_)
                 logger.info(
-                    "Succeeded to remove plugin "
-                    f'"{plugin_.__name__}" from file "{file}"'
+                    self._(
+                        '"Succeeded to remove plugin {plugin_.__name__}" from file "{file}"'.format(
+                            plugin_=plugin_, file=file
+                        )
+                    )
                 )
         return removed_plugins
 
@@ -291,11 +313,13 @@ class Bot:
             from watchfiles import Change, awatch
         except ImportError:
             logger.warning(
-                'Hot reload needs to install "watchfiles", try "pip install watchfiles"'
+                self._(
+                    'Hot reload needs to install "watchfiles", try "pip install watchfiles"'
+                )
             )
             return
 
-        logger.info("Hot reload is working!")
+        logger.info(self._("Hot reload is working!"))
         async for changes in awatch(
             *(
                 x.resolve()
@@ -319,7 +343,11 @@ class Bot:
                     and samefile(self._config_file, file)
                     and change_type == change_type.modified
                 ):
-                    logger.info(f'Reload config file "{self._config_file}"')
+                    logger.info(
+                        self._('Reload config file "{self._config_file}"').format(
+                            self=self
+                        )
+                    )
                     old_config = self.config
                     self._reload_config_dict()
                     if (
@@ -343,18 +371,18 @@ class Bot:
                         continue
 
                 if change_type == Change.added:
-                    logger.info(f"Hot reload: Added file: {file}")
+                    logger.info(self._("Hot reload: Added file: {file}").format(file=file))
                     self._load_plugins(
                         Path(file), plugin_load_type=PluginLoadType.DIR, reload=True
                     )
                     self._update_config()
                     continue
                 if change_type == Change.deleted:
-                    logger.info(f"Hot reload: Deleted file: {file}")
+                    logger.info(self._("Hot reload: Deleted file: {file}").format(file=file))
                     self._remove_plugin_by_path(file)
                     self._update_config()
                 elif change_type == Change.modified:
-                    logger.info(f"Hot reload: Modified file: {file}")
+                    logger.info(self._("Hot reload: Modified file: {file}").format(file=file))
                     self._remove_plugin_by_path(file)
                     self._load_plugins(
                         Path(file), plugin_load_type=PluginLoadType.DIR, reload=True
@@ -410,19 +438,19 @@ class Bot:
                         self._raw_config_dict = tomllib.load(f)
                     else:
                         self.error_or_exception(
-                            "Read config file failed:",
-                            OSError("Unable to determine config file type"),
+                            self._("Read config file failed:"),
+                            OSError(self._("Unable to determine config file type")),
                         )
             except OSError as e:
-                self.error_or_exception("Can not open config file:", e)
+                self.error_or_exception(self._("Can not open config file: {e}").format(e=e))
             except (ValueError, json.JSONDecodeError, tomllib.TOMLDecodeError) as e:
-                self.error_or_exception("Read config file failed:", e)
+                self.error_or_exception(self._("Read config file failed: {e}").format(e=e))
 
         try:
             self.config = MainConfig(**self._raw_config_dict)
         except ValidationError as e:
             self.config = MainConfig()
-            self.error_or_exception("Config dict parse error:", e)
+            self.error_or_exception(self._("Config dict parse error: {e}").format(e=e))
         self._update_config()
 
     def reload_plugins(self) -> None:
@@ -436,9 +464,9 @@ class Bot:
 
     def _handle_exit(self, *_args: Any) -> None:  # pragma: no cover
         """When the robot receives the exit signal, it will handle it according to the situation."""
-        logger.info("Stopping iamai...")
+        logger.info(self._("Stopping iamai..."))
         if self.should_exit.is_set():
-            logger.warning("Force Exit iamai...")
+            logger.warning(self._("Force Exit iamai..."))
             sys.exit()
         else:
             self.should_exit.set()
@@ -461,7 +489,7 @@ class Bot:
         """
         if show_log:
             logger.info(
-                f"Adapter {current_event.adapter.name} received: {current_event!r}"
+                self._("Adapter {current_event.adapter.name} received: {current_event!r}").format(current_event=current_event)
             )
 
         if handle_get:
@@ -491,7 +519,7 @@ class Bot:
 
         for plugin_priority in sorted(self.plugins_priority_dict.keys()):
             logger.debug(
-                f"Checking for matching plugins with priority {plugin_priority!r}"
+                self._("Checking for matching plugins with priority {plugin_priority!r}").format(plugin_priority=plugin_priority)
             )
             stop = False
             for plugin in self.plugins_priority_dict[plugin_priority]:
@@ -511,7 +539,7 @@ class Bot:
                             if plugin_state is not None:
                                 self.plugin_state[_plugin.name] = plugin_state
                         if await _plugin.rule():
-                            logger.info(f"Event will be handled by {_plugin!r}")
+                            logger.info(self._("Event will be handled by {_plugin!r}").format(_plugin=_plugin))
                             try:
                                 await _plugin.handle()
                             finally:
@@ -524,14 +552,14 @@ class Bot:
                     # Plugin requires stopping current event propagation
                     stop = True
                 except Exception as e:
-                    self.error_or_exception(f'Exception in plugin "{plugin}":', e)
+                    self.error_or_exception(self._("Exception in plugin {plugin!r}"), e)
             if stop:
                 break
 
         for _hook_func in self._event_postprocessor_hooks:
             await _hook_func(current_event)
 
-        logger.info("Event Finished")
+        logger.info(self._("Event Finished"))
 
     @overload
     async def get(
@@ -646,20 +674,20 @@ class Bot:
             for _plugin in self.plugins:
                 if _plugin.__name__ == plugin_class.__name__:
                     logger.warning(
-                        f'Already have a same name plugin "{_plugin.__name__}"'
+                        self._('Already have a same name plugin "{_plugin.__name__}"').format(_plugin=_plugin)
                     )
             plugin_class.__plugin_load_type__ = plugin_load_type
             plugin_class.__plugin_file_path__ = plugin_file_path
             self.plugins_priority_dict[priority].append(plugin_class)
             logger.info(
-                f'Succeeded to load plugin "{plugin_class.__name__}" '
-                f'from class "{plugin_class!r}"'
+                self._('Succeeded to load plugin "{plugin_class.__name__}" '
+                'from class "{plugin_class!r}"').format(plugin_class=plugin_class)
             )
         else:
             self.error_or_exception(
-                f'Load plugin from class "{plugin_class!r}" failed:',
+                self._('Load plugin from class "{plugin_class!r}" failed:').format(plugin_class=plugin_class),
                 LoadModuleError(
-                    f'Plugin priority incorrect in the class "{plugin_class!r}"'
+                    self._('Plugin priority incorrect in the class "{plugin_class!r}"').format(plugin_class=plugin_class)
                 ),
             )
 
@@ -676,7 +704,7 @@ class Bot:
                 module_name, Plugin, reload=reload
             )
         except ImportError as e:
-            self.error_or_exception(f'Import module "{module_name}" failed:', e)
+            self.error_or_exception(self._('Import module "{module_name}" failed:').format(module_name=module_name), e)
         else:
             for plugin_class, module in plugin_classes:
                 self._load_plugin_class(
@@ -710,22 +738,22 @@ class Bot:
                         plugin_, plugin_load_type or PluginLoadType.CLASS, None
                     )
                 elif isinstance(plugin_, str):
-                    logger.info(f'Loading plugins from module "{plugin_}"')
+                    logger.info(self._('Loading plugins from module "{plugin_}"').format(plugin_=plugin_))
                     self._load_plugins_from_module_name(
                         plugin_,
                         plugin_load_type=plugin_load_type or PluginLoadType.NAME,
                         reload=reload,
                     )
                 elif isinstance(plugin_, Path):
-                    logger.info(f'Loading plugins from path "{plugin_}"')
+                    logger.info(self._('Loading plugins from path "{plugin_}"').format(plugin_=plugin_))
                     if not plugin_.is_file():
                         raise LoadModuleError(  # noqa: TRY301
-                            f'The plugin path "{plugin_}" must be a file'
+                            self._('The plugin path "{plugin_}" must be a file').format(plugin_=plugin_)
                         )
 
                     if plugin_.suffix != ".py":
                         raise LoadModuleError(  # noqa: TRY301
-                            f'The path "{plugin_}" must endswith ".py"'
+                            self._('The path "{plugin_}" must endswith ".py"').format(plugin_=plugin_)
                         )
 
                     plugin_module_name = None
@@ -756,10 +784,10 @@ class Bot:
                     )
                 else:
                     raise TypeError(  # noqa: TRY301
-                        f"{plugin_} can not be loaded as plugin"
+                        self._("{plugin_} can not be loaded as plugin").format(plugin_=plugin_)
                     )
             except Exception as e:
-                self.error_or_exception(f'Load plugin "{plugin_}" failed:', e)
+                self.error_or_exception(self._('Load plugin "{plugin_}" failed:').format(plugin_=plugin_), e)
 
     def load_plugins(
         self, *plugins: Union[Type[Plugin[Any, Any, Any]], str, Path]
@@ -787,7 +815,7 @@ class Bot:
                 For example: ``pathlib.Path("path/of/plugins/")`` .
         """
         dir_list = [str(x.resolve()) for x in dirs]
-        logger.info(f'Loading plugins from dirs "{", ".join(map(str, dir_list))}"')
+        logger.info(self._('Loading plugins from dirs {dir_list}').format(dir_list=", ".join(map(str, dir_list))))
         self._module_path_finder.path.extend(dir_list)
         for module_info in pkgutil.iter_modules(dir_list):
             if not module_info.name.startswith("_"):
@@ -823,24 +851,25 @@ class Bot:
                     adapter_classes = get_classes_from_module_name(adapter_, Adapter)
                     if not adapter_classes:
                         raise LoadModuleError(  # noqa: TRY301
-                            f"Can not find Adapter class in the {adapter_} module"
+                            self._('Can not find Adapter class in the {adapter_} module').format(adapter_=adapter_)
                         )
                     if len(adapter_classes) > 1:
                         raise LoadModuleError(  # noqa: TRY301
-                            f"More then one Adapter class in the {adapter_} module"
+                            self._("More then one Adapter class in the {adapter_} module").format(adapter_=adapter_)
                         )
                     adapter_object = adapter_classes[0][0](self)  # type: ignore
                 else:
                     raise TypeError(  # noqa: TRY301
-                        f"{adapter_} can not be loaded as adapter"
+                        self._("{adapter_} can not be loaded as adapter").format(adapter_=adapter_)
                     )
             except Exception as e:
-                self.error_or_exception(f'Load adapter "{adapter_}" failed:', e)
+                self.error_or_exception(self._('Load adapter "{adapter_}" failed:').format(adapter_=adapter_), e)
+                continue
             else:
                 self.adapters.append(adapter_object)
                 logger.info(
-                    f'Succeeded to load adapter "{adapter_object.__class__.__name__}" '
-                    f'from "{adapter_}"'
+                    self._('Succeeded to load adapter "{adapter_object.__class__.__name__}" '
+                    'from "{adapter_}"').format(adapter_object=adapter_object, adapter_=adapter_)
                 )
 
     def load_adapters(self, *adapters: Union[Type[Adapter[Any, Any]], str]) -> None:
@@ -881,7 +910,7 @@ class Bot:
                     return _adapter
             elif isinstance(_adapter, adapter):
                 return _adapter
-        raise LookupError(f'Can not find adapter named "{adapter}"')
+        raise LookupError(self._('Can not find adapter named "{adapter}"').format(adapter=adapter))
 
     def get_plugin(self, name: str) -> Type[Plugin[Any, Any, Any]]:
         """Get the loaded plugin class by name.
@@ -898,7 +927,7 @@ class Bot:
         for _plugin in self.plugins:
             if _plugin.__name__ == name:
                 return _plugin
-        raise LookupError(f'Can not find plugin named "{name}"')
+        raise LookupError(self._('Can not find plugin named "{name}"').format(name=name))
 
     def error_or_exception(
         self, message: str, exception: Exception
@@ -910,9 +939,9 @@ class Bot:
             exception: Exception.
         """
         if self.config.bot.log.verbose_exception:
-            logger.exception(message)
+            logger.exception(self._(message))
         else:
-            logger.error(f"{message} {exception!r}")
+            logger.error("{message} {exception!r}".format(message=message, exception=exception))
 
     def bot_run_hook(self, func: BotHook) -> BotHook:
         """Register a function when Bot starts.

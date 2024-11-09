@@ -15,15 +15,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: manual\n"
 
-msgid "Installing plugin: {plugin_name}"
-msgstr "正在安装插件：{plugin_name}"
 
-msgid "Current version: {version}"
-msgstr "当前版本：{version}"
-
-
-msgid "hello {name}"
-msgstr "你好 {name}"
+msgid "Restarting iamai..."
+msgstr "正在重启 iamai..."
 
 msgid "Running iamai..."
 msgstr "正在运行 iamai..."
+
+msgid "Version: {version}"
+msgstr "版本: {version}"
+
+msgid "Startup adapter {_adapter!r} failed: {error}"
+msgstr "启动适配器 {_adapter!r} 失败: {error}"
+
+msgid "Load adapter \"{adapter_}\" failed:"
+msgstr "加载适配器 \"{adapter_}\" 失败:"

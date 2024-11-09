@@ -3,7 +3,7 @@
 iamai uses `pydantic <https://pydantic-docs.helpmanual.io/>`_ to read configuration.
 """
 
-from typing import Set, Union
+from typing import Optional, Set, Union
 
 from pydantic import BaseModel, ConfigDict, DirectoryPath, Field
 
@@ -40,18 +40,6 @@ class LogConfig(ConfigModel):
     level: Union[str, int] = "DEBUG"
     verbose_exception: bool = False
     
-
-class LanguageConfig(ConfigModel):
-    """Language configuration.
-
-    Attributes:
-        language: The language of the bot.
-    """
-    all: Set[str] = Field(default_factory=set)
-    shell: Set[str] = Field(default_factory=set)
-    reply: Set[str] = Field(default_factory=set)
-
-
 class BotConfig(ConfigModel):
     """Bot configuration.
 
@@ -65,8 +53,8 @@ class BotConfig(ConfigModel):
     plugins: Set[str] = Field(default_factory=set)
     plugin_dirs: Set[DirectoryPath] = Field(default_factory=set)
     adapters: Set[str] = Field(default_factory=set)
+    locale: Set[str] = Field(default_factory=set)
     log: LogConfig = LogConfig()
-    language: LanguageConfig = LanguageConfig()
 
 
 class PluginConfig(ConfigModel):
