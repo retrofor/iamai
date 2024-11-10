@@ -8,6 +8,7 @@ def main(*args):
         cli_func(*args)
     except KeyboardInterrupt:
         sys.exit(1)
-        
+
+
 if __name__ == "__main__":
     main()

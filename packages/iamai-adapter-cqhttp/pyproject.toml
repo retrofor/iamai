@@ -28,7 +28,7 @@ Repository = "https://github.com/retrofor/iamai"
 Changelog = "https://iamai.is-a.dev/changelog.html"
 
 [tool.hatch.build]
-exclude = ["iamai/__init__.py", "iamai/adapter/__init__.py"]
+# exclude = ["iamai/__init__.py", "iamai/adapter/__init__.py"]
 include = ["iamai/adapter/cqhttp"]
 
 [tool.pdm]

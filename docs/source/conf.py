@@ -25,7 +25,7 @@ else:
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "Comprehensive AI Toolkit" # PROJECT_NAME
+project = "Comprehensive AI Toolkit"  # PROJECT_NAME
 # release = PROJECT_VERSION
 copyright = "2023-PRESENT, Retrofor Wut?"
 author = "HsiangNianian"  # AUTHORS
@@ -43,7 +43,7 @@ extensions = [
     "sphinx.ext.autosummary",
     "sphinx.ext.extlinks",
     "myst_parser",
-    'sphinx_last_updated_by_git',
+    "sphinx_last_updated_by_git",
 ]
 
 templates_path = ["_templates"]

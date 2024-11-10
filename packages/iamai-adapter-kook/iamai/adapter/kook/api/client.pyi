@@ -13,7 +13,11 @@ class ApiClient:
     async def blacklist_delete(self, *, guild_id: str, target_id: str) -> None: ...
     async def blacklist_list(self, *, guild_id: str) -> BlackListsReturn: ...  # noqa: F405
     async def channelRole_create(
-        self, *, channel_id: str, type: Optional[str] = ..., value: Optional[str] = ...  # noqa: F405
+        self,
+        *,
+        channel_id: str,
+        type: Optional[str] = ...,
+        value: Optional[str] = ...,  # noqa: F405
     ) -> ChannelRoleReturn: ...  # noqa: F405
     async def channelRole_delete(
         self,
@@ -98,7 +102,11 @@ class ApiClient:
         ...
 
     async def directMessage_deleteReaction(
-        self, *, msg_id: str, emoji: str, user_id: Optional[str] = ...  # noqa: F405
+        self,
+        *,
+        msg_id: str,
+        emoji: str,
+        user_id: Optional[str] = ...,  # noqa: F405
     ) -> None: ...
     async def directMessage_list(
         self,
@@ -133,7 +141,11 @@ class ApiClient:
         self, *, msg_id: str, emoji: str
     ) -> List[ReactionUser]: ...  # noqa: F405
     async def directMessage_update(
-        self, *, content: str, msg_id: Optional[str] = ..., quote: Optional[str] = ...  # noqa: F405
+        self,
+        *,
+        content: str,
+        msg_id: Optional[str] = ...,
+        quote: Optional[str] = ...,  # noqa: F405
     ) -> None:
         """更新私信聊天消息
 
@@ -152,7 +164,11 @@ class ApiClient:
     ) -> DirectMessage: ...  # noqa: F405
     async def gateway_index(self, *, compress: Optional[int] = ...) -> URL: ...  # noqa: F405
     async def guildEmoji_create(
-        self, *, guild_id: str, emoji: Optional[bytes] = ..., name: Optional[str] = ...  # noqa: F405
+        self,
+        *,
+        guild_id: str,
+        emoji: Optional[bytes] = ...,
+        name: Optional[str] = ...,  # noqa: F405
     ) -> GuildEmoji: ...  # noqa: F405
     async def guildEmoji_delete(self, *, id: str) -> None: ...
     async def guildEmoji_list(
@@ -170,10 +186,16 @@ class ApiClient:
         self, *, guild_id: str = ..., target_id: str = ..., type: int = ...
     ) -> None: ...
     async def guildMute_list(
-        self, *, guild_id: str, return_type: Optional[str] = ...  # noqa: F405
+        self,
+        *,
+        guild_id: str,
+        return_type: Optional[str] = ...,  # noqa: F405
     ) -> None: ...
     async def guildRole_create(
-        self, *, guild_id: str, name: Optional[str] = ...  # noqa: F405
+        self,
+        *,
+        guild_id: str,
+        name: Optional[str] = ...,  # noqa: F405
     ) -> Role: ...  # noqa: F405
     async def guildRole_delete(self, *, guild_id: str, role_id: int) -> None: ...
     async def guildRole_grant(
@@ -316,7 +338,11 @@ class ApiClient:
     ) -> MessageCreateReturn: ...  # noqa: F405
     async def message_delete(self, *, msg_id: str) -> None: ...
     async def message_deleteReaction(
-        self, *, msg_id: str, emoji: str, user_id: Optional[str] = ...  # noqa: F405
+        self,
+        *,
+        msg_id: str,
+        emoji: str,
+        user_id: Optional[str] = ...,  # noqa: F405
     ) -> None: ...
     async def message_list(
         self,
@@ -342,7 +368,10 @@ class ApiClient:
     async def userChat_create(self, *, target_id: str) -> UserChat: ...  # noqa: F405
     async def userChat_delete(self, *, chat_code: str) -> None: ...
     async def userChat_list(
-        self, *, page: Optional[int] = ..., page_size: Optional[int] = ...  # noqa: F405
+        self,
+        *,
+        page: Optional[int] = ...,
+        page_size: Optional[int] = ...,  # noqa: F405
     ) -> UserChatsReturn: ...  # noqa: F405
     async def userChat_view(self, *, chat_code: str) -> UserChat: ...  # noqa: F405
     async def user_me(self) -> User: ...  # noqa: F405
@@ -351,5 +380,8 @@ class ApiClient:
         ...
 
     async def user_view(
-        self, *, user_id: str, guild_id: Optional[str] = ...  # noqa: F405
+        self,
+        *,
+        user_id: str,
+        guild_id: Optional[str] = ...,  # noqa: F405
     ) -> User: ...  # noqa: F405

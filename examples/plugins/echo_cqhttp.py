@@ -8,6 +8,7 @@ class Echo(Plugin):
     async def rule(self) -> bool:
         if self.event.adapter.name != "cqhttp":
             return False
-        if self.event.type != "message_sent":
+        if self.event.type != "message":
             return False
         return self.event.message.startswith("echo ")
+
