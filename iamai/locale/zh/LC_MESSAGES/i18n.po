@@ -45,7 +45,7 @@ msgstr ""
 
 #: iamai/bot.py:322
 msgid "Hot reload is working!"
-msgstr ""
+msgstr "热重载正在工作！"
 
 #: iamai/bot.py:347
 #, python-brace-format

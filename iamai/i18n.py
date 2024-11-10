@@ -12,7 +12,7 @@ localedir = os.path.join(os.path.dirname(__file__), "locale")
 
 
 def setup_gettext(
-    domain: str = os.path.basename(__file__).strip(".py"),
+    domain: str = "i18n",
     localedir: str = localedir,
     languages: List[str] = ["en"],
 ) -> GNUTranslations:
@@ -32,7 +32,7 @@ def setup_gettext(
         translation = gettext.translation(domain, localedir, languages=languages)
     except FileNotFoundError:
         # Fallback to the default domain 'messages' if the specified domain is not found
-        _domain = "messages"
+        _domain = "i18n"
         compile_mo_files(localedir, _domain)
         translation = gettext.translation(
             _domain, localedir, languages=languages, fallback=True

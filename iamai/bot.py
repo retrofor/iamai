@@ -174,8 +174,7 @@ class Bot:
     @property
     def _(self) -> GNUTranslations:
         # logger.warning(f"{self.config.bot.locale}")
-        _domain = os.path.basename(__file__).strip(".py")
-        return setup_gettext(domain=_domain, languages=self.config.bot.locale)
+        return setup_gettext(languages=self.config.bot.locale)
 
     @property
     def locale(self) -> List[str]:
