@@ -11,7 +11,6 @@ gettext.bindtextdomain("messages", localedir)
 gettext.textdomain("messages")
 _ = gettext.gettext
 
-
 @click.group()
 def cli():
     pass

@@ -300,7 +300,7 @@ class Bot:
                 plugins.remove(plugin_)
                 logger.info(
                     self._(
-                        '"Succeeded to remove plugin {plugin_.__name__}" from file "{file}"'.format(
+                        'Succeeded to remove plugin "{plugin_.__name__}" from file "{file}"'.format(
                             plugin_=plugin_, file=file
                         )
                     )
@@ -552,7 +552,7 @@ class Bot:
                     # Plugin requires stopping current event propagation
                     stop = True
                 except Exception as e:
-                    self.error_or_exception(self._("Exception in plugin {plugin!r}"), e)
+                    self.error_or_exception(self._("Exception in plugin {plugin!r}").format(plugin=plugin), e)
             if stop:
                 break
 
@@ -680,8 +680,7 @@ class Bot:
             plugin_class.__plugin_file_path__ = plugin_file_path
             self.plugins_priority_dict[priority].append(plugin_class)
             logger.info(
-                self._('Succeeded to load plugin "{plugin_class.__name__}" '
-                'from class "{plugin_class!r}"').format(plugin_class=plugin_class)
+                self._('Succeeded to load plugin "{plugin_class.__name__}" from class "{plugin_class!r}"').format(plugin_class=plugin_class)
             )
         else:
             self.error_or_exception(

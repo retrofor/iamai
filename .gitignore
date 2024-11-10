@@ -154,3 +154,6 @@ _build
 
 # ruff
 .ruff_cache/
+
+# gettext
+*.po~
