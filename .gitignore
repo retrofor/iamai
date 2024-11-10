@@ -53,7 +53,7 @@ coverage.xml
 
 # Translations
 *.mo
-*.pot
+*.po~
 
 # Django stuff:
 *.log
@@ -154,6 +154,3 @@ _build
 
 # ruff
 .ruff_cache/
-
-# gettext
-*.po~
