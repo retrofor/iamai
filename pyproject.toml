@@ -44,6 +44,7 @@ dependencies = [
     "requests>=2.31.0",
     "rich>=13.7.1",
     "click>=8.1.7",
+    "polib>=1.2.0",
 ]
 
 [project.optional-dependencies]
@@ -116,15 +117,18 @@ test = [
 ]
 typing = ["watchfiles>=0.21.0", "trio>=0.24.0"]
 # adapters = [
-#     "-e ./iamai/packages/iamai-adapter-cqhttp#egg=iamai-adapter-cqhttp",
-#     "-e ./iamai/packages/iamai-adapter-bililive#egg=iamai-adapter-bililive",
-#     "-e ./iamai/packages/iamai-adapter-console#egg=iamai-adapter-console",
-#     "-e ./iamai/packages/iamai-adapter-dingtalk#egg=iamai-adapter-dingtalk",
-#     "-e ./iamai/packages/iamai-adapter-red#egg=iamai-adapter-red",
-#     "-e ./iamai/packages/iamai-adapter-apscheduler#egg=iamai-adapter-apscheduler",
-#     "-e ./iamai/packages/iamai-adapter-gensokyo#egg=iamai-adapter-gensokyo",
-#     "-e ./iamai/packages/iamai-adapter-kook#egg=iamai-adapter-kook",
+#     "-e iamai-adapter-cqhttp @ file:///${PROJECT_ROOT}/packages/iamai-adapter-cqhttp",
+#     "-e iamai-adapter-bililive @ file:///${PROJECT_ROOT}/packages/iamai-adapter-bililive",
+#     "-e iamai-adapter-console @ file:///${PROJECT_ROOT}/packages/iamai-adapter-console",
+#     "-e iamai-adapter-dingtalk @ file:///${PROJECT_ROOT}/packages/iamai-adapter-dingtalk",
+#     "-e iamai-adapter-red @ file:///${PROJECT_ROOT}/packages/iamai-adapter-red",
+#     "-e iamai-adapter-apscheduler @ file:///${PROJECT_ROOT}/packages/iamai-adapter-apscheduler",
+#     "-e iamai-adapter-gensokyo @ file:///${PROJECT_ROOT}/packages/iamai-adapter-gensokyo",
+#     "-e iamai-adapter-kook @ file:///${PROJECT_ROOT}/packages/iamai-adapter-kook",
 # ]
+adapters = [
+    "iamai-adapter-cqhttp @ file:///${PROJECT_ROOT}/packages/iamai-adapter-cqhttp",
+]
 
 [tool.maturin]
 features = ["pyo3/extension-module"]

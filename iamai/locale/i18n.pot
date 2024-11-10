@@ -1,0 +1,226 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-10 13:25+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: iamai/i18n.py:65 iamai/bot.py:235
+#, python-brace-format
+msgid "Version: {version}"
+msgstr ""
+
+#: iamai/bot.py:203
+msgid "Restarting iamai..."
+msgstr ""
+
+#: iamai/bot.py:234
+msgid "Running iamai..."
+msgstr ""
+
+#: iamai/bot.py:252
+msgid "Startup adapter {_adapter!r} failed: {error}"
+msgstr ""
+
+#: iamai/bot.py:303
+#, python-brace-format
+msgid "Succeeded to remove plugin \"{plugin_.__name__}\" from file \"{file}\""
+msgstr ""
+
+#: iamai/bot.py:317
+msgid ""
+"Hot reload needs to install \"watchfiles\", try \"pip install watchfiles\""
+msgstr ""
+
+#: iamai/bot.py:322
+msgid "Hot reload is working!"
+msgstr ""
+
+#: iamai/bot.py:347
+#, python-brace-format
+msgid "Reload config file \"{self._config_file}\""
+msgstr ""
+
+#: iamai/bot.py:374
+#, python-brace-format
+msgid "Hot reload: Added file: {file}"
+msgstr ""
+
+#: iamai/bot.py:381
+#, python-brace-format
+msgid "Hot reload: Deleted file: {file}"
+msgstr ""
+
+#: iamai/bot.py:385
+#, python-brace-format
+msgid "Hot reload: Modified file: {file}"
+msgstr ""
+
+#: iamai/bot.py:441
+msgid "Read config file failed:"
+msgstr ""
+
+#: iamai/bot.py:442
+msgid "Unable to determine config file type"
+msgstr ""
+
+#: iamai/bot.py:445
+#, python-brace-format
+msgid "Can not open config file: {e}"
+msgstr ""
+
+#: iamai/bot.py:447
+#, python-brace-format
+msgid "Read config file failed: {e}"
+msgstr ""
+
+#: iamai/bot.py:453
+#, python-brace-format
+msgid "Config dict parse error: {e}"
+msgstr ""
+
+#: iamai/bot.py:467
+msgid "Stopping iamai..."
+msgstr ""
+
+#: iamai/bot.py:469
+msgid "Force Exit iamai..."
+msgstr ""
+
+#: iamai/bot.py:492
+msgid "Adapter {current_event.adapter.name} received: {current_event!r}"
+msgstr ""
+
+#: iamai/bot.py:522
+msgid "Checking for matching plugins with priority {plugin_priority!r}"
+msgstr ""
+
+#: iamai/bot.py:542
+msgid "Event will be handled by {_plugin!r}"
+msgstr ""
+
+#: iamai/bot.py:555
+msgid "Exception in plugin {plugin!r}"
+msgstr ""
+
+#: iamai/bot.py:562
+msgid "Event Finished"
+msgstr ""
+
+#: iamai/bot.py:677
+#, python-brace-format
+msgid "Already have a same name plugin \"{_plugin.__name__}\""
+msgstr ""
+
+#: iamai/bot.py:683
+msgid ""
+"Succeeded to load plugin \"{plugin_class.__name__}\" from class "
+"\"{plugin_class!r}\""
+msgstr ""
+
+#: iamai/bot.py:687
+msgid "Load plugin from class \"{plugin_class!r}\" failed:"
+msgstr ""
+
+#: iamai/bot.py:689
+msgid "Plugin priority incorrect in the class \"{plugin_class!r}\""
+msgstr ""
+
+#: iamai/bot.py:706
+#, python-brace-format
+msgid "Import module \"{module_name}\" failed:"
+msgstr ""
+
+#: iamai/bot.py:740
+#, python-brace-format
+msgid "Loading plugins from module \"{plugin_}\""
+msgstr ""
+
+#: iamai/bot.py:747
+#, python-brace-format
+msgid "Loading plugins from path \"{plugin_}\""
+msgstr ""
+
+#: iamai/bot.py:750
+#, python-brace-format
+msgid "The plugin path \"{plugin_}\" must be a file"
+msgstr ""
+
+#: iamai/bot.py:755
+#, python-brace-format
+msgid "The path \"{plugin_}\" must endswith \".py\""
+msgstr ""
+
+#: iamai/bot.py:786
+#, python-brace-format
+msgid "{plugin_} can not be loaded as plugin"
+msgstr ""
+
+#: iamai/bot.py:789
+#, python-brace-format
+msgid "Load plugin \"{plugin_}\" failed:"
+msgstr ""
+
+#: iamai/bot.py:817
+#, python-brace-format
+msgid "Loading plugins from dirs {dir_list}"
+msgstr ""
+
+#: iamai/bot.py:853
+#, python-brace-format
+msgid "Can not find Adapter class in the {adapter_} module"
+msgstr ""
+
+#: iamai/bot.py:857
+#, python-brace-format
+msgid "More then one Adapter class in the {adapter_} module"
+msgstr ""
+
+#: iamai/bot.py:862
+#, python-brace-format
+msgid "{adapter_} can not be loaded as adapter"
+msgstr ""
+
+#: iamai/bot.py:865
+#, python-brace-format
+msgid "Load adapter \"{adapter_}\" failed:"
+msgstr ""
+
+#: iamai/bot.py:870
+#, python-brace-format
+msgid ""
+"Succeeded to load adapter \"{adapter_object.__class__.__name__}\" from "
+"\"{adapter_}\""
+msgstr ""
+
+#: iamai/bot.py:912
+#, python-brace-format
+msgid "Can not find adapter named \"{adapter}\""
+msgstr ""
+
+#: iamai/bot.py:929
+#, python-brace-format
+msgid "Can not find plugin named \"{name}\""
+msgstr ""
+
+#: iamai/cli.py:22
+#, python-brace-format
+msgid "Installing plugin: {plugin_name}"
+msgstr ""
+
+#: iamai/cli.py:27
+#, python-brace-format
+msgid "Current version: {version}"
+msgstr ""

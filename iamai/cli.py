@@ -1,20 +1,31 @@
 import click
 import asyncio
+import gettext
+import os
+
+from .const import __version__
+
+# Set up message catalog access
+localedir = os.path.join(os.path.dirname(__file__), "locale")
+gettext.bindtextdomain("messages", localedir)
+gettext.textdomain("messages")
+_ = gettext.gettext
 
 @click.group()
 def cli():
     pass
 
+
 @cli.command()
 @click.argument("plugin_name", required=True)
 def install(plugin_name):
-    """安装iamai插件"""
-    click.echo(f"正在安装 {plugin_name} 插件...")
+    click.echo(_("Installing plugin: {plugin_name}").format(plugin_name=plugin_name))
+
 
 @cli.command()
 def version():
-    """显示iamai版本"""
-    click.echo("iamai版本: 0.1.5")
+    click.echo(_("Current version: {version}").format(version=__version__))
+
 
 def cli_func(*args):
     cli(*args)
