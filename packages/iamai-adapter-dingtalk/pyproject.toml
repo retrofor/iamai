@@ -1,6 +1,6 @@
 [project]
 name = "iamai-adapter-dingtalk"
-version = "0.1.6"
+version = "0.1.7"
 description = "Dingtalk adapter for iamai."
 authors = [{ name = "简律纯", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
