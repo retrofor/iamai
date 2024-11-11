@@ -4,6 +4,39 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.1.7] - 2024-11-11
+### New Features
+- [`c47789c`](https://github.com/retrofor/iamai/commit/c47789c8c3bfde9d9e8c3d69a429e6f242256d43) - update CI workflow to publish to PyPI and Docker with inputs and secrets *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`16197f5`](https://github.com/retrofor/iamai/commit/16197f5ba4861c2cc6c70fa0c70d76d7d16b933a) - update CI workflow to publish to PyPI and Docker with inputs and secrets *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`c115ba4`](https://github.com/retrofor/iamai/commit/c115ba466ee3fc0c46ed3a2453d0397c6f9638b3) - update CI and Docker workflows for publishing and image pushing *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`cc4afd6`](https://github.com/retrofor/iamai/commit/cc4afd61140a29dd3c55caf2ae7c35a4678622dd) - remove git-webhook code and related config in examples *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`8c20d25`](https://github.com/retrofor/iamai/commit/8c20d251eecb46f41b5de92613ed630fa837e4e3) - I18n support and optimize output messages *(PR [#291](https://github.com/retrofor/iamai/pull/291) by [@HsiangNianian](https://github.com/HsiangNianian))*
+  - :arrow_lower_right: *addresses issue [#292](https://github.com/retrofor/iamai/issues/292) opened by [@HsiangNianian](https://github.com/HsiangNianian)*
+- [`a012626`](https://github.com/retrofor/iamai/commit/a012626f7b3cab06c556af0e6a264eccc66ccaa8) - **.github**: add HsiangNianian to GitHub Sponsors *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`29c498d`](https://github.com/retrofor/iamai/commit/29c498d2f569d92a026568a4e5f5a75adf1f346f) - add Deu i18n language support *(PR [#303](https://github.com/retrofor/iamai/pull/303) by [@BegoniaHe](https://github.com/BegoniaHe))*
+
+### Refactors
+- [`0796c98`](https://github.com/retrofor/iamai/commit/0796c989c467a9aed1250a748f15fa7bb286842f) - **.github/workflows**: comment out PyPI publish step in release.yml *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Chores
+- [`df0b61a`](https://github.com/retrofor/iamai/commit/df0b61a5091a42364f64d38d7cd853b343a353ae) - update Docker workflow to build and push image with ghcr and login with Github token *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`d8895dc`](https://github.com/retrofor/iamai/commit/d8895dc7cfec5f9601ffcb3f83bfd92822904766) - update workflow to build and push docker image with ghcr and login with github token *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`877534d`](https://github.com/retrofor/iamai/commit/877534db5da2d3bbaf8575dc4b6861e13e48d7bf) - update docker workflow to push image to ghcr with sudo and log in with github token *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`dd80f47`](https://github.com/retrofor/iamai/commit/dd80f47689caa0359d11f2d6da51ccefcb6fdf2d) - update Docker workflow to push image to ghcr with sudo and log in with github token *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`6ffe668`](https://github.com/retrofor/iamai/commit/6ffe668a59c27f7a07f7b85f647ac1f08360bfbc) - update dependencies and remove unused crates in Cargo.lock and Cargo.toml *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`cfb084f`](https://github.com/retrofor/iamai/commit/cfb084f728c4aae269628712d125f3759b5901c9) - remove unused doc comment and module docstring in libcore *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`3aa3d6c`](https://github.com/retrofor/iamai/commit/3aa3d6c2174c406f1824e438af3ddfbd7a06e0a3) - bump version into 0.1.7 *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`6d714d6`](https://github.com/retrofor/iamai/commit/6d714d601c08ba30fe12429c2a38631c641c8c7b) - bump version into 0.1.7 *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`4903d83`](https://github.com/retrofor/iamai/commit/4903d83f6102edb78a6e733824e3fbe7de435c79) - bump version into 0.1.7 *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`288453c`](https://github.com/retrofor/iamai/commit/288453cd74e2b87f6a637e196da6159f82afa177) - bump version into 0.1.7 *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`5ff8101`](https://github.com/retrofor/iamai/commit/5ff81016b85fb54d641c9b157621ad30fad375d8) - bump version into 0.1.7 *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`e95d288`](https://github.com/retrofor/iamai/commit/e95d288a6c382f1635a9bc0d6bfc19810300032f) - bump version into 0.1.7 *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`343faa8`](https://github.com/retrofor/iamai/commit/343faa8d052dfbb5378ffcbfab8ca7b70e0af271) - bump version into 0.1.7 *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`926804e`](https://github.com/retrofor/iamai/commit/926804ec3f1e35cd2674587c13a56aaf96febaf0) - bump version into 0.1.7 *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`708f521`](https://github.com/retrofor/iamai/commit/708f5216317d613feaa2e9d1e5087439bf6cb6ce) - bump version into 0.1.7 *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`c485f60`](https://github.com/retrofor/iamai/commit/c485f604156cfb66a87b9c9fe1b461a1650b3df3) - **docs**: update api docs with sphinx-apidoc *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+
 ## [v0.1.6] - 2024-09-24
 ### New Features
 - [`9e7052d`](https://github.com/retrofor/iamai/commit/9e7052d89ca0ef34fd74eeb0bfb9d49b22ccf9da) - update docker workflow to push image to ghcr and log in with github token *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
@@ -197,3 +230,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.0.4]: https://github.com/retrofor/iamai/compare/v0.0.3...v0.0.4
 [v0.1.4]: https://github.com/retrofor/iamai/compare/v0.0.4...v0.1.4
 [v0.1.6]: https://github.com/retrofor/iamai/compare/v0.1.5...v0.1.6
+[v0.1.7]: https://github.com/retrofor/iamai/compare/v0.1.6...v0.1.7
