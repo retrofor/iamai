@@ -17,9 +17,3 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-
-  # Maintain dependencies for npm
-  - package-ecosystem: "npm"
-    directory: "/website/"
-    schedule:
-      interval: "daily"
