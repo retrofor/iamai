@@ -3,6 +3,8 @@ name: api build
 on:
     pull_request:
     push:
+      paths:
+        "docs/"
         # tags:
         #   - "v*"
     workflow_dispatch:
