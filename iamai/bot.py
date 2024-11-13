@@ -170,7 +170,12 @@ class Bot:
         self._event_postprocessor_hooks = []
 
         sys.meta_path.insert(0, self._module_path_finder)
-
+        
+    @property
+    def locale_dirs(self) -> List[Path]:
+        """Get the locale directories of the bot."""
+        return [Path.cwd() / "locales"]
+    
     @property
     def _(self) -> GNUTranslations:
         # logger.warning(f"{self.config.bot.locale}")

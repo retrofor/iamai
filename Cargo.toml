@@ -14,5 +14,7 @@ authors = ["HsiangNianian"]
 crate-type = ["cdylib"]
 
 [dependencies]
+image = "0.25.5"
+num-complex = "0.4.6"
 pyo3 = { version = "0.19.2", features = ["abi3-py39"] }
 time = "0.3.36"
