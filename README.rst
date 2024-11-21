@@ -66,7 +66,7 @@ To avoid any potential disputes or misunderstandings, we have listed the license
    :alt: Ruff
 .. |discord| image:: https://img.shields.io/discord/1063871387527303188?style=flat-square
    :target: https://discord.gg/9vG9352RXS
-.. |qgroup| image:: https://img.shields.io/badge/-QQ群%20761859776-002FA7?style=flat-square&logo=Tencent QQ&logoColor=white
+.. |qgroup| image:: https://img.shields.io/badge/-QQ群%20946843972-002FA7?style=flat-square&logo=Tencent QQ&logoColor=white
    :target: https://jq.qq.com/?_wv=1027&k=OOUmgrqx
 .. |py_v| image:: https://img.shields.io/badge/v0.1.6%20Ragdoll-LTS-blue?style=flat-square&logo=python
    :target: https://pypi.python.org/pypi/iamai
