@@ -63,8 +63,8 @@ them. Please see `credits.pdf <./docs/_static/assets/credits.pdf>`__.
    :width: 60
 .. |discord| image:: https://img.shields.io/discord/1063871387527303188?style=flat-square
    :target: https://discord.gg/9vG9352RXS
-.. |qgroup| image:: https://img.shields.io/badge/-QQ群%20761859776-002FA7?style=flat-square&logo=Tencent%20QQ&logoColor=white
-   :target: https://jq.qq.com/?_wv=1027&k=OOUmgrqx
+.. |qgroup| image:: https://img.shields.io/badge/-QQ群%20946843972-002FA7?style=flat-square&logo=Tencent QQ&logoColor=white
+   :target: https://qm.qq.com/q/o7dbUNDwoo
 .. |py_v| image:: https://img.shields.io/badge/v0.1.6%20Ragdoll-LTS-blue?style=flat-square&logo=python
    :target: https://pypi.python.org/pypi/iamai
 .. |Ruff| image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json
