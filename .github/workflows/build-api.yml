@@ -1,12 +1,12 @@
-name: BUILD API
+name: Build API
 
 on:
     pull_request:
+      paths:
+        "docs/"
     push:
       paths:
         "docs/"
-        # tags:
-        #   - "v*"
     workflow_dispatch:
 
 jobs:
@@ -20,12 +20,8 @@ jobs:
         steps:
           - uses: actions/checkout@v3
     
-          - uses: pdm-project/setup-pdm@v4
-            name: Setup PDM
-            with:
-              python-version: 3.9
-          - name: Install dependencies
-            run: pdm install -dG docs
+          - name: Setup Python
+            uses: ./.github/actions/setup-python
     
           - name: Remove API Doc
             run: rm -rf docs/source/pages/api
