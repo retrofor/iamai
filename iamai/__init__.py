@@ -11,7 +11,6 @@ from iamai.config import ConfigModel
 from iamai.dependencies import Depends
 from iamai.event import Event, MessageEvent
 from iamai.plugin import Plugin
-from iamai._core import sum_as_string
 
 __all__ = [
     "Adapter",
@@ -21,5 +20,4 @@ __all__ = [
     "Event",
     "MessageEvent",
     "Plugin",
-    "Core",
 ]
