@@ -19,9 +19,9 @@ from typing import (
     overload,
 )
 
-from ..event import Event
-from ..typing import ConfigT, EventT
-from ..utils import is_config_class
+from iamai.event import Event
+from iamai.typing import ConfigT, EventT
+from iamai.utils import is_config_class
 
 if TYPE_CHECKING:
     from ..bot import Bot

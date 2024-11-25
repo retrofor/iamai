@@ -28,6 +28,9 @@ Documentation = "https://iamai.retrofor.space/"
 Repository = "https://github.com/retrofor/iamai"
 Changelog = "https://iamai.is-a.dev/changelog.html"
 
+[tool.uv.sources]
+iamai = { workspace = true }
+
 [tool.hatch.build]
 exclude = ["iamai/__init__.py", "iamai/adapter/__init__.py"]
 include = ["iamai/adapter/apscheduler"]

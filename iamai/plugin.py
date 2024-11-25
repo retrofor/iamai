@@ -20,15 +20,15 @@ from typing import (
 )
 from typing_extensions import Annotated, get_args, get_origin
 
-from .config import ConfigModel
-from .dependencies import Depends
-from .event import Event
-from .exceptions import SkipException, StopException
-from .typing import ConfigT, EventT, StateT
-from .utils import is_config_class
+from iamai.config import ConfigModel
+from iamai.dependencies import Depends
+from iamai.event import Event
+from iamai.exceptions import SkipException, StopException
+from iamai.typing import ConfigT, EventT, StateT
+from iamai.utils import is_config_class
 
 if TYPE_CHECKING:
-    from .bot import Bot
+    from iamai.bot import Bot
 
 __all__ = ["Plugin", "PluginLoadType"]
 

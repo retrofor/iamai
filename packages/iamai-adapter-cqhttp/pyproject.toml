@@ -31,6 +31,9 @@ Changelog = "https://iamai.is-a.dev/changelog.html"
 # exclude = ["iamai/__init__.py", "iamai/adapter/__init__.py"]
 include = ["iamai/adapter/cqhttp"]
 
+[tool.uv.sources]
+iamai = { workspace = true }
+
 [tool.pdm]
 [tool.pdm.dev-dependencies]
 dev = []

@@ -6,7 +6,7 @@ This module defines some of the types used by iamai.
 # ruff: noqa: TCH001
 from typing import TYPE_CHECKING, Awaitable, Callable, Optional, TypeVar
 
-from .message import BuildMessageType, MessageSegmentT, MessageT
+from iamai.message import BuildMessageType, MessageSegmentT, MessageT
 
 if TYPE_CHECKING:
     from typing import Any

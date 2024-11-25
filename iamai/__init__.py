@@ -5,13 +5,13 @@ Comprehensive AI Toolkit for Multi Modal Learning and Cross-Platform Robotics.
 This Module imports the following contents from the sub-module.
 """
 
-from .adapter import Adapter
-from .bot import Bot
-from .config import ConfigModel
-from .dependencies import Depends
-from .event import Event, MessageEvent
-from .plugin import Plugin
-from . import libcore
+from iamai.adapter import Adapter
+from iamai.bot import Bot
+from iamai.config import ConfigModel
+from iamai.dependencies import Depends
+from iamai.event import Event, MessageEvent
+from iamai.plugin import Plugin
+from iamai._core import sum_as_string
 
 __all__ = [
     "Adapter",
@@ -21,5 +21,5 @@ __all__ = [
     "Event",
     "MessageEvent",
     "Plugin",
-    "libcore",
+    "Core",
 ]
