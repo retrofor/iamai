@@ -8,7 +8,7 @@ Subpackages
    :maxdepth: 4
 
    iamai.adapter
-   iamai.models
+   iamai.model
 
 Submodules
 ----------
@@ -24,7 +24,6 @@ Submodules
    iamai.event
    iamai.exceptions
    iamai.i18n
-   iamai.libcore
    iamai.log
    iamai.message
    iamai.plugin

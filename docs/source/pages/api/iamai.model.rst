@@ -1,5 +1,5 @@
-iamai.models package
-====================
+iamai.model package
+===================
 
 Subpackages
 -----------
@@ -7,12 +7,12 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   iamai.models.BM25
+   iamai.model.BM25
 
 Module contents
 ---------------
 
-.. automodule:: iamai.models
+.. automodule:: iamai.model
    :members:
    :undoc-members:
    :show-inheritance:
