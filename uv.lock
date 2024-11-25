@@ -796,7 +796,7 @@ requires-dist = [
 
 [[package]]
 name = "iamai-adapter-bililive"
-version = "0.1.7"
+version = "0.1.8"
 source = { editable = "packages/iamai-adapter-bililive" }
 dependencies = [
     { name = "iamai" },
@@ -807,7 +807,7 @@ requires-dist = [{ name = "iamai", editable = "." }]
 
 [[package]]
 name = "iamai-adapter-console"
-version = "0.1.7"
+version = "0.1.8"
 source = { editable = "packages/iamai-adapter-console" }
 dependencies = [
     { name = "iamai" },
@@ -818,7 +818,7 @@ requires-dist = [{ name = "iamai", editable = "." }]
 
 [[package]]
 name = "iamai-adapter-cqhttp"
-version = "0.1.7"
+version = "0.1.8"
 source = { editable = "packages/iamai-adapter-cqhttp" }
 dependencies = [
     { name = "iamai" },
@@ -829,7 +829,7 @@ requires-dist = [{ name = "iamai", editable = "." }]
 
 [[package]]
 name = "iamai-adapter-dingtalk"
-version = "0.1.7"
+version = "0.1.8"
 source = { editable = "packages/iamai-adapter-dingtalk" }
 dependencies = [
     { name = "iamai" },
@@ -840,7 +840,7 @@ requires-dist = [{ name = "iamai", editable = "." }]
 
 [[package]]
 name = "iamai-adapter-gensokyo"
-version = "0.1.7"
+version = "0.1.8"
 source = { editable = "packages/iamai-adapter-gensokyo" }
 dependencies = [
     { name = "iamai" },
@@ -851,7 +851,7 @@ requires-dist = [{ name = "iamai", editable = "." }]
 
 [[package]]
 name = "iamai-adapter-kook"
-version = "0.1.7"
+version = "0.1.8"
 source = { editable = "packages/iamai-adapter-kook" }
 dependencies = [
     { name = "iamai" },
@@ -862,7 +862,7 @@ requires-dist = [{ name = "iamai", editable = "." }]
 
 [[package]]
 name = "iamai-adapter-red"
-version = "0.1.7"
+version = "0.1.8"
 source = { editable = "packages/iamai-adapter-red" }
 dependencies = [
     { name = "iamai" },
@@ -894,7 +894,7 @@ name = "importlib-metadata"
 version = "8.5.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "zipp" },
+    { name = "zipp", marker = "python_full_version < '3.11'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/cd/12/33e59336dca5be0c398a7482335911a33aa0e20776128f038019f1a95f1b/importlib_metadata-8.5.0.tar.gz", hash = "sha256:71522656f0abace1d072b9e5481a48f07c138e00f079c38c8f883823f9c26bd7", size = 55304 }
 wheels = [
