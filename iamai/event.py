@@ -9,7 +9,7 @@ from typing_extensions import Self
 
 from pydantic import BaseModel, ConfigDict
 
-from .typing import AdapterT
+from iamai.typing import AdapterT
 
 __all__ = ["Event", "MessageEvent"]
 

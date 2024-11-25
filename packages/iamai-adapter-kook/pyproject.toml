@@ -29,6 +29,9 @@ Changelog = "https://iamai.is-a.dev/changelog.html"
 exclude = ["iamai/__init__.py", "iamai/adapter/__init__.py"]
 include = ["iamai/adapter/kook"]
 
+[tool.uv.sources]
+iamai = { workspace = true }
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"

@@ -1,6 +1,6 @@
 from iamai import Plugin
 from iamai.log import logger
-from iamai.models.BM25 import BM25
+from iamai.model.BM25 import BM25
 from iamai.adapter.kook.message import (
     KookMessage,
     KookMessageSegment,

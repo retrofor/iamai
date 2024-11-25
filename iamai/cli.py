@@ -3,13 +3,14 @@ import asyncio
 import gettext
 import os
 
-from .const import __version__
+from iamai.const import __version__
 
 # Set up message catalog access
 localedir = os.path.join(os.path.dirname(__file__), "locale")
 gettext.bindtextdomain("messages", localedir)
 gettext.textdomain("messages")
 _ = gettext.gettext
+
 
 @click.group()
 def cli():

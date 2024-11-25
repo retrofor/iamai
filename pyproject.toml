@@ -9,8 +9,8 @@ description = "Comprehensive AI Toolkit for Multimodal Learning and Cross-Platfo
 authors = [{ name = "HsiangNianian", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
 readme.content-type = "text/x-rst"
-readme.text = """See the `documentation <https://iamai.is-a.dev/>`_."""
-# readme = "README.rst"
+readme.file = "README.rst"
+requires-python = ">=3.9"
 keywords = [
     "bot",
     "red",
@@ -35,38 +35,15 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Topic :: Communications :: Chat",
 ]
-requires-python = ">=3.9"
 dependencies = [
-    "pydantic>=2.0.3,<3.0.0",
-    "aiohttp>=3.9.1",
-    "loguru>=0.7.0,<0.8.0",
-    "typing-extensions>=4.8.0",
-    "requests>=2.31.0",
-    "rich>=13.7.1",
+    "aiohttp>=3.11.7",
     "click>=8.1.7",
+    "loguru>=0.7.2",
     "polib>=1.2.0",
-]
-
-[project.optional-dependencies]
-cqhttp = ["iamai-adapter-cqhttp"]
-bililive = ["iamai-adapter-bililive"]
-dingtalk = ["iamai-adapter-dingtalk"]
-apscheduler = ["iamai-adapter-apscheduler"]
-red = ["iamai-adapter-red"]
-console = ["iamai-adapter-console"]
-kook = ["iamai-adapter-kook"]
-gensokyo = ["iamai-adapter-gensokyo"]
-hot_reload = ["watchfiles"]
-all = [
-    "iamai-adapter-bililive",
-    "iamai-adapter-cqhttp",
-    "iamai-adapter-dingtalk",
-    "iamai-adapter-apscheduler",
-    "iamai-adapter-gensokyo",
-    "iamai-adapter-console",
-    "iamai-adapter-red",
-    "iamai-adapter-kook",
-    "watchfiles",
+    "pydantic>=2.10.1",
+    "requests>=2.32.3",
+    "rich>=13.9.4",
+    "typing-extensions>=4.12.2",
 ]
 
 [project.urls]
@@ -78,62 +55,77 @@ Changelog = "https://iamai.is-a.dev/en/latest/changelog.html#"
 [project.scripts]
 iamai = "iamai.__main__:main"
 
+[project.optional-dependencies]
+cqhttp = ["iamai-adapter-cqhttp"]
+bililive = ["iamai-adapter-bililive"]
+console = ["iamai-adapter-console"]
+apscheduler = ["iamai-adapter-apscheduler"]
+dingtalk = ["iamai-adapter-dingtalk"]
+gensokyo = ["iamai-adapter-gensokyo"]
+kook = ["iamai-adapter-kook"]
+red = ["iamai-adapter-red"]
+watchfiles = ["watchfiles>=1.0.0"]
+all = [
+    "iamai-adapter-apscheduler",
+    "iamai-adapter-bililive",
+    "iamai-adapter-console",
+    "iamai-adapter-cqhttp",
+    "iamai-adapter-dingtalk",
+    "iamai-adapter-gensokyo",
+    "iamai-adapter-kook",
+    "iamai-adapter-red",
+    "watchfiles>=1.0.0",
+]
+
+[tool.uv]
+dev-dependencies = ["maturin>=1.7.4", "nox>=2024.10.9"]
+
 [tool.black]
 target-version = ["py39", "py310", "py311"]
 
-[tool.pdm.dev-dependencies]
-dev = [
-    "pip>=24.2",
-    "maturin>=1.7.0",
-    "typing>=3.7.4.3",
-]
+[dependency-groups]
 lint = [
-    "ruff>=0.3.0",
-    "mypy>=1.8.0",
-    "pylint>=3.1.0",
+    "black>=24.10.0",
+    "mypy>=1.13.0",
+    "pylint>=3.3.1",
     "pylint-pydantic>=0.3.2",
+    "ruff>=0.8.0",
 ]
 docs = [
-    "tomlkit>=0.13.0",
-    "sphinx>=7.1.2",
-    "furo>=2024.1.29",
-    "sphinx-autobuild>=2021.3.14",
-    "myst-parser>=2.0.0",
-    "tomli>=2.0.1",
-    "sphinx-design>=0.5.0",
-    "sphinx-intl>=2.1.0",
-    "lint>=1.2.1",
-    "black>=24.2.0",
-    "ruff>=0.3.0",
-    "pylint>=3.1.0",
-    "pylint-pydantic>=0.3.2",
+    "furo>=2024.8.6",
+    "sphinx-autobuild>=2024.10.3",
+    "sphinx>=7.4.7",
+    "myst-parser>=3.0.1",
+    "sphinx-design>=0.6.1",
+    "sphinx-intl>=2.3.0",
     "sphinx-last-updated-by-git>=0.3.8",
 ]
 test = [
-    "pytest>=8.0.2",
-    "pytest-asyncio>=0.23.5",
-    "pytest-xdist>=3.5.0",
-    "pytest-cov>=4.1.0",
+    "pytest>=8.3.3",
+    "pytest-asyncio>=0.24.0",
+    "pytest-cov>=6.0.0",
+    "pytest-xdist>=3.6.1",
 ]
-typing = ["watchfiles>=0.21.0", "trio>=0.24.0"]
-# adapters = [
-#     "-e iamai-adapter-cqhttp @ file:///${PROJECT_ROOT}/packages/iamai-adapter-cqhttp",
-#     "-e iamai-adapter-bililive @ file:///${PROJECT_ROOT}/packages/iamai-adapter-bililive",
-#     "-e iamai-adapter-console @ file:///${PROJECT_ROOT}/packages/iamai-adapter-console",
-#     "-e iamai-adapter-dingtalk @ file:///${PROJECT_ROOT}/packages/iamai-adapter-dingtalk",
-#     "-e iamai-adapter-red @ file:///${PROJECT_ROOT}/packages/iamai-adapter-red",
-#     "-e iamai-adapter-apscheduler @ file:///${PROJECT_ROOT}/packages/iamai-adapter-apscheduler",
-#     "-e iamai-adapter-gensokyo @ file:///${PROJECT_ROOT}/packages/iamai-adapter-gensokyo",
-#     "-e iamai-adapter-kook @ file:///${PROJECT_ROOT}/packages/iamai-adapter-kook",
-# ]
-adapters = [
-    "iamai-adapter-cqhttp @ file:///${PROJECT_ROOT}/packages/iamai-adapter-cqhttp",
-]
+
+[tool.uv.workspace]
+members = ["packages/*", "Test/example-ext"]
+
+[tool.uv.sources]
+iamai-adapter-cqhttp = { workspace = true }
+iamai-adapter-apscheduler = { workspace = true }
+iamai-adapter-bililive = { workspace = true }
+iamai-adapter-console = { workspace = true }
+iamai-adapter-dingtalk = { workspace = true }
+iamai-adapter-gensokyo = { workspace = true }
+iamai-adapter-kook = { workspace = true }
+iamai-adapter-red = { workspace = true }
+
 
 [tool.maturin]
 features = ["pyo3/extension-module"]
-module-name = "iamai.libcore"
+module-name = "iamai._core"
 # include = [{ path = "iamai/**/*", format = "sdist" }, "README.rst"]
+
 
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.

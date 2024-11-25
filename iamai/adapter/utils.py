@@ -10,9 +10,9 @@ from typing import Literal, Optional, Union
 import aiohttp
 from aiohttp import web
 
-from ..adapter import Adapter
-from ..log import logger
-from ..typing import ConfigT, EventT
+from iamai.adapter import Adapter
+from iamai.log import logger
+from iamai.typing import ConfigT, EventT
 
 __all__ = [
     "PollingAdapter",

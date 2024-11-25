@@ -1,6 +1,6 @@
 import sys
 
-from .cli import cli_func
+from iamai.cli import cli_func
 
 
 def main(*args):

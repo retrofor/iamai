@@ -39,7 +39,8 @@ class LogConfig(ConfigModel):
 
     level: Union[str, int] = "DEBUG"
     verbose_exception: bool = False
-    
+
+
 class BotConfig(ConfigModel):
     """Bot configuration.
 
