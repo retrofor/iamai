@@ -3,6 +3,8 @@
 Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform Robotics |Structure|
 ========================================================================================
 
+.. index-start
+
 Welcome to iamai, a powerful and comprehensive AI toolkit that
 seamlessly integrates multimodal machine learning capabilities with
 advanced tools for cross-platform robot development!
@@ -35,6 +37,8 @@ their contributions.
 To avoid any potential disputes or misunderstandings, we have listed the
 licenses of the projects we have used and express our gratitude towards
 them. Please see `credits.pdf <./docs/_static/assets/credits.pdf>`__.
+
+.. index-end
 
 *Cite This Software*
 
