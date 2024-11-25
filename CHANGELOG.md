@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.1.8] - 2024-11-25
+### New Features
+- [`cfd9192`](https://github.com/retrofor/iamai/commit/cfd91928a78a053c2d60226a7b60f06f426fa36c) - add zhCN i18n language support *(PR [#305](https://github.com/retrofor/iamai/pull/305) by [@BegoniaHe](https://github.com/BegoniaHe))*
+
+### Bug Fixes
+- [`ac24df0`](https://github.com/retrofor/iamai/commit/ac24df063b200409f17cb2890027f0b617403338) - **publish-docker**: correct version extraction from tag *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`764ca16`](https://github.com/retrofor/iamai/commit/764ca162fa623b33294e7a44c2f77453573b6968) - fix the issue of incorrect hash value in the lock file *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Refactors
+- [`6bb6ec9`](https://github.com/retrofor/iamai/commit/6bb6ec972e94d32189304aa43895147fcdf8324c) - **.github**: Update Node to v18, Python to v3.9, and optimize workflows *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`4610cea`](https://github.com/retrofor/iamai/commit/4610cea1206ba38d1c9044c38155c5ffec728638) - **iamai**: Remove unused import and update __all__ *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`5211ab1`](https://github.com/retrofor/iamai/commit/5211ab111e4cb5f973d88ebd295bfb8b04043a08) - **publish-docker**: restrict image push to tags only *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Chores
+- [`c430cc7`](https://github.com/retrofor/iamai/commit/c430cc7c6c16ff7f115496e0bbc5192c3f846171) - remove unused French and Chinese translation files *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`3886c8d`](https://github.com/retrofor/iamai/commit/3886c8d35c2fc02dffe22184089b2f2f85be9a8c) - **docs**: update api docs with sphinx-apidoc *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+
 ## [v0.1.7] - 2024-11-11
 ### New Features
 - [`c47789c`](https://github.com/retrofor/iamai/commit/c47789c8c3bfde9d9e8c3d69a429e6f242256d43) - update CI workflow to publish to PyPI and Docker with inputs and secrets *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
@@ -231,3 +249,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.1.4]: https://github.com/retrofor/iamai/compare/v0.0.4...v0.1.4
 [v0.1.6]: https://github.com/retrofor/iamai/compare/v0.1.5...v0.1.6
 [v0.1.7]: https://github.com/retrofor/iamai/compare/v0.1.6...v0.1.7
+[v0.1.8]: https://github.com/retrofor/iamai/compare/v0.1.7...v0.1.8
