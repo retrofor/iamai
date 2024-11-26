@@ -31,7 +31,7 @@ from typing import (
 from gettext import GNUTranslations
 from pydantic import ValidationError, create_model
 
-from .adapter import Adapter
+from .mapper import Adapter
 from .config import AdapterConfig, ConfigModel, MainConfig, PluginConfig
 from .dependencies import solve_dependencies
 from .event import Event

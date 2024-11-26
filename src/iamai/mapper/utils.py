@@ -10,7 +10,7 @@ from typing import Literal, Optional, Union
 import aiohttp
 from aiohttp import web
 
-from iamai.adapter import Adapter
+from iamai.mapper import Adapter
 from iamai.log import logger
 from iamai.typing import ConfigT, EventT
 

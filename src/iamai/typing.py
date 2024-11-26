@@ -11,7 +11,7 @@ from iamai.message import BuildMessageType, MessageSegmentT, MessageT
 if TYPE_CHECKING:
     from typing import Any
 
-    from .adapter import Adapter
+    from .mapper import Adapter
     from .bot import Bot
     from .config import ConfigModel
     from .event import Event

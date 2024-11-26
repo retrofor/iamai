@@ -6,19 +6,6 @@ resolution-markers = [
     "python_full_version >= '3.12'",
 ]
 
-[manifest]
-members = [
-    "iamai",
-    "iamai-adapter-apscheduler",
-    "iamai-adapter-bililive",
-    "iamai-adapter-console",
-    "iamai-adapter-cqhttp",
-    "iamai-adapter-dingtalk",
-    "iamai-adapter-gensokyo",
-    "iamai-adapter-kook",
-    "iamai-adapter-red",
-]
-
 [[package]]
 name = "aiohappyeyeballs"
 version = "2.4.3"
@@ -164,18 +151,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/9f/09/45b9b7a6d4e45c6bcb5bf61d19e3ab87df68e0601fa8c5293de3542546cc/anyio-4.6.2.post1.tar.gz", hash = "sha256:4c8bc31ccdb51c7f7bd251f51c609e038d63e34219b44aa86e47576389880b4c", size = 173422 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/e4/f5/f2b75d2fc6f1a260f340f0e7c6a060f4dd2961cc16884ed851b0d18da06a/anyio-4.6.2.post1-py3-none-any.whl", hash = "sha256:6d170c36fba3bdd840c73d3868c1e777e33676a69c3a72cf0a0d5d6d8009b61d", size = 90377 },
-]
-
-[[package]]
-name = "apscheduler"
-version = "3.11.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "tzlocal" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/4e/00/6d6814ddc19be2df62c8c898c4df6b5b1914f3bd024b780028caa392d186/apscheduler-3.11.0.tar.gz", hash = "sha256:4c622d250b0955a65d5d0eb91c33e6d43fd879834bf541e0a18661ae60460133", size = 107347 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/d0/ae/9a053dd9229c0fde6b1f1f33f609ccff1ee79ddda364c756a924c6d8563b/APScheduler-3.11.0-py3-none-any.whl", hash = "sha256:fc134ca32e50f5eadcc4938e3a4545ab19131435e851abb40b34d63d5141c6da", size = 64004 },
 ]
 
 [[package]]
@@ -640,7 +615,7 @@ wheels = [
 
 [[package]]
 name = "iamai"
-version = "0.1.8"
+version = "1.0.0.dev1"
 source = { editable = "." }
 dependencies = [
     { name = "aiohttp" },
@@ -651,46 +626,6 @@ dependencies = [
     { name = "requests" },
     { name = "rich" },
     { name = "typing-extensions" },
-]
-
-[package.optional-dependencies]
-all = [
-    { name = "iamai-adapter-apscheduler" },
-    { name = "iamai-adapter-bililive" },
-    { name = "iamai-adapter-console" },
-    { name = "iamai-adapter-cqhttp" },
-    { name = "iamai-adapter-dingtalk" },
-    { name = "iamai-adapter-gensokyo" },
-    { name = "iamai-adapter-kook" },
-    { name = "iamai-adapter-red" },
-    { name = "watchfiles" },
-]
-apscheduler = [
-    { name = "iamai-adapter-apscheduler" },
-]
-bililive = [
-    { name = "iamai-adapter-bililive" },
-]
-console = [
-    { name = "iamai-adapter-console" },
-]
-cqhttp = [
-    { name = "iamai-adapter-cqhttp" },
-]
-dingtalk = [
-    { name = "iamai-adapter-dingtalk" },
-]
-gensokyo = [
-    { name = "iamai-adapter-gensokyo" },
-]
-kook = [
-    { name = "iamai-adapter-kook" },
-]
-red = [
-    { name = "iamai-adapter-red" },
-]
-watchfiles = [
-    { name = "watchfiles" },
 ]
 
 [package.dev-dependencies]
@@ -725,30 +660,12 @@ test = [
 requires-dist = [
     { name = "aiohttp", specifier = ">=3.11.7" },
     { name = "click", specifier = ">=8.1.7" },
-    { name = "iamai-adapter-apscheduler", marker = "extra == 'all'", editable = "packages/iamai-adapter-apscheduler" },
-    { name = "iamai-adapter-apscheduler", marker = "extra == 'apscheduler'", editable = "packages/iamai-adapter-apscheduler" },
-    { name = "iamai-adapter-bililive", marker = "extra == 'all'", editable = "packages/iamai-adapter-bililive" },
-    { name = "iamai-adapter-bililive", marker = "extra == 'bililive'", editable = "packages/iamai-adapter-bililive" },
-    { name = "iamai-adapter-console", marker = "extra == 'all'", editable = "packages/iamai-adapter-console" },
-    { name = "iamai-adapter-console", marker = "extra == 'console'", editable = "packages/iamai-adapter-console" },
-    { name = "iamai-adapter-cqhttp", marker = "extra == 'all'", editable = "packages/iamai-adapter-cqhttp" },
-    { name = "iamai-adapter-cqhttp", marker = "extra == 'cqhttp'", editable = "packages/iamai-adapter-cqhttp" },
-    { name = "iamai-adapter-dingtalk", marker = "extra == 'all'", editable = "packages/iamai-adapter-dingtalk" },
-    { name = "iamai-adapter-dingtalk", marker = "extra == 'dingtalk'", editable = "packages/iamai-adapter-dingtalk" },
-    { name = "iamai-adapter-gensokyo", marker = "extra == 'all'", editable = "packages/iamai-adapter-gensokyo" },
-    { name = "iamai-adapter-gensokyo", marker = "extra == 'gensokyo'", editable = "packages/iamai-adapter-gensokyo" },
-    { name = "iamai-adapter-kook", marker = "extra == 'all'", editable = "packages/iamai-adapter-kook" },
-    { name = "iamai-adapter-kook", marker = "extra == 'kook'", editable = "packages/iamai-adapter-kook" },
-    { name = "iamai-adapter-red", marker = "extra == 'all'", editable = "packages/iamai-adapter-red" },
-    { name = "iamai-adapter-red", marker = "extra == 'red'", editable = "packages/iamai-adapter-red" },
     { name = "loguru", specifier = ">=0.7.2" },
     { name = "polib", specifier = ">=1.2.0" },
     { name = "pydantic", specifier = ">=2.10.1" },
     { name = "requests", specifier = ">=2.32.3" },
     { name = "rich", specifier = ">=13.9.4" },
     { name = "typing-extensions", specifier = ">=4.12.2" },
-    { name = "watchfiles", marker = "extra == 'all'", specifier = ">=1.0.0" },
-    { name = "watchfiles", marker = "extra == 'watchfiles'", specifier = ">=1.0.0" },
 ]
 
 [package.metadata.requires-dev]
@@ -778,98 +695,6 @@ test = [
     { name = "pytest-cov", specifier = ">=6.0.0" },
     { name = "pytest-xdist", specifier = ">=3.6.1" },
 ]
-
-[[package]]
-name = "iamai-adapter-apscheduler"
-version = "0.1.8"
-source = { editable = "packages/iamai-adapter-apscheduler" }
-dependencies = [
-    { name = "apscheduler" },
-    { name = "iamai" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "apscheduler", specifier = ">=3.10.4" },
-    { name = "iamai", editable = "." },
-]
-
-[[package]]
-name = "iamai-adapter-bililive"
-version = "0.1.8"
-source = { editable = "packages/iamai-adapter-bililive" }
-dependencies = [
-    { name = "iamai" },
-]
-
-[package.metadata]
-requires-dist = [{ name = "iamai", editable = "." }]
-
-[[package]]
-name = "iamai-adapter-console"
-version = "0.1.8"
-source = { editable = "packages/iamai-adapter-console" }
-dependencies = [
-    { name = "iamai" },
-]
-
-[package.metadata]
-requires-dist = [{ name = "iamai", editable = "." }]
-
-[[package]]
-name = "iamai-adapter-cqhttp"
-version = "0.1.8"
-source = { editable = "packages/iamai-adapter-cqhttp" }
-dependencies = [
-    { name = "iamai" },
-]
-
-[package.metadata]
-requires-dist = [{ name = "iamai", editable = "." }]
-
-[[package]]
-name = "iamai-adapter-dingtalk"
-version = "0.1.8"
-source = { editable = "packages/iamai-adapter-dingtalk" }
-dependencies = [
-    { name = "iamai" },
-]
-
-[package.metadata]
-requires-dist = [{ name = "iamai", editable = "." }]
-
-[[package]]
-name = "iamai-adapter-gensokyo"
-version = "0.1.8"
-source = { editable = "packages/iamai-adapter-gensokyo" }
-dependencies = [
-    { name = "iamai" },
-]
-
-[package.metadata]
-requires-dist = [{ name = "iamai", editable = "." }]
-
-[[package]]
-name = "iamai-adapter-kook"
-version = "0.1.8"
-source = { editable = "packages/iamai-adapter-kook" }
-dependencies = [
-    { name = "iamai" },
-]
-
-[package.metadata]
-requires-dist = [{ name = "iamai", editable = "." }]
-
-[[package]]
-name = "iamai-adapter-red"
-version = "0.1.8"
-source = { editable = "packages/iamai-adapter-red" }
-dependencies = [
-    { name = "iamai" },
-]
-
-[package.metadata]
-requires-dist = [{ name = "iamai", editable = "." }]
 
 [[package]]
 name = "idna"
@@ -1931,27 +1756,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/df/db/f35a00659bc03fec321ba8bce9420de607a1d37f8342eee1863174c69557/typing_extensions-4.12.2.tar.gz", hash = "sha256:1a7ead55c7e559dd4dee8856e3a88b41225abfe1ce8df57b7c13915fe121ffb8", size = 85321 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/26/9f/ad63fc0248c5379346306f8668cda6e2e2e9c95e01216d2b8ffd9ff037d0/typing_extensions-4.12.2-py3-none-any.whl", hash = "sha256:04e5ca0351e0f3f85c6853954072df659d0d13fac324d0072316b67d7794700d", size = 37438 },
-]
-
-[[package]]
-name = "tzdata"
-version = "2024.2"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/e1/34/943888654477a574a86a98e9896bae89c7aa15078ec29f490fef2f1e5384/tzdata-2024.2.tar.gz", hash = "sha256:7d85cc416e9382e69095b7bdf4afd9e3880418a2413feec7069d533d6b4e31cc", size = 193282 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/a6/ab/7e5f53c3b9d14972843a647d8d7a853969a58aecc7559cb3267302c94774/tzdata-2024.2-py2.py3-none-any.whl", hash = "sha256:a48093786cdcde33cad18c2555e8532f34422074448fbc874186f0abd79565cd", size = 346586 },
-]
-
-[[package]]
-name = "tzlocal"
-version = "5.2"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "tzdata", marker = "platform_system == 'Windows'" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/04/d3/c19d65ae67636fe63953b20c2e4a8ced4497ea232c43ff8d01db16de8dc0/tzlocal-5.2.tar.gz", hash = "sha256:8d399205578f1a9342816409cc1e46a93ebd5755e39ea2d85334bea911bf0e6e", size = 30201 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/97/3f/c4c51c55ff8487f2e6d0e618dba917e3c3ee2caae6cf0fbb59c9b1876f2e/tzlocal-5.2-py3-none-any.whl", hash = "sha256:49816ef2fe65ea8ac19d19aa7a1ae0551c834303d5014c6d5a62e4cbda8047b8", size = 17859 },
 ]
 
 [[package]]

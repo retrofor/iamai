@@ -55,28 +55,6 @@ Changelog = "https://iamai.is-a.dev/en/latest/changelog.html#"
 [project.scripts]
 iamai = "iamai.__main__:main"
 
-[project.optional-dependencies]
-cqhttp = ["iamai-adapter-cqhttp"]
-bililive = ["iamai-adapter-bililive"]
-console = ["iamai-adapter-console"]
-apscheduler = ["iamai-adapter-apscheduler"]
-dingtalk = ["iamai-adapter-dingtalk"]
-gensokyo = ["iamai-adapter-gensokyo"]
-kook = ["iamai-adapter-kook"]
-red = ["iamai-adapter-red"]
-watchfiles = ["watchfiles>=1.0.0"]
-all = [
-    "iamai-adapter-apscheduler",
-    "iamai-adapter-bililive",
-    "iamai-adapter-console",
-    "iamai-adapter-cqhttp",
-    "iamai-adapter-dingtalk",
-    "iamai-adapter-gensokyo",
-    "iamai-adapter-kook",
-    "iamai-adapter-red",
-    "watchfiles>=1.0.0",
-]
-
 [tool.uv]
 dev-dependencies = ["maturin>=1.7.4", "nox>=2024.10.9"]
 
@@ -106,19 +84,6 @@ test = [
     "pytest-cov>=6.0.0",
     "pytest-xdist>=3.6.1",
 ]
-
-[tool.uv.workspace]
-members = ["packages/*", "Test/example-ext"]
-
-[tool.uv.sources]
-iamai-adapter-cqhttp = { workspace = true }
-iamai-adapter-apscheduler = { workspace = true }
-iamai-adapter-bililive = { workspace = true }
-iamai-adapter-console = { workspace = true }
-iamai-adapter-dingtalk = { workspace = true }
-iamai-adapter-gensokyo = { workspace = true }
-iamai-adapter-kook = { workspace = true }
-iamai-adapter-red = { workspace = true }
 
 
 [tool.maturin]

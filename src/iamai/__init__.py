@@ -5,7 +5,7 @@ Comprehensive AI Toolkit for Multi Modal Learning and Cross-Platform Robotics.
 This Module imports the following contents from the sub-module.
 """
 
-from iamai.adapter import Adapter
+from iamai.mapper import Adapter
 from iamai.bot import Bot
 from iamai.config import ConfigModel
 from iamai.dependencies import Depends
