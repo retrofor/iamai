@@ -9,4 +9,4 @@ ADD /examples /app/
 
 RUN pip install iamai[all]
 
-CMD ["pdm", "run", "main.py"]
+CMD ["uv", "run", "main.py"]
