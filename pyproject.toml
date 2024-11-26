@@ -124,8 +124,8 @@ iamai-adapter-red = { workspace = true }
 [tool.maturin]
 features = ["pyo3/extension-module"]
 module-name = "iamai._core"
-# include = [{ path = "iamai/**/*", format = "sdist" }, "README.rst"]
-
+python-package = "iamai"
+python-source = "src"
 
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.

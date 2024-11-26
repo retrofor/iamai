@@ -24,7 +24,7 @@ from iamai.typing import ConfigT, EventT
 from iamai.utils import is_config_class
 
 if TYPE_CHECKING:
-    from ..bot import Bot
+    from iamai.bot import Bot
 
 __all__ = ["Adapter"]
 

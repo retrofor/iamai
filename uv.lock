@@ -640,7 +640,7 @@ wheels = [
 
 [[package]]
 name = "iamai"
-version = "0.1.7"
+version = "0.1.8"
 source = { editable = "." }
 dependencies = [
     { name = "aiohttp" },
@@ -781,7 +781,7 @@ test = [
 
 [[package]]
 name = "iamai-adapter-apscheduler"
-version = "0.1.7"
+version = "0.1.8"
 source = { editable = "packages/iamai-adapter-apscheduler" }
 dependencies = [
     { name = "apscheduler" },
