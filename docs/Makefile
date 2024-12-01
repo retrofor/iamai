@@ -25,17 +25,17 @@ help:
 
 # build translation files ``.pot``
 trans build:
-	@pdm run $(SPHINXBUILD) -b gettext . ./$(BUILDDIR)/gettext $(O)
+	@uv run $(SPHINXBUILD) -b gettext . ./$(BUILDDIR)/gettext $(O)
 	# make -e SPHINXOPTS="-D language='de'" html
 # update translation command
 trans update:
 	@$(SPHINXBUILD) -M gettext "$(SOURCEDIR)" "$(BUILDDIR)" $(O)
-	@pdm run $(SPHINXINTL) update -p ./$(BUILDDIR)/gettext -l $(lang) $(O)
+	@uv run $(SPHINXINTL) update -p ./$(BUILDDIR)/gettext -l $(lang) $(O)
 
 # build api docs
 api build:
-	@pdm run $(SPHINXAPIDOCS) -o $(SOURCEDIR)/pages/api ../iamai ../packages -f -e --tocfile index $(O)
+	@uv run $(SPHINXAPIDOCS) -o $(SOURCEDIR)/pages/api ../iamai ../packages -f -e --tocfile index $(O)
 
 # build docs
 docs build:
-	@pdm run $(SPHINXBUILD) "$(SOURCEDIR)" "$(BUILDDIR)" $(O)
+	@uv run $(SPHINXBUILD) "$(SOURCEDIR)" "$(BUILDDIR)" $(O)
