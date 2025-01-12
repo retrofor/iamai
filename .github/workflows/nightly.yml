@@ -51,7 +51,7 @@ jobs:
     - uses: actboy168/action-zip@main
       id: zip
       with:
-        name: swi-prolog-docs-${{ matrix.platform.runner }}-${{ github.sha }}
+        name: iamai-${{ matrix.platform.runner }}-${{ github.sha }}
         path: |
           src/*
           README.rst
