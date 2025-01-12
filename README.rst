@@ -24,18 +24,18 @@ Installation
 
 To install **iamai**, run the following command:
 
-```bash
-pip install iamai
-```
+.. code-block:: bash
+
+    pip install iamai
 
 Usage
 -----
 
 To use **iamai**, run the following command:
 
-```bash
-iamai
-```
+.. code-block:: bash
+
+    iamai
 
 Contributing
 ------------
@@ -43,20 +43,19 @@ Contributing
 To contribute to **iamai**, follow these steps:
 
 1. Fork this repository.
-2. Create a branch: `git checkout -b <branch_name>`.
-3. Make your changes and commit them: `git commit -m '<commit_message>'`.
-4. Push to the original branch: `git push origin <project_name>/<location>`.
+2. Create a branch: ``git checkout -b <branch_name>``.
+3. Make your changes and commit them: ``git commit -m '<commit_message>'``.
+4. Push to the original branch: ``git push origin <project_name>/<location>``.
 5. Create the pull request.
 
-Alternatively, see the GitHub documentation on [creating a pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
+Alternatively, see the GitHub documentation on `creating a pull request <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request>`_.
 
 Support
 -------
 
-If you have any questions, please contact me at [academic@jyunko.cn](mailto:academic@jyunko.cn).
-
+If you have any questions, please contact me at `academic@jyunko.cn <mailto:academic@jyunko.cn>`_.
 
 License
 -------
 
-This project is licensed under the AGPLv3 License. See the [COPYING](COPYING) file for details.
+This project is licensed under the AGPLv3 License. See the `COPYING <COPYING>`_ file for details.
