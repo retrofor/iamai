@@ -8,13 +8,16 @@ This Module imports the following contents from the sub-module.
 from iamai.mapper import Mapper
 from iamai.plugin import Plugin
 from iamai.rule import Rule
-from iamai.engine import Engine
+from iamai.engine import RuleEngine, Message
 from iamai.lang import Condition
+from . import _core
 
 __all__ = [
     "Mapper",
     "Plugin",
     "Rule",
-    "Engine",
+    "RuleEngine",
+    "Message",
     "Condition",
+    "_core",
 ]
