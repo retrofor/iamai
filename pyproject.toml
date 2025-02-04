@@ -42,6 +42,7 @@ dependencies = [
     "loguru>=0.7.2",
     "polib>=1.2.0",
     "pydantic>=2.10.1",
+    "pyyaml>=6.0.2",
     "requests>=2.32.3",
     "rich>=13.9.4",
     "scikit-learn>=1.6.1",

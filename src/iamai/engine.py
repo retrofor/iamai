@@ -82,5 +82,7 @@ class Context:
         self.m = message
 
 class Message:
-    def __init__(self, subject):
-        self.subject = subject
+    def __init__(self, content, platform, user_id):
+        self.content = content
+        self.platform = platform
+        self.user_id = user_id
