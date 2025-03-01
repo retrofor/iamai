@@ -1,9 +1,10 @@
-from iamai._core import RuleEngine, process_message, PyMessage
+from iamai._core import RuleEngine, process_message
+from iamai.typing import Message
 from typing import List, Dict
 import json
 
 
-class HybridMessage(PyMessage):
+class HybridMessage(Message):
     """Python-Rust共享消息结构"""
 
     def to_json(self) -> str:
@@ -52,22 +53,21 @@ class HybridRuleEngine:
 
 # math_plugin.py
 class MathPlugin:
-    def match_rule(self, msg: HybridMessage) -> bool:
+    def match_rule(self, msg: Message) -> bool:
         return msg.content.startswith("计算")
 
-    def execute_action(self, msg: HybridMessage) -> str:
+    def execute_action(self, msg: Message) -> str:
         try:
-            expr = msg.content[2:].strip()
+            expr = msg.content.strip()
             return f"计算结果: {expr} = {eval(expr)}"
         except:
             return "计算失败"
 
 
 import time
-from iamai._core import HybridMessage
 
 # 创建测试消息
-msg = HybridMessage(content="计算2+2", platform="test", user_id="perf")
+msg = Message(content="2*10*1000000", platform="test", user_id="perf")
 
 # 纯Python版本
 start = time.time()
@@ -80,7 +80,7 @@ from iamai._core import process_message
 
 start = time.time()
 for _ in range(10_000):
-    process_message(msg)
+    process_message(msg.content.strip())
 rs_time = time.time() - start
 
 print(f"Python耗时: {py_time:.4f}s")

@@ -44,11 +44,20 @@ impl RuleEngine {
     }
 }
 
-/// 消息处理函数（零拷贝）
+/// Process mathematical expression in message content
+/// Returns evaluation result as f64
 #[pyfunction]
-fn process_message(msg: PyMessage) -> PyResult<String> {
-    // 示例：Rust侧直接处理消息内容
-    Ok(format!("Processed by Rust: {}", msg.content.to_uppercase()))
+fn process_message(expression: String) -> PyResult<f64> {
+    // Remove Chinese characters and whitespace
+    let cleaned_expr = expression.chars()
+        .filter(|c| !c.is_whitespace() && !c.is_control())
+        .collect::<String>();
+    
+    // Evaluate mathematical expression
+    meval::eval_str(&cleaned_expr)
+        .map_err(|e| PyErr::new::<pyo3::exceptions::PyValueError, _>(
+            format!("Invalid mathematical expression: {}", e)
+        ))
 }
 
 #[pymodule]

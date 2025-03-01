@@ -16,6 +16,7 @@ crate-type = ["cdylib"]
 
 [dependencies]
 image = "0.25.5"
+meval = "0.2.0"
 num-complex = "0.4.6"
 pyo3 = { version = "0.19.2", features = [
     "extension-module",

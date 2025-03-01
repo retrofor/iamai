@@ -10,9 +10,11 @@ from iamai.plugin import Plugin
 from iamai.rule import Rule
 from iamai.engine import RuleEngine, Message
 from iamai.lang import Condition
+from . import typing
 from . import _core
 
 __all__ = [
+    "typing",
     "Mapper",
     "Plugin",
     "Rule",
