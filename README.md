@@ -1,3 +1,3 @@
 # iamai
 
-> Cross-Platform rule drived llmops.
+> Cross-Platform rule-driven llmops.
