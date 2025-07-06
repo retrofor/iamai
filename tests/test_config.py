@@ -1,42 +1,31 @@
-# continuing the above example...
+import os
+import yaml
+from pydantic import ValidationError
+from iamai.config import MainConfig
 
-from datetime import datetime
-
-from pydantic import BaseModel, PositiveInt, ValidationError
-
-
-class User(BaseModel):
-    id: int
-    name: str = "John Doe"
-    signup_ts: datetime | None
-    tastes: dict[str, PositiveInt]
+current_dir = os.path.dirname(__file__)
 
 
-external_data = {
-    "id": 1,
-    "tastes": {"strawberries": 5, "caviar": 10},
-    "signup_ts": "2023-10-01T12:00:00Z",
-}
+def load_config(config_path: str) -> MainConfig:
+    """从 YAML 文件加载配置."""
+    try:
+        with open(config_path, "r") as f:
+            config_data = yaml.safe_load(f)
+        return MainConfig(**config_data)  # Pydantic 负责验证数据
+    except FileNotFoundError:
+        print(f"配置文件未找到: {config_path}")
+        return MainConfig()  # 返回默认配置
+    except yaml.YAMLError as e:
+        print(f"YAML 解析错误: {e}")
+        raise
+    except ValidationError as e:
+        print(f"配置验证错误: {e}")
+        raise
 
-try:
-    print(User(**external_data).model_dump())
-except ValidationError as e:
-    print(e.errors())
-    """
-    [
-        {
-            'type': 'int_parsing',
-            'loc': ('id',),
-            'msg': 'Input should be a valid integer, unable to parse string as an integer',
-            'input': 'not an int',
-            'url': 'https://errors.pydantic.dev/2/v/int_parsing',
-        },
-        {
-            'type': 'missing',
-            'loc': ('signup_ts',),
-            'msg': 'Field required',
-            'input': {'id': 'not an int', 'tastes': {}},
-            'url': 'https://errors.pydantic.dev/2/v/missing',
-        },
-    ]
-    """
+
+# 示例用法
+if __name__ == "__main__":
+    config = load_config(os.path.join(current_dir, "config.yaml"))
+    print(config.bot.name)
+    print(config.log.level)
+    print(config.middleware.middleware_settings)

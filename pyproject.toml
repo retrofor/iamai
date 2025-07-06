@@ -10,7 +10,7 @@ authors = [{ name = "HsiangNianian", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
 # readme.content-type = "text/x-rst"
 readme.file = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 keywords = [
     "bot",
     "red",
@@ -46,6 +46,7 @@ dependencies = [
     "requests>=2.32.3",
     "rich>=13.9.4",
     "scikit-learn>=1.6.1",
+    "siamese-prototype>=2.0.0",
     "toml>=0.10.2",
     "typing-extensions>=4.12.2",
 ]
@@ -83,6 +84,7 @@ docs = [
     "sphinx-last-updated-by-git>=0.3.8",
 ]
 test = [
+    "nox>=2024.10.9",
     "pytest>=8.3.3",
     "pytest-asyncio>=0.24.0",
     "pytest-cov>=6.0.0",
