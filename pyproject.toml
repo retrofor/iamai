@@ -47,8 +47,9 @@ dependencies = [
     "rich>=13.9.4",
     "scikit-learn>=1.6.1",
     "siamese-prototype>=2.0.0",
-    "toml>=0.10.2",
+    "textual>=3.6.0",
     "typing-extensions>=4.12.2",
+    "websockets>=14.1",
 ]
 
 [project.urls]
