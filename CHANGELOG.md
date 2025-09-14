@@ -4,6 +4,55 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.2.1] - 2025-09-14
+### BREAKING CHANGES
+- due to [`64e7661`](https://github.com/retrofor/iamai/commit/64e7661989bd03de25d1f8426f7fbb19df06bfb0) - update license and refactor code structure *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*:
+
+  update license and refactor code structure
+
+
+### New Features
+- [`f288edb`](https://github.com/retrofor/iamai/commit/f288edbb93c3a387edcc65a9174ca13dcc601f24) - **bot**: remove Bot module *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`ecbe45f`](https://github.com/retrofor/iamai/commit/ecbe45f57f831b6a8d4973a47362c13a950ee201) - **iamai**: add Engine, Condition, Rule, Mapper classes and update imports *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`2d099f9`](https://github.com/retrofor/iamai/commit/2d099f9e0b0f2adc8d667f1b8690b57e43117f6d) - **engine, plugin**: add engine and plugin support in Python module *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`50f081e`](https://github.com/retrofor/iamai/commit/50f081edffe6c3968a47918ff902e2e6f3037ccb) - implement RuleEngine and Message classes, add config loading functionality, and update imports *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`58105e8`](https://github.com/retrofor/iamai/commit/58105e8d9802f01714cc1feaa20cec7c970921c2) - add initial Copilot instructions for project overview and guidelines *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`37c37cc`](https://github.com/retrofor/iamai/commit/37c37ccc5c16f2f607ca2fdd0291704ea2da647c) - add README and configuration files, implement RuleEngine class with rule management features *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`80d1377`](https://github.com/retrofor/iamai/commit/80d13770434aeded3d68df34cbea921b32fd3e72) - update README with project overview, installation instructions, usage, contributing guidelines, and license information *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`a99d006`](https://github.com/retrofor/iamai/commit/a99d0062daa056f912bf3245b1a1ff80453c34b2) - update documentation formatting and improve contributing guidelines *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`e0896bf`](https://github.com/retrofor/iamai/commit/e0896bfa88380dcab06c85aed54452248ceda046) - update README to use reStructuredText link syntax for library references *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`d75c998`](https://github.com/retrofor/iamai/commit/d75c9981bef21031c3ebc3b807de19d4dc304b28) - add nightly workflow for automated release management *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`17f1f0b`](https://github.com/retrofor/iamai/commit/17f1f0b53e9f0366fdfc429f4cd6491b6fb212f1) - update nightly workflow zip name format *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`2710e4b`](https://github.com/retrofor/iamai/commit/2710e4b752ddfd3dca6ea45e29222b042e921900) - implement hybrid message processing with Rust and Python integration *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`be56b06`](https://github.com/retrofor/iamai/commit/be56b067d2348e6929c12254fab7e0cfacd8cf06) - update message processing to evaluate mathematical expressions and enhance message structure *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`17ae34d`](https://github.com/retrofor/iamai/commit/17ae34d446fe66f4726470c542c30385d9b4a043) - add main entrance *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`3e8b008`](https://github.com/retrofor/iamai/commit/3e8b008ecc4c80bbfe43c84330ba63a9fa49a446) - **examples**: add basic and bottle example implementations *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`5760c85`](https://github.com/retrofor/iamai/commit/5760c85e26dc69d73c9b7bc26e330850ef5121f4) - **middleware**: implement middleware system with console and WebSocket support *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`e9a4d26`](https://github.com/retrofor/iamai/commit/e9a4d2616d27ca41137aa5dc7d3364c2a07babfa) - implement core bot framework with event system and message handling *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Bug Fixes
+- [`25c3030`](https://github.com/retrofor/iamai/commit/25c303081f6f94b667fe6c258f7318da065c2e94) - fix iamai-adapter-apscheduler package version *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Refactors
+- [`64e7661`](https://github.com/retrofor/iamai/commit/64e7661989bd03de25d1f8426f7fbb19df06bfb0) - **iamai**: update license and refactor code structure *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`774d5f9`](https://github.com/retrofor/iamai/commit/774d5f99960ebcf59811bc5f420ecfde1801cde3) - **Dockerfile**: Replace pdm with uv for dependency management and execution *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`5beeed1`](https://github.com/retrofor/iamai/commit/5beeed139572ce2f23bacf01a22f76bdaa1e6124) - remove unused modules and files *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`b1f376e`](https://github.com/retrofor/iamai/commit/b1f376ea60ab93cb6eb8533c1f98079d52022f59) - llmops is nessessary. *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`a69281e`](https://github.com/retrofor/iamai/commit/a69281ea6870ad6171eadc4c65c8f03eaafcd927) - remove terminal middleware and tests, add textual UI test *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Tests
+- [`693b4c6`](https://github.com/retrofor/iamai/commit/693b4c688846c41e9b3385ebfca513b73d7ebeeb) - add minimal test script and update textual ui tests *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Chores
+- [`732e90b`](https://github.com/retrofor/iamai/commit/732e90bfa69617226431fdf0a368938678394c3e) - remove unused files and update version to 1.0.0-dev.1 *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`434d49b`](https://github.com/retrofor/iamai/commit/434d49b36b6b77840b041fcf6d7908869e3491a5) - remove unused Dockerfile.prod and build_credit.py *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`3dc09e4`](https://github.com/retrofor/iamai/commit/3dc09e4e75d6e48d13544717d10586cfecf2b8fc) - update .gitignore for ruff and pytest caches *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`733f218`](https://github.com/retrofor/iamai/commit/733f218bedbf67b927c8fa0eb8f7074261d08eb5) - Add `bot` `config` `logger` *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`c9eb46c`](https://github.com/retrofor/iamai/commit/c9eb46ca4b8899b0f4a0448c495f5e1e08030866) - **deps**: Add pydantic deps *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`bb62354`](https://github.com/retrofor/iamai/commit/bb62354317101d8d565e0bd15cf7003044f58376) - **deps**: Add `textual` deps *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`5257556`](https://github.com/retrofor/iamai/commit/52575568a5d4c7be7b10c2ec79788e25e080ffa1) - add template directory to .gitignore *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+
 ## [v0.1.8] - 2024-11-25
 ### New Features
 - [`cfd9192`](https://github.com/retrofor/iamai/commit/cfd91928a78a053c2d60226a7b60f06f426fa36c) - add zhCN i18n language support *(PR [#305](https://github.com/retrofor/iamai/pull/305) by [@BegoniaHe](https://github.com/BegoniaHe))*
@@ -250,3 +299,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.1.6]: https://github.com/retrofor/iamai/compare/v0.1.5...v0.1.6
 [v0.1.7]: https://github.com/retrofor/iamai/compare/v0.1.6...v0.1.7
 [v0.1.8]: https://github.com/retrofor/iamai/compare/v0.1.7...v0.1.8
+[v0.2.1]: https://github.com/retrofor/iamai/compare/v0.1.8...v0.2.1
