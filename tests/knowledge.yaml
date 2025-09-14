@@ -1,9 +1,0 @@
-facts:
-  - [parent, david, john]
-  - [parent, john, mary]
-
-rules:
-  - head: [grandparent, '?GP', '?GC']
-    body:
-      - [parent, '?GP', '?P']
-      - [parent, '?P', '?GC']
