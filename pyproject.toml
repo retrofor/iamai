@@ -5,25 +5,26 @@ build-backend = "maturin"
 [project]
 name = "iamai"
 dynamic = ["version"]
-description = "Comprehensive AI Toolkit for Multimodal Learning and Cross-Platform Robotics."
+description = "Advanced Asynchronous Python Cross-Platform Rule-Driven Bot Framework"
 authors = [{ name = "HsiangNianian", email = "i@jyunko.cn" }]
 license = { text = "MIT" }
 # readme.content-type = "text/x-rst"
 readme.file = "README.md"
 requires-python = ">=3.11"
 keywords = [
-    "bot",
-    "red",
-    "kook",
-    "onebot11",
-    "gensokyo",
-    "dingtalk",
-    "console",
-    "apscheduler",
-    "bilibili",
-    "bilibili-live",
-    "rust",
-    "pyo3",
+    "AsyncRuleBot",
+    "async",
+    "rule-engine",
+    "cross-platform",
+    "discord",
+    "telegram",
+    "slack",
+    "webhook",
+    "rules",
+    "workflow",
+    "automation",
+    "ai",
+    "machine-learning",
 ]
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -37,19 +38,26 @@ classifiers = [
 ]
 dependencies = [
     "aiohttp>=3.11.7",
+    "aioredis>=2.0.1",
     "click>=8.1.7",
-    "flask>=3.1.0",
+    "discord.py>=2.3.2",
     "loguru>=0.7.2",
-    "polib>=1.2.0",
     "pydantic>=2.10.1",
     "pyyaml>=6.0.2",
-    "requests>=2.32.3",
+    "python-telegram-bot>=20.7",
+    "redis>=5.0.1",
     "rich>=13.9.4",
     "scikit-learn>=1.6.1",
-    "siamese-prototype>=2.0.0",
-    "textual>=3.6.0",
+    "slack-sdk>=3.26.1",
+    "sqlalchemy>=2.0.23",
     "typing-extensions>=4.12.2",
     "websockets>=14.1",
+    "asyncio-mqtt>=0.16.1",
+    "celery>=5.3.4",
+    "fastapi>=0.104.1",
+    "uvicorn>=0.24.0",
+    "textual>=6.1.0",
+    "toml>=0.10.2",
 ]
 
 [project.urls]
@@ -90,6 +98,9 @@ test = [
     "pytest-asyncio>=0.24.0",
     "pytest-cov>=6.0.0",
     "pytest-xdist>=3.6.1",
+]
+dev = [
+    "ruff>=0.8.0",
 ]
 
 
