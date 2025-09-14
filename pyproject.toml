@@ -7,12 +7,11 @@ name = "iamai"
 dynamic = ["version"]
 description = "Advanced Asynchronous Python Cross-Platform Rule-Driven Bot Framework"
 authors = [{ name = "HsiangNianian", email = "i@jyunko.cn" }]
-license = { text = "MIT" }
-# readme.content-type = "text/x-rst"
+license = { text = "AGPL-3.0" }
 readme.file = "README.md"
 requires-python = ">=3.11"
 keywords = [
-    "AsyncRuleBot",
+    "Bot",
     "async",
     "rule-engine",
     "cross-platform",
@@ -66,8 +65,8 @@ Documentation = "https://iamai.is-a.dev"
 Repository = "https://github.com/retrofor/iamai"
 Changelog = "https://iamai.is-a.dev/en/latest/changelog.html#"
 
-[project.scripts]
-iamai = "iamai.__main__:main"
+# [project.scripts]
+# iamai = "iamai.__main__:main"
 
 [tool.uv]
 dev-dependencies = ["maturin>=1.7.4", "nox>=2024.10.9"]
