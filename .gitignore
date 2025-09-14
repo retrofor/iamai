@@ -160,3 +160,7 @@ _build
 
 # pytest
 .pytest_cache
+
+# template
+.template/
+
