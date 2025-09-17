@@ -164,3 +164,8 @@ _build
 # template
 .template/
 
+# compress file
+*.zip
+*.tar
+*.tar.gz
+*.rar
