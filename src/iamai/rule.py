@@ -130,10 +130,22 @@ class RuleEngine:
     
     async def _execute_action(self, action: RuleAction, context: RuleContext) -> Any:
         """执行动作"""
-        if asyncio.iscoroutinefunction(action):
-            return await action(context)
-        else:
-            return action(context)
+        # 支持多种情况：
+        # - action 直接是协程函数 (async def)
+        # - action 是普通函数但返回一个协程对象（例如装饰器 wrapper 返回了原 async 函数的调用结果）
+        try:
+            logger.debug(f"执行动作 action={action} (callable={callable(action)})")
+            result = action(context)
+        except TypeError:
+            # 可能 action 需要不同签名（降级处理）
+            result = action(context)
+
+        if asyncio.iscoroutine(result):
+            res = await result
+            logger.debug(f"动作协程返回: {res}")
+            return res
+        logger.debug(f"动作返回: {result}")
+        return result
     
     def add_fact(self, key: str, value: Any) -> None:
         """添加事实"""

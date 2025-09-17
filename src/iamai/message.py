@@ -2,7 +2,7 @@
 消息系统模块
 """
 
-from typing import Any, Dict, Optional, List
+from typing import Any, Dict, Optional
 from dataclasses import dataclass, field
 import time
 from .typing import Event
@@ -54,11 +54,25 @@ class Message:
         }
 
     def to_event(self) -> Event:
-        """转换为消息事件"""
+        """转换为消息事件
+
+        将消息的关键信息复制到事件的 fields 中，便于规则条件使用 event.fields.get(...)
+        """
         from .event import MessageEvent
 
+        fields = {
+            "content": self.content,
+            "user_id": self.user_id,
+            "channel_id": self.channel_id,
+            **(self.fields or {}),
+        }
+
         return MessageEvent(
-            type="message", platform=self.platform, raw_data=self.raw_data, message=self
+            type="message",
+            platform=self.platform,
+            raw_data=self.raw_data,
+            message=self,
+            fields=fields,
         )
 
 

@@ -14,6 +14,7 @@ from . import Middleware, register_middleware, MiddlewareConfig
 from ..event import Event, MessageEvent
 from ..message import Message, ConsoleMessage, MessageBuilder
 from ..logger import get_logger
+from ..logger import register_ui_sink, unregister_ui_sink
 
 logger = get_logger(__name__)
 
@@ -56,8 +57,10 @@ class LogPanel(RichLog):
         config = level_config.get(level, {"color": "white", "emoji": "📝"})
         text = Text(f"{config['emoji']} [{timestamp}] {level}: ", style=config['color'] + " bold")
         text.append(message, style="white")
-        self.write(text)
-        self.scroll_end(animate=False)
+    self.write(text)
+    self.scroll_end(animate=False)
+    # 现在日志由 loguru 直接写入并通过 UI sink广播到这里，
+    # 因此不在此处重复写回 loguru，防止产生重复条目。
 
 class ConsoleApp(App):
     CSS = """
@@ -104,16 +107,17 @@ class ConsoleApp(App):
             is_bot=True
         )
         # 系统日志示例
-        self.log_panel.add_log("INFO", "机器人实例已创建")
-        self.log_panel.add_log("INFO", "启动机器人...")
-        self.log_panel.add_log("INFO", "加载插件...")
-        self.log_panel.add_log("INFO", "总共加载了 0 个插件")
-        self.log_panel.add_log("INFO", "启动中间件...")
-        self.log_panel.add_log("INFO", f"中间件 {self.middleware.name} 加载成功")
-        self.log_panel.add_log("INFO", f"启动控制台中间件: {self.middleware.name}")
-        self.log_panel.add_log("INFO", "控制台中间件已启动")
-        self.log_panel.add_log("INFO", "启动了 1 个中间件")
-        self.log_panel.add_log("INFO", "机器人启动成功")
+    logger = get_logger(__name__)
+    logger.info("机器人实例已创建")
+    logger.info("启动机器人...")
+    logger.info("加载插件...")
+    logger.info("总共加载了 0 个插件")
+    logger.info("启动中间件...")
+    logger.info(f"中间件 {self.middleware.name} 加载成功")
+    logger.info(f"启动控制台中间件: {self.middleware.name}")
+    logger.info("控制台中间件已启动")
+    logger.info("启动了 1 个中间件")
+    logger.info("机器人启动成功")
     def on_input_submitted(self, event: Input.Submitted) -> None:
         if event.input.id == "message-input":
             self._send_message(event.input)
@@ -129,6 +133,12 @@ class ConsoleApp(App):
                 content,
                 is_bot=False
             )
+            # 立刻在右侧日志记录发送的消息，确保用户可见
+            try:
+                if self.log_panel:
+                    self.log_panel.add_log("INFO", f"发送消息: {content}")
+            except Exception:
+                pass
             asyncio.create_task(self.middleware._process_user_input(content))
             input_widget.value = ""
 
@@ -143,11 +153,27 @@ class ConsoleMiddleware(Middleware):
             return
         logger.info(f"启动控制台中间件: {self.name}")
         self.app = ConsoleApp(self)
+        # 注册 UI 日志接收器，使 loguru 的日志能显示在右侧 LogPanel
+        def _ui_sink(level: str, message: str):
+            try:
+                if self.app and self.app.log_panel:
+                    self.app.log_panel.add_log(level, message)
+            except Exception:
+                pass
+
+        self._ui_sink = _ui_sink
+        register_ui_sink(self._ui_sink)
         self.input_task = asyncio.create_task(self._run_app())
         self.connected = True
         logger.info("控制台中间件已启动")
     async def stop(self) -> None:
         logger.info(f"停止控制台中间件: {self.name}")
+        # 注销 UI 日志接收器
+        try:
+            unregister_ui_sink(self._ui_sink)
+        except Exception:
+            pass
+
         if self.input_task:
             self.input_task.cancel()
             try:
@@ -162,12 +188,29 @@ class ConsoleMiddleware(Middleware):
         except Exception as e:
             logger.error(f"控制台应用运行错误: {e}")
     async def send_message(self, content: str, channel_id: str, **kwargs) -> None:
-        if self.app and self.app.chat_panel:
-            self.app.chat_panel.add_message(
-                self.config.bot_name,
-                content,
-                is_bot=True
-            )
+        # 记录发送日志（会通过 loguru 广播到右侧 LogPanel）
+        logger.info(f"ConsoleMiddleware.send_message called: {content}")
+
+        async def _do_add():
+            try:
+                if self.app and self.app.chat_panel:
+                    self.app.chat_panel.add_message(
+                        self.config.bot_name,
+                        content,
+                        is_bot=True
+                    )
+            except Exception as e:
+                logger.error(f"向 UI 添加消息失败: {e}")
+
+        # 尝试在事件循环中异步调度 UI 更新，以兼容 Textual 的事件循环
+        try:
+            asyncio.create_task(_do_add())
+        except Exception:
+            # 退化到直接调用
+            try:
+                _do_add()
+            except Exception:
+                pass
     async def _process_user_input(self, content: str) -> None:
         try:
             message = MessageBuilder.create_console_message(
@@ -177,7 +220,18 @@ class ConsoleMiddleware(Middleware):
                 user_name=self.config.user_name
             )
             event = message.to_event()
-            await self.handle_event(event)
+            # 直接调用 bot.process_event 以获取处理结果，并在 UI 日志中记录
+            if not self.enabled:
+                return
+            results = await self.bot.process_event(event, self)
+            # 在日志面板记录收到的消息和处理结果，以便在右侧日志可见
+            if self.app and self.app.log_panel:
+                try:
+                    self.app.log_panel.add_log("INFO", f"收到消息 from {self.config.user_name}: {content}")
+                    self.app.log_panel.add_log("INFO", f"消息已处理: {len(results)} 条规则执行返回结果 | results={results}")
+                except Exception:
+                    # 不影响主流程
+                    pass
         except Exception as e:
             logger.error(f"处理用户输入时出错: {e}")
             if self.app and self.app.log_panel:

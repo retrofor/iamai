@@ -100,6 +100,8 @@ test = [
     "pytest-xdist>=3.6.1",
 ]
 dev = [
+    "pyflakes>=3.4.0",
+    "pytest>=8.3.3",
     "ruff>=0.8.0",
 ]
 
