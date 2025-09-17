@@ -183,12 +183,48 @@ class Bot:
     async def _load_middleware(self, middleware_name: str) -> None:
         """加载中间件"""
         try:
-            # 从注册表获取中间件类
-            middleware_class = middleware_registry.get(middleware_name)
+            # 尝试按命名空间导入中间件（优先将整个字符串当作模块路径导入）
+            middleware_class = None
+            module = None
+
+            # 1) 尝试将整个名字作为模块导入，例如 'iamai.middleware.console'
+            try:
+                module = __import__(middleware_name, fromlist=['*'])
+                # 从模块中查找合适的中间件类：优先常见类名，然后扫描模块中第一个 Middleware 子类
+                middleware_class = getattr(module, 'ConsoleMiddleware', None) or getattr(module, 'Middleware', None)
+                if not middleware_class:
+                    # 扫描模块属性，寻找首个继承自 Middleware 的类
+                    import inspect
+                    for _, obj in inspect.getmembers(module, inspect.isclass):
+                        try:
+                            if issubclass(obj, Middleware) and obj is not Middleware:
+                                middleware_class = obj
+                                break
+                        except Exception:
+                            continue
+            except Exception:
+                middleware_class = None
+
+            # 2) 如果步骤1失败，尝试把最后一段当作类名，从模块路径和类名组合导入，例如 'iamai.middleware.console.ConsoleMiddleware'
+            if not middleware_class:
+                try:
+                    if ':' in middleware_name:
+                        mod_path, attr = middleware_name.split(':', 1)
+                    else:
+                        mod_path, attr = middleware_name.rsplit('.', 1)
+                    module = __import__(mod_path, fromlist=[attr])
+                    middleware_class = getattr(module, attr, None)
+                except Exception:
+                    middleware_class = None
+
+            # 3) 最后回退到注册表（兼容旧的注册名）
+            if not middleware_class:
+                middleware_class = middleware_registry.get(middleware_name)
+
             if not middleware_class:
                 raise ImportError(f"找不到中间件: {middleware_name}")
-            
-            # 获取配置
+
+            # 获取配置：使用最后一段作为配置键（例如模块名或类名）
             config_name = middleware_name.split('.')[-1]
             middleware_config = self.config.get_middleware_config(config_name)
             
