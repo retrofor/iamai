@@ -31,7 +31,7 @@ class Middleware(ABC):
         
     @abstractmethod
     async def start(self) -> None:
-        """启动中间件"""
+        """启动中间件"""w
         pass
     
     @abstractmethod

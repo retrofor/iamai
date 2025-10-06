@@ -4,6 +4,8 @@
 """
 from loguru import logger
 import sys
+import socket
+import threading
 from typing import Optional
 from .typing import LogLevel
 
@@ -46,11 +48,38 @@ def _broadcast_to_ui(record):
     except Exception:
         pass
 
+_socket_server_thread = None
+_socket_clients = []
+
+def _socket_sink_server(host='127.0.0.1', port=56789):
+    """启动 socket server，接收日志 sink 客户端连接并广播日志"""
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    server.bind((host, port))
+    server.listen(5)
+    while True:
+        client, _ = server.accept()
+        _socket_clients.append(client)
+
+def _socket_sink(message):
+    """loguru sink: 将日志通过 socket 广播给所有客户端"""
+    for client in list(_socket_clients):
+        try:
+            client.sendall((message + '\n').encode('utf-8'))
+        except Exception:
+            try:
+                _socket_clients.remove(client)
+            except Exception:
+                pass
+
 def setup_logger(
     level: LogLevel = "INFO",
     log_file: Optional[str] = "iamai.log",
     console: bool = False,
-    format_string: Optional[str] = None
+    format_string: Optional[str] = None,
+    socket_sink: bool = True,
+    socket_host: str = '127.0.0.1',
+    socket_port: int = 56789
 ) -> None:
     """设置日志器"""
     if format_string is None:
@@ -77,6 +106,13 @@ def setup_logger(
             backtrace=True,
             diagnose=True
         )
+    # Socket sink
+    if socket_sink:
+        global _socket_server_thread
+        if _socket_server_thread is None:
+            _socket_server_thread = threading.Thread(target=_socket_sink_server, args=(socket_host, socket_port), daemon=True)
+            _socket_server_thread.start()
+        logger.add(_socket_sink, level=level, format="{message}")
 
     # 添加一个内部 sink，用于把日志广播到已注册的 UI 面板
     logger.add(_broadcast_to_ui, level=level, format=format_string)

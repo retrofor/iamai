@@ -14,13 +14,12 @@ from . import Middleware, register_middleware, MiddlewareConfig
 from ..event import Event, MessageEvent
 from ..message import Message, ConsoleMessage, MessageBuilder
 from ..logger import get_logger
-from ..logger import register_ui_sink, unregister_ui_sink
 
 logger = get_logger(__name__)
 
 @dataclass
 class ConsoleMiddlewareConfig(MiddlewareConfig):
-    middleware_connect_type: str = "direct"
+    middleware_connect_type: str = "direct" # pyright: ignore[reportIncompatibleVariableOverride]
     bot_name: str = "BOT"
     bot_id: str = "111"
     user_name: str = "USER"
@@ -57,10 +56,10 @@ class LogPanel(RichLog):
         config = level_config.get(level, {"color": "white", "emoji": "📝"})
         text = Text(f"{config['emoji']} [{timestamp}] {level}: ", style=config['color'] + " bold")
         text.append(message, style="white")
-    self.write(text)
-    self.scroll_end(animate=False)
-    # 现在日志由 loguru 直接写入并通过 UI sink广播到这里，
-    # 因此不在此处重复写回 loguru，防止产生重复条目。
+        self.write(text)
+        self.scroll_end(animate=False)
+        # 现在日志由 loguru 直接写入并通过 UI sink广播到这里，
+        # 因此不在此处重复写回 loguru，防止产生重复条目。
 
 class ConsoleApp(App):
     CSS = """
@@ -74,12 +73,15 @@ class ConsoleApp(App):
     #chat-log { height: 1fr; border: solid $surface; margin: 1; }
     #system-log { height: 1fr; border: solid $surface; margin: 1; }
     """
-    BINDINGS = [ ("ctrl+k", "command_palette", "Command Palette") ]
+    # 使用 Textual 默认快捷键和帮助模板，无需自定义 BINDINGS
+    # 移除所有自定义快捷键和弹窗，恢复 Textual 默认行为
     def __init__(self, middleware: 'ConsoleMiddleware'):
         super().__init__()
         self.middleware = middleware
         self.chat_panel: ChatPanel = ChatPanel()
         self.log_panel: LogPanel = LogPanel()
+        self._log_socket = None
+        self._log_task = None
     def compose(self) -> ComposeResult:
         yield Header()
         yield Horizontal(
@@ -100,24 +102,61 @@ class ConsoleApp(App):
             )
         )
         yield Footer()
-    def on_mount(self) -> None:
+    async def on_mount(self) -> None:
+        """Called when the Textual app is mounted; initialize UI and emit startup logs."""
         self.chat_panel.add_message(
-            self.middleware.config.bot_name,
+            self.middleware.config.bot_name, # pyright: ignore[reportAttributeAccessIssue]
             "机器人已启动，输入 help 查看可用命令",
             is_bot=True
         )
-        # 系统日志示例
-    logger = get_logger(__name__)
-    logger.info("机器人实例已创建")
-    logger.info("启动机器人...")
-    logger.info("加载插件...")
-    logger.info("总共加载了 0 个插件")
-    logger.info("启动中间件...")
-    logger.info(f"中间件 {self.middleware.name} 加载成功")
-    logger.info(f"启动控制台中间件: {self.middleware.name}")
-    logger.info("控制台中间件已启动")
-    logger.info("启动了 1 个中间件")
-    logger.info("机器人启动成功")
+        # 启动 socket 日志监听
+        self._log_task = asyncio.create_task(self._listen_log_socket())
+    async def _listen_log_socket(self, host='127.0.0.1', port=56789):
+        import socket
+        import asyncio
+        try:
+            reader, writer = await asyncio.open_connection(host, port)
+            self._log_socket = (reader, writer)
+            while True:
+                line = await reader.readline()
+                if not line:
+                    await asyncio.sleep(0.1)
+                    continue
+                try:
+                    msg = line.decode('utf-8').strip()
+                    # 简单解析日志级别
+                    if msg.startswith('[DEBUG'):
+                        level = 'DEBUG'
+                    elif msg.startswith('[INFO'):
+                        level = 'INFO'
+                    elif msg.startswith('[WARNING'):
+                        level = 'WARNING'
+                    elif msg.startswith('[ERROR'):
+                        level = 'ERROR'
+                    elif msg.startswith('[CRITICAL'):
+                        level = 'CRITICAL'
+                    else:
+                        level = 'INFO'
+                    self.log_panel.add_log(level, msg)
+                except Exception:
+                    pass
+        except Exception:
+            # socket 连接失败，降级为无日志
+            pass
+
+        # 系统日志示例（通过统一 logger 发出，便于持久化与 UI 广播）
+        logger = get_logger(__name__)
+        logger.info("机器人实例已创建")
+        logger.info("启动机器人...")
+        logger.info("加载插件...")
+        logger.info("总共加载了 0 个插件")
+        logger.info("启动中间件...")
+        # 在 on_mount 中访问 self.middleware 是安全的
+        logger.info(f"中间件 {self.middleware.name} 加载成功")
+        logger.info(f"启动控制台中间件: {self.middleware.name}")
+        logger.info("控制台中间件已启动")
+        logger.info("启动了 1 个中间件")
+        logger.info("机器人启动成功")
     def on_input_submitted(self, event: Input.Submitted) -> None:
         if event.input.id == "message-input":
             self._send_message(event.input)
@@ -146,23 +185,14 @@ class ConsoleApp(App):
 class ConsoleMiddleware(Middleware):
     def __init__(self, name: str, config: ConsoleMiddlewareConfig, bot: 'Bot'):
         super().__init__(name, config, bot)
-        self.app: ConsoleApp = None
+        self.app: ConsoleApp = None # pyright: ignore[reportAttributeAccessIssue]
         self.input_task = None
     async def start(self) -> None:
         if not self.enabled:
             return
         logger.info(f"启动控制台中间件: {self.name}")
         self.app = ConsoleApp(self)
-        # 注册 UI 日志接收器，使 loguru 的日志能显示在右侧 LogPanel
-        def _ui_sink(level: str, message: str):
-            try:
-                if self.app and self.app.log_panel:
-                    self.app.log_panel.add_log(level, message)
-            except Exception:
-                pass
-
-        self._ui_sink = _ui_sink
-        register_ui_sink(self._ui_sink)
+    # 不再注册 UI sink，日志通过 socket 推送到 TUI
         self.input_task = asyncio.create_task(self._run_app())
         self.connected = True
         logger.info("控制台中间件已启动")
