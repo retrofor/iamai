@@ -67,10 +67,7 @@ Repository = "https://github.com/retrofor/iamai"
 Changelog = "https://iamai.is-a.dev/en/latest/changelog.html#"
 
 [project.scripts]
-iamai = "iamai.__main__:main"
-
-[tool.uv]
-dev-dependencies = ["maturin>=1.7.4", "nox>=2024.10.9"]
+iamai = "iamai.__main__:main" 
 
 [tool.black]
 target-version = ["py39", "py310", "py311"]
@@ -103,6 +100,8 @@ dev = [
     "pyflakes>=3.4.0",
     "pytest>=8.3.3",
     "ruff>=0.8.0",
+    "maturin>=1.7.4",
+    "nox>=2024.10.9"
 ]
 
 
