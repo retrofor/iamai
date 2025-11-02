@@ -66,8 +66,8 @@ Documentation = "https://iamai.is-a.dev"
 Repository = "https://github.com/retrofor/iamai"
 Changelog = "https://iamai.is-a.dev/en/latest/changelog.html#"
 
-# [project.scripts]
-# iamai = "iamai.__main__:main"
+[project.scripts]
+iamai = "iamai.__main__:main"
 
 [tool.uv]
 dev-dependencies = ["maturin>=1.7.4", "nox>=2024.10.9"]

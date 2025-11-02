@@ -36,7 +36,7 @@ jobs:
         run: echo "${{ secrets.ACCESS_TOKEN }}" | sudo docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Push image
-        if: "startsWith(github.ref, 'refs/tags/')"
+        if: "startsWith(github.ref, 'refs/tags/')" || github.event_name == 'workflow_dispatch'
         run: |
           IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
