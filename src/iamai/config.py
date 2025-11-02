@@ -14,15 +14,18 @@ class MiddlewareConfig:
     enabled: bool = True
     middleware_connect_type: str = "direct"
 
+
 @dataclass
 class BotConfig:
     name: str = "iamai"
     logger: LoggerConfig = field(default_factory=LoggerConfig)
     middlewares: List[Dict[str, Any]] = field(default_factory=list)
-    
+
+
 @dataclass
 class Config:
     """全局配置"""
+
     bot: BotConfig = field(default_factory=BotConfig)
     logger: LoggerConfig = field(default_factory=LoggerConfig)
     middlewares: List[Dict[str, Any]] = field(default_factory=list)
