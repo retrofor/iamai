@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.2.2-beta.1] - 2025-11-02
+### Chores
+- [`e3e1226`](https://github.com/retrofor/iamai/commit/e3e122622f3b4ae487bdd6f1c1d8f95ec6195af9) - **version**: update package version from alpha to beta *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+
 ## [v0.1.8] - 2024-11-25
 ### New Features
 - [`cfd9192`](https://github.com/retrofor/iamai/commit/cfd91928a78a053c2d60226a7b60f06f426fa36c) - add zhCN i18n language support *(PR [#305](https://github.com/retrofor/iamai/pull/305) by [@BegoniaHe](https://github.com/BegoniaHe))*
@@ -250,3 +255,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.1.6]: https://github.com/retrofor/iamai/compare/v0.1.5...v0.1.6
 [v0.1.7]: https://github.com/retrofor/iamai/compare/v0.1.6...v0.1.7
 [v0.1.8]: https://github.com/retrofor/iamai/compare/v0.1.7...v0.1.8
+[v0.2.2-beta.1]: https://github.com/retrofor/iamai/compare/v0.2.2-alpha.1-dev.3...v0.2.2-beta.1
