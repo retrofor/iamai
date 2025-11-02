@@ -16,7 +16,7 @@ on:
 
 # This creates an environment variable called `IMAGE_NAME ` with the value `ghtoken_product_demo`.
 env:
-  IMAGE_NAME: iamai-prod
+  IMAGE_NAME: iamai
 #
 jobs:
   # This pushes the image to GitHub Packages.
@@ -49,7 +49,7 @@ jobs:
 
           [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo "$VERSION" | sed -e 's|refs/tags/v||')
           [ "$VERSION" == "master" ] && VERSION=latest
-          
+
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
           sudo docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
