@@ -1,37 +1,90 @@
-"""
-中间件系统模块
-"""
 from abc import ABC, abstractmethod
-from typing import Any, Dict, Optional, Type, Union
-from dataclasses import dataclass
+from typing import Any, Dict, Optional, Literal
 import asyncio
-from ..typing import ConnectType, MiddlewareConfig, Event
 from ..logger import get_logger
-from ..config import MiddlewareConfig as BaseMiddlewareConfig
 
 logger = get_logger(__name__)
 
-class MiddlewareConfig(BaseMiddlewareConfig):
-    """中间件配置"""
+ConnectType = Literal["websocket", "reverse_websocket", "http", "direct"]
+
+class MiddlewareConfig:
+    """中间件配置基类"""
+    enabled: bool = True
+    middleware_connect_type: ConnectType = "direct"
+    
     def __init__(self, **kwargs):
-        super().__init__()
         for key, value in kwargs.items():
             setattr(self, key, value)
 
-class Middleware(ABC):
-    """中间件抽象基类"""
+
+class MappedObject:
+    def __init__(self, data: Dict[str, Any], mapping: Optional[Dict[str, str]] = None):
+        self._data = data
+        self._mapping = mapping or {}
+        self._reverse_mapping = {v: k for k, v in self._mapping.items()} if mapping else {}
+        
+    def __getattr__(self, name: str) -> Any:
+        """通过属性名获取值"""
+        if name.startswith('_'):
+            return object.__getattribute__(self, name)
+        
+        if name in self._reverse_mapping:
+            original_name = self._reverse_mapping[name]
+            if original_name in self._data:
+                value = self._data[original_name]
+                return self._wrap_value(value)
+        
+        if name in self._data:
+            value = self._data[name]
+            return self._wrap_value(value)
+        
+        raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
     
-    def __init__(self, name: str, config: MiddlewareConfig, bot: 'Bot'):
+    def __getitem__(self, key: str) -> Any:
+        """字典式访问"""
+        try:
+            return self.__getattr__(key)
+        except AttributeError:
+            raise KeyError(key)
+    
+    def get(self, key: str, default: Any = None) -> Any:
+        """安全获取值"""
+        try:
+            return self.__getattr__(key)
+        except AttributeError:
+            return default
+    
+    def __contains__(self, key: str) -> bool:
+        """检查键是否存在"""
+        return key in self._data or key in self._reverse_mapping
+    
+    def __repr__(self) -> str:
+        return f"MappedObject({self._data})"
+    
+    def to_dict(self) -> Dict[str, Any]:
+        """转换为字典"""
+        return self._data.copy()
+    
+    def _wrap_value(self, value: Any) -> Any:
+        """包装值，递归处理字典和列表"""
+        if isinstance(value, dict):
+            return MappedObject(value, self._mapping)
+        elif isinstance(value, list):
+            return [self._wrap_value(item) for item in value]
+        return value
+
+class Middleware(ABC):
+    def __init__(self, name: str, config: MiddlewareConfig, bot: Any):
         self.name = name
         self.config = config
         self.bot = bot
-        self.connect_type = config.middleware_connect_type
-        self.enabled = config.enabled
+        self.connect_type = getattr(config, 'middleware_connect_type', 'direct')
+        self.enabled = getattr(config, 'enabled', True)
         self.connected = False
         
     @abstractmethod
     async def start(self) -> None:
-        """启动中间件"""w
+        """启动中间件"""
         pass
     
     @abstractmethod
@@ -39,96 +92,31 @@ class Middleware(ABC):
         """停止中间件"""
         pass
     
-    @abstractmethod
-    async def send_message(self, content: str, channel_id: str, **kwargs) -> None:
-        """发送消息"""
-        pass
-    
-    @abstractmethod
-    def create_event(self, raw_data: Any, **fields) -> Event:
-        """创建事件"""
-        pass
-    
-    # 网络连接方法（根据connect_type实现）
-    async def connect_ws(self) -> None:
-        """WebSocket连接"""
-        raise NotImplementedError(f"中间件 {self.name} 不支持WebSocket连接")
-    
-    async def connect_reverse_ws(self) -> None:
-        """反向WebSocket连接"""
-        raise NotImplementedError(f"中间件 {self.name} 不支持反向WebSocket连接")
-    
-    async def connect_http(self) -> None:
-        """HTTP连接"""
-        raise NotImplementedError(f"中间件 {self.name} 不支持HTTP连接")
-    
-    async def connect_direct(self) -> None:
-        """直接连接"""
-        raise NotImplementedError(f"中间件 {self.name} 不支持直接连接")
-    
-    async def connect_polling(self) -> None:
-        """轮询连接"""
-        raise NotImplementedError(f"中间件 {self.name} 不支持轮询连接")
+    def map_data(self, raw_data: Dict[str, Any]) -> MappedObject:
+        """
+        映射数据（映射器功能）
+        
+        Args:
+            raw_data: 原始数据
+            
+        Returns:
+            映射后的对象
+        """
+        return MappedObject(raw_data)
     
     async def disconnect(self) -> None:
         """断开连接"""
         self.connected = False
         logger.info(f"中间件 {self.name} 已断开连接")
     
-    async def handle_event(self, event: Event) -> None:
-        """处理事件"""
-        if not self.enabled:
-            return
-        
-        try:
-            await self.bot.process_event(event, self)
-        except Exception as e:
-            logger.error(f"处理事件时出错: {e}")
-    
-    def is_connected(self) -> bool:
-        """检查连接状态"""
-        return self.connected
-    
-    def get_config_value(self, key: str, default: Any = None) -> Any:
-        """获取配置值"""
-        return getattr(self.config, key, default)
+    def print_data(self, data: Dict[str, Any]) -> None:
+        """打印接收到的数据"""
+        if self.bot:
+            self.bot.print_event(data, source=self.name)
 
-# 中间件注册表
-class MiddlewareRegistry:
-    """中间件注册表"""
-    
-    def __init__(self):
-        self._middlewares: Dict[str, Type[Middleware]] = {}
-    
-    def register(self, name: str, middleware_class: Type[Middleware]) -> None:
-        """注册中间件"""
-        self._middlewares[name] = middleware_class
-        logger.debug(f"注册中间件: {name}")
-    
-    def get(self, name: str) -> Optional[Type[Middleware]]:
-        """获取中间件类"""
-        return self._middlewares.get(name)
-    
-    def list_middlewares(self) -> Dict[str, Type[Middleware]]:
-        """列出所有中间件"""
-        return self._middlewares.copy()
-    
-    def create_middleware(self, name: str, config: MiddlewareConfig, bot: 'Bot') -> Optional[Middleware]:
-        """创建中间件实例"""
-        middleware_class = self.get(name)
-        if middleware_class:
-            return middleware_class(name, config, bot)
-        return None
-
-# 全局中间件注册表
-middleware_registry = MiddlewareRegistry()
-
-def register_middleware(name: str):
-    """中间件注册装饰器"""
-    def decorator(middleware_class: Type[Middleware]):
-        middleware_registry.register(name, middleware_class)
-        return middleware_class
-    return decorator
-
-# 导入所有中间件以确保注册
-from . import console, websockets
+__all__ = [
+    "Middleware",
+    "MiddlewareConfig", 
+    "MappedObject",
+    "ConnectType",
+]
