@@ -8,8 +8,8 @@ dynamic = ["version"]
 description = "Advanced Asynchronous Python Cross-Platform Rule-Driven Bot Framework"
 authors = [{ name = "HsiangNianian", email = "i@jyunko.cn" }]
 license = { text = "AGPL-3.0" }
-readme.content-type = "text/markdown"
-readme.file = "README.md"
+readme.content-type = "text/x-rst"
+readme.text = """See the `documents <https://iamai.is-a.dev/>`_."""
 requires-python = ">=3.11"
 keywords = [
     "Bot",
