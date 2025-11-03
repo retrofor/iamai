@@ -7,9 +7,7 @@ from websockets.client import WebSocketClientProtocol
 from websockets.server import WebSocketServerProtocol
 
 from . import Middleware, MiddlewareConfig, MappedObject, ConnectType
-from ..logger import get_logger
-
-logger = get_logger(__name__)
+from ..logger import logger as _logger
 
 ONEBOT11_FIELD_MAPPING = {
     "post_type": "post_type",
@@ -69,9 +67,10 @@ class OneBot11Middleware(Middleware):
         self.ws_url = f"ws://{config.host}:{config.port}"
         self.reconnect_attempts = 0
         self.running = False
+        self.logger = _logger
 
     async def start(self) -> None:
-        logger.info(f"启动 OneBot11 中间件: {self.name}")
+        self.logger.info(f"启动 OneBot11 中间件: {self.name}")
         self.running = True
 
         if self.connect_type == "websocket":
@@ -83,13 +82,13 @@ class OneBot11Middleware(Middleware):
 
     async def stop(self) -> None:
         """停止中间件"""
-        logger.info(f"停止 OneBot11 中间件: {self.name}")
+        self.logger.info(f"停止 OneBot11 中间件: {self.name}")
         self.running = False
         await self.disconnect()
 
     async def connect_ws(self) -> None:
         """WebSocket 正向连接"""
-        logger.info(f"连接到 OneBot11 服务器: {self.ws_url}")
+        self.logger.info(f"连接到 OneBot11 服务器: {self.ws_url}")
 
         while (
             self.running
@@ -110,15 +109,14 @@ class OneBot11Middleware(Middleware):
 
                 self.connected = True
                 self.reconnect_attempts = 0
-                logger.info(f"OneBot11 连接成功: {self.ws_url}")
+                self.logger.info(f"OneBot11 连接成功: {self.ws_url}")
 
-                # 监听消息
                 await self._listen()
 
             except Exception as e:
                 self.connected = False
                 self.reconnect_attempts += 1
-                logger.error(
+                self.logger.error(
                     f"OneBot11 连接失败 (尝试 {self.reconnect_attempts}/{self.config.max_reconnect_attempts}): {e}"
                 )
 
@@ -129,17 +127,17 @@ class OneBot11Middleware(Middleware):
                     await asyncio.sleep(self.config.reconnect_interval)
 
         if self.reconnect_attempts >= self.config.max_reconnect_attempts:
-            logger.error(f"OneBot11 连接失败，已达到最大重连次数")
+            self.logger.error(f"OneBot11 连接失败，已达到最大重连次数")
 
     async def connect_reverse_ws(self) -> None:
         """WebSocket 反向连接（作为服务器）"""
-        logger.info(
+        self.logger.info(
             f"启动 OneBot11 反向 WebSocket 服务器: {self.config.host}:{self.config.port}"
         )
 
         async def handler(websocket: WebSocketServerProtocol, path: str):
             """处理客户端连接"""
-            logger.info(f"OneBot11 客户端已连接: {websocket.remote_address}")
+            self.logger.info(f"OneBot11 客户端已连接: {websocket.remote_address}")
             self.websocket = websocket
             self.connected = True
 
@@ -152,7 +150,7 @@ class OneBot11Middleware(Middleware):
                 logger.info(f"OneBot11 客户端已断开: {websocket.remote_address}")
 
         async with websockets.serve(handler, self.config.host, self.config.port):
-            logger.info(f"OneBot11 反向 WebSocket 服务器已启动")
+            self.logger.info(f"OneBot11 反向 WebSocket 服务器已启动")
             await asyncio.Future()  # 保持运行
 
     async def _listen(self) -> None:
@@ -163,11 +161,11 @@ class OneBot11Middleware(Middleware):
                     data = json.loads(message)
                     await self._handle_message(data)
                 except json.JSONDecodeError:
-                    logger.error(f"收到非 JSON 消息: {message}")
+                    self.logger.error(f"收到非 JSON 消息: {message}")
                 except Exception as e:
-                    logger.error(f"处理消息时出错: {e}", exc_info=True)
+                    self.logger.error(f"处理消息时出错: {e}", exc_info=True)
         except websockets.exceptions.ConnectionClosed:
-            logger.warning("OneBot11 连接已关闭")
+            self.logger.warning("OneBot11 连接已关闭")
             self.connected = False
 
     async def _handle_message(self, data: Dict[str, Any]) -> None:
@@ -190,7 +188,7 @@ class OneBot11Middleware(Middleware):
     async def send_message(self, content: str, channel_id: str, **kwargs) -> None:
         """发送消息"""
         if not self.connected or not self.websocket:
-            logger.error("OneBot11 未连接，无法发送消息")
+            self.logger.error("OneBot11 未连接，无法发送消息")
             return
 
         # 判断是群聊还是私聊
@@ -207,21 +205,21 @@ class OneBot11Middleware(Middleware):
 
         try:
             await self.websocket.send(json.dumps(api_call))
-            logger.debug(f"发送消息: {api_call}")
+            self.logger.debug(f"发送消息: {api_call}")
         except Exception as e:
-            logger.error(f"发送消息失败: {e}")
+            self.logger.error(f"发送消息失败: {e}")
 
     async def call_api(self, action: str, **params) -> Any:
         """调用 OneBot 11 API"""
         if not self.connected or not self.websocket:
-            logger.error("OneBot11 未连接，无法调用 API")
+            self.logger.error("OneBot11 未连接，无法调用 API")
             return None
 
         api_call = self._build_api_call(action, **params)
 
         try:
             await self.websocket.send(json.dumps(api_call))
-            logger.debug(f"调用 API: {api_call}")
+            self.logger.debug(f"调用 API: {api_call}")
             # TODO: 实现异步等待响应
         except Exception as e:
             logger.error(f"调用 API 失败: {e}")
