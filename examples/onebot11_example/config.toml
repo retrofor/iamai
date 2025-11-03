@@ -1,0 +1,14 @@
+middleware = "onebot11"
+plugins = [
+    "plugins.echo"  # Echo 插件
+]
+
+[onebot11_config]
+host = "127.0.0.1"
+port = 3001
+token = ""
+middleware_connect_type = "websocket"  # websocket 或 reverse_websocket
+reconnect_interval = 3
+max_reconnect_attempts = 10
+heartbeat_interval = 30
+heartbeat_timeout = 10

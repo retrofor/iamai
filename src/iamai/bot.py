@@ -2,6 +2,7 @@ import asyncio
 import signal
 from typing import Any, Dict, List, Optional, Union
 from .logger import get_logger, setup_logger
+from .plugin import PluginManager
 
 logger = get_logger(__name__)
 
@@ -11,9 +12,11 @@ class Bot:
         setup_logger()
         self.config = config or {}
         self.middlewares: List[Any] = []
+        self.plugin_manager = PluginManager(self)
         self.running = False
 
         self._init_middlewares()
+        self._init_plugins()
 
         logger.info("Bot 初始化完成")
 
@@ -50,9 +53,26 @@ class Bot:
         except Exception as e:
             logger.error(f"加载中间件失败: {e}", exc_info=True)
 
+    def _init_plugins(self) -> None:
+        """初始化插件"""
+        plugins_config = self.config.get("plugins", [])
+        
+        if not plugins_config:
+            logger.info("未配置插件")
+            return
+        
+        for plugin_module in plugins_config:
+            try:
+                self.plugin_manager.load_from_module(plugin_module)
+            except Exception as e:
+                logger.error(f"加载插件模块 {plugin_module} 失败: {e}", exc_info=True)
+
     async def start(self) -> None:
         logger.info("启动 Bot...")
         self.running = True
+
+        # 启动所有插件
+        await self.plugin_manager.start_all()
 
         # 启动所有中间件（不等待它们完成，因为它们会持续运行）
         for middleware in self.middlewares:
@@ -61,6 +81,9 @@ class Bot:
     async def stop(self) -> None:
         logger.info("停止 Bot...")
         self.running = False
+
+        # 停止所有插件
+        await self.plugin_manager.stop_all()
 
         # 停止所有中间件
         tasks = []
@@ -97,7 +120,29 @@ class Bot:
         finally:
             await self.stop()
 
+    async def handle_event(self, data: Dict[str, Any], source: str = "unknown") -> None:
+        """
+        处理事件（分发到插件）
+        
+        Args:
+            data: 事件数据
+            source: 事件来源
+        """
+        # 如果有插件，分发给插件处理
+        if self.plugin_manager.plugins:
+            await self.plugin_manager.dispatch_event(data, source)
+        else:
+            # 没有插件时，打印原始数据
+            self.print_event(data, source)
+    
     def print_event(self, data: Dict[str, Any], source: str = "unknown") -> None:
+        """
+        打印事件数据（调试用）
+        
+        Args:
+            data: 事件数据
+            source: 事件来源
+        """
         import json
         from datetime import datetime
 

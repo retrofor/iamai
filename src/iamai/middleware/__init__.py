@@ -116,10 +116,10 @@ class Middleware(ABC):
         self.connected = False
         logger.info(f"中间件 {self.name} 已断开连接")
 
-    def print_data(self, data: Dict[str, Any]) -> None:
-        """打印接收到的数据"""
+    async def handle_data(self, data: Dict[str, Any]) -> None:
+        """处理接收到的数据（分发到插件）"""
         if self.bot:
-            self.bot.print_event(data, source=self.name)
+            await self.bot.handle_event(data, source=self.name)
 
 
 __all__ = [

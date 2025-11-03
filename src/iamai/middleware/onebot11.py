@@ -171,9 +171,9 @@ class OneBot11Middleware(Middleware):
             self.connected = False
 
     async def _handle_message(self, data: Dict[str, Any]) -> None:
-        """处理接收到的消息 - 直接打印原始数据"""
-        # 打印原始数据字典
-        self.print_data(data)
+        """处理接收到的消息 - 分发到插件系统"""
+        # 分发数据到插件系统处理
+        await self.handle_data(data)
 
     def map_data(self, raw_data: Dict[str, Any]) -> MappedObject:
         """
