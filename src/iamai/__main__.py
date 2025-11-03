@@ -21,7 +21,6 @@ def get_iamai_version() -> str:
 
 
 @click.group()
-@click.version_option(version=get_iamai_version(), prog_name="iamai")
 def main():
     """
     iamai - Advanced Asynchronous Python Cross-Platform Rule-Driven Bot Framework.
