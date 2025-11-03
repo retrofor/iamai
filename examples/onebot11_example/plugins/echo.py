@@ -1,17 +1,18 @@
 from iamai import Plugin
 from typing import Dict, Any
+from iamai.logger import get_logger
 
-
+logger = get_logger(__name__)
 class EchoPlugin(Plugin):
     name = "Echo"
     priority = 10
     
     async def on_startup(self) -> None:
-        print(f"{self.name} 插件已启动")
+        logger.info(f"{self.name} 插件已启动")
     
     async def on_shutdown(self) -> None:
-        print(f"{self.name} 插件已停止")
-    
+        logger.info(f"{self.name} 插件已停止")
+
     async def handle_message(self, data: Dict[str, Any], source: str) -> bool:
         """
         处理消息事件
@@ -28,10 +29,10 @@ class EchoPlugin(Plugin):
         user_id = data.get("user_id", "")
         message_type = data.get("message_type", "")
         
-        print(f"\n收到 {message_type} 消息")
-        print(f"   来自: {user_id}")
-        print(f"   内容: {message}")
-        
+        logger.info(f"\n收到 {message_type} 消息")
+        logger.info(f"   来自: {user_id}")
+        logger.info(f"   内容: {message}")
+
         # 这里可以调用 API 回复消息
         # 示例: await self.send_message(...)
         
@@ -45,5 +46,5 @@ class EchoPlugin(Plugin):
         这个方法会处理所有没有专门 handler 的事件
         """
         post_type = data.get("post_type", "unknown")
-        print(f"\n📬 收到 {post_type} 事件 (来源: {source})")
+        logger.info(f"\n📬 收到 {post_type} 事件 (来源: {source})")
         return False

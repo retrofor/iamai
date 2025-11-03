@@ -165,7 +165,7 @@ class OneBot11Middleware(Middleware):
                 except json.JSONDecodeError:
                     logger.error(f"收到非 JSON 消息: {message}")
                 except Exception as e:
-                    logger.error(f"处理消息时出错: {e}", exc_info=True)
+                    logger.exception(f"处理消息时出错: {e}")
         except websockets.exceptions.ConnectionClosed:
             logger.warning("OneBot11 连接已关闭")
             self.connected = False

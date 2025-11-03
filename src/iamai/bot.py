@@ -51,7 +51,7 @@ class Bot:
             else:
                 logger.error(f"未知的中间件类型: {middleware_name}")
         except Exception as e:
-            logger.error(f"加载中间件失败: {e}", exc_info=True)
+            logger.exception(f"加载中间件失败: {e}")
 
     def _init_plugins(self) -> None:
         """初始化插件"""
@@ -65,7 +65,7 @@ class Bot:
             try:
                 self.plugin_manager.load_from_module(plugin_module)
             except Exception as e:
-                logger.error(f"加载插件模块 {plugin_module} 失败: {e}", exc_info=True)
+                logger.exception(f"加载插件模块 {plugin_module} 失败: {e}")
 
     async def start(self) -> None:
         logger.info("启动 Bot...")
@@ -79,6 +79,10 @@ class Bot:
             asyncio.create_task(middleware.start())
 
     async def stop(self) -> None:
+        # 避免重复停止
+        if not self.running:
+            return
+            
         logger.info("停止 Bot...")
         self.running = False
 
@@ -116,7 +120,7 @@ class Bot:
         except KeyboardInterrupt:
             logger.info("收到键盘中断")
         except Exception as e:
-            logger.error(f"运行时错误: {e}", exc_info=True)
+            logger.exception(f"运行时错误: {e}")
         finally:
             await self.stop()
 

@@ -41,7 +41,7 @@ class Plugin(ABC):
                     result = await handler(data, source)
                     return result if isinstance(result, bool) else False
                 except Exception as e:
-                    logger.error(f"插件 {self.name} 处理事件时出错: {e}", exc_info=True)
+                    logger.exception(f"插件 {self.name} 处理事件时出错: {e}")
                     return False
         
         return await self.handle(data, source)
@@ -98,7 +98,7 @@ class PluginManager:
             # Sort by priority (higher first)
             self.plugins.sort(key=lambda p: p.priority, reverse=True)
         except Exception as e:
-            logger.error(f"注册插件失败: {e}", exc_info=True)
+            logger.exception(f"注册插件失败: {e}")
     
     def load_from_module(self, module_path: str) -> None:
         """
@@ -117,7 +117,7 @@ class PluginManager:
                     self.register(obj)
                     
         except Exception as e:
-            logger.error(f"从模块 {module_path} 加载插件失败: {e}", exc_info=True)
+            logger.exception(f"从模块 {module_path} 加载插件失败: {e}")
     
     async def start_all(self) -> None:
         """Call on_startup for all plugins."""
@@ -125,7 +125,7 @@ class PluginManager:
             try:
                 await plugin.on_startup()
             except Exception as e:
-                logger.error(f"插件 {plugin.name} 启动失败: {e}", exc_info=True)
+                logger.exception(f"插件 {plugin.name} 启动失败: {e}")
     
     async def stop_all(self) -> None:
         """Call on_shutdown for all plugins."""
@@ -133,7 +133,7 @@ class PluginManager:
             try:
                 await plugin.on_shutdown()
             except Exception as e:
-                logger.error(f"插件 {plugin.name} 停止失败: {e}", exc_info=True)
+                logger.exception(f"插件 {plugin.name} 停止失败: {e}")
     
     async def dispatch_event(self, data: Dict[str, Any], source: str) -> None:
         """
@@ -151,7 +151,7 @@ class PluginManager:
                     logger.debug(f"事件被插件 {plugin.name} 处理")
                     break
             except Exception as e:
-                logger.error(f"插件 {plugin.name} 处理事件时出错: {e}", exc_info=True)
+                logger.exception(f"插件 {plugin.name} 处理事件时出错: {e}")
 
 
 def on_event(event_type: str):
