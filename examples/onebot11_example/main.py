@@ -10,14 +10,6 @@ from iamai.middleware.onebot11 import OneBot11MiddlewareConfig
 
 
 async def main():
-    """主函数"""
-    print("=" * 60)
-    print("iamai OneBot11 Bot 示例")
-    print("=" * 60)
-    print()
-
-    # 配置机器人
-    print("📝 配置机器人...")
     config = {
         "middleware": "onebot11",
         "onebot11_config": {
@@ -31,37 +23,18 @@ async def main():
             "heartbeat_timeout": 10,
         },
     }
-
-    print(f"  • 中间件: OneBot11")
-    print(
-        f"  • 连接地址: ws://{config['onebot11_config']['host']}:{config['onebot11_config']['port']}"
-    )
-    print(f"  • 连接类型: WebSocket")
-    print()
-
-    # 创建机器人实例
-    print("🤖 创建 Bot 实例...")
     bot = Bot(config=config)
-    print(f"  • Bot 已创建")
-    print(f"  • 已加载中间件数量: {len(bot.middlewares)}")
-    print()
-
-    # 运行机器人
-    print("🚀 启动机器人...")
-    print("  • 按 Ctrl+C 停止")
-    print()
-
     try:
         await bot.run()
     except KeyboardInterrupt:
-        print("\n⏹️  收到停止信号")
+        ...
     except Exception as e:
-        print(f"\n❌ 错误: {e}")
+        print(f"{e}")
         import traceback
 
         traceback.print_exc()
     finally:
-        print("\n👋 机器人已停止")
+        ...
 
 
 if __name__ == "__main__":

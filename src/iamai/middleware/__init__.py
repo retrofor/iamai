@@ -1,13 +1,9 @@
 from abc import ABC, abstractmethod
 from typing import Any, Dict, Optional, Literal
 import asyncio
-from ..logger import get_logger
-
-logger = get_logger(__name__)
+from ..logger import logger as _logger
 
 ConnectType = Literal["websocket", "reverse_websocket", "http", "direct"]
-
-
 class MiddlewareConfig:
     """中间件配置基类"""
 
@@ -88,7 +84,8 @@ class Middleware(ABC):
         self.connect_type = getattr(config, "middleware_connect_type", "direct")
         self.enabled = getattr(config, "enabled", True)
         self.connected = False
-
+        self.logger = _logger
+        
     @abstractmethod
     async def start(self) -> None:
         """启动中间件"""
@@ -114,7 +111,7 @@ class Middleware(ABC):
     async def disconnect(self) -> None:
         """断开连接"""
         self.connected = False
-        logger.info(f"中间件 {self.name} 已断开连接")
+        self.logger.info(f"中间件 {self.name} 已断开连接")
 
     def print_data(self, data: Dict[str, Any]) -> None:
         """打印接收到的数据"""
