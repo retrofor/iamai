@@ -37,14 +37,14 @@ classifiers = [
     "Topic :: Communications :: Chat",
 ]
 dependencies = [
-    "aiohttp>=3.11.7",
+    "aiohttp>=3.13.4",
     "aioredis>=2.0.1",
     "click>=8.1.7",
     "discord.py>=2.3.2",
-    "loguru>=0.7.2",
+    "loguru>=0.7.3",
     "pydantic>=2.10.1",
     "pyyaml>=6.0.2",
-    "python-telegram-bot>=20.7",
+    "python-telegram-bot>=22.7",
     "redis>=5.0.1",
     "rich>=13.9.4",
     "scikit-learn>=1.6.1",
@@ -84,9 +84,9 @@ docs = [
     "furo>=2025.12.19",
     "sphinx-autobuild>=2024.10.3",
     "sphinx>=7.4.7",
-    "myst-parser>=3.0.1",
+    "myst-parser>=5.0.0",
     "sphinx-design>=0.6.1",
-    "sphinx-intl>=2.3.0",
+    "sphinx-intl>=2.3.2",
     "sphinx-last-updated-by-git>=0.3.8",
 ]
 test = [
