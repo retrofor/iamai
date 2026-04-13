@@ -41,10 +41,10 @@ dependencies = [
     "aioredis>=2.0.1",
     "click>=8.1.7",
     "discord.py>=2.3.2",
-    "loguru>=0.7.2",
+    "loguru>=0.7.3",
     "pydantic>=2.10.1",
     "pyyaml>=6.0.2",
-    "python-telegram-bot>=20.7",
+    "python-telegram-bot>=22.7",
     "redis>=5.0.1",
     "rich>=13.9.4",
     "scikit-learn>=1.6.1",
@@ -74,14 +74,14 @@ target-version = ["py39", "py310", "py311"]
 
 [dependency-groups]
 lint = [
-    "black>=24.10.0",
+    "black>=26.3.1",
     "mypy>=1.13.0",
     "pylint>=3.3.1",
     "pylint-pydantic>=0.3.2",
     "ruff>=0.8.0",
 ]
 docs = [
-    "furo>=2024.8.6",
+    "furo>=2025.12.19",
     "sphinx-autobuild>=2024.10.3",
     "sphinx>=7.4.7",
     "myst-parser>=5.0.0",
