@@ -90,7 +90,7 @@ docs = [
     "sphinx-last-updated-by-git>=0.3.8",
 ]
 test = [
-    "nox>=2024.10.9",
+    "nox>=2026.4.10",
     "pytest>=9.0.3",
     "pytest-asyncio>=0.24.0",
     "pytest-cov>=6.0.0",
@@ -101,7 +101,7 @@ dev = [
     "pytest>=9.0.3",
     "ruff>=0.8.0",
     "maturin>=1.7.4",
-    "nox>=2024.10.9"
+    "nox>=2026.4.10"
 ]
 
 
