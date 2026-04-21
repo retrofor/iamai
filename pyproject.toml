@@ -55,7 +55,7 @@ dependencies = [
     "asyncio-mqtt>=0.16.2",
     "celery>=5.6.3",
     "fastapi>=0.136.0",
-    "uvicorn>=0.24.0",
+    "uvicorn>=0.44.0",
     "textual>=6.1.0",
     "toml>=0.10.2",
 ]
