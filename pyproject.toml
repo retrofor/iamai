@@ -78,7 +78,7 @@ lint = [
     "mypy>=1.13.0",
     "pylint>=3.3.1",
     "pylint-pydantic>=0.3.2",
-    "ruff>=0.8.0",
+    "ruff>=0.15.11",
 ]
 docs = [
     "furo>=2025.12.19",
@@ -99,7 +99,7 @@ test = [
 dev = [
     "pyflakes>=3.4.0",
     "pytest>=9.0.3",
-    "ruff>=0.8.0",
+    "ruff>=0.15.11",
     "maturin>=1.7.4",
     "nox>=2026.4.10"
 ]
