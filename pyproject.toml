@@ -85,7 +85,7 @@ docs = [
     "sphinx-autobuild>=2025.8.25",
     "sphinx>=9.0.4",
     "myst-parser>=5.0.0",
-    "sphinx-design>=0.6.1",
+    "sphinx-design>=0.7.0",
     "sphinx-intl>=2.3.2",
     "sphinx-last-updated-by-git>=0.3.8",
 ]
