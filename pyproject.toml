@@ -82,7 +82,7 @@ lint = [
 ]
 docs = [
     "furo>=2025.12.19",
-    "sphinx-autobuild>=2024.10.3",
+    "sphinx-autobuild>=2025.8.25",
     "sphinx>=9.0.4",
     "myst-parser>=5.0.0",
     "sphinx-design>=0.6.1",
