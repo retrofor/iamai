@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.2.3] - 2026-05-06
+### Bug Fixes
+- [`312f0d8`](https://github.com/retrofor/iamai/commit/312f0d85c064e072719c4d719521c70640427f33) - **release**: comment out deprecated macOS runner and target *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`357a69b`](https://github.com/retrofor/iamai/commit/357a69bc0be0c5687e5075218e48959d09041906) - **workflow**: ensure paths are specified for push and pull_request events *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`0cddab3`](https://github.com/retrofor/iamai/commit/0cddab383a0730292f22e0b037c1bda89a729b4c) - **cli**: remove version option from iamai CLI main command *(PR [#360](https://github.com/retrofor/iamai/pull/360) by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Chores
+- [`b0d276a`](https://github.com/retrofor/iamai/commit/b0d276a3d939953f388765e69fbf826d25f7d630) - Update author email in pyproject.toml *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`97897b0`](https://github.com/retrofor/iamai/commit/97897b02fbf9a7ed217219d58d83c54457e1567e) - Bump version from 0.2.2 to 0.2.3 *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+
 ## [v0.2.2-beta.1] - 2025-11-02
 ### Chores
 - [`e3e1226`](https://github.com/retrofor/iamai/commit/e3e122622f3b4ae487bdd6f1c1d8f95ec6195af9) - **version**: update package version from alpha to beta *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
@@ -256,3 +267,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.1.7]: https://github.com/retrofor/iamai/compare/v0.1.6...v0.1.7
 [v0.1.8]: https://github.com/retrofor/iamai/compare/v0.1.7...v0.1.8
 [v0.2.2-beta.1]: https://github.com/retrofor/iamai/compare/v0.2.2-alpha.1-dev.3...v0.2.2-beta.1
+[v0.2.3]: https://github.com/retrofor/iamai/compare/v0.2.2...v0.2.3
