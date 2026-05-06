@@ -6,7 +6,7 @@ build-backend = "maturin"
 name = "iamai"
 dynamic = ["version"]
 description = "Advanced Asynchronous Python Cross-Platform Rule-Driven Bot Framework"
-authors = [{ name = "HsiangNianian", email = "i@jyunko.cn" }]
+authors = [{ name = "HsiangNianian", email = "hsiangnianian@gmail.com" }]
 license = { text = "AGPL-3.0" }
 readme.content-type = "text/x-rst"
 readme.text = """See the `documents <https://iamai.is-a.dev/>`_."""
