@@ -25,3 +25,13 @@
 2026-04-26 20:59:49.214 | INFO     | asterline.runtime:dispatch:491 | event[evt-1777208389213-5] terminal/message text='/adapters'
 2026-04-26 20:59:57.032 | INFO     | asterline.runtime:dispatch:491 | event[evt-1777208397032-6] terminal/message text='hi'
 2026-04-26 21:09:20.453 | INFO     | asterline.runtime:dispatch:491 | event[test-management] terminal/message text='/plugins'
+2026-04-27 12:04:14.619 | INFO     | asterline.adapters.terminal:start:32 | terminal adapter started
+2026-04-27 12:04:19.651 | INFO     | asterline.adapters.terminal:start:32 | terminal adapter started
+2026-04-27 12:04:19.653 | INFO     | asterline.runtime:dispatch:491 | event[evt-1777262659653-1] terminal/message text='/ping'
+2026-04-27 12:04:19.654 | INFO     | asterline.runtime:dispatch:491 | event[evt-1777262659654-2] terminal/message text='/echo hello world'
+2026-04-27 12:04:19.654 | INFO     | asterline.runtime:dispatch:491 | event[evt-1777262659654-3] terminal/message text='/whoami'
+2026-04-27 12:04:19.655 | INFO     | asterline.runtime:dispatch:491 | event[evt-1777262659655-4] terminal/message text='/state'
+2026-04-27 12:04:19.656 | INFO     | asterline.runtime:dispatch:491 | event[evt-1777262659656-5] terminal/message text='quit'
+2026-04-27 12:04:38.738 | INFO     | asterline.adapters.terminal:start:32 | terminal adapter started
+2026-04-27 12:04:38.739 | INFO     | asterline.runtime:dispatch:491 | event[evt-1777262678739-1] terminal/message text='/help'
+2026-04-27 12:04:38.740 | INFO     | asterline.runtime:dispatch:491 | event[evt-1777262678740-2] terminal/message text='quit'

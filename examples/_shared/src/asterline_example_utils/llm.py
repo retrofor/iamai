@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+from dataclasses import asdict
 from pathlib import Path
 from typing import Any
 
@@ -33,13 +34,19 @@ def resolve_llm_settings(
     elif isinstance(raw, dict):
         payload = dict(raw)
     elif isinstance(raw, LLMConfig):
-        return raw
+        payload = asdict(raw)
     else:
         payload = {}
-    payload.setdefault("base_url", DEFAULT_BASE_URL)
-    payload.setdefault("model", DEFAULT_MODEL)
-    payload.setdefault("temperature", default_temperature)
-    payload.setdefault("max_tokens", default_max_tokens)
+    base_url_default = os.getenv("OPENAI_BASE_URL") or DEFAULT_BASE_URL
+    model_default = os.getenv("OPENAI_MODEL") or DEFAULT_MODEL
+    if payload.get("base_url") in (None, ""):
+        payload["base_url"] = base_url_default
+    if not payload.get("model") or payload.get("model") == LLMConfig().model:
+        payload["model"] = model_default
+    if payload.get("temperature") is None:
+        payload["temperature"] = default_temperature
+    if payload.get("max_tokens") is None:
+        payload["max_tokens"] = default_max_tokens
     return LLMConfig.from_mapping(payload)
 
 

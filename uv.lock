@@ -18,6 +18,7 @@ members = [
     "persona-rp-runtime",
     "planner-executor-runtime",
     "react-runtime",
+    "state-runtime",
     "story-runtime",
     "supervisor-team-runtime",
 ]
@@ -1261,6 +1262,21 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/3b/44/6716b257b0aa6bfd51a1b31665d1c205fb12cb5ad56de752dfa15657de2f/sphinxcontrib_serializinghtml-2.0.0.tar.gz", hash = "sha256:e9d912827f872c029017a53f0ef2180b327c3f7fd23c87229f7a8e8b70031d4d", size = 16080, upload-time = "2024-07-29T01:10:09.332Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/52/a7/d2782e4e3f77c8450f727ba74a8f12756d5ba823d81b941f1b04da9d033a/sphinxcontrib_serializinghtml-2.0.0-py3-none-any.whl", hash = "sha256:6e2cb0eef194e10c27ec0023bfeb25badbbb5868244cf5bc5bdc04e4464bf331", size = 92072, upload-time = "2024-07-29T01:10:08.203Z" },
+]
+
+[[package]]
+name = "state-runtime"
+version = "0.1.0"
+source = { virtual = "examples/state-runtime" }
+dependencies = [
+    { name = "asterline" },
+    { name = "asterline-example-utils" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "asterline", editable = "." },
+    { name = "asterline-example-utils", editable = "examples/_shared" },
 ]
 
 [[package]]

@@ -1,20 +1,53 @@
 {
   "life_state": {
     "life": {
-      "age": 19,
+      "age": 18,
       "history": [
-        "You begin a new cyberpunk life with equal parts doubt and momentum.",
-        "At age 19, you chose 'Choose focus'. You focus well."
+        "You begin a new 仙侠 life with equal parts doubt and momentum."
       ],
-      "name": "Mira",
-      "pending_scene": null,
+      "name": "Ren",
+      "pending_scene": {
+        "choices": [
+          {
+            "effect": {
+              "health": -2,
+              "joy": 2,
+              "reputation": 3,
+              "wealth": -1
+            },
+            "label": "Draw the blade and bind it",
+            "note": "Power demands sacrifice. The sword's hunger is palpable."
+          },
+          {
+            "effect": {
+              "health": 1,
+              "joy": -1,
+              "reputation": 2,
+              "wealth": 0
+            },
+            "label": "Seal it with a suppression talisman",
+            "note": "Caution preserves life, but opportunity slips away."
+          },
+          {
+            "effect": {
+              "health": 0,
+              "joy": 1,
+              "reputation": 3,
+              "wealth": 0
+            },
+            "label": "Leave it for a worthier hand",
+            "note": "Humility earns quiet respect, and the old man's approval."
+          }
+        ],
+        "scene": "{'year': 18, 'title': 'The Sword in the Mist', 'text': 'On a pilgrimage to the Cloudrest Peaks, you discover a half-buried iron sword humming with dormant spirit energy. An old cultivator watching from the pines claims it once belonged to a fallen demon-sla..."
+      },
       "stats": {
         "health": 6,
-        "joy": 7,
-        "reputation": 5,
-        "wealth": 6
+        "joy": 6,
+        "reputation": 4,
+        "wealth": 5
       },
-      "theme": "cyberpunk"
+      "theme": "仙侠"
     }
   }
 }

@@ -4,10 +4,14 @@ import random
 from typing import Any, cast
 
 from asterline import Context, Plugin, command
-from asterline_example_utils import chat_json, clip_text, format_transcript, resolve_llm_settings
+from asterline_example_utils import (
+    LLMSettings,
+    chat_json,
+    clip_text,
+    format_transcript,
+    resolve_llm_settings,
+)
 from pydantic import BaseModel, Field
-
-from asterline_example_utils import LLMSettings
 
 DEFAULT_NAMES = ["Mira", "Jun", "Tao", "Nova", "Ren", "Sol"]
 
@@ -44,7 +48,9 @@ class LifePlugin(Plugin):
         return cast(dict[str, Any], self.runtime.get_plugin("life_state").state["life"])
 
     async def _generate_scene(self, life: dict[str, Any]) -> dict[str, Any]:
-        settings = resolve_llm_settings(self.config_obj, default_temperature=0.8, default_max_tokens=620)
+        settings = resolve_llm_settings(
+            self.config_obj, default_temperature=0.8, default_max_tokens=620
+        )
         stats = life.get("stats", {})
         history = life.get("history", [])
         payload = await chat_json(
@@ -54,7 +60,7 @@ class LifePlugin(Plugin):
                     "role": "system",
                     "content": (
                         "You are a life simulator narrator. Generate one vivid but compact yearly event. "
-                        "Return structured choices with small stat changes."
+                        "Return structured choices with small stat changes, reply in Chinese."
                     ),
                 },
                 {
@@ -82,15 +88,23 @@ class LifePlugin(Plugin):
                     continue
                 effect = item.get("effect", {})
                 effect_map = {
-                    "wealth": int(effect.get("wealth", 0)) if isinstance(effect, dict) else 0,
-                    "health": int(effect.get("health", 0)) if isinstance(effect, dict) else 0,
+                    "wealth": (int(effect.get("wealth", 0)) if isinstance(effect, dict) else 0),
+                    "health": (int(effect.get("health", 0)) if isinstance(effect, dict) else 0),
                     "joy": int(effect.get("joy", 0)) if isinstance(effect, dict) else 0,
-                    "reputation": int(effect.get("reputation", 0)) if isinstance(effect, dict) else 0,
+                    "reputation": (
+                        int(effect.get("reputation", 0)) if isinstance(effect, dict) else 0
+                    ),
                 }
                 normalized.append(
                     {
-                        "label": clip_text(str(item.get("label", "")).strip() or "Keep moving.", limit=100),
-                        "note": clip_text(str(item.get("note", "")).strip() or "A quiet tradeoff follows.", limit=120),
+                        "label": clip_text(
+                            str(item.get("label", "")).strip() or "Keep moving.",
+                            limit=100,
+                        ),
+                        "note": clip_text(
+                            str(item.get("note", "")).strip() or "A quiet tradeoff follows.",
+                            limit=120,
+                        ),
                         "effect": effect_map,
                     }
                 )
@@ -123,7 +137,9 @@ class LifePlugin(Plugin):
 
     @command("newlife", priority=10)
     async def newlife(self, ctx: Context, args: str) -> None:
-        theme = args.strip() or random.choice(["slice-of-life", "cyberpunk", "indie hacker", "space colony"])
+        theme = args.strip() or random.choice(
+            ["slice-of-life", "cyberpunk", "indie hacker", "space colony"]
+        )
         life = make_default_life(theme=theme)
         life["name"] = random.choice(DEFAULT_NAMES)
         self.runtime.get_plugin("life_state").state["life"] = life
@@ -181,10 +197,7 @@ class LifePlugin(Plugin):
             current = int(life["stats"].get(key, 0))
             life["stats"][key] = max(0, current + int(delta))
         life["age"] += 1
-        outcome = (
-            f"At age {life['age']}, you chose '{choice['label']}'. "
-            f"{choice['note']}"
-        )
+        outcome = f"At age {life['age']}, you chose '{choice['label']}'. {choice['note']}"
         life.setdefault("history", []).append(outcome)
         life["pending_scene"] = None
         stats = life["stats"]

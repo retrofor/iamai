@@ -1,0 +1,22 @@
+[runtime]
+log_level = "INFO"
+command_prefixes = ["/"]
+adapters = ["terminal"]
+plugin_dirs = ["src/state_runtime/plugins"]
+python_paths = ["src"]
+
+[runtime.hot_reload]
+enabled = true
+interval = 1.0
+config = true
+
+[adapter.terminal]
+prompt = "state> "
+output_prefix = "state> "
+user_id = "state-user"
+self_id = "state-runtime"
+
+[plugin.management]
+allow_reload = true
+allow_config_reload = true
+allow_introspection = true

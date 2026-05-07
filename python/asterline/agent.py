@@ -6,10 +6,10 @@ import json
 import os
 import re
 from collections.abc import Awaitable, Callable
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
 from typing import Any, cast
 
-DEFAULT_LLM_MODEL = "kimi-k2.5"
+DEFAULT_LLM_MODEL = ""
 
 
 class AgentError(RuntimeError):
@@ -33,10 +33,16 @@ class LLMConfig:
     def from_mapping(cls, payload: dict[str, Any] | None = None) -> "LLMConfig":
         """Build configuration from a mapping and environment fallbacks."""
         data = dict(payload or {})
+        env_model = os.getenv("OPENAI_MODEL", "")
+        raw_model = data.get("model")
         return cls(
             api_key=str(data.get("api_key") or os.getenv("OPENAI_API_KEY", "")),
             base_url=_normalize_optional_str(data.get("base_url") or os.getenv("OPENAI_BASE_URL")),
-            model=str(data.get("model") or os.getenv("OPENAI_MODEL", DEFAULT_LLM_MODEL)),
+            model=(
+                str(env_model or raw_model or DEFAULT_LLM_MODEL)
+                if raw_model == DEFAULT_LLM_MODEL and env_model
+                else str(raw_model or env_model or DEFAULT_LLM_MODEL)
+            ),
             temperature=float(data.get("temperature", 0.7)),
             max_tokens=int(data.get("max_tokens", 800)),
             timeout=float(data.get("timeout", 60.0)),
@@ -249,7 +255,11 @@ class LLMClient:
     """Small async client for text and JSON chat completions."""
 
     def __init__(self, config: LLMConfig | dict[str, Any] | None = None) -> None:
-        self.config = config if isinstance(config, LLMConfig) else LLMConfig.from_mapping(config)
+        self.config = (
+            LLMConfig.from_mapping(asdict(config))
+            if isinstance(config, LLMConfig)
+            else LLMConfig.from_mapping(config)
+        )
 
     async def chat_text(
         self,
@@ -269,16 +279,20 @@ class LLMClient:
             from openai import AsyncOpenAI
         except Exception as exc:
             raise AgentError("openai package is required for LLMClient") from exc
+        api_key = self.config.api_key or os.getenv("OPENAI_API_KEY", "")
+        base_url = self.config.base_url or _normalize_optional_str(os.getenv("OPENAI_BASE_URL"))
+        if not api_key:
+            raise AgentError("OPENAI_API_KEY is not configured")
         client = AsyncOpenAI(
-            api_key=self.config.api_key or "sk-local-placeholder",
-            base_url=self.config.base_url or None,
+            api_key=api_key,
+            base_url=base_url,
             timeout=self.config.timeout,
         )
         try:
             response = await client.chat.completions.create(
                 model=self.config.model,
                 messages=cast(Any, messages),
-                temperature=self.config.temperature if temperature is None else temperature,
+                temperature=(self.config.temperature if temperature is None else temperature),
                 max_tokens=self.config.max_tokens if max_tokens is None else max_tokens,
             )
         except Exception as exc:
@@ -289,7 +303,12 @@ class LLMClient:
         text = content if isinstance(content, str) else str(content)
         result = text.strip()
         if trace is not None:
-            trace.add("llm", self.config.model, input=messages[-1].get("content", ""), output=result)
+            trace.add(
+                "llm",
+                self.config.model,
+                input=messages[-1].get("content", ""),
+                output=result,
+            )
         return result
 
     async def chat_json(
@@ -336,7 +355,11 @@ def format_transcript(lines: list[str], *, limit: int = 10) -> str:
 def _select_audit_input(tool: Tool, tool_input: Any) -> Any:
     if not tool.audit_fields or not isinstance(tool_input, dict):
         return clip_text(tool_input)
-    return {field: clip_text(tool_input.get(field)) for field in tool.audit_fields if field in tool_input}
+    return {
+        field: clip_text(tool_input.get(field))
+        for field in tool.audit_fields
+        if field in tool_input
+    }
 
 
 async def _check_tool_approval(
@@ -416,14 +439,26 @@ def _mock_chat_reply(messages: list[dict[str, str]]) -> str:
                 "title": "mock plan",
                 "strategy": "take small verifiable steps",
                 "steps": [
-                    {"step": "draft", "deliverable": "draft output", "done_when": "draft exists"},
-                    {"step": "review", "deliverable": "review note", "done_when": "risks are listed"},
+                    {
+                        "step": "draft",
+                        "deliverable": "draft output",
+                        "done_when": "draft exists",
+                    },
+                    {
+                        "step": "review",
+                        "deliverable": "review note",
+                        "done_when": "risks are listed",
+                    },
                 ],
             }
         )
     if "Return JSON with result, artifact, and risk" in text:
         return json.dumps(
-            {"result": "step completed", "artifact": "artifact ready", "risk": "low risk"}
+            {
+                "result": "step completed",
+                "artifact": "artifact ready",
+                "risk": "low risk",
+            }
         )
     if "Return JSON with thought" in text:
         return json.dumps({"thought": "mock thought", "final": "mock react answer"})
@@ -457,7 +492,12 @@ def _mock_chat_reply(messages: list[dict[str, str]]) -> str:
                     {
                         "label": "Choose risk",
                         "note": "You gamble.",
-                        "effect": {"wealth": 2, "health": -1, "joy": 0, "reputation": 1},
+                        "effect": {
+                            "wealth": 2,
+                            "health": -1,
+                            "joy": 0,
+                            "reputation": 1,
+                        },
                     },
                 ],
             }
