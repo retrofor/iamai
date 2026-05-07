@@ -2,14 +2,14 @@
   "id": "template.echo_runtime",
   "name": "Echo Runtime Template",
   "type": "template",
-  "summary": "Starter project showing a minimal Asterline app, terminal adapter, commands, and plugin configuration.",
-  "repository": "https://github.com/asterline/asterline",
+  "summary": "Starter project showing a minimal iamai app, terminal adapter, commands, and plugin configuration.",
+  "repository": "https://github.com/iamai/iamai",
   "license": "MIT",
   "status": "active",
   "verification": ["official"],
   "entry_points": [],
   "tags": ["template", "starter", "example"],
   "platforms": ["terminal"],
-  "source_url": "https://github.com/asterline/asterline",
+  "source_url": "https://github.com/iamai/iamai",
   "updated_at": "2026-04-26"
 }

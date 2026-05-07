@@ -69,7 +69,7 @@ Webhook 请求进入后会经过以下步骤：
 出站回复
 --------
 
-Webhook 事件可以携带 ``reply_url``，但它本质上是外部输入，不能默认信任。Asterline 的默认策略
+Webhook 事件可以携带 ``reply_url``，但它本质上是外部输入，不能默认信任。iamai 的默认策略
 会拒绝 private/loopback 地址、非 HTTPS 地址和重定向。生产环境应使用最小范围的
 ``reply_url_allowlist``。
 
@@ -80,7 +80,7 @@ Webhook 事件可以携带 ``reply_url``，但它本质上是外部输入，不�
 
 .. code-block:: bash
 
-   uv run python -m asterline --config config.toml config-check
+   uv run python -m iamai --config config.toml config-check
 
 确认以下项都成立：
 

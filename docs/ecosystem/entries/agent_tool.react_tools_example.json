@@ -4,7 +4,7 @@
   "type": "agent_tool",
   "summary": "Example tool layer for an agent loop with explicit observations, memory notes, and trace inspection.",
   "package": null,
-  "repository": "https://github.com/asterline/asterline",
+  "repository": "https://github.com/iamai/iamai",
   "license": "MIT",
   "status": "active",
   "verification": ["official"],
@@ -14,7 +14,7 @@
   "requires": [],
   "install_command": null,
   "docs_url": null,
-  "source_url": "https://github.com/asterline/asterline/tree/main/examples/react-runtime",
+  "source_url": "https://github.com/iamai/iamai/tree/main/examples/react-runtime",
   "security_notes": "Example tools are intentionally constrained and should be reviewed before adding network or filesystem access.",
   "updated_at": "2026-04-26"
 }

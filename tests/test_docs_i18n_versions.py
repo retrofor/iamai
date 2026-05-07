@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS_EXT = ROOT / "docs" / "_ext"
 sys.path.insert(0, str(DOCS_EXT))
 
-from asterline_i18n_versions import SwitcherEntry, _normalize_entries  # noqa: E402
+from iamai_i18n_versions import SwitcherEntry, _normalize_entries  # noqa: E402
 
 
 def test_normalize_entries_marks_current_item() -> None:

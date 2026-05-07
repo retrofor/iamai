@@ -1,11 +1,11 @@
 [project]
 name = "echo-runtime"
 version = "0.1.0"
-description = "Example Asterline application."
+description = "Example iamai application."
 requires-python = ">=3.10"
 dependencies = [
-    "asterline",
+    "iamai",
 ]
 
 [tool.uv.sources]
-asterline = { workspace = true }
+iamai = { workspace = true }

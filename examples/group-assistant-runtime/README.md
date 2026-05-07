@@ -1,6 +1,6 @@
 # group-assistant-runtime
 
-Group assistant example for Asterline.
+Group assistant example for iamai.
 
 This example shows:
 
@@ -11,7 +11,7 @@ This example shows:
 ## Run
 
 ```bash
-uv run --package group-assistant-runtime python -m asterline --config examples/group-assistant-runtime/config.terminal.toml
+uv run --package group-assistant-runtime python -m iamai --config examples/group-assistant-runtime/config.terminal.toml
 ```
 
 ## Try

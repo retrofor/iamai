@@ -9,14 +9,13 @@ from textwrap import dedent
 from types import SimpleNamespace
 
 import pytest
-
-from asterline import Runtime, Event, Message
-from asterline.adapters.onebot11 import OneBot11Adapter
-from asterline.adapters.webhook import WebhookAdapter
-from asterline.runtime import check_config
-from asterline.config import ConfigValidationError, load_config
-from asterline.httpio import HttpRequest
-from asterline.session import SessionManager
+from iamai import Event, Message, Runtime
+from iamai.adapters.onebot11 import OneBot11Adapter
+from iamai.adapters.webhook import WebhookAdapter
+from iamai.config import ConfigValidationError, load_config
+from iamai.httpio import HttpRequest
+from iamai.runtime import check_config
+from iamai.session import SessionManager
 
 
 def _make_runtime(tmp_path: Path) -> Runtime:
@@ -60,8 +59,7 @@ def _response_json(payload: bytes) -> dict[str, object]:
 def test_load_config_rejects_exposed_onebot_without_token(tmp_path: Path) -> None:
     config_path = tmp_path / "config.toml"
     config_path.write_text(
-        dedent(
-            """
+        dedent("""
             [runtime]
             adapters = ["onebot11"]
 
@@ -69,8 +67,7 @@ def test_load_config_rejects_exposed_onebot_without_token(tmp_path: Path) -> Non
             mode = "ws-reverse"
             host = "0.0.0.0"
             access_token = ""
-            """
-        ).strip(),
+            """).strip(),
         encoding="utf-8",
     )
 
@@ -81,15 +78,13 @@ def test_load_config_rejects_exposed_onebot_without_token(tmp_path: Path) -> Non
 def test_load_config_rejects_unknown_webhook_signature_provider(tmp_path: Path) -> None:
     config_path = tmp_path / "config.toml"
     config_path.write_text(
-        dedent(
-            """
+        dedent("""
             [runtime]
             adapters = ["webhook"]
 
             [adapter.webhook]
             signature_provider = "unknown"
-            """
-        ).strip(),
+            """).strip(),
         encoding="utf-8",
     )
 
@@ -106,31 +101,27 @@ def test_check_config_supports_python_paths(tmp_path: Path) -> None:
 
     (shared_dir / "__init__.py").write_text('VALUE = "shared-helper"\n', encoding="utf-8")
     (plugin_dir / "helper.py").write_text(
-        dedent(
-            """
-            from asterline import Plugin
+        dedent("""
+            from iamai import Plugin
             from demo_utils import VALUE
 
 
             class HelperPlugin(Plugin):
                 name = "helper"
                 description = VALUE
-            """
-        ).strip()
+            """).strip()
         + "\n",
         encoding="utf-8",
     )
     config_path = app_dir / "config.toml"
     config_path.write_text(
-        dedent(
-            """
+        dedent("""
             [runtime]
             adapters = []
             plugin_dirs = ["plugins"]
             python_paths = ["../_shared/src"]
             allow_external_paths = true
-            """
-        ).strip(),
+            """).strip(),
         encoding="utf-8",
     )
 
@@ -239,8 +230,7 @@ def test_webhook_reply_url_policy_blocks_private_hosts(tmp_path: Path) -> None:
 def test_check_config_reports_risky_runtime_warnings(tmp_path: Path) -> None:
     config_path = tmp_path / "config.toml"
     config_path.write_text(
-        dedent(
-            """
+        dedent("""
             [runtime]
             adapters = ["webhook"]
             allow_external_paths = true
@@ -254,26 +244,28 @@ def test_check_config_reports_risky_runtime_warnings(tmp_path: Path) -> None:
             allow_introspection = true
             reload_requires_superuser = false
             introspection_requires_superuser = false
-            """
-        ).strip(),
+            """).strip(),
         encoding="utf-8",
     )
 
     result = check_config(config_path)
 
     assert "runtime.allow_external_paths is enabled" in result["warnings"]
-    assert "webhook is exposed on a non-loopback host without signature_secret" in result["warnings"]
+    assert (
+        "webhook is exposed on a non-loopback host without signature_secret" in result["warnings"]
+    )
     assert "management reload is enabled but runtime.superusers is empty" in result["warnings"]
     assert "management reload is enabled without requiring a superuser" in result["warnings"]
-    assert "management introspection is enabled but runtime.superusers is empty" in result["warnings"]
+    assert (
+        "management introspection is enabled but runtime.superusers is empty" in result["warnings"]
+    )
     assert "management introspection is enabled without requiring a superuser" in result["warnings"]
 
 
 def test_check_config_reports_management_api_exposure(tmp_path: Path) -> None:
     config_path = tmp_path / "config.toml"
     config_path.write_text(
-        dedent(
-            """
+        dedent("""
             [runtime]
             adapters = []
             builtin_plugins = ["management_api"]
@@ -282,8 +274,7 @@ def test_check_config_reports_management_api_exposure(tmp_path: Path) -> None:
             host = "0.0.0.0"
             port = 8765
             token = "secret"
-            """
-        ).strip(),
+            """).strip(),
         encoding="utf-8",
     )
 
@@ -292,9 +283,11 @@ def test_check_config_reports_management_api_exposure(tmp_path: Path) -> None:
     assert "management_api is exposed on a non-loopback host" in result["warnings"]
 
 
-def test_webhook_accepts_valid_signature_and_token(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+def test_webhook_accepts_valid_signature_and_token(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
     now = 1_700_000_000
-    monkeypatch.setattr("asterline.webhook_security.time.time", lambda: now)
+    monkeypatch.setattr("iamai.webhook_security.time.time", lambda: now)
     runtime = _make_runtime(tmp_path)
     adapter = WebhookAdapter(
         runtime,
@@ -315,8 +308,8 @@ def test_webhook_accepts_valid_signature_and_token(tmp_path: Path, monkeypatch: 
         headers={
             "authorization": "Bearer secret-token",
             "content-type": "application/json",
-            "x-asterline-signature": f"sha256={signature}",
-            "x-asterline-timestamp": timestamp,
+            "x-iamai-signature": f"sha256={signature}",
+            "x-iamai-timestamp": timestamp,
         },
     )
 
@@ -328,7 +321,7 @@ def test_webhook_accepts_valid_signature_and_token(tmp_path: Path, monkeypatch: 
 
 def test_webhook_rejects_invalid_signature(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     now = 1_700_000_000
-    monkeypatch.setattr("asterline.webhook_security.time.time", lambda: now)
+    monkeypatch.setattr("iamai.webhook_security.time.time", lambda: now)
     adapter = WebhookAdapter(
         _make_runtime(tmp_path),
         {
@@ -342,8 +335,8 @@ def test_webhook_rejects_invalid_signature(tmp_path: Path, monkeypatch: pytest.M
         b'{"message":"hello"}',
         headers={
             "content-type": "application/json",
-            "x-asterline-signature": "sha256=deadbeef",
-            "x-asterline-timestamp": str(now),
+            "x-iamai-signature": "sha256=deadbeef",
+            "x-iamai-timestamp": str(now),
         },
     )
 
@@ -354,7 +347,7 @@ def test_webhook_rejects_invalid_signature(tmp_path: Path, monkeypatch: pytest.M
 
 def test_webhook_rejects_expired_timestamp(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     now = 1_700_000_000
-    monkeypatch.setattr("asterline.webhook_security.time.time", lambda: now)
+    monkeypatch.setattr("iamai.webhook_security.time.time", lambda: now)
     adapter = WebhookAdapter(
         _make_runtime(tmp_path),
         {
@@ -372,8 +365,8 @@ def test_webhook_rejects_expired_timestamp(tmp_path: Path, monkeypatch: pytest.M
         body,
         headers={
             "content-type": "application/json",
-            "x-asterline-signature": f"sha256={signature}",
-            "x-asterline-timestamp": timestamp,
+            "x-iamai-signature": f"sha256={signature}",
+            "x-iamai-timestamp": timestamp,
         },
     )
 
@@ -382,9 +375,11 @@ def test_webhook_rejects_expired_timestamp(tmp_path: Path, monkeypatch: pytest.M
     assert response.status == 401
 
 
-def test_webhook_rejects_replayed_signature(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+def test_webhook_rejects_replayed_signature(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
     now = 1_700_000_000
-    monkeypatch.setattr("asterline.webhook_security.time.time", lambda: now)
+    monkeypatch.setattr("iamai.webhook_security.time.time", lambda: now)
     adapter = WebhookAdapter(
         _make_runtime(tmp_path),
         {
@@ -402,8 +397,8 @@ def test_webhook_rejects_replayed_signature(tmp_path: Path, monkeypatch: pytest.
         body,
         headers={
             "content-type": "application/json",
-            "x-asterline-signature": f"sha256={signature}",
-            "x-asterline-timestamp": timestamp,
+            "x-iamai-signature": f"sha256={signature}",
+            "x-iamai-timestamp": timestamp,
         },
     )
 
@@ -414,7 +409,9 @@ def test_webhook_rejects_replayed_signature(tmp_path: Path, monkeypatch: pytest.
     assert second.status == 401
 
 
-def test_webhook_github_signature_provider_accepts_valid_signature(tmp_path: Path) -> None:
+def test_webhook_github_signature_provider_accepts_valid_signature(
+    tmp_path: Path,
+) -> None:
     adapter = WebhookAdapter(
         _make_runtime(tmp_path),
         {
@@ -440,9 +437,11 @@ def test_webhook_github_signature_provider_accepts_valid_signature(tmp_path: Pat
     assert response.status == 200
 
 
-def test_webhook_stripe_signature_provider_accepts_valid_signature(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+def test_webhook_stripe_signature_provider_accepts_valid_signature(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
     now = 1_700_000_000
-    monkeypatch.setattr("asterline.webhook_security.time.time", lambda: now)
+    monkeypatch.setattr("iamai.webhook_security.time.time", lambda: now)
     adapter = WebhookAdapter(
         _make_runtime(tmp_path),
         {
@@ -490,7 +489,12 @@ def test_webhook_records_metrics_for_authorization_failures(tmp_path: Path) -> N
 
     assert response.status == 401
     metrics = runtime.metrics.snapshot()
-    assert metrics["webhook_requests_total{adapter=webhook,outcome=unauthorized,provider=generic,status=401}"] == 1
+    assert (
+        metrics[
+            "webhook_requests_total{adapter=webhook,outcome=unauthorized,provider=generic,status=401}"
+        ]
+        == 1
+    )
 
 
 def test_webhook_rejects_explicit_non_json_content_type(tmp_path: Path) -> None:
@@ -540,4 +544,9 @@ def test_onebot_http_rejects_explicit_non_json_content_type(tmp_path: Path) -> N
 
     assert response.status == 415
     metrics = runtime.metrics.snapshot()
-    assert metrics["onebot_http_requests_total{adapter=onebot11,outcome=unsupported_media_type,status=415}"] == 1
+    assert (
+        metrics[
+            "onebot_http_requests_total{adapter=onebot11,outcome=unsupported_media_type,status=415}"
+        ]
+        == 1
+    )

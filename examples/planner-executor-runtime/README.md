@@ -1,6 +1,6 @@
 # planner-executor-runtime
 
-Planner / Executor agent loop example for Asterline.
+Planner / Executor agent loop example for iamai.
 
 This example shows:
 
@@ -11,7 +11,7 @@ This example shows:
 ## Run
 
 ```bash
-uv run --package planner-executor-runtime python -m asterline --config examples/planner-executor-runtime/config.terminal.toml
+uv run --package planner-executor-runtime python -m iamai --config examples/planner-executor-runtime/config.terminal.toml
 ```
 
 ## Try

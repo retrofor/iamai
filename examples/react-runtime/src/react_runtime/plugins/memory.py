@@ -1,8 +1,7 @@
 from __future__ import annotations
 
+from iamai import Context, Plugin, command, middleware
 from pydantic import BaseModel
-
-from asterline import Context, Plugin, command, middleware
 
 
 class MemoryConfig(BaseModel):

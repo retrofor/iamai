@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from asterline import Context, Plugin, command, middleware
+from iamai import Context, Plugin, command, middleware
 
 
 class BriefingPlugin(Plugin):

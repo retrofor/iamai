@@ -2,9 +2,8 @@ from __future__ import annotations
 
 from typing import Any
 
+from iamai import Context, Event, Plugin, command, depends, message_handler, middleware
 from pydantic import BaseModel
-
-from asterline import Context, Event, Plugin, command, depends, message_handler, middleware
 
 
 def source_label(event: Event) -> str:
@@ -40,9 +39,7 @@ class EchoPlugin(Plugin):
 
     @command("whoami", priority=30)
     async def whoami(self, ctx: Context, event: Event) -> None:
-        await ctx.reply(
-            f"adapter={event.adapter} user={event.user_id} channel={event.channel_id}"
-        )
+        await ctx.reply(f"adapter={event.adapter} user={event.user_id} channel={event.channel_id}")
 
     @command("state", priority=40)
     async def show_state(self, ctx: Context, shared_state: dict[str, Any]) -> None:
@@ -53,5 +50,7 @@ class EchoPlugin(Plugin):
 
     @message_handler(startswith=("hi", "hello", "你好"), priority=100)
     async def greet(self, ctx: Context, source: str = depends(source_label)) -> None:
-        greeting = self.config_obj.greeting if self.config_obj is not None else "你好，我是 Shinemay"
+        greeting = (
+            self.config_obj.greeting if self.config_obj is not None else "你好，我是 Shinemay"
+        )
         await ctx.reply(f"{greeting} 当前来源: {source}")

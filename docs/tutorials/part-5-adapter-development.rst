@@ -22,7 +22,7 @@
    poll_timeout = 30
    allowed_updates = ["message"]
 
-对应的配置模型放在 ``asterline.config``。这样做的目的不是形式主义，而是让启动前校验、管理命令和
+对应的配置模型放在 ``iamai.config``。这样做的目的不是形式主义，而是让启动前校验、管理命令和
 配置参考都能看到同一份结构：
 
 .. code-block:: python
@@ -46,7 +46,7 @@
 
 .. code-block:: python
 
-   from asterline import Adapter, Event, Message
+   from iamai import Adapter, Event, Message
 
 
    class TelegramAdapter(Adapter):
@@ -95,7 +95,7 @@ Telegram 长轮询的核心是 ``getUpdates``。适配器维护 ``offset``，每
 事件归一化
 ----------
 
-平台 payload 要尽早变成 Asterline 的 ``Event``。Telegram 的关键字段映射是：
+平台 payload 要尽早变成 iamai 的 ``Event``。Telegram 的关键字段映射是：
 
 - ``message.text`` 或 ``message.caption`` -> ``Message``。
 - ``message.from.id`` -> ``user_id``。
@@ -166,7 +166,7 @@ Telegram 的实现最终调用 ``sendMessage``：
    async def fake_request_json(url: str, **kwargs):
        return {"ok": True, "result": {"message_id": 1}}
 
-   monkeypatch.setattr("asterline.adapters.telegram.request_json", fake_request_json)
+   monkeypatch.setattr("iamai.adapters.telegram.request_json", fake_request_json)
 
 再单独测试 ``_normalize_update``，确保字段映射不会回退：
 

@@ -3,14 +3,13 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-from asterline.agent import LLMClient, LLMConfig
-
+from iamai.agent import LLMClient, LLMConfig
 
 ROOT = Path(__file__).resolve().parents[1]
 EXAMPLE_SHARED = ROOT / "examples" / "_shared" / "src"
 sys.path.insert(0, str(EXAMPLE_SHARED))
 
-from asterline_example_utils import resolve_llm_settings  # noqa: E402
+from iamai_example_utils import resolve_llm_settings  # noqa: E402
 
 
 def test_llm_client_applies_env_fallback_for_dataclass_config(monkeypatch) -> None:

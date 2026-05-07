@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from pathlib import Path
 import sys
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PYTHON_SOURCE = ROOT / "python"
@@ -15,17 +15,20 @@ sys.path.insert(0, str(DOCS_EXT))
 import sys as _sys
 from unittest.mock import MagicMock
 
+
 class MockCoreModule(MagicMock):
     """Mock for the Rust _core extension."""
+
     CoreMessage = MagicMock
     deep_merge_json = lambda a, b: b  # type: ignore
     next_event_id = lambda: "mock_event_id"  # type: ignore
     normalize_onebot11_event = lambda raw, adapter, platform: raw  # type: ignore
 
-_sys.modules["asterline._core"] = MockCoreModule()
 
-project = "Asterline"
-author = "Asterline contributors"
+_sys.modules["iamai._core"] = MockCoreModule()
+
+project = "iamai"
+author = "iamai contributors"
 language = "zh_CN"
 locale_dirs = ["locales"]
 gettext_compact = False
@@ -38,10 +41,10 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
     "sphinx.ext.githubpages",
-    "asterline_mermaid",
-    "asterline_blog",
-    "asterline_store",
-    "asterline_i18n_versions",
+    "iamai_mermaid",
+    "iamai_blog",
+    "iamai_store",
+    "iamai_i18n_versions",
 ]
 
 templates_path = ["_templates"]
@@ -64,22 +67,22 @@ intersphinx_mapping = {
 }
 
 html_theme = "furo"
-html_title = "Asterline Documentation"
+html_title = "iamai Documentation"
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]
-html_logo = "_static/brand/asterline-logo.svg"
+html_logo = "_static/brand/iamai-logo.svg"
 html_favicon = "_static/brand/favicon.ico"
-asterline_store_registry_paths = ["ecosystem/entries"]
-asterline_store_github_repo = "asterline/asterline"
-asterline_blog_registry_paths = ["community/blog/posts"]
-asterline_docs_current_version = "dev"
-asterline_docs_current_language = "zh_CN"
-asterline_docs_versions = [
+iamai_store_registry_paths = ["ecosystem/entries"]
+iamai_store_github_repo = "iamai/iamai"
+iamai_blog_registry_paths = ["community/blog/posts"]
+iamai_docs_current_version = "dev"
+iamai_docs_current_language = "zh_CN"
+iamai_docs_versions = [
     {"name": "dev", "label": "Development", "url": "#", "current": True},
     {"name": "latest", "label": "Latest", "url": "/latest/zh_CN/"},
     {"name": "0.1", "label": "0.1", "url": "/0.1/zh_CN/"},
 ]
-asterline_docs_languages = [
+iamai_docs_languages = [
     {"name": "zh_CN", "label": "中文", "url": "#", "current": True},
     {"name": "en", "label": "English", "url": "/dev/en/"},
 ]

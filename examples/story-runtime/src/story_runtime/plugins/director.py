@@ -1,12 +1,21 @@
 from __future__ import annotations
 
+import random
 from typing import Any, cast
 
-import random
-
+from iamai import (
+    Context,
+    Plugin,
+    Runtime,
+    any_rules,
+    command,
+    contains,
+    depends,
+    message_handler,
+    startswith,
+    superusers,
+)
 from pydantic import BaseModel
-
-from asterline import Context, Runtime, Plugin, any_rules, command, contains, depends, message_handler, startswith, superusers
 
 
 def story_state(runtime: Runtime) -> dict[str, Any]:
@@ -26,7 +35,9 @@ class DirectorPlugin(Plugin):
     config_model = DirectorConfig
 
     @command("scene", priority=10)
-    async def scene(self, ctx: Context, args: str, story: dict[str, Any] = depends(story_state)) -> None:
+    async def scene(
+        self, ctx: Context, args: str, story: dict[str, Any] = depends(story_state)
+    ) -> None:
         narrator = self.config_obj.narrator if self.config_obj is not None else "旁白"
         prompt = args or "未知事件"
         cast_names = ", ".join(item["name"] for item in story.get("cast", [])[:3]) or "无名旅人"
@@ -49,7 +60,9 @@ class DirectorPlugin(Plugin):
         priority=30,
         rule=any_rules(startswith("继续"), startswith("continue"), contains("下一幕")),
     )
-    async def continue_story(self, ctx: Context, story: dict[str, Any] = depends(story_state)) -> None:
+    async def continue_story(
+        self, ctx: Context, story: dict[str, Any] = depends(story_state)
+    ) -> None:
         next_beat = f"scene-count={len(story.get('scenes', []))} setting={story['setting']}"
         await ctx.reply(f"故事继续推进，{next_beat}")
 

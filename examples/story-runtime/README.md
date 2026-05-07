@@ -1,6 +1,6 @@
 # story-runtime
 
-一个偏叙事生成的 Asterline 示例，展示：
+一个偏叙事生成的 iamai 示例，展示：
 
 - `requires / optional_requires / load_before`
 - `before / after / error` middleware
@@ -9,7 +9,7 @@
 ## 启动
 
 ```bash
-uv run --package story-runtime python -m asterline --config examples/story-runtime/config.terminal.toml
+uv run --package story-runtime python -m iamai --config examples/story-runtime/config.terminal.toml
 ```
 
 ## 试试这些命令

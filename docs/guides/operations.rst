@@ -1,7 +1,7 @@
 运维与安全
 ==========
 
-Asterline 的生产化原则是默认保守：开发便利不能自动变成生产默认。上线前应把入口鉴权、
+iamai 的生产化原则是默认保守：开发便利不能自动变成生产默认。上线前应把入口鉴权、
 管理命令、出站回调、日志和指标都写进配置和检查流程。
 
 管理命令
@@ -67,7 +67,7 @@ OneBot11 暴露面
 日志链路
 --------
 
-Asterline 使用 Loguru 配置运行时日志，并把标准库 ``logging``、适配器日志、审计日志和运行时调度日志
+iamai 使用 Loguru 配置运行时日志，并把标准库 ``logging``、适配器日志、审计日志和运行时调度日志
 汇入同一条链路。最小配置可以继续使用 ``[runtime].log_level``；更完整的配置使用 ``[logging]``：
 
 .. code-block:: toml
@@ -75,7 +75,7 @@ Asterline 使用 Loguru 配置运行时日志，并把标准库 ``logging``、�
    [logging]
    level = "INFO"
    stderr = true
-   file = "logs/asterline.log"
+   file = "logs/iamai.log"
    rotation = "10 MB"
    retention = "14 days"
    serialize = false

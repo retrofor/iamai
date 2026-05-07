@@ -18,12 +18,12 @@ retention = "7 days"
 
 [adapter.terminal]
 prompt = "echo-runtime> "
-output_prefix = "asterline> "
+output_prefix = "iamai> "
 user_id = "terminal-user"
 self_id = "terminal-runtime"
 
 [plugin.echo]
-greeting = "你好，我是 Asterline 示例运行时。"
+greeting = "你好，我是 iamai 示例运行时。"
 
 [plugin.management]
 allow_reload = true

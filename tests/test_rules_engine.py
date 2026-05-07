@@ -3,12 +3,12 @@ from __future__ import annotations
 import asyncio
 from pathlib import Path
 
-from asterline import (
-    Runtime,
+from iamai import (
     Context,
     Event,
     Message,
     Plugin,
+    Runtime,
     channel_id_is,
     field,
     none_of,
@@ -22,8 +22,8 @@ from asterline import (
     when_any,
     word_in,
 )
-from asterline.adapter import Adapter
-from asterline.plugin import BoundHandler, HandlerSpec
+from iamai.adapter import Adapter
+from iamai.plugin import BoundHandler, HandlerSpec
 
 
 class DummyAdapter(Adapter):
@@ -77,7 +77,9 @@ def _make_context(tmp_path: Path) -> Context:
         message=Message("Deploy service alpha"),
         raw={"message_type": "group", "sender": {"role": "admin"}, "score": 7},
     )
-    handler = BoundHandler(plugin, HandlerSpec(func_name="handle", kind="message"), lambda ctx: None)
+    handler = BoundHandler(
+        plugin, HandlerSpec(func_name="handle", kind="message"), lambda ctx: None
+    )
     return Context(
         runtime=runtime,
         adapter=adapter,
@@ -130,7 +132,11 @@ def test_ruleset_returns_first_priority_match_and_payload(tmp_path: Path) -> Non
         ruleset("router")
         .when("fallback", text_equals("anything"), priority=50)
         .when("deploy", word_in("deploy").with_payload(intent="deploy"), priority=10)
-        .when("admin", raw_field("sender.role", equals="admin").with_payload(role="admin"), priority=20)
+        .when(
+            "admin",
+            raw_field("sender.role", equals="admin").with_payload(role="admin"),
+            priority=20,
+        )
     )
 
     ok, payload = asyncio.run(_evaluate(routing.as_rule(), ctx))

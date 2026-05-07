@@ -7,7 +7,7 @@
 按任务选择
 ----------
 
-.. container:: asterline-path
+.. container:: iamai-path
 
    **理解框架边界**
       架构、配置系统、插件与适配器如何分工。
@@ -22,7 +22,7 @@
       :doc:`adapters` · :doc:`operations`
 
    **生态方向**
-      和主流 Runtime/Agent 框架对比，明确 Asterline 的定位、路线图和设计决策。
+      和主流 Runtime/Agent 框架对比，明确 iamai 的定位、路线图和设计决策。
       :doc:`ecosystem-comparison` · :doc:`roadmap`
 
 章节列表

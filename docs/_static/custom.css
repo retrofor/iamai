@@ -1,11 +1,11 @@
 :root {
   --color-foreground-secondary: #4b5563;
-  --asterline-card-border: #000;
+  --iamai-card-border: #000;
 }
 
 [data-theme="dark"] {
   --color-foreground-secondary: #94a3b8;
-  --asterline-card-border: #000;
+  --iamai-card-border: #000;
 }
 
 article[role="main"] > section > h1:first-child {
@@ -16,47 +16,47 @@ article[role="main"] p {
   line-height: 1.68;
 }
 
-.asterline-hero {
+.iamai-hero {
   font-size: 1.05rem;
   margin: 0.75rem 0 1.5rem;
   max-width: 56rem;
 }
 
-.asterline-hero p {
+.iamai-hero p {
   margin: 0.45rem 0;
 }
 
-.asterline-card-grid {
+.iamai-card-grid {
   display: grid;
   gap: 0.85rem;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   margin: 1.25rem 0 1.5rem;
 }
 
-.asterline-card-grid--four,
-.asterline-card-grid-four {
+.iamai-card-grid--four,
+.iamai-card-grid-four {
   grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
 }
 
-.asterline-doc-card {
-  border: 1px solid var(--asterline-card-border);
+.iamai-doc-card {
+  border: 1px solid var(--iamai-card-border);
   border-radius: 0;
   padding: 0.95rem 1rem;
 }
 
-.asterline-doc-card p {
+.iamai-doc-card p {
   color: var(--color-foreground-secondary);
   margin: 0.4rem 0;
 }
 
-.asterline-doc-card strong {
+.iamai-doc-card strong {
   color: var(--color-foreground-primary);
   display: block;
   font-size: 1rem;
   margin-bottom: 0.25rem;
 }
 
-.asterline-status-pill {
+.iamai-status-pill {
   border: 1px solid var(--color-background-border);
   border-radius: 999px;
   display: inline-block;
@@ -67,70 +67,70 @@ article[role="main"] p {
   padding: 0.22rem 0.48rem;
 }
 
-.asterline-table-scroll {
+.iamai-table-scroll {
   margin: 1rem 0 1.5rem;
   overflow-x: auto;
 }
 
-.asterline-table-scroll table {
+.iamai-table-scroll table {
   min-width: 62rem;
 }
 
-.asterline-mermaid {
+.iamai-mermaid {
   border: 1px solid var(--color-background-border);
   margin: 1rem 0 1.5rem;
   overflow-x: auto;
   padding: 0.75rem;
 }
 
-.asterline-mermaid pre {
+.iamai-mermaid pre {
   margin: 0;
   min-width: 68rem;
 }
 
-.asterline-path {
+.iamai-path {
   margin: 0.75rem 0 1.5rem;
 }
 
-.asterline-path dl,
-.asterline-timeline dl {
+.iamai-path dl,
+.iamai-timeline dl {
   margin: 0;
 }
 
-.asterline-path dt,
-.asterline-timeline dt {
+.iamai-path dt,
+.iamai-timeline dt {
   color: var(--color-foreground-primary);
   font-weight: 700;
 }
 
-.asterline-path dd,
-.asterline-timeline dd {
+.iamai-path dd,
+.iamai-timeline dd {
   color: var(--color-foreground-secondary);
   margin-bottom: 0.85rem;
   margin-left: 0;
 }
 
-.asterline-path dt {
+.iamai-path dt {
   border-top: 1px solid var(--color-background-border);
   padding-top: 0.75rem;
 }
 
-.asterline-path dt:first-child {
+.iamai-path dt:first-child {
   border-top: 0;
   padding-top: 0;
 }
 
-.asterline-timeline {
+.iamai-timeline {
   border-left: 2px solid var(--color-background-border);
   margin: 1rem 0 1.5rem;
   padding-left: 1rem;
 }
 
-.asterline-timeline dt {
+.iamai-timeline dt {
   position: relative;
 }
 
-.asterline-timeline dt::before {
+.iamai-timeline dt::before {
   background: var(--color-brand-content);
   border: 2px solid var(--color-background-primary);
   border-radius: 999px;
@@ -143,8 +143,8 @@ article[role="main"] p {
 }
 
 @media (max-width: 760px) {
-  .asterline-hero,
-  .asterline-doc-card {
+  .iamai-hero,
+  .iamai-doc-card {
     padding: 0.9rem;
   }
 }

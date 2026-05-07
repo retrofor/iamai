@@ -1,10 +1,8 @@
 from __future__ import annotations
 
-from asterline import Context, Plugin, command
-from asterline_example_utils import chat_text, clip_text, resolve_llm_settings
+from iamai import Context, Plugin, command
+from iamai_example_utils import LLMSettings, chat_text, clip_text, resolve_llm_settings
 from pydantic import BaseModel, Field
-
-from asterline_example_utils import LLMSettings
 
 WORKER_PROMPTS = {
     "strategist": "Find leverage, sequence, and obvious constraints.",

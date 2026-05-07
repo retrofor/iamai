@@ -3,13 +3,12 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 DOCS_EXT = ROOT / "docs" / "_ext"
 sys.path.insert(0, str(DOCS_EXT))
 
-from asterline_blog import BlogEntry, load_blog_entries  # noqa: E402
-from asterline_mermaid import MermaidDirective  # noqa: E402
+from iamai_blog import BlogEntry, load_blog_entries  # noqa: E402
+from iamai_mermaid import MermaidDirective  # noqa: E402
 
 
 def test_blog_entries_are_validated_and_sorted_by_publish_date(tmp_path: Path) -> None:
@@ -20,7 +19,7 @@ def test_blog_entries_are_validated_and_sorted_by_publish_date(tmp_path: Path) -
 id: regular
 title: Regular
 summary: Regular article.
-author: Asterline
+author: iamai
 published_at: 2026-04-26
 tags: [runtime]
 ---
@@ -35,7 +34,7 @@ Regular
 id: featured
 title: Featured
 summary: Featured article.
-author: Asterline
+author: iamai
 published_at: 2026-04-25
 tags:
   - community

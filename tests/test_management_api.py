@@ -3,9 +3,9 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from asterline import Runtime, Plugin, command
-from asterline.httpio import HttpRequest
-from asterline.plugins.management_api import ManagementApiPlugin
+from iamai import Plugin, Runtime, command
+from iamai.httpio import HttpRequest
+from iamai.plugins.management_api import ManagementApiPlugin
 
 
 class DemoPlugin(Plugin):

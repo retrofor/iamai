@@ -1,7 +1,7 @@
 路线图与设计决策
 ================
 
-这页把 :doc:`ecosystem-comparison` 的定位落到工程顺序。目标不是把 Asterline 做成全功能平台，
+这页把 :doc:`ecosystem-comparison` 的定位落到工程顺序。目标不是把 iamai 做成全功能平台，
 而是稳定一个安全、可测试、可嵌入的 Python + Rust runtime/agent runtime。
 
 版本路线图
@@ -13,8 +13,8 @@
 
 ``0.2``
    |drafting| 发布适配器 SDK 草案、adapter conformance tests、多账户配置草案，并至少补齐一个新增主流适配器。
-   适配器包命名固定为 ``asterline-adapter-<platform>``，entry point 使用
-   ``[project.entry-points."asterline.adapters"]``。
+   适配器包命名固定为 ``iamai-adapter-<platform>``，entry point 使用
+   ``[project.entry-points."iamai.adapters"]``。
 
 ``0.3``
    |drafting| 引入 tool registry、agent permission、审计 trace 和 MCP gateway 试验。Agent tool 必须声明权限名、
@@ -29,11 +29,11 @@
 
 .. |planned| raw:: html
 
-   <span class="asterline-status-pill">planned</span>
+   <span class="iamai-status-pill">planned</span>
 
 .. |drafting| raw:: html
 
-   <span class="asterline-status-pill">drafting</span>
+   <span class="iamai-status-pill">drafting</span>
 
 设计决策
 --------
@@ -43,7 +43,7 @@
    ``Event`` 和 ``Message`` 是第三方扩展的主要契约。新增能力优先通过规范、测试和 helper 提供。
 
 适配器外置优先
-   内置适配器只覆盖高质量基础平台。更多平台通过 ``asterline-adapter-<platform>`` 包发布，并用
+   内置适配器只覆盖高质量基础平台。更多平台通过 ``iamai-adapter-<platform>`` 包发布，并用
    conformance tests 证明事件归一化、消息编码、API 调用和错误处理行为。
 
 安全声明前置

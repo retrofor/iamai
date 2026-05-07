@@ -1,8 +1,8 @@
 ---
 id: architecture.lifecycle
-title: 用泳道图理解 Asterline 的运行时生命周期
+title: 用泳道图理解 iamai 的运行时生命周期
 summary: 从事件进入适配器到插件处理、Agent 工具调用、审计记录和响应返回，梳理运行时链路的职责边界。
-author: Asterline maintainers
+author: iamai maintainers
 published_at: 2026-04-26
 category: 架构笔记
 tags: [architecture, runtime, mermaid]
@@ -11,10 +11,10 @@ featured: true
 
 :orphan:
 
-用泳道图理解 Asterline 的运行时生命周期
+用泳道图理解 iamai 的运行时生命周期
 =======================================
 
-Asterline 的核心目标不是把所有能力放进一个平台，而是把协议边界、插件生命周期、
+iamai 的核心目标不是把所有能力放进一个平台，而是把协议边界、插件生命周期、
 Agent 工具权限和审计链路固定成可测试、可嵌入的运行时约束。
 
 .. mermaid::
@@ -23,7 +23,7 @@ Agent 工具权限和审计链路固定成可测试、可嵌入的运行时约�
    sequenceDiagram
      participant Platform as 外部平台
      participant Adapter as 协议适配器
-     participant Runtime as Asterline Runtime
+     participant Runtime as iamai Runtime
      participant Plugin as 插件/Handler
      participant Agent as Agent Tool
      participant Audit as 审计与日志

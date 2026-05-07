@@ -2,11 +2,15 @@ from __future__ import annotations
 
 from typing import Any
 
-from asterline import Context, Plugin, command
-from asterline_example_utils import chat_json, clip_text, format_transcript, resolve_llm_settings
+from iamai import Context, Plugin, command
+from iamai_example_utils import (
+    LLMSettings,
+    chat_json,
+    clip_text,
+    format_transcript,
+    resolve_llm_settings,
+)
 from pydantic import BaseModel, Field
-
-from asterline_example_utils import LLMSettings
 
 
 class PlannerConfig(BaseModel):
@@ -26,7 +30,9 @@ class PlannerPlugin(Plugin):
         *,
         recent_runs: list[dict[str, Any]] | None = None,
     ) -> dict[str, Any]:
-        settings = resolve_llm_settings(self.config_obj, default_temperature=0.4, default_max_tokens=700)
+        settings = resolve_llm_settings(
+            self.config_obj, default_temperature=0.4, default_max_tokens=700
+        )
         max_steps = max(2, min(int(self.config.get("max_steps", 4)), 6))
         history_lines = [
             f"- goal={item.get('goal', '')} outcome={clip_text(item.get('summary', ''), limit=120)}"
@@ -61,7 +67,9 @@ class PlannerPlugin(Plugin):
             for item in raw_steps[:max_steps]:
                 if not isinstance(item, dict):
                     continue
-                step_text = clip_text(str(item.get("step", "")).strip() or "Do the next useful thing.")
+                step_text = clip_text(
+                    str(item.get("step", "")).strip() or "Do the next useful thing."
+                )
                 steps.append(
                     {
                         "step": step_text,
@@ -69,7 +77,8 @@ class PlannerPlugin(Plugin):
                             str(item.get("deliverable", "")).strip() or "A concrete output."
                         ),
                         "done_when": clip_text(
-                            str(item.get("done_when", "")).strip() or "The step is demonstrably complete."
+                            str(item.get("done_when", "")).strip()
+                            or "The step is demonstrably complete."
                         ),
                     }
                 )
@@ -89,7 +98,8 @@ class PlannerPlugin(Plugin):
         return {
             "title": clip_text(str(data.get("title", "")).strip() or goal, limit=80),
             "strategy": clip_text(
-                str(data.get("strategy", "")).strip() or "Front-load clarity, then execute in order.",
+                str(data.get("strategy", "")).strip()
+                or "Front-load clarity, then execute in order.",
                 limit=180,
             ),
             "steps": steps,

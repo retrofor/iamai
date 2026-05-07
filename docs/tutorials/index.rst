@@ -7,7 +7,7 @@
 学习路线
 --------
 
-.. container:: asterline-path
+.. container:: iamai-path
 
    **1. 跑通终端 Runtime**
       建立 ``Adapter``、``Event``、``Plugin`` 和 ``Context`` 的直觉。

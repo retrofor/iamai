@@ -1,8 +1,7 @@
 from __future__ import annotations
 
+from iamai import Context, Event, Plugin, command, message_handler, middleware
 from pydantic import BaseModel
-
-from asterline import Event, Context, Plugin, command, message_handler, middleware
 
 
 class RoomConfig(BaseModel):

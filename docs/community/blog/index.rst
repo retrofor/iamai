@@ -3,5 +3,5 @@
 BLOG
 ====
 
-.. asterline-blog::
+.. iamai-blog::
    :title: 全部文章

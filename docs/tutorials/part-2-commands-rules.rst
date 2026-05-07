@@ -2,7 +2,7 @@
 =========================
 
 上一章的 Runtime 只证明了“能响应”。真实项目还需要回答两个问题：这条消息是否应该进入某个
-handler，以及这个用户是否有资格执行它。Asterline 用 ``Rule`` 和 ``Permission`` 把这两件事
+handler，以及这个用户是否有资格执行它。iamai 用 ``Rule`` 和 ``Permission`` 把这两件事
 分开。
 
 命令与普通消息
@@ -12,7 +12,7 @@ handler，以及这个用户是否有资格执行它。Asterline 用 ``Rule`` �
 
 .. code-block:: python
 
-   from asterline import Context, Plugin, command, message_handler, startswith
+   from iamai import Context, Plugin, command, message_handler, startswith
 
 
    class RouterPlugin(Plugin):
@@ -36,7 +36,7 @@ handler，以及这个用户是否有资格执行它。Asterline 用 ``Rule`` �
 
 .. code-block:: python
 
-   from asterline import Context, Plugin, adapter_is, command, group_message
+   from iamai import Context, Plugin, adapter_is, command, group_message
 
 
    class GroupPlugin(Plugin):
@@ -50,7 +50,7 @@ handler，以及这个用户是否有资格执行它。Asterline 用 ``Rule`` �
 
 .. code-block:: python
 
-   from asterline import Context, Plugin, message_handler, regex
+   from iamai import Context, Plugin, message_handler, regex
 
 
    class IssuePlugin(Plugin):
@@ -68,7 +68,7 @@ handler，以及这个用户是否有资格执行它。Asterline 用 ``Rule`` �
 
 .. code-block:: python
 
-   from asterline import Context, Plugin, command, raw_field, when_all
+   from iamai import Context, Plugin, command, raw_field, when_all
 
 
    class AdminPlugin(Plugin):
@@ -94,7 +94,7 @@ Ruleset 路由
 
 .. code-block:: python
 
-   from asterline import Context, Plugin, message_handler, ruleset, word_in
+   from iamai import Context, Plugin, message_handler, ruleset, word_in
 
    intent_router = (
        ruleset("intent")
@@ -120,7 +120,7 @@ handler 或依赖注入 provider 里。
 
 .. code-block:: python
 
-   from asterline import Context, Plugin, command, superusers
+   from iamai import Context, Plugin, command, superusers
 
 
    class OpsPlugin(Plugin):
@@ -136,11 +136,11 @@ handler 或依赖注入 provider 里。
 自定义规则和权限
 ----------------
 
-普通函数也可以被包装成规则或权限，并且会参与 Asterline 的依赖注入：
+普通函数也可以被包装成规则或权限，并且会参与 iamai 的依赖注入：
 
 .. code-block:: python
 
-   from asterline import Context, Plugin, command, permission
+   from iamai import Context, Plugin, command, permission
 
 
    @permission

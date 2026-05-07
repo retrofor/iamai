@@ -5,15 +5,15 @@ import json
 from pathlib import Path
 from typing import Any
 
-from asterline import Runtime, Event, Message
-from asterline.adapters.middleware import (
+from iamai import Event, Message, Runtime
+from iamai.adapters.middleware import (
     EventFieldMap,
     JsonHttpWebhookMiddleware,
     JsonWebSocketClientMiddleware,
     OutboundAction,
 )
-from asterline.adapters.onebot11 import OneBot11Adapter
-from asterline.httpio import HttpRequest
+from iamai.adapters.onebot11 import OneBot11Adapter
+from iamai.httpio import HttpRequest
 
 
 def _make_runtime(tmp_path: Path) -> Runtime:
@@ -95,7 +95,9 @@ class MinimalWebhookAdapter(JsonHttpWebhookMiddleware):
         return OutboundAction(kind="message", action="send", params={"message": message.segments})
 
 
-def test_json_http_webhook_middleware_emits_event_from_field_map(tmp_path: Path) -> None:
+def test_json_http_webhook_middleware_emits_event_from_field_map(
+    tmp_path: Path,
+) -> None:
     runtime = _make_runtime(tmp_path)
     emitted: list[Event] = []
 
@@ -209,7 +211,12 @@ def test_onebot11_ws_echo_pending_result_is_preserved(tmp_path: Path) -> None:
         while not websocket.sent:
             await asyncio.sleep(0)
         sent = json.loads(websocket.sent[0])
-        response = {"status": "ok", "retcode": 0, "data": {"online": True}, "echo": sent["echo"]}
+        response = {
+            "status": "ok",
+            "retcode": 0,
+            "data": {"online": True},
+            "echo": sent["echo"],
+        }
         await adapter._handle_payload(json.dumps(response))
         return await task
 

@@ -1,7 +1,7 @@
 架构概览
 ========
 
-Asterline 的核心设计是把协议边界和业务插件分开。Adapter 负责和外部世界打交道，
+iamai 的核心设计是把协议边界和业务插件分开。Adapter 负责和外部世界打交道，
 Plugin 只处理统一事件和上下文。这样做的价值不是“抽象更漂亮”，而是当平台、鉴权方式、
 部署方式变化时，业务代码不必跟着重写。
 
@@ -41,7 +41,7 @@ Plugin 只处理统一事件和上下文。这样做的价值不是“抽象更�
 职责边界，纵向顺序表示主要生命周期阶段。
 
 .. mermaid::
-   :caption: Asterline 工作流程、链路和生命周期泳道图
+   :caption: iamai 工作流程、链路和生命周期泳道图
 
    flowchart TB
      classDef external fill:#ecfeff,stroke:#0891b2,color:#0f172a

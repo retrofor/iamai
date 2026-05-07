@@ -5,9 +5,8 @@ from pathlib import Path
 from typing import Any
 
 import pytest
-
-from asterline import Adapter, Runtime, Event, Message
-from asterline.testing.adapters import (
+from iamai import Adapter, Event, Message, Runtime
+from iamai.testing.adapters import (
     AdapterConformanceError,
     assert_adapter_api_result,
     assert_adapter_can_close,
@@ -42,13 +41,18 @@ class ConformingAdapter(Adapter):
         event: Event | None = None,
         target: Any | None = None,
     ) -> Any:
-        return {"target": target or event.channel_id if event else target, "text": message.plain_text()}
+        return {
+            "target": target or event.channel_id if event else target,
+            "text": message.plain_text(),
+        }
 
     async def call_api(self, action: str, **params: Any) -> Any:
         return {"action": action, "params": params}
 
 
-def test_adapter_conformance_helpers_accept_minimum_adapter_contract(tmp_path: Path) -> None:
+def test_adapter_conformance_helpers_accept_minimum_adapter_contract(
+    tmp_path: Path,
+) -> None:
     adapter = ConformingAdapter(_make_runtime(tmp_path))
     event = Event(
         id="evt-1",

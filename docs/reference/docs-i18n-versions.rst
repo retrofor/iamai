@@ -1,8 +1,8 @@
 文档国际化与版本切换
 ====================
 
-Asterline 文档使用 Sphinx 自带 gettext/i18n 能力生成翻译文件，并使用内置
-``asterline_i18n_versions`` 扩展在左侧目录栏渲染版本与语言切换器。
+iamai 文档使用 Sphinx 自带 gettext/i18n 能力生成翻译文件，并使用内置
+``iamai_i18n_versions`` 扩展在左侧目录栏渲染版本与语言切换器。
 
 维护翻译
 --------
@@ -25,14 +25,14 @@ Sphinx gettext 输出交给翻译平台处理。
 
 .. code-block:: python
 
-   asterline_docs_current_version = "dev"
-   asterline_docs_current_language = "zh_CN"
-   asterline_docs_versions = [
+   iamai_docs_current_version = "dev"
+   iamai_docs_current_language = "zh_CN"
+   iamai_docs_versions = [
        {"name": "dev", "label": "Development", "url": "#", "current": True},
        {"name": "latest", "label": "Latest", "url": "/latest/zh_CN/"},
        {"name": "0.1", "label": "0.1", "url": "/0.1/zh_CN/"},
    ]
-   asterline_docs_languages = [
+   iamai_docs_languages = [
        {"name": "zh_CN", "label": "中文", "url": "#", "current": True},
        {"name": "en", "label": "English", "url": "/dev/en/"},
    ]
@@ -43,9 +43,9 @@ Sphinx gettext 输出交给翻译平台处理。
 扩展输出
 --------
 
-构建完成后，扩展会写入 ``_static/asterline-docs-switcher-config.js``，并加载：
+构建完成后，扩展会写入 ``_static/iamai-docs-switcher-config.js``，并加载：
 
-- ``_static/asterline-docs-switcher.js``
-- ``_static/asterline-docs-switcher.css``
+- ``_static/iamai-docs-switcher.js``
+- ``_static/iamai-docs-switcher.css``
 
 这三个文件共同渲染左侧目录栏里的切换按钮。它是纯静态实现，不需要后端服务。

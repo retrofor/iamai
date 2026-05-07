@@ -1,37 +1,37 @@
 2026-04-26 20:33:25.742 | INFO     | logging:callHandlers:1762 | event[test-management] terminal/message text='/plugins'
-2026-04-26 20:33:25.748 | Level 20 | asterline.observability:emit:92 | {"action": "management_api.request", "outcome": "unauthorized", "path": "/health", "ts": "2026-04-26T12:33:25.748653+00:00"}
-2026-04-26 20:33:25.752 | Level 20 | asterline.observability:emit:92 | {"action": "management_api.request", "outcome": "ok", "path": "/health", "ts": "2026-04-26T12:33:25.752188+00:00"}
-2026-04-26 20:33:25.752 | Level 20 | asterline.observability:emit:92 | {"action": "management_api.request", "outcome": "ok", "path": "/metrics", "ts": "2026-04-26T12:33:25.752598+00:00"}
-2026-04-26 20:33:25.753 | Level 20 | asterline.observability:emit:92 | {"action": "management_api.request", "outcome": "ok", "path": "/plugins", "ts": "2026-04-26T12:33:25.752985+00:00"}
-2026-04-26 20:33:25.753 | Level 20 | asterline.observability:emit:92 | {"action": "management_api.request", "outcome": "ok", "path": "/handlers", "ts": "2026-04-26T12:33:25.753428+00:00"}
-2026-04-26 20:33:25.753 | Level 20 | asterline.observability:emit:92 | {"action": "management_api.request", "outcome": "ok", "path": "/sessions", "ts": "2026-04-26T12:33:25.753846+00:00"}
-2026-04-26 20:33:25.754 | Level 20 | asterline.observability:emit:92 | {"action": "management_api.request", "outcome": "ok", "path": "/schema", "ts": "2026-04-26T12:33:25.754133+00:00"}
-2026-04-26 20:33:25.754 | Level 20 | asterline.observability:emit:92 | {"action": "management_api.request", "outcome": "ok", "path": "/state", "ts": "2026-04-26T12:33:25.754392+00:00"}
+2026-04-26 20:33:25.748 | Level 20 | iamai.observability:emit:92 | {"action": "management_api.request", "outcome": "unauthorized", "path": "/health", "ts": "2026-04-26T12:33:25.748653+00:00"}
+2026-04-26 20:33:25.752 | Level 20 | iamai.observability:emit:92 | {"action": "management_api.request", "outcome": "ok", "path": "/health", "ts": "2026-04-26T12:33:25.752188+00:00"}
+2026-04-26 20:33:25.752 | Level 20 | iamai.observability:emit:92 | {"action": "management_api.request", "outcome": "ok", "path": "/metrics", "ts": "2026-04-26T12:33:25.752598+00:00"}
+2026-04-26 20:33:25.753 | Level 20 | iamai.observability:emit:92 | {"action": "management_api.request", "outcome": "ok", "path": "/plugins", "ts": "2026-04-26T12:33:25.752985+00:00"}
+2026-04-26 20:33:25.753 | Level 20 | iamai.observability:emit:92 | {"action": "management_api.request", "outcome": "ok", "path": "/handlers", "ts": "2026-04-26T12:33:25.753428+00:00"}
+2026-04-26 20:33:25.753 | Level 20 | iamai.observability:emit:92 | {"action": "management_api.request", "outcome": "ok", "path": "/sessions", "ts": "2026-04-26T12:33:25.753846+00:00"}
+2026-04-26 20:33:25.754 | Level 20 | iamai.observability:emit:92 | {"action": "management_api.request", "outcome": "ok", "path": "/schema", "ts": "2026-04-26T12:33:25.754133+00:00"}
+2026-04-26 20:33:25.754 | Level 20 | iamai.observability:emit:92 | {"action": "management_api.request", "outcome": "ok", "path": "/state", "ts": "2026-04-26T12:33:25.754392+00:00"}
 2026-04-26 20:34:44.900 | INFO     | logging:callHandlers:1762 | event[test-management] terminal/message text='/plugins'
 2026-04-26 20:44:19.675 | INFO     | logging:callHandlers:1762 | event[test-management] terminal/message text='/plugins'
 2026-04-26 20:46:02.462 | INFO     | logging:callHandlers:1762 | terminal adapter started
 2026-04-26 20:46:02.464 | INFO     | logging:callHandlers:1762 | event[evt-1777207562464-1] terminal/message text='/plugins'
-2026-04-26 20:46:41.594 | INFO     | asterline.adapters.terminal:start:32 | terminal adapter started
-2026-04-26 20:46:41.597 | INFO     | asterline.runtime:dispatch:491 | event[evt-1777207601596-1] terminal/message text='/plugins'
-2026-04-26 20:47:22.186 | INFO     | asterline.runtime:dispatch:491 | event[test-management] terminal/message text='/plugins'
-2026-04-26 20:49:43.522 | INFO     | asterline.runtime:dispatch:491 | event[test-management] terminal/message text='/plugins'
-2026-04-26 20:51:52.072 | INFO     | asterline.runtime:dispatch:491 | event[test-management] terminal/message text='/plugins'
-2026-04-26 20:52:47.843 | INFO     | asterline.runtime:dispatch:491 | event[test-management] terminal/message text='/plugins'
-2026-04-26 20:59:31.685 | INFO     | asterline.adapters.terminal:start:32 | terminal adapter started
-2026-04-26 20:59:34.627 | INFO     | asterline.runtime:dispatch:491 | event[evt-1777208374626-1] terminal/message text='/ping'
-2026-04-26 20:59:39.024 | INFO     | asterline.runtime:dispatch:491 | event[evt-1777208379024-2] terminal/message text='/echo 1'
-2026-04-26 20:59:42.163 | INFO     | asterline.runtime:dispatch:491 | event[evt-1777208382163-3] terminal/message text='/state'
-2026-04-26 20:59:45.197 | INFO     | asterline.runtime:dispatch:491 | event[evt-1777208385197-4] terminal/message text='/plugins'
-2026-04-26 20:59:49.214 | INFO     | asterline.runtime:dispatch:491 | event[evt-1777208389213-5] terminal/message text='/adapters'
-2026-04-26 20:59:57.032 | INFO     | asterline.runtime:dispatch:491 | event[evt-1777208397032-6] terminal/message text='hi'
-2026-04-26 21:09:20.453 | INFO     | asterline.runtime:dispatch:491 | event[test-management] terminal/message text='/plugins'
-2026-04-27 12:04:14.619 | INFO     | asterline.adapters.terminal:start:32 | terminal adapter started
-2026-04-27 12:04:19.651 | INFO     | asterline.adapters.terminal:start:32 | terminal adapter started
-2026-04-27 12:04:19.653 | INFO     | asterline.runtime:dispatch:491 | event[evt-1777262659653-1] terminal/message text='/ping'
-2026-04-27 12:04:19.654 | INFO     | asterline.runtime:dispatch:491 | event[evt-1777262659654-2] terminal/message text='/echo hello world'
-2026-04-27 12:04:19.654 | INFO     | asterline.runtime:dispatch:491 | event[evt-1777262659654-3] terminal/message text='/whoami'
-2026-04-27 12:04:19.655 | INFO     | asterline.runtime:dispatch:491 | event[evt-1777262659655-4] terminal/message text='/state'
-2026-04-27 12:04:19.656 | INFO     | asterline.runtime:dispatch:491 | event[evt-1777262659656-5] terminal/message text='quit'
-2026-04-27 12:04:38.738 | INFO     | asterline.adapters.terminal:start:32 | terminal adapter started
-2026-04-27 12:04:38.739 | INFO     | asterline.runtime:dispatch:491 | event[evt-1777262678739-1] terminal/message text='/help'
-2026-04-27 12:04:38.740 | INFO     | asterline.runtime:dispatch:491 | event[evt-1777262678740-2] terminal/message text='quit'
+2026-04-26 20:46:41.594 | INFO     | iamai.adapters.terminal:start:32 | terminal adapter started
+2026-04-26 20:46:41.597 | INFO     | iamai.runtime:dispatch:491 | event[evt-1777207601596-1] terminal/message text='/plugins'
+2026-04-26 20:47:22.186 | INFO     | iamai.runtime:dispatch:491 | event[test-management] terminal/message text='/plugins'
+2026-04-26 20:49:43.522 | INFO     | iamai.runtime:dispatch:491 | event[test-management] terminal/message text='/plugins'
+2026-04-26 20:51:52.072 | INFO     | iamai.runtime:dispatch:491 | event[test-management] terminal/message text='/plugins'
+2026-04-26 20:52:47.843 | INFO     | iamai.runtime:dispatch:491 | event[test-management] terminal/message text='/plugins'
+2026-04-26 20:59:31.685 | INFO     | iamai.adapters.terminal:start:32 | terminal adapter started
+2026-04-26 20:59:34.627 | INFO     | iamai.runtime:dispatch:491 | event[evt-1777208374626-1] terminal/message text='/ping'
+2026-04-26 20:59:39.024 | INFO     | iamai.runtime:dispatch:491 | event[evt-1777208379024-2] terminal/message text='/echo 1'
+2026-04-26 20:59:42.163 | INFO     | iamai.runtime:dispatch:491 | event[evt-1777208382163-3] terminal/message text='/state'
+2026-04-26 20:59:45.197 | INFO     | iamai.runtime:dispatch:491 | event[evt-1777208385197-4] terminal/message text='/plugins'
+2026-04-26 20:59:49.214 | INFO     | iamai.runtime:dispatch:491 | event[evt-1777208389213-5] terminal/message text='/adapters'
+2026-04-26 20:59:57.032 | INFO     | iamai.runtime:dispatch:491 | event[evt-1777208397032-6] terminal/message text='hi'
+2026-04-26 21:09:20.453 | INFO     | iamai.runtime:dispatch:491 | event[test-management] terminal/message text='/plugins'
+2026-04-27 12:04:14.619 | INFO     | iamai.adapters.terminal:start:32 | terminal adapter started
+2026-04-27 12:04:19.651 | INFO     | iamai.adapters.terminal:start:32 | terminal adapter started
+2026-04-27 12:04:19.653 | INFO     | iamai.runtime:dispatch:491 | event[evt-1777262659653-1] terminal/message text='/ping'
+2026-04-27 12:04:19.654 | INFO     | iamai.runtime:dispatch:491 | event[evt-1777262659654-2] terminal/message text='/echo hello world'
+2026-04-27 12:04:19.654 | INFO     | iamai.runtime:dispatch:491 | event[evt-1777262659654-3] terminal/message text='/whoami'
+2026-04-27 12:04:19.655 | INFO     | iamai.runtime:dispatch:491 | event[evt-1777262659655-4] terminal/message text='/state'
+2026-04-27 12:04:19.656 | INFO     | iamai.runtime:dispatch:491 | event[evt-1777262659656-5] terminal/message text='quit'
+2026-04-27 12:04:38.738 | INFO     | iamai.adapters.terminal:start:32 | terminal adapter started
+2026-04-27 12:04:38.739 | INFO     | iamai.runtime:dispatch:491 | event[evt-1777262678739-1] terminal/message text='/help'
+2026-04-27 12:04:38.740 | INFO     | iamai.runtime:dispatch:491 | event[evt-1777262678740-2] terminal/message text='quit'

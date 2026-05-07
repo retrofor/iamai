@@ -1,11 +1,11 @@
 [project]
 name = "arcade-runtime"
 version = "0.1.0"
-description = "Arcade-style Asterline example."
+description = "Arcade-style iamai example."
 requires-python = ">=3.10"
 dependencies = [
-    "asterline",
+    "iamai",
 ]
 
 [tool.uv.sources]
-asterline = { workspace = true }
+iamai = { workspace = true }

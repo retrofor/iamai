@@ -1,6 +1,6 @@
 # supervisor-team-runtime
 
-Supervisor multi-agent example for Asterline.
+Supervisor multi-agent example for iamai.
 
 This example shows:
 
@@ -11,7 +11,7 @@ This example shows:
 ## Run
 
 ```bash
-uv run --package supervisor-team-runtime python -m asterline --config examples/supervisor-team-runtime/config.terminal.toml
+uv run --package supervisor-team-runtime python -m iamai --config examples/supervisor-team-runtime/config.terminal.toml
 ```
 
 ## Try

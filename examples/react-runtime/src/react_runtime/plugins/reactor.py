@@ -2,12 +2,17 @@ from __future__ import annotations
 
 from typing import cast
 
-from asterline import AgentTrace, Context, Plugin, command
-from asterline_example_utils import chat_json, clip_text, format_transcript, resolve_llm_settings
+from iamai import AgentTrace, Context, Plugin, command
+from iamai_example_utils import (
+    LLMSettings,
+    chat_json,
+    clip_text,
+    format_transcript,
+    resolve_llm_settings,
+)
 from pydantic import BaseModel, Field
-from react_runtime.plugins.tools import ToolsPlugin
 
-from asterline_example_utils import LLMSettings
+from react_runtime.plugins.tools import ToolsPlugin
 
 
 class ReactorConfig(BaseModel):
@@ -30,7 +35,9 @@ class ReactorPlugin(Plugin):
             return
         tools = cast(ToolsPlugin, ctx.runtime.get_plugin("tools"))
         memory = ctx.runtime.get_plugin("memory")
-        settings = resolve_llm_settings(self.config_obj, default_temperature=0.5, default_max_tokens=500)
+        settings = resolve_llm_settings(
+            self.config_obj, default_temperature=0.5, default_max_tokens=500
+        )
         trace = AgentTrace(f"react:{question}")
         trace_lines: list[str] = []
         final_answer = ""
@@ -73,7 +80,14 @@ class ReactorPlugin(Plugin):
             if not tool_name:
                 raise ValueError("model did not choose a tool or final answer")
             observation = await tools.run_tool(tool_name, tool_input, ctx)
-            trace.add("tool", tool_name, input=tool_input, output=observation, turn=turn, thought=thought)
+            trace.add(
+                "tool",
+                tool_name,
+                input=tool_input,
+                output=observation,
+                turn=turn,
+                thought=thought,
+            )
             trace_lines.append(
                 f"turn {turn}: thought={thought} action={tool_name}({clip_text(tool_input, limit=60)}) "
                 f"observation={clip_text(observation, limit=140)}"
@@ -82,7 +96,14 @@ class ReactorPlugin(Plugin):
             final_answer = "I reached the turn limit; inspect the trace and answer from the observations above."
         traces = memory.state.setdefault("traces", [])
         trace.add("summary", "react", input=question, output=final_answer)
-        traces.append({"question": question, "trace": list(trace_lines), "final": final_answer, "agent_trace": trace.to_dict()})
+        traces.append(
+            {
+                "question": question,
+                "trace": list(trace_lines),
+                "final": final_answer,
+                "agent_trace": trace.to_dict(),
+            }
+        )
         limit = int(memory.config.get("trace_limit", 6))
         if len(traces) > limit:
             del traces[:-limit]
@@ -97,5 +118,9 @@ class ReactorPlugin(Plugin):
             await ctx.reply("No trace recorded yet.")
             return
         last = traces[-1]
-        lines = [f"last question: {last['question']}", *last["trace"][-6:], f"final: {last['final']}"]
+        lines = [
+            f"last question: {last['question']}",
+            *last["trace"][-6:],
+            f"final: {last['final']}",
+        ]
         await ctx.reply("\n".join(lines))

@@ -1,14 +1,14 @@
 插件与适配器发布参考
 ======================
 
-Asterline 支持两种扩展加载方式：
+iamai 支持两种扩展加载方式：
 
 显式引用
    在配置里写导入路径，例如 ``plugins = ["my_pkg:MyPlugin"]`` 或
    ``adapters = ["my_pkg:MyAdapter"]``。这适合本地项目和私有代码。
 
 Entry points
-   扩展包在 ``pyproject.toml`` 里声明 ``asterline.plugins`` 或 ``asterline.adapters`` entry point。
+   扩展包在 ``pyproject.toml`` 里声明 ``iamai.plugins`` 或 ``iamai.adapters`` entry point。
    用户 ``uv add`` 安装后，可以用 entry point 名加载，也可以开启自动发现。
 
 社区商店
@@ -22,10 +22,10 @@ Entry points
 
 .. code-block:: text
 
-   asterline-plugin-echo/
+   iamai-plugin-echo/
    ├── pyproject.toml
    └── src/
-       └── asterline_plugin_echo/
+       └── iamai_plugin_echo/
            └── __init__.py
 
 ``pyproject.toml``：
@@ -33,20 +33,20 @@ Entry points
 .. code-block:: toml
 
    [project]
-   name = "asterline-plugin-echo"
+   name = "iamai-plugin-echo"
    version = "0.1.0"
    dependencies = [
-     "asterline>=0.1,<0.2",
+     "iamai>=0.1,<0.2",
    ]
 
-   [project.entry-points."asterline.plugins"]
-   echo = "asterline_plugin_echo:EchoPlugin"
+   [project.entry-points."iamai.plugins"]
+   echo = "iamai_plugin_echo:EchoPlugin"
 
 插件代码：
 
 .. code-block:: python
 
-   from asterline import Context, Plugin, command
+   from iamai import Context, Plugin, command
 
 
    class EchoPlugin(Plugin):
@@ -64,9 +64,9 @@ Entry points
 
 Python 包依赖
    写在插件包自己的 ``project.dependencies``。例如插件要调用 Redis，就由插件包声明
-   ``redis>=5``，使用者通过 ``uv add asterline-plugin-xxx`` 安装时一起解析。
+   ``redis>=5``，使用者通过 ``uv add iamai-plugin-xxx`` 安装时一起解析。
 
-Asterline 插件依赖
+iamai 插件依赖
    写在插件类属性里，用于加载顺序和缺失检查：
 
 .. code-block:: python
@@ -109,7 +109,7 @@ Asterline 插件依赖
 
 .. code-block:: console
 
-   uv add asterline-plugin-echo
+   uv add iamai-plugin-echo
 
 配置：
 
@@ -123,7 +123,7 @@ Asterline 插件依赖
 .. code-block:: toml
 
    [runtime]
-   plugins = ["asterline_plugin_echo:EchoPlugin"]
+   plugins = ["iamai_plugin_echo:EchoPlugin"]
 
 自动发现插件
 ------------
@@ -133,32 +133,32 @@ Asterline 插件依赖
    [runtime]
    auto_discover_plugins = true
 
-开启后，Asterline 会加载环境中所有 ``asterline.plugins`` entry points。生产环境更建议显式列出插件；
+开启后，iamai 会加载环境中所有 ``iamai.plugins`` entry points。生产环境更建议显式列出插件；
 自动发现适合开发、示例项目和受控的私有运行环境。
 
 适配器包
 --------
 
-适配器包的 entry point group 是 ``asterline.adapters``：
+适配器包的 entry point group 是 ``iamai.adapters``：
 
 .. code-block:: toml
 
    [project]
-   name = "asterline-adapter-acme"
+   name = "iamai-adapter-acme"
    version = "0.1.0"
    dependencies = [
-     "asterline>=0.1,<0.2",
+     "iamai>=0.1,<0.2",
      "httpx>=0.27",
    ]
 
-   [project.entry-points."asterline.adapters"]
-   acme = "asterline_adapter_acme:AcmeAdapter"
+   [project.entry-points."iamai.adapters"]
+   acme = "iamai_adapter_acme:AcmeAdapter"
 
 使用者安装并启用：
 
 .. code-block:: console
 
-   uv add asterline-adapter-acme
+   uv add iamai-adapter-acme
 
 .. code-block:: toml
 
@@ -175,14 +175,14 @@ Asterline 插件依赖
    [runtime]
    auto_discover_adapters = true
 
-自动发现会把所有 ``asterline.adapters`` entry points 当作启用适配器。适配器通常涉及网络凭据和公网边界，
+自动发现会把所有 ``iamai.adapters`` entry points 当作启用适配器。适配器通常涉及网络凭据和公网边界，
 生产环境应优先显式配置。
 
 命名约定
 --------
 
-- 插件包推荐命名 ``asterline-plugin-<name>``。
-- 适配器包推荐命名 ``asterline-adapter-<platform>``。
+- 插件包推荐命名 ``iamai-plugin-<name>``。
+- 适配器包推荐命名 ``iamai-adapter-<platform>``。
 - Entry point 名应和 ``Plugin.name`` 或 ``Adapter.name`` 保持一致。
 - 配置表应分别使用 ``[plugin.<name>]`` 和 ``[adapter.<name>]``。
 - 包依赖交给 Python packaging，运行时加载顺序交给 ``requires`` / ``load_after``。
@@ -190,11 +190,11 @@ Asterline 插件依赖
 适配器兼容性规范草案
 --------------------
 
-第三方适配器包推荐命名 ``asterline-adapter-<platform>``，并通过
-``[project.entry-points."asterline.adapters"]`` 暴露入口。当前不要求强改运行时 API，但适配器必须保持这些契约：
+第三方适配器包推荐命名 ``iamai-adapter-<platform>``，并通过
+``[project.entry-points."iamai.adapters"]`` 暴露入口。当前不要求强改运行时 API，但适配器必须保持这些契约：
 
 - ``Adapter.start`` 负责启动连接、轮询或 HTTP/WebSocket 服务，并在取消时正常退出。
-- ``Adapter.send_message`` 接收 Asterline ``Message`` 或文本，并把它编码成目标平台的出站消息。
+- ``Adapter.send_message`` 接收 iamai ``Message`` 或文本，并把它编码成目标平台的出站消息。
 - ``Adapter.call_api`` 暴露平台 API 调用，成功时返回平台响应，失败时抛出可诊断异常或返回明确错误结构。
 - ``Adapter.name``、entry point 名和配置表 ``[adapter.<name>]`` 保持一致。
 
@@ -205,7 +205,7 @@ Asterline 插件依赖
 - API call response：成功响应、平台错误和超时都要有测试。
 - 错误处理：鉴权失败、非法 payload、网络失败不能静默吞掉。
 
-适配器包可以直接依赖 ``asterline.testing.adapters`` 中的 helper 来表达这些最低契约。
+适配器包可以直接依赖 ``iamai.testing.adapters`` 中的 helper 来表达这些最低契约。
 
 插件与 Agent 工具安全声明
 -------------------------
@@ -258,7 +258,7 @@ WebUI 后续作为独立插件或独立项目，不进入核心 runtime。
 - ``summary``：不超过 180 字符的一句话简介。
 - ``license``：许可证标识。
 - ``package`` 或 ``repository``：至少填写一个。
-- ``entry_points``：如果是可安装插件或适配器，填写 ``asterline.plugins`` 或 ``asterline.adapters``。
+- ``entry_points``：如果是可安装插件或适配器，填写 ``iamai.plugins`` 或 ``iamai.adapters``。
 - ``runtime_capabilities``：声明运行时能力，例如 ``network:http``、``storage:sqlite``、``agent:tool``。
 - ``security_notes``：声明网络访问、凭据需求、危险动作和可选依赖。
 - ``permission_notes``：Agent 工具的权限名、输入 schema、审计字段和审批要求。

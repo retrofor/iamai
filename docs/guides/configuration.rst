@@ -1,7 +1,7 @@
 配置系统
 ========
 
-Asterline 使用 TOML 配置，并在启动前做结构化校验。配置系统的目标不是替代部署平台，
+iamai 使用 TOML 配置，并在启动前做结构化校验。配置系统的目标不是替代部署平台，
 而是把“消息运行时必须知道的边界”写成可审计、可检查、可文档化的输入。
 
 基本结构
@@ -16,7 +16,7 @@ Asterline 使用 TOML 配置，并在启动前做结构化校验。配置系统�
    superusers = ["10000"]
 
    [adapter.terminal]
-   prompt = "asterline> "
+   prompt = "iamai> "
 
    [plugin.hello]
    greeting = "hello"
@@ -51,7 +51,7 @@ Asterline 使用 TOML 配置，并在启动前做结构化校验。配置系统�
    auto_discover_plugins = true
    auto_discover_adapters = true
 
-自动发现会加载当前环境中所有 ``asterline.plugins`` 和 ``asterline.adapters`` entry points。生产环境建议
+自动发现会加载当前环境中所有 ``iamai.plugins`` 和 ``iamai.adapters`` entry points。生产环境建议
 显式列出扩展；自动发现更适合开发、示例和受控私有运行环境。发布规范见 :doc:`../reference/extensions`。
 
 配置检查命令
@@ -59,7 +59,7 @@ Asterline 使用 TOML 配置，并在启动前做结构化校验。配置系统�
 
 .. code-block:: bash
 
-   uv run python -m asterline --config config.toml config-check
+   uv run python -m iamai --config config.toml config-check
 
 这个命令不仅验证语法和类型，也会输出高风险运行时告警，例如：
 
@@ -91,8 +91,8 @@ Asterline 使用 TOML 配置，并在启动前做结构化校验。配置系统�
 
 .. code-block:: bash
 
-   uv run python -m asterline --config config.toml config-schema
-   uv run python -m asterline --config config.toml config-schema greeting
+   uv run python -m iamai --config config.toml config-schema
+   uv run python -m iamai --config config.toml config-schema greeting
 
 这适合放进文档、CI 或内部平台表单生成流程。
 

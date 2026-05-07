@@ -2,12 +2,18 @@ from __future__ import annotations
 
 from typing import Any, cast
 
-from asterline import Context, Plugin, command
-from asterline_example_utils import chat_json, chat_text, clip_text, format_transcript, resolve_llm_settings
+from iamai import Context, Plugin, command
+from iamai_example_utils import (
+    LLMSettings,
+    chat_json,
+    chat_text,
+    clip_text,
+    format_transcript,
+    resolve_llm_settings,
+)
 from pydantic import BaseModel, Field
-from supervisor_team_runtime.plugins.workers import WorkersPlugin
 
-from asterline_example_utils import LLMSettings
+from supervisor_team_runtime.plugins.workers import WorkersPlugin
 
 
 class SupervisorConfig(BaseModel):
@@ -26,7 +32,9 @@ class SupervisorPlugin(Plugin):
         goal: str,
         recent_goals: list[str],
     ) -> dict[str, Any]:
-        settings = resolve_llm_settings(self.config_obj, default_temperature=0.5, default_max_tokens=650)
+        settings = resolve_llm_settings(
+            self.config_obj, default_temperature=0.5, default_max_tokens=650
+        )
         payload = await chat_json(
             settings,
             [
@@ -62,14 +70,21 @@ class SupervisorPlugin(Plugin):
                 normalized.append({"role": role, "task": clip_text(task, limit=160)})
         if not normalized:
             normalized = [
-                {"role": "strategist", "task": "Sequence the work and define priorities."},
-                {"role": "builder", "task": "Draft the key deliverable and concrete examples."},
+                {
+                    "role": "strategist",
+                    "task": "Sequence the work and define priorities.",
+                },
+                {
+                    "role": "builder",
+                    "task": "Draft the key deliverable and concrete examples.",
+                },
                 {"role": "skeptic", "task": "List the main risks and missing pieces."},
             ]
         return {
             "objective": clip_text(str(data.get("objective", "")).strip() or goal, limit=100),
             "synthesis_brief": clip_text(
-                str(data.get("synthesis_brief", "")).strip() or "Blend the strongest ideas into one answer.",
+                str(data.get("synthesis_brief", "")).strip()
+                or "Blend the strongest ideas into one answer.",
                 limit=160,
             ),
             "assignments": normalized,
@@ -99,7 +114,9 @@ class SupervisorPlugin(Plugin):
                     "result": clip_text(result, limit=260),
                 }
             )
-        settings = resolve_llm_settings(self.config_obj, default_temperature=0.5, default_max_tokens=650)
+        settings = resolve_llm_settings(
+            self.config_obj, default_temperature=0.5, default_max_tokens=650
+        )
         worker_lines = [f"- {item['role']}: {item['result']}" for item in worker_outputs]
         synthesis = await chat_text(
             settings,

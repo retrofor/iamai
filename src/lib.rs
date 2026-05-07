@@ -27,7 +27,7 @@ impl Segment {
     }
 }
 
-#[pyclass(module = "asterline._core", name = "CoreMessage")]
+#[pyclass(module = "iamai._core", name = "CoreMessage")]
 #[derive(Clone, Default)]
 struct CoreMessage {
     segments: Vec<Segment>,

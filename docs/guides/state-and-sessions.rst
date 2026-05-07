@@ -32,7 +32,7 @@
 
 .. code-block:: python
 
-   from asterline import Context, Plugin, command
+   from iamai import Context, Plugin, command
 
 
    class ProfilePlugin(Plugin):
@@ -65,7 +65,7 @@
 
    from asyncio import TimeoutError
 
-   from asterline import Context, Plugin, command
+   from iamai import Context, Plugin, command
 
 
    class SurveyPlugin(Plugin):

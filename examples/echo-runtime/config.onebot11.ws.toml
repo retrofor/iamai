@@ -18,7 +18,7 @@ reconnect_interval = 5.0
 api_timeout = 10.0
 
 [plugin.echo]
-greeting = "你好，我是 Asterline OneBot11 示例运行时。"
+greeting = "你好，我是 iamai OneBot11 示例运行时。"
 
 [plugin.management]
 allow_reload = true

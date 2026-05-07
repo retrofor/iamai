@@ -7,7 +7,7 @@
 常用入口
 --------
 
-.. container:: asterline-path
+.. container:: iamai-path
 
    **运行与配置**
       CLI、配置项、质量门禁和部署前检查。

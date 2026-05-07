@@ -4,8 +4,7 @@ import asyncio
 from typing import Any
 
 import pytest
-
-from asterline.agent import AgentError, AgentTrace, Tool, ToolRegistry
+from iamai.agent import AgentError, AgentTrace, Tool, ToolRegistry
 
 
 def test_tool_registry_keeps_legacy_registration_compatible() -> None:
@@ -41,12 +40,12 @@ def test_tool_registry_records_metadata_and_trace() -> None:
     )
     trace = AgentTrace("demo")
 
-    result = asyncio.run(tools.call("web_search", {"query": "asterline", "secret": "x"}, trace=trace))
+    result = asyncio.run(tools.call("web_search", {"query": "iamai", "secret": "x"}, trace=trace))
 
-    assert result == {"result": "asterline"}
+    assert result == {"result": "iamai"}
     assert tools.list_tools()[0]["permission_name"] == "web.search"
     assert trace.events[0].metadata["outcome"] == "started"
-    assert trace.events[0].input == {"query": "asterline"}
+    assert trace.events[0].input == {"query": "iamai"}
     assert trace.events[-1].metadata["outcome"] == "ok"
 
 
@@ -75,4 +74,3 @@ def test_tool_registry_blocks_unapproved_tool_and_allows_callback() -> None:
     assert result == "deployed prod"
     assert any(event.metadata.get("outcome") == "denied" for event in trace.events)
     assert trace.events[-1].metadata["outcome"] == "ok"
-

@@ -3,7 +3,7 @@ requires = ["maturin>=1.7,<2.0"]
 build-backend = "maturin"
 
 [project]
-name = "asterline"
+name = "iamai"
 version = "0.1.0"
 description = "Rust + Python cross-platform runtime framework with PyO3 packaging."
 readme = "README.md"
@@ -16,7 +16,7 @@ dependencies = [
 ]
 
 [project.scripts]
-asterline = "asterline.__main__:main"
+iamai = "iamai.__main__:main"
 
 [dependency-groups]
 dev = [
@@ -31,7 +31,7 @@ docs = [
 
 [tool.maturin]
 python-source = "python"
-module-name = "asterline._core"
+module-name = "iamai._core"
 bindings = "pyo3"
 
 [tool.ruff]
@@ -41,7 +41,7 @@ target-version = "py310"
 [tool.mypy]
 python_version = "3.10"
 files = [
-    "python/asterline",
+    "python/iamai",
     "examples/_shared/src",
     "examples/arcade-runtime/src",
     "examples/echo-runtime/src",

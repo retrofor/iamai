@@ -1,15 +1,15 @@
 CLI 参考
 ========
 
-``asterline`` 和 ``python -m asterline`` 使用同一套入口。
+``iamai`` 和 ``python -m iamai`` 使用同一套入口。
 
 运行 Runtime
 ------------
 
 .. code-block:: bash
 
-   asterline --config config.toml
-   asterline --config config.toml run
+   iamai --config config.toml
+   iamai --config config.toml run
 
 如果没有指定子命令，默认执行 ``run``。
 
@@ -18,7 +18,7 @@ CLI 参考
 
 .. code-block:: bash
 
-   asterline --config config.toml config-check
+   iamai --config config.toml config-check
 
 该命令会：
 
@@ -34,8 +34,8 @@ CLI 参考
 
 .. code-block:: bash
 
-   asterline --config config.toml config-schema
-   asterline --config config.toml config-schema echo
+   iamai --config config.toml config-schema
+   iamai --config config.toml config-schema echo
 
 如果插件声明了 Pydantic ``config_model``，这里会输出 JSON Schema。
 

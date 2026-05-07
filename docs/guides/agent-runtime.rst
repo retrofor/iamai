@@ -1,7 +1,7 @@
 Agent Runtime
 =============
 
-Asterline 内置的 agent runtime 是一组轻量工具，不是完整 agent 平台。它主要服务 examples 中的
+iamai 内置的 agent runtime 是一组轻量工具，不是完整 agent 平台。它主要服务 examples 中的
 ReAct、Planner/Executor、Supervisor 等模式，让示例能共享模型配置、工具注册、trace 和简单
 guardrail。
 
@@ -13,7 +13,7 @@ guardrail。
    ``OPENAI_MODEL``。
 
 ``LLMClient``
-   提供 ``chat_text`` 和 ``chat_json``。测试时可以设置 ``ASTERLINE_LLM_MOCK=1``，避免真实模型调用。
+   提供 ``chat_text`` 和 ``chat_json``。测试时可以设置 ``iamai_LLM_MOCK=1``，避免真实模型调用。
 
 ``ToolRegistry``
    注册、枚举和调用工具。工具名会标准化为小写。发布到社区商店的工具应声明
@@ -31,7 +31,7 @@ guardrail。
 
 .. code-block:: python
 
-   from asterline import AgentTrace, LLMClient, ToolRegistry
+   from iamai import AgentTrace, LLMClient, ToolRegistry
 
 
    tools = ToolRegistry()

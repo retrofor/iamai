@@ -12,7 +12,7 @@
 
 .. code-block:: python
 
-   from asterline import Context, Plugin, command
+   from iamai import Context, Plugin, command
 
 
    class CounterPlugin(Plugin):
@@ -41,7 +41,7 @@
 
 .. code-block:: python
 
-   from asterline import Context, Plugin, command
+   from iamai import Context, Plugin, command
 
 
    class SurveyPlugin(Plugin):
@@ -63,7 +63,7 @@
 
 .. code-block:: python
 
-   from asterline import Context, Plugin, middleware
+   from iamai import Context, Plugin, middleware
 
 
    class AuditPlugin(Plugin):

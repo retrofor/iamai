@@ -1,4 +1,4 @@
-# Asterline documentation locales
+# iamai documentation locales
 
 Sphinx i18n files live under this directory.
 
@@ -14,4 +14,4 @@ If `sphinx-intl` is not installed, add it to the docs dependency group before
 running the update command.
 
 The switcher is static and reads its version/language entries from
-`asterline_docs_versions` and `asterline_docs_languages` in `docs/conf.py`.
+`iamai_docs_versions` and `iamai_docs_languages` in `docs/conf.py`.

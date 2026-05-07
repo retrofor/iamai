@@ -3,8 +3,8 @@
   "name": "OneBot11 WebSocket Built-in Mode",
   "type": "adapter",
   "summary": "Built-in OneBot11 active WebSocket client mode with reconnect and echo pending handling.",
-  "package": "asterline",
-  "repository": "https://github.com/asterline/asterline",
+  "package": "iamai",
+  "repository": "https://github.com/iamai/iamai",
   "license": "MIT",
   "status": "active",
   "verification": ["official", "package_verified", "security_reviewed"],
@@ -12,9 +12,9 @@
   "tags": ["builtin", "onebot", "qq", "websocket", "reconnect"],
   "platforms": ["onebot11", "qq"],
   "requires": [],
-  "install_command": "uv add asterline",
+  "install_command": "uv add iamai",
   "docs_url": null,
-  "source_url": "https://github.com/asterline/asterline/blob/main/python/asterline/adapters/onebot11.py",
+  "source_url": "https://github.com/iamai/iamai/blob/main/python/iamai/adapters/onebot11.py",
   "security_notes": "Configure access_token when connecting to public or shared OneBot endpoints.",
   "updated_at": "2026-04-26"
 }

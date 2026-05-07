@@ -1,13 +1,13 @@
 [project]
 name = "supervisor-team-runtime"
 version = "0.1.0"
-description = "Supervisor multi-agent Asterline example."
+description = "Supervisor multi-agent iamai example."
 requires-python = ">=3.10"
 dependencies = [
-    "asterline",
-    "asterline-example-utils",
+    "iamai",
+    "iamai-example-utils",
 ]
 
 [tool.uv.sources]
-asterline = { workspace = true }
-asterline-example-utils = { workspace = true }
+iamai = { workspace = true }
+iamai-example-utils = { workspace = true }

@@ -1,14 +1,14 @@
 <p align="center">
-  <img src="docs/_static/brand/asterline-logo-wide.svg" alt="Asterline" width="720">
+  <img src="docs/_static/brand/iamai-logo-wide.svg" alt="iamai" width="720">
 </p>
 
 <p align="center">
   <strong>面向插件开发和多平台接入的 Rust + Python 消息运行时。</strong>
 </p>
 
-# Asterline
+# iamai
 
-Asterline 是一个 `Rust + Python` 双层跨平台消息运行时：
+iamai 是一个 `Rust + Python` 双层跨平台消息运行时：
 
 - Python 负责插件生态、配置装配、运行编排。
 - Rust 负责消息链、协议归一化、配置深度合并等底层能力。
@@ -71,7 +71,7 @@ Asterline 是一个 `Rust + Python` 双层跨平台消息运行时：
 ├── Cargo.toml
 ├── pyproject.toml
 ├── src/lib.rs
-├── python/asterline
+├── python/iamai
 │   ├── adapters
 │   ├── runtime.py
 │   ├── plugin.py
@@ -87,13 +87,13 @@ Asterline 是一个 `Rust + Python` 双层跨平台消息运行时：
 
 ```bash
 uv sync
-uv run python -m asterline --config examples/echo-runtime/config.terminal.toml
+uv run python -m iamai --config examples/echo-runtime/config.terminal.toml
 ```
 
 示例项目也作为根 workspace member 启动，不需要进入子目录单独 ``uv sync``：
 
 ```bash
-uv run --package echo-runtime python -m asterline --config examples/echo-runtime/config.terminal.toml
+uv run --package echo-runtime python -m iamai --config examples/echo-runtime/config.terminal.toml
 ```
 
 文档：
@@ -135,8 +135,8 @@ Rust core (_core)
   - 修改插件文件后框架会自动重载
   - 设置 `config = true` 后，修改当前 TOML 配置文件也会触发配置与插件重载
 - CLI 配置检查：
-  - `python -m asterline --config config.toml config-check`
-  - `python -m asterline --config config.toml config-schema [plugin]`
+  - `python -m iamai --config config.toml config-check`
+  - `python -m iamai --config config.toml config-schema [plugin]`
   - `config-check` 会打印高风险配置告警，但不会阻止本地开发态配置通过
 - 插件依赖图：
   - 加载前会做依赖解析与拓扑排序

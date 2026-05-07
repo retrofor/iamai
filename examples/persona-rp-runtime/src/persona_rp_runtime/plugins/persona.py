@@ -1,10 +1,8 @@
 from __future__ import annotations
 
-from asterline import Context, Plugin, command, message_handler
-from asterline_example_utils import chat_text, format_transcript, resolve_llm_settings
+from iamai import Context, Plugin, command, message_handler
+from iamai_example_utils import LLMSettings, chat_text, format_transcript, resolve_llm_settings
 from pydantic import BaseModel, Field
-
-from asterline_example_utils import LLMSettings
 
 
 def default_personas() -> dict[str, str]:
@@ -35,7 +33,9 @@ class PersonaPlugin(Plugin):
         lounge = self.runtime.get_plugin("lounge")
         active = str(lounge.state.get("active_persona", "noir-detective"))
         persona_brief = self._personas().get(active, default_personas()["noir-detective"])
-        settings = resolve_llm_settings(self.config_obj, default_temperature=0.9, default_max_tokens=420)
+        settings = resolve_llm_settings(
+            self.config_obj, default_temperature=0.9, default_max_tokens=420
+        )
         return await chat_text(
             settings,
             [

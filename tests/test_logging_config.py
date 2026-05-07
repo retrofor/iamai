@@ -4,12 +4,11 @@ import logging
 import os
 from pathlib import Path
 
-from loguru import logger
 import pytest
-
-from asterline.config import load_config, load_env_file
-from asterline.logging import configure_logging
-from asterline.observability import AuditLogger
+from iamai.config import load_config, load_env_file
+from iamai.logging import configure_logging
+from iamai.observability import AuditLogger
+from loguru import logger
 
 
 def test_load_config_validates_logging_section(tmp_path: Path) -> None:

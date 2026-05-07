@@ -6,10 +6,9 @@ from textwrap import dedent
 from typing import Any
 
 import pytest
-
-from asterline import Runtime, Message
-from asterline.adapters.telegram import TelegramAdapter
-from asterline.config import load_config
+from iamai import Message, Runtime
+from iamai.adapters.telegram import TelegramAdapter
+from iamai.config import load_config
 
 
 def _make_runtime(tmp_path: Path) -> Runtime:
@@ -28,8 +27,7 @@ def _make_runtime(tmp_path: Path) -> Runtime:
 def test_load_config_accepts_builtin_telegram_adapter(tmp_path: Path) -> None:
     config_path = tmp_path / "config.toml"
     config_path.write_text(
-        dedent(
-            """
+        dedent("""
             [runtime]
             adapters = ["telegram"]
 
@@ -37,8 +35,7 @@ def test_load_config_accepts_builtin_telegram_adapter(tmp_path: Path) -> None:
             token = "123:secret"
             poll_timeout = 5
             allowed_updates = ["message", "edited_message"]
-            """
-        ).strip(),
+            """).strip(),
         encoding="utf-8",
     )
 
@@ -91,14 +88,16 @@ def test_telegram_update_normalizes_to_message_event(tmp_path: Path) -> None:
     assert event.text == "hello"
 
 
-def test_telegram_send_message_calls_send_message_api(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+def test_telegram_send_message_calls_send_message_api(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
     calls: list[dict[str, Any]] = []
 
     async def fake_request_json(url: str, **kwargs: Any) -> dict[str, Any]:
         calls.append({"url": url, **kwargs})
         return {"ok": True, "result": {"message_id": 1}}
 
-    monkeypatch.setattr("asterline.adapters.telegram.request_json", fake_request_json)
+    monkeypatch.setattr("iamai.adapters.telegram.request_json", fake_request_json)
     adapter = TelegramAdapter(_make_runtime(tmp_path), {"token": "123:secret"})
 
     result = asyncio.run(adapter.send_message(Message("pong"), target=12345))
@@ -108,11 +107,13 @@ def test_telegram_send_message_calls_send_message_api(tmp_path: Path, monkeypatc
     assert calls[0]["json_body"] == {"chat_id": 12345, "text": "pong"}
 
 
-def test_telegram_call_api_raises_on_failed_response(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+def test_telegram_call_api_raises_on_failed_response(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
     async def fake_request_json(url: str, **kwargs: Any) -> dict[str, Any]:
         return {"ok": False, "description": "Bad Request"}
 
-    monkeypatch.setattr("asterline.adapters.telegram.request_json", fake_request_json)
+    monkeypatch.setattr("iamai.adapters.telegram.request_json", fake_request_json)
     adapter = TelegramAdapter(_make_runtime(tmp_path), {"token": "123:secret"})
 
     with pytest.raises(RuntimeError, match="Bad Request"):

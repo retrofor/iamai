@@ -1,7 +1,7 @@
 插件系统
 ========
 
-插件是 Asterline 的业务单元。一个成熟插件应该把入口声明、配置模型、状态范围和依赖关系写清楚，
+插件是 iamai 的业务单元。一个成熟插件应该把入口声明、配置模型、状态范围和依赖关系写清楚，
 这样它才能被配置检查、自动 API 文档和管理命令正确理解。
 
 最小插件
@@ -9,7 +9,7 @@
 
 .. code-block:: python
 
-   from asterline import Context, Plugin, command
+   from iamai import Context, Plugin, command
 
 
    class EchoPlugin(Plugin):
@@ -43,7 +43,7 @@ Handler 类型
 
 .. code-block:: python
 
-   from asterline import Context, Plugin, message_handler, raw_field, when_all, word_in
+   from iamai import Context, Plugin, message_handler, raw_field, when_all, word_in
 
 
    class DeployPlugin(Plugin):
@@ -62,7 +62,7 @@ Handler 类型
 
 .. code-block:: python
 
-   from asterline import Context, Plugin, message_handler, ruleset, word_in
+   from iamai import Context, Plugin, message_handler, ruleset, word_in
 
    route_rule = (
        ruleset("support-router")
@@ -90,7 +90,7 @@ Handler 类型
 
    from pydantic import BaseModel, Field
 
-   from asterline import Context, Plugin, command
+   from iamai import Context, Plugin, command
 
 
    class GreetingConfig(BaseModel):
@@ -165,16 +165,16 @@ Handler 类型
 - 每个公开插件都有稳定 ``name`` 和简短 ``description``。
 - 配置使用 ``config_model``，不要在 handler 里手写散乱校验。
 - handler 参数有类型注解，常见参数使用 ``Context``、``Event``、``Message``。
-- 可发布插件包使用 ``[project.entry-points."asterline.plugins"]`` 暴露入口。
+- 可发布插件包使用 ``[project.entry-points."iamai.plugins"]`` 暴露入口。
 - 插件自己的第三方依赖写在包的 ``project.dependencies``。
-- 依赖其他 Asterline 插件时，用 ``requires``、``optional_requires``、``load_after`` 或 ``load_before`` 表达。
+- 依赖其他 iamai 插件时，用 ``requires``、``optional_requires``、``load_after`` 或 ``load_before`` 表达。
 - reload 后不会残留后台任务、文件句柄或未关闭连接。
 - 持久化状态只保存 JSON 友好的数据结构。
 
 发布为 uv 可安装插件
 -------------------------
 
-插件可以作为普通 Python 包发布。使用者通过 ``uv add asterline-plugin-xxx`` 安装后，既可以显式启用：
+插件可以作为普通 Python 包发布。使用者通过 ``uv add iamai-plugin-xxx`` 安装后，既可以显式启用：
 
 .. code-block:: toml
 
@@ -192,7 +192,7 @@ Handler 类型
 
 .. code-block:: toml
 
-   [project.entry-points."asterline.plugins"]
-   echo = "asterline_plugin_echo:EchoPlugin"
+   [project.entry-points."iamai.plugins"]
+   echo = "iamai_plugin_echo:EchoPlugin"
 
 完整发布规范见 :doc:`../reference/extensions`。

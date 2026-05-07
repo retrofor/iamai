@@ -11,13 +11,13 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS_EXT = ROOT / "docs" / "_ext"
 sys.path.insert(0, str(DOCS_EXT))
 
-from asterline_store import (  # noqa: E402
-    AsterlineStoreCardDirective,
-    AsterlineStoreSubmitDirective,
+from iamai_store import (
     StoreEntry,
-    StoreSubmission,
+    StoreSubmission,  # noqa: E402
     build_submission_issue_body,
     build_submission_issue_url,
+    iamaiStoreCardDirective,
+    iamaiStoreSubmitDirective,
     load_store_index,
 )
 
@@ -32,16 +32,16 @@ def _entry(entry_id: str = "plugin.echo") -> dict[str, Any]:
         "name": "Echo Plugin",
         "type": "plugin",
         "summary": "Echo command plugin for local testing.",
-        "package": "asterline-plugin-echo",
-        "repository": "https://example.com/asterline-plugin-echo",
+        "package": "iamai-plugin-echo",
+        "repository": "https://example.com/iamai-plugin-echo",
         "license": "MIT",
         "status": "active",
         "verification": ["community", "package_verified"],
         "entry_points": [
             {
-                "group": "asterline.plugins",
+                "group": "iamai.plugins",
                 "name": "echo",
-                "value": "asterline_plugin_echo:EchoPlugin",
+                "value": "iamai_plugin_echo:EchoPlugin",
             }
         ],
         "tags": ["echo", "demo"],
@@ -62,7 +62,7 @@ def test_store_entry_adds_default_install_command_and_search_text() -> None:
     entry = StoreEntry.model_validate(_entry())
     payload = entry.to_index_item()
 
-    assert payload["install_command"] == "uv add asterline-plugin-echo"
+    assert payload["install_command"] == "uv add iamai-plugin-echo"
     assert "echo plugin" in payload["search_text"]
     assert payload["runtime_capabilities"] == ["network:http"]
     assert payload["sort_rank"] == 30
@@ -98,12 +98,12 @@ def test_store_entry_rejects_invalid_url() -> None:
 
 
 def test_store_card_directive_outputs_target_slot() -> None:
-    directive = AsterlineStoreCardDirective.__new__(AsterlineStoreCardDirective)
+    directive = iamaiStoreCardDirective.__new__(iamaiStoreCardDirective)
     directive.arguments = ["plugin.echo"]
 
     nodes = directive.run()
 
-    assert 'data-asterline-store-card="plugin.echo"' in nodes[0].astext()
+    assert 'data-iamai-store-card="plugin.echo"' in nodes[0].astext()
 
 
 def test_store_submission_builds_community_registry_entry() -> None:
@@ -113,7 +113,7 @@ def test_store_submission_builds_community_registry_entry() -> None:
 
     assert entry.status == "active"
     assert entry.verification == ["community"]
-    assert entry.package == "asterline-plugin-echo"
+    assert entry.package == "iamai-plugin-echo"
     assert entry.security_notes == "No credentials required."
 
 
@@ -152,9 +152,9 @@ def test_store_submission_issue_body_contains_registry_json() -> None:
 def test_store_submission_issue_url_targets_configured_repo() -> None:
     submission = StoreSubmission.model_validate(_submission())
 
-    url = build_submission_issue_url("asterline/asterline", submission)
+    url = build_submission_issue_url("iamai/iamai", submission)
 
-    assert url.startswith("https://github.com/asterline/asterline/issues/new?")
+    assert url.startswith("https://github.com/iamai/iamai/issues/new?")
     assert "template=ecosystem-submission.yml" in url
     assert "%5BEcosystem%5D+Echo+Plugin" in url
     assert "runtime_capabilities=network%3Ahttp" in url
@@ -162,9 +162,9 @@ def test_store_submission_issue_url_targets_configured_repo() -> None:
 
 def test_store_submit_directive_outputs_submission_mount() -> None:
     class _Config:
-        asterline_store_github_repo = "asterline/asterline"
-        asterline_store_issue_template = "ecosystem-submission.yml"
-        asterline_store_submit_api_url = ""
+        iamai_store_github_repo = "iamai/iamai"
+        iamai_store_issue_template = "ecosystem-submission.yml"
+        iamai_store_submit_api_url = ""
 
     class _App:
         config = _Config()
@@ -179,12 +179,12 @@ def test_store_submit_directive_outputs_submission_mount() -> None:
     class _State:
         document = _Document()
 
-    directive = AsterlineStoreSubmitDirective.__new__(AsterlineStoreSubmitDirective)
+    directive = iamaiStoreSubmitDirective.__new__(iamaiStoreSubmitDirective)
     directive.options = {}
     directive.state = _State()
 
     nodes = directive.run()
 
     html = nodes[0].astext()
-    assert 'data-asterline-store-submit' in html
-    assert 'data-github-repo="asterline/asterline"' in html
+    assert "data-iamai-store-submit" in html
+    assert 'data-github-repo="iamai/iamai"' in html

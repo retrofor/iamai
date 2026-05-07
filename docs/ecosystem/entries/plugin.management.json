@@ -3,22 +3,22 @@
   "name": "Management Plugin",
   "type": "plugin",
   "summary": "Built-in management commands for plugin reload, config reload, health, metrics, sessions, and runtime inspection.",
-  "package": "asterline",
-  "repository": "https://github.com/asterline/asterline",
+  "package": "iamai",
+  "repository": "https://github.com/iamai/iamai",
   "license": "MIT",
   "status": "active",
   "verification": ["official", "package_verified", "security_reviewed"],
   "entry_points": [
     {
-      "group": "asterline.plugins",
+      "group": "iamai.plugins",
       "name": "management",
-      "value": "asterline.plugins.management:ManagementPlugin"
+      "value": "iamai.plugins.management:ManagementPlugin"
     }
   ],
   "tags": ["builtin", "operations", "metrics", "reload"],
   "platforms": ["generic"],
-  "install_command": "uv add asterline",
-  "source_url": "https://github.com/asterline/asterline",
+  "install_command": "uv add iamai",
+  "source_url": "https://github.com/iamai/iamai",
   "security_notes": "Require superusers for reload and introspection commands in production.",
   "updated_at": "2026-04-26"
 }

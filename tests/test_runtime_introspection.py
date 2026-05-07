@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-from asterline import Runtime, Plugin, command, message_handler
+from iamai import Plugin, Runtime, command, message_handler
 
 
 def _make_runtime(tmp_path: Path) -> Runtime:
@@ -49,7 +49,9 @@ class ObserverPlugin(Plugin):
         self.seen_plugins = [plugin["name"] for plugin in self.runtime.list_plugins()]
 
 
-def test_plugins_can_inspect_loaded_plugins_and_all_bound_handlers(tmp_path: Path) -> None:
+def test_plugins_can_inspect_loaded_plugins_and_all_bound_handlers(
+    tmp_path: Path,
+) -> None:
     runtime = _make_runtime(tmp_path)
     plugins = [AlphaPlugin(runtime), ObserverPlugin(runtime)]
     for index, plugin in enumerate(plugins):
@@ -62,7 +64,10 @@ def test_plugins_can_inspect_loaded_plugins_and_all_bound_handlers(tmp_path: Pat
 
     handlers = runtime.iter_handlers()
     assert [handler.plugin.plugin_name for handler in handlers] == ["alpha", "observer"]
-    assert [handler.spec.func_name for handler in handlers] == ["alpha_command", "inspect_message"]
+    assert [handler.spec.func_name for handler in handlers] == [
+        "alpha_command",
+        "inspect_message",
+    ]
 
     import asyncio
 

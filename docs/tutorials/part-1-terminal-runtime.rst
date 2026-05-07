@@ -1,7 +1,7 @@
 第一步：跑通一个终端 Runtime
 ============================
 
-这一章把 Asterline 当成本地程序来使用。终端适配器没有网络鉴权、平台账号和回调地址，
+这一章把 iamai 当成本地程序来使用。终端适配器没有网络鉴权、平台账号和回调地址，
 适合先把插件模型理解清楚。
 
 本章目标
@@ -18,13 +18,13 @@
 
 .. code-block:: bash
 
-   uv run python -m asterline --config examples/echo-runtime/config.terminal.toml config-check
+   uv run python -m iamai --config examples/echo-runtime/config.terminal.toml config-check
 
 再启动：
 
 .. code-block:: bash
 
-   uv run python -m asterline --config examples/echo-runtime/config.terminal.toml
+   uv run python -m iamai --config examples/echo-runtime/config.terminal.toml
 
 输入：
 
@@ -41,7 +41,7 @@
 
 .. code-block:: python
 
-   from asterline import Context, Plugin, command
+   from iamai import Context, Plugin, command
 
 
    class HelloPlugin(Plugin):
@@ -49,7 +49,7 @@
 
        @command("hello")
        async def hello(self, ctx: Context) -> None:
-           await ctx.reply("你好，Asterline 已经工作。")
+           await ctx.reply("你好，iamai 已经工作。")
 
 ``Context`` 是插件作者最常用的对象。它把事件、适配器、插件配置、状态和回复方法放在一起，
 避免 handler 直接依赖具体平台。

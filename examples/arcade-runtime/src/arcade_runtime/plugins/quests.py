@@ -2,9 +2,8 @@ from __future__ import annotations
 
 from typing import Any, cast
 
+from iamai import Context, Event, Plugin, Runtime, command, depends, superusers
 from pydantic import BaseModel, Field
-
-from asterline import Context, Runtime, Event, Plugin, command, depends, superusers
 
 
 class QuestsConfig(BaseModel):

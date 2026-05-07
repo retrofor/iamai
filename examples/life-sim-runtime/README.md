@@ -1,6 +1,6 @@
 # life-sim-runtime
 
-Life simulator example for Asterline.
+Life simulator example for iamai.
 
 This example shows:
 
@@ -11,7 +11,7 @@ This example shows:
 ## Run
 
 ```bash
-uv run --package life-sim-runtime python -m asterline --config examples/life-sim-runtime/config.terminal.toml
+uv run --package life-sim-runtime python -m iamai --config examples/life-sim-runtime/config.terminal.toml
 ```
 
 ## Try

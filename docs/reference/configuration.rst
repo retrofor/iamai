@@ -17,10 +17,10 @@
    显式插件 entry point、导入路径和插件目录。
 
 ``auto_discover_plugins``
-   是否自动加载已安装包声明的 ``asterline.plugins`` entry points。默认 ``false``。
+   是否自动加载已安装包声明的 ``iamai.plugins`` entry points。默认 ``false``。
 
 ``auto_discover_adapters``
-   是否自动加载已安装包声明的 ``asterline.adapters`` entry points。默认 ``false``。
+   是否自动加载已安装包声明的 ``iamai.adapters`` entry points。默认 ``false``。
 
 ``python_paths``
    额外导入路径。默认必须位于配置根目录内。

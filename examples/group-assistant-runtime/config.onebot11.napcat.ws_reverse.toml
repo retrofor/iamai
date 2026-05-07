@@ -13,7 +13,7 @@ config = true
 
 [state]
 backend = "json"
-path = ".asterline/state.json"
+path = ".iamai/state.json"
 
 [adapter.onebot11]
 mode = "ws-reverse"

@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -16,7 +15,7 @@ def test_ecosystem_comparison_contains_matrix_and_roadmap_link() -> None:
     assert "能力矩阵" in content
     assert "NoneBot" in content
     assert "Hermes Agent" in content
-    assert "asterline-table-scroll" in content
+    assert "iamai-table-scroll" in content
     assert "差距到实现" in content
     assert ":doc:`roadmap`" in content
 
@@ -25,10 +24,10 @@ def test_extensions_reference_contains_public_extension_specs() -> None:
     content = _read("docs/reference/extensions.rst")
 
     assert "适配器兼容性规范草案" in content
-    assert '[project.entry-points."asterline.adapters"]' in content
+    assert '[project.entry-points."iamai.adapters"]' in content
     assert "Agent tool 必须额外声明" in content
     assert "/schema" in content
-    assert "asterline.testing.adapters" in content
+    assert "iamai.testing.adapters" in content
 
 
 def test_roadmap_contains_versioned_design_decisions() -> None:
@@ -45,7 +44,7 @@ def test_community_page_contains_blog_and_store_sections() -> None:
     content = _read("docs/community/index.rst")
 
     assert "BLOG" in content
-    assert ".. asterline-blog::" in content
+    assert ".. iamai-blog::" in content
     assert "社区商店" in content
     assert "blog/index" in content
     assert "store" in content
@@ -55,6 +54,6 @@ def test_blog_and_store_pages_are_split_under_community() -> None:
     blog = _read("docs/community/blog/index.rst")
     store = _read("docs/community/store.rst")
 
-    assert ".. asterline-blog::" in blog
-    assert ".. asterline-store::" in store
-    assert ".. asterline-store-submit::" not in store
+    assert ".. iamai-blog::" in blog
+    assert ".. iamai-store::" in store
+    assert ".. iamai-store-submit::" not in store

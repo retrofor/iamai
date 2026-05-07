@@ -1,14 +1,14 @@
 生态对比与发展方向
 ====================
 
-本页用于校准 Asterline 的定位。结论先说清楚：Asterline 不应该追求“再做一个大而全的消息平台”，
+本页用于校准 iamai 的定位。结论先说清楚：iamai 不应该追求“再做一个大而全的消息平台”，
 也不应该只做“插件 decorator 的薄封装”。更有价值的方向是成为一个边界清晰、强工程约束、能把
 协议接入、规则、状态、审计、Agent workflow 和 Rust 数据核心组合起来的开发框架。
 
-.. container:: asterline-path
+.. container:: iamai-path
 
   **定位结论**
-    Asterline 是安全、可测试、可嵌入的 Python + Rust runtime/agent runtime，不是全功能平台替代品。
+    iamai 是安全、可测试、可嵌入的 Python + Rust runtime/agent runtime，不是全功能平台替代品。
 
     **下一步行动**
       优先补适配器 SDK、生态发布规范、Agent 工具权限和管理 HTTP API。
@@ -62,7 +62,7 @@
 能力矩阵
 --------
 
-.. container:: asterline-table-scroll
+.. container:: iamai-table-scroll
 
    .. list-table::
       :header-rows: 1
@@ -149,7 +149,7 @@
         - 强
         - 工具执行风险高
         - 中等
-      * - Asterline
+      * - iamai
         - 内置少量高质量 adapter，第三方包扩展
         - 起步中，静态商店
         - Rule/Permission 可组合
@@ -159,7 +159,7 @@
         - 作为差异化重点
         - 强，库式 runtime
 
-Asterline 当前优势
+iamai 当前优势
 ------------------
 
 - 公共 API 小，插件作者只需要理解 ``Plugin``、``Context``、``Event``、``Message``。
@@ -171,7 +171,7 @@ Asterline 当前优势
 工程路线图入口
 --------------
 
-Asterline 当前不需要追求“大而全平台”。下一步优先补齐最能形成差异化的三件事：
+iamai 当前不需要追求“大而全平台”。下一步优先补齐最能形成差异化的三件事：
 
 .. list-table::
    :header-rows: 1
@@ -182,7 +182,7 @@ Asterline 当前不需要追求“大而全平台”。下一步优先补齐最�
      - 交付形态
    * - P0
      - 适配器 SDK 和 conformance tests
-     - ``asterline-adapter-<platform>`` 发布规范、inbound/outbound/API/error 测试模板
+     - ``iamai-adapter-<platform>`` 发布规范、inbound/outbound/API/error 测试模板
    * - P0
      - 插件和适配器可发布生态
      - 静态商店字段、entry point 规范、包命名和兼容性说明
@@ -209,7 +209,7 @@ Asterline 当前不需要追求“大而全平台”。下一步优先补齐最�
      - 本轮实现入口
      - 验收方式
    * - 第三方适配器缺少统一测试口径
-     - ``asterline.testing.adapters`` 和 :doc:`adapters`
+     - ``iamai.testing.adapters`` 和 :doc:`adapters`
      - conformance helper 覆盖事件、出站、API 和关闭流程
    * - 社区商店安全字段不够强
      - :doc:`../reference/extensions`、:doc:`../community/blog/index` 和 :doc:`../community/store`
@@ -224,7 +224,7 @@ Asterline 当前不需要追求“大而全平台”。下一步优先补齐最�
 差异化定位
 ----------
 
-Asterline 应该定位为：
+iamai 应该定位为：
 
    一个安全、可测试、可嵌入的 Python + Rust runtime/agent runtime。它不替用户隐藏工程边界，而是把协议、
    插件、规则、状态、权限、审计和 Agent 工具调用的边界做清楚。
@@ -239,5 +239,5 @@ Asterline 应该定位为：
 短期结论
 --------
 
-Asterline 的路线应该是：安全、可测试、可嵌入的 Python + Rust runtime/agent runtime。核心保持小而稳定；
+iamai 的路线应该是：安全、可测试、可嵌入的 Python + Rust runtime/agent runtime。核心保持小而稳定；
 协议边界、生态发布、安全声明和 Agent 工具权限先规范化；WebUI 后续作为独立插件或独立项目，不进入核心。

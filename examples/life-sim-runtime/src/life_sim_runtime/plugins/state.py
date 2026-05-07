@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import random
 
-from asterline import Context, Plugin, command, middleware
+from iamai import Context, Plugin, command, middleware
 
 DEFAULT_NAMES = ["Mira", "Jun", "Tao", "Nova", "Ren", "Sol"]
 

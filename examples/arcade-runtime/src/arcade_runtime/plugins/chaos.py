@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from asterline import Context, Plugin, command
+from iamai import Context, Plugin, command
 
 
 class ChaosPlugin(Plugin):

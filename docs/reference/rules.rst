@@ -25,7 +25,7 @@
 
 .. code-block:: python
 
-   from asterline import when_all, when_any, none_of, word_in
+   from iamai import when_all, when_any, none_of, word_in
 
    deploy_rule = when_all(
        word_in("deploy"),
@@ -92,7 +92,7 @@
 
 .. code-block:: python
 
-   from asterline import command, raw_field
+   from iamai import command, raw_field
 
 
    @command("ban", rule=raw_field("sender.role", equals="admin", capture_as="role"))
@@ -102,12 +102,12 @@
 Ruleset
 -------
 
-``Ruleset`` 用来表达一组命名规则。它借鉴规则引擎的 ruleset 思路，但仍然运行在 Asterline
+``Ruleset`` 用来表达一组命名规则。它借鉴规则引擎的 ruleset 思路，但仍然运行在 iamai
 现有 handler 规则机制内。
 
 .. code-block:: python
 
-   from asterline import message_handler, raw_field, ruleset, word_in
+   from iamai import message_handler, raw_field, ruleset, word_in
 
    router = (
        ruleset("intent-router")

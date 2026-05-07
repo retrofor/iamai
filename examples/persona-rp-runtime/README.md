@@ -1,6 +1,6 @@
 # persona-rp-runtime
 
-Persona roleplay example for Asterline.
+Persona roleplay example for iamai.
 
 This example shows:
 
@@ -11,7 +11,7 @@ This example shows:
 ## Run
 
 ```bash
-uv run --package persona-rp-runtime python -m asterline --config examples/persona-rp-runtime/config.terminal.toml
+uv run --package persona-rp-runtime python -m iamai --config examples/persona-rp-runtime/config.terminal.toml
 ```
 
 ## Try

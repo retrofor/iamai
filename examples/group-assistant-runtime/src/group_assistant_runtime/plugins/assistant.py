@@ -1,10 +1,8 @@
 from __future__ import annotations
 
-from asterline import Event, Context, Plugin, command, message_handler
-from asterline_example_utils import chat_text, format_transcript, resolve_llm_settings
+from iamai import Context, Event, Plugin, command, message_handler
+from iamai_example_utils import LLMSettings, chat_text, format_transcript, resolve_llm_settings
 from pydantic import BaseModel, Field
-
-from asterline_example_utils import LLMSettings
 
 
 class AssistantConfig(BaseModel):
@@ -29,7 +27,9 @@ class AssistantPlugin(Plugin):
         return list(entries[-window:])
 
     async def _answer(self, prompt: str, entries: list[str], *, mode: str) -> str:
-        settings = resolve_llm_settings(self.config_obj, default_temperature=0.6, default_max_tokens=520)
+        settings = resolve_llm_settings(
+            self.config_obj, default_temperature=0.6, default_max_tokens=520
+        )
         return await chat_text(
             settings,
             [

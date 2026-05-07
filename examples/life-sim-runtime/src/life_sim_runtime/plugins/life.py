@@ -3,8 +3,8 @@ from __future__ import annotations
 import random
 from typing import Any, cast
 
-from asterline import Context, Plugin, command
-from asterline_example_utils import (
+from iamai import Context, Plugin, command
+from iamai_example_utils import (
     LLMSettings,
     chat_json,
     clip_text,

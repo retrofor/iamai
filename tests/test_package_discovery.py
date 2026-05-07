@@ -6,11 +6,15 @@ from types import SimpleNamespace
 from typing import Any
 
 import pytest
+from iamai import Runtime
 
-from asterline import Runtime
 
-
-def _make_config(tmp_path: Path, *, plugins: list[str] | None = None, adapters: list[str] | None = None) -> dict[str, Any]:
+def _make_config(
+    tmp_path: Path,
+    *,
+    plugins: list[str] | None = None,
+    adapters: list[str] | None = None,
+) -> dict[str, Any]:
     return {
         "runtime": {
             "adapters": adapters or [],
@@ -33,16 +37,14 @@ def test_plugin_entry_point_name_can_be_loaded_explicitly(
     package_dir = tmp_path / "pkg"
     package_dir.mkdir()
     (package_dir / "__init__.py").write_text(
-        dedent(
-            """
-            from asterline import Plugin
+        dedent("""
+            from iamai import Plugin
 
 
             class PackagedPlugin(Plugin):
                 name = "packaged"
                 description = "packaged plugin"
-            """
-        ),
+            """),
         encoding="utf-8",
     )
     runtime = Runtime(_make_config(tmp_path, plugins=["packaged"]), base_path=tmp_path)
@@ -68,9 +70,8 @@ def test_auto_discover_plugins_loads_entry_points_and_honors_dependencies(
     package_dir = tmp_path / "plugins_pkg"
     package_dir.mkdir()
     (package_dir / "__init__.py").write_text(
-        dedent(
-            """
-            from asterline import Plugin
+        dedent("""
+            from iamai import Plugin
 
 
             class BasePlugin(Plugin):
@@ -80,8 +81,7 @@ def test_auto_discover_plugins_loads_entry_points_and_honors_dependencies(
             class ChildPlugin(Plugin):
                 name = "child"
                 requires = ("base",)
-            """
-        ),
+            """),
         encoding="utf-8",
     )
     runtime = Runtime(_make_config(tmp_path), base_path=tmp_path)
@@ -110,11 +110,10 @@ def test_adapter_entry_point_name_can_be_loaded_explicitly(
     package_dir = tmp_path / "adapter_pkg"
     package_dir.mkdir()
     (package_dir / "__init__.py").write_text(
-        dedent(
-            """
+        dedent("""
             from typing import Any
 
-            from asterline import Adapter, Event, Message
+            from iamai import Adapter, Event, Message
 
 
             class PackagedAdapter(Adapter):
@@ -131,8 +130,7 @@ def test_adapter_entry_point_name_can_be_loaded_explicitly(
                     target: Any | None = None,
                 ) -> Any:
                     return None
-            """
-        ),
+            """),
         encoding="utf-8",
     )
     runtime = Runtime(_make_config(tmp_path, adapters=["packaged_adapter"]), base_path=tmp_path)
@@ -157,11 +155,10 @@ def test_auto_discover_adapters_loads_entry_points(
     package_dir = tmp_path / "auto_adapter_pkg"
     package_dir.mkdir()
     (package_dir / "__init__.py").write_text(
-        dedent(
-            """
+        dedent("""
             from typing import Any
 
-            from asterline import Adapter, Event, Message
+            from iamai import Adapter, Event, Message
 
 
             class AutoAdapter(Adapter):
@@ -178,8 +175,7 @@ def test_auto_discover_adapters_loads_entry_points(
                     target: Any | None = None,
                 ) -> Any:
                     return None
-            """
-        ),
+            """),
         encoding="utf-8",
     )
     runtime = Runtime(_make_config(tmp_path), base_path=tmp_path)

@@ -1,6 +1,6 @@
-# asterline-example-utils
+# iamai-example-utils
 
-Shared helpers for the Asterline LLM examples.
+Shared helpers for the iamai LLM examples.
 
 This package keeps the OpenAI-compatible client setup in one place so the
 example runtimes stay focused on plugin and runtime patterns.

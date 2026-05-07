@@ -14,8 +14,8 @@ Generic
 
 .. code-block:: text
 
-   X-Asterline-Signature: sha256=<hex>
-   X-Asterline-Timestamp: <unix timestamp>
+   X-iamai-Signature: sha256=<hex>
+   X-iamai-Timestamp: <unix timestamp>
 
 GitHub
 ------

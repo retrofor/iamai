@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from asterline import Context, Plugin, command
+from iamai import Context, Plugin, command
 
 
 class WorldPlugin(Plugin):

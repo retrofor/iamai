@@ -1,9 +1,9 @@
 [package]
-name = "asterline-core"
+name = "iamai-core"
 version = "0.1.0"
 edition = "2024"
 license = "MIT"
-description = "Rust core for the Asterline runtime framework."
+description = "Rust core for the iamai runtime framework."
 
 [lib]
 name = "_core"

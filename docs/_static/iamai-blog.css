@@ -1,0 +1,426 @@
+.iamai-community-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 1.5rem 0 2rem;
+}
+
+.iamai-community-card {
+  border: 1px solid var(--color-background-border);
+  border-radius: 8px;
+  color: var(--color-foreground-primary);
+  display: grid;
+  gap: 0.6rem;
+  min-height: 13rem;
+  padding: 1.1rem;
+  text-decoration: none;
+}
+
+.iamai-community-card:hover {
+  border-color: var(--color-brand-content);
+  text-decoration: none;
+}
+
+.iamai-community-card span {
+  color: var(--color-brand-content);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.iamai-community-card strong {
+  font-size: 1.35rem;
+  line-height: 1.25;
+}
+
+.iamai-community-card p {
+  color: var(--color-foreground-secondary);
+  margin: 0;
+}
+
+.iamai-community-grid--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.iamai-community-grid--single .iamai-community-card {
+  min-height: 8rem;
+}
+
+.iamai-blog {
+  margin: 1.4rem 0 2rem;
+}
+
+.iamai-blog--index {
+  display: grid;
+  gap: 1.5rem;
+  position: relative;
+}
+
+.iamai-blog-index-layout {
+  display: block;
+}
+
+.iamai-blog-intro {
+  border: 1px solid var(--color-background-border);
+  border-radius: 10px;
+  padding: 1.25rem;
+}
+
+.iamai-blog-intro h2,
+.iamai-blog-intro h3 {
+  margin-top: 0;
+}
+
+.iamai-blog-intro p:last-child {
+  margin-bottom: 0;
+}
+
+.iamai-blog-hero {
+  align-items: end;
+  background: color-mix(
+    in srgb,
+    var(--color-background-primary) 90%,
+    var(--color-brand-primary)
+  );
+  border: 1px solid var(--color-background-border);
+  border-radius: 8px;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 1.25rem;
+}
+
+.iamai-blog-hero__eyebrow {
+  color: var(--color-brand-content);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.iamai-blog-hero h2 {
+  font-size: 1.65rem;
+  line-height: 1.25;
+  margin: 0.35rem 0 0.5rem;
+}
+
+.iamai-blog-hero p {
+  color: var(--color-foreground-secondary);
+  margin: 0 0 0.75rem;
+  max-width: 48rem;
+}
+
+.iamai-blog-hero__link {
+  background: var(--color-brand-content);
+  border-radius: 6px;
+  color: var(--color-background-primary);
+  flex: 0 0 auto;
+  font-weight: 700;
+  padding: 0.6rem 0.8rem;
+  text-decoration: none;
+}
+
+.iamai-blog-hero__link:hover {
+  color: var(--color-background-primary);
+  text-decoration: none;
+}
+
+.iamai-blog__header {
+  align-items: end;
+  border-bottom: 1px solid var(--color-background-border);
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+}
+
+.iamai-blog__header h2 {
+  margin: 0;
+}
+
+.iamai-blog__header p {
+  color: var(--color-foreground-secondary);
+  margin: 0;
+  max-width: 34rem;
+}
+
+.iamai-blog__grid {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+}
+
+.iamai-blog__rail {
+  display: grid;
+  gap: 0.9rem;
+  grid-auto-columns: minmax(18rem, 24rem);
+  grid-auto-flow: column;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  padding: 0.15rem 0 0.75rem;
+  scroll-snap-type: inline mandatory;
+}
+
+.iamai-blog-card {
+  background: color-mix(
+    in srgb,
+    var(--color-background-primary) 92%,
+    var(--color-brand-primary)
+  );
+  border: 1px solid var(--color-background-border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  min-height: 14rem;
+  padding: 1rem;
+  scroll-snap-align: start;
+}
+
+.iamai-blog-card__meta,
+.iamai-blog-card__footer {
+  align-items: center;
+  color: var(--color-foreground-secondary);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+  gap: 0.5rem;
+  justify-content: space-between;
+}
+
+.iamai-blog-card__featured {
+  border: 1px solid var(--color-brand-primary);
+  border-radius: 999px;
+  color: var(--color-brand-content);
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.18rem 0.45rem;
+}
+
+.iamai-blog-card h3 {
+  font-size: 1.1rem;
+  line-height: 1.35;
+  margin: 0.8rem 0 0.45rem;
+}
+
+.iamai-blog-card p {
+  color: var(--color-foreground-secondary);
+  flex: 1;
+  margin: 0 0 1rem;
+}
+
+.iamai-blog-card__footer div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  justify-content: flex-end;
+}
+
+.iamai-blog-card__footer div span {
+  background: var(--color-background-secondary);
+  border-radius: 999px;
+  padding: 0.16rem 0.42rem;
+}
+
+.iamai-blog__empty {
+  color: var(--color-foreground-secondary);
+}
+
+.iamai-blog-list {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.iamai-blog-list h2 {
+  margin-bottom: 0;
+}
+
+.iamai-blog-list > p {
+  color: var(--color-foreground-secondary);
+  margin: 0;
+}
+
+.iamai-blog-list__items {
+  border-top: 1px solid var(--color-background-border);
+  display: grid;
+}
+
+.iamai-blog-list__item {
+  border-bottom: 1px solid var(--color-background-border);
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  padding: 1rem 0;
+}
+
+.iamai-blog-list__item time {
+  color: var(--color-foreground-secondary);
+  font-size: 0.86rem;
+}
+
+.iamai-blog-list__item h3 {
+  font-size: 1.05rem;
+  margin: 0 0 0.35rem;
+}
+
+.iamai-blog-list__item p {
+  color: var(--color-foreground-secondary);
+  margin: 0 0 0.5rem;
+}
+
+.iamai-blog-list__meta {
+  color: var(--color-foreground-secondary);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+  gap: 0.45rem;
+}
+
+.iamai-blog-archive {
+  background: var(--color-background-primary);
+  border: 1px solid var(--color-background-border);
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 1rem;
+  position: absolute;
+  right: calc(-15em - 4rem);
+  top: 0;
+  width: 15em;
+  z-index: 2;
+}
+
+.iamai-blog-archive h2 {
+  margin: 0 0 0.25rem;
+}
+
+.iamai-blog-archive > p {
+  color: var(--color-foreground-secondary);
+  font-size: 0.88rem;
+  margin: 0 0 1rem;
+}
+
+.iamai-blog-archive__years {
+  border-left: 1px solid var(--color-background-border);
+  display: grid;
+  gap: 1rem;
+  margin-left: 0.45rem;
+}
+
+.iamai-blog-archive__year {
+  display: grid;
+  gap: 0.55rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.iamai-blog-archive__year::before {
+  background: var(--color-brand-content);
+  border: 3px solid var(--color-background-primary);
+  border-radius: 999px;
+  content: "";
+  height: 0.75rem;
+  left: -0.42rem;
+  position: absolute;
+  top: 0.35rem;
+  width: 0.75rem;
+}
+
+.iamai-blog-archive__year h3 {
+  color: var(--color-brand-content);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.iamai-blog-archive__item {
+  display: grid;
+  gap: 0.2rem;
+  text-decoration: none;
+}
+
+.iamai-blog-archive__item time {
+  color: var(--color-foreground-secondary);
+  font-size: 0.76rem;
+}
+
+.iamai-blog-archive__item span {
+  color: var(--color-foreground-primary);
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+.iamai-blog-archive__item:hover span {
+  color: var(--color-brand-content);
+}
+
+.iamai-blog-article__meta {
+  align-items: center;
+  background: color-mix(
+    in srgb,
+    var(--color-background-primary) 92%,
+    var(--color-brand-primary)
+  );
+  border: 1px solid var(--color-background-border);
+  border-radius: 10px;
+  color: var(--color-foreground-secondary);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.88rem;
+  gap: 0.55rem 0.8rem;
+  margin: 0.75rem 0 1.25rem;
+  padding: 0.85rem 1rem;
+}
+
+.iamai-blog-article__featured,
+.iamai-blog-article__tag {
+  border: 1px solid var(--color-background-border);
+  border-radius: 999px;
+  padding: 0.12rem 0.45rem;
+}
+
+.iamai-blog-article__featured {
+  border-color: var(--color-brand-content);
+  color: var(--color-brand-content);
+  font-weight: 700;
+}
+
+.iamai-blog-article__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+@media (max-width: 760px) {
+  .iamai-community-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .iamai-blog-hero {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .iamai-blog-index-layout {
+    display: block;
+  }
+
+  .iamai-blog-archive {
+    margin-top: 1rem;
+    position: static;
+    width: auto;
+  }
+
+  .iamai-blog__header {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .iamai-blog-list__item {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 82rem) {
+  .iamai-blog-archive {
+    margin-top: 1rem;
+    position: static;
+    width: auto;
+  }
+}

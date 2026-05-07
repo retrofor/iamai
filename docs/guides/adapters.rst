@@ -1,7 +1,7 @@
 适配器
 ======
 
-Adapter 是 Asterline 的协议边界。它应该处理网络、鉴权、协议格式、payload 归一化和发送动作；
+Adapter 是 iamai 的协议边界。它应该处理网络、鉴权、协议格式、payload 归一化和发送动作；
 插件不应该直接承担这些职责。
 
 内置适配器
@@ -28,7 +28,7 @@ Terminal 配置
    adapters = ["terminal"]
 
    [adapter.terminal]
-   prompt = "asterline> "
+   prompt = "iamai> "
    output_prefix = "runtime> "
 
 终端模式不代表玩具模式。它非常适合做插件回归测试和文档教程，因为没有外部平台变量。
@@ -83,7 +83,7 @@ Telegram 长轮询
    allowed_updates = ["message"]
 
 ``TelegramAdapter`` 不监听本地端口，适合本地开发和无法配置公网 webhook 的部署环境。它会把 Telegram
-``message`` update 转成 Asterline 的 ``message`` event，并把 ``chat.id`` 映射到 ``channel_id``。
+``message`` update 转成 iamai 的 ``message`` event，并把 ``chat.id`` 映射到 ``channel_id``。
 
 Webhook 签名
 ------------
@@ -95,9 +95,9 @@ Webhook 签名
    [adapter.webhook]
    signature_provider = "generic"
    signature_secret = "change-me"
-   signature_header = "x-asterline-signature"
+   signature_header = "x-iamai-signature"
    signature_prefix = "sha256="
-   timestamp_header = "x-asterline-timestamp"
+   timestamp_header = "x-iamai-timestamp"
 
 GitHub：
 
@@ -137,7 +137,7 @@ Stripe：
 旧式自定义适配器仍然可以直接继承 ``Adapter``，实现 ``start`` 和 ``send_message``。复杂平台可以再实现
 ``call_api``。适配器应尽早把平台 payload 转成 ``Event``，不要把平台 SDK 对象泄漏给插件。
 
-新的 JSON 协议适配器建议使用 ``asterline.adapters.middleware`` 中的适配器中间件。中间件负责 HTTP/WS
+新的 JSON 协议适配器建议使用 ``iamai.adapters.middleware`` 中的适配器中间件。中间件负责 HTTP/WS
 网络循环、JSON 解析、鉴权、重连、pending echo 和响应封装；协议作者只需要声明字段映射，必要时覆盖少量
 平台动作编码 hook。
 
@@ -147,8 +147,8 @@ Stripe：
 
    from typing import Any
 
-   from asterline import Event, Message
-   from asterline.adapters.middleware import EventFieldMap, JsonHttpWebhookMiddleware, OutboundAction
+   from iamai import Event, Message
+   from iamai.adapters.middleware import EventFieldMap, JsonHttpWebhookMiddleware, OutboundAction
 
 
    class AcmeWebhookAdapter(JsonHttpWebhookMiddleware):
@@ -192,9 +192,9 @@ Stripe：
 - ``call_api`` 是否暴露平台通用 API，并如何处理失败响应。
 - 配置是否加入 ``config.py`` 校验，敏感字段名是否能被 redaction 识别。
 - 是否需要注册为内置适配器，或者让用户用导入路径加载。
-- 可发布适配器包使用 ``[project.entry-points."asterline.adapters"]`` 暴露入口。
+- 可发布适配器包使用 ``[project.entry-points."iamai.adapters"]`` 暴露入口。
 
-如果协议是 JSON HTTP/WS，优先继承 ``asterline.adapters.middleware`` 的中间件；如果协议有特殊拉取循环，
+如果协议是 JSON HTTP/WS，优先继承 ``iamai.adapters.middleware`` 的中间件；如果协议有特殊拉取循环，
 可以直接继承 ``Adapter``。``TelegramAdapter`` 就是直接继承 ``Adapter`` 的例子，因为它的核心是
 Runtime API 长轮询，而不是 webhook server。
 
@@ -205,14 +205,14 @@ Runtime API 长轮询，而不是 webhook server。
 
 .. code-block:: console
 
-   uv add asterline-adapter-acme
+   uv add iamai-adapter-acme
 
 包内 ``pyproject.toml`` 声明：
 
 .. code-block:: toml
 
-   [project.entry-points."asterline.adapters"]
-   acme = "asterline_adapter_acme:AcmeAdapter"
+   [project.entry-points."iamai.adapters"]
+   acme = "iamai_adapter_acme:AcmeAdapter"
 
 使用者显式启用：
 
@@ -230,12 +230,12 @@ Runtime API 长轮询，而不是 webhook server。
 Conformance tests
 -----------------
 
-第三方适配器包应在自己的测试里使用 ``asterline.testing.adapters``。这些 helper 不替代平台协议测试，
-但能固定 Asterline runtime 需要的最低契约：
+第三方适配器包应在自己的测试里使用 ``iamai.testing.adapters``。这些 helper 不替代平台协议测试，
+但能固定 iamai runtime 需要的最低契约：
 
 .. code-block:: python
 
-   from asterline.testing.adapters import (
+   from iamai.testing.adapters import (
        assert_adapter_api_result,
        assert_adapter_can_close,
        assert_adapter_event,

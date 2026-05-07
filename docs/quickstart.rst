@@ -1,7 +1,7 @@
 快速开始
 ==========
 
-这一页只完成一件事：让你在本地跑起一个 Asterline，并理解一次消息从输入到回复会经过哪些对象。
+这一页只完成一件事：让你在本地跑起一个 iamai，并理解一次消息从输入到回复会经过哪些对象。
 更深入的插件、状态、适配器和运维内容放在后面的教程与指南里。
 
 你会得到什么
@@ -9,7 +9,7 @@
 
 跑完这一页后，你应该能判断：
 
-- 配置文件是否能被 Asterline 正确读取；
+- 配置文件是否能被 iamai 正确读取；
 - 插件路径是否能被发现和加载；
 - ``TerminalAdapter`` 是否能把本地输入转换成统一 ``Event``；
 - handler 是否能通过 ``Context`` 回复消息。
@@ -27,7 +27,7 @@
 
 .. code-block:: bash
 
-   uv run python -m asterline --config examples/echo-runtime/config.terminal.toml config-check
+   uv run python -m iamai --config examples/echo-runtime/config.terminal.toml config-check
 
 ``config-check`` 会验证 TOML 结构、适配器配置、插件配置模型和高风险运行参数。
 如果这里已经报错，启动命令通常只会把问题暴露得更晚。
@@ -39,13 +39,13 @@
 
 .. code-block:: bash
 
-   uv run python -m asterline --config examples/echo-runtime/config.terminal.toml
+   uv run python -m iamai --config examples/echo-runtime/config.terminal.toml
 
 终端出现提示符后，输入：
 
 .. code-block:: text
 
-   /echo hello asterline
+   /echo hello iamai
 
 示例插件会把文本回复回来。这个流程虽然简单，但已经走完整条运行链路：
 
@@ -66,7 +66,7 @@
    plugins = ["src/echo_runtime/plugins/echo.py:EchoPlugin"]
 
    [adapter.terminal]
-   prompt = "asterline> "
+   prompt = "iamai> "
 
 ``[runtime]``
    定义全局运行时行为，例如命令前缀、启用哪些适配器、加载哪些插件。
@@ -87,7 +87,7 @@
 
 .. code-block:: python
 
-   from asterline import Context, Plugin, command
+   from iamai import Context, Plugin, command
 
 
    class HelloPlugin(Plugin):
@@ -95,7 +95,7 @@
 
        @command("hello")
        async def hello(self, ctx: Context) -> None:
-           await ctx.reply("Hello from Asterline.")
+           await ctx.reply("Hello from iamai.")
 
 把插件加入 ``[runtime].plugins`` 后重新运行：
 

@@ -1,0 +1,526 @@
+.iamai-store {
+  margin: 2rem 0;
+}
+
+.main:has(.iamai-store) .content {
+  max-width: none;
+  padding-left: 2rem;
+  padding-right: 4rem;
+  width: min(100%, 88rem);
+}
+
+.article-container:has(.iamai-store) {
+  max-width: none;
+  width: 100%;
+}
+
+.article-container:has(.iamai-store) .toc-overlay-icon {
+  display: none;
+}
+
+.iamai-store__header {
+  align-items: end;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.iamai-store__header h2 {
+  margin-bottom: 0.25rem;
+}
+
+.iamai-store__header-text p {
+  margin-bottom: 0;
+}
+
+.iamai-store__controls {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: minmax(14rem, 1fr) repeat(3, minmax(10rem, 14rem));
+  margin: 1rem 0;
+}
+
+.iamai-store__controls input,
+.iamai-store__controls select {
+  border: 1px solid var(--color-background-border);
+  border-radius: 6px;
+  font: inherit;
+  padding: 0.5rem 0.625rem;
+  width: 100%;
+}
+
+.iamai-store__summary {
+  color: var(--color-foreground-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.iamai-store__grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.iamai-store-card {
+  background: var(--color-background-primary);
+  border: 1px solid var(--color-background-border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+  padding: 0.75rem;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
+}
+
+.iamai-store-card:hover,
+.iamai-store-card:focus-within {
+  border-color: var(--color-brand-content);
+  box-shadow:
+    0 0 0 1px var(--color-brand-content),
+    0 0.6rem 1.4rem rgb(0 0 0 / 0.08);
+  transform: translateY(-1px);
+}
+
+.iamai-store-card--deprecated {
+  opacity: 0.72;
+}
+
+.iamai-store-card__topline {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+}
+
+.iamai-store-card__type {
+  color: var(--color-brand-content);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.iamai-store-card__status {
+  color: var(--color-foreground-secondary);
+  font-size: 0.72rem;
+}
+
+.iamai-store-card h3 {
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.iamai-store-card p {
+  font-size: 0.86rem;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.iamai-store-card__meta,
+.iamai-store-card__badges,
+.iamai-store-card__tags,
+.iamai-store-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.iamai-store-pill {
+  background: var(--color-background-secondary);
+  border: 1px solid var(--color-background-border);
+  border-radius: 999px;
+  font-size: 0.7rem;
+  line-height: 1.2;
+  padding: 0.12rem 0.35rem;
+}
+
+.iamai-store-pill--verified {
+  border-color: var(--color-brand-content);
+  color: var(--color-brand-content);
+  cursor: help;
+}
+
+.iamai-store-card__install {
+  background: var(--color-code-background);
+  border-radius: 6px;
+  font-size: 0.76rem;
+  overflow-x: auto;
+  padding: 0.35rem;
+}
+
+.iamai-store__pagination {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.iamai-store__pagination button {
+  background: var(--color-background-primary);
+  border: 1px solid var(--color-background-border);
+  border-radius: 6px;
+  color: var(--color-foreground-primary);
+  cursor: pointer;
+  font: inherit;
+  padding: 0.35rem 0.6rem;
+}
+
+.iamai-store__pagination button[aria-current="page"] {
+  background: var(--color-brand-content);
+  border-color: var(--color-brand-content);
+  color: var(--color-background-primary);
+}
+
+.iamai-store__pagination button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.iamai-store__empty,
+.iamai-store__loading {
+  color: var(--color-foreground-secondary);
+  padding: 1rem 0;
+}
+
+.iamai-store-submit {
+  border: 1px solid var(--color-background-border);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+  margin: 2rem 0;
+  padding: 1rem;
+}
+
+.iamai-store-submit h2 {
+  font-size: 1.1rem;
+  margin: 0 0 0.25rem;
+}
+
+.iamai-store-submit p {
+  margin: 0;
+}
+
+.iamai-store-submit__mount {
+  flex: 0 0 auto;
+}
+
+.iamai-store-submit__open {
+  background: var(--color-brand-content);
+  border: 1px solid var(--color-brand-content);
+  border-radius: 6px;
+  color: var(--color-background-primary);
+  cursor: pointer;
+  font: inherit;
+  padding: 0.55rem 0.8rem;
+}
+
+.iamai-store-submit__dialog {
+  background: var(--color-background-primary);
+  border: 1px solid var(--color-background-border);
+  border-radius: 12px;
+  box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 0.28);
+  color: var(--color-foreground-primary);
+  max-height: min(92vh, 58rem);
+  max-width: min(96vw, 76rem);
+  padding: 0;
+  width: 100%;
+}
+
+.iamai-store-submit__dialog::backdrop {
+  background: rgb(0 0 0 / 0.45);
+}
+
+.iamai-store-submit__dialog-header {
+  align-items: start;
+  border-bottom: 1px solid var(--color-background-border);
+  background: var(--color-background-secondary);
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+}
+
+.iamai-store-submit__dialog-header h3 {
+  margin: 0 0 0.25rem;
+}
+
+.iamai-store-submit__close {
+  background: transparent;
+  border: 0;
+  color: var(--color-foreground-secondary);
+  cursor: pointer;
+  font: inherit;
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 0.15rem 0.35rem;
+}
+
+.iamai-store-submit__form {
+  max-height: calc(min(92vh, 58rem) - 1px);
+  overflow: auto;
+  padding: 0;
+}
+
+.iamai-store-submit__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.48fr);
+  min-height: 0;
+}
+
+.iamai-store-submit__fields {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+  padding: 1.25rem;
+}
+
+.iamai-store-submit__grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.iamai-store-submit__grid--compact {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.iamai-store-submit .iamai-store-submit__field {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.iamai-store-submit .iamai-store-submit__field span {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.iamai-store-submit__field--textarea {
+  align-content: start;
+}
+
+.iamai-store-submit input,
+.iamai-store-submit select,
+.iamai-store-submit textarea {
+  background: var(--color-background-secondary);
+  border: 1px solid var(--color-background-border);
+  border-radius: 6px;
+  color: var(--color-foreground-primary);
+  font: inherit;
+  padding: 0.5rem 0.625rem;
+  width: 100%;
+}
+
+.iamai-store-submit input:focus,
+.iamai-store-submit select:focus,
+.iamai-store-submit textarea:focus {
+  border-color: var(--color-brand-content);
+  box-shadow: 0 0 0 2px
+    color-mix(in srgb, var(--color-brand-content) 24%, transparent);
+  outline: none;
+}
+
+.iamai-store-submit textarea {
+  min-height: 5.25rem;
+  resize: vertical;
+}
+
+.iamai-store-submit__fields > label textarea {
+  min-height: 4.75rem;
+}
+
+.iamai-store-submit small {
+  color: var(--color-foreground-secondary);
+}
+
+.iamai-store-submit__check {
+  align-items: start;
+  display: flex !important;
+  gap: 0.5rem !important;
+}
+
+.iamai-store-submit__check input {
+  margin-top: 0.35rem;
+  width: auto;
+}
+
+.iamai-store-submit__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.iamai-store-submit__actions button {
+  border: 1px solid var(--color-brand-content);
+  border-radius: 6px;
+  cursor: pointer;
+  font: inherit;
+  padding: 0.5rem 0.75rem;
+}
+
+.iamai-store-submit__actions button[type="submit"] {
+  background: var(--color-brand-content);
+  color: var(--color-background-primary);
+}
+
+.iamai-store-submit__actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.iamai-store-submit__status {
+  color: var(--color-foreground-secondary);
+  min-height: 1.4rem;
+}
+
+.iamai-store-submit__status--error {
+  color: var(--color-admonition-title--danger);
+}
+
+.iamai-store-submit__preview {
+  background: var(--color-code-background);
+  border-left: 1px solid var(--color-background-border);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  max-height: calc(min(92vh, 58rem) - 5rem);
+  position: sticky;
+  top: 0;
+}
+
+.iamai-store-submit__preview-title {
+  border-bottom: 1px solid var(--color-background-border);
+  color: var(--color-foreground-secondary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.75rem 1rem;
+  text-transform: uppercase;
+}
+
+.iamai-store-submit__preview pre {
+  flex: 1;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  margin: 0;
+  overflow: auto;
+  padding: 1rem;
+  white-space: pre;
+}
+
+.iamai-store-json__key {
+  color: #7c3aed;
+}
+
+.iamai-store-json__string {
+  color: #047857;
+}
+
+.iamai-store-json__number {
+  color: #b45309;
+}
+
+.iamai-store-json__boolean {
+  color: #0369a1;
+}
+
+.iamai-store-json__null {
+  color: #6b7280;
+}
+
+[data-theme="dark"] .iamai-store-json__key {
+  color: #c4b5fd;
+}
+
+[data-theme="dark"] .iamai-store-json__string {
+  color: #86efac;
+}
+
+[data-theme="dark"] .iamai-store-json__number {
+  color: #fbbf24;
+}
+
+[data-theme="dark"] .iamai-store-json__boolean {
+  color: #7dd3fc;
+}
+
+@media (max-width: 760px) {
+  .main:has(.iamai-store) .content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 100%;
+  }
+
+  .iamai-store__controls {
+    grid-template-columns: 1fr;
+  }
+
+  .iamai-store__header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .iamai-store__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .iamai-store-submit {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .iamai-store-submit__mount {
+    width: 100%;
+  }
+
+  .iamai-store-submit__open {
+    width: 100%;
+  }
+
+  .iamai-store-submit__body {
+    grid-template-columns: 1fr;
+  }
+
+  .iamai-store-submit__fields {
+    padding: 1rem;
+  }
+
+  .iamai-store-submit__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .iamai-store-submit__grid--compact {
+    grid-template-columns: 1fr;
+  }
+
+  .iamai-store-submit__preview {
+    border-left: 0;
+    border-top: 1px solid var(--color-background-border);
+    max-height: 18rem;
+    position: static;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1180px) {
+  .iamai-store__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .iamai-store-submit__body {
+    grid-template-columns: 1fr;
+  }
+
+  .iamai-store-submit__preview {
+    border-left: 0;
+    border-top: 1px solid var(--color-background-border);
+    max-height: 22rem;
+    position: static;
+  }
+}

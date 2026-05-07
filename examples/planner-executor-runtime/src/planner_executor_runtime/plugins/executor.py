@@ -2,12 +2,18 @@ from __future__ import annotations
 
 from typing import Any, cast
 
-from asterline import Context, Plugin, command
-from asterline_example_utils import chat_json, chat_text, clip_text, format_transcript, resolve_llm_settings
-from planner_executor_runtime.plugins.planner import PlannerPlugin
+from iamai import Context, Plugin, command
+from iamai_example_utils import (
+    LLMSettings,
+    chat_json,
+    chat_text,
+    clip_text,
+    format_transcript,
+    resolve_llm_settings,
+)
 from pydantic import BaseModel, Field
 
-from asterline_example_utils import LLMSettings
+from planner_executor_runtime.plugins.planner import PlannerPlugin
 
 
 class ExecutorConfig(BaseModel):
@@ -28,10 +34,11 @@ class ExecutorPlugin(Plugin):
         step: dict[str, str],
         completed: list[dict[str, str]],
     ) -> dict[str, str]:
-        settings = resolve_llm_settings(self.config_obj, default_temperature=0.7, default_max_tokens=700)
+        settings = resolve_llm_settings(
+            self.config_obj, default_temperature=0.7, default_max_tokens=700
+        )
         notes = [
-            f"- {item['step']}: {clip_text(item['result'], limit=140)}"
-            for item in completed[-3:]
+            f"- {item['step']}: {clip_text(item['result'], limit=140)}" for item in completed[-3:]
         ]
         payload = await chat_json(
             settings,
@@ -61,7 +68,10 @@ class ExecutorPlugin(Plugin):
         data = payload if isinstance(payload, dict) else {}
         return {
             "step": step["step"],
-            "result": clip_text(str(data.get("result", "")).strip() or "Produced a useful draft output.", limit=220),
+            "result": clip_text(
+                str(data.get("result", "")).strip() or "Produced a useful draft output.",
+                limit=220,
+            ),
             "artifact": clip_text(
                 str(data.get("artifact", "")).strip() or step["deliverable"],
                 limit=140,
@@ -78,7 +88,9 @@ class ExecutorPlugin(Plugin):
         strategy: str,
         steps: list[dict[str, str]],
     ) -> str:
-        settings = resolve_llm_settings(self.config_obj, default_temperature=0.5, default_max_tokens=420)
+        settings = resolve_llm_settings(
+            self.config_obj, default_temperature=0.5, default_max_tokens=420
+        )
         transcript = [
             f"- {item['step']}: {item['result']} (artifact={item['artifact']}, risk={item['risk']})"
             for item in steps

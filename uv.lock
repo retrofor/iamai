@@ -10,8 +10,8 @@ resolution-markers = [
 [manifest]
 members = [
     "arcade-runtime",
-    "asterline",
-    "asterline-example-utils",
+    "iamai",
+    "iamai-example-utils",
     "echo-runtime",
     "group-assistant-runtime",
     "life-sim-runtime",
@@ -72,14 +72,14 @@ name = "arcade-runtime"
 version = "0.1.0"
 source = { virtual = "examples/arcade-runtime" }
 dependencies = [
-    { name = "asterline" },
+    { name = "iamai" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "asterline", editable = "." }]
+requires-dist = [{ name = "iamai", editable = "." }]
 
 [[package]]
-name = "asterline"
+name = "iamai"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
@@ -121,7 +121,7 @@ docs = [
 ]
 
 [[package]]
-name = "asterline-example-utils"
+name = "iamai-example-utils"
 version = "0.1.0"
 source = { editable = "examples/_shared" }
 dependencies = [
@@ -303,11 +303,11 @@ name = "echo-runtime"
 version = "0.1.0"
 source = { virtual = "examples/echo-runtime" }
 dependencies = [
-    { name = "asterline" },
+    { name = "iamai" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "asterline", editable = "." }]
+requires-dist = [{ name = "iamai", editable = "." }]
 
 [[package]]
 name = "exceptiongroup"
@@ -343,14 +343,14 @@ name = "group-assistant-runtime"
 version = "0.1.0"
 source = { virtual = "examples/group-assistant-runtime" }
 dependencies = [
-    { name = "asterline" },
-    { name = "asterline-example-utils" },
+    { name = "iamai" },
+    { name = "iamai-example-utils" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "asterline", editable = "." },
-    { name = "asterline-example-utils", editable = "examples/_shared" },
+    { name = "iamai", editable = "." },
+    { name = "iamai-example-utils", editable = "examples/_shared" },
 ]
 
 [[package]]
@@ -622,14 +622,14 @@ name = "life-sim-runtime"
 version = "0.1.0"
 source = { virtual = "examples/life-sim-runtime" }
 dependencies = [
-    { name = "asterline" },
-    { name = "asterline-example-utils" },
+    { name = "iamai" },
+    { name = "iamai-example-utils" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "asterline", editable = "." },
-    { name = "asterline-example-utils", editable = "examples/_shared" },
+    { name = "iamai", editable = "." },
+    { name = "iamai-example-utils", editable = "examples/_shared" },
 ]
 
 [[package]]
@@ -839,14 +839,14 @@ name = "persona-rp-runtime"
 version = "0.1.0"
 source = { virtual = "examples/persona-rp-runtime" }
 dependencies = [
-    { name = "asterline" },
-    { name = "asterline-example-utils" },
+    { name = "iamai" },
+    { name = "iamai-example-utils" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "asterline", editable = "." },
-    { name = "asterline-example-utils", editable = "examples/_shared" },
+    { name = "iamai", editable = "." },
+    { name = "iamai-example-utils", editable = "examples/_shared" },
 ]
 
 [[package]]
@@ -854,14 +854,14 @@ name = "planner-executor-runtime"
 version = "0.1.0"
 source = { virtual = "examples/planner-executor-runtime" }
 dependencies = [
-    { name = "asterline" },
-    { name = "asterline-example-utils" },
+    { name = "iamai" },
+    { name = "iamai-example-utils" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "asterline", editable = "." },
-    { name = "asterline-example-utils", editable = "examples/_shared" },
+    { name = "iamai", editable = "." },
+    { name = "iamai-example-utils", editable = "examples/_shared" },
 ]
 
 [[package]]
@@ -1036,14 +1036,14 @@ name = "react-runtime"
 version = "0.1.0"
 source = { virtual = "examples/react-runtime" }
 dependencies = [
-    { name = "asterline" },
-    { name = "asterline-example-utils" },
+    { name = "iamai" },
+    { name = "iamai-example-utils" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "asterline", editable = "." },
-    { name = "asterline-example-utils", editable = "examples/_shared" },
+    { name = "iamai", editable = "." },
+    { name = "iamai-example-utils", editable = "examples/_shared" },
 ]
 
 [[package]]
@@ -1269,14 +1269,14 @@ name = "state-runtime"
 version = "0.1.0"
 source = { virtual = "examples/state-runtime" }
 dependencies = [
-    { name = "asterline" },
-    { name = "asterline-example-utils" },
+    { name = "iamai" },
+    { name = "iamai-example-utils" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "asterline", editable = "." },
-    { name = "asterline-example-utils", editable = "examples/_shared" },
+    { name = "iamai", editable = "." },
+    { name = "iamai-example-utils", editable = "examples/_shared" },
 ]
 
 [[package]]
@@ -1284,25 +1284,25 @@ name = "story-runtime"
 version = "0.1.0"
 source = { virtual = "examples/story-runtime" }
 dependencies = [
-    { name = "asterline" },
+    { name = "iamai" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "asterline", editable = "." }]
+requires-dist = [{ name = "iamai", editable = "." }]
 
 [[package]]
 name = "supervisor-team-runtime"
 version = "0.1.0"
 source = { virtual = "examples/supervisor-team-runtime" }
 dependencies = [
-    { name = "asterline" },
-    { name = "asterline-example-utils" },
+    { name = "iamai" },
+    { name = "iamai-example-utils" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "asterline", editable = "." },
-    { name = "asterline-example-utils", editable = "examples/_shared" },
+    { name = "iamai", editable = "." },
+    { name = "iamai-example-utils", editable = "examples/_shared" },
 ]
 
 [[package]]

@@ -2,7 +2,7 @@
 id: community.store
 title: 社区商店如何承载插件、适配器与 Agent 工具
 summary: 社区商店把扩展元数据、安全声明、运行时能力和 entry point 统一成可审核的静态 registry。
-author: Asterline maintainers
+author: iamai maintainers
 published_at: 2026-04-25
 category: 社区建设
 tags: [community, store, extensions]

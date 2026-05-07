@@ -1,15 +1,15 @@
-Asterline 文档
+iamai 文档
 ==============
 
-.. container:: asterline-hero
+.. container:: iamai-hero
 
-   Asterline 是一个面向插件开发和多平台接入的消息运行时。业务代码写成普通 Python 插件；
+   iamai 是一个面向插件开发和多平台接入的消息运行时。业务代码写成普通 Python 插件；
    适配器负责协议边界；配置、权限、状态、审计和文档都作为工程能力保留下来。
 
    :doc:`快速开始 <quickstart>` · :doc:`渐进式教程 <tutorials/index>` · :doc:`社区资源 <community/blog/index>`
 
 
-.. container:: asterline-path
+.. container:: iamai-path
 
       **先跑起来**
          从安装、配置检查和终端 Runtime 开始，确认本地开发链路是通的。
@@ -30,7 +30,7 @@ Asterline 文档
 文档路线
 --------
 
-.. container:: asterline-path
+.. container:: iamai-path
 
    **新用户**
       先读 :doc:`concepts`，再跑 :doc:`quickstart`，随后按顺序完成 :doc:`tutorials/index`。
@@ -41,7 +41,7 @@ Asterline 文档
 
    **适配器作者**
       重点看 :doc:`guides/adapters`、:doc:`tutorials/part-5-adapter-development` 和 API 参考里的
-      ``asterline.adapter``。
+      ``iamai.adapter``。
 
    **社区贡献者**
       先查看 :doc:`community/blog/index` 和 :doc:`community/store`，再按 :doc:`tutorials/part-6-ecosystem-publishing` 提交条目。

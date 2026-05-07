@@ -1,0 +1,147 @@
+.iamai-docs-switcher {
+  font-size: 0.82rem;
+  position: relative;
+  z-index: 20;
+}
+
+.iamai-docs-switcher--sidebar {
+  border-top: 1px solid var(--color-background-border);
+  display: flex;
+  justify-content: flex-end;
+  margin: 0.75rem 0 0;
+  padding: 0.75rem 0.75rem 0;
+}
+
+.iamai-docs-switcher--floating {
+  bottom: 0.75rem;
+  left: 0.75rem;
+  position: fixed;
+}
+
+.iamai-docs-switcher__button {
+  background: var(--color-background-secondary);
+  border: 1px solid var(--color-background-border);
+  border-radius: 4px;
+  color: var(--color-foreground-primary);
+  cursor: pointer;
+  display: grid;
+  height: 2rem;
+  place-items: center;
+  width: 2rem;
+}
+
+.iamai-docs-switcher__button:hover,
+.iamai-docs-switcher__button[aria-expanded="true"] {
+  background: var(--color-background-hover);
+  border-color: var(--color-brand-primary);
+}
+
+.iamai-docs-switcher__icon {
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  display: block;
+  height: 1rem;
+  position: relative;
+  width: 1rem;
+}
+
+.iamai-docs-switcher__icon span {
+  border-left: 0.22rem solid transparent;
+  border-right: 0.22rem solid transparent;
+  border-top: 0.32rem solid currentColor;
+  display: block;
+  left: 50%;
+  position: absolute;
+  top: 0.32rem;
+  transform: translateX(-50%);
+}
+
+.iamai-docs-switcher__button[aria-expanded="true"]
+  .iamai-docs-switcher__icon
+  span {
+  border-bottom: 0.32rem solid currentColor;
+  border-top: 0;
+}
+
+.iamai-docs-switcher__project {
+  color: var(--color-foreground-secondary);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.iamai-docs-switcher__panel {
+  background: var(--color-background-primary);
+  border: 1px solid var(--color-background-border);
+  border-radius: 8px;
+  bottom: calc(100% + 0.5rem);
+  box-shadow: 0 0.6rem 1.8rem rgb(0 0 0 / 0.16);
+  padding: 0.75rem;
+  position: absolute;
+  right: 0.75rem;
+  width: 14.5rem;
+}
+
+.iamai-docs-switcher--floating .iamai-docs-switcher__panel {
+  left: 0;
+  right: auto;
+}
+
+.iamai-docs-switcher__summary {
+  display: grid;
+  gap: 0.12rem;
+  margin-bottom: 0.75rem;
+}
+
+.iamai-docs-switcher__panel section + section {
+  border-top: 1px solid var(--color-background-border);
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+}
+
+.iamai-docs-switcher__section-title {
+  color: var(--color-foreground-secondary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+}
+
+.iamai-docs-switcher__items {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.iamai-docs-switcher__items a {
+  align-items: center;
+  border-radius: 6px;
+  color: var(--color-foreground-primary);
+  display: flex;
+  justify-content: space-between;
+  padding: 0.35rem 0.4rem;
+  text-decoration: none;
+}
+
+.iamai-docs-switcher__items a:hover,
+.iamai-docs-switcher__items a[aria-current="page"] {
+  background: var(--color-background-secondary);
+}
+
+.iamai-docs-switcher__current {
+  color: var(--color-brand-content);
+  font-size: 0.68rem;
+}
+
+@media (max-width: 760px) {
+  .iamai-docs-switcher {
+    z-index: 40;
+  }
+
+  .iamai-docs-switcher--sidebar {
+    margin-right: 0.5rem;
+  }
+
+  .iamai-docs-switcher__panel {
+    max-width: calc(100vw - 1.5rem);
+    width: 14rem;
+  }
+}

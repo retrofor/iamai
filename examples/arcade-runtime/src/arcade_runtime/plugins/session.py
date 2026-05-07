@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from asterline import Context, Plugin, middleware
+from iamai import Context, Plugin, middleware
 
 
 class SessionPlugin(Plugin):

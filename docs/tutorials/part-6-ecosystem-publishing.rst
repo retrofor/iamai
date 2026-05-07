@@ -1,7 +1,7 @@
 第六章：发布到社区商店
 ========================
 
-这一章把前面写好的插件或适配器提交到 Asterline 社区商店。商店不是运行时后端，而是随文档构建生成的
+这一章把前面写好的插件或适配器提交到 iamai 社区商店。商店不是运行时后端，而是随文档构建生成的
 静态 registry；提交入口使用 GitHub issue，维护者审核后再把条目合入 ``docs/ecosystem/entries``。
 
 准备扩展元数据
@@ -14,7 +14,7 @@
 - ``name`` 和 ``summary``：用于商店卡片展示，``summary`` 保持一句话。
 - ``package`` 或 ``repository``：至少填写一个。
 - ``license``：例如 ``MIT``、``Apache-2.0``。
-- ``entry_points``：插件使用 ``asterline.plugins``，适配器使用 ``asterline.adapters``。
+- ``entry_points``：插件使用 ``iamai.plugins``，适配器使用 ``iamai.adapters``。
 - ``runtime_capabilities``：例如 ``network:http``、``storage:sqlite``、``agent:tool``。
 - ``security_notes``：声明网络访问、凭据需求、危险动作和可选依赖。
 - ``permission_notes``：Agent 工具需要说明权限名、输入 schema、审计字段和审批要求。
@@ -29,8 +29,8 @@ Entry point 的填写格式是每行一个：
 
 .. code-block:: text
 
-   plugin:echo=asterline_plugin_echo:EchoPlugin
-   adapter:acme=asterline_adapter_acme:AcmeAdapter
+   plugin:echo=iamai_plugin_echo:EchoPlugin
+   adapter:acme=iamai_adapter_acme:AcmeAdapter
 
 表单不会让你声明 ``official``、``security_reviewed`` 这类认证徽章。它们代表维护者审核结论，
 不是扩展作者的自我声明。

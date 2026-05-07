@@ -3,8 +3,7 @@ from __future__ import annotations
 import asyncio
 from pathlib import Path
 
-from asterline import Event, Message, Runtime
-
+from iamai import Event, Message, Runtime
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -23,7 +22,11 @@ def test_echo_runtime_terminal_config_exposes_management_commands() -> None:
             target: object | None = None,
         ) -> dict[str, object]:
             sent.append(Message.ensure(message).render_text())
-            return {"ok": True, "event_id": getattr(event, "id", None), "target": target}
+            return {
+                "ok": True,
+                "event_id": getattr(event, "id", None),
+                "target": target,
+            }
 
         adapter.send_message = send_message  # type: ignore[method-assign]
         event = Event(

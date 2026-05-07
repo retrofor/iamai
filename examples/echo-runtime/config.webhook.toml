@@ -21,7 +21,7 @@ access_token = ""
 # reply_url_allowlist = ["hooks.example.com"]
 
 [plugin.echo]
-greeting = "你好，我是 Asterline Webhook 示例运行时。"
+greeting = "你好，我是 iamai Webhook 示例运行时。"
 
 [plugin.management]
 # Development-oriented management commands. Keep them behind superusers.

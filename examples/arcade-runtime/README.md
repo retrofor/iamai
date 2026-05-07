@@ -1,6 +1,6 @@
 # arcade-runtime
 
-一个偏游戏化的 Asterline 示例，展示：
+一个偏游戏化的 iamai 示例，展示：
 
 - `plugin_dirs` 自动发现
 - 插件依赖与加载顺序
@@ -10,7 +10,7 @@
 ## 启动
 
 ```bash
-uv run --package arcade-runtime python -m asterline --config examples/arcade-runtime/config.terminal.toml
+uv run --package arcade-runtime python -m iamai --config examples/arcade-runtime/config.terminal.toml
 ```
 
 ## 试试这些命令

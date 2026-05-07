@@ -1,7 +1,7 @@
 安装与环境
 ==========
 
-Asterline 使用 ``uv`` 管理 Python 环境，并通过 ``maturin`` 构建 Rust 扩展。
+iamai 使用 ``uv`` 管理 Python 环境，并通过 ``maturin`` 构建 Rust 扩展。
 这意味着开发环境需要同时具备 Python 和 Rust 工具链。
 
 本地开发
@@ -13,14 +13,14 @@ Asterline 使用 ``uv`` 管理 Python 环境，并通过 ``maturin`` 构建 Rust
 
    uv sync
 
-这会安装运行时依赖、开发依赖，并构建可编辑安装的 ``asterline`` 包。
+这会安装运行时依赖、开发依赖，并构建可编辑安装的 ``iamai`` 包。
 
 验证安装
 --------
 
 .. code-block:: bash
 
-   uv run python -m asterline --config examples/echo-runtime/config.terminal.toml config-check
+   uv run python -m iamai --config examples/echo-runtime/config.terminal.toml config-check
 
 如果输出 ``ok`` 和插件列表，说明 Python 包、Rust 扩展和配置装配都已经可用。
 
@@ -39,7 +39,7 @@ CI 中会使用 ``-W --keep-going`` 构建文档。任何 Sphinx warning 都会�
 常见问题
 --------
 
-``ModuleNotFoundError: asterline._core``
+``ModuleNotFoundError: iamai._core``
    Rust 扩展没有构建或当前 Python 环境没有安装项目。重新执行 ``uv sync``。
 
 ``config-check`` 找不到插件

@@ -1,6 +1,6 @@
 # react-runtime
 
-ReAct loop example for Asterline.
+ReAct loop example for iamai.
 
 This example shows:
 
@@ -11,7 +11,7 @@ This example shows:
 ## Run
 
 ```bash
-uv run --package react-runtime python -m asterline --config examples/react-runtime/config.terminal.toml
+uv run --package react-runtime python -m iamai --config examples/react-runtime/config.terminal.toml
 ```
 
 ## Try

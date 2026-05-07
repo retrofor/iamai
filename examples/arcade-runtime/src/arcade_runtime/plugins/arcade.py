@@ -4,9 +4,8 @@ import random
 import re
 from typing import Any, cast
 
+from iamai import Context, Event, Plugin, Runtime, command, depends, regex
 from pydantic import BaseModel
-
-from asterline import Context, Runtime, Event, Plugin, command, depends, regex
 
 
 class ArcadeConfig(BaseModel):
@@ -54,14 +53,21 @@ class ArcadePlugin(Plugin):
         )
 
     @command("wallet", priority=20)
-    async def wallet(self, ctx: Context, profile: dict[str, Any] = depends(current_profile)) -> None:
+    async def wallet(
+        self, ctx: Context, profile: dict[str, Any] = depends(current_profile)
+    ) -> None:
         await ctx.reply(
             f"coins={profile.get('coins', 0)} wins={profile.get('wins', 0)} "
             f"recent={len(profile.get('history', []))}"
         )
 
     @command("roll", priority=30)
-    async def roll(self, ctx: Context, args: str, profile: dict[str, Any] = depends(current_profile)) -> None:
+    async def roll(
+        self,
+        ctx: Context,
+        args: str,
+        profile: dict[str, Any] = depends(current_profile),
+    ) -> None:
         token = args or "d20"
         match = re.fullmatch(r"(?:(\d+)d)?(\d+)", token.strip())
         if match is None:
@@ -77,7 +83,12 @@ class ArcadePlugin(Plugin):
         await ctx.reply(f"roll {token} => {values} total={total} reward=+{reward}")
 
     @command("guess", priority=35, rule=regex(r"^/guess (?P<number>\d+)$"))
-    async def guess(self, ctx: Context, number: str, profile: dict[str, Any] = depends(current_profile)) -> None:
+    async def guess(
+        self,
+        ctx: Context,
+        number: str,
+        profile: dict[str, Any] = depends(current_profile),
+    ) -> None:
         value = int(number)
         reward = 5 if value == 7 else 1
         profile["coins"] = int(profile.get("coins", 0)) + reward

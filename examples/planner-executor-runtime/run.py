@@ -4,11 +4,11 @@ import argparse
 import asyncio
 from pathlib import Path
 
-from asterline import Runtime
+from iamai import Runtime
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Run the Asterline planner/executor example")
+    parser = argparse.ArgumentParser(description="Run the iamai planner/executor example")
     parser.add_argument(
         "--config",
         default=str(Path(__file__).with_name("config.terminal.toml")),
