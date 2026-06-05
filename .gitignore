@@ -18,3 +18,4 @@ docs/_build/
 docs/api/generated/
 .DS_Store
 *.log
+uv.lock
