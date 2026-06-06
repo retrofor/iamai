@@ -14,11 +14,11 @@ from .message import Message
 class Context:
     """Runtime context passed to handlers and middleware."""
 
-    runtime: "Runtime"  # 同chore1
-    adapter: "Adapter"  # 同chore1
-    plugin: "Plugin"    # 同chore1
+    runtime: "Runtime"
+    adapter: "Adapter"
+    plugin: "Plugin"
     event: Event
-    handler: "BoundHandler" # 同chore1
+    handler: "BoundHandler"
     matches: dict[str, Any] = field(default_factory=dict)
 
     @property

@@ -70,7 +70,6 @@ class ReactorPlugin(Plugin):
                 max_tokens=1000,
             )
             data = payload if isinstance(payload, dict) else {}
-            print(data)
             thought = clip_text(str(data.get("thought", "")).strip() or f"turn {turn}", limit=120)
             final = str(data.get("final", "")).strip()
             if final:

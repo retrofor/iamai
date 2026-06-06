@@ -268,7 +268,7 @@ class LLMClient:
         temperature: float | None = None,
         max_tokens: int | None = None,
         trace: AgentTrace | None = None,
-        response_format:dict[str, str] | None = None
+        response_format: dict[str, str] | None = None
     ) -> str:
         """Call the configured chat model and return stripped text."""
         if os.getenv("iamai_LLM_MOCK"):
