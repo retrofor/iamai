@@ -9,6 +9,8 @@ from collections.abc import Awaitable, Callable
 from dataclasses import asdict, dataclass, field
 from typing import Any, cast
 
+from pydantic import BaseModel, ValidationError
+
 DEFAULT_LLM_MODEL = ""
 
 
@@ -75,6 +77,9 @@ class AgentTrace:
     """Append-only trace used to inspect model calls, tool calls, and observations."""
 
     name: str
+    # Keep a stable top-level status so agents can tell success/failure without
+    # inferring it from the last event.
+    status: str = "running"
     events: list[TraceEvent] = field(default_factory=list)
 
     def add(
@@ -91,6 +96,10 @@ class AgentTrace:
         self.events.append(event)
         return event
 
+    def mark(self, status: str) -> None:
+        """Set the final trace status once a turn finishes."""
+        self.status = status
+
     def lines(self, *, limit: int = 12) -> list[str]:
         """Return compact human-readable trace lines."""
         lines: list[str] = []
@@ -101,7 +110,11 @@ class AgentTrace:
 
     def to_dict(self) -> dict[str, Any]:
         """Serialize the full trace into a JSON-compatible dictionary."""
-        return {"name": self.name, "events": [event.to_dict() for event in self.events]}
+        return {
+            "name": self.name,
+            "status": self.status,
+            "events": [event.to_dict() for event in self.events],
+        }
 
 
 @dataclass(slots=True)
@@ -185,7 +198,10 @@ class ToolRegistry:
         """Call a registered tool by name."""
         normalized = name.strip().lower()
         if normalized not in self._tools:
-            raise AgentError(f"unknown tool: {name}")
+            error = f"unknown tool: {name}"
+            if trace is not None:
+                trace.add("tool", normalized or name, input=clip_text(tool_input), output=error, outcome="error")
+            raise AgentError(error)
         tool = self._tools[normalized]
         audit_input = _select_audit_input(tool, tool_input)
         if trace is not None:
@@ -317,8 +333,9 @@ class LLMClient:
         *,
         temperature: float | None = None,
         max_tokens: int | None = None,
+        schema: type[BaseModel] | None = None,
         trace: AgentTrace | None = None,
-    ) -> dict[str, Any] | list[Any]:
+    ) -> dict[str, Any] | list[Any] | BaseModel:
         """Call the chat model and parse a JSON object or array."""
         text = await self.chat_text(
             [
@@ -334,6 +351,12 @@ class LLMClient:
         )
         value = extract_json_value(text)
         if isinstance(value, (dict, list)):
+            if schema is not None:
+                # Validate structured LLM output when the caller knows the expected shape.
+                try:
+                    return schema.model_validate(value)
+                except ValidationError as exc:
+                    raise AgentError(f"model output did not match schema: {exc}") from exc
             return value
         raise AgentError(f"model returned non-JSON content: {text}")
 

@@ -1,0 +1,22 @@
+[
+  {
+    "tool_name": "math",
+    "pattern": "^[0-9][0-9\\s\\.\\+\\-\\*\\/\\(\\)]*$",
+    "reason": "math-like input"
+  },
+  {
+    "tool_name": "remember",
+    "tokens": ["remember", "remembering", "note", "prefer", "\\u8bb0\\u4f4f", "\\u4fdd\\u5b58"],
+    "reason": "preference or note request"
+  },
+  {
+    "tool_name": "recall",
+    "tokens": ["recall", "search", "find", "lookup", "\\u56de\\u5fc6", "\\u67e5\\u627e", "\\u641c\\u7d22"],
+    "reason": "recall request"
+  },
+  {
+    "tool_name": "search_skill",
+    "tokens": ["skill", "manifest", "route", "\\u63d0\\u70bc", "\\u6280\\u80fd"],
+    "reason": "skill lookup request"
+  }
+]

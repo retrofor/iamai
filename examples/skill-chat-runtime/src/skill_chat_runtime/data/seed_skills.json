@@ -1,0 +1,72 @@
+[
+  {
+    "id": "skill.echo.basic",
+    "title": "Basic chat reply",
+    "summary": "Use echo to answer short greetings and simple conversational prompts.",
+    "goal": "Handle casual conversation and short greetings.",
+    "tool_name": "echo",
+    "triggers": ["hello", "hi", "greeting", "chat"],
+    "examples": ["hello", "hi there"],
+    "steps": ["echo the user text back in a compact form"],
+    "tags": ["seed", "chat"],
+    "status": "seed",
+    "lifecycle": "promoted",
+    "score": 1.0
+  },
+  {
+    "id": "skill.math.quick",
+    "title": "Quick math helper",
+    "summary": "Use math to evaluate small arithmetic expressions.",
+    "goal": "Evaluate arithmetic expressions and return a numeric result.",
+    "tool_name": "math",
+    "triggers": ["math", "calculate", "sum", "compute"],
+    "examples": ["17 * 23 + 5"],
+    "steps": ["parse the expression", "evaluate the AST", "return the numeric result"],
+    "tags": ["seed", "math"],
+    "status": "seed",
+    "lifecycle": "promoted",
+    "score": 1.0
+  },
+  {
+    "id": "skill.memory.remember",
+    "title": "Remember a preference",
+    "summary": "Use remember to store short notes or user preferences.",
+    "goal": "Store short text for later recall.",
+    "tool_name": "remember",
+    "triggers": ["remember", "note", "save", "store", "preference"],
+    "examples": ["remember my favorite color is blue"],
+    "steps": ["store the note in memory"],
+    "tags": ["seed", "memory"],
+    "status": "seed",
+    "lifecycle": "promoted",
+    "score": 1.0
+  },
+  {
+    "id": "skill.memory.recall",
+    "title": "Recall notes by keyword",
+    "summary": "Use recall to search stored notes by keyword.",
+    "goal": "Search stored notes and return matching entries.",
+    "tool_name": "recall",
+    "triggers": ["recall", "search", "find", "lookup", "what did i say"],
+    "examples": ["what did i say about colors"],
+    "steps": ["search memory for matching notes", "return results"],
+    "tags": ["seed", "memory"],
+    "status": "seed",
+    "lifecycle": "promoted",
+    "score": 1.0
+  },
+  {
+    "id": "skill.search.manifest",
+    "title": "Search skill library",
+    "summary": "Use search_skill to find matching skill manifests.",
+    "goal": "Search and display stored skill manifests.",
+    "tool_name": "search_skill",
+    "triggers": ["skill", "manifest", "skills"],
+    "examples": ["what skills do you have"],
+    "steps": ["search stored skills", "return matching results"],
+    "tags": ["seed", "skill"],
+    "status": "seed",
+    "lifecycle": "promoted",
+    "score": 1.0
+  }
+]

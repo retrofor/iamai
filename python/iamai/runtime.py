@@ -797,7 +797,11 @@ class Runtime:
     ) -> list[PluginDescriptor]:
         plugin_classes: list[type[Any]]
         resolved_ref = self._resolve_plugin_ref(ref)
-        if ":" in resolved_ref:
+        path_candidate = self._resolve_path_candidate(resolved_ref)
+        if path_candidate is not None:
+            module = self._load_module_from_path(path_candidate, reload_module=reload_modules)
+            plugin_classes = self._plugin_classes_from_module(module)
+        elif ":" in resolved_ref:
             module_name, attr_name = resolved_ref.split(":", 1)
             path_candidate = self._resolve_path_candidate(module_name)
             if path_candidate is not None:
@@ -807,11 +811,7 @@ class Runtime:
                 obj = self._load_module_attr(module_name, attr_name, reload_module=reload_modules)
                 plugin_classes = [obj]
         else:
-            path_candidate = self._resolve_path_candidate(resolved_ref)
-            if path_candidate is not None:
-                module = self._load_module_from_path(path_candidate, reload_module=reload_modules)
-            else:
-                module = self._load_import_module(resolved_ref, reload_module=reload_modules)
+            module = self._load_import_module(resolved_ref, reload_module=reload_modules)
             plugin_classes = self._plugin_classes_from_module(module)
 
         descriptors: list[PluginDescriptor] = []

@@ -16,6 +16,7 @@ build/
 **/.ferribot/
 docs/_build/
 docs/api/generated/
+docs/docs/
 .DS_Store
 *.log
 uv.lock
