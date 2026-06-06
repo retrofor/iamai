@@ -37,7 +37,7 @@ class HandlerSpec:
 class BoundHandler:
     """A handler callback bound to a concrete plugin instance."""
 
-    plugin: "Plugin"
+    plugin: "Plugin"    # chore1：第三行有“from __future__ import annotations”，还需要前向引用吗？
     spec: HandlerSpec
     callback: Callable[["Context"], Awaitable[Any] | Any]
 

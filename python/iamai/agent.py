@@ -268,6 +268,7 @@ class LLMClient:
         temperature: float | None = None,
         max_tokens: int | None = None,
         trace: AgentTrace | None = None,
+        response_format:dict[str, str] | None = None
     ) -> str:
         """Call the configured chat model and return stripped text."""
         if os.getenv("iamai_LLM_MOCK"):
@@ -294,6 +295,7 @@ class LLMClient:
                 messages=cast(Any, messages),
                 temperature=(self.config.temperature if temperature is None else temperature),
                 max_tokens=self.config.max_tokens if max_tokens is None else max_tokens,
+                response_format=response_format
             )
         except Exception as exc:
             raise AgentError(f"chat completion failed: {exc}") from exc
@@ -326,11 +328,13 @@ class LLMClient:
                     "role": "system",
                     "content": "Return valid JSON only. Do not wrap it in markdown fences.",
                 },
+                
                 *messages,
             ],
             temperature=temperature,
             max_tokens=max_tokens,
             trace=trace,
+            response_format={"type":"json_object"}
         )
         value = extract_json_value(text)
         if isinstance(value, (dict, list)):

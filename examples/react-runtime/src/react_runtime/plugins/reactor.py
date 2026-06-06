@@ -35,6 +35,11 @@ class ReactorPlugin(Plugin):
             return
         tools = cast(ToolsPlugin, ctx.runtime.get_plugin("tools"))
         memory = ctx.runtime.get_plugin("memory")
+        mcp = ctx.runtime.get_plugin("mcp")
+        all_tools = (
+            f"{tools.describe_tools()}\n"
+            f"{mcp.describe_tools()}"  # ty:ignore[unresolved-attribute]
+        )
         settings = resolve_llm_settings(
             self.config_obj, default_temperature=0.5, default_max_tokens=500
         )
@@ -56,15 +61,16 @@ class ReactorPlugin(Plugin):
                         "role": "user",
                         "content": (
                             f"Question: {question}\n\n"
-                            f"Available tools:\n{tools.describe_tools()}\n\n"
+                            f"Available tools:\n{all_tools}\n\n"
                             f"Saved notes:\n{format_transcript(memory.state.get('notes', []), limit=8)}\n\n"
                             f"Trace so far:\n{format_transcript(trace_lines, limit=10)}"
                         ),
                     },
                 ],
-                max_tokens=420,
+                max_tokens=1000,
             )
             data = payload if isinstance(payload, dict) else {}
+            print(data)
             thought = clip_text(str(data.get("thought", "")).strip() or f"turn {turn}", limit=120)
             final = str(data.get("final", "")).strip()
             if final:
@@ -76,20 +82,23 @@ class ReactorPlugin(Plugin):
             if not isinstance(action, dict):
                 raise ValueError("model returned an invalid action payload")
             tool_name = str(action.get("tool", "")).strip()
-            tool_input = str(action.get("input", "")).strip()
+            tool_input_raw = action.get("input", "")
             if not tool_name:
                 raise ValueError("model did not choose a tool or final answer")
-            observation = await tools.run_tool(tool_name, tool_input, ctx)
+            try:
+                observation = await tools.run_tool(tool_name, str(tool_input_raw).strip(), ctx)
+            except Exception:
+                observation = await mcp.call_tool(tool_name, tool_input_raw)  # ty:ignore[unresolved-attribute]
             trace.add(
                 "tool",
                 tool_name,
-                input=tool_input,
+                input=tool_input_raw,
                 output=observation,
                 turn=turn,
                 thought=thought,
             )
             trace_lines.append(
-                f"turn {turn}: thought={thought} action={tool_name}({clip_text(tool_input, limit=60)}) "
+                f"turn {turn}: thought={thought} action={tool_name}({clip_text(str(tool_input_raw).strip(), limit=60)}) "
                 f"observation={clip_text(observation, limit=140)}"
             )
         if not final_answer:
