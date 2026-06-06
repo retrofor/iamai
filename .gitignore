@@ -12,11 +12,9 @@ build/
 *.egg-info/
 .pytest_cache/
 .ruff_cache/
-.ferribot/
-**/.ferribot/
+
 docs/_build/
 docs/api/generated/
-docs/docs/
-.DS_Store
+
 *.log
 uv.lock
