@@ -26,8 +26,3 @@ default_setting = "floating city"
 
 [plugin.director]
 narrator = "旁白"
-style = ""
-
-[plugin.director.llm]
-temperature = 0.85
-max_tokens = 500
