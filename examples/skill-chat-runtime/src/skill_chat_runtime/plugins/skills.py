@@ -101,7 +101,9 @@ class SkillsPlugin(Plugin):
             skill.failure_count += 1
         total = skill.success_count + skill.failure_count
         if total > 0:
-            skill.score = round((skill.success_count / total) * 10 + min(skill.reuse_count, 10) * 0.3, 3)
+            skill.score = round(
+                (skill.success_count / total) * 10 + min(skill.reuse_count, 10) * 0.3, 3
+            )
         return skill
 
     def _find_skill_index(self, skills: list[SkillManifest], trace: TraceRecord) -> int | None:
@@ -116,7 +118,9 @@ class SkillsPlugin(Plugin):
                     return index
         return None
 
-    def search(self, query: str, *, limit: int | None = None) -> list[tuple[SkillManifest, float, list[str]]]:
+    def search(
+        self, query: str, *, limit: int | None = None
+    ) -> list[tuple[SkillManifest, float, list[str]]]:
         """Search skills matching *query*, returning top results sorted by score."""
         candidates = []
         for skill in self._skills():
@@ -234,7 +238,9 @@ class SkillsPlugin(Plugin):
             if manifest is None:
                 await ctx.reply("No successful trace to promote yet.")
                 return
-            await ctx.reply(json.dumps(manifest.model_dump(mode="python"), indent=2, ensure_ascii=False))
+            await ctx.reply(
+                json.dumps(manifest.model_dump(mode="python"), indent=2, ensure_ascii=False)
+            )
             return
 
         skill_id = parts[0]
@@ -249,7 +255,8 @@ class SkillsPlugin(Plugin):
                 (
                     item
                     for item in reversed(memory.state.get("traces", []))
-                    if item.get("trace_id") == target.source_trace_id or item.get("skill_id") == target.id
+                    if item.get("trace_id") == target.source_trace_id
+                    or item.get("skill_id") == target.id
                 ),
                 None,
             )

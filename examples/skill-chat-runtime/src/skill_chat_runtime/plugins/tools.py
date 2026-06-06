@@ -3,8 +3,6 @@ from __future__ import annotations
 import ast
 import logging
 import operator
-import random
-import re
 from collections.abc import Callable
 from typing import Any
 
@@ -126,7 +124,9 @@ class ToolsPlugin(Plugin):
         limit = int(memory.config.get("note_limit", 12))
         if len(notes) > limit:
             del notes[:-limit]
-        logger.info("note stored user=%s note=%s", ctx.event.user_id or "user", summarize(text, limit=80))
+        logger.info(
+            "note stored user=%s note=%s", ctx.event.user_id or "user", summarize(text, limit=80)
+        )
         return f"stored note: {text}"
 
     def _recall(self, value: str, *, ctx: Context) -> str:

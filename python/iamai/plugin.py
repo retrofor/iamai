@@ -163,6 +163,7 @@ class Plugin:
         self.load_index = -1
         self.is_builtin = False
         self.plugin_ref = ""
+
     @property
     def plugin_name(self) -> str:
         """Return the effective plugin name used by config and state."""
@@ -225,6 +226,7 @@ class Plugin:
                 bound_middlewares, key=lambda item: item.spec.priority
             )
         return list(self._bound_middlewares_cache)
+
 
 def _spec_dict(spec: HandlerSpec) -> dict[str, Any]:
     return {

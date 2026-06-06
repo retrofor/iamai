@@ -200,7 +200,13 @@ class ToolRegistry:
         if normalized not in self._tools:
             error = f"unknown tool: {name}"
             if trace is not None:
-                trace.add("tool", normalized or name, input=clip_text(tool_input), output=error, outcome="error")
+                trace.add(
+                    "tool",
+                    normalized or name,
+                    input=clip_text(tool_input),
+                    output=error,
+                    outcome="error",
+                )
             raise AgentError(error)
         tool = self._tools[normalized]
         audit_input = _select_audit_input(tool, tool_input)
