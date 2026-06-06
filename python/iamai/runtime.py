@@ -797,13 +797,7 @@ class Runtime:
     ) -> list[PluginDescriptor]:
         plugin_classes: list[type[Any]]
         resolved_ref = self._resolve_plugin_ref(ref)
-        # Check for a file path first: avoids splitting Windows drive letters (C:\...)
-        # as if they were a "module:Class" separator.
-        path_candidate = self._resolve_path_candidate(resolved_ref)
-        if path_candidate is not None:
-            module = self._load_module_from_path(path_candidate, reload_module=reload_modules)
-            plugin_classes = self._plugin_classes_from_module(module)
-        elif ":" in resolved_ref:
+        if ":" in resolved_ref:
             module_name, attr_name = resolved_ref.split(":", 1)
             path_candidate = self._resolve_path_candidate(module_name)
             if path_candidate is not None:
@@ -813,7 +807,11 @@ class Runtime:
                 obj = self._load_module_attr(module_name, attr_name, reload_module=reload_modules)
                 plugin_classes = [obj]
         else:
-            module = self._load_import_module(resolved_ref, reload_module=reload_modules)
+            path_candidate = self._resolve_path_candidate(resolved_ref)
+            if path_candidate is not None:
+                module = self._load_module_from_path(path_candidate, reload_module=reload_modules)
+            else:
+                module = self._load_import_module(resolved_ref, reload_module=reload_modules)
             plugin_classes = self._plugin_classes_from_module(module)
 
         descriptors: list[PluginDescriptor] = []
@@ -1380,11 +1378,6 @@ class Runtime:
             if path.exists():
                 state[str(path)] = path.stat().st_mtime_ns
         for descriptor in self._plugin_descriptors:
-            # Try descriptor.ref as a file path first (handles Windows paths like C:\...)
-            path_candidate = self._resolve_path_candidate(descriptor.ref)
-            if path_candidate is not None:
-                state[str(path_candidate)] = path_candidate.stat().st_mtime_ns
-                continue
             ref_root = descriptor.ref.split(":", 1)[0]
             path_candidate = self._resolve_path_candidate(ref_root)
             if path_candidate is not None:
