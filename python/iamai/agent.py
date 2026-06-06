@@ -7,7 +7,7 @@ import os
 import re
 from collections.abc import Awaitable, Callable
 from dataclasses import asdict, dataclass, field
-from typing import Any, cast
+from typing import Any, cast, Optional
 
 DEFAULT_LLM_MODEL = ""
 
@@ -268,7 +268,7 @@ class LLMClient:
         temperature: float | None = None,
         max_tokens: int | None = None,
         trace: AgentTrace | None = None,
-        response_format: dict[str, str] | None = None
+        response_format: Optional[dict[str,str]] = None
     ) -> str:
         """Call the configured chat model and return stripped text."""
         if os.getenv("iamai_LLM_MOCK"):
