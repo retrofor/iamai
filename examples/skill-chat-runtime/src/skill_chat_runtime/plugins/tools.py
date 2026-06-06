@@ -30,9 +30,9 @@ _UNARY_OPS: dict[type[ast.unaryop], Callable[[Any], Any]] = {
 
 
 class ToolsConfig(BaseModel):
-    """Configuration for the tools plugin (reserved for future use)."""
+    """Configuration for the tools plugin."""
 
-    pass
+    math_limit: float | None = None
 
 
 class ToolsPlugin(Plugin):
@@ -98,7 +98,11 @@ class ToolsPlugin(Plugin):
         if not expression:
             raise ValueError("math expects an arithmetic expression")
         tree = ast.parse(expression, mode="eval")
-        return str(self._eval_node(tree.body))
+        result = self._eval_node(tree.body)
+        limit = self.config.get("math_limit")
+        if limit is not None and abs(result) > float(limit):
+            raise ValueError(f"result {result} exceeds math_limit {limit}")
+        return str(result)
 
     def _eval_node(self, node: ast.AST) -> Any:
         """Recursively evaluate a safe AST node (constants, binary/unary ops only)."""

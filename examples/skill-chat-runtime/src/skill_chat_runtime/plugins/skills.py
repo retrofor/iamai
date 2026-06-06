@@ -81,8 +81,6 @@ class SkillsPlugin(Plugin):
         if skill.success_count >= verified_threshold:
             skill.lifecycle = "verified"
             skill.status = "verified"
-            if not skill.promoted_at:
-                skill.promoted_at = skill.updated_at
             return skill
 
         skill.lifecycle = "draft"

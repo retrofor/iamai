@@ -6,17 +6,17 @@
   },
   {
     "tool_name": "remember",
-    "tokens": ["remember", "remembering", "note", "prefer", "\\u8bb0\\u4f4f", "\\u4fdd\\u5b58"],
+    "tokens": ["remember", "remembering", "note", "prefer", "记住", "保存"],
     "reason": "preference or note request"
   },
   {
     "tool_name": "recall",
-    "tokens": ["recall", "search", "find", "lookup", "\\u56de\\u5fc6", "\\u67e5\\u627e", "\\u641c\\u7d22"],
+    "tokens": ["recall", "search", "find", "lookup", "回忆", "查找", "搜索"],
     "reason": "recall request"
   },
   {
     "tool_name": "search_skill",
-    "tokens": ["skill", "manifest", "route", "\\u63d0\\u70bc", "\\u6280\\u80fd"],
+    "tokens": ["skill", "manifest", "route", "提炼", "技能"],
     "reason": "skill lookup request"
   }
 ]
