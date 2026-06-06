@@ -334,7 +334,7 @@ class LLMClient:
             temperature=temperature,
             max_tokens=max_tokens,
             trace=trace,
-            response_format={"type":"json_object"}
+            response_format={"type": "json_object"}
         )
         value = extract_json_value(text)
         if isinstance(value, (dict, list)):
