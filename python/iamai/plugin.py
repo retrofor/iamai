@@ -157,6 +157,9 @@ class Plugin:
         self.state: dict[str, Any] = {}
         self._config_data: dict[str, Any] = {}
         self._config_object: Any | None = None
+        # Cache bound callbacks once per plugin instance to avoid repeated reflection on dispatch.
+        self._bound_handlers_cache: list[BoundHandler] | None = None
+        self._bound_middlewares_cache: list[BoundMiddleware] | None = None
         self.load_index = -1
         self.is_builtin = False
         self.plugin_ref = ""
@@ -186,37 +189,43 @@ class Plugin:
 
     def iter_handlers(self) -> list[BoundHandler]:
         """Return handlers declared on this plugin instance."""
-        bound_handlers: list[BoundHandler] = []
-        for _, member in inspect.getmembers(self, predicate=callable):
-            specs: list[HandlerSpec] = list(getattr(member, "__iamai_handlers__", []))
-            for spec in specs:
-                bound_handlers.append(
-                    BoundHandler(
-                        plugin=self,
-                        spec=HandlerSpec(func_name=member.__name__, **_spec_dict(spec)),
-                        callback=member,
+        if self._bound_handlers_cache is None:
+            bound_handlers: list[BoundHandler] = []
+            for _, member in inspect.getmembers(self, predicate=callable):
+                specs: list[HandlerSpec] = list(getattr(member, "__iamai_handlers__", []))
+                for spec in specs:
+                    bound_handlers.append(
+                        BoundHandler(
+                            plugin=self,
+                            spec=HandlerSpec(func_name=member.__name__, **_spec_dict(spec)),
+                            callback=member,
+                        )
                     )
-                )
-        return sorted(bound_handlers, key=lambda item: item.spec.priority)
+            self._bound_handlers_cache = sorted(bound_handlers, key=lambda item: item.spec.priority)
+        return list(self._bound_handlers_cache)
 
     def iter_middlewares(self) -> list[BoundMiddleware]:
         """Return middleware callbacks declared on this plugin instance."""
-        bound_middlewares: list[BoundMiddleware] = []
-        for _, member in inspect.getmembers(self, predicate=callable):
-            specs: list[MiddlewareSpec] = list(getattr(member, "__iamai_middlewares__", []))
-            for spec in specs:
-                bound_middlewares.append(
-                    BoundMiddleware(
-                        plugin=self,
-                        spec=MiddlewareSpec(
-                            func_name=member.__name__,
-                            priority=spec.priority,
-                            phase=spec.phase,
-                        ),
-                        callback=member,
+        if self._bound_middlewares_cache is None:
+            bound_middlewares: list[BoundMiddleware] = []
+            for _, member in inspect.getmembers(self, predicate=callable):
+                specs: list[MiddlewareSpec] = list(getattr(member, "__iamai_middlewares__", []))
+                for spec in specs:
+                    bound_middlewares.append(
+                        BoundMiddleware(
+                            plugin=self,
+                            spec=MiddlewareSpec(
+                                func_name=member.__name__,
+                                priority=spec.priority,
+                                phase=spec.phase,
+                            ),
+                            callback=member,
+                        )
                     )
-                )
-        return sorted(bound_middlewares, key=lambda item: item.spec.priority)
+            self._bound_middlewares_cache = sorted(
+                bound_middlewares, key=lambda item: item.spec.priority
+            )
+        return list(self._bound_middlewares_cache)
 
 
 def _spec_dict(spec: HandlerSpec) -> dict[str, Any]:

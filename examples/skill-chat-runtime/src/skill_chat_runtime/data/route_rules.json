@@ -1,0 +1,22 @@
+[
+  {
+    "tool_name": "math",
+    "pattern": "^[0-9][0-9\\s\\.\\+\\-\\*\\/\\(\\)]*$",
+    "reason": "math-like input"
+  },
+  {
+    "tool_name": "remember",
+    "tokens": ["remember", "remembering", "note", "prefer", "记住", "保存"],
+    "reason": "preference or note request"
+  },
+  {
+    "tool_name": "recall",
+    "tokens": ["recall", "search", "find", "lookup", "回忆", "查找", "搜索"],
+    "reason": "recall request"
+  },
+  {
+    "tool_name": "search_skill",
+    "tokens": ["skill", "manifest", "route", "提炼", "技能"],
+    "reason": "skill lookup request"
+  }
+]

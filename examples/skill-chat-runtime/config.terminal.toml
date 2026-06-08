@@ -1,0 +1,38 @@
+[runtime]
+log_level = "INFO"
+command_prefixes = ["/"]
+adapters = ["terminal"]
+plugin_dirs = ["src/skill_chat_runtime/plugins"]
+python_paths = ["src"]
+superusers = ["skill-user"]
+
+[runtime.hot_reload]
+enabled = true
+interval = 1.0
+
+[adapter.terminal]
+prompt = "skill> "
+output_prefix = "skill-chat-runtime> "
+user_id = "skill-user"
+self_id = "skill-chat-runtime"
+
+[plugin.management]
+allow_reload = true
+allow_config_reload = true
+allow_introspection = true
+
+[plugin.memory]
+note_limit = 12
+trace_limit = 8
+
+[plugin.skills]
+skill_limit = 20
+auto_promote = true
+search_limit = 5
+
+[plugin.tools]
+math_limit = 1
+
+[plugin.router]
+skill_threshold = 0.45
+route_rules_file = "data/route_rules.json"
