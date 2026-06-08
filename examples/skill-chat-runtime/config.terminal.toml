@@ -28,10 +28,8 @@ trace_limit = 8
 [plugin.skills]
 skill_limit = 20
 auto_promote = true
+llm_promote_threshold = 3
 search_limit = 5
-
-[plugin.tools]
-math_limit = 1
 
 [plugin.router]
 skill_threshold = 0.45

@@ -75,8 +75,8 @@ class RouterPlugin(Plugin):
                     score=0.5,
                 )
         return RouteDecision(
-            source="heuristic",
-            tool_name="echo",
+            source="llm",
+            tool_name="llm_reply",
             tool_input=clean,
             reason="fallback reply",
             score=0.1,
@@ -119,7 +119,10 @@ class RouterPlugin(Plugin):
             trace.status = "success"
             trace.reply_text = reply
             memory.append_trace(trace)
-            if origin != "inspect" and bool(skills.config.get("auto_promote", True)):
+            if (
+                origin != "inspect"
+                and bool(skills.config.get("auto_promote", True))
+            ):
                 generated = skills.ingest_trace(trace)
                 if generated is not None:
                     logger.info(
