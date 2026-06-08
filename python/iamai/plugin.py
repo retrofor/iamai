@@ -37,7 +37,7 @@ class HandlerSpec:
 class BoundHandler:
     """A handler callback bound to a concrete plugin instance."""
 
-    plugin: "Plugin"
+    plugin: Plugin
     spec: HandlerSpec
     callback: Callable[["Context"], Awaitable[Any] | Any]
 

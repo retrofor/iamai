@@ -31,3 +31,7 @@ max_turns = 5
 [plugin.reactor.llm]
 temperature = 0.5
 max_tokens = 500
+
+[plugin.mcp.mcp_server.playwright]
+command = "npx"
+args = ["@playwright/mcp@latest"]
