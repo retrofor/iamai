@@ -64,7 +64,7 @@ class RouteDecision(BaseModel):
     source: str = "heuristic"
     skill_id: str = ""
     skill_title: str = ""
-    tool_name: str = "echo"
+    tool_name: str = "llm_reply"
     tool_input: str = ""
     reason: str = ""
     score: float = 0.0
@@ -79,7 +79,7 @@ class TraceRecord(BaseModel):
     reply_text: str = ""
     status: str = "success"
     mode: str = "chat"
-    tool_name: str = "echo"
+    tool_name: str = "llm_reply"
     tool_input: str = ""
     route_reason: str = ""
     skill_id: str = ""
@@ -112,6 +112,7 @@ class SkillManifest(BaseModel):
     reuse_count: int = 0
     success_count: int = 0
     failure_count: int = 0
+    consecutive_success_count: int = 0
     last_used_at: str = ""
     last_outcome: str = ""
     promoted_at: str = ""

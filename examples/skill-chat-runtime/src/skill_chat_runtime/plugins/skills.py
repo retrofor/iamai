@@ -24,6 +24,7 @@ class SkillsConfig(BaseModel):
 
     skill_limit: int = 20
     auto_promote: bool = True
+    llm_promote_threshold: int = 3
     search_limit: int = 5
     verified_success_threshold: int = 2
     promoted_success_threshold: int = 4
@@ -47,7 +48,33 @@ class SkillsPlugin(Plugin):
         if not skills:
             skills = default_seed_skills()
             self._store_skills(skills)
+        else:
+            self._backfill_llm_skill_trace(skills)
         return skills
+
+    def _backfill_llm_skill_trace(self, skills: list[SkillManifest]) -> None:
+        """Fill missing llm_reply trace references from recent memory when available."""
+        memory = self.runtime.get_plugin("memory")
+        trace = next(
+            (
+                item
+                for item in reversed(memory.state.get("traces", []))
+                if item.get("status") == "success"
+                and item.get("tool_name") == "llm_reply"
+                and item.get("mode") != "inspect"
+            ),
+            None,
+        )
+        if trace is None:
+            return
+        changed = False
+        for skill in skills:
+            if skill.tool_name == "llm_reply" and not skill.source_trace_id:
+                skill.source_trace_id = str(trace.get("trace_id", ""))
+                if skill.source_trace_id:
+                    changed = True
+        if changed:
+            self._store_skills(skills)
 
     def _store_skills(self, skills: list[SkillManifest]) -> None:
         """Persist skills to plugin state, trimming to the configured limit."""
@@ -61,6 +88,7 @@ class SkillsPlugin(Plugin):
         failure_rate = (skill.failure_count / total) if total else 0.0
         verified_threshold = int(self.config.get("verified_success_threshold", 2))
         promoted_threshold = int(self.config.get("promoted_success_threshold", 4))
+        llm_promote_threshold = int(self.config.get("llm_promote_threshold", promoted_threshold))
         deprecated_threshold = int(self.config.get("deprecated_failure_threshold", 3))
         deprecated_ratio = float(self.config.get("deprecated_failure_ratio", 0.6))
 
@@ -71,7 +99,16 @@ class SkillsPlugin(Plugin):
                 skill.deprecated_at = skill.updated_at
             return skill
 
-        if skill.success_count >= promoted_threshold:
+        success_gate = (
+            skill.consecutive_success_count
+            if skill.tool_name == "llm_reply"
+            else skill.success_count
+        )
+        gate_threshold = (
+            llm_promote_threshold if skill.tool_name == "llm_reply" else promoted_threshold
+        )
+
+        if success_gate >= gate_threshold:
             skill.lifecycle = "promoted"
             skill.status = "promoted"
             if not skill.promoted_at:
@@ -95,8 +132,10 @@ class SkillsPlugin(Plugin):
         skill.last_outcome = outcome
         if outcome == "success":
             skill.success_count += 1
+            skill.consecutive_success_count += 1
         else:
             skill.failure_count += 1
+            skill.consecutive_success_count = 0
         total = skill.success_count + skill.failure_count
         if total > 0:
             skill.score = round(
@@ -106,6 +145,10 @@ class SkillsPlugin(Plugin):
 
     def _find_skill_index(self, skills: list[SkillManifest], trace: TraceRecord) -> int | None:
         """Find the index of a skill matching the given trace (by ID or signature)."""
+        if trace.tool_name == "llm_reply":
+            for index, skill in enumerate(skills):
+                if skill.tool_name == "llm_reply":
+                    return index
         if trace.skill_id:
             for index, skill in enumerate(skills):
                 if skill.id == trace.skill_id:
@@ -159,6 +202,7 @@ class SkillsPlugin(Plugin):
             manifest = build_skill_manifest(trace, title=title)
             manifest.reuse_count = 1
             manifest.success_count = 1
+            manifest.consecutive_success_count = 1
             manifest.last_used_at = trace.timestamp
             manifest.last_outcome = "success"
             manifest.updated_at = trace.timestamp
@@ -171,6 +215,8 @@ class SkillsPlugin(Plugin):
 
         skill = skills[index]
         self._touch_skill(skill, outcome="success", timestamp=trace.timestamp)
+        if not skill.source_trace_id:
+            skill.source_trace_id = trace.trace_id
         skill.last_used_at = trace.timestamp
         skill.updated_at = trace.timestamp
         if trace.input_text and trace.input_text not in skill.examples:
@@ -192,10 +238,17 @@ class SkillsPlugin(Plugin):
     def promote_latest_trace(self, *, title: str | None = None) -> SkillManifest | None:
         """Promote the latest successful trace into a skill manifest."""
         memory = self.runtime.get_plugin("memory")
-        trace = memory.last_trace()
+        trace = next(
+            (
+                item
+                for item in reversed(memory.state.get("traces", []))
+                if item.get("status") == "success" and item.get("mode") != "inspect"
+            ),
+            None,
+        )
         if trace is None:
             return None
-        return self.ingest_trace(trace, title=title)
+        return self.ingest_trace(TraceRecord.model_validate(trace), title=title)
 
     def format_search(self, query: str, *, limit: int | None = None) -> str:
         """Format skill search results as a human-readable string."""
@@ -279,8 +332,8 @@ class SkillsPlugin(Plugin):
                         f"- path: {' -> '.join(trace.path) if trace.path else trace.tool_name}",
                         f"- reply: {trace.reply_text or '-'}",
                         f"- error: {trace.error or '-'}",
-                    ]
-                )
+                ]
+            )
             await ctx.reply("\n".join(lines))
             return
         await ctx.reply(json.dumps(target.model_dump(mode="python"), indent=2, ensure_ascii=False))

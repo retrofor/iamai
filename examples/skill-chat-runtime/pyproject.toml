@@ -5,7 +5,9 @@ description = "Minimal chatbot example with traces, skill manifests, and skill r
 requires-python = ">=3.10"
 dependencies = [
     "iamai",
+    "iamai-example-utils",
 ]
 
 [tool.uv.sources]
 iamai = { workspace = true }
+iamai-example-utils = { workspace = true }

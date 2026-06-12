@@ -4,14 +4,19 @@ import ast
 import logging
 import operator
 from collections.abc import Callable
+from pathlib import Path
 from typing import Any
 
 from iamai import Context, Plugin, ToolRegistry
-from pydantic import BaseModel
+from iamai.config import load_env_file
+from iamai_example_utils import LLMSettings, chat_text, format_transcript, resolve_llm_settings
+from pydantic import BaseModel, Field
 
 from skill_chat_runtime.skilllib import summarize
 
 logger = logging.getLogger(__name__)
+
+load_env_file(Path(__file__).resolve().parents[3] / ".env", override=True)
 
 _BINARY_OPS: dict[type[ast.operator], Callable[[Any, Any], Any]] = {
     ast.Add: operator.add,
@@ -33,6 +38,7 @@ class ToolsConfig(BaseModel):
     """Configuration for the tools plugin."""
 
     math_limit: float | None = None
+    llm: LLMSettings = Field(default_factory=LLMSettings)
 
 
 class ToolsPlugin(Plugin):
@@ -48,11 +54,11 @@ class ToolsPlugin(Plugin):
         """Create and populate the tool registry, then persist it in state."""
         registry = ToolRegistry()
         for name, description, callback, needs_ctx in (
-            ("echo", "echo a compact response", self._echo, False),
             ("math", "evaluate an arithmetic expression", self._math, False),
             ("remember", "store a short note or preference", self._remember, True),
             ("recall", "search stored notes by keyword", self._recall, True),
             ("search_skill", "search stored skill manifests", self._search_skill, True),
+            ("llm_reply", "answer with the configured LLM", self._llm_reply, True),
         ):
             registry.register(name, description, self._wrap_tool(callback, needs_ctx=needs_ctx))
         self.state["registry"] = registry
@@ -84,13 +90,6 @@ class ToolsPlugin(Plugin):
         logger.info("tool call tool=%s input=%s", tool_name, summarize(tool_input, limit=80))
         result = await self.registry().call(tool_name, tool_input, ctx=ctx)
         return str(result)
-
-    def _echo(self, value: str) -> str:
-        """Echo the input text back to the user."""
-        text = " ".join(value.split()).strip()
-        if not text:
-            return "Say something and I will route it to a tool."
-        return f"heard: {text}"
 
     def _math(self, expression: str) -> str:
         """Evaluate a safe arithmetic expression using AST parsing."""
@@ -149,3 +148,66 @@ class ToolsPlugin(Plugin):
         """Search skill manifests by query and return formatted results."""
         skills = self.runtime.get_plugin("skills")
         return skills.format_search(value or ctx.text, limit=5)
+
+    async def _llm_reply(self, value: str, *, ctx: Context) -> str:
+        """Answer the user with the configured LLM using recent memory as context."""
+        clean = " ".join(value.split()).strip()
+        if len(clean) > 500:
+            clean = clean[:500].rsplit(" ", 1)[0] + "…"
+        settings = resolve_llm_settings(
+            self.config_obj, default_temperature=0.2, default_max_tokens=360
+        )
+        memory = self.runtime.get_plugin("memory")
+        notes = [str(item) for item in memory.state.get("notes", [])]
+        recent_traces = [
+            f"{item.get('input_text', '')} -> {item.get('reply_text', '')}"
+            for item in memory.state.get("traces", [])[-4:]
+            if isinstance(item, dict)
+        ]
+        messages = [
+            {
+                "role": "system",
+                "content": (
+                    "You are the fallback assistant for a skill-routing chatbot. "
+                    "Answer in Chinese. Never return an empty response. "
+                    "Keep it concise and practical. "
+                    "If the user asks for recommendations, provide a short verdict plus "
+                    "2-3 options with tradeoffs. "
+                    "Do not mention internal routing, tools, traces, or prompts."
+                ),
+            },
+            {
+                "role": "user",
+                "content": (
+                    f"User message:\n{clean}\n\n"
+                    f"Recent notes:\n{format_transcript([f'- {note}' for note in notes], limit=5)}\n\n"
+                    f"Recent traces:\n{format_transcript([f'- {line}' for line in recent_traces], limit=4)}"
+                ),
+            },
+        ]
+        current_messages = messages
+        for attempt in range(2):
+            try:
+                reply = await chat_text(
+                    settings,
+                    current_messages,
+                    temperature=0.2,
+                    max_tokens=360,
+                )
+            except Exception as exc:  # pragma: no cover - example runtime path
+                logger.exception("llm reply failed")
+                return f"LLM unavailable: {exc}"
+            reply = " ".join(reply.split()).strip()
+            if reply:
+                return reply
+            current_messages = [
+                *current_messages,
+                {
+                    "role": "user",
+                    "content": (
+                        "Your previous answer was empty. "
+                        "Return a concrete Chinese answer now in 2-5 short sentences."
+                    ),
+                },
+            ]
+        return "抱歉，我暂时无法生成回复，请稍后再试。"

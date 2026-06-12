@@ -1,16 +1,16 @@
 [
   {
-    "id": "skill.echo.basic",
+    "id": "skill.llm_reply.basic",
     "title": "Basic chat reply",
-    "summary": "Use echo to answer short greetings and simple conversational prompts.",
+    "summary": "Use llm_reply to answer short greetings and simple conversational prompts.",
     "goal": "Handle casual conversation and short greetings.",
-    "tool_name": "echo",
+    "tool_name": "llm_reply",
     "triggers": ["hello", "hi", "greeting", "chat"],
     "examples": ["hello", "hi there"],
-    "steps": ["echo the user text back in a compact form"],
+    "steps": ["use the fallback LLM to answer compactly"],
     "tags": ["seed", "chat"],
     "status": "seed",
-    "lifecycle": "promoted",
+    "lifecycle": "draft",
     "score": 1.0
   },
   {
