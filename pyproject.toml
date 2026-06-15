@@ -74,7 +74,7 @@ target-version = ["py39", "py310", "py311"]
 
 [dependency-groups]
 lint = [
-    "black>=26.3.1",
+    "black>=26.5.1",
     "mypy>=1.13.0",
     "pylint>=4.0.5",
     "pylint-pydantic>=0.3.2",
