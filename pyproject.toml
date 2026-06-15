@@ -1,5 +1,5 @@
 [build-system]
-requires = ["maturin>=1.4,<2.0"]
+requires = ["maturin>=1.14.0,<2.0"]
 build-backend = "maturin"
 
 [project]
@@ -100,7 +100,7 @@ dev = [
     "pyflakes>=3.4.0",
     "pytest>=9.0.3",
     "ruff>=0.15.11",
-    "maturin>=1.7.4",
+    "maturin>=1.14.0",
     "nox>=2026.4.10"
 ]
 
