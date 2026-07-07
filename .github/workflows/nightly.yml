@@ -47,7 +47,7 @@ jobs:
             os: macos-latest
     runs-on: ${{ matrix.platform.runner }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
     - uses: actboy168/action-zip@main
       id: zip
       with:
