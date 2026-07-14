@@ -41,7 +41,6 @@ gettext_uuid = True
 extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
-    "sphinx.ext.intersphinx",
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
     "sphinx.ext.githubpages",
@@ -64,10 +63,6 @@ autodoc_default_options = {
     "members": True,
     "undoc-members": True,
     "show-inheritance": True,
-}
-
-intersphinx_mapping = {
-    "python": ("https://docs.python.org/3", None),
 }
 
 html_theme = "furo"
