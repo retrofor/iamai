@@ -32,7 +32,15 @@
    管理命令和敏感操作的特权用户 ID。
 
 ``max_concurrent_handlers``
-   同时执行的 handler 上限。达到上限时，事件分发会等待空位，默认 ``64``。
+   同时执行的 handler 上限，默认 ``64``。
+
+``max_pending_handlers``
+   并发上限之外可暂存的 handler 数量，默认 ``256``。队列满后新任务会被丢弃，并增加
+   ``runtime_handler_dropped_total{reason=queue_full}`` 指标，避免事件入口无限堆积。
+
+``handler_shutdown_timeout_seconds``
+   插件或配置重载时等待正在执行的 handler 自然结束的秒数，默认 ``5``。超时后会取消旧
+   handler；尚未开始的旧任务会在关闭旧插件前直接清空。
 
 ``session_backlog_max_keys`` / ``session_backlog_per_key``
    等待会话建立前可暂存的会话 key 总数和每个 key 的消息数，默认分别为 ``1024`` 和 ``3``。

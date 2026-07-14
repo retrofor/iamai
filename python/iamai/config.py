@@ -92,6 +92,8 @@ class RuntimeConfigModel(BaseModel):
     hot_reload: HotReloadConfig | bool = False
     allow_external_paths: bool = False
     max_concurrent_handlers: int = 64
+    max_pending_handlers: int = 256
+    handler_shutdown_timeout_seconds: float = 5.0
     session_backlog_max_keys: int = 1024
     session_backlog_per_key: int = 3
     session_backlog_ttl_seconds: float = 300.0
@@ -123,6 +125,7 @@ class RuntimeConfigModel(BaseModel):
 
     @field_validator(
         "max_concurrent_handlers",
+        "max_pending_handlers",
         "session_backlog_max_keys",
         "session_backlog_per_key",
     )
@@ -132,7 +135,7 @@ class RuntimeConfigModel(BaseModel):
             raise ValueError("value must be greater than 0")
         return int(value)
 
-    @field_validator("session_backlog_ttl_seconds")
+    @field_validator("handler_shutdown_timeout_seconds", "session_backlog_ttl_seconds")
     @classmethod
     def _positive_float(cls, value: float) -> float:
         if float(value) <= 0:

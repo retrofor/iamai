@@ -13,6 +13,7 @@ import json
 import logging
 import re
 import sys
+from collections import deque
 from dataclasses import dataclass
 from importlib import metadata
 from pathlib import Path
@@ -71,6 +72,14 @@ class PluginDescriptor:
     is_builtin: bool = False
 
 
+@dataclass(frozen=True, slots=True)
+class _HandlerJob:
+    ctx: Context
+    handler: BoundHandler
+    middlewares: dict[str, list[Callable[..., Any]]]
+    generation: int
+
+
 class Runtime:
     """Top-level runtime container that owns adapters, plugins, state, and dispatch."""
 
@@ -90,7 +99,12 @@ class Runtime:
         self._adapter_tasks: list[asyncio.Task[None]] = []
         self._adapter_failures: asyncio.Queue[BaseException] = asyncio.Queue()
         self._handler_tasks: set[asyncio.Task[None]] = set()
-        self._handler_slots = asyncio.Semaphore(1)
+        self._pending_handler_jobs: deque[_HandlerJob] = deque()
+        self._handler_generation = 0
+        self._accepting_handlers = True
+        self._max_concurrent_handlers = 1
+        self._max_pending_handlers = 1
+        self._handler_shutdown_timeout_seconds = 5.0
         self._stop_event = asyncio.Event()
         self._bootstrapped = False
         self._serving = False
@@ -240,6 +254,9 @@ class Runtime:
             "bootstrapped": self._bootstrapped,
             "plugins": len(self.plugins),
             "handlers": len(self.list_handlers()),
+            "handler_tasks": len(self._handler_tasks),
+            "handler_backlog": len(self._pending_handler_jobs),
+            "handler_backlog_capacity": self._max_pending_handlers,
             "adapters": len(self.adapters),
             "hot_reload": self._hot_reload_enabled(),
             "sessions": len(self.list_sessions()),
@@ -358,17 +375,13 @@ class Runtime:
         """Stop adapters, cancel handler tasks, and run plugin shutdown hooks."""
         self._serving = False
         self._stop_event.set()
+        await self._pause_handler_dispatch(cancel_active=True)
         if self._hot_reload_task is not None:
             self._hot_reload_task.cancel()
             with contextlib.suppress(asyncio.CancelledError):
                 await self._hot_reload_task
             self._hot_reload_task = None
         await self._stop_adapters()
-        for task in list(self._handler_tasks):
-            if not task.done():
-                task.cancel()
-                with contextlib.suppress(asyncio.CancelledError):
-                    await task
         for plugin in reversed(self.plugins):
             with contextlib.suppress(Exception):
                 self._save_plugin_state(plugin)
@@ -381,42 +394,47 @@ class Runtime:
     async def reload_plugins(self) -> None:
         """Reload user plugins while keeping the current adapter set."""
         async with self._runtime_lock:
-            LOGGER.info("reloading plugins")
-            for plugin in self.plugins:
-                self._save_plugin_state(plugin)
+            await self._pause_handler_dispatch(cancel_active=False)
             try:
-                new_plugins, descriptors = self._build_plugins(reload_modules=True)
-                started_plugins: list[Plugin] = []
-                try:
-                    for plugin in new_plugins:
-                        await plugin.startup()
-                        started_plugins.append(plugin)
-                except Exception:
-                    for plugin in reversed(started_plugins):
-                        with contextlib.suppress(Exception):
-                            await plugin.shutdown()
-                    raise
-                old_plugins = self.plugins
-                self._set_plugins(new_plugins, descriptors)
-                self._plugin_watch_state = self._snapshot_plugin_watch_state()
-                for plugin in reversed(old_plugins):
+                await self._reload_plugins_locked()
+            finally:
+                self._resume_handler_dispatch()
+
+    async def _reload_plugins_locked(self) -> None:
+        LOGGER.info("reloading plugins")
+        for plugin in self.plugins:
+            self._save_plugin_state(plugin)
+        try:
+            new_plugins, descriptors = self._build_plugins(reload_modules=True)
+            started_plugins: list[Plugin] = []
+            try:
+                for plugin in new_plugins:
+                    await plugin.startup()
+                    started_plugins.append(plugin)
+            except Exception:
+                for plugin in reversed(started_plugins):
                     with contextlib.suppress(Exception):
                         await plugin.shutdown()
-                LOGGER.info("reloaded %s plugins", len(self.plugins))
-                self.count_metric("runtime_reload_total", action="plugins", outcome="ok")
-                self.audit(
-                    "runtime.reload", target="plugins", outcome="ok", plugins=len(self.plugins)
-                )
-            except Exception as exc:
-                self.count_metric("runtime_reload_total", action="plugins", outcome="error")
-                self.audit(
-                    "runtime.reload",
-                    target="plugins",
-                    outcome="error",
-                    level=logging.ERROR,
-                    error=type(exc).__name__,
-                )
                 raise
+            old_plugins = self.plugins
+            self._set_plugins(new_plugins, descriptors)
+            self._plugin_watch_state = self._snapshot_plugin_watch_state()
+            for plugin in reversed(old_plugins):
+                with contextlib.suppress(Exception):
+                    await plugin.shutdown()
+            LOGGER.info("reloaded %s plugins", len(self.plugins))
+            self.count_metric("runtime_reload_total", action="plugins", outcome="ok")
+            self.audit("runtime.reload", target="plugins", outcome="ok", plugins=len(self.plugins))
+        except Exception as exc:
+            self.count_metric("runtime_reload_total", action="plugins", outcome="error")
+            self.audit(
+                "runtime.reload",
+                target="plugins",
+                outcome="error",
+                level=logging.ERROR,
+                error=type(exc).__name__,
+            )
+            raise
 
     async def reload_config(self) -> None:
         """Reload configuration, plugins, state backend, and adapters atomically."""
@@ -425,87 +443,101 @@ class Runtime:
             await self.reload_plugins()
             return
         async with self._runtime_lock:
-            LOGGER.info("reloading config from %s", config_path)
-            for plugin in self.plugins:
-                self._save_plugin_state(plugin)
-            old_config = self.config
-            old_base_path = self.base_path
-            old_state_store = self.state_store
-            old_plugins = self.plugins
-            old_descriptors = self._plugin_descriptors
-            old_adapters = self.adapters
-            old_adapter_map = self._adapter_map
-
+            await self._pause_handler_dispatch(cancel_active=False)
             try:
-                self.config = load_config(config_path)
-                self.base_path = Path(self.config["__meta__"]["root_dir"])
-                self.state_store = create_state_store(self.config, base_path=self.base_path)
-                self._refresh_runtime_dependencies()
-                self._apply_python_paths()
-                started_plugins: list[Plugin] = []
-                try:
-                    new_plugins, descriptors = self._build_plugins(reload_modules=True)
-                    for plugin in new_plugins:
-                        await plugin.startup()
-                        started_plugins.append(plugin)
-                    new_adapters, adapter_map = self._build_adapters()
-                except Exception:
-                    for plugin in reversed(started_plugins):
-                        with contextlib.suppress(Exception):
-                            await plugin.shutdown()
-                    self.config = old_config
-                    self.base_path = old_base_path
-                    self.state_store = old_state_store
-                    self._plugin_descriptors = old_descriptors
-                    self._adapter_map = old_adapter_map
-                    self._refresh_runtime_dependencies()
-                    self._apply_python_paths()
-                    raise
+                await self._reload_config_locked(str(config_path))
+            finally:
+                self._resume_handler_dispatch()
 
-                self._configure_runtime_limits()
-                self._set_plugins(new_plugins, descriptors)
-                self._set_adapters(new_adapters, adapter_map)
-                if self._serving:
-                    await self._stop_adapters(adapters=old_adapters)
-                    self._start_adapters()
-                self._plugin_watch_state = self._snapshot_plugin_watch_state()
-                for plugin in reversed(old_plugins):
+    async def _reload_config_locked(self, config_path: str) -> None:
+        LOGGER.info("reloading config from %s", config_path)
+        for plugin in self.plugins:
+            self._save_plugin_state(plugin)
+        old_config = self.config
+        old_base_path = self.base_path
+        old_state_store = self.state_store
+        old_plugins = self.plugins
+        old_descriptors = self._plugin_descriptors
+        old_adapters = self.adapters
+        old_adapter_map = self._adapter_map
+
+        try:
+            self.config = load_config(config_path)
+            self.base_path = Path(self.config["__meta__"]["root_dir"])
+            self.state_store = create_state_store(self.config, base_path=self.base_path)
+            self._refresh_runtime_dependencies()
+            self._apply_python_paths()
+            started_plugins: list[Plugin] = []
+            try:
+                new_plugins, descriptors = self._build_plugins(reload_modules=True)
+                for plugin in new_plugins:
+                    await plugin.startup()
+                    started_plugins.append(plugin)
+                new_adapters, adapter_map = self._build_adapters()
+            except Exception:
+                for plugin in reversed(started_plugins):
                     with contextlib.suppress(Exception):
                         await plugin.shutdown()
-                LOGGER.info("reloaded config and %s plugins", len(self.plugins))
-                self.count_metric("runtime_reload_total", action="config", outcome="ok")
-                self.audit(
-                    "runtime.reload",
-                    target="config",
-                    outcome="ok",
-                    plugins=len(self.plugins),
-                    adapters=len(self.adapters),
-                )
-            except Exception as exc:
-                self.count_metric("runtime_reload_total", action="config", outcome="error")
-                self.audit(
-                    "runtime.reload",
-                    target="config",
-                    outcome="error",
-                    level=logging.ERROR,
-                    error=type(exc).__name__,
-                )
+                self.config = old_config
+                self.base_path = old_base_path
+                self.state_store = old_state_store
+                self._plugin_descriptors = old_descriptors
+                self._adapter_map = old_adapter_map
+                self._refresh_runtime_dependencies()
+                self._apply_python_paths()
                 raise
+
+            self._configure_runtime_limits()
+            self._set_plugins(new_plugins, descriptors)
+            self._set_adapters(new_adapters, adapter_map)
+            if self._serving:
+                await self._stop_adapters(adapters=old_adapters)
+                self._start_adapters()
+            self._plugin_watch_state = self._snapshot_plugin_watch_state()
+            for plugin in reversed(old_plugins):
+                with contextlib.suppress(Exception):
+                    await plugin.shutdown()
+            LOGGER.info("reloaded config and %s plugins", len(self.plugins))
+            self.count_metric("runtime_reload_total", action="config", outcome="ok")
+            self.audit(
+                "runtime.reload",
+                target="config",
+                outcome="ok",
+                plugins=len(self.plugins),
+                adapters=len(self.adapters),
+            )
+        except Exception as exc:
+            self.count_metric("runtime_reload_total", action="config", outcome="error")
+            self.audit(
+                "runtime.reload",
+                target="config",
+                outcome="error",
+                level=logging.ERROR,
+                error=type(exc).__name__,
+            )
+            raise
 
     async def dispatch(self, event: Event, adapter: Adapter) -> None:
         """Dispatch one normalized event to matching handlers."""
         if event.type == "meta_event":
             LOGGER.debug(
                 "event[%s] %s/%s text=%r",
-                event.id, event.adapter, event.type, event.text,
+                event.id,
+                event.adapter,
+                event.type,
+                event.text,
             )
         else:
             LOGGER.info(
                 "event[%s] %s/%s text=%r",
-                event.id, event.adapter, event.type, event.text,
+                event.id,
+                event.adapter,
+                event.type,
+                event.text,
             )
-        handler_jobs: list[tuple[Context, BoundHandler, dict[str, list[Callable[..., Any]]]]] = []
+        handler_jobs: list[_HandlerJob] = []
         async with self._runtime_lock:
+            generation = self._handler_generation
             plugins = list(self.plugins)
             middlewares = self._collect_middlewares(plugins)
             waiter_ctx = Context(
@@ -548,26 +580,15 @@ class Runtime:
                         continue
                     if extra_matches:
                         ctx.matches.update(extra_matches)
-                    handler_jobs.append((ctx, handler, middlewares))
+                    handler_jobs.append(_HandlerJob(ctx, handler, middlewares, generation))
                     if handler.spec.block:
                         break
-                if handler_jobs and handler_jobs[-1][1].spec.block:
+                if handler_jobs and handler_jobs[-1].handler.spec.block:
                     break
 
-        for ctx, handler, middlewares in handler_jobs:
-            slots = self._handler_slots
-            await slots.acquire()
-            try:
-                task = asyncio.create_task(
-                    self._execute_handler_job(ctx, handler, middlewares, slots),
-                    name=f"handler:{ctx.plugin.plugin_name}.{handler.spec.func_name}",
-                )
-            except BaseException:
-                slots.release()
-                raise
-            self._handler_tasks.add(task)
-            task.add_done_callback(self._handler_tasks.discard)
-            if handler.spec.block:
+        for job in handler_jobs:
+            self._schedule_handler_job(job)
+            if job.handler.spec.block:
                 return
 
     async def _execute_handler_job(
@@ -575,7 +596,6 @@ class Runtime:
         ctx: Context,
         handler: BoundHandler,
         middlewares: dict[str, list[Callable[..., Any]]],
-        slots: asyncio.Semaphore,
     ) -> None:
         try:
             await self._run_handler(ctx, handler, middlewares)
@@ -587,8 +607,71 @@ class Runtime:
                 ctx.plugin.plugin_name,
                 handler.spec.func_name,
             )
-        finally:
-            slots.release()
+
+    def _schedule_handler_job(self, job: _HandlerJob) -> None:
+        if not self._accepting_handlers or job.generation != self._handler_generation:
+            self.count_metric("runtime_handler_dropped_total", reason="stale_generation")
+            return
+        if len(self._handler_tasks) < self._max_concurrent_handlers:
+            self._start_handler_job(job)
+            return
+        if len(self._pending_handler_jobs) < self._max_pending_handlers:
+            self._pending_handler_jobs.append(job)
+            return
+        self.count_metric("runtime_handler_dropped_total", reason="queue_full")
+
+    def _start_handler_job(self, job: _HandlerJob) -> None:
+        task = asyncio.create_task(
+            self._execute_handler_job(job.ctx, job.handler, job.middlewares),
+            name=f"handler:{job.ctx.plugin.plugin_name}.{job.handler.spec.func_name}",
+        )
+        self._handler_tasks.add(task)
+        task.add_done_callback(self._handler_job_done)
+
+    def _handler_job_done(self, task: asyncio.Task[None]) -> None:
+        self._handler_tasks.discard(task)
+        if not self._accepting_handlers:
+            return
+        while (
+            self._pending_handler_jobs and len(self._handler_tasks) < self._max_concurrent_handlers
+        ):
+            job = self._pending_handler_jobs.popleft()
+            if job.generation != self._handler_generation:
+                self.count_metric("runtime_handler_dropped_total", reason="stale_generation")
+                continue
+            self._start_handler_job(job)
+
+    async def _pause_handler_dispatch(self, *, cancel_active: bool) -> None:
+        self._accepting_handlers = False
+        self._handler_generation += 1
+        if self._pending_handler_jobs:
+            self.count_metric(
+                "runtime_handler_dropped_total",
+                value=len(self._pending_handler_jobs),
+                reason="lifecycle",
+            )
+            self._pending_handler_jobs.clear()
+        tasks = list(self._handler_tasks)
+        current = asyncio.current_task()
+        if current in tasks:
+            raise RuntimeError("runtime lifecycle operations must be scheduled outside handlers")
+        if not tasks:
+            return
+        if cancel_active:
+            for task in tasks:
+                task.cancel()
+        else:
+            _, pending = await asyncio.wait(
+                tasks,
+                timeout=self._handler_shutdown_timeout_seconds,
+            )
+            for task in pending:
+                task.cancel()
+        await asyncio.gather(*tasks, return_exceptions=True)
+
+    def _resume_handler_dispatch(self) -> None:
+        if not self._stop_event.is_set():
+            self._accepting_handlers = True
 
     def load_plugins(self) -> None:
         """Load plugins from the current configuration."""
@@ -635,7 +718,11 @@ class Runtime:
 
     def _configure_runtime_limits(self) -> None:
         config = self.runtime_config
-        self._handler_slots = asyncio.Semaphore(int(config.get("max_concurrent_handlers", 64)))
+        self._max_concurrent_handlers = int(config.get("max_concurrent_handlers", 64))
+        self._max_pending_handlers = int(config.get("max_pending_handlers", 256))
+        self._handler_shutdown_timeout_seconds = float(
+            config.get("handler_shutdown_timeout_seconds", 5.0)
+        )
         self.sessions.configure(
             max_backlog_keys=int(config.get("session_backlog_max_keys", 1024)),
             max_backlog_per_key=int(config.get("session_backlog_per_key", 3)),

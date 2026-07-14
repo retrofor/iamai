@@ -96,8 +96,11 @@ class SessionManager:
                     result = await result
                 if not result:
                     continue
-            backlog.remove(item)
-            if not backlog:
+            current_backlog = self._backlog.get(waiter.key)
+            if current_backlog is None or item not in current_backlog:
+                continue
+            current_backlog.remove(item)
+            if not current_backlog:
                 self._backlog.pop(waiter.key, None)
             return item.context
         self._waiters.append(waiter)
@@ -119,6 +122,8 @@ class SessionManager:
                     result = await result
                 if not result:
                     continue
+            if waiter.future.done() or waiter not in self._waiters:
+                continue
             waiter.future.set_result(ctx)
             self._waiters.remove(waiter)
             return True

@@ -220,7 +220,7 @@ def test_session_backlog_discards_expired_contexts() -> None:
     asyncio.run(run())
 
 
-def test_runtime_applies_handler_concurrency_backpressure(tmp_path: Path) -> None:
+def test_runtime_bounds_handler_backlog_and_sheds_overload(tmp_path: Path) -> None:
     class BlockingPlugin(Plugin):
         name = "blocking"
 
@@ -241,12 +241,13 @@ def test_runtime_applies_handler_concurrency_backpressure(tmp_path: Path) -> Non
             await self.release.wait()
             self.running -= 1
             self.handled += 1
-            if self.handled == 2:
+            if self.handled == 3:
                 self.finished.set()
 
     async def run() -> None:
         runtime = _make_runtime(tmp_path)
         runtime.config["runtime"]["max_concurrent_handlers"] = 1
+        runtime.config["runtime"]["max_pending_handlers"] = 2
         runtime = Runtime(runtime.config, base_path=tmp_path)
         plugin = BlockingPlugin(runtime)
         runtime._set_plugins([plugin], [])
@@ -263,19 +264,244 @@ def test_runtime_applies_handler_concurrency_backpressure(tmp_path: Path) -> Non
                 message=Message(event_id),
             )
 
-        await runtime.dispatch(event("first"), adapter)  # type: ignore[arg-type]
+        dispatches = [
+            asyncio.create_task(runtime.dispatch(event(str(index)), adapter))  # type: ignore[arg-type]
+            for index in range(500)
+        ]
+        await asyncio.wait_for(asyncio.gather(*dispatches), timeout=1.0)
         await plugin.started.wait()
-        second_dispatch = asyncio.create_task(
-            runtime.dispatch(event("second"), adapter)  # type: ignore[arg-type]
-        )
-        await asyncio.sleep(0)
-        assert not second_dispatch.done()
+
+        assert len(runtime._handler_tasks) == 1
+        assert len(runtime._pending_handler_jobs) == 2
+        assert runtime.metrics.snapshot()["runtime_handler_dropped_total{reason=queue_full}"] == 497
 
         plugin.release.set()
-        await second_dispatch
         await asyncio.wait_for(plugin.finished.wait(), timeout=1.0)
         await runtime.shutdown()
         assert plugin.max_running == 1
+
+    asyncio.run(run())
+
+
+def test_runtime_reload_discards_old_handler_backlog_before_plugin_shutdown(
+    tmp_path: Path,
+) -> None:
+    class BlockingPlugin(Plugin):
+        name = "blocking"
+
+        def __init__(self, runtime: Runtime) -> None:
+            super().__init__(runtime)
+            self.started: list[str] = []
+            self.first_started = asyncio.Event()
+            self.release = asyncio.Event()
+            self.was_shutdown = False
+
+        @message_handler()
+        async def handle(self, ctx: object) -> None:
+            event_id = str(ctx.event.id)  # type: ignore[attr-defined]
+            self.started.append(event_id)
+            self.first_started.set()
+            await self.release.wait()
+
+        async def shutdown(self) -> None:
+            self.was_shutdown = True
+
+    class ReplacementPlugin(Plugin):
+        name = "replacement"
+
+        def __init__(self, runtime: Runtime) -> None:
+            super().__init__(runtime)
+            self.started = False
+
+        async def startup(self) -> None:
+            self.started = True
+
+    async def run() -> None:
+        runtime = _make_runtime(tmp_path)
+        runtime.config["runtime"].update(
+            {
+                "max_concurrent_handlers": 1,
+                "max_pending_handlers": 2,
+                "handler_shutdown_timeout_seconds": 0.01,
+            }
+        )
+        runtime = Runtime(runtime.config, base_path=tmp_path)
+        old_plugin = BlockingPlugin(runtime)
+        new_plugin = ReplacementPlugin(runtime)
+        runtime._set_plugins([old_plugin], [])
+        runtime._build_plugins = lambda **_: ([new_plugin], [])  # type: ignore[method-assign]
+        adapter = SimpleNamespace(name="test")
+
+        def event(event_id: str) -> Event:
+            return Event(
+                id=event_id,
+                adapter="test",
+                platform="test",
+                type="message",
+                channel_id="room-1",
+                user_id=event_id,
+                message=Message(event_id),
+            )
+
+        await runtime.dispatch(event("active"), adapter)  # type: ignore[arg-type]
+        await runtime.dispatch(event("queued"), adapter)  # type: ignore[arg-type]
+        await old_plugin.first_started.wait()
+
+        await asyncio.wait_for(runtime.reload_plugins(), timeout=1.0)
+
+        assert old_plugin.started == ["active"]
+        assert old_plugin.was_shutdown is True
+        assert new_plugin.started is True
+        assert not runtime._pending_handler_jobs
+        assert runtime._handler_tasks == set()
+        await runtime.shutdown()
+
+    asyncio.run(run())
+
+
+def test_runtime_shutdown_cancels_active_and_discards_queued_handlers(tmp_path: Path) -> None:
+    class BlockingPlugin(Plugin):
+        name = "blocking"
+
+        def __init__(self, runtime: Runtime) -> None:
+            super().__init__(runtime)
+            self.started: list[str] = []
+            self.first_started = asyncio.Event()
+            self.release = asyncio.Event()
+            self.was_shutdown = False
+
+        @message_handler()
+        async def handle(self, ctx: object) -> None:
+            self.started.append(str(ctx.event.id))  # type: ignore[attr-defined]
+            self.first_started.set()
+            await self.release.wait()
+
+        async def shutdown(self) -> None:
+            self.was_shutdown = True
+
+    async def run() -> None:
+        runtime = _make_runtime(tmp_path)
+        runtime.config["runtime"].update({"max_concurrent_handlers": 1, "max_pending_handlers": 1})
+        runtime = Runtime(runtime.config, base_path=tmp_path)
+        plugin = BlockingPlugin(runtime)
+        runtime._set_plugins([plugin], [])
+        adapter = SimpleNamespace(name="test")
+
+        def event(event_id: str) -> Event:
+            return Event(
+                id=event_id,
+                adapter="test",
+                platform="test",
+                type="message",
+                channel_id="room-1",
+                user_id=event_id,
+                message=Message(event_id),
+            )
+
+        await runtime.dispatch(event("active"), adapter)  # type: ignore[arg-type]
+        await runtime.dispatch(event("queued"), adapter)  # type: ignore[arg-type]
+        await plugin.first_started.wait()
+
+        await asyncio.wait_for(runtime.shutdown(), timeout=1.0)
+
+        assert plugin.started == ["active"]
+        assert plugin.was_shutdown is True
+        assert not runtime._pending_handler_jobs
+        assert not runtime._handler_tasks
+
+    asyncio.run(run())
+
+
+def test_session_async_backlog_rules_do_not_double_remove_contexts() -> None:
+    async def run() -> None:
+        manager = SessionManager()
+        ctx = SimpleNamespace(
+            event=Event(
+                id="shared",
+                adapter="onebot11",
+                platform="qq",
+                type="message",
+                channel_id="room-1",
+                user_id="alice",
+                message=Message("shared"),
+            )
+        )
+        await manager.consume(ctx)  # type: ignore[arg-type]
+        both_evaluating = asyncio.Event()
+        release = asyncio.Event()
+        entered = 0
+
+        async def accept(_: object) -> bool:
+            nonlocal entered
+            entered += 1
+            if entered == 2:
+                both_evaluating.set()
+            await release.wait()
+            return True
+
+        waits = [
+            asyncio.create_task(
+                manager.wait_for(ctx, timeout=0.01, rule=accept)  # type: ignore[arg-type]
+            )
+            for _ in range(2)
+        ]
+        await both_evaluating.wait()
+        release.set()
+        results = await asyncio.gather(*waits, return_exceptions=True)
+
+        assert sum(result is ctx for result in results) == 1
+        assert sum(isinstance(result, TimeoutError) for result in results) == 1
+
+    asyncio.run(run())
+
+
+def test_session_async_waiter_rules_do_not_double_resolve_futures() -> None:
+    async def run() -> None:
+        manager = SessionManager()
+
+        def context(event_id: str) -> SimpleNamespace:
+            return SimpleNamespace(
+                event=Event(
+                    id=event_id,
+                    adapter="onebot11",
+                    platform="qq",
+                    type="message",
+                    channel_id="room-1",
+                    user_id="alice",
+                    message=Message(event_id),
+                )
+            )
+
+        origin = context("origin")
+        first = context("first")
+        second = context("second")
+        both_evaluating = asyncio.Event()
+        release = asyncio.Event()
+        entered = 0
+
+        async def accept(_: object) -> bool:
+            nonlocal entered
+            entered += 1
+            if entered == 2:
+                both_evaluating.set()
+            await release.wait()
+            return True
+
+        waiter = asyncio.create_task(
+            manager.wait_for(origin, timeout=1.0, rule=accept)  # type: ignore[arg-type]
+        )
+        while not manager._waiters:
+            await asyncio.sleep(0)
+        consumers = [
+            asyncio.create_task(manager.consume(first)),  # type: ignore[arg-type]
+            asyncio.create_task(manager.consume(second)),  # type: ignore[arg-type]
+        ]
+        await both_evaluating.wait()
+        release.set()
+        consumed = await asyncio.gather(*consumers)
+
+        assert sorted(consumed) == [False, True]
+        assert await waiter in (first, second)
 
     asyncio.run(run())
 
@@ -284,6 +510,8 @@ def test_runtime_applies_handler_concurrency_backpressure(tmp_path: Path) -> Non
     "field,value",
     [
         ("max_concurrent_handlers", "0"),
+        ("max_pending_handlers", "0"),
+        ("handler_shutdown_timeout_seconds", "0.0"),
         ("session_backlog_max_keys", "0"),
         ("session_backlog_per_key", "0"),
         ("session_backlog_ttl_seconds", "0.0"),
