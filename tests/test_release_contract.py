@@ -30,6 +30,21 @@ def test_release_version_is_synchronized_across_package_metadata() -> None:
     assert f"## [{python_version}]" in changelog
 
 
+def test_mit_license_is_declared_across_release_packages() -> None:
+    license_text = (ROOT / "LICENSE").read_text(encoding="utf-8")
+    assert license_text.startswith("MIT License\n")
+
+    python_project = _load_toml("pyproject.toml")["project"]
+    assert python_project["license"] == "MIT"  # type: ignore[index]
+    assert python_project["license-files"] == ["LICENSE"]  # type: ignore[index]
+    assert _load_toml("Cargo.toml")["package"]["license"] == "MIT"  # type: ignore[index]
+
+    workspace = _load_toml("pyproject.toml")["tool"]["uv"]["workspace"]  # type: ignore[index]
+    for member in workspace["members"]:  # type: ignore[index]
+        project = _load_toml(f"{member}/pyproject.toml")["project"]
+        assert project["license"] == "MIT", member  # type: ignore[index]
+
+
 def test_tag_workflow_owns_the_github_and_pypi_release() -> None:
     workflow = (ROOT / ".github/workflows/release.yml").read_text(encoding="utf-8")
 

@@ -2,6 +2,7 @@
 name = "group-assistant-runtime"
 version = "0.1.0"
 description = "Group assistant iamai example."
+license = "MIT"
 requires-python = ">=3.11"
 dependencies = [
     "iamai",

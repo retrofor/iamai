@@ -2,6 +2,7 @@
 name = "supervisor-team-runtime"
 version = "0.1.0"
 description = "Supervisor multi-agent iamai example."
+license = "MIT"
 requires-python = ">=3.11"
 dependencies = [
     "iamai",
