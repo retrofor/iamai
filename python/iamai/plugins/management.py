@@ -2,10 +2,8 @@
 
 from __future__ import annotations
 
-import asyncio
 import json
-from collections.abc import Awaitable, Coroutine
-from typing import TYPE_CHECKING, Any, cast
+from typing import TYPE_CHECKING
 
 from pydantic import BaseModel
 
@@ -54,23 +52,6 @@ class ManagementPlugin(Plugin):
             ctx
         )
 
-    def _schedule(self, coro: Awaitable[Any], *, name: str) -> None:
-        task: asyncio.Task[Any] = asyncio.create_task(
-            cast(Coroutine[Any, Any, Any], coro), name=name
-        )
-        task.add_done_callback(self._log_task_failure)
-
-    @staticmethod
-    def _log_task_failure(task: asyncio.Task[object]) -> None:
-        try:
-            task.result()
-        except asyncio.CancelledError:
-            return
-        except Exception:
-            import logging
-
-            logging.getLogger("iamai.management").exception("background management task failed")
-
     @command(
         "reload",
         priority=0,
@@ -78,7 +59,7 @@ class ManagementPlugin(Plugin):
     )
     async def reload_plugins_command(self, ctx: "Context") -> None:
         """Schedule a plugin reload."""
-        self._schedule(ctx.runtime.reload_plugins(), name="management:reload-plugins")
+        ctx.runtime.request_plugin_reload()
         await ctx.reply("已调度插件热重载。")
 
     @command(
@@ -88,7 +69,7 @@ class ManagementPlugin(Plugin):
     )
     async def reload_config_command(self, ctx: "Context") -> None:
         """Schedule a full configuration reload."""
-        self._schedule(ctx.runtime.reload_config(), name="management:reload-config")
+        ctx.runtime.request_config_reload()
         await ctx.reply("已调度配置热重载。")
 
     @command(

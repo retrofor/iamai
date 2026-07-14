@@ -129,7 +129,7 @@ handler 或依赖注入 provider 里。
        @command("reload", permission=superusers())
        async def reload(self, ctx: Context) -> None:
            await ctx.reload_plugins()
-           await ctx.reply("plugins reloaded")
+           await ctx.reply("plugin reload scheduled")
 
 如果把身份判断写成 ``Rule``，后续调试时很难区分“消息没有匹配”和“用户没有权限”。
 

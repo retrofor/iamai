@@ -14,6 +14,7 @@ import logging
 import re
 import sys
 from collections import deque
+from collections.abc import Coroutine
 from dataclasses import dataclass
 from importlib import metadata
 from pathlib import Path
@@ -98,6 +99,7 @@ class Runtime:
         self._plugin_descriptor_map: dict[str, PluginDescriptor] = {}
         self._adapter_tasks: list[asyncio.Task[None]] = []
         self._adapter_failures: asyncio.Queue[BaseException] = asyncio.Queue()
+        self._dispatch_tasks: set[asyncio.Task[list[_HandlerJob]]] = set()
         self._handler_tasks: set[asyncio.Task[None]] = set()
         self._pending_handler_jobs: deque[_HandlerJob] = deque()
         self._handler_generation = 0
@@ -109,6 +111,9 @@ class Runtime:
         self._bootstrapped = False
         self._serving = False
         self._runtime_lock = asyncio.Lock()
+        self._lifecycle_lock = asyncio.Lock()
+        self._lifecycle_requests: set[asyncio.Task[None]] = set()
+        self._shutdown_complete = False
         self._hot_reload_task: asyncio.Task[None] | None = None
         self._plugin_watch_state: dict[str, Any] = {}
         self._python_path_entries: list[str] = []
@@ -254,9 +259,11 @@ class Runtime:
             "bootstrapped": self._bootstrapped,
             "plugins": len(self.plugins),
             "handlers": len(self.list_handlers()),
+            "dispatch_tasks": len(self._dispatch_tasks),
             "handler_tasks": len(self._handler_tasks),
             "handler_backlog": len(self._pending_handler_jobs),
             "handler_backlog_capacity": self._max_pending_handlers,
+            "handler_capacity": self._handler_capacity(),
             "adapters": len(self.adapters),
             "hot_reload": self._hot_reload_enabled(),
             "sessions": len(self.list_sessions()),
@@ -375,17 +382,23 @@ class Runtime:
         """Stop adapters, cancel handler tasks, and run plugin shutdown hooks."""
         self._serving = False
         self._stop_event.set()
-        await self._pause_handler_dispatch(cancel_active=True)
-        if self._hot_reload_task is not None:
-            self._hot_reload_task.cancel()
-            with contextlib.suppress(asyncio.CancelledError):
-                await self._hot_reload_task
-            self._hot_reload_task = None
-        await self._stop_adapters()
-        for plugin in reversed(self.plugins):
-            with contextlib.suppress(Exception):
-                self._save_plugin_state(plugin)
-                await plugin.shutdown()
+        async with self._lifecycle_lock:
+            if self._shutdown_complete:
+                return
+            await self._pause_handler_dispatch(cancel_active=True)
+            async with self._runtime_lock:
+                if self._hot_reload_task is not None:
+                    self._hot_reload_task.cancel()
+                    with contextlib.suppress(asyncio.CancelledError):
+                        await self._hot_reload_task
+                    self._hot_reload_task = None
+                await self._stop_adapters()
+                for plugin in reversed(self.plugins):
+                    with contextlib.suppress(Exception):
+                        self._save_plugin_state(plugin)
+                        await plugin.shutdown()
+                self._shutdown_complete = True
+        await self._cancel_lifecycle_requests()
 
     async def stop(self) -> None:
         """Request graceful process shutdown."""
@@ -393,10 +406,13 @@ class Runtime:
 
     async def reload_plugins(self) -> None:
         """Reload user plugins while keeping the current adapter set."""
-        async with self._runtime_lock:
+        self._ensure_lifecycle_outside_handler()
+        async with self._lifecycle_lock:
+            self._ensure_runtime_running()
             await self._pause_handler_dispatch(cancel_active=False)
             try:
-                await self._reload_plugins_locked()
+                async with self._runtime_lock:
+                    await self._reload_plugins_locked()
             finally:
                 self._resume_handler_dispatch()
 
@@ -442,10 +458,13 @@ class Runtime:
         if not config_path:
             await self.reload_plugins()
             return
-        async with self._runtime_lock:
+        self._ensure_lifecycle_outside_handler()
+        async with self._lifecycle_lock:
+            self._ensure_runtime_running()
             await self._pause_handler_dispatch(cancel_active=False)
             try:
-                await self._reload_config_locked(str(config_path))
+                async with self._runtime_lock:
+                    await self._reload_config_locked(str(config_path))
             finally:
                 self._resume_handler_dispatch()
 
@@ -517,8 +536,8 @@ class Runtime:
             )
             raise
 
-    async def dispatch(self, event: Event, adapter: Adapter) -> None:
-        """Dispatch one normalized event to matching handlers."""
+    async def dispatch(self, event: Event, adapter: Adapter) -> bool:
+        """Dispatch one event, returning whether the runtime admitted it."""
         if event.type == "meta_event":
             LOGGER.debug(
                 "event[%s] %s/%s text=%r",
@@ -535,6 +554,32 @@ class Runtime:
                 event.type,
                 event.text,
             )
+        if not self._try_admit_dispatch():
+            return False
+        evaluation = asyncio.create_task(
+            self._evaluate_dispatch(event, adapter),
+            name=f"dispatch:{event.id}",
+        )
+        self._dispatch_tasks.add(evaluation)
+        try:
+            handler_jobs = await asyncio.shield(evaluation)
+        except asyncio.CancelledError:
+            if evaluation.cancelled():
+                return False
+            evaluation.cancel()
+            await asyncio.gather(evaluation, return_exceptions=True)
+            raise
+        finally:
+            self._dispatch_tasks.discard(evaluation)
+
+        for job in handler_jobs:
+            self._schedule_handler_job(job)
+            if job.handler.spec.block:
+                break
+        return True
+
+    async def _evaluate_dispatch(self, event: Event, adapter: Adapter) -> list[_HandlerJob]:
+        """Evaluate sessions, rules, and permissions for one admitted event."""
         handler_jobs: list[_HandlerJob] = []
         async with self._runtime_lock:
             generation = self._handler_generation
@@ -549,7 +594,7 @@ class Runtime:
                 matches={},
             )
             if await self.sessions.consume(waiter_ctx):
-                return
+                return handler_jobs
             for plugin in plugins:
                 for handler in plugin.iter_handlers():
                     matches = self._match_handler(event, handler)
@@ -585,11 +630,7 @@ class Runtime:
                         break
                 if handler_jobs and handler_jobs[-1].handler.spec.block:
                     break
-
-        for job in handler_jobs:
-            self._schedule_handler_job(job)
-            if job.handler.spec.block:
-                return
+        return handler_jobs
 
     async def _execute_handler_job(
         self,
@@ -612,6 +653,9 @@ class Runtime:
         if not self._accepting_handlers or job.generation != self._handler_generation:
             self.count_metric("runtime_handler_dropped_total", reason="stale_generation")
             return
+        if self._handler_load() >= self._handler_capacity():
+            self.count_metric("runtime_handler_dropped_total", reason="queue_full")
+            return
         if len(self._handler_tasks) < self._max_concurrent_handlers:
             self._start_handler_job(job)
             return
@@ -619,6 +663,23 @@ class Runtime:
             self._pending_handler_jobs.append(job)
             return
         self.count_metric("runtime_handler_dropped_total", reason="queue_full")
+
+    def _try_admit_dispatch(self) -> bool:
+        if not self._accepting_handlers or self._stop_event.is_set():
+            self.count_metric("runtime_handler_dropped_total", reason="lifecycle")
+            return False
+        if self._handler_load() >= self._handler_capacity():
+            self.count_metric("runtime_handler_dropped_total", reason="queue_full")
+            return False
+        return True
+
+    def _handler_load(self) -> int:
+        return (
+            len(self._dispatch_tasks) + len(self._handler_tasks) + len(self._pending_handler_jobs)
+        )
+
+    def _handler_capacity(self) -> int:
+        return self._max_concurrent_handlers + self._max_pending_handlers
 
     def _start_handler_job(self, job: _HandlerJob) -> None:
         task = asyncio.create_task(
@@ -642,8 +703,16 @@ class Runtime:
             self._start_handler_job(job)
 
     async def _pause_handler_dispatch(self, *, cancel_active: bool) -> None:
+        self._ensure_lifecycle_outside_handler()
         self._accepting_handlers = False
         self._handler_generation += 1
+        dispatch_tasks = list(self._dispatch_tasks)
+        for dispatch_task in dispatch_tasks:
+            dispatch_task.cancel()
+        if dispatch_tasks:
+            await asyncio.gather(*dispatch_tasks, return_exceptions=True)
+            for dispatch_task in dispatch_tasks:
+                self._dispatch_tasks.discard(dispatch_task)
         if self._pending_handler_jobs:
             self.count_metric(
                 "runtime_handler_dropped_total",
@@ -652,26 +721,66 @@ class Runtime:
             )
             self._pending_handler_jobs.clear()
         tasks = list(self._handler_tasks)
-        current = asyncio.current_task()
-        if current in tasks:
-            raise RuntimeError("runtime lifecycle operations must be scheduled outside handlers")
         if not tasks:
             return
         if cancel_active:
-            for task in tasks:
-                task.cancel()
+            for handler_task in tasks:
+                handler_task.cancel()
         else:
             _, pending = await asyncio.wait(
                 tasks,
                 timeout=self._handler_shutdown_timeout_seconds,
             )
-            for task in pending:
-                task.cancel()
+            for handler_task in pending:
+                handler_task.cancel()
         await asyncio.gather(*tasks, return_exceptions=True)
 
     def _resume_handler_dispatch(self) -> None:
         if not self._stop_event.is_set():
             self._accepting_handlers = True
+
+    def request_plugin_reload(self) -> None:
+        """Schedule a plugin reload outside the current handler task."""
+        self._schedule_lifecycle_request(self.reload_plugins(), name="iamai:reload-plugins")
+
+    def request_config_reload(self) -> None:
+        """Schedule a configuration reload outside the current handler task."""
+        self._schedule_lifecycle_request(self.reload_config(), name="iamai:reload-config")
+
+    def _schedule_lifecycle_request(
+        self,
+        coro: Coroutine[Any, Any, None],
+        *,
+        name: str,
+    ) -> None:
+        task = asyncio.create_task(coro, name=name)
+        self._lifecycle_requests.add(task)
+        task.add_done_callback(self._lifecycle_request_done)
+
+    def _lifecycle_request_done(self, task: asyncio.Task[None]) -> None:
+        self._lifecycle_requests.discard(task)
+        if task.cancelled():
+            return
+        try:
+            task.result()
+        except Exception:
+            LOGGER.exception("background runtime lifecycle request failed")
+
+    async def _cancel_lifecycle_requests(self) -> None:
+        current = asyncio.current_task()
+        tasks = [task for task in self._lifecycle_requests if task is not current]
+        for task in tasks:
+            task.cancel()
+        if tasks:
+            await asyncio.gather(*tasks, return_exceptions=True)
+
+    def _ensure_lifecycle_outside_handler(self) -> None:
+        if asyncio.current_task() in self._handler_tasks:
+            raise RuntimeError("runtime lifecycle operations must be scheduled outside handlers")
+
+    def _ensure_runtime_running(self) -> None:
+        if self._stop_event.is_set():
+            raise RuntimeError("runtime is shutting down")
 
     def load_plugins(self) -> None:
         """Load plugins from the current configuration."""

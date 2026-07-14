@@ -283,6 +283,60 @@ def test_runtime_bounds_handler_backlog_and_sheds_overload(tmp_path: Path) -> No
     asyncio.run(run())
 
 
+def test_runtime_bounds_dispatch_evaluation_before_slow_rules(tmp_path: Path) -> None:
+    async def run() -> None:
+        entered = asyncio.Event()
+        release = asyncio.Event()
+
+        async def slow_rule() -> bool:
+            entered.set()
+            await release.wait()
+            return True
+
+        class SlowRulePlugin(Plugin):
+            name = "slow-rule"
+
+            @message_handler(rule=slow_rule)
+            async def handle(self) -> None:
+                return None
+
+        runtime = _make_runtime(tmp_path)
+        runtime.config["runtime"].update({"max_concurrent_handlers": 1, "max_pending_handlers": 2})
+        runtime = Runtime(runtime.config, base_path=tmp_path)
+        runtime._set_plugins([SlowRulePlugin(runtime)], [])
+        adapter = SimpleNamespace(name="test")
+
+        def event(event_id: str) -> Event:
+            return Event(
+                id=event_id,
+                adapter="test",
+                platform="test",
+                type="message",
+                channel_id="room-1",
+                user_id=event_id,
+                message=Message(event_id),
+            )
+
+        dispatches = [
+            asyncio.create_task(runtime.dispatch(event(str(index)), adapter))  # type: ignore[arg-type]
+            for index in range(100)
+        ]
+        await asyncio.wait_for(entered.wait(), timeout=1.0)
+        await asyncio.sleep(0)
+
+        assert len(runtime._dispatch_tasks) == 3
+        assert sum(task.done() for task in dispatches) == 97
+
+        release.set()
+        results = await asyncio.wait_for(asyncio.gather(*dispatches), timeout=1.0)
+        assert results.count(True) == 3
+        assert results.count(False) == 97
+        assert runtime.metrics.snapshot()["runtime_handler_dropped_total{reason=queue_full}"] == 97
+        await runtime.shutdown()
+
+    asyncio.run(run())
+
+
 def test_runtime_reload_discards_old_handler_backlog_before_plugin_shutdown(
     tmp_path: Path,
 ) -> None:
@@ -354,6 +408,165 @@ def test_runtime_reload_discards_old_handler_backlog_before_plugin_shutdown(
         assert new_plugin.started is True
         assert not runtime._pending_handler_jobs
         assert runtime._handler_tasks == set()
+        await runtime.shutdown()
+
+    asyncio.run(run())
+
+
+def test_runtime_reload_config_uses_lifecycle_pause(tmp_path: Path) -> None:
+    async def run() -> None:
+        runtime = _make_runtime(tmp_path)
+        runtime.config["__meta__"]["config_path"] = str(tmp_path / "iamai.toml")
+        observed: list[tuple[str, bool, int]] = []
+
+        async def reload_config_locked(config_path: str) -> None:
+            observed.append((config_path, runtime._accepting_handlers, runtime._handler_generation))
+
+        runtime._reload_config_locked = reload_config_locked  # type: ignore[method-assign]
+
+        await runtime.reload_config()
+
+        assert observed == [(str(tmp_path / "iamai.toml"), False, 1)]
+        assert runtime._accepting_handlers is True
+        await runtime.shutdown()
+
+    asyncio.run(run())
+
+
+def test_direct_handler_reload_rejection_preserves_dispatch_state(tmp_path: Path) -> None:
+    class DirectReloadPlugin(Plugin):
+        name = "direct-reload"
+
+        def __init__(self, runtime: Runtime) -> None:
+            super().__init__(runtime)
+            self.finished = asyncio.Event()
+            self.observed: tuple[bool, int] | None = None
+
+        @message_handler()
+        async def handle(self, ctx: object) -> None:
+            with pytest.raises(RuntimeError, match="scheduled outside handlers"):
+                await ctx.runtime.reload_plugins()  # type: ignore[attr-defined]
+            self.observed = (self.runtime._accepting_handlers, self.runtime._handler_generation)
+            self.finished.set()
+
+    async def run() -> None:
+        runtime = _make_runtime(tmp_path)
+        plugin = DirectReloadPlugin(runtime)
+        runtime._set_plugins([plugin], [])
+        adapter = SimpleNamespace(name="test")
+        event = Event(
+            id="direct-reload",
+            adapter="test",
+            platform="test",
+            type="message",
+            channel_id="room-1",
+            user_id="alice",
+            message=Message("reload"),
+        )
+
+        assert await runtime.dispatch(event, adapter) is True  # type: ignore[arg-type]
+        await asyncio.wait_for(plugin.finished.wait(), timeout=1.0)
+
+        assert plugin.observed == (True, 0)
+        await runtime.shutdown()
+
+    asyncio.run(run())
+
+
+def test_runtime_serializes_shutdown_after_plugin_reload(tmp_path: Path) -> None:
+    class CountingPlugin(Plugin):
+        name = "counting"
+
+        def __init__(self, runtime: Runtime, *, block_startup: bool = False) -> None:
+            super().__init__(runtime)
+            self.block_startup = block_startup
+            self.startup_entered = asyncio.Event()
+            self.startup_release = asyncio.Event()
+            self.shutdowns = 0
+
+        async def startup(self) -> None:
+            self.startup_entered.set()
+            if self.block_startup:
+                await self.startup_release.wait()
+
+        async def shutdown(self) -> None:
+            self.shutdowns += 1
+
+    async def run() -> None:
+        runtime = _make_runtime(tmp_path)
+        old_plugin = CountingPlugin(runtime)
+        new_plugin = CountingPlugin(runtime, block_startup=True)
+        runtime._set_plugins([old_plugin], [])
+        runtime._build_plugins = lambda **_: ([new_plugin], [])  # type: ignore[method-assign]
+
+        reload_task = asyncio.create_task(runtime.reload_plugins())
+        await asyncio.wait_for(new_plugin.startup_entered.wait(), timeout=1.0)
+        shutdown_task = asyncio.create_task(runtime.shutdown())
+        await asyncio.sleep(0)
+        new_plugin.startup_release.set()
+        await asyncio.wait_for(asyncio.gather(reload_task, shutdown_task), timeout=1.0)
+
+        assert old_plugin.shutdowns == 1
+        assert new_plugin.shutdowns == 1
+        assert runtime.plugins == [new_plugin]
+        assert runtime._shutdown_complete is True
+        await runtime.shutdown()
+        assert new_plugin.shutdowns == 1
+
+    asyncio.run(run())
+
+
+def test_context_reload_waits_until_handler_finishes(tmp_path: Path) -> None:
+    class ReloadingPlugin(Plugin):
+        name = "reloading"
+
+        def __init__(self, runtime: Runtime) -> None:
+            super().__init__(runtime)
+            self.handler_finished = asyncio.Event()
+            self.shutdown_finished = asyncio.Event()
+
+        @message_handler()
+        async def handle(self, ctx: object) -> None:
+            await ctx.reload_plugins()  # type: ignore[attr-defined]
+            self.handler_finished.set()
+
+        async def shutdown(self) -> None:
+            self.shutdown_finished.set()
+
+    class ReplacementPlugin(Plugin):
+        name = "replacement"
+
+        def __init__(self, runtime: Runtime) -> None:
+            super().__init__(runtime)
+            self.started = asyncio.Event()
+
+        async def startup(self) -> None:
+            self.started.set()
+
+    async def run() -> None:
+        runtime = _make_runtime(tmp_path)
+        old_plugin = ReloadingPlugin(runtime)
+        new_plugin = ReplacementPlugin(runtime)
+        runtime._set_plugins([old_plugin], [])
+        runtime._build_plugins = lambda **_: ([new_plugin], [])  # type: ignore[method-assign]
+        adapter = SimpleNamespace(name="test")
+        event = Event(
+            id="reload",
+            adapter="test",
+            platform="test",
+            type="message",
+            channel_id="room-1",
+            user_id="alice",
+            message=Message("reload"),
+        )
+
+        assert await runtime.dispatch(event, adapter) is True  # type: ignore[arg-type]
+        await asyncio.wait_for(old_plugin.handler_finished.wait(), timeout=1.0)
+        await asyncio.wait_for(new_plugin.started.wait(), timeout=1.0)
+        await asyncio.wait_for(old_plugin.shutdown_finished.wait(), timeout=1.0)
+
+        assert runtime.plugins == [new_plugin]
+        assert runtime._accepting_handlers is True
         await runtime.shutdown()
 
     asyncio.run(run())
@@ -685,6 +898,32 @@ def test_webhook_accepts_valid_signature_and_token(
 
     assert response.status == 200
     assert _response_json(response.body)["ok"] is True
+
+
+def test_webhook_reports_runtime_overload(tmp_path: Path) -> None:
+    runtime = _make_runtime(tmp_path)
+
+    async def dispatch(event: Event, adapter: object) -> bool:
+        return False
+
+    runtime.dispatch = dispatch  # type: ignore[method-assign]
+    adapter = WebhookAdapter(runtime, {"host": "127.0.0.1", "port": 8090, "path": "/events"})
+    request = _make_webhook_request(
+        b'{"message":"hello"}',
+        headers={"content-type": "application/json"},
+    )
+
+    response = asyncio.run(adapter._handle_request(request))
+
+    assert response.status == 503
+    assert response.headers["Retry-After"] == "1"
+    assert _response_json(response.body)["error"] == "runtime overloaded"
+    assert (
+        runtime.metrics.snapshot()[
+            "webhook_requests_total{adapter=webhook,outcome=overloaded,provider=generic,status=503}"
+        ]
+        == 1
+    )
 
 
 def test_webhook_rejects_invalid_signature(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:

@@ -33,7 +33,9 @@ class WebhookAdapter(Adapter):
         self.read_timeout = float(self.config.get("read_timeout", 10.0))
         self.max_body_bytes = int(self.config.get("max_body_bytes", 1_048_576))
         self.allow_event_reply_url = bool(self.config.get("allow_event_reply_url", False))
-        self.reply_url_allowlist = tuple(str(item) for item in self.config.get("reply_url_allowlist", []))
+        self.reply_url_allowlist = tuple(
+            str(item) for item in self.config.get("reply_url_allowlist", [])
+        )
         self.allow_private_reply_hosts = bool(self.config.get("allow_private_reply_hosts", False))
         self.allowed_reply_schemes = tuple(
             str(item).lower() for item in self.config.get("allowed_reply_schemes", ["https"])
@@ -51,7 +53,9 @@ class WebhookAdapter(Adapter):
     async def start(self) -> None:
         """Start the HTTP server and wait until the adapter is closed."""
         await self._server.start()
-        self.logger.info("webhook adapter listening on http://%s:%s%s", self.host, self.port, self.path)
+        self.logger.info(
+            "webhook adapter listening on http://%s:%s%s", self.host, self.port, self.path
+        )
         await self._closed.wait()
 
     async def close(self) -> None:
@@ -71,9 +75,15 @@ class WebhookAdapter(Adapter):
         reply_target = self._resolve_reply_target(event=event, target=target)
         if reply_target is None:
             rendered = message.render_text()
-            self.logger.info("webhook reply dropped because no reply_url is available: %s", rendered)
-            self.runtime.count_metric("webhook_reply_total", adapter=self.name, outcome="dropped", reason="no_reply_url")
-            self.runtime.audit("webhook.reply", adapter=self.name, outcome="dropped", reason="no_reply_url")
+            self.logger.info(
+                "webhook reply dropped because no reply_url is available: %s", rendered
+            )
+            self.runtime.count_metric(
+                "webhook_reply_total", adapter=self.name, outcome="dropped", reason="no_reply_url"
+            )
+            self.runtime.audit(
+                "webhook.reply", adapter=self.name, outcome="dropped", reason="no_reply_url"
+            )
             return {"ok": True, "message": rendered, "delivered": False}
         payload = {
             "message": message.render_text(),
@@ -164,7 +174,7 @@ class WebhookAdapter(Adapter):
             return HttpResponse.json({"ok": False, "error": "invalid payload"}, status=400)
         event = self._normalize_payload(payload)
         try:
-            await self.emit(event)
+            accepted = await self.emit(event)
         except Exception:
             self._record_request(
                 request,
@@ -175,6 +185,20 @@ class WebhookAdapter(Adapter):
                 event_id=event.id,
             )
             raise
+        if not accepted:
+            self._record_request(
+                request,
+                outcome="overloaded",
+                status=503,
+                reason="runtime_overloaded",
+                provider=auth_result.provider,
+                event_id=event.id,
+            )
+            return HttpResponse.json(
+                {"ok": False, "error": "runtime overloaded"},
+                status=503,
+                headers={"Retry-After": "1"},
+            )
         self._record_request(
             request,
             outcome="accepted",
@@ -320,6 +344,7 @@ def _client_ip(request: HttpRequest) -> str | None:
     if request.client is None:
         return None
     return str(request.client[0])
+
 
 if TYPE_CHECKING:
     from ..runtime import Runtime

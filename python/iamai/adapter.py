@@ -44,9 +44,10 @@ class Adapter(ABC):
         """Call an adapter-specific API action."""
         raise RuntimeError(f"adapter {self.name!r} does not expose call_api")
 
-    async def emit(self, event: Event) -> None:
-        """Emit a normalized event into the runtime dispatch pipeline."""
-        await self.runtime.dispatch(event, self)
+    async def emit(self, event: Event) -> bool:
+        """Emit an event and return whether the runtime admitted it."""
+        result = await self.runtime.dispatch(event, self)
+        return result is not False
 
 
 if TYPE_CHECKING:

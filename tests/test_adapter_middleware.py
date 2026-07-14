@@ -124,6 +124,30 @@ def test_json_http_webhook_middleware_emits_event_from_field_map(
     assert emitted[0].text == "hello"
 
 
+def test_json_http_webhook_middleware_reports_runtime_overload(tmp_path: Path) -> None:
+    runtime = _make_runtime(tmp_path)
+
+    async def dispatch(event: Event, adapter: Any) -> bool:
+        return False
+
+    runtime.dispatch = dispatch  # type: ignore[method-assign]
+    adapter = MinimalWebhookAdapter(runtime)
+    request = HttpRequest(
+        method="POST",
+        path="/events",
+        query_string="",
+        headers={"content-type": "application/json"},
+        body=b'{"sender":{"id":123},"body":{"text":"hello"}}',
+        client=("127.0.0.1", 12345),
+    )
+
+    response = asyncio.run(adapter._handle_http_request(request))
+
+    assert response.status == 503
+    assert response.headers["Retry-After"] == "1"
+    assert json.loads(response.body)["reason"] == "runtime overloaded"
+
+
 class FakeWebSocket:
     def __init__(self) -> None:
         self.sent: list[str] = []

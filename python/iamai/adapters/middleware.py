@@ -152,16 +152,17 @@ class AdapterMiddleware(Adapter):
         """Dispatch one encoded outbound action to the active transport."""
         raise NotImplementedError(f"adapter {self.name!r} does not dispatch outbound actions")
 
-    async def emit_normalized_payload(self, payload: Any, envelope: InboundEnvelope) -> None:
-        """Normalize and emit one decoded inbound payload."""
+    async def emit_normalized_payload(self, payload: Any, envelope: InboundEnvelope) -> bool:
+        """Normalize and emit a payload, returning whether all events were admitted."""
         events = self.normalize_payload(payload, envelope)
         if events is None:
-            return
+            return True
         if isinstance(events, Event):
-            await self.emit(events)
-            return
+            return await self.emit(events)
         for event in events:
-            await self.emit(event)
+            if not await self.emit(event):
+                return False
+        return True
 
 
 class JsonHttpWebhookMiddleware(AdapterMiddleware):
@@ -257,13 +258,22 @@ class JsonHttpWebhookMiddleware(AdapterMiddleware):
                 query=request.query,
                 client=request.client,
             )
-            await self.emit_normalized_payload(payload, envelope)
+            accepted = await self.emit_normalized_payload(payload, envelope)
         except Exception:
             self.logger.exception("failed to process %s HTTP payload", self.name)
             self._record_http_request(
                 request, outcome="invalid_payload", status=400, reason="invalid_payload"
             )
             return HttpResponse.json({"status": "failed", "reason": "invalid payload"}, status=400)
+        if not accepted:
+            self._record_http_request(
+                request, outcome="overloaded", status=503, reason="runtime_overloaded"
+            )
+            return HttpResponse.json(
+                {"status": "failed", "reason": "runtime overloaded"},
+                status=503,
+                headers={"Retry-After": "1"},
+            )
         self._record_http_request(request, outcome="accepted", status=200, reason="ok")
         return HttpResponse.json({"status": "ok"})
 
