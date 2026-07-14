@@ -2,12 +2,14 @@ from __future__ import annotations
 
 import asyncio
 import sys
+from collections.abc import Iterator
 from pathlib import Path
 from types import SimpleNamespace
 from typing import Any, cast
 from unittest.mock import AsyncMock
 
 import pytest
+from pydantic import ValidationError
 
 ROOT = Path(__file__).resolve().parents[1]
 EXAMPLE_SHARED = ROOT / "examples" / "_shared" / "src"
@@ -145,6 +147,74 @@ def test_reactor_memory_evicts_least_recently_used_sessions() -> None:
     sessions = cast(dict[str, dict[str, Any]], memory.state["sessions"])
     assert list(sessions) == ["onebot11:room-1:alice", "onebot11:room-1:carol"]
     assert memory.notes_for(cast(Any, alice)) == ["keep me"]
+
+
+@pytest.mark.parametrize(
+    "field", ["note_limit", "note_length_limit", "trace_limit", "session_limit"]
+)
+def test_reactor_memory_rejects_zero_limits(field: str) -> None:
+    with pytest.raises(ValidationError):
+        MemoryPlugin.config_model.model_validate({field: 0})
+
+
+def test_reactor_clips_persisted_notes() -> None:
+    runtime = FakeRuntime({})
+    memory = MemoryPlugin(cast(Any, runtime))
+    tools = ToolsPlugin(cast(Any, runtime))
+    runtime.plugins = {"memory": memory, "tools": tools}
+    ctx = SimpleNamespace(
+        runtime=runtime,
+        event=SimpleNamespace(adapter="onebot11", channel_id="room-1", user_id="alice"),
+    )
+
+    result = tools._remember("n" * 5_000, cast(Any, ctx))
+
+    assert len(memory.notes_for(cast(Any, ctx))[-1]) == 1_000
+    assert len(result.removeprefix("Stored note: ")) == 1_000
+
+
+@pytest.mark.parametrize("max_turns", [0, 21])
+def test_reactor_rejects_unbounded_turn_counts(max_turns: int) -> None:
+    with pytest.raises(ValidationError):
+        ReactorConfig(max_turns=max_turns)
+
+
+def test_reactor_clips_persisted_trace_payloads(monkeypatch: pytest.MonkeyPatch) -> None:
+    runtime = FakeRuntime({})
+    memory = MemoryPlugin(cast(Any, runtime))
+    tools = SimpleNamespace(
+        describe_tools=lambda: "large - returns a large result",
+        run_tool=AsyncMock(return_value="o" * 10_000),
+    )
+    mcp = SimpleNamespace(describe_tools=lambda: "(no MCP tools)")
+    runtime.plugins = {"memory": memory, "tools": tools, "mcp": mcp}
+    plugin = ReactorPlugin(cast(Any, runtime))
+    plugin._config_data = {"max_turns": 2}
+    plugin._config_object = ReactorConfig(max_turns=2)
+    responses: Iterator[dict[str, Any]] = iter(
+        [
+            {"thought": "use tool", "tool": "large", "input": "i" * 5_000},
+            {"thought": "done", "silent": True},
+        ]
+    )
+
+    async def fake_chat_json(*args: Any, **kwargs: Any) -> dict[str, Any]:
+        return next(responses)
+
+    monkeypatch.setattr(reactor_module, "chat_json", fake_chat_json)
+    ctx = SimpleNamespace(
+        runtime=runtime,
+        event=SimpleNamespace(adapter="onebot11", channel_id="room-1", user_id="alice"),
+        reply=AsyncMock(),
+    )
+
+    asyncio.run(plugin._run_react(cast(Any, ctx), "q" * 5_000))
+
+    stored = memory.traces_for(cast(Any, ctx))[-1]
+    tool_event = next(event for event in stored["agent_trace"]["events"] if event["kind"] == "tool")
+    assert len(stored["question"]) == 2_000
+    assert len(tool_event["input"]) == 1_000
+    assert len(tool_event["output"]) == 4_000
 
 
 def test_reactor_invalid_action_returns_an_explicit_error(

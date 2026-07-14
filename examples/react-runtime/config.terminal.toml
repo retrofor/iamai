@@ -23,6 +23,7 @@ allow_introspection = true
 
 [plugin.memory]
 note_limit = 12
+note_length_limit = 1000
 trace_limit = 6
 session_limit = 256
 

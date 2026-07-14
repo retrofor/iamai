@@ -7,8 +7,9 @@ from pydantic import BaseModel, Field
 
 
 class MemoryConfig(BaseModel):
-    note_limit: int = 12
-    trace_limit: int = 6
+    note_limit: int = Field(default=12, ge=1)
+    note_length_limit: int = Field(default=1000, ge=1)
+    trace_limit: int = Field(default=6, ge=1)
     session_limit: int = Field(default=256, ge=1)
 
 

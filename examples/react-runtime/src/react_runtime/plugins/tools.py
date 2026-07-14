@@ -8,6 +8,7 @@ from collections.abc import Callable
 from typing import Any, cast
 
 from iamai import Context, Plugin, ToolRegistry, command
+from iamai.agent import clip_text
 
 from react_runtime.plugins.memory import MemoryPlugin
 
@@ -85,6 +86,7 @@ class ToolsPlugin(Plugin):
         if not text:
             return "Nothing stored."
         memory = cast(MemoryPlugin, self.runtime.get_plugin("memory"))
+        text = clip_text(text, limit=int(memory.config.get("note_length_limit", 1000)))
         notes = memory.notes_for(ctx)
         notes.append(text)
         limit = int(memory.config.get("note_limit", 12))

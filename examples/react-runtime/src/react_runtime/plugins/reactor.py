@@ -22,7 +22,7 @@ _SOUL_PATH = Path(__file__).resolve().parents[3] / "SOUL.md"
 
 class ReactorConfig(BaseModel):
     llm: LLMSettings = Field(default_factory=LLMSettings)
-    max_turns: int = 5
+    max_turns: int = Field(default=5, ge=1, le=20)
     chat_mode: bool = False
 
 
@@ -61,7 +61,8 @@ class ReactorPlugin(Plugin):
         soul = ""
         if _SOUL_PATH.is_file():
             soul = "\n\n## 你的人格\n" + _SOUL_PATH.read_text(encoding="utf-8").strip()
-        trace = AgentTrace(f"react:{question}")
+        stored_question = clip_text(question, limit=2000)
+        trace = AgentTrace(f"react:{stored_question}")
         trace_lines: list[str] = []
         final_answer = ""
         was_silent = False
@@ -108,7 +109,7 @@ class ReactorPlugin(Plugin):
                 trace.add(
                     "error",
                     "invalid_action",
-                    input=question,
+                    input=stored_question,
                     output=final_answer,
                     turn=turn,
                 )
@@ -116,7 +117,7 @@ class ReactorPlugin(Plugin):
             if reply:
                 final_answer = clip_text(reply, limit=2500)
                 trace_lines.append(f"turn {turn}: thought={thought} reply={final_answer}")
-                trace.add("final", "answer", input=question, output=final_answer, turn=turn)
+                trace.add("final", "answer", input=stored_question, output=final_answer, turn=turn)
                 break
             if data.get("silent") is True:
                 trace_lines.append(f"turn {turn}: thought={thought} silent")
@@ -131,8 +132,8 @@ class ReactorPlugin(Plugin):
                 trace.add(
                     "tool",
                     tool_name,
-                    input=tool_input_raw,
-                    output=observation,
+                    input=clip_text(tool_input_raw, limit=1000),
+                    output=clip_text(observation, limit=4000),
                     turn=turn,
                     thought=thought,
                 )
@@ -145,10 +146,10 @@ class ReactorPlugin(Plugin):
         if not final_answer and not was_silent:
             final_answer = "I reached the turn limit; inspect the trace and answer from the observations above."
         traces = memory.traces_for(ctx)
-        trace.add("summary", "react", input=question, output=final_answer)
+        trace.add("summary", "react", input=stored_question, output=final_answer)
         traces.append(
             {
-                "question": question,
+                "question": stored_question,
                 "trace": list(trace_lines),
                 "final": final_answer,
                 "agent_trace": trace.to_dict(),
