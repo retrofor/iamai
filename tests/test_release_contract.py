@@ -33,7 +33,9 @@ def test_tag_workflow_owns_the_github_and_pypi_release() -> None:
     workflow = (ROOT / ".github/workflows/release.yml").read_text(encoding="utf-8")
 
     assert "tags: ['v*']" in workflow
-    assert "uv publish" in workflow
+    assert "uv publish --check-url https://pypi.org/simple" in workflow
     assert "gh release create" in workflow
     assert "gh release edit" in workflow
+    assert "--json isDraft" in workflow
+    assert workflow.index("uv publish") < workflow.index("gh release upload")
     assert not (ROOT / ".github/workflows/changelog.yml").exists()
