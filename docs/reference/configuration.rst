@@ -35,8 +35,11 @@
    同时执行的 handler 上限，默认 ``64``。
 
 ``max_pending_handlers``
-   并发上限之外可暂存的 handler 数量，默认 ``256``。队列满后新任务会被丢弃，并增加
-   ``runtime_handler_dropped_total{reason=queue_full}`` 指标，避免事件入口无限堆积。
+   并发上限之外可暂存的 handler 数量，默认 ``256``。handler 按事件原子接纳：如果一个
+   事件匹配的全部 handler 无法同时放入 ``max_concurrent_handlers + max_pending_handlers``
+   容量，则该事件的 handler 全部不执行，并增加
+   ``runtime_handler_dropped_total{reason=queue_full}`` 指标。可返回状态的 HTTP 适配器会向
+   调用方返回 ``503``。容量配置必须不小于单个事件可能匹配的最大 handler 数量。
 
 ``handler_shutdown_timeout_seconds``
    插件或配置重载时等待正在执行的 handler 自然结束的秒数，默认 ``5``。超时后会取消旧

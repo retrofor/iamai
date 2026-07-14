@@ -973,6 +973,57 @@ def test_webhook_reports_runtime_overload(tmp_path: Path) -> None:
     )
 
 
+def test_webhook_reports_atomic_multi_handler_overload(tmp_path: Path) -> None:
+    class FanoutPlugin(Plugin):
+        name = "fanout"
+
+        def __init__(self, runtime: Runtime) -> None:
+            super().__init__(runtime)
+            self.handled: list[str] = []
+
+        @message_handler()
+        async def first(self) -> None:
+            self.handled.append("first")
+
+        @message_handler()
+        async def second(self) -> None:
+            self.handled.append("second")
+
+        @message_handler()
+        async def third(self) -> None:
+            self.handled.append("third")
+
+    async def run() -> None:
+        configured = _make_runtime(tmp_path)
+        configured.config["runtime"].update(
+            {"max_concurrent_handlers": 1, "max_pending_handlers": 1}
+        )
+        runtime = Runtime(configured.config, base_path=tmp_path)
+        plugin = FanoutPlugin(runtime)
+        runtime._set_plugins([plugin], [])
+        adapter = WebhookAdapter(
+            runtime,
+            {"host": "127.0.0.1", "port": 8090, "path": "/events"},
+        )
+        request = _make_webhook_request(
+            b'{"message":"hello","user_id":"alice"}',
+            headers={"content-type": "application/json"},
+        )
+
+        response = await adapter._handle_request(request)
+        await asyncio.sleep(0)
+        metrics = runtime.metrics.snapshot()
+        await runtime.shutdown()
+
+        assert response.status == 503
+        assert response.headers["Retry-After"] == "1"
+        assert _response_json(response.body)["error"] == "runtime overloaded"
+        assert plugin.handled == []
+        assert metrics["runtime_handler_dropped_total{reason=queue_full}"] == 3
+
+    asyncio.run(run())
+
+
 def test_webhook_rejects_invalid_signature(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     now = 1_700_000_000
     monkeypatch.setattr("iamai.webhook_security.time.time", lambda: now)

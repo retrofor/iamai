@@ -15,6 +15,7 @@ All notable changes to iamai are documented in this file.
 - Raised the supported Python baseline to 3.11 and expanded CI coverage through Python 3.13.
 - Restored Ruff, Mypy, Pytest, Rust, docs, and example-config checks as release gates.
 - Consolidated tag publishing into one workflow that signs artifacts, publishes to PyPI, and creates a GitHub Release.
+- Made handler admission fail closed per event: capacity pressure rejects the complete matched handler set instead of executing a partial fan-out.
 
 ### Fixed
 

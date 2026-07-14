@@ -537,7 +537,11 @@ class Runtime:
             raise
 
     async def dispatch(self, event: Event, adapter: Adapter) -> bool:
-        """Dispatch one event, returning whether the runtime admitted it."""
+        """Dispatch one event, returning whether all matched handlers were admitted.
+
+        Handler admission is atomic per event. If the complete matched handler set
+        cannot fit within the configured capacity, none of its handlers are scheduled.
+        """
         if event.type == "meta_event":
             LOGGER.debug(
                 "event[%s] %s/%s text=%r",
