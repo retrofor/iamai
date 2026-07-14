@@ -491,13 +491,16 @@ class Runtime:
 
     async def dispatch(self, event: Event, adapter: Adapter) -> None:
         """Dispatch one normalized event to matching handlers."""
-        LOGGER.info(
-            "event[%s] %s/%s text=%r",
-            event.id,
-            event.adapter,
-            event.type,
-            event.text,
-        )
+        if event.type == "meta_event":
+            LOGGER.debug(
+                "event[%s] %s/%s text=%r",
+                event.id, event.adapter, event.type, event.text,
+            )
+        else:
+            LOGGER.info(
+                "event[%s] %s/%s text=%r",
+                event.id, event.adapter, event.type, event.text,
+            )
         handler_jobs: list[tuple[Context, BoundHandler, dict[str, list[Callable[..., Any]]]]] = []
         async with self._runtime_lock:
             plugins = list(self.plugins)

@@ -26,11 +26,11 @@ note_limit = 12
 trace_limit = 6
 
 [plugin.reactor]
-max_turns = 5
+max_turns = 8
 
 [plugin.reactor.llm]
 temperature = 0.5
-max_tokens = 500
+max_tokens = 2000
 
 [plugin.mcp.mcp_server.playwright]
 command = "npx"

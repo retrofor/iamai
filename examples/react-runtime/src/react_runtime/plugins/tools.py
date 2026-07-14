@@ -39,12 +39,12 @@ class ToolsPlugin(Plugin):
         )
         registry.register(
             "remember",
-            "store a user preference or fact",
+            "store a fact — input is plain text, e.g. 用户叫简律纯",
             lambda value, **_: self._remember(str(value or "")),
         )
         registry.register(
             "recall",
-            "search saved notes",
+            "search notes by keyword — input is a single word/phrase, e.g. 简律纯. empty input lists recent notes",
             lambda value, **_: self._recall(str(value or "")),
         )
         registry.register(
