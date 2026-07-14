@@ -337,6 +337,53 @@ def test_runtime_bounds_dispatch_evaluation_before_slow_rules(tmp_path: Path) ->
     asyncio.run(run())
 
 
+def test_runtime_rejects_multi_handler_event_atomically(tmp_path: Path) -> None:
+    class FanoutPlugin(Plugin):
+        name = "fanout"
+
+        def __init__(self, runtime: Runtime) -> None:
+            super().__init__(runtime)
+            self.handled: list[str] = []
+
+        @message_handler()
+        async def first(self) -> None:
+            self.handled.append("first")
+
+        @message_handler()
+        async def second(self) -> None:
+            self.handled.append("second")
+
+        @message_handler()
+        async def third(self) -> None:
+            self.handled.append("third")
+
+    async def run() -> None:
+        runtime = _make_runtime(tmp_path)
+        runtime.config["runtime"].update({"max_concurrent_handlers": 1, "max_pending_handlers": 1})
+        runtime = Runtime(runtime.config, base_path=tmp_path)
+        plugin = FanoutPlugin(runtime)
+        runtime._set_plugins([plugin], [])
+        adapter = SimpleNamespace(name="test")
+        event = Event(
+            id="fanout",
+            adapter="test",
+            platform="test",
+            type="message",
+            channel_id="room-1",
+            user_id="alice",
+            message=Message("fanout"),
+        )
+
+        assert await runtime.dispatch(event, adapter) is False  # type: ignore[arg-type]
+        await asyncio.sleep(0)
+
+        assert plugin.handled == []
+        assert runtime.metrics.snapshot()["runtime_handler_dropped_total{reason=queue_full}"] == 3
+        await runtime.shutdown()
+
+    asyncio.run(run())
+
+
 def test_runtime_reload_discards_old_handler_backlog_before_plugin_shutdown(
     tmp_path: Path,
 ) -> None:

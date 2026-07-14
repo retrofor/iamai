@@ -572,11 +572,7 @@ class Runtime:
         finally:
             self._dispatch_tasks.discard(evaluation)
 
-        for job in handler_jobs:
-            self._schedule_handler_job(job)
-            if job.handler.spec.block:
-                break
-        return True
+        return self._schedule_handler_jobs_atomically(handler_jobs)
 
     async def _evaluate_dispatch(self, event: Event, adapter: Adapter) -> list[_HandlerJob]:
         """Evaluate sessions, rules, and permissions for one admitted event."""
@@ -663,6 +659,29 @@ class Runtime:
             self._pending_handler_jobs.append(job)
             return
         self.count_metric("runtime_handler_dropped_total", reason="queue_full")
+
+    def _schedule_handler_jobs_atomically(self, jobs: list[_HandlerJob]) -> bool:
+        if not jobs:
+            return True
+        if not self._accepting_handlers or any(
+            job.generation != self._handler_generation for job in jobs
+        ):
+            self.count_metric(
+                "runtime_handler_dropped_total",
+                value=len(jobs),
+                reason="stale_generation",
+            )
+            return False
+        if self._handler_load() + len(jobs) > self._handler_capacity():
+            self.count_metric(
+                "runtime_handler_dropped_total",
+                value=len(jobs),
+                reason="queue_full",
+            )
+            return False
+        for job in jobs:
+            self._schedule_handler_job(job)
+        return True
 
     def _try_admit_dispatch(self) -> bool:
         if not self._accepting_handlers or self._stop_event.is_set():
