@@ -90,6 +90,7 @@ class Runtime:
         self._adapter_tasks: list[asyncio.Task[None]] = []
         self._adapter_failures: asyncio.Queue[BaseException] = asyncio.Queue()
         self._handler_tasks: set[asyncio.Task[None]] = set()
+        self._handler_slots = asyncio.Semaphore(1)
         self._stop_event = asyncio.Event()
         self._bootstrapped = False
         self._serving = False
@@ -99,6 +100,7 @@ class Runtime:
         self._python_path_entries: list[str] = []
         self._runtime_middlewares: list[tuple[str, int, Callable[..., Any]]] = []
         self.sessions = SessionManager()
+        self._configure_runtime_limits()
         self.state_store: StateStore = create_state_store(config, base_path=self.base_path)
         self.metrics = RuntimeMetrics()
         self.audit_logger = AuditLogger()
@@ -460,6 +462,7 @@ class Runtime:
                     self._apply_python_paths()
                     raise
 
+                self._configure_runtime_limits()
                 self._set_plugins(new_plugins, descriptors)
                 self._set_adapters(new_adapters, adapter_map)
                 if self._serving:
@@ -552,10 +555,16 @@ class Runtime:
                     break
 
         for ctx, handler, middlewares in handler_jobs:
-            task = asyncio.create_task(
-                self._execute_handler_job(ctx, handler, middlewares),
-                name=f"handler:{ctx.plugin.plugin_name}.{handler.spec.func_name}",
-            )
+            slots = self._handler_slots
+            await slots.acquire()
+            try:
+                task = asyncio.create_task(
+                    self._execute_handler_job(ctx, handler, middlewares, slots),
+                    name=f"handler:{ctx.plugin.plugin_name}.{handler.spec.func_name}",
+                )
+            except BaseException:
+                slots.release()
+                raise
             self._handler_tasks.add(task)
             task.add_done_callback(self._handler_tasks.discard)
             if handler.spec.block:
@@ -566,6 +575,7 @@ class Runtime:
         ctx: Context,
         handler: BoundHandler,
         middlewares: dict[str, list[Callable[..., Any]]],
+        slots: asyncio.Semaphore,
     ) -> None:
         try:
             await self._run_handler(ctx, handler, middlewares)
@@ -577,6 +587,8 @@ class Runtime:
                 ctx.plugin.plugin_name,
                 handler.spec.func_name,
             )
+        finally:
+            slots.release()
 
     def load_plugins(self) -> None:
         """Load plugins from the current configuration."""
@@ -620,6 +632,15 @@ class Runtime:
         self.register_dependency("state_store", self.state_store, annotation=StateStore)
         self.register_dependency("metrics", self.metrics, annotation=RuntimeMetrics)
         self.register_dependency("audit_logger", self.audit_logger, annotation=AuditLogger)
+
+    def _configure_runtime_limits(self) -> None:
+        config = self.runtime_config
+        self._handler_slots = asyncio.Semaphore(int(config.get("max_concurrent_handlers", 64)))
+        self.sessions.configure(
+            max_backlog_keys=int(config.get("session_backlog_max_keys", 1024)),
+            max_backlog_per_key=int(config.get("session_backlog_per_key", 3)),
+            backlog_ttl_seconds=float(config.get("session_backlog_ttl_seconds", 300.0)),
+        )
 
     def _start_adapters(self) -> None:
         self._adapter_tasks = [

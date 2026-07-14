@@ -91,6 +91,10 @@ class RuntimeConfigModel(BaseModel):
     disable_builtin_plugins: list[str] = Field(default_factory=list)
     hot_reload: HotReloadConfig | bool = False
     allow_external_paths: bool = False
+    max_concurrent_handlers: int = 64
+    session_backlog_max_keys: int = 1024
+    session_backlog_per_key: int = 3
+    session_backlog_ttl_seconds: float = 300.0
 
     @field_validator(
         "command_prefixes",
@@ -116,6 +120,24 @@ class RuntimeConfigModel(BaseModel):
         if any(not item for item in value):
             raise ValueError("command_prefixes cannot contain empty strings")
         return value or ["/"]
+
+    @field_validator(
+        "max_concurrent_handlers",
+        "session_backlog_max_keys",
+        "session_backlog_per_key",
+    )
+    @classmethod
+    def _positive_int(cls, value: int) -> int:
+        if int(value) <= 0:
+            raise ValueError("value must be greater than 0")
+        return int(value)
+
+    @field_validator("session_backlog_ttl_seconds")
+    @classmethod
+    def _positive_float(cls, value: float) -> float:
+        if float(value) <= 0:
+            raise ValueError("value must be greater than 0")
+        return float(value)
 
 
 class OneBot11ConfigModel(BaseModel):

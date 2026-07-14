@@ -9,7 +9,7 @@ from textwrap import dedent
 from types import SimpleNamespace
 
 import pytest
-from iamai import Event, Message, Runtime
+from iamai import Event, Message, Plugin, Runtime, message_handler
 from iamai.adapters.onebot11 import OneBot11Adapter
 from iamai.adapters.webhook import WebhookAdapter
 from iamai.config import ConfigValidationError, load_config
@@ -159,6 +159,146 @@ def test_session_key_is_scoped_by_adapter_channel_and_user() -> None:
     assert first_key == "onebot11:room-1:alice"
     assert second_key == "onebot11:room-1:bob"
     assert first_key != second_key
+
+
+def test_session_backlog_evicts_oldest_keys_and_limits_each_key() -> None:
+    async def run() -> None:
+        manager = SessionManager(max_backlog_keys=2, max_backlog_per_key=1)
+
+        def context(user: str, event_id: str) -> SimpleNamespace:
+            return SimpleNamespace(
+                event=Event(
+                    id=event_id,
+                    adapter="onebot11",
+                    platform="qq",
+                    type="message",
+                    channel_id="room-1",
+                    user_id=user,
+                    message=Message(event_id),
+                )
+            )
+
+        alice = context("alice", "alice-old")
+        bob_old = context("bob", "bob-old")
+        bob_new = context("bob", "bob-new")
+        carol = context("carol", "carol")
+        await manager.consume(alice)  # type: ignore[arg-type]
+        await manager.consume(bob_old)  # type: ignore[arg-type]
+        await manager.consume(bob_new)  # type: ignore[arg-type]
+        await manager.consume(carol)  # type: ignore[arg-type]
+
+        with pytest.raises(TimeoutError):
+            await manager.wait_for(alice, timeout=0.001)  # type: ignore[arg-type]
+        bob = await manager.wait_for(bob_new, timeout=0.001)  # type: ignore[arg-type]
+        assert bob.event.id == "bob-new"
+
+    asyncio.run(run())
+
+
+def test_session_backlog_discards_expired_contexts() -> None:
+    async def run() -> None:
+        now = 100.0
+        manager = SessionManager(backlog_ttl_seconds=10.0)
+        manager._clock = lambda: now
+        ctx = SimpleNamespace(
+            event=Event(
+                id="expired",
+                adapter="onebot11",
+                platform="qq",
+                type="message",
+                channel_id="room-1",
+                user_id="alice",
+                message=Message("expired"),
+            )
+        )
+        await manager.consume(ctx)  # type: ignore[arg-type]
+
+        now = 111.0
+        with pytest.raises(TimeoutError):
+            await manager.wait_for(ctx, timeout=0.001)  # type: ignore[arg-type]
+
+    asyncio.run(run())
+
+
+def test_runtime_applies_handler_concurrency_backpressure(tmp_path: Path) -> None:
+    class BlockingPlugin(Plugin):
+        name = "blocking"
+
+        def __init__(self, runtime: Runtime) -> None:
+            super().__init__(runtime)
+            self.release = asyncio.Event()
+            self.started = asyncio.Event()
+            self.finished = asyncio.Event()
+            self.running = 0
+            self.max_running = 0
+            self.handled = 0
+
+        @message_handler()
+        async def handle(self) -> None:
+            self.running += 1
+            self.max_running = max(self.max_running, self.running)
+            self.started.set()
+            await self.release.wait()
+            self.running -= 1
+            self.handled += 1
+            if self.handled == 2:
+                self.finished.set()
+
+    async def run() -> None:
+        runtime = _make_runtime(tmp_path)
+        runtime.config["runtime"]["max_concurrent_handlers"] = 1
+        runtime = Runtime(runtime.config, base_path=tmp_path)
+        plugin = BlockingPlugin(runtime)
+        runtime._set_plugins([plugin], [])
+        adapter = SimpleNamespace(name="test")
+
+        def event(event_id: str) -> Event:
+            return Event(
+                id=event_id,
+                adapter="test",
+                platform="test",
+                type="message",
+                channel_id="room-1",
+                user_id=event_id,
+                message=Message(event_id),
+            )
+
+        await runtime.dispatch(event("first"), adapter)  # type: ignore[arg-type]
+        await plugin.started.wait()
+        second_dispatch = asyncio.create_task(
+            runtime.dispatch(event("second"), adapter)  # type: ignore[arg-type]
+        )
+        await asyncio.sleep(0)
+        assert not second_dispatch.done()
+
+        plugin.release.set()
+        await second_dispatch
+        await asyncio.wait_for(plugin.finished.wait(), timeout=1.0)
+        await runtime.shutdown()
+        assert plugin.max_running == 1
+
+    asyncio.run(run())
+
+
+@pytest.mark.parametrize(
+    "field,value",
+    [
+        ("max_concurrent_handlers", "0"),
+        ("session_backlog_max_keys", "0"),
+        ("session_backlog_per_key", "0"),
+        ("session_backlog_ttl_seconds", "0.0"),
+    ],
+)
+def test_load_config_rejects_non_positive_runtime_limits(
+    tmp_path: Path,
+    field: str,
+    value: str,
+) -> None:
+    config_path = tmp_path / "config.toml"
+    config_path.write_text(f"[runtime]\n{field} = {value}\n", encoding="utf-8")
+
+    with pytest.raises(ConfigValidationError, match="greater than 0"):
+        load_config(config_path)
 
 
 def test_runtime_list_adapters_redacts_sensitive_values(tmp_path: Path) -> None:

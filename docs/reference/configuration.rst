@@ -31,6 +31,15 @@
 ``superusers``
    管理命令和敏感操作的特权用户 ID。
 
+``max_concurrent_handlers``
+   同时执行的 handler 上限。达到上限时，事件分发会等待空位，默认 ``64``。
+
+``session_backlog_max_keys`` / ``session_backlog_per_key``
+   等待会话建立前可暂存的会话 key 总数和每个 key 的消息数，默认分别为 ``1024`` 和 ``3``。
+
+``session_backlog_ttl_seconds``
+   等待会话 backlog 的保留秒数，默认 ``300``。过期消息不会交给新 waiter。
+
 ``[logging]``
 -------------
 
