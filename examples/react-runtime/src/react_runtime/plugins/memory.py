@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Any, cast
+
 from iamai import Context, Plugin, command, middleware
 from pydantic import BaseModel
 
@@ -14,15 +16,31 @@ class MemoryPlugin(Plugin):
     description = "State buffers and friendly error handling for the ReAct loop."
     config_model = MemoryConfig
 
+    def session_state(self, ctx: Context) -> dict[str, Any]:
+        sessions = cast(
+            dict[str, dict[str, Any]],
+            self.state.setdefault("sessions", {}),
+        )
+        key = ctx.runtime.sessions.session_key(ctx)
+        bucket = sessions.setdefault(key, {})
+        bucket.setdefault("notes", [])
+        bucket.setdefault("traces", [])
+        bucket.setdefault("last_error", "")
+        return bucket
+
+    def notes_for(self, ctx: Context) -> list[str]:
+        return cast(list[str], self.session_state(ctx)["notes"])
+
+    def traces_for(self, ctx: Context) -> list[dict[str, Any]]:
+        return cast(list[dict[str, Any]], self.session_state(ctx)["traces"])
+
     @middleware(phase="before", priority=0)
     async def ensure_buffers(self, ctx: Context) -> None:
-        self.state.setdefault("notes", [])
-        self.state.setdefault("traces", [])
-        self.state.setdefault("last_error", "")
+        self.session_state(ctx)
 
     @middleware(phase="error", priority=0)
     async def explain_agent_error(self, ctx: Context, error: Exception) -> bool:
-        self.state["last_error"] = str(error)
+        self.session_state(ctx)["last_error"] = str(error)
         if ctx.plugin.plugin_name != "reactor":
             return False
         await ctx.reply(f"react loop stopped: {error}")
@@ -30,7 +48,7 @@ class MemoryPlugin(Plugin):
 
     @command("notes", priority=80)
     async def notes(self, ctx: Context) -> None:
-        notes = self.state.get("notes", [])
+        notes = self.notes_for(ctx)
         if not notes:
             await ctx.reply("No notes stored.")
             return

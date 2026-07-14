@@ -29,8 +29,8 @@ class ReactorConfig(BaseModel):
 class ReactorPlugin(Plugin):
     name = "reactor"
     description = "Runs a ReAct loop over local tools."
-    requires = ("memory", "tools")
-    load_after = ("tools",)
+    requires = ("mcp", "memory", "tools")
+    load_after = ("mcp", "tools")
     config_model = ReactorConfig
 
     @command("ask", priority=10)
@@ -88,7 +88,7 @@ class ReactorPlugin(Plugin):
                         "content": (
                             f"Question: {question}\n\n"
                             f"Available tools:\n{all_tools}\n\n"
-                            f"Saved notes:\n{format_transcript(memory.state.get('notes', []), limit=8)}\n\n"
+                            f"Saved notes:\n{format_transcript(memory.notes_for(ctx), limit=8)}\n\n"
                             f"Trace so far:\n{format_transcript(trace_lines, limit=10)}"
                         ),
                     },
@@ -97,7 +97,22 @@ class ReactorPlugin(Plugin):
             )
             data = payload if isinstance(payload, dict) else {}
             thought = clip_text(str(data.get("thought", "")).strip() or f"turn {turn}", limit=120)
-            reply = str(data.get("reply", "")).strip()
+            reply_value = data.get("reply")
+            reply = reply_value.strip() if isinstance(reply_value, str) else ""
+            tool_value = data.get("tool")
+            tool_name = tool_value.strip() if isinstance(tool_value, str) else ""
+            action_count = sum((bool(reply), data.get("silent") is True, bool(tool_name)))
+            if action_count != 1:
+                final_answer = "The model returned an invalid action. Please try again."
+                trace_lines.append(f"turn {turn}: thought={thought} invalid action")
+                trace.add(
+                    "error",
+                    "invalid_action",
+                    input=question,
+                    output=final_answer,
+                    turn=turn,
+                )
+                break
             if reply:
                 final_answer = clip_text(reply, limit=2500)
                 trace_lines.append(f"turn {turn}: thought={thought} reply={final_answer}")
@@ -107,7 +122,6 @@ class ReactorPlugin(Plugin):
                 trace_lines.append(f"turn {turn}: thought={thought} silent")
                 was_silent = True
                 break
-            tool_name = str(data.get("tool", "")).strip()
             tool_input_raw = data.get("input", "")
             if tool_name:
                 if "." in tool_name:
@@ -128,11 +142,9 @@ class ReactorPlugin(Plugin):
                     f"observation={clip_text(observation, limit=140)}"
                 )
                 continue
-            was_silent = True
-            break
         if not final_answer and not was_silent:
             final_answer = "I reached the turn limit; inspect the trace and answer from the observations above."
-        traces = memory.state.setdefault("traces", [])
+        traces = memory.traces_for(ctx)
         trace.add("summary", "react", input=question, output=final_answer)
         traces.append(
             {
@@ -154,8 +166,8 @@ class ReactorPlugin(Plugin):
 
     @command("react-trace", priority=20)
     async def show_trace(self, ctx: Context) -> None:
-        memory = ctx.runtime.get_plugin("memory")
-        traces = memory.state.get("traces", [])
+        memory = cast(MemoryPlugin, ctx.runtime.get_plugin("memory"))
+        traces = memory.traces_for(ctx)
         if not traces:
             await ctx.reply("No trace recorded yet.")
             return
