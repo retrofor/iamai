@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import sys
 from pathlib import Path
+from unittest.mock import MagicMock
 
 ROOT = Path(__file__).resolve().parents[1]
 PYTHON_SOURCE = ROOT / "python"
@@ -10,22 +11,25 @@ DOCS_EXT = ROOT / "docs" / "_ext"
 sys.path.insert(0, str(PYTHON_SOURCE))
 sys.path.insert(0, str(DOCS_EXT))
 
-# Mock the Rust extension for Read the Docs builds
-# The _core module is a Rust extension that can't be built in RTD environment
-import sys as _sys
-from unittest.mock import MagicMock
-
-
 class MockCoreModule(MagicMock):
     """Mock for the Rust _core extension."""
 
     CoreMessage = MagicMock
-    deep_merge_json = lambda a, b: b  # type: ignore
-    next_event_id = lambda: "mock_event_id"  # type: ignore
-    normalize_onebot11_event = lambda raw, adapter, platform: raw  # type: ignore
+
+    @staticmethod
+    def deep_merge_json(base: str, overlay: str) -> str:
+        return overlay
+
+    @staticmethod
+    def next_event_id() -> str:
+        return "mock_event_id"
+
+    @staticmethod
+    def normalize_onebot11_event(raw: str, adapter: str, platform: str) -> str:
+        return raw
 
 
-_sys.modules["iamai._core"] = MockCoreModule()
+sys.modules["iamai._core"] = MockCoreModule()
 
 project = "iamai"
 author = "iamai contributors"

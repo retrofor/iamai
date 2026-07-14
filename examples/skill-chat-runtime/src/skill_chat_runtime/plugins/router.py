@@ -2,11 +2,15 @@ from __future__ import annotations
 
 import logging
 import re
+from typing import cast
 
 from iamai import Context, Plugin, command, message_handler
 from pydantic import BaseModel, Field
 
 from skill_chat_runtime.data import read_json
+from skill_chat_runtime.plugins.memory import MemoryPlugin
+from skill_chat_runtime.plugins.skills import SkillsPlugin
+from skill_chat_runtime.plugins.tools import ToolsPlugin
 from skill_chat_runtime.skilllib import RouteDecision, TraceRecord, slugify, summarize
 
 logger = logging.getLogger(__name__)
@@ -43,7 +47,7 @@ class RouterPlugin(Plugin):
 
     def _route(self, text: str) -> RouteDecision:
         clean = " ".join(text.split()).strip()
-        skills = self.runtime.get_plugin("skills")
+        skills = cast(SkillsPlugin, self.runtime.get_plugin("skills"))
         candidate, score, reasons = skills.best_match(clean)
         if candidate is not None and score >= float(self.config.get("skill_threshold", 0.45)):
             return RouteDecision(
@@ -86,9 +90,9 @@ class RouterPlugin(Plugin):
         clean = " ".join(text.split()).strip()
         if not clean:
             return ""
-        tools = self.runtime.get_plugin("tools")
-        memory = self.runtime.get_plugin("memory")
-        skills = self.runtime.get_plugin("skills")
+        tools = cast(ToolsPlugin, self.runtime.get_plugin("tools"))
+        memory = cast(MemoryPlugin, self.runtime.get_plugin("memory"))
+        skills = cast(SkillsPlugin, self.runtime.get_plugin("skills"))
         decision = self._route(clean)
         logger.info(
             "route origin=%s source=%s tool=%s skill=%s reason=%s input=%s",
@@ -119,10 +123,7 @@ class RouterPlugin(Plugin):
             trace.status = "success"
             trace.reply_text = reply
             memory.append_trace(trace)
-            if (
-                origin != "inspect"
-                and bool(skills.config.get("auto_promote", True))
-            ):
+            if origin != "inspect" and bool(skills.config.get("auto_promote", True)):
                 generated = skills.ingest_trace(trace)
                 if generated is not None:
                     logger.info(
@@ -154,7 +155,8 @@ class RouterPlugin(Plugin):
             await ctx.reply("Usage: /route <message>")
             return
         reply = await self._turn(ctx, text, origin="inspect")
-        trace = self.runtime.get_plugin("memory").last_trace()
+        memory = cast(MemoryPlugin, self.runtime.get_plugin("memory"))
+        trace = memory.last_trace()
         if trace is None:
             await ctx.reply(reply)
             return

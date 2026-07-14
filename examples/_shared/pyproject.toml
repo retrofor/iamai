@@ -3,7 +3,7 @@ name = "iamai-example-utils"
 version = "0.1.0"
 description = "Shared helpers for iamai LLM examples."
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = [
     "openai>=1.76,<2",
     "pydantic>=2.11,<3",

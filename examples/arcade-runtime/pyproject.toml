@@ -2,7 +2,7 @@
 name = "arcade-runtime"
 version = "0.1.0"
 description = "Arcade-style iamai example."
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = [
     "iamai",
 ]

@@ -3,15 +3,16 @@ from __future__ import annotations
 import ast
 import logging
 import operator
-from collections.abc import Callable
+from collections.abc import Awaitable, Callable
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 from iamai import Context, Plugin, ToolRegistry
 from iamai.config import load_env_file
 from iamai_example_utils import LLMSettings, chat_text, format_transcript, resolve_llm_settings
 from pydantic import BaseModel, Field
 
+from skill_chat_runtime.plugins.skills import SkillsPlugin
 from skill_chat_runtime.skilllib import summarize
 
 logger = logging.getLogger(__name__)
@@ -64,7 +65,12 @@ class ToolsPlugin(Plugin):
         self.state["registry"] = registry
         return registry
 
-    def _wrap_tool(self, callback: Callable[..., str], *, needs_ctx: bool) -> Callable[..., str]:
+    def _wrap_tool(
+        self,
+        callback: Callable[..., str | Awaitable[str]],
+        *,
+        needs_ctx: bool,
+    ) -> Callable[..., str | Awaitable[str]]:
         """Adapt plugin methods to the registry signature without leaking ctx into plain tools."""
         if needs_ctx:
             return lambda value, **kwargs: callback(str(value or ""), **kwargs)
@@ -146,7 +152,7 @@ class ToolsPlugin(Plugin):
 
     def _search_skill(self, value: str, *, ctx: Context) -> str:
         """Search skill manifests by query and return formatted results."""
-        skills = self.runtime.get_plugin("skills")
+        skills = cast(SkillsPlugin, self.runtime.get_plugin("skills"))
         return skills.format_search(value or ctx.text, limit=5)
 
     async def _llm_reply(self, value: str, *, ctx: Context) -> str:
