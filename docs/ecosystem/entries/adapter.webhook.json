@@ -4,7 +4,7 @@
   "type": "adapter",
   "summary": "Generic signed JSON webhook adapter for internal systems, GitHub, Stripe, and custom event sources.",
   "package": "iamai",
-  "repository": "https://github.com/iamai/iamai",
+  "repository": "https://github.com/retrofor/iamai",
   "license": "MIT",
   "status": "active",
   "verification": ["official", "package_verified", "security_reviewed"],
@@ -12,7 +12,7 @@
   "tags": ["builtin", "http", "webhook", "signature"],
   "platforms": ["generic"],
   "install_command": "uv add iamai",
-  "source_url": "https://github.com/iamai/iamai",
+  "source_url": "https://github.com/retrofor/iamai",
   "security_notes": "Use signature_secret and reply_url_allowlist for public deployments.",
   "updated_at": "2026-04-26"
 }

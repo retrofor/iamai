@@ -77,14 +77,14 @@ html_css_files = ["custom.css"]
 html_logo = "_static/brand/iamai-logo.svg"
 html_favicon = "_static/brand/favicon.ico"
 iamai_store_registry_paths = ["ecosystem/entries"]
-iamai_store_github_repo = "iamai/iamai"
+iamai_store_github_repo = "retrofor/iamai"
 iamai_blog_registry_paths = ["community/blog/posts"]
 iamai_docs_current_version = "dev"
 iamai_docs_current_language = "zh_CN"
 iamai_docs_versions = [
     {"name": "dev", "label": "Development", "url": "#", "current": True},
     {"name": "latest", "label": "Latest", "url": "/latest/zh_CN/"},
-    {"name": "0.1", "label": "0.1", "url": "/0.1/zh_CN/"},
+    {"name": "0.3", "label": "0.3", "url": "/0.3/zh_CN/"},
 ]
 iamai_docs_languages = [
     {"name": "zh_CN", "label": "中文", "url": "#", "current": True},

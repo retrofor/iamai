@@ -4,7 +4,7 @@
   "type": "agent_tool",
   "summary": "Example multi-agent supervisor pattern with role workers, handoff queues, and review output.",
   "package": null,
-  "repository": "https://github.com/iamai/iamai",
+  "repository": "https://github.com/retrofor/iamai",
   "license": "MIT",
   "status": "active",
   "verification": ["official"],
@@ -14,7 +14,7 @@
   "requires": [],
   "install_command": null,
   "docs_url": null,
-  "source_url": "https://github.com/iamai/iamai/tree/main/examples/supervisor-team-runtime",
+  "source_url": "https://github.com/retrofor/iamai/tree/dev/examples/supervisor-team-runtime",
   "security_notes": "Worker outputs are routed through a supervisor review step before being returned.",
   "updated_at": "2026-04-26"
 }

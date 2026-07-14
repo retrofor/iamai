@@ -1,0 +1,24 @@
+# Changelog
+
+All notable changes to iamai are documented in this file.
+
+## [0.3.0] - 2026-07-14
+
+### Added
+
+- Added the Skill Chat runtime example with memory, skills, tool routing, and management integration.
+- Extended the ReAct runtime with MCP tools, persona-aware chat mode, configurable model request bodies, and deterministic mock coverage.
+- Added configurable handler concurrency backpressure and bounded session backlogs with per-key limits and expiry.
+
+### Changed
+
+- Raised the supported Python baseline to 3.11 and expanded CI coverage through Python 3.13.
+- Restored Ruff, Mypy, Pytest, Rust, docs, and example-config checks as release gates.
+- Consolidated tag publishing into one workflow that signs artifacts, publishes to PyPI, and creates a GitHub Release.
+
+### Fixed
+
+- Fixed plugin loading on Windows paths and tightened example runtime type safety.
+- Fixed example LLM environment precedence, extra request body validation, and test-time log pollution.
+
+[0.3.0]: https://github.com/retrofor/iamai/releases/tag/v0.3.0

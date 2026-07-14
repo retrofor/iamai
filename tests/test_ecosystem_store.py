@@ -154,9 +154,9 @@ def test_store_submission_issue_body_contains_registry_json() -> None:
 def test_store_submission_issue_url_targets_configured_repo() -> None:
     submission = StoreSubmission.model_validate(_submission())
 
-    url = build_submission_issue_url("iamai/iamai", submission)
+    url = build_submission_issue_url("retrofor/iamai", submission)
 
-    assert url.startswith("https://github.com/iamai/iamai/issues/new?")
+    assert url.startswith("https://github.com/retrofor/iamai/issues/new?")
     assert "template=ecosystem-submission.yml" in url
     assert "%5BEcosystem%5D+Echo+Plugin" in url
     assert "runtime_capabilities=network%3Ahttp" in url
@@ -164,7 +164,7 @@ def test_store_submission_issue_url_targets_configured_repo() -> None:
 
 def test_store_submit_directive_outputs_submission_mount() -> None:
     class _Config:
-        iamai_store_github_repo = "iamai/iamai"
+        iamai_store_github_repo = "retrofor/iamai"
         iamai_store_issue_template = "ecosystem-submission.yml"
         iamai_store_submit_api_url = ""
 
@@ -189,4 +189,4 @@ def test_store_submit_directive_outputs_submission_mount() -> None:
 
     html = nodes[0].astext()
     assert "data-iamai-store-submit" in html
-    assert 'data-github-repo="iamai/iamai"' in html
+    assert 'data-github-repo="retrofor/iamai"' in html

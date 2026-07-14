@@ -4,7 +4,7 @@
   "type": "adapter",
   "summary": "Built-in OneBot11 HTTP webhook mode with access-token checks and HTTP API calls.",
   "package": "iamai",
-  "repository": "https://github.com/iamai/iamai",
+  "repository": "https://github.com/retrofor/iamai",
   "license": "MIT",
   "status": "active",
   "verification": ["official", "package_verified", "security_reviewed"],
@@ -14,7 +14,7 @@
   "requires": [],
   "install_command": "uv add iamai",
   "docs_url": null,
-  "source_url": "https://github.com/iamai/iamai/blob/main/python/iamai/adapters/onebot11.py",
+  "source_url": "https://github.com/retrofor/iamai/blob/dev/python/iamai/adapters/onebot11.py",
   "security_notes": "Use access tokens and bind the webhook listener behind trusted network boundaries.",
   "updated_at": "2026-04-26"
 }

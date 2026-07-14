@@ -17,4 +17,3 @@ docs/_build/
 docs/api/generated/
 
 *.log
-uv.lock

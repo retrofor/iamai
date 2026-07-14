@@ -7,9 +7,7 @@
 name: release
 on:
   push:
-    branches: [main, master]
-    tags: ['*']
-  pull_request:
+    tags: ['v*']
   workflow_dispatch:
 permissions:
   contents: read
@@ -151,8 +149,7 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    if: ${{ startsWith(github.ref, 'refs/tags/') || github.event_name ==
-      'workflow_dispatch' }}
+    if: ${{ startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch' }}
     needs: [linux, musllinux, windows, macos, sdist]
     permissions:
       # Use to sign the release artifacts
@@ -169,9 +166,28 @@ jobs:
           subject-path: wheels-*/*
       - name: Install uv
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@v8
+      - name: Create draft GitHub release
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" wheels-*/* --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" wheels-*/* \
+              --draft \
+              --generate-notes \
+              --title "$GITHUB_REF_NAME" \
+              --verify-tag
+          fi
       - name: Publish to PyPI
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
         run: uv publish 'wheels-*/*'
         env:
-          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_API_TOKEN || secrets.PYPI_TOKEN }}
+      - name: Publish GitHub release
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release edit "$GITHUB_REF_NAME" --draft=false
