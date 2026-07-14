@@ -5,6 +5,7 @@ from pathlib import Path
 import tomli
 
 ROOT = Path(__file__).resolve().parents[1]
+SETUP_UV_ACTION = "astral-sh/setup-uv@v8.3.2"
 
 
 def _load_toml(path: str) -> dict[str, object]:
@@ -43,3 +44,10 @@ def test_tag_workflow_owns_the_github_and_pypi_release() -> None:
     assert workflow.index("name: Validate release source") < workflow.index("name: Build wheels")
     assert workflow.index("uv publish") < workflow.index("gh release upload")
     assert not (ROOT / ".github/workflows/changelog.yml").exists()
+
+
+def test_workflows_pin_setup_uv_to_a_resolvable_release_tag() -> None:
+    for path in (".github/workflows/check.yml", ".github/workflows/release.yml"):
+        workflow = (ROOT / path).read_text(encoding="utf-8")
+        assert SETUP_UV_ACTION in workflow
+        assert "astral-sh/setup-uv@v8\n" not in workflow
