@@ -123,6 +123,30 @@ def test_reactor_memory_is_scoped_to_the_current_session(
     assert "group-a-secret" in prompts[1]
 
 
+def test_reactor_memory_evicts_least_recently_used_sessions() -> None:
+    runtime = FakeRuntime({})
+    memory = MemoryPlugin(cast(Any, runtime))
+    memory._config_data = {"session_limit": 2}
+
+    def context(user_id: str) -> SimpleNamespace:
+        return SimpleNamespace(
+            runtime=runtime,
+            event=SimpleNamespace(adapter="onebot11", channel_id="room-1", user_id=user_id),
+        )
+
+    alice = context("alice")
+    bob = context("bob")
+    carol = context("carol")
+    memory.notes_for(cast(Any, alice)).append("keep me")
+    memory.session_state(cast(Any, bob))
+    memory.session_state(cast(Any, alice))
+    memory.session_state(cast(Any, carol))
+
+    sessions = cast(dict[str, dict[str, Any]], memory.state["sessions"])
+    assert list(sessions) == ["onebot11:room-1:alice", "onebot11:room-1:carol"]
+    assert memory.notes_for(cast(Any, alice)) == ["keep me"]
+
+
 def test_reactor_invalid_action_returns_an_explicit_error(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -153,6 +177,35 @@ def test_reactor_invalid_action_returns_an_explicit_error(
 
     assert replies == ["The model returned an invalid action. Please try again."]
     assert "invalid action" in memory.traces_for(cast(Any, ctx))[-1]["trace"][-1]
+
+
+def test_reactor_rejects_conflicting_actions(monkeypatch: pytest.MonkeyPatch) -> None:
+    runtime = FakeRuntime({})
+    memory = MemoryPlugin(cast(Any, runtime))
+    tools = SimpleNamespace(describe_tools=lambda: "(no local tools)")
+    mcp = SimpleNamespace(describe_tools=lambda: "(no MCP tools)")
+    runtime.plugins = {"memory": memory, "tools": tools, "mcp": mcp}
+    plugin = ReactorPlugin(cast(Any, runtime))
+    plugin._config_data = {"max_turns": 1}
+    plugin._config_object = ReactorConfig(max_turns=1)
+    replies: list[str] = []
+
+    async def fake_chat_json(*args: Any, **kwargs: Any) -> dict[str, Any]:
+        return {"thought": "ambiguous", "reply": "hello", "silent": True}
+
+    async def reply(message: str) -> None:
+        replies.append(message)
+
+    monkeypatch.setattr(reactor_module, "chat_json", fake_chat_json)
+    ctx = SimpleNamespace(
+        runtime=runtime,
+        event=SimpleNamespace(adapter="onebot11", channel_id="room-1", user_id="alice"),
+        reply=reply,
+    )
+
+    asyncio.run(plugin._run_react(cast(Any, ctx), "hello"))
+
+    assert replies == ["The model returned an invalid action. Please try again."]
 
 
 def test_reactor_declares_all_required_plugins() -> None:

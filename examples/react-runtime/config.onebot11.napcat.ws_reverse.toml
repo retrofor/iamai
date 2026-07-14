@@ -29,6 +29,7 @@ allow_introspection = true
 [plugin.memory]
 note_limit = 12
 trace_limit = 6
+session_limit = 256
 
 [plugin.reactor]
 max_turns = 8

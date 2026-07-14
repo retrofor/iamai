@@ -3,12 +3,13 @@ from __future__ import annotations
 from typing import Any, cast
 
 from iamai import Context, Plugin, command, middleware
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class MemoryConfig(BaseModel):
     note_limit: int = 12
     trace_limit: int = 6
+    session_limit: int = Field(default=256, ge=1)
 
 
 class MemoryPlugin(Plugin):
@@ -22,7 +23,13 @@ class MemoryPlugin(Plugin):
             self.state.setdefault("sessions", {}),
         )
         key = ctx.runtime.sessions.session_key(ctx)
-        bucket = sessions.setdefault(key, {})
+        bucket = sessions.pop(key, None)
+        if bucket is None:
+            bucket = {}
+        sessions[key] = bucket
+        session_limit = int(self.config.get("session_limit", 256))
+        while len(sessions) > session_limit:
+            del sessions[next(iter(sessions))]
         bucket.setdefault("notes", [])
         bucket.setdefault("traces", [])
         bucket.setdefault("last_error", "")
