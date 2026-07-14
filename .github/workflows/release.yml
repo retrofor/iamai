@@ -12,7 +12,34 @@ on:
 permissions:
   contents: read
 jobs:
+  validate:
+    name: Validate release source
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: 3.12
+      - uses: astral-sh/setup-uv@v8
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Sync workspace dependencies
+        run: uv sync --locked --all-packages --group dev --group docs
+      - name: Verify tag matches package version
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
+        run: |
+          package_version="$(uv run python -c 'import tomllib; print(tomllib.load(open("pyproject.toml", "rb"))["project"]["version"])')"
+          test "$GITHUB_REF_NAME" = "v$package_version"
+      - name: Run Python checks
+        run: |
+          uv run ruff check .
+          uv run mypy
+          uv run pytest
+      - name: Run Rust tests
+        run: cargo test --no-default-features
+      - name: Validate example configurations
+        run: bash scripts/check_example_configs.sh
   linux:
+    needs: validate
     runs-on: ${{ matrix.platform.runner }}
     strategy:
       matrix:
@@ -47,6 +74,7 @@ jobs:
           name: wheels-linux-${{ matrix.platform.target }}
           path: dist
   musllinux:
+    needs: validate
     runs-on: ${{ matrix.platform.runner }}
     strategy:
       matrix:
@@ -77,6 +105,7 @@ jobs:
           name: wheels-musllinux-${{ matrix.platform.target }}
           path: dist
   windows:
+    needs: validate
     runs-on: ${{ matrix.platform.runner }}
     strategy:
       matrix:
@@ -108,6 +137,7 @@ jobs:
           name: wheels-windows-${{ matrix.platform.target }}
           path: dist
   macos:
+    needs: validate
     runs-on: ${{ matrix.platform.runner }}
     strategy:
       matrix:
@@ -133,6 +163,7 @@ jobs:
           name: wheels-macos-${{ matrix.platform.target }}
           path: dist
   sdist:
+    needs: validate
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6

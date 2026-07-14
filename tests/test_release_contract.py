@@ -37,5 +37,9 @@ def test_tag_workflow_owns_the_github_and_pypi_release() -> None:
     assert "gh release create" in workflow
     assert "gh release edit" in workflow
     assert "--json isDraft" in workflow
+    assert "name: Validate release source" in workflow
+    assert 'test "$GITHUB_REF_NAME" = "v$package_version"' in workflow
+    assert "uv sync --locked --all-packages --group dev --group docs" in workflow
+    assert workflow.index("name: Validate release source") < workflow.index("name: Build wheels")
     assert workflow.index("uv publish") < workflow.index("gh release upload")
     assert not (ROOT / ".github/workflows/changelog.yml").exists()
