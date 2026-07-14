@@ -51,3 +51,11 @@ def test_workflows_pin_setup_uv_to_a_resolvable_release_tag() -> None:
         workflow = (ROOT / path).read_text(encoding="utf-8")
         assert SETUP_UV_ACTION in workflow
         assert "astral-sh/setup-uv@v8\n" not in workflow
+
+
+def test_pre_commit_ci_has_a_repository_configuration() -> None:
+    config_path = ROOT / ".pre-commit-config.yaml"
+    assert config_path.is_file()
+    config = config_path.read_text(encoding="utf-8")
+    assert "https://github.com/pre-commit/pre-commit-hooks" in config
+    assert "rev: v6.0.0" in config
