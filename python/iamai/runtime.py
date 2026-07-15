@@ -56,6 +56,46 @@ PLUGIN_ENTRY_POINT_GROUP = "iamai.plugins"
 ADAPTER_ENTRY_POINT_GROUP = "iamai.adapters"
 
 
+class ExtensionDiscoveryError(RuntimeError):
+    """Stable error raised when an installed extension cannot be discovered."""
+
+    def __init__(
+        self,
+        *,
+        code: str,
+        group: str,
+        entry_point: str,
+        distributions: tuple[str, ...],
+        reason: str,
+    ) -> None:
+        self.code = code
+        self.group = group
+        self.entry_point = entry_point
+        self.distributions = tuple(sorted(distributions))
+        self.reason = reason
+        distribution = ",".join(self.distributions) or "unknown"
+        super().__init__(
+            "extension discovery failed: "
+            f"code={code}; group={group}; entry_point={entry_point}; "
+            f"distribution={distribution}; reason={reason}"
+        )
+
+
+@dataclass(frozen=True, slots=True)
+class _InstalledEntryPoint:
+    group: str
+    name: str
+    value: str
+    distribution: str
+    raw: Any
+
+
+@dataclass(frozen=True, slots=True)
+class _ResolvedExtensionRef:
+    ref: str
+    entry_point: _InstalledEntryPoint | None = None
+
+
 @dataclass(frozen=True, slots=True)
 class PluginDescriptor:
     """Resolved plugin metadata used for ordering and runtime inspection."""
@@ -821,8 +861,15 @@ class Runtime:
         adapters: list[Adapter] = []
         adapter_map: dict[str, Adapter] = {}
         for ref in self._configured_adapter_refs():
-            adapter_ref = self._resolve_adapter_ref(str(ref))
-            adapter_cls = self._resolve_adapter_class(adapter_ref)
+            resolved = self._resolve_adapter_ref(str(ref))
+            if resolved.entry_point is None:
+                adapter_cls = self._resolve_adapter_class(resolved.ref)
+            else:
+                adapter_cls = self._load_installed_extension(
+                    resolved.entry_point,
+                    expected=Adapter,
+                    kind="Adapter",
+                )
             adapter = adapter_cls(self, self.get_adapter_config(adapter_cls.name))
             adapters.append(adapter)
             adapter_map[adapter.name] = adapter
@@ -1039,11 +1086,20 @@ class Runtime:
         is_builtin: bool,
     ) -> list[PluginDescriptor]:
         plugin_classes: list[type[Any]]
-        resolved_ref = self._resolve_plugin_ref(ref)
+        resolved = self._resolve_plugin_ref(ref)
+        resolved_ref = resolved.ref
+        if resolved.entry_point is not None:
+            plugin_classes = [
+                self._load_installed_extension(
+                    resolved.entry_point,
+                    expected=Plugin,
+                    kind="Plugin",
+                    reload_module=reload_modules,
+                )
+            ]
         # Check for a file path first: avoids splitting Windows drive letters (C:\...)
         # as if they were a "module:Class" separator.
-        path_candidate = self._resolve_path_candidate(resolved_ref)
-        if path_candidate is not None:
+        elif (path_candidate := self._resolve_path_candidate(resolved_ref)) is not None:
             module = self._load_module_from_path(path_candidate, reload_module=reload_modules)
             plugin_classes = self._plugin_classes_from_module(module)
         elif ":" in resolved_ref:
@@ -1081,33 +1137,147 @@ class Runtime:
             )
         return descriptors
 
-    def _resolve_plugin_ref(self, ref: str) -> str:
+    def _resolve_plugin_ref(self, ref: str) -> _ResolvedExtensionRef:
+        entry_point = self._select_entry_point(
+            self._plugin_entry_points_by_name(),
+            group=PLUGIN_ENTRY_POINT_GROUP,
+            name=ref,
+            reserved=BUILTIN_PLUGINS,
+        )
         if ref in BUILTIN_PLUGINS:
-            return BUILTIN_PLUGINS[ref]
-        entry_point = self._plugin_entry_points_by_name().get(ref)
+            return _ResolvedExtensionRef(BUILTIN_PLUGINS[ref])
         if entry_point is not None:
-            return str(entry_point.value)
-        return ref
+            return _ResolvedExtensionRef(entry_point.value, entry_point)
+        return _ResolvedExtensionRef(ref)
 
-    def _resolve_adapter_ref(self, ref: str) -> str:
+    def _resolve_adapter_ref(self, ref: str) -> _ResolvedExtensionRef:
+        entry_point = self._select_entry_point(
+            self._adapter_entry_points_by_name(),
+            group=ADAPTER_ENTRY_POINT_GROUP,
+            name=ref,
+            reserved=BUILTIN_ADAPTERS,
+        )
         if ref in BUILTIN_ADAPTERS:
-            return BUILTIN_ADAPTERS[ref]
-        entry_point = self._adapter_entry_points_by_name().get(ref)
+            return _ResolvedExtensionRef(BUILTIN_ADAPTERS[ref])
         if entry_point is not None:
-            return str(entry_point.value)
-        return ref
+            return _ResolvedExtensionRef(entry_point.value, entry_point)
+        return _ResolvedExtensionRef(ref)
 
     def _discover_plugin_entry_points(self) -> list[str]:
-        return sorted(self._plugin_entry_points_by_name())
+        return self._discover_entry_point_names(
+            self._plugin_entry_points_by_name(),
+            group=PLUGIN_ENTRY_POINT_GROUP,
+            reserved=BUILTIN_PLUGINS,
+        )
 
     def _discover_adapter_entry_points(self) -> list[str]:
-        return sorted(self._adapter_entry_points_by_name())
+        return self._discover_entry_point_names(
+            self._adapter_entry_points_by_name(),
+            group=ADAPTER_ENTRY_POINT_GROUP,
+            reserved=BUILTIN_ADAPTERS,
+        )
 
-    def _plugin_entry_points_by_name(self) -> dict[str, metadata.EntryPoint]:
+    def _plugin_entry_points_by_name(self) -> dict[str, tuple[_InstalledEntryPoint, ...]]:
         return _entry_points_by_name(PLUGIN_ENTRY_POINT_GROUP)
 
-    def _adapter_entry_points_by_name(self) -> dict[str, metadata.EntryPoint]:
+    def _adapter_entry_points_by_name(self) -> dict[str, tuple[_InstalledEntryPoint, ...]]:
         return _entry_points_by_name(ADAPTER_ENTRY_POINT_GROUP)
+
+    def _discover_entry_point_names(
+        self,
+        entry_points: dict[str, Any],
+        *,
+        group: str,
+        reserved: dict[str, str],
+    ) -> list[str]:
+        for name in sorted(entry_points):
+            self._select_entry_point(
+                entry_points,
+                group=group,
+                name=name,
+                reserved=reserved,
+            )
+        return sorted(entry_points)
+
+    def _select_entry_point(
+        self,
+        entry_points: dict[str, Any],
+        *,
+        group: str,
+        name: str,
+        reserved: dict[str, str],
+    ) -> _InstalledEntryPoint | None:
+        raw_candidates = entry_points.get(name)
+        if raw_candidates is None:
+            return None
+        candidates = _coerce_entry_point_candidates(raw_candidates, group=group, name=name)
+        distributions = tuple(candidate.distribution for candidate in candidates)
+        if name in reserved:
+            raise ExtensionDiscoveryError(
+                code="reserved_entry_point",
+                group=group,
+                entry_point=name,
+                distributions=distributions,
+                reason="entry point name is reserved by a built-in extension",
+            )
+        if len(candidates) != 1:
+            raise ExtensionDiscoveryError(
+                code="duplicate_entry_point",
+                group=group,
+                entry_point=name,
+                distributions=distributions,
+                reason="multiple installed distributions publish the same entry point",
+            )
+        return candidates[0]
+
+    def _load_installed_extension(
+        self,
+        entry_point: _InstalledEntryPoint,
+        *,
+        expected: type[Any],
+        kind: str,
+        reload_module: bool = False,
+    ) -> type[Any]:
+        try:
+            if reload_module:
+                module_name, attr_name = _entry_point_target(entry_point)
+                obj = self._load_module_attr(
+                    module_name,
+                    attr_name,
+                    reload_module=True,
+                )
+            elif callable(getattr(entry_point.raw, "load", None)):
+                obj = entry_point.raw.load()
+            else:
+                module_name, attr_name = _entry_point_target(entry_point)
+                obj = self._load_module_attr(module_name, attr_name, reload_module=False)
+        except Exception as exc:
+            raise ExtensionDiscoveryError(
+                code="load_failed",
+                group=entry_point.group,
+                entry_point=entry_point.name,
+                distributions=(entry_point.distribution,),
+                reason=f"entry point load raised {type(exc).__name__}: {exc}",
+            ) from exc
+        if not isinstance(obj, type) or not issubclass(obj, expected):
+            article = "an" if kind.startswith(("A", "E", "I", "O", "U")) else "a"
+            raise ExtensionDiscoveryError(
+                code="invalid_object",
+                group=entry_point.group,
+                entry_point=entry_point.name,
+                distributions=(entry_point.distribution,),
+                reason=f"loaded object is not {article} {kind} subclass",
+            )
+        extension_name = getattr(obj, "name", "") or obj.__name__.lower()
+        if extension_name != entry_point.name:
+            raise ExtensionDiscoveryError(
+                code="name_mismatch",
+                group=entry_point.group,
+                entry_point=entry_point.name,
+                distributions=(entry_point.distribution,),
+                reason=f"loaded {kind}.name is {extension_name!r}",
+            )
+        return obj
 
     def _assert_unique_plugin_names(self, descriptors: list[PluginDescriptor]) -> None:
         owners: dict[str, str] = {}
@@ -1189,7 +1359,10 @@ class Runtime:
 
     def _load_module_attr(self, module_name: str, attr_name: str, *, reload_module: bool) -> Any:
         module = self._load_import_module(module_name, reload_module=reload_module)
-        return getattr(module, attr_name)
+        obj: Any = module
+        for part in attr_name.split("."):
+            obj = getattr(obj, part)
+        return obj
 
     def _load_import_module(self, module_name: str, *, reload_module: bool) -> ModuleType:
         module = importlib.import_module(module_name)
@@ -1711,9 +1884,69 @@ def dump_config_schema(path: str | Path, plugin_name: str | None = None) -> dict
     }
 
 
-def _entry_points_by_name(group: str) -> dict[str, metadata.EntryPoint]:
+def _entry_points_by_name(group: str) -> dict[str, tuple[_InstalledEntryPoint, ...]]:
     selected = metadata.entry_points().select(group=group)
-    return {entry_point.name: entry_point for entry_point in selected}
+    grouped: dict[str, list[_InstalledEntryPoint]] = {}
+    for entry_point in selected:
+        installed = _coerce_installed_entry_point(entry_point, group=group)
+        grouped.setdefault(installed.name, []).append(installed)
+    return {
+        name: tuple(sorted(items, key=lambda item: (item.distribution, item.value)))
+        for name, items in sorted(grouped.items())
+    }
+
+
+def _coerce_entry_point_candidates(
+    raw: Any,
+    *,
+    group: str,
+    name: str,
+) -> tuple[_InstalledEntryPoint, ...]:
+    candidates = raw if isinstance(raw, (tuple, list)) else (raw,)
+    return tuple(
+        candidate
+        if isinstance(candidate, _InstalledEntryPoint)
+        else _coerce_installed_entry_point(candidate, group=group, name=name)
+        for candidate in candidates
+    )
+
+
+def _coerce_installed_entry_point(
+    entry_point: Any,
+    *,
+    group: str,
+    name: str | None = None,
+) -> _InstalledEntryPoint:
+    return _InstalledEntryPoint(
+        group=str(getattr(entry_point, "group", group)),
+        name=str(name or entry_point.name),
+        value=str(entry_point.value),
+        distribution=_entry_point_distribution(entry_point),
+        raw=entry_point,
+    )
+
+
+def _entry_point_distribution(entry_point: Any) -> str:
+    distribution = getattr(entry_point, "dist", None)
+    if distribution is None:
+        return "unknown"
+    distribution_name = distribution.metadata.get("Name") or getattr(
+        distribution, "name", "unknown"
+    )
+    version = getattr(distribution, "version", None)
+    return f"{distribution_name}=={version}" if version else str(distribution_name)
+
+
+def _entry_point_target(entry_point: _InstalledEntryPoint) -> tuple[str, str]:
+    module_name = getattr(entry_point.raw, "module", None)
+    attr_name = getattr(entry_point.raw, "attr", None)
+    if module_name and attr_name:
+        return str(module_name), str(attr_name)
+    target = entry_point.value.partition(" [")[0]
+    module_name, separator, attr_name = target.partition(":")
+    if not separator or not module_name or not attr_name:
+        raise ValueError(f"entry point value must be module:attribute, got {entry_point.value!r}")
+    return module_name, attr_name
 
 
 class _NullPlugin(Plugin):
