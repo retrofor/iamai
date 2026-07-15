@@ -15,8 +15,8 @@ Status values:
 
 | Workstream | Status | Evidence | Blocker / last verified / resume condition |
 | --- | --- | --- | --- |
-| 0. Specification baseline | `IN_PROGRESS` | [PR #445](https://github.com/retrofor/iamai/pull/445); local docs tests and Sphinx `-W` pass | Last verified 2026-07-15; resume after PR CI and merge |
-| 1. FOSSA governance | `TODO` | [#436](https://github.com/retrofor/iamai/issues/436) | Start after workstream 0 |
+| 0. Specification baseline | `DONE` | [PR #445](https://github.com/retrofor/iamai/pull/445); [post-merge CI](https://github.com/retrofor/iamai/actions/runs/29400584855); [CodeQL](https://github.com/retrofor/iamai/actions/runs/29400584086) | Completed 2026-07-15 |
+| 1. FOSSA governance | `BLOCKED_EXTERNAL` | [Baseline](docs/reference/fossa-governance-baseline.rst); [#436](https://github.com/retrofor/iamai/issues/436) | Last verified 2026-07-15; no FOSSA CLI, token, or login; resume with project-admin login or API key |
 | 2. Low-risk dependencies | `TODO` | PRs #437, #439, #441, #442, #443 | Start after workstream 1 is `DONE` or `BLOCKED_EXTERNAL` |
 | 3. Gated dependencies | `TODO` | PRs #438 and #440 | Start after workstream 2 |
 | 4. Version 0.4 contract | `TODO` | [#435](https://github.com/retrofor/iamai/issues/435) | Start after workstream 3 |
@@ -25,13 +25,13 @@ Status values:
 
 ## 0. Specification baseline
 
-- [ ] Publish the execution spec and this ledger through a reviewed PR with green CI.
+- [x] Publish the execution spec and this ledger through a reviewed PR with green CI.
 
 ## 1. FOSSA and release governance
 
 Tracking: [#436](https://github.com/retrofor/iamai/issues/436)
 
-- [ ] Confirm whether a FOSSA project-admin login or API token is available.
+- [x] Confirm whether a FOSSA project-admin login or API token is available: none is present in the current environment.
 - [ ] Repoint the FOSSA project and revision analysis from `master` to `dev`.
 - [ ] Confirm the project license is SPDX `MIT` and remove the phantom AGPL conclusion.
 - [ ] Change the project policy from `Single-Binary Distribution` to `Standard Bundle`.
