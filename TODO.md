@@ -17,8 +17,8 @@ Status values:
 | --- | --- | --- | --- |
 | 0. Specification baseline | `DONE` | [PR #445](https://github.com/retrofor/iamai/pull/445); [post-merge CI](https://github.com/retrofor/iamai/actions/runs/29400584855); [CodeQL](https://github.com/retrofor/iamai/actions/runs/29400584086) | Completed 2026-07-15 |
 | 1. FOSSA governance | `BLOCKED_EXTERNAL` | [PR #446](https://github.com/retrofor/iamai/pull/446); [baseline](docs/reference/fossa-governance-baseline.rst); [#436 update](https://github.com/retrofor/iamai/issues/436#issuecomment-4978607129) | Last verified 2026-07-15; no FOSSA CLI, token, or login; resume with project-admin login or API key |
-| 2. Low-risk dependencies | `IN_PROGRESS` | PRs #437, #439, #441, #442, #443 | Started 2026-07-15 from [`dev@0568bf7`](https://github.com/retrofor/iamai/commit/0568bf7142a183c236d0c37222c8d76caae2a4ba); update and merge strictly one at a time |
-| 3. Gated dependencies | `TODO` | PRs #438 and #440 | Start after workstream 2 |
+| 2. Low-risk dependencies | `DONE` | [#437](https://github.com/retrofor/iamai/pull/437), [#439](https://github.com/retrofor/iamai/pull/439), [#441](https://github.com/retrofor/iamai/pull/441), [#442](https://github.com/retrofor/iamai/pull/442), [#443](https://github.com/retrofor/iamai/pull/443); [final CI](https://github.com/retrofor/iamai/actions/runs/29404149717) | Completed 2026-07-15 at [`dev@47e4b8a`](https://github.com/retrofor/iamai/commit/47e4b8a7a671ce82826c6f4e1238ec255cff1506) |
+| 3. Gated dependencies | `IN_PROGRESS` | PRs [#438](https://github.com/retrofor/iamai/pull/438) and [#440](https://github.com/retrofor/iamai/pull/440) | Started 2026-07-15; #438 rehearsal first, then #440 loopback tests |
 | 4. Version 0.4 contract | `TODO` | [#435](https://github.com/retrofor/iamai/issues/435) | Start after workstream 3 |
 | 5. Version 1.0 contract | `TODO` | [#434](https://github.com/retrofor/iamai/issues/434) | Start after workstream 4 |
 | 6. needs-info closure | `TODO` | Issues #294, #295, #297, #306 | Time-triggered exception: execute after 2026-07-29 23:59 UTC even if workstreams 4-5 remain active |
@@ -43,12 +43,12 @@ Tracking: [#436](https://github.com/retrofor/iamai/issues/436)
 
 ## 2. Low-risk dependency PRs
 
-- [ ] Update, verify, and merge [#437](https://github.com/retrofor/iamai/pull/437) (`serde_json`).
-- [ ] Update, verify, and merge [#439](https://github.com/retrofor/iamai/pull/439) (Ruff/FastMCP).
-- [ ] Update, verify, and merge [#441](https://github.com/retrofor/iamai/pull/441) (Mypy 2).
-- [ ] Update, verify, and merge [#442](https://github.com/retrofor/iamai/pull/442) (Pytest 9).
-- [ ] Update, verify, and merge [#443](https://github.com/retrofor/iamai/pull/443) (Sphinx 9).
-- [ ] Verify final `dev` lockfiles and post-merge CI.
+- [x] Update, verify, and merge [#437](https://github.com/retrofor/iamai/pull/437) (`serde_json`).
+- [x] Update, verify, and merge [#439](https://github.com/retrofor/iamai/pull/439) (Ruff/FastMCP).
+- [x] Update, verify, and merge [#441](https://github.com/retrofor/iamai/pull/441) (Mypy 2).
+- [x] Update, verify, and merge [#442](https://github.com/retrofor/iamai/pull/442) (Pytest 9).
+- [x] Update, verify, and merge [#443](https://github.com/retrofor/iamai/pull/443) (Sphinx 9).
+- [x] Verify final `dev` lockfiles and post-merge CI.
 
 ## 3. Dependency PRs with special gates
 
