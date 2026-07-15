@@ -19,7 +19,7 @@ Status values:
 | 1. FOSSA governance | `BLOCKED_EXTERNAL` | [PR #446](https://github.com/retrofor/iamai/pull/446); [baseline](docs/reference/fossa-governance-baseline.rst); [#436 update](https://github.com/retrofor/iamai/issues/436#issuecomment-4978607129) | Last verified 2026-07-15; no FOSSA CLI, token, or login; resume with project-admin login or API key |
 | 2. Low-risk dependencies | `DONE` | [#437](https://github.com/retrofor/iamai/pull/437), [#439](https://github.com/retrofor/iamai/pull/439), [#441](https://github.com/retrofor/iamai/pull/441), [#442](https://github.com/retrofor/iamai/pull/442), [#443](https://github.com/retrofor/iamai/pull/443); [final CI](https://github.com/retrofor/iamai/actions/runs/29404149717) | Completed 2026-07-15 at [`dev@47e4b8a`](https://github.com/retrofor/iamai/commit/47e4b8a7a671ce82826c6f4e1238ec255cff1506) |
 | 3. Gated dependencies | `DONE` | [#438](https://github.com/retrofor/iamai/pull/438), [release rehearsal](https://github.com/retrofor/iamai/actions/runs/29404691605), [#449](https://github.com/retrofor/iamai/pull/449), [#440](https://github.com/retrofor/iamai/pull/440), [final CI](https://github.com/retrofor/iamai/actions/runs/29407069117), [CodeQL](https://github.com/retrofor/iamai/actions/runs/29407068347) | Completed 2026-07-15 at [`dev@44a237a`](https://github.com/retrofor/iamai/commit/44a237a7c75fb0ca52ac87a0fed862b6186968ae) |
-| 4. Version 0.4 contract | `IN_PROGRESS` | [#435](https://github.com/retrofor/iamai/issues/435) | Started 2026-07-15; execute 0.4-A, then 0.4-B, then 0.4-C |
+| 4. Version 0.4 contract | `IN_PROGRESS` | [#435](https://github.com/retrofor/iamai/issues/435); [0.4-A PR #451](https://github.com/retrofor/iamai/pull/451) | 0.4-A implemented 2026-07-15; execute 0.4-B, then 0.4-C |
 | 5. Version 1.0 contract | `TODO` | [#434](https://github.com/retrofor/iamai/issues/434) | Start after workstream 4 |
 | 6. needs-info closure | `TODO` | Issues #294, #295, #297, #306 | Time-triggered exception: execute after 2026-07-29 23:59 UTC even if workstreams 4-5 remain active |
 
@@ -64,8 +64,8 @@ Tracking: [#436](https://github.com/retrofor/iamai/issues/436)
 
 Tracking: [#435](https://github.com/retrofor/iamai/issues/435)
 
-- [ ] 0.4-A: publish packaging/discovery metadata and deterministic error contracts.
-- [ ] 0.4-A: add installable reference adapter and plugin fixtures with isolated-install tests.
+- [x] 0.4-A: publish packaging/discovery metadata and deterministic error contracts.
+- [x] 0.4-A: add installable reference adapter and plugin fixtures with isolated-install tests.
 - [ ] 0.4-B: implement one root/runtime/adapter/plugin schema generator.
 - [ ] 0.4-B: add stable IDs, contract version, defaults, and secret annotations.
 - [ ] 0.4-B: prove CLI and management API schema equivalence.
