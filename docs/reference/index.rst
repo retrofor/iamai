@@ -34,4 +34,5 @@
    docs-i18n-versions
    rules
    webhook-signatures
+   fossa-governance-baseline
    quality-gates
