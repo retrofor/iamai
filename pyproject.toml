@@ -14,7 +14,7 @@ dependencies = [
     "loguru>=0.7,<1",
     "pydantic>=2.11,<3",
     "tomli>=2.0,<3",
-    "websockets>=15,<16",
+    "websockets>=15,<17",
 ]
 
 [project.scripts]
