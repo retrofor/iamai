@@ -7,7 +7,7 @@
 
    uv run ruff check .
    uv run pytest
-   cargo test
+   cargo test --no-default-features
    bash scripts/check_example_configs.sh
    uv run sphinx-build -W --keep-going -b html docs docs/_build/html
 
