@@ -495,7 +495,7 @@ def test_json_websocket_client_reconnects_and_close_interrupts_backoff(tmp_path:
             {
                 "url": f"ws://127.0.0.1:{_server_port(server)}/events",
                 "api_timeout": 1,
-                "reconnect_interval": 0.01,
+                "reconnect_interval": 0,
             },
         )
         adapter_task = asyncio.create_task(adapter.start())

@@ -369,10 +369,14 @@ class JsonWebSocketClientMiddleware(AdapterMiddleware):
                 await self._unbind_connection()
             if self._closed.is_set():
                 return
+            reconnect_delay = max(self.reconnect_interval, 0.0)
+            if reconnect_delay == 0:
+                await asyncio.sleep(0)
+                continue
             try:
                 await asyncio.wait_for(
                     self._closed.wait(),
-                    timeout=max(self.reconnect_interval, 0.0),
+                    timeout=reconnect_delay,
                 )
             except TimeoutError:
                 continue
