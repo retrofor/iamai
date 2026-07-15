@@ -1,0 +1,103 @@
+# Post-v0.3 execution TODO
+
+This ledger tracks the ordered work defined in
+[`docs/reference/post-v0.3-execution-spec.rst`](docs/reference/post-v0.3-execution-spec.rst).
+Evidence must be a commit, PR, CI run, test output, issue comment, or an explicit external blocker.
+
+Status values:
+
+- `TODO`: not started.
+- `IN_PROGRESS`: the current sequential workstream.
+- `BLOCKED_EXTERNAL`: requires credentials, an external owner, or a future deadline; the checkbox stays open.
+- `DONE`: every acceptance criterion is satisfied and linked.
+
+## Execution status
+
+| Workstream | Status | Evidence | Blocker / last verified / resume condition |
+| --- | --- | --- | --- |
+| 0. Specification baseline | `IN_PROGRESS` | [PR #445](https://github.com/retrofor/iamai/pull/445); local docs tests and Sphinx `-W` pass | Last verified 2026-07-15; resume after PR CI and merge |
+| 1. FOSSA governance | `TODO` | [#436](https://github.com/retrofor/iamai/issues/436) | Start after workstream 0 |
+| 2. Low-risk dependencies | `TODO` | PRs #437, #439, #441, #442, #443 | Start after workstream 1 is `DONE` or `BLOCKED_EXTERNAL` |
+| 3. Gated dependencies | `TODO` | PRs #438 and #440 | Start after workstream 2 |
+| 4. Version 0.4 contract | `TODO` | [#435](https://github.com/retrofor/iamai/issues/435) | Start after workstream 3 |
+| 5. Version 1.0 contract | `TODO` | [#434](https://github.com/retrofor/iamai/issues/434) | Start after workstream 4 |
+| 6. needs-info closure | `TODO` | Issues #294, #295, #297, #306 | Time-triggered exception: execute after 2026-07-29 23:59 UTC even if workstreams 4-5 remain active |
+
+## 0. Specification baseline
+
+- [ ] Publish the execution spec and this ledger through a reviewed PR with green CI.
+
+## 1. FOSSA and release governance
+
+Tracking: [#436](https://github.com/retrofor/iamai/issues/436)
+
+- [ ] Confirm whether a FOSSA project-admin login or API token is available.
+- [ ] Repoint the FOSSA project and revision analysis from `master` to `dev`.
+- [ ] Confirm the project license is SPDX `MIT` and remove the phantom AGPL conclusion.
+- [ ] Change the project policy from `Single-Binary Distribution` to `Standard Bundle`.
+- [ ] Export the current issue inventory with dependency, version, license, policy, locator, and disposition.
+- [ ] Resolve, allow, or time-bound waive every current finding.
+- [ ] Verify one `dev` revision and one PR revision; attach evidence to #436.
+- [ ] Remove or replace the v0.3.0 waiver before 2026-08-15.
+- [ ] Close #436 only after the spec completion definition is met.
+
+## 2. Low-risk dependency PRs
+
+- [ ] Update, verify, and merge [#437](https://github.com/retrofor/iamai/pull/437) (`serde_json`).
+- [ ] Update, verify, and merge [#439](https://github.com/retrofor/iamai/pull/439) (Ruff/FastMCP).
+- [ ] Update, verify, and merge [#441](https://github.com/retrofor/iamai/pull/441) (Mypy 2).
+- [ ] Update, verify, and merge [#442](https://github.com/retrofor/iamai/pull/442) (Pytest 9).
+- [ ] Update, verify, and merge [#443](https://github.com/retrofor/iamai/pull/443) (Sphinx 9).
+- [ ] Verify final `dev` lockfiles and post-merge CI.
+
+## 3. Dependency PRs with special gates
+
+- [ ] Update [#438](https://github.com/retrofor/iamai/pull/438) to the latest `dev`.
+- [ ] Run a non-tag release rehearsal for #438 and verify every build and attestation job.
+- [ ] Merge #438 and verify post-merge `dev` CI.
+- [ ] Add real WebSocket loopback regression tests for #440.
+- [ ] Run the loopback tests on Python 3.11 and 3.13.
+- [ ] Update, verify, and merge [#440](https://github.com/retrofor/iamai/pull/440).
+- [ ] Verify post-merge `dev` CI.
+
+## 4. Version 0.4 extension contract
+
+Tracking: [#435](https://github.com/retrofor/iamai/issues/435)
+
+- [ ] 0.4-A: publish packaging/discovery metadata and deterministic error contracts.
+- [ ] 0.4-A: add installable reference adapter and plugin fixtures with isolated-install tests.
+- [ ] 0.4-B: implement one root/runtime/adapter/plugin schema generator.
+- [ ] 0.4-B: add stable IDs, contract version, defaults, and secret annotations.
+- [ ] 0.4-B: prove CLI and management API schema equivalence.
+- [ ] 0.4-C: publish adapter and plugin conformance helpers.
+- [ ] 0.4-C: run the helpers against both reference distributions in isolated environments.
+- [ ] Document ecosystem admission evidence and close #435.
+
+## 5. Version 1.0 public API contract
+
+Tracking: [#434](https://github.com/retrofor/iamai/issues/434)
+
+- [ ] Publish the versioned Event/Message serialization contract.
+- [ ] Add valid/invalid golden round-trip tests.
+- [ ] Publish and test Runtime/Adapter/Plugin lifecycle ordering and failure semantics.
+- [ ] Define and test Context event scope, reply routing, dependency injection, and invalidation semantics.
+- [ ] Expose a schema/contract version and test supported evolution rules.
+- [ ] Publish the normative conformance matrix.
+- [ ] Publish the deprecation policy and minimum support window.
+- [ ] Publish the final 0.x to 1.0 migration guide.
+- [ ] Validate the complete contract against a 1.0 RC and close #434.
+
+## 6. needs-info issue closure
+
+Deadline: 2026-07-29 23:59 UTC.
+
+- [ ] Recheck [#294](https://github.com/retrofor/iamai/issues/294), [#295](https://github.com/retrofor/iamai/issues/295), and [#297](https://github.com/retrofor/iamai/issues/297) after the deadline.
+- [ ] Close them if unanswered, or replace them with one owned, testable i18n issue.
+- [ ] Recheck [#306](https://github.com/retrofor/iamai/issues/306) after the deadline.
+- [ ] Close or migrate #306 unless it proves a core runtime scheduling contract.
+- [ ] Confirm no unowned wishlist remains on the core roadmap.
+
+## Cross-cutting verification
+
+- [ ] Recheck GitHub Dependabot alerts after dependency-graph recomputation; do not dismiss fixed alerts manually.
+- [ ] Keep `dev` protection, release evidence, and the working tree clean after every merge.

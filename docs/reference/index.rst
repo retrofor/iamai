@@ -30,6 +30,7 @@
    cli
    configuration
    extensions
+   post-v0.3-execution-spec
    docs-i18n-versions
    rules
    webhook-signatures
