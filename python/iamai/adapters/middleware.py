@@ -369,7 +369,18 @@ class JsonWebSocketClientMiddleware(AdapterMiddleware):
                 await self._unbind_connection()
             if self._closed.is_set():
                 return
-            await asyncio.sleep(self.reconnect_interval)
+            reconnect_delay = max(self.reconnect_interval, 0.0)
+            if reconnect_delay == 0:
+                await asyncio.sleep(0)
+                continue
+            try:
+                await asyncio.wait_for(
+                    self._closed.wait(),
+                    timeout=reconnect_delay,
+                )
+            except TimeoutError:
+                continue
+            return
 
     async def _consume_connection(self, websocket: Any, role: str = "universal") -> None:
         async for payload in websocket:
@@ -580,6 +591,9 @@ class JsonWebSocketServerMiddleware(JsonWebSocketClientMiddleware):
         current = self._current_ws_by_role(role)
         if current is not None:
             self.logger.warning("closing previous %s reverse ws %s connection", self.name, role)
+            if current is self._api_socket_for_calls():
+                self._connection_ready.clear()
+                await self._fail_pending(ConnectionError(f"{self.name} connection replaced"))
             try:
                 await current.close(code=1012, reason="replaced by new connection")
             except Exception:
@@ -616,6 +630,7 @@ class JsonWebSocketServerMiddleware(JsonWebSocketClientMiddleware):
     ) -> None:
         if websocket is None:
             websocket = self._current_ws_by_role(role)
+        was_api_socket = websocket is self._api_socket_for_calls()
         if self._event_websocket is websocket:
             self._event_websocket = None
         if self._api_websocket is websocket:
@@ -625,10 +640,13 @@ class JsonWebSocketServerMiddleware(JsonWebSocketClientMiddleware):
         self._websocket = self._api_websocket or self._event_websocket
         if self._api_socket_for_calls() is None:
             self._connection_ready.clear()
-        await self._fail_pending(ConnectionError(f"{self.name} connection closed"))
+        if was_api_socket:
+            await self._fail_pending(ConnectionError(f"{self.name} connection closed"))
 
     def _api_socket_for_calls(self) -> Any | None:
-        return self._api_websocket or self._websocket or self._event_websocket
+        if self.path_event == self.path_api:
+            return self._api_websocket or self._websocket
+        return self._api_websocket
 
     def _resolve_ws_role(self, path: str) -> str | None:
         if self.path_event == self.path_api and path == self.path_event:
