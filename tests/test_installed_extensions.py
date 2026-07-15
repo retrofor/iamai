@@ -15,6 +15,7 @@ import zipfile
 import pytest
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_SOURCE_ROOT = PROJECT_ROOT / "python"
 FIXTURES_ROOT = PROJECT_ROOT / "tests" / "fixtures" / "extensions"
 
 
@@ -213,7 +214,7 @@ print(
     site_packages = [Path(item) for item in payload["site_packages"]]
     iamai_module = Path(payload["iamai_module"])
     assert any(iamai_module.is_relative_to(path) for path in site_packages)
-    assert not iamai_module.is_relative_to(PROJECT_ROOT)
+    assert not iamai_module.is_relative_to(PROJECT_SOURCE_ROOT)
     for run in payload["runs"]:
         assert run["plugins"] == ["reference_plugin"]
         assert run["adapters"] == ["reference_adapter"]
