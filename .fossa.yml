@@ -1,0 +1,11 @@
+version: 3
+
+targets:
+  only:
+    - type: cargo
+      path: .
+    # FOSSA 3.17.12 prefilters uv discovery as pipenv before reporting it as uv.
+    - type: pipenv
+      path: compliance/fossa
+    - type: uv
+      path: compliance/fossa

@@ -39,6 +39,9 @@ jobs:
       - name: Sync development dependencies
         run: uv sync --locked --all-packages --group dev
 
+      - name: Validate FOSSA production lock
+        run: uv lock --check --project compliance/fossa
+
       - name: Run Ruff
         run: uv run ruff check .
 

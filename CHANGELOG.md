@@ -17,6 +17,7 @@ All notable changes to iamai are documented in this file.
 - Consolidated tag publishing into one workflow that signs artifacts, publishes to PyPI, and creates a GitHub Release.
 - Made handler admission fail closed per event: capacity pressure rejects the complete matched handler set instead of executing a partial fan-out.
 - Synchronized the MIT license file and package metadata across the Python, Rust, and example workspaces.
+- Restricted FOSSA analysis to the declared Python runtime dependency graph while retaining Rust dependency coverage.
 
 ### Fixed
 
