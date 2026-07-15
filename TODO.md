@@ -16,8 +16,8 @@ Status values:
 | Workstream | Status | Evidence | Blocker / last verified / resume condition |
 | --- | --- | --- | --- |
 | 0. Specification baseline | `DONE` | [PR #445](https://github.com/retrofor/iamai/pull/445); [post-merge CI](https://github.com/retrofor/iamai/actions/runs/29400584855); [CodeQL](https://github.com/retrofor/iamai/actions/runs/29400584086) | Completed 2026-07-15 |
-| 1. FOSSA governance | `BLOCKED_EXTERNAL` | [Baseline](docs/reference/fossa-governance-baseline.rst); [#436](https://github.com/retrofor/iamai/issues/436) | Last verified 2026-07-15; no FOSSA CLI, token, or login; resume with project-admin login or API key |
-| 2. Low-risk dependencies | `TODO` | PRs #437, #439, #441, #442, #443 | Start after workstream 1 is `DONE` or `BLOCKED_EXTERNAL` |
+| 1. FOSSA governance | `BLOCKED_EXTERNAL` | [PR #446](https://github.com/retrofor/iamai/pull/446); [baseline](docs/reference/fossa-governance-baseline.rst); [#436 update](https://github.com/retrofor/iamai/issues/436#issuecomment-4978607129) | Last verified 2026-07-15; no FOSSA CLI, token, or login; resume with project-admin login or API key |
+| 2. Low-risk dependencies | `IN_PROGRESS` | PRs #437, #439, #441, #442, #443 | Started 2026-07-15 from [`dev@0568bf7`](https://github.com/retrofor/iamai/commit/0568bf7142a183c236d0c37222c8d76caae2a4ba); update and merge strictly one at a time |
 | 3. Gated dependencies | `TODO` | PRs #438 and #440 | Start after workstream 2 |
 | 4. Version 0.4 contract | `TODO` | [#435](https://github.com/retrofor/iamai/issues/435) | Start after workstream 3 |
 | 5. Version 1.0 contract | `TODO` | [#434](https://github.com/retrofor/iamai/issues/434) | Start after workstream 4 |
