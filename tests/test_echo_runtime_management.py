@@ -4,13 +4,17 @@ import asyncio
 from pathlib import Path
 
 from iamai import Event, Message, Runtime
+from iamai.config import load_config
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_echo_runtime_terminal_config_exposes_management_commands() -> None:
     async def run() -> list[str]:
-        runtime = Runtime.from_config_file(ROOT / "examples/echo-runtime/config.terminal.toml")
+        config_path = ROOT / "examples/echo-runtime/config.terminal.toml"
+        config = load_config(config_path)
+        config["logging"]["file"] = None
+        runtime = Runtime(config, base_path=Path(config["__meta__"]["root_dir"]))
         await runtime.bootstrap()
         adapter = runtime.get_adapter("terminal")
         sent: list[str] = []

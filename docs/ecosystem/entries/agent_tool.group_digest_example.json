@@ -4,7 +4,7 @@
   "type": "agent_tool",
   "summary": "Example contextual group-chat tool for recent-message digesting, TODO extraction, and room mood.",
   "package": null,
-  "repository": "https://github.com/iamai/iamai",
+  "repository": "https://github.com/retrofor/iamai",
   "license": "MIT",
   "status": "active",
   "verification": ["official"],
@@ -14,7 +14,7 @@
   "requires": [],
   "install_command": null,
   "docs_url": null,
-  "source_url": "https://github.com/iamai/iamai/tree/main/examples/group-assistant-runtime",
+  "source_url": "https://github.com/retrofor/iamai/tree/dev/examples/group-assistant-runtime",
   "security_notes": "Room memory should be scoped and retained according to deployment policy.",
   "updated_at": "2026-04-26"
 }

@@ -10,10 +10,11 @@ guardrail。
 
 ``LLMConfig``
    从显式配置或环境变量读取模型参数。支持 ``OPENAI_API_KEY``、``OPENAI_BASE_URL`` 和
-   ``OPENAI_MODEL``。
+   ``OPENAI_MODEL``。兼容端点需要附加请求字段时，可以通过配置映射或
+   ``OPENAI_EXTRA_BODY`` JSON 对象传入。
 
 ``LLMClient``
-   提供 ``chat_text`` 和 ``chat_json``。测试时可以设置 ``iamai_LLM_MOCK=1``，避免真实模型调用。
+   提供 ``chat_text`` 和 ``chat_json``。测试时可以设置 ``IAMAI_LLM_MOCK=1``，避免真实模型调用。
 
 ``ToolRegistry``
    注册、枚举和调用工具。工具名会标准化为小写。发布到社区商店的工具应声明

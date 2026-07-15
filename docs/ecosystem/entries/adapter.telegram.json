@@ -4,7 +4,7 @@
   "type": "adapter",
   "summary": "Built-in Telegram Runtime API adapter using getUpdates long polling and sendMessage replies.",
   "package": "iamai",
-  "repository": "https://github.com/iamai/iamai",
+  "repository": "https://github.com/retrofor/iamai",
   "license": "MIT",
   "status": "active",
   "verification": ["official", "package_verified", "security_reviewed"],
@@ -12,6 +12,6 @@
   "tags": ["builtin", "telegram", "long-polling"],
   "platforms": ["telegram"],
   "install_command": "uv add iamai",
-  "source_url": "https://github.com/iamai/iamai",
+  "source_url": "https://github.com/retrofor/iamai",
   "updated_at": "2026-04-26"
 }

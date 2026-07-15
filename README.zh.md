@@ -5,9 +5,9 @@
 <p align="center">
   <a href="https://pypi.org/project/iamai/"><img src="https://img.shields.io/pypi/v/iamai?color=blue" alt="PyPI"></a>
   <a href="https://pypi.org/project/iamai/"><img src="https://img.shields.io/pypi/pyversions/iamai" alt="Python"></a>
-  <a href="https://github.com/retrofor/iamai/blob/main/Cargo.toml"><img src="https://img.shields.io/badge/core-rust%20%2B%20pyo3-orange" alt="Rust"></a>
-  <a href="https://github.com/retrofor/iamai/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="License"></a>
-  <a href="https://github.com/retrofor/iamai/actions/workflows/check.yml"><img src="https://github.com/retrofor/iamai/actions/workflows/check.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/retrofor/iamai/blob/dev/Cargo.toml"><img src="https://img.shields.io/badge/core-rust%20%2B%20pyo3-orange" alt="Rust"></a>
+  <a href="https://github.com/retrofor/iamai/blob/dev/LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="License"></a>
+  <a href="https://github.com/retrofor/iamai/actions/workflows/check.yml"><img src="https://github.com/retrofor/iamai/actions/workflows/check.yml/badge.svg?branch=dev" alt="CI"></a>
   <a href="https://iamai.readthedocs.io/"><img src="https://readthedocs.org/projects/iamai/badge/?version=latest" alt="Docs"></a>
 </p>
 
@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/retrofor/iamai/blob/main/README.md">English</a>
+  <a href="https://github.com/retrofor/iamai/blob/dev/README.md">English</a>
 </p>
 
 ---
@@ -149,7 +149,7 @@ class MyPlugin(Plugin):
 ## 社区与贡献
 
 - **Issue**: [GitHub Issues](https://github.com/retrofor/iamai/issues)
-- **Pull Request**: fork → 特性分支 → PR 到 `main`。提交前请运行 `ruff check` 和 `pytest`
+- **Pull Request**: fork → 特性分支 → PR 到 `dev`。提交前请运行 `ruff check`、`mypy` 和 `pytest`
 - **讨论**: [GitHub Discussions](https://github.com/retrofor/iamai/discussions)
 
 ---

@@ -11,10 +11,10 @@ build/
 *.pyd
 *.egg-info/
 .pytest_cache/
+.mypy_cache/
 .ruff_cache/
 
 docs/_build/
 docs/api/generated/
 
 *.log
-uv.lock

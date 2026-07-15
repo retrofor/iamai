@@ -4,7 +4,7 @@
   "type": "plugin",
   "summary": "Example stateful life simulator plugins for long-lived game state and structured choice scenes.",
   "package": null,
-  "repository": "https://github.com/iamai/iamai",
+  "repository": "https://github.com/retrofor/iamai",
   "license": "MIT",
   "status": "active",
   "verification": ["official"],
@@ -14,6 +14,6 @@
   "requires": [],
   "install_command": null,
   "docs_url": null,
-  "source_url": "https://github.com/iamai/iamai/tree/main/examples/life-sim-runtime",
+  "source_url": "https://github.com/retrofor/iamai/tree/dev/examples/life-sim-runtime",
   "updated_at": "2026-04-26"
 }

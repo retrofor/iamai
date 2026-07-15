@@ -4,7 +4,7 @@
   "type": "state_backend",
   "summary": "Built-in persistent state backend for plugin-scoped JSON state stored in SQLite.",
   "package": "iamai",
-  "repository": "https://github.com/iamai/iamai",
+  "repository": "https://github.com/retrofor/iamai",
   "license": "MIT",
   "status": "active",
   "verification": ["official", "package_verified"],
@@ -12,6 +12,6 @@
   "tags": ["builtin", "state", "sqlite"],
   "platforms": ["generic"],
   "install_command": "uv add iamai",
-  "source_url": "https://github.com/iamai/iamai",
+  "source_url": "https://github.com/retrofor/iamai",
   "updated_at": "2026-04-26"
 }

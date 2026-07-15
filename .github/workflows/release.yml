@@ -7,14 +7,39 @@
 name: release
 on:
   push:
-    branches: [main, master]
-    tags: ['*']
-  pull_request:
+    tags: ['v*']
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
+  validate:
+    name: Validate release source
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: 3.12
+      - uses: astral-sh/setup-uv@v8.3.2
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Sync workspace dependencies
+        run: uv sync --locked --all-packages --group dev --group docs
+      - name: Verify tag matches package version
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
+        run: |
+          package_version="$(uv run python -c 'import tomllib; print(tomllib.load(open("pyproject.toml", "rb"))["project"]["version"])')"
+          test "$GITHUB_REF_NAME" = "v$package_version"
+      - name: Run Python checks
+        run: |
+          uv run ruff check .
+          uv run mypy
+          uv run pytest
+      - name: Run Rust tests
+        run: cargo test --no-default-features
+      - name: Validate example configurations
+        run: bash scripts/check_example_configs.sh
   linux:
+    needs: validate
     runs-on: ${{ matrix.platform.runner }}
     strategy:
       matrix:
@@ -35,7 +60,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
         with:
-          python-version: 3.10
+          python-version: 3.11
       - name: Build wheels
         uses: PyO3/maturin-action@v1
         with:
@@ -49,6 +74,7 @@ jobs:
           name: wheels-linux-${{ matrix.platform.target }}
           path: dist
   musllinux:
+    needs: validate
     runs-on: ${{ matrix.platform.runner }}
     strategy:
       matrix:
@@ -65,7 +91,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
         with:
-          python-version: 3.10
+          python-version: 3.11
       - name: Build wheels
         uses: PyO3/maturin-action@v1
         with:
@@ -79,6 +105,7 @@ jobs:
           name: wheels-musllinux-${{ matrix.platform.target }}
           path: dist
   windows:
+    needs: validate
     runs-on: ${{ matrix.platform.runner }}
     strategy:
       matrix:
@@ -110,6 +137,7 @@ jobs:
           name: wheels-windows-${{ matrix.platform.target }}
           path: dist
   macos:
+    needs: validate
     runs-on: ${{ matrix.platform.runner }}
     strategy:
       matrix:
@@ -122,7 +150,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
         with:
-          python-version: 3.10
+          python-version: 3.11
       - name: Build wheels
         uses: PyO3/maturin-action@v1
         with:
@@ -135,6 +163,7 @@ jobs:
           name: wheels-macos-${{ matrix.platform.target }}
           path: dist
   sdist:
+    needs: validate
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -151,8 +180,7 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    if: ${{ startsWith(github.ref, 'refs/tags/') || github.event_name ==
-      'workflow_dispatch' }}
+    if: ${{ startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch' }}
     needs: [linux, musllinux, windows, macos, sdist]
     permissions:
       # Use to sign the release artifacts
@@ -169,9 +197,33 @@ jobs:
           subject-path: wheels-*/*
       - name: Install uv
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@v8.3.2
       - name: Publish to PyPI
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
-        run: uv publish 'wheels-*/*'
+        run: uv publish --check-url https://pypi.org/simple 'wheels-*/*'
         env:
-          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_API_TOKEN || secrets.PYPI_TOKEN }}
+      - name: Create draft GitHub release
+        id: github_release
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            if [[ "$(gh release view "$GITHUB_REF_NAME" --json isDraft --jq .isDraft)" == "false" ]]; then
+              echo "already_published=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            gh release upload "$GITHUB_REF_NAME" wheels-*/* --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" wheels-*/* \
+              --draft \
+              --generate-notes \
+              --title "$GITHUB_REF_NAME" \
+              --verify-tag
+          fi
+      - name: Publish GitHub release
+        if: ${{ startsWith(github.ref, 'refs/tags/') && steps.github_release.outputs.already_published != 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release edit "$GITHUB_REF_NAME" --draft=false

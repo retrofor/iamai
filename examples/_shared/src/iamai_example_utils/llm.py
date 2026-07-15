@@ -3,7 +3,7 @@ from __future__ import annotations
 import os
 from dataclasses import asdict
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 from iamai import AgentError, LLMClient, LLMConfig
 from iamai.agent import clip_text as _clip_text
@@ -11,7 +11,7 @@ from iamai.agent import format_transcript as _format_transcript
 from iamai.config import load_env_file
 from pydantic import BaseModel
 
-load_env_file(Path(__file__).resolve().parents[2] / ".env")
+load_env_file(Path.cwd() / ".env")
 
 DEFAULT_BASE_URL: str | None = os.getenv("OPENAI_BASE_URL")
 DEFAULT_MODEL = os.getenv("OPENAI_MODEL", "kimi-k2.5")
@@ -70,8 +70,11 @@ async def chat_json(
     temperature: float | None = None,
     max_tokens: int | None = None,
 ) -> dict[str, Any] | list[Any]:
-    return await LLMClient(settings).chat_json(
-        messages,
-        temperature=temperature,
-        max_tokens=max_tokens,
+    return cast(
+        dict[str, Any] | list[Any],
+        await LLMClient(settings).chat_json(
+            messages,
+            temperature=temperature,
+            max_tokens=max_tokens,
+        ),
     )

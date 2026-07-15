@@ -1,5 +1,5 @@
 name: Ecosystem submission
-description: Publish a FerriBot plugin, adapter, ruleset, tool, template, or other ecosystem entry.
+description: Publish an iamai plugin, adapter, ruleset, tool, template, or other ecosystem entry.
 title: "[Ecosystem] "
 labels:
   - ecosystem-submission
@@ -8,7 +8,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for publishing a FerriBot ecosystem entry. Maintainers will validate the package or repository before adding it to the public registry.
+        Thanks for publishing an iamai ecosystem entry. Maintainers will validate the package or repository before adding it to the public registry.
   - type: dropdown
     id: extension_type
     attributes:
@@ -56,13 +56,13 @@ body:
     attributes:
       label: Python package
       description: Required unless this entry is repository-only.
-      placeholder: ferribot-plugin-echo
+      placeholder: iamai-plugin-echo
   - type: input
     id: repository_url
     attributes:
       label: Repository URL
       description: Required unless this entry is package-only.
-      placeholder: https://github.com/you/ferribot-plugin-echo
+      placeholder: https://github.com/you/iamai-plugin-echo
   - type: textarea
     id: runtime_capabilities
     attributes:
@@ -100,5 +100,5 @@ body:
           required: true
         - label: I declared network access, credential needs, dangerous actions, and Agent tool permissions where applicable.
           required: true
-        - label: I understand verification badges are assigned by FerriBot maintainers after review.
+        - label: I understand verification badges are assigned by iamai maintainers after review.
           required: true

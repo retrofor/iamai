@@ -56,6 +56,7 @@ OneBot11 暴露面
 - 适配器启动失败；
 - 插件和配置重载结果；
 - webhook 回复发送、丢弃和错误。
+- handler 队列满、生命周期切换造成的任务丢弃。
 
 可以通过管理命令查看：
 
@@ -127,4 +128,5 @@ Webhook 出站回复默认启用 URL 约束：
 - Webhook 有签名校验和最小出站 allowlist。
 - 管理插件只对 superuser 开放。
 - 日志和指标能定位拒绝原因。
+- ``max_concurrent_handlers`` 和 ``max_pending_handlers`` 已按流量峰值设置。
 - 插件 reload 后不会泄漏后台任务或连接。

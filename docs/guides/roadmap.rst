@@ -8,32 +8,34 @@
 ----------
 
 ``0.1``
-   |planned| 稳定核心 API、文档、社区商店和发布流程。插件、适配器、规则、权限和状态后端应能通过
-   ``uv add`` 安装，并通过 entry point 或显式导入路径启用。
+   |shipped| 建立 Rust + PyO3 消息核心、Python runtime、插件与适配器基础契约。
 
 ``0.2``
-   |drafting| 发布适配器 SDK 草案、adapter conformance tests、多账户配置草案，并至少补齐一个新增主流适配器。
-   适配器包命名固定为 ``iamai-adapter-<platform>``，entry point 使用
-   ``[project.entry-points."iamai.adapters"]``。
+   |shipped| 补齐规则、权限、中间件、状态后端、适配器 conformance tests、Telegram/Webhook 支持、
+   社区商店和管理命令。
 
 ``0.3``
-   |drafting| 引入 tool registry、agent permission、审计 trace 和 MCP gateway 试验。Agent tool 必须声明权限名、
-   输入 schema、审计字段，以及是否需要人工审批。
+   |current| 提供 tool registry、agent permission、审计 trace、MCP gateway、管理 HTTP API 和多种 Agent runtime
+   示例；同时为 handler 并发和 Session backlog 加入可配置资源边界。
 
 ``0.4``
-   |planned| 增加管理 HTTP API 候选实现、配置 schema 导出和运行时检查增强。WebUI 不进入核心；如果需要 UI，
-   应作为独立插件或独立项目调用管理 API。
+   |planned| 稳定第三方适配器与插件的独立包发布规范，扩展 conformance tests，并提供配置 schema 导出。
+   WebUI 不进入核心；如果需要 UI，应作为独立插件或独立项目调用管理 API。
 
 ``1.0``
    |planned| 冻结核心公共 API，发布兼容性规范，并明确 ``0.x`` 到 ``1.x`` 的迁移窗口。
 
+.. |shipped| raw:: html
+
+   <span class="iamai-status-pill">shipped</span>
+
+.. |current| raw:: html
+
+   <span class="iamai-status-pill">current</span>
+
 .. |planned| raw:: html
 
    <span class="iamai-status-pill">planned</span>
-
-.. |drafting| raw:: html
-
-   <span class="iamai-status-pill">drafting</span>
 
 设计决策
 --------

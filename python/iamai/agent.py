@@ -7,7 +7,7 @@ import os
 import re
 from collections.abc import Awaitable, Callable
 from dataclasses import asdict, dataclass, field
-from typing import Any, cast, Optional
+from typing import Any, cast
 
 from pydantic import BaseModel, ValidationError
 
@@ -30,6 +30,7 @@ class LLMConfig:
     temperature: float = 0.7
     max_tokens: int = 800
     timeout: float = 60.0
+    extra_body: dict[str, Any] | None = None
 
     @classmethod
     def from_mapping(cls, payload: dict[str, Any] | None = None) -> "LLMConfig":
@@ -48,6 +49,9 @@ class LLMConfig:
             temperature=float(data.get("temperature", 0.7)),
             max_tokens=int(data.get("max_tokens", 800)),
             timeout=float(data.get("timeout", 60.0)),
+            extra_body=_parse_extra_body(
+                data.get("extra_body") or os.getenv("OPENAI_EXTRA_BODY", "")
+            ),
         )
 
 
@@ -290,10 +294,10 @@ class LLMClient:
         temperature: float | None = None,
         max_tokens: int | None = None,
         trace: AgentTrace | None = None,
-        response_format: Optional[dict[str,str]] = {"type": "text"}
+        response_format: dict[str, str] | None = None,
     ) -> str:
         """Call the configured chat model and return stripped text."""
-        if os.getenv("iamai_LLM_MOCK"):
+        if os.getenv("IAMAI_LLM_MOCK") or os.getenv("iamai_LLM_MOCK"):
             result = _mock_chat_reply(messages)
             if trace is not None:
                 trace.add("llm", "mock", input=messages[-1].get("content", ""), output=result)
@@ -317,7 +321,8 @@ class LLMClient:
                 messages=cast(Any, messages),
                 temperature=(self.config.temperature if temperature is None else temperature),
                 max_tokens=self.config.max_tokens if max_tokens is None else max_tokens,
-                response_format=response_format
+                response_format=cast(Any, response_format or {"type": "text"}),
+                extra_body=self.config.extra_body,
             )
         except Exception as exc:
             raise AgentError(f"chat completion failed: {exc}") from exc
@@ -351,13 +356,12 @@ class LLMClient:
                     "role": "system",
                     "content": "Return valid JSON only. Do not wrap it in markdown fences.",
                 },
-                
                 *messages,
             ],
             temperature=temperature,
             max_tokens=max_tokens,
             trace=trace,
-            response_format={"type": "json_object"}
+            response_format={"type": "json_object"},
         )
         value = extract_json_value(text)
         if isinstance(value, (dict, list)):
@@ -413,6 +417,21 @@ def _normalize_optional_str(value: Any) -> str | None:
         return None
     text = str(value).strip()
     return text or None
+
+
+def _parse_extra_body(value: Any) -> dict[str, Any] | None:
+    if value in (None, ""):
+        return None
+    if isinstance(value, dict):
+        return dict(value)
+    if isinstance(value, str):
+        try:
+            parsed = json.loads(value)
+        except json.JSONDecodeError as exc:
+            raise AgentError("OPENAI_EXTRA_BODY must be a JSON object") from exc
+        if isinstance(parsed, dict):
+            return parsed
+    raise AgentError("OPENAI_EXTRA_BODY must be a JSON object")
 
 
 def extract_json_value(text: str) -> Any:

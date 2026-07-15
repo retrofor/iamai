@@ -5,9 +5,9 @@
 <p align="center">
   <a href="https://pypi.org/project/iamai/"><img src="https://img.shields.io/pypi/v/iamai?color=blue" alt="PyPI"></a>
   <a href="https://pypi.org/project/iamai/"><img src="https://img.shields.io/pypi/pyversions/iamai" alt="Python"></a>
-  <a href="https://github.com/retrofor/iamai/blob/main/Cargo.toml"><img src="https://img.shields.io/badge/core-rust%20%2B%20pyo3-orange" alt="Rust"></a>
-  <a href="https://github.com/retrofor/iamai/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="License"></a>
-  <a href="https://github.com/retrofor/iamai/actions/workflows/check.yml"><img src="https://github.com/retrofor/iamai/actions/workflows/check.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/retrofor/iamai/blob/dev/Cargo.toml"><img src="https://img.shields.io/badge/core-rust%20%2B%20pyo3-orange" alt="Rust"></a>
+  <a href="https://github.com/retrofor/iamai/blob/dev/LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="License"></a>
+  <a href="https://github.com/retrofor/iamai/actions/workflows/check.yml"><img src="https://github.com/retrofor/iamai/actions/workflows/check.yml/badge.svg?branch=dev" alt="CI"></a>
   <a href="https://iamai.readthedocs.io/"><img src="https://readthedocs.org/projects/iamai/badge/?version=latest" alt="Docs"></a>
 </p>
 
@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/retrofor/iamai/blob/main/README.zh.md">中文文档</a>
+  <a href="https://github.com/retrofor/iamai/blob/dev/README.zh.md">中文文档</a>
 </p>
 
 ---
@@ -149,7 +149,7 @@ Plugins support `@command`, `@message_handler`, `@event_handler`, middleware (`b
 ## Community & Contributing
 
 - **Issues**: [GitHub Issues](https://github.com/retrofor/iamai/issues)
-- **Pull Requests**: fork → feature branch → PR to `main`. Run `ruff check` and `pytest` before submitting.
+- **Pull Requests**: fork → feature branch → PR to `dev`. Run `ruff check`, `mypy`, and `pytest` before submitting.
 - **Discussions**: [GitHub Discussions](https://github.com/retrofor/iamai/discussions)
 
 ---

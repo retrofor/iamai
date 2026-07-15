@@ -4,7 +4,7 @@
   "type": "adapter",
   "summary": "Built-in reverse WebSocket server mode for Napcat and OneBot clients connecting back to iamai.",
   "package": "iamai",
-  "repository": "https://github.com/iamai/iamai",
+  "repository": "https://github.com/retrofor/iamai",
   "license": "MIT",
   "status": "active",
   "verification": ["official", "package_verified", "security_reviewed"],
@@ -14,7 +14,7 @@
   "requires": [],
   "install_command": "uv add iamai",
   "docs_url": null,
-  "source_url": "https://github.com/iamai/iamai/blob/main/python/iamai/adapters/onebot11.py",
+  "source_url": "https://github.com/retrofor/iamai/blob/dev/python/iamai/adapters/onebot11.py",
   "security_notes": "Use path scoping and access tokens when exposing reverse WebSocket listeners.",
   "updated_at": "2026-04-26"
 }

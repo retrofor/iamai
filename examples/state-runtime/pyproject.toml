@@ -2,7 +2,8 @@
 name = "state-runtime"
 version = "0.1.0"
 description = "State iamai example."
-requires-python = ">=3.10"
+license = "MIT"
+requires-python = ">=3.11"
 dependencies = [
     "iamai",
     "iamai-example-utils",

@@ -3,14 +3,14 @@
   "name": "Web Search Tool Template",
   "type": "agent_tool",
   "summary": "Template entry for exposing a constrained web search tool through iamai agent plugins.",
-  "repository": "https://github.com/iamai/iamai",
+  "repository": "https://github.com/retrofor/iamai",
   "license": "MIT",
   "status": "experimental",
   "verification": ["community"],
   "entry_points": [],
   "tags": ["agent", "tool", "template"],
   "platforms": ["generic"],
-  "source_url": "https://github.com/iamai/iamai",
+  "source_url": "https://github.com/retrofor/iamai",
   "security_notes": "Tools that access the network should declare allowlists and audit fields.",
   "updated_at": "2026-04-26"
 }

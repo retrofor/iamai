@@ -2,9 +2,10 @@ from __future__ import annotations
 
 import json
 from importlib import resources
+from typing import Any
 
 
-def read_json(name: str):
+def read_json(name: str) -> Any:
     return json.loads(
         (resources.files(__package__) / name.removeprefix("data/")).read_text(encoding="utf-8")
     )

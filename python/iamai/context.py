@@ -65,8 +65,8 @@ class Context:
         return await self.adapter.call_api(action, **params)
 
     async def reload_plugins(self) -> None:
-        """Reload user plugins through the owning runtime."""
-        await self.runtime.reload_plugins()
+        """Schedule a plugin reload after the current handler completes."""
+        self.runtime.request_plugin_reload()
 
     async def wait_for_message(
         self,
@@ -83,6 +83,7 @@ class Context:
 
             rule = is_plain_message
         return await self.runtime.sessions.wait_for(self, timeout=timeout, rule=rule)
+
 
 if TYPE_CHECKING:
     from .adapter import Adapter

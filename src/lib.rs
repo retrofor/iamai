@@ -386,3 +386,59 @@ fn deep_merge(base: &mut Value, overlay: Value) {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn deep_merge_preserves_nested_keys_and_replaces_arrays() {
+        let mut base = json!({
+            "runtime": {"log_level": "INFO", "plugins": ["echo"]},
+            "enabled": true,
+        });
+        let overlay = json!({
+            "runtime": {"plugins": ["react"], "hot_reload": false},
+        });
+
+        deep_merge(&mut base, overlay);
+
+        assert_eq!(
+            base,
+            json!({
+                "runtime": {
+                    "log_level": "INFO",
+                    "plugins": ["react"],
+                    "hot_reload": false,
+                },
+                "enabled": true,
+            })
+        );
+    }
+
+    #[test]
+    fn onebot_segments_preserve_plain_and_rendered_text() {
+        let value = json!([
+            {"type": "text", "data": {"text": "hello "}},
+            {"type": "at", "data": {"qq": 42}},
+            {"type": "image", "data": {"file": "photo.png"}},
+        ]);
+
+        let segments = parse_onebot11_segments(&value);
+        let plain = segments.iter().map(segment_plain_text).collect::<String>();
+        let rendered = segments.iter().map(segment_render_text).collect::<String>();
+
+        assert_eq!(plain, "hello @42");
+        assert_eq!(rendered, "hello @42[image:photo.png]");
+    }
+
+    #[test]
+    fn event_ids_are_unique_and_prefixed() {
+        let first = next_event_id_inner();
+        let second = next_event_id_inner();
+
+        assert!(first.starts_with("evt-"));
+        assert!(second.starts_with("evt-"));
+        assert_ne!(first, second);
+    }
+}

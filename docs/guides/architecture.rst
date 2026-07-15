@@ -112,6 +112,7 @@ Plugin 只处理统一事件和上下文。这样做的价值不是“抽象更�
      -> Runtime checks session waiters
      -> Runtime matches command/message/event handlers
      -> Rule and Permission run with DI
+     -> Runtime atomically admits the complete matched handler set or reports overload
      -> Middleware phases wrap handler execution
      -> Context.reply() delegates back to Adapter
 

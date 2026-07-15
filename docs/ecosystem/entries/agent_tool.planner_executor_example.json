@@ -4,7 +4,7 @@
   "type": "agent_tool",
   "summary": "Example two-stage agent workflow with a planner plugin, executor plugin, and shared run history.",
   "package": null,
-  "repository": "https://github.com/iamai/iamai",
+  "repository": "https://github.com/retrofor/iamai",
   "license": "MIT",
   "status": "active",
   "verification": ["official"],
@@ -14,7 +14,7 @@
   "requires": [],
   "install_command": null,
   "docs_url": null,
-  "source_url": "https://github.com/iamai/iamai/tree/main/examples/planner-executor-runtime",
+  "source_url": "https://github.com/retrofor/iamai/tree/dev/examples/planner-executor-runtime",
   "security_notes": "Planning and execution are separated so policy checks can be inserted before action plugins run.",
   "updated_at": "2026-04-26"
 }

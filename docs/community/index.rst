@@ -7,6 +7,12 @@
 这里汇总 iamai 社区内容：Blog 文章、扩展商店、模板、适配器和 Agent 工具。
 社区区块是静态生成的，适合 GitHub Pages、Pull Request 审核和版本化文档。
 
+.. toctree::
+   :hidden:
+
+   blog/index
+   store
+
 BLOG
 ----
 

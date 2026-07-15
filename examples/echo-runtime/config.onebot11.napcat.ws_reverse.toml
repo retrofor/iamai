@@ -20,7 +20,7 @@ platform = "qq"
 api_timeout = 10.0
 
 [plugin.echo]
-greeting = "你好，我是 Aster。"
+greeting = "你好，我是Shinemay"
 
 [plugin.management]
 # Development-oriented management commands. Keep them behind superusers.

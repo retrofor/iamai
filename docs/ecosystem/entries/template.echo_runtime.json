@@ -3,13 +3,13 @@
   "name": "Echo Runtime Template",
   "type": "template",
   "summary": "Starter project showing a minimal iamai app, terminal adapter, commands, and plugin configuration.",
-  "repository": "https://github.com/iamai/iamai",
+  "repository": "https://github.com/retrofor/iamai",
   "license": "MIT",
   "status": "active",
   "verification": ["official"],
   "entry_points": [],
   "tags": ["template", "starter", "example"],
   "platforms": ["terminal"],
-  "source_url": "https://github.com/iamai/iamai",
+  "source_url": "https://github.com/retrofor/iamai",
   "updated_at": "2026-04-26"
 }

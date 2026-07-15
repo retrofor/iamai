@@ -4,7 +4,7 @@
   "type": "plugin",
   "summary": "Built-in management commands for plugin reload, config reload, health, metrics, sessions, and runtime inspection.",
   "package": "iamai",
-  "repository": "https://github.com/iamai/iamai",
+  "repository": "https://github.com/retrofor/iamai",
   "license": "MIT",
   "status": "active",
   "verification": ["official", "package_verified", "security_reviewed"],
@@ -18,7 +18,7 @@
   "tags": ["builtin", "operations", "metrics", "reload"],
   "platforms": ["generic"],
   "install_command": "uv add iamai",
-  "source_url": "https://github.com/iamai/iamai",
+  "source_url": "https://github.com/retrofor/iamai",
   "security_notes": "Require superusers for reload and introspection commands in production.",
   "updated_at": "2026-04-26"
 }

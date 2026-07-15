@@ -5,9 +5,12 @@ import operator
 import random
 import re
 from collections.abc import Callable
-from typing import Any
+from typing import Any, cast
 
 from iamai import Context, Plugin, ToolRegistry, command
+from iamai.agent import clip_text
+
+from react_runtime.plugins.memory import MemoryPlugin
 
 _BINARY_OPS: dict[type[ast.operator], Callable[[Any, Any], Any]] = {
     ast.Add: operator.add,
@@ -39,13 +42,13 @@ class ToolsPlugin(Plugin):
         )
         registry.register(
             "remember",
-            "store a user preference or fact",
-            lambda value, **_: self._remember(str(value or "")),
+            "store a fact — input is plain text, e.g. 用户叫简律纯",
+            lambda value, *, ctx, **_: self._remember(str(value or ""), ctx),
         )
         registry.register(
             "recall",
-            "search saved notes",
-            lambda value, **_: self._recall(str(value or "")),
+            "search notes by keyword — input is a single word/phrase, e.g. 简律纯. empty input lists recent notes",
+            lambda value, *, ctx, **_: self._recall(str(value or ""), ctx),
         )
         registry.register(
             "roll",
@@ -78,21 +81,22 @@ class ToolsPlugin(Plugin):
             f"adapter={ctx.event.adapter}"
         )
 
-    def _remember(self, value: str) -> str:
+    def _remember(self, value: str, ctx: Context) -> str:
         text = " ".join(value.split()).strip()
         if not text:
             return "Nothing stored."
-        memory = self.runtime.get_plugin("memory")
-        notes = memory.state.setdefault("notes", [])
+        memory = cast(MemoryPlugin, self.runtime.get_plugin("memory"))
+        text = clip_text(text, limit=int(memory.config.get("note_length_limit", 1000)))
+        notes = memory.notes_for(ctx)
         notes.append(text)
         limit = int(memory.config.get("note_limit", 12))
         if len(notes) > limit:
             del notes[:-limit]
         return f"Stored note: {text}"
 
-    def _recall(self, query: str) -> str:
-        memory = self.runtime.get_plugin("memory")
-        notes = memory.state.get("notes", [])
+    def _recall(self, query: str, ctx: Context) -> str:
+        memory = cast(MemoryPlugin, self.runtime.get_plugin("memory"))
+        notes = memory.notes_for(ctx)
         if not notes:
             return "No notes stored."
         token = query.strip().lower()
@@ -132,4 +136,4 @@ class ToolsPlugin(Plugin):
 
     @command("remember", priority=70)
     async def remember(self, ctx: Context, args: str) -> None:
-        await ctx.reply(self._remember(args))
+        await ctx.reply(self._remember(args, ctx))

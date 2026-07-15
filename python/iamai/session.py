@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import asyncio
+import time
+from collections import OrderedDict
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Callable
 
@@ -16,12 +18,51 @@ class Waiter:
     rule: Callable[["Context"], Any] | None = None
 
 
+@dataclass(slots=True)
+class BacklogItem:
+    """A context retained briefly for a future session waiter."""
+
+    context: "Context"
+    created_at: float
+
+
 class SessionManager:
     """Coordinate per-session waiter registration and message consumption."""
 
-    def __init__(self) -> None:
+    def __init__(
+        self,
+        *,
+        max_backlog_keys: int = 1024,
+        max_backlog_per_key: int = 3,
+        backlog_ttl_seconds: float = 300.0,
+    ) -> None:
         self._waiters: list[Waiter] = []
-        self._backlog: dict[str, list["Context"]] = {}
+        self._backlog: OrderedDict[str, list[BacklogItem]] = OrderedDict()
+        self._clock = time.monotonic
+        self.configure(
+            max_backlog_keys=max_backlog_keys,
+            max_backlog_per_key=max_backlog_per_key,
+            backlog_ttl_seconds=backlog_ttl_seconds,
+        )
+
+    def configure(
+        self,
+        *,
+        max_backlog_keys: int,
+        max_backlog_per_key: int,
+        backlog_ttl_seconds: float,
+    ) -> None:
+        """Apply bounded backlog settings without replacing active waiters."""
+        if max_backlog_keys <= 0 or max_backlog_per_key <= 0 or backlog_ttl_seconds <= 0:
+            raise ValueError("session backlog limits must be greater than 0")
+        self._max_backlog_keys = int(max_backlog_keys)
+        self._max_backlog_per_key = int(max_backlog_per_key)
+        self._backlog_ttl_seconds = float(backlog_ttl_seconds)
+        self._prune_backlog()
+        for items in self._backlog.values():
+            del items[: -self._max_backlog_per_key]
+        while len(self._backlog) > self._max_backlog_keys:
+            self._backlog.popitem(last=False)
 
     def session_key(self, ctx: "Context") -> str:
         """Return the stable waiter key for a context."""
@@ -46,16 +87,22 @@ class SessionManager:
             future=loop.create_future(),
             rule=rule,
         )
+        self._prune_backlog()
         backlog = self._backlog.get(waiter.key, [])
         for item in list(backlog):
             if rule is not None:
-                result = rule(item)
+                result = rule(item.context)
                 if asyncio.iscoroutine(result):
                     result = await result
                 if not result:
                     continue
-            backlog.remove(item)
-            return item
+            current_backlog = self._backlog.get(waiter.key)
+            if current_backlog is None or item not in current_backlog:
+                continue
+            current_backlog.remove(item)
+            if not current_backlog:
+                self._backlog.pop(waiter.key, None)
+            return item.context
         self._waiters.append(waiter)
         try:
             return await asyncio.wait_for(waiter.future, timeout=timeout)
@@ -75,14 +122,26 @@ class SessionManager:
                     result = await result
                 if not result:
                     continue
+            if waiter.future.done() or waiter not in self._waiters:
+                continue
             waiter.future.set_result(ctx)
             self._waiters.remove(waiter)
             return True
+        self._prune_backlog()
         backlog = self._backlog.setdefault(key, [])
-        backlog.append(ctx)
-        if len(backlog) > 3:
-            del backlog[:-3]
+        backlog.append(BacklogItem(context=ctx, created_at=self._clock()))
+        del backlog[: -self._max_backlog_per_key]
+        self._backlog.move_to_end(key)
+        while len(self._backlog) > self._max_backlog_keys:
+            self._backlog.popitem(last=False)
         return False
+
+    def _prune_backlog(self) -> None:
+        cutoff = self._clock() - self._backlog_ttl_seconds
+        for key, items in list(self._backlog.items()):
+            items[:] = [item for item in items if item.created_at >= cutoff]
+            if not items:
+                self._backlog.pop(key, None)
 
     def cancel(self, key: str | None = None) -> int:
         """Cancel waiters, optionally scoped to a single key."""
