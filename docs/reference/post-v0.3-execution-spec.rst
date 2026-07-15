@@ -147,6 +147,25 @@ plugin 可以被独立打包、发现、配置和验证。
 * CLI ``config-schema`` 和 management API ``/schema`` 对同一扩展集合输出语义等价 payload。
 * 输出顺序稳定，并有 golden/equivalence tests。
 
+Schema contract v1
+^^^^^^^^^^^^^^^^^^
+
+* 公开 ``CONFIG_SCHEMA_CONTRACT_VERSION = "1"``、
+  ``CONFIG_SCHEMA_ID = "urn:iamai:config-schema:v1:root"`` 和纯函数
+  ``build_config_schema(*, adapters=..., plugins=...)``。
+* 根属性固定按 ``runtime``、``logging``、``state``、``adapter``、``plugin`` 排列；对应
+  ``$id`` 使用 ``urn:iamai:config-schema:v1:<section>``。扩展子 Schema 使用
+  ``urn:iamai:config-schema:v1:<kind>:<percent-encoded-name>``。
+* adapter 和 plugin 名按字典序输出；未知扩展表和没有 ``config_model`` 的扩展保持开放对象，
+  以兼容外部工具和渐进迁移。
+* ``state`` 同时接受配置表和 ``false``，其根默认值是空表。Pydantic 与 dataclass
+  ``config_model`` 使用同一 validation-mode 生成路径。
+* 默认工厂不得在 Schema 生成期间执行；需要公开的 factory 默认值必须由字段 metadata 显式提供。
+* ``writeOnly`` 只接受字段 metadata 的显式标注，不根据 ``token`` 等字段名推断。生成器只读取类
+  metadata，禁止读取或嵌入当前 Runtime 的配置值。
+* 无参 ``config-schema`` 和认证后的 management API ``GET /schema`` 必须与
+  ``Runtime.config_schema()`` 完全相等；``config-schema <plugin>`` 保留单插件兼容行为。
+
 0.4-C：公开 conformance kit
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

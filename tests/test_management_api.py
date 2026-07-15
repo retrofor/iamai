@@ -63,5 +63,5 @@ def test_management_api_exposes_read_only_runtime_payloads(tmp_path: Path) -> No
     assert _json_response(plugin._plugins(_request("/plugins")).body)[0]["name"] == "demo"
     assert _json_response(plugin._handlers(_request("/handlers")).body)[0]["name"] == "demo_command"
     assert _json_response(plugin._sessions(_request("/sessions")).body) == []
-    assert _json_response(plugin._schema(_request("/schema")).body) == {}
+    assert _json_response(plugin._schema(_request("/schema")).body) == runtime.config_schema()
     assert _json_response(plugin._state(_request("/state")).body) == {"backend": "NullStateStore"}

@@ -171,6 +171,7 @@ def load(mode: str) -> dict[str, object]:
         "mode": mode,
         "plugins": [item.plugin_name for item in runtime.plugins],
         "adapters": [item.name for item in runtime.adapters],
+        "schema": runtime.config_schema(),
         "plugin_module": str(Path(plugin_module.__file__).resolve()),
         "adapter_module": str(Path(adapter_module.__file__).resolve()),
     }
@@ -196,6 +197,8 @@ print(
         tmp_path,
         "run",
         "--isolated",
+        "--refresh-package",
+        "iamai",
         "--no-editable",
         "--no-default-groups",
         "--frozen",
@@ -222,6 +225,25 @@ print(
         assert any(Path(run["adapter_module"]).is_relative_to(path) for path in site_packages)
         assert str(FIXTURES_ROOT) not in run["plugin_module"]
         assert str(FIXTURES_ROOT) not in run["adapter_module"]
+        schema = run["schema"]
+        plugin_schema = schema["properties"]["plugin"]["properties"]["reference_plugin"]
+        adapter_schema = schema["properties"]["adapter"]["properties"]["reference_adapter"]
+        assert plugin_schema["$id"] == (
+            "urn:iamai:config-schema:v1:plugin:reference_plugin"
+        )
+        assert plugin_schema["properties"]["greeting"]["default"] == (
+            "hello from the installed plugin"
+        )
+        assert plugin_schema["properties"]["credential"]["writeOnly"] is True
+        assert "writeOnly" not in plugin_schema["properties"]["max_tokens"]
+        assert adapter_schema["$id"] == (
+            "urn:iamai:config-schema:v1:adapter:reference_adapter"
+        )
+        assert adapter_schema["properties"]["endpoint"]["default"] == (
+            "https://example.invalid/events"
+        )
+        assert adapter_schema["properties"]["access_token"]["writeOnly"] is True
+        assert "writeOnly" not in adapter_schema["properties"]["token_hint"]
 
 
 def test_standard_resolver_rejects_incompatible_iamai_requirement(
