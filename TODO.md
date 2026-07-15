@@ -18,8 +18,8 @@ Status values:
 | 0. Specification baseline | `DONE` | [PR #445](https://github.com/retrofor/iamai/pull/445); [post-merge CI](https://github.com/retrofor/iamai/actions/runs/29400584855); [CodeQL](https://github.com/retrofor/iamai/actions/runs/29400584086) | Completed 2026-07-15 |
 | 1. FOSSA governance | `BLOCKED_EXTERNAL` | [PR #446](https://github.com/retrofor/iamai/pull/446); [baseline](docs/reference/fossa-governance-baseline.rst); [#436 update](https://github.com/retrofor/iamai/issues/436#issuecomment-4978607129) | Last verified 2026-07-15; no FOSSA CLI, token, or login; resume with project-admin login or API key |
 | 2. Low-risk dependencies | `DONE` | [#437](https://github.com/retrofor/iamai/pull/437), [#439](https://github.com/retrofor/iamai/pull/439), [#441](https://github.com/retrofor/iamai/pull/441), [#442](https://github.com/retrofor/iamai/pull/442), [#443](https://github.com/retrofor/iamai/pull/443); [final CI](https://github.com/retrofor/iamai/actions/runs/29404149717) | Completed 2026-07-15 at [`dev@47e4b8a`](https://github.com/retrofor/iamai/commit/47e4b8a7a671ce82826c6f4e1238ec255cff1506) |
-| 3. Gated dependencies | `IN_PROGRESS` | PRs [#438](https://github.com/retrofor/iamai/pull/438) and [#440](https://github.com/retrofor/iamai/pull/440) | Started 2026-07-15; #438 rehearsal first, then #440 loopback tests |
-| 4. Version 0.4 contract | `TODO` | [#435](https://github.com/retrofor/iamai/issues/435) | Start after workstream 3 |
+| 3. Gated dependencies | `DONE` | [#438](https://github.com/retrofor/iamai/pull/438), [release rehearsal](https://github.com/retrofor/iamai/actions/runs/29404691605), [#449](https://github.com/retrofor/iamai/pull/449), [#440](https://github.com/retrofor/iamai/pull/440), [final CI](https://github.com/retrofor/iamai/actions/runs/29407069117), [CodeQL](https://github.com/retrofor/iamai/actions/runs/29407068347) | Completed 2026-07-15 at [`dev@44a237a`](https://github.com/retrofor/iamai/commit/44a237a7c75fb0ca52ac87a0fed862b6186968ae) |
+| 4. Version 0.4 contract | `IN_PROGRESS` | [#435](https://github.com/retrofor/iamai/issues/435) | Started 2026-07-15; execute 0.4-A, then 0.4-B, then 0.4-C |
 | 5. Version 1.0 contract | `TODO` | [#434](https://github.com/retrofor/iamai/issues/434) | Start after workstream 4 |
 | 6. needs-info closure | `TODO` | Issues #294, #295, #297, #306 | Time-triggered exception: execute after 2026-07-29 23:59 UTC even if workstreams 4-5 remain active |
 
@@ -52,13 +52,13 @@ Tracking: [#436](https://github.com/retrofor/iamai/issues/436)
 
 ## 3. Dependency PRs with special gates
 
-- [ ] Update [#438](https://github.com/retrofor/iamai/pull/438) to the latest `dev`.
-- [ ] Run a non-tag release rehearsal for #438 and verify every build and attestation job.
-- [ ] Merge #438 and verify post-merge `dev` CI.
-- [ ] Add real WebSocket loopback regression tests for #440.
-- [ ] Run the loopback tests on Python 3.11 and 3.13.
-- [ ] Update, verify, and merge [#440](https://github.com/retrofor/iamai/pull/440).
-- [ ] Verify post-merge `dev` CI.
+- [x] Update [#438](https://github.com/retrofor/iamai/pull/438) to the latest `dev`.
+- [x] Run a non-tag release rehearsal for #438 and verify every build and attestation job.
+- [x] Merge #438 and verify post-merge `dev` CI.
+- [x] Add real WebSocket loopback regression tests for #440.
+- [x] Run the loopback tests on Python 3.11 and 3.13.
+- [x] Update, verify, and merge [#440](https://github.com/retrofor/iamai/pull/440).
+- [x] Verify post-merge `dev` CI.
 
 ## 4. Version 0.4 extension contract
 
