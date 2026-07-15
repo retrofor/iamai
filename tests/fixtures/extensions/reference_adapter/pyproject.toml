@@ -1,0 +1,18 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "iamai-adapter-reference"
+version = "0.1.0"
+description = "Installable reference adapter used by the iamai test suite."
+requires-python = ">=3.11"
+dependencies = [
+    "iamai>=0.3,<0.5",
+]
+
+[project.entry-points."iamai.adapters"]
+reference_adapter = "iamai_reference_adapter:ReferenceAdapter"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/iamai_reference_adapter"]

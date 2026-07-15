@@ -36,7 +36,7 @@ Entry points
    name = "iamai-plugin-echo"
    version = "0.1.0"
    dependencies = [
-     "iamai>=0.1,<0.2",
+     "iamai>=0.3,<0.5",
    ]
 
    [project.entry-points."iamai.plugins"]
@@ -134,7 +134,8 @@ iamai 插件依赖
    auto_discover_plugins = true
 
 开启后，iamai 会加载环境中所有 ``iamai.plugins`` entry points。生产环境更建议显式列出插件；
-自动发现适合开发、示例项目和受控的私有运行环境。
+自动发现适合开发、示例项目和受控的私有运行环境。发现结果先按 entry point 名排序，
+再交给插件依赖排序器，因此相同安装环境会得到确定的加载结果。
 
 适配器包
 --------
@@ -147,7 +148,7 @@ iamai 插件依赖
    name = "iamai-adapter-acme"
    version = "0.1.0"
    dependencies = [
-     "iamai>=0.1,<0.2",
+     "iamai>=0.3,<0.5",
      "httpx>=0.27",
    ]
 
@@ -181,11 +182,37 @@ iamai 插件依赖
 命名约定
 --------
 
-- 插件包推荐命名 ``iamai-plugin-<name>``。
-- 适配器包推荐命名 ``iamai-adapter-<platform>``。
-- Entry point 名应和 ``Plugin.name`` 或 ``Adapter.name`` 保持一致。
+- 申请进入社区 registry 的插件包必须命名为 ``iamai-plugin-<name>``，适配器包必须命名为
+  ``iamai-adapter-<platform>``；私有 distribution 可以使用自己的命名规则。
+- Distribution 必须通过标准 ``Requires-Dist: iamai...`` 声明所支持的 iamai 版本范围；
+  安装器负责在运行前拒绝不兼容组合，运行时不维护第二套版本字段。
+- 插件和适配器必须分别发布到 ``iamai.plugins`` 和 ``iamai.adapters`` group。
+- Entry point 名必须和 ``Plugin.name`` 或 ``Adapter.name`` 保持一致。
 - 配置表应分别使用 ``[plugin.<name>]`` 和 ``[adapter.<name>]``。
 - 包依赖交给 Python packaging，运行时加载顺序交给 ``requires`` / ``load_after``。
+
+发现与错误契约
+--------------
+
+配置中的 ``plugins`` / ``adapters`` 是显式启用清单。启用
+``auto_discover_plugins`` / ``auto_discover_adapters`` 后，运行时才会把对应 group 中其余已安装的
+entry points 按名称排序并追加到清单。自动发现是 opt-in，不改变显式引用的顺序。
+
+``management``、``management_api``、``terminal``、``onebot11``、``telegram`` 和 ``webhook``
+是内置保留名。已安装 distribution 不得在对应 group 中发布这些名称。一个 group 内也不得由多个
+distribution 发布同名 entry point；运行时不会选择 last-wins 结果。
+
+已安装 entry point 的发现失败会抛出公开的 ``iamai.ExtensionDiscoveryError``。异常提供稳定字段
+``code``、``group``、``entry_point``、``distributions`` 和 ``reason``，其中 ``code`` 是以下之一：
+
+- ``duplicate_entry_point``：多个 distribution 发布同组同名入口。
+- ``reserved_entry_point``：入口名与内置别名冲突。
+- ``load_failed``：入口模块或属性无法加载。
+- ``invalid_object``：入口没有返回对应的 ``Plugin`` / ``Adapter`` 子类。
+- ``name_mismatch``：入口名和类的 ``name`` 不一致。
+
+错误字符串固定包含 code、group、entry point、排序后的 distribution 标识和原因，便于 CI 及运维系统
+稳定断言。显式加载只检查被请求的入口；自动发现按入口名排序后报告第一个错误。
 
 适配器兼容性规范草案
 --------------------

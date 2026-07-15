@@ -54,7 +54,7 @@ from .rules import (
     when_any,
     word_in,
 )
-from .runtime import Runtime
+from .runtime import ExtensionDiscoveryError, Runtime
 from .session import SessionManager
 from .state import JsonStateStore, NullStateStore, SqliteStateStore, StateStore
 
@@ -80,6 +80,7 @@ __all__ = [
     "Context",
     "Depends",
     "Event",
+    "ExtensionDiscoveryError",
     "Message",
     "FieldCondition",
     "FieldOp",

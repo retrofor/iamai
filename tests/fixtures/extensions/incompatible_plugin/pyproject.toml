@@ -1,0 +1,18 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "iamai-plugin-incompatible"
+version = "0.1.0"
+description = "Resolver rejection fixture for an unsupported iamai version."
+requires-python = ">=3.11"
+dependencies = [
+    "iamai>=99",
+]
+
+[project.entry-points."iamai.plugins"]
+incompatible_plugin = "iamai_incompatible_plugin:IncompatiblePlugin"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/iamai_incompatible_plugin"]
