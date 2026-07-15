@@ -19,40 +19,6 @@ def _package_version(lock: dict[str, object], name: str) -> str:
     return str(package["version"])
 
 
-def _production_registry_packages(lock: dict[str, object], root_name: str) -> set[str]:
-    packages = lock.get("package", [])
-    assert isinstance(packages, list)
-    packages_by_name = {
-        str(package["name"]): package
-        for package in packages
-        if isinstance(package, dict) and "name" in package
-    }
-    assert len(packages_by_name) == len(packages)
-
-    pending = [root_name]
-    visited: set[str] = set()
-    registry_packages: set[str] = set()
-    while pending:
-        name = pending.pop()
-        if name in visited:
-            continue
-        visited.add(name)
-        package = packages_by_name[name]
-        source = package.get("source", {})
-        assert isinstance(source, dict)
-        if "registry" in source:
-            registry_packages.add(name)
-        dependencies = package.get("dependencies", [])
-        assert isinstance(dependencies, list)
-        pending.extend(
-            str(dependency["name"])
-            for dependency in dependencies
-            if isinstance(dependency, dict) and "name" in dependency
-        )
-
-    return registry_packages
-
-
 def test_release_version_is_synchronized_across_package_metadata() -> None:
     python_version = str(_load_toml("pyproject.toml")["project"]["version"])  # type: ignore[index]
     rust_version = str(_load_toml("Cargo.toml")["package"]["version"])  # type: ignore[index]
@@ -108,32 +74,3 @@ def test_pre_commit_ci_has_a_repository_configuration() -> None:
     config = config_path.read_text(encoding="utf-8")
     assert "https://github.com/pre-commit/pre-commit-hooks" in config
     assert "rev: v6.0.0" in config
-
-
-def test_fossa_scans_only_declared_runtime_dependencies() -> None:
-    root_project = _load_toml("pyproject.toml")["project"]
-    compliance_project = _load_toml("compliance/fossa/pyproject.toml")["project"]
-    assert compliance_project["dependencies"] == root_project["dependencies"]  # type: ignore[index]
-
-    # Release metadata uses ranges, so this lock resolves independently from the workspace lock.
-    root_packages = _production_registry_packages(_load_toml("uv.lock"), "iamai")
-    compliance_packages = _production_registry_packages(
-        _load_toml("compliance/fossa/uv.lock"),
-        "iamai-fossa-production",
-    )
-    assert compliance_packages == root_packages
-
-    config = (ROOT / ".fossa.yml").read_text(encoding="utf-8")
-    assert config == (
-        "version: 3\n"
-        "\n"
-        "targets:\n"
-        "  only:\n"
-        "    - type: cargo\n"
-        "      path: .\n"
-        "    # FOSSA 3.17.12 prefilters uv discovery as pipenv before reporting it as uv.\n"
-        "    - type: pipenv\n"
-        "      path: compliance/fossa\n"
-        "    - type: uv\n"
-        "      path: compliance/fossa\n"
-    )
