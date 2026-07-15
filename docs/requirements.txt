@@ -1,4 +1,4 @@
-sphinx>=8,<9
+sphinx>=8,<10
 furo>=2024.8.6
 pydantic>=2.11,<3
 websockets>=15,<16
