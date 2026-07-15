@@ -2,7 +2,7 @@
 
 All notable changes to iamai are documented in this file.
 
-## [0.3.0] - 2026-07-14
+## [0.3.0] - 2026-07-15
 
 ### Added
 
@@ -15,6 +15,7 @@ All notable changes to iamai are documented in this file.
 - Raised the supported Python baseline to 3.11 and expanded CI coverage through Python 3.13.
 - Restored Ruff, Mypy, Pytest, Rust, docs, and example-config checks as release gates.
 - Consolidated tag publishing into one workflow that signs artifacts, publishes to PyPI, and creates a GitHub Release.
+- Upgraded PyO3 to 0.29.0, enabled the CPython 3.11 stable ABI for portable wheels, and refreshed the example Starlette lock to resolve published security advisories.
 - Made handler admission fail closed per event: capacity pressure rejects the complete matched handler set instead of executing a partial fan-out.
 - Synchronized the MIT license file and package metadata across the Python, Rust, and example workspaces.
 

@@ -1,0 +1,84 @@
+name: Feature request
+description: Propose a scoped, testable change to the iamai core or ecosystem contract.
+title: "[Feature] "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        iamai keeps the core focused on a safe, testable runtime. Platform integrations and model-specific capabilities normally belong in external packages.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and user scenario
+      description: Describe the concrete workflow that is blocked today.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: ownership
+    attributes:
+      label: Proposed ownership boundary
+      options:
+        - Core runtime or public API
+        - Official adapter or plugin
+        - External ecosystem package
+        - Documentation or example
+        - Unsure
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Define the smallest behavior or contract that solves the scenario.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Include existing plugins, adapters, or composition options you evaluated.
+    validations:
+      required: true
+
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility impact
+      description: Note public API, serialization, lifecycle, schema, packaging, or migration effects.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] Observable behavior is defined.
+        - [ ] Backward compatibility is preserved or migration is documented.
+        - [ ] Tests cover the new contract.
+    validations:
+      required: true
+
+  - type: textarea
+    id: test_plan
+    attributes:
+      label: Test plan
+      description: Identify the unit, integration, conformance, or packaging checks that prove completion.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: I searched existing issues, the roadmap, and Discussions for duplicates.
+          required: true
+        - label: I have identified whether this belongs in core or the external ecosystem.
+          required: true

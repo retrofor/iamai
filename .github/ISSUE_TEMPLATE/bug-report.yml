@@ -1,0 +1,102 @@
+name: Bug report
+description: Report a reproducible defect in the iamai runtime, CLI, adapters, or packaging.
+title: "[Bug] "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please provide a minimal reproduction. Questions and usage help belong in GitHub Discussions.
+
+  - type: input
+    id: version
+    attributes:
+      label: iamai version or commit
+      description: Paste the installed version or full commit SHA.
+      placeholder: 0.3.0 or 87ba55b4a1e05c8d158f1f9b43cbf7b1afdcd2f0
+    validations:
+      required: true
+
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Affected surface
+      options:
+        - Runtime lifecycle
+        - Event or message model
+        - Plugin or adapter lifecycle
+        - State backend
+        - CLI or configuration
+        - Python packaging
+        - Rust core
+        - Documentation or examples
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Include the smallest code or repository that reproduces the problem.
+      render: python
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Install ...
+        2. Run ...
+        3. Observe ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior and logs
+      description: Remove tokens, credentials, and private endpoints before posting.
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: |
+        OS: macOS 15.5
+        Python: 3.12.4
+        Rust: 1.xx
+        Installer: uv 0.x
+    validations:
+      required: true
+
+  - type: textarea
+    id: regression
+    attributes:
+      label: Regression information
+      description: State the last known working version, or write "unknown".
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: I searched existing issues and Discussions for duplicates.
+          required: true
+        - label: The reproduction and logs contain no secrets or private data.
+          required: true

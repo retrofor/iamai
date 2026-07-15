@@ -27,7 +27,7 @@ impl Segment {
     }
 }
 
-#[pyclass(module = "iamai._core", name = "CoreMessage")]
+#[pyclass(module = "iamai._core", name = "CoreMessage", skip_from_py_object)]
 #[derive(Clone, Default)]
 struct CoreMessage {
     segments: Vec<Segment>,
