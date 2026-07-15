@@ -8,17 +8,28 @@ from typing import TYPE_CHECKING, Any
 
 from .event import Event
 from .message import Message
+from .validation import validate_adapter_config
 
 
 class Adapter(ABC):
     """Transport bridge between iamai and an external protocol or runtime."""
 
     name = "adapter"
+    config_model: type[Any] | None = None
 
     def __init__(self, runtime: "Runtime", config: dict[str, Any] | None = None) -> None:
         self.runtime = runtime
-        self.config = config or {}
+        self.config, self._config_object = validate_adapter_config(
+            type(self),
+            self.name,
+            config,
+        )
         self.logger = logging.getLogger(f"iamai.adapter.{self.name}")
+
+    @property
+    def config_obj(self) -> Any | None:
+        """Return the validated adapter configuration object, if configured."""
+        return self._config_object
 
     @abstractmethod
     async def start(self) -> None:

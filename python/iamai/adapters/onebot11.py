@@ -5,6 +5,7 @@ from __future__ import annotations
 from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any
 
+from ..config import OneBot11ConfigModel
 from ..core import normalize_onebot11_payload
 from ..event import Event
 from ..httpio import HttpRequest
@@ -16,6 +17,7 @@ class OneBot11Adapter(ModeSwitchingAdapterMiddleware):
     """Adapter for OneBot11 websocket and HTTP integration modes."""
 
     name = "onebot11"
+    config_model = OneBot11ConfigModel
 
     def __init__(self, runtime: "Runtime", config: dict[str, Any] | None = None) -> None:
         super().__init__(runtime, config)
@@ -23,11 +25,9 @@ class OneBot11Adapter(ModeSwitchingAdapterMiddleware):
         self.host = str(self.config.get("host", "127.0.0.1"))
         self.port = int(self.config.get("port", 8080))
         self.path = str(self.config.get("path", "/onebot/v11/ws"))
-        self.path_event = str(self.config.get("path_event", self.config.get("event_path", self.path)))
-        self.path_api = str(self.config.get("path_api", self.config.get("api_path", self.path)))
-        self.api_base_url = str(
-            self.config.get("api_base_url", self.config.get("api_url", "http://127.0.0.1:5700"))
-        )
+        self.path_event = str(self.config.get("path_event") or self.path)
+        self.path_api = str(self.config.get("path_api") or self.path)
+        self.api_base_url = str(self.config.get("api_base_url", "http://127.0.0.1:5700"))
         self.access_token = str(self.config.get("access_token", ""))
         self.allow_query_token = bool(self.config.get("allow_query_token", False))
         self.platform = str(self.config.get("platform", "qq"))

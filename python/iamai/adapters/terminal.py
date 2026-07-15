@@ -6,6 +6,7 @@ import asyncio
 from typing import TYPE_CHECKING, Any
 
 from ..adapter import Adapter
+from ..config import TerminalConfigModel
 from ..core import new_event_id
 from ..event import Event
 from ..message import Message
@@ -15,6 +16,7 @@ class TerminalAdapter(Adapter):
     """Interactive stdin/stdout adapter for local development."""
 
     name = "terminal"
+    config_model = TerminalConfigModel
 
     def __init__(self, runtime: "Runtime", config: dict[str, Any] | None = None) -> None:
         super().__init__(runtime, config)

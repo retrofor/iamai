@@ -18,7 +18,7 @@ class ManagementApiConfig(BaseModel):
 
     host: str = "127.0.0.1"
     port: int = 8765
-    token: str = Field(min_length=1)
+    token: str = Field(min_length=1, json_schema_extra={"writeOnly": True})
     allow_unsafe_state: bool = False
 
     @field_validator("port")
@@ -105,12 +105,7 @@ class ManagementApiPlugin(Plugin):
         return self._json(request, self.runtime.list_sessions())
 
     def _schema(self, request: HttpRequest) -> HttpResponse:
-        schemas = {
-            plugin["name"]: schema
-            for plugin in self.runtime.list_plugins()
-            if (schema := self.runtime.get_plugin_schema(plugin["name"])) is not None
-        }
-        return self._json(request, schemas)
+        return self._json(request, self.runtime.config_schema())
 
     def _state(self, request: HttpRequest) -> HttpResponse:
         payload: dict[str, Any] = {"backend": self.runtime.state_store.__class__.__name__}
