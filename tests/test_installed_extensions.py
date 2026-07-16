@@ -205,6 +205,8 @@ print(
         "--project",
         str(PROJECT_ROOT),
         "--with",
+        str(PROJECT_ROOT),
+        "--with",
         str(extension_wheels["reference_plugin"]),
         "--with",
         str(extension_wheels["reference_adapter"]),
