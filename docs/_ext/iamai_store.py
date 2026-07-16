@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+import ipaddress
 import json
 from pathlib import Path
+import re
 from typing import Any, Literal
 from urllib.parse import urlencode, urlsplit
 
@@ -87,6 +89,8 @@ class StoreEntry(BaseModel):
     tags: list[str] = Field(default_factory=list)
     platforms: list[str] = Field(default_factory=list)
     requires: list[str] = Field(default_factory=list)
+    iamai_requires: str | None = None
+    conformance_evidence: list[str] = Field(default_factory=list)
     runtime_capabilities: list[str] = Field(default_factory=list)
     install_command: str | None = None
     docs_url: str | None = None
@@ -116,6 +120,7 @@ class StoreEntry(BaseModel):
         "tags",
         "platforms",
         "requires",
+        "conformance_evidence",
         "runtime_capabilities",
         "verification",
         mode="before",
@@ -127,6 +132,60 @@ class StoreEntry(BaseModel):
         if not isinstance(value, list):
             raise TypeError("value must be a list")
         return [str(item).strip() for item in value if str(item).strip()]
+
+    @field_validator("iamai_requires")
+    @classmethod
+    def _normalize_iamai_requires(cls, value: str | None) -> str | None:
+        if value is None:
+            return None
+        normalized = value.strip()
+        if not normalized:
+            raise ValueError("iamai_requires must not be blank")
+        return normalized
+
+    @field_validator("conformance_evidence")
+    @classmethod
+    def _validate_conformance_evidence(cls, value: list[str]) -> list[str]:
+        for evidence_url in value:
+            cls._validate_public_url(evidence_url)
+        return value
+
+    @classmethod
+    def _validate_public_url(cls, value: str) -> None:
+        if any(character.isspace() for character in value):
+            raise ValueError("evidence URL must not contain whitespace")
+        try:
+            parsed = urlsplit(value)
+            hostname = parsed.hostname
+            parsed.port
+        except ValueError as exc:
+            raise ValueError("evidence URL must be a valid public http(s) URL") from exc
+        if parsed.scheme not in {"http", "https"} or not parsed.netloc or hostname is None:
+            raise ValueError("evidence URL must be a valid public http(s) URL")
+        if parsed.username is not None or parsed.password is not None:
+            raise ValueError("evidence URL must not contain credentials")
+
+        normalized_host = hostname.rstrip(".").lower()
+        try:
+            ipaddress.ip_address(normalized_host)
+        except ValueError:
+            try:
+                ascii_host = normalized_host.encode("idna").decode("ascii")
+            except UnicodeError as exc:
+                raise ValueError("evidence URL host must be valid DNS") from exc
+            labels = ascii_host.split(".")
+            valid_label = re.compile(r"^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$")
+            numeric_label = re.compile(r"^(?:[0-9]+|0x[0-9a-f]+)$")
+            if (
+                len(ascii_host) > 253
+                or len(labels) < 2
+                or any(not valid_label.fullmatch(label) for label in labels)
+                or all(numeric_label.fullmatch(label) for label in labels)
+                or ascii_host.endswith((".local", ".localhost", ".invalid", ".test", ".example"))
+            ):
+                raise ValueError("evidence URL host must be valid public DNS") from None
+        else:
+            raise ValueError("evidence URL host must use a public DNS name")
 
     @model_validator(mode="after")
     def _validate_package_or_repository(self) -> "StoreEntry":
@@ -204,6 +263,8 @@ class StoreSubmission(BaseModel):
     tags: list[str] = Field(default_factory=list)
     platforms: list[str] = Field(default_factory=list)
     requires: list[str] = Field(default_factory=list)
+    iamai_requires: str | None = None
+    conformance_evidence: list[str] = Field(default_factory=list)
     runtime_capabilities: list[str] = Field(default_factory=list)
     docs_url: str | None = None
     source_url: str | None = None
@@ -227,6 +288,7 @@ class StoreSubmission(BaseModel):
         "tags",
         "platforms",
         "requires",
+        "conformance_evidence",
         "runtime_capabilities",
         "verification",
         mode="before",
@@ -234,6 +296,16 @@ class StoreSubmission(BaseModel):
     @classmethod
     def _normalize_list(cls, value: Any) -> list[str]:
         return StoreEntry._normalize_list(value)
+
+    @field_validator("iamai_requires")
+    @classmethod
+    def _normalize_iamai_requires(cls, value: str | None) -> str | None:
+        return StoreEntry._normalize_iamai_requires(value)
+
+    @field_validator("conformance_evidence")
+    @classmethod
+    def _validate_conformance_evidence(cls, value: list[str]) -> list[str]:
+        return StoreEntry._validate_conformance_evidence(value)
 
     @model_validator(mode="after")
     def _validate_user_submission(self) -> "StoreSubmission":
@@ -243,6 +315,11 @@ class StoreSubmission(BaseModel):
             raise ValueError(
                 "security_notes is required for plugin, adapter, and agent_tool entries"
             )
+        if self.type in {"plugin", "adapter"}:
+            if self.iamai_requires is None:
+                raise ValueError("iamai_requires is required for plugin and adapter entries")
+            if not self.conformance_evidence:
+                raise ValueError("conformance_evidence is required for plugin and adapter entries")
         if self.type == "agent_tool" and not self.permission_notes:
             raise ValueError("permission_notes is required for agent_tool entries")
         forbidden_badges = set(self.verification) - USER_SUBMITTABLE_BADGES
@@ -422,6 +499,8 @@ def build_submission_issue_body(submission: StoreSubmission) -> str:
             "",
             "- [ ] Package or repository is reachable.",
             "- [ ] Entry points match the published package metadata when applicable.",
+            "- [ ] iamai_requires matches the package's published Requires-Dist metadata.",
+            "- [ ] Conformance evidence is public and reproducible when required.",
             "- [ ] No secrets, private endpoints, or unsafe install steps are included.",
             "- [ ] Verification badges are assigned by maintainers only.",
         ]
@@ -441,6 +520,8 @@ def build_submission_issue_url(
     registry_json = json.dumps(
         entry.model_dump(mode="json", exclude_none=True), ensure_ascii=False, indent=2
     )
+    requires_conformance = submission.type in {"plugin", "adapter"}
+    not_applicable = "Not applicable"
     query = urlencode(
         {
             "template": issue_template,
@@ -451,6 +532,10 @@ def build_submission_issue_url(
             "summary": submission.summary,
             "package_name": submission.package or "",
             "repository_url": submission.repository or "",
+            "iamai_requires": submission.iamai_requires
+            or ("" if requires_conformance else not_applicable),
+            "conformance_evidence": "\n".join(submission.conformance_evidence)
+            or ("" if requires_conformance else not_applicable),
             "runtime_capabilities": ", ".join(submission.runtime_capabilities),
             "security_notes": submission.security_notes or "",
             "permission_notes": submission.permission_notes or "",

@@ -238,6 +238,29 @@ distribution 发布同名 entry point；运行时不会选择 last-wins 结果�
 
 适配器包可以直接依赖 ``iamai.testing.adapters`` 中的 helper 来表达这些最低契约。
 
+公开 conformance helper
+~~~~~~~~~~~~~~~~~~~~~~~
+
+第三方包应从 ``iamai.testing`` 导入稳定 helper。adapter helper 分为三组：
+
+- ``assert_adapter_config``、``assert_adapter_event``、``assert_adapter_send_result`` 和
+  ``assert_adapter_api_result`` 验证配置归一化、调用方自产生的 inbound ``Event``、出站编码和 API
+  响应；helper 不要求框架新增统一的 ``normalize`` 方法。
+- ``assert_adapter_error`` 和 ``assert_adapter_start_failure`` 验证异常类型、消息、原异常传播和失败清理。
+- ``assert_adapter_lifecycle``、``assert_adapter_cancellation`` 和 ``assert_adapter_can_close`` 验证启动、
+  幂等关闭与取消。正常停止顺序与 Runtime 一致：先调用 ``close()``，若 ``start()`` 仍在运行，再取消
+  接收任务。
+
+plugin helper 包括 ``assert_plugin_metadata``、``assert_plugin_config``、
+``assert_plugin_dependencies``、``assert_plugin_handler``、``assert_plugin_permission``、
+``assert_plugin_lifecycle`` 和 ``assert_plugin_startup_failure_cleanup``。生命周期 helper 默认使用一秒
+超时；``ready``、``clean`` 和 ``cleanup`` probe 必须返回明确的布尔值，避免没有 ``return`` 的检查被
+误判为成功。
+
+仓库内的可安装 reference adapter/plugin wheel 在隔离环境中运行以上公开 helper。第三方项目可以按
+相同方式在自己的 CI 中导入 ``iamai.testing``，并把公开 CI run 或测试报告 URL 作为社区商店的
+``conformance_evidence``。
+
 插件与 Agent 工具安全声明
 -------------------------
 
@@ -290,6 +313,10 @@ WebUI 后续作为独立插件或独立项目，不进入核心 runtime。
 - ``license``：许可证标识。
 - ``package`` 或 ``repository``：至少填写一个。
 - ``entry_points``：如果是可安装插件或适配器，填写 ``iamai.plugins`` 或 ``iamai.adapters``。
+- ``iamai_requires``：第三方插件和适配器填写已发布包的标准 ``Requires-Dist`` iamai 范围，
+  例如 ``iamai>=0.4,<0.5``。
+- ``conformance_evidence``：第三方插件和适配器至少填写一条公开可复核的 CI、测试报告或
+  命令输出 URL；``agent_tool`` 不强制兼容范围或 conformance evidence。
 - ``runtime_capabilities``：声明运行时能力，例如 ``network:http``、``storage:sqlite``、``agent:tool``。
 - ``security_notes``：声明网络访问、凭据需求、危险动作和可选依赖。
 - ``permission_notes``：Agent 工具的权限名、输入 schema、审计字段和审批要求。
@@ -310,6 +337,11 @@ WebUI 后续作为独立插件或独立项目，不进入核心 runtime。
 
 ``provider`` 和 ``theme`` 保留给未来 UI 或模型供应商集成。不要把认证等级当作营销字段；
 它们代表可验证的包元数据、作者身份或安全审核状态。
+
+``iamai_requires`` 只转载 distribution metadata，不替代 ``pyproject.toml`` 或 wheel 中的
+``Requires-Dist``。维护者会把该值与已发布制品核对。``conformance_evidence`` 必须指向第三方能打开并
+复核的 CI run、测试报告或命令输出页面，并使用公开 DNS 主机名；裸 IP 和仅填写本地命令文本不构成
+准入证据。现有 registry 条目可以在后续维护时逐步补充这两个字段，无需一次性迁移。
 
 文档页表单默认使用 GitHub 预填 issue 链接，不在浏览器里保存 GitHub token。若未来要启用“登录后直接提交”，
 需要单独部署服务端代理负责 GitHub App 或 OAuth App 的 callback、CSRF ``state`` 校验、token 交换、创建 issue、
