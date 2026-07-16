@@ -8,7 +8,7 @@ from .config_schema import (
     CONFIG_SCHEMA_ID,
     build_config_schema,
 )
-from .context import Context
+from .context import Context, ContextInvalidatedError
 from .di import Depends, depends
 from .event import Event
 from .message import Message
@@ -88,6 +88,7 @@ __all__ = [
     "CONFIG_SCHEMA_CONTRACT_VERSION",
     "CONFIG_SCHEMA_ID",
     "Context",
+    "ContextInvalidatedError",
     "Depends",
     "Event",
     "ExtensionDiscoveryError",
