@@ -1,55 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
-  <title id="title">iamai logo</title>
-  <desc id="desc">A black hole event horizon with accretion ring and inflow streams — the agent as gravity well.</desc>
+  <title id="title">iamai runtime mark</title>
+  <desc id="desc">Input and output paths surrounding a central runtime.</desc>
 
-  <!-- Outer glow -->
-  <ellipse cx="256" cy="256" rx="210" ry="90" fill="none" stroke="#818cf8" stroke-width="40" opacity="0.06" transform="rotate(-12 256 256)"/>
-
-  <!-- Inflow stream 1 — top-left -->
-  <path d="M64 80 Q128 120 148 190 Q162 232 188 250"
-        fill="none" stroke="#6366f1" stroke-width="10" stroke-linecap="round" opacity="0.8"/>
-  <path d="M64 80 Q128 120 148 190 Q162 232 188 250"
-        fill="none" stroke="#818cf8" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
-
-  <!-- Inflow stream 2 — bottom-left -->
-  <path d="M56 432 Q120 380 152 310 Q166 276 188 260"
-        fill="none" stroke="#6366f1" stroke-width="10" stroke-linecap="round" opacity="0.7"/>
-  <path d="M56 432 Q120 380 152 310 Q166 276 188 260"
-        fill="none" stroke="#818cf8" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
-
-  <!-- Inflow stream 3 — right -->
-  <path d="M442 300 Q380 240 346 232 Q316 228 304 248"
-        fill="none" stroke="#6366f1" stroke-width="10" stroke-linecap="round" opacity="0.75"/>
-  <path d="M442 300 Q380 240 346 232 Q316 228 304 248"
-        fill="none" stroke="#818cf8" stroke-width="4" stroke-linecap="round" opacity="0.55"/>
-
-  <!-- Accretion ring — back half (behind sphere) -->
-  <path d="M66 256 A190 72 0 0 1 446 256"
-        fill="none" stroke="#6366f1" stroke-width="16" stroke-linecap="round"
-        transform="rotate(-12 256 256)"/>
-
-  <!-- Event horizon (solid sphere) -->
-  <circle cx="256" cy="256" r="104" fill="#1e293b"/>
-
-  <!-- Subtle inner shadow on sphere -->
-  <circle cx="256" cy="256" r="104" fill="none" stroke="#0f172a" stroke-width="3"/>
-
-  <!-- Accretion ring — front half (in front of sphere) -->
-  <path d="M66 256 A190 72 0 0 0 446 256"
-        fill="none" stroke="#6366f1" stroke-width="22" stroke-linecap="round"
-        transform="rotate(-12 256 256)"/>
-
-  <!-- Accretion ring — bright inner edge -->
-  <path d="M66 256 A190 72 0 0 0 446 256"
-        fill="none" stroke="#818cf8" stroke-width="8" stroke-linecap="round"
-        transform="rotate(-12 256 256)"/>
-
-  <!-- Bright convergence spot on ring -->
-  <circle cx="418" cy="228" r="14" fill="#c7d2fe"/>
-  <circle cx="418" cy="228" r="22" fill="#818cf8" opacity="0.25"/>
-  <circle cx="418" cy="228" r="36" fill="#818cf8" opacity="0.08"/>
-
-  <!-- Small highlight on event horizon -->
-  <ellipse cx="220" cy="218" rx="30" ry="18" fill="#334155" opacity="0.3"
-           transform="rotate(-20 220 218)"/>
+  <rect x="28" y="28" width="456" height="456" rx="112" fill="#17212b"/>
+  <path d="M190 150 112 256l78 106" fill="none" stroke="#ff5c45" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m322 150 78 106-78 106" fill="none" stroke="#2dd4a3" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="256" cy="164" r="27" fill="#f8fafc"/>
+  <path d="M256 226v126" fill="none" stroke="#f8fafc" stroke-width="54" stroke-linecap="round"/>
 </svg>
