@@ -23,12 +23,7 @@ def assert_plugin_metadata(plugin_cls: type[Any]) -> None:
     if not isinstance(plugin_cls, type) or not issubclass(plugin_cls, Plugin):
         raise PluginConformanceError("plugin class must inherit from iamai.Plugin")
 
-    explicit_name = getattr(plugin_cls, "name", None)
-    if explicit_name is not None and not isinstance(explicit_name, str):
-        raise PluginConformanceError("plugin name must be a string or None")
-    effective_name = explicit_name or plugin_cls.__name__.lower()
-    if not effective_name or effective_name != effective_name.strip():
-        raise PluginConformanceError("effective plugin name must be a non-empty trimmed string")
+    _effective_plugin_name(plugin_cls)
 
     description = getattr(plugin_cls, "description", "")
     if not isinstance(description, str):
@@ -49,7 +44,7 @@ def assert_plugin_config(
 ) -> tuple[dict[str, Any], Any | None]:
     """Validate plugin configuration and return its normalized forms."""
     assert_plugin_metadata(plugin_cls)
-    plugin_name = getattr(plugin_cls, "name", None) or plugin_cls.__name__.lower()
+    plugin_name = _effective_plugin_name(plugin_cls)
     try:
         return validate_plugin_config(plugin_cls, plugin_name, raw_config)
     except Exception as exc:
@@ -61,7 +56,7 @@ def assert_plugin_config(
 def assert_plugin_dependencies(plugin_cls: type[Any]) -> None:
     """Assert that plugin dependency and ordering declarations are well formed."""
     assert_plugin_metadata(plugin_cls)
-    plugin_name = getattr(plugin_cls, "name", None) or plugin_cls.__name__.lower()
+    plugin_name = _effective_plugin_name(plugin_cls)
     declarations: dict[str, tuple[str, ...]] = {}
 
     for attribute in ("requires", "optional_requires", "load_after", "load_before"):
@@ -84,6 +79,19 @@ def assert_plugin_dependencies(plugin_cls: type[Any]) -> None:
         raise PluginConformanceError(
             f"plugin cannot load both before and after dependency {conflict!r}"
         )
+
+
+def _effective_plugin_name(plugin_cls: type[Plugin]) -> str:
+    explicit_name = getattr(plugin_cls, "name", None)
+    if explicit_name is None:
+        effective_name = plugin_cls.__name__.lower()
+    elif isinstance(explicit_name, str):
+        effective_name = explicit_name
+    else:
+        raise PluginConformanceError("plugin name must be a string or None")
+    if not effective_name or effective_name != effective_name.strip():
+        raise PluginConformanceError("effective plugin name must be a non-empty trimmed string")
+    return effective_name
 
 
 def assert_plugin_handler(

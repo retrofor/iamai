@@ -134,6 +134,21 @@ def test_metadata_helper_rejects_invalid_state_scope() -> None:
         assert_plugin_metadata(InvalidMetadataPlugin)
 
 
+@pytest.mark.parametrize("name", ["", " leading", "trailing "])
+def test_metadata_helper_rejects_invalid_explicit_name(name: str) -> None:
+    invalid_plugin = type("InvalidNamePlugin", (Plugin,), {"name": name})
+
+    with pytest.raises(PluginConformanceError, match="non-empty trimmed string"):
+        assert_plugin_metadata(invalid_plugin)
+
+
+def test_metadata_helper_allows_none_name_fallback() -> None:
+    class ImplicitNamePlugin(Plugin):
+        name = None
+
+    assert_plugin_metadata(ImplicitNamePlugin)
+
+
 def test_dependency_helper_rejects_conflicting_ordering() -> None:
     class ConflictingPlugin(Plugin):
         name = "conflicting"
