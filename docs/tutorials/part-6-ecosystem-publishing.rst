@@ -16,7 +16,7 @@
 - ``license``：例如 ``MIT``、``Apache-2.0``。
 - ``entry_points``：插件使用 ``iamai.plugins``，适配器使用 ``iamai.adapters``。
 - ``iamai_requires``：第三方插件和适配器必须填写包元数据发布的标准 ``Requires-Dist`` 值，
-  例如 ``iamai>=0.4,<0.5``。
+  例如 ``iamai>=1,<2``。
 - ``conformance_evidence``：第三方插件和适配器至少提供一条公开、可复核的 CI、测试报告或
   命令输出 URL；``agent_tool`` 不强制这两个字段。
 - ``runtime_capabilities``：例如 ``network:http``、``storage:sqlite``、``agent:tool``。

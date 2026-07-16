@@ -20,7 +20,7 @@ Status values:
 | 2. Low-risk dependencies | `DONE` | [#437](https://github.com/retrofor/iamai/pull/437), [#439](https://github.com/retrofor/iamai/pull/439), [#441](https://github.com/retrofor/iamai/pull/441), [#442](https://github.com/retrofor/iamai/pull/442), [#443](https://github.com/retrofor/iamai/pull/443); [final CI](https://github.com/retrofor/iamai/actions/runs/29404149717) | Completed 2026-07-15 at [`dev@47e4b8a`](https://github.com/retrofor/iamai/commit/47e4b8a7a671ce82826c6f4e1238ec255cff1506) |
 | 3. Gated dependencies | `DONE` | [#438](https://github.com/retrofor/iamai/pull/438), [release rehearsal](https://github.com/retrofor/iamai/actions/runs/29404691605), [#449](https://github.com/retrofor/iamai/pull/449), [#440](https://github.com/retrofor/iamai/pull/440), [final CI](https://github.com/retrofor/iamai/actions/runs/29407069117), [CodeQL](https://github.com/retrofor/iamai/actions/runs/29407068347) | Completed 2026-07-15 at [`dev@44a237a`](https://github.com/retrofor/iamai/commit/44a237a7c75fb0ca52ac87a0fed862b6186968ae) |
 | 4. Version 0.4 contract | `DONE` | [#435](https://github.com/retrofor/iamai/issues/435); [0.4-A PR #451](https://github.com/retrofor/iamai/pull/451); [0.4-B PR #453](https://github.com/retrofor/iamai/pull/453); [0.4-C PR #454](https://github.com/retrofor/iamai/pull/454); [post-merge CI](https://github.com/retrofor/iamai/actions/runs/29467188102); [CodeQL](https://github.com/retrofor/iamai/actions/runs/29467187810) | Completed 2026-07-16 at [`dev@3a83c9f`](https://github.com/retrofor/iamai/commit/3a83c9f986f25e9522b6cfa1dcddb11b12845f13) |
-| 5. Version 1.0 contract | `IN_PROGRESS` | [#434](https://github.com/retrofor/iamai/issues/434); [v1.0-A PR #455](https://github.com/retrofor/iamai/pull/455); [merge `d67d639`](https://github.com/retrofor/iamai/commit/d67d639b1abbce9c846a63c3efc98de0cdfe3574); [v1.0-A CI](https://github.com/retrofor/iamai/actions/runs/29469491022); [v1.0-A CodeQL](https://github.com/retrofor/iamai/actions/runs/29469490546); [v1.0-B PR #456](https://github.com/retrofor/iamai/pull/456); [v1.0-B CI](https://github.com/retrofor/iamai/actions/runs/29471659626); [v1.0-B CodeQL](https://github.com/retrofor/iamai/actions/runs/29471657366) | v1.0-B required CI green; final ledger commit and merge pending |
+| 5. Version 1.0 contract | `IN_PROGRESS` | [#434](https://github.com/retrofor/iamai/issues/434); [v1.0-A PR #455](https://github.com/retrofor/iamai/pull/455); [merge `d67d639`](https://github.com/retrofor/iamai/commit/d67d639b1abbce9c846a63c3efc98de0cdfe3574); [v1.0-A CI](https://github.com/retrofor/iamai/actions/runs/29469491022); [v1.0-A CodeQL](https://github.com/retrofor/iamai/actions/runs/29469490546); [v1.0-B PR #456](https://github.com/retrofor/iamai/pull/456); [v1.0-B CI](https://github.com/retrofor/iamai/actions/runs/29472139126); [v1.0-B CodeQL](https://github.com/retrofor/iamai/actions/runs/29472138409); [v1.0-C PR #457](https://github.com/retrofor/iamai/pull/457) | v1.0-C implementation complete; merge and exact-head RC dispatch pending |
 | 6. needs-info closure | `TODO` | Issues #294, #295, #297, #306 | Time-triggered exception: execute after 2026-07-29 23:59 UTC even if workstreams 4-5 remain active |
 
 ## 0. Specification baseline
@@ -82,9 +82,9 @@ Tracking: [#434](https://github.com/retrofor/iamai/issues/434)
 - [x] Publish and test Runtime/Adapter/Plugin lifecycle ordering and failure semantics through PR #456.
 - [x] Define and test Context event scope, reply routing, dependency injection, and invalidation semantics through PR #456.
 - [x] Expose the serialization contract version and test supported evolution rules through PR #455.
-- [ ] Publish the normative conformance matrix.
-- [ ] Publish the deprecation policy and minimum support window.
-- [ ] Publish the final 0.x to 1.0 migration guide.
+- [x] Publish the normative conformance matrix through PR #457.
+- [x] Publish the deprecation policy and minimum support window through PR #457.
+- [x] Publish the final 0.x to 1.0 migration guide through PR #457.
 - [ ] Validate the complete contract against a 1.0 RC and close #434.
 
 ## 6. needs-info issue closure

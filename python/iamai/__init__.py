@@ -8,6 +8,12 @@ from .config_schema import (
     CONFIG_SCHEMA_ID,
     build_config_schema,
 )
+from .contract import (
+    ADAPTER_ENTRY_POINT_GROUP,
+    IamaiDeprecationWarning,
+    PLUGIN_ENTRY_POINT_GROUP,
+    PUBLIC_API_CONTRACT_VERSION,
+)
 from .context import Context, ContextInvalidatedError
 from .di import Depends, depends
 from .event import Event
@@ -65,16 +71,20 @@ from .session import SessionManager
 from .state import JsonStateStore, NullStateStore, SqliteStateStore, StateStore
 
 __all__ = [
+    "ADAPTER_ENTRY_POINT_GROUP",
     "AgentError",
     "AgentTrace",
     "Adapter",
     "AuditLogger",
     "Guardrail",
     "JsonStateStore",
+    "IamaiDeprecationWarning",
     "LLMClient",
     "LLMConfig",
     "NullStateStore",
     "Permission",
+    "PLUGIN_ENTRY_POINT_GROUP",
+    "PUBLIC_API_CONTRACT_VERSION",
     "Rule",
     "RuntimeMetrics",
     "SessionManager",

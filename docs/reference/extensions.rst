@@ -36,7 +36,7 @@ Entry points
    name = "iamai-plugin-echo"
    version = "0.1.0"
    dependencies = [
-     "iamai>=0.3,<0.5",
+     "iamai>=1,<2",
    ]
 
    [project.entry-points."iamai.plugins"]
@@ -148,7 +148,7 @@ iamai 插件依赖
    name = "iamai-adapter-acme"
    version = "0.1.0"
    dependencies = [
-     "iamai>=0.3,<0.5",
+     "iamai>=1,<2",
      "httpx>=0.27",
    ]
 
@@ -182,6 +182,11 @@ iamai 插件依赖
 命名约定
 --------
 
+.. _ext-package-001:
+
+EXT-PACKAGE-001：发布 metadata
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 - 申请进入社区 registry 的插件包必须命名为 ``iamai-plugin-<name>``，适配器包必须命名为
   ``iamai-adapter-<platform>``；私有 distribution 可以使用自己的命名规则。
 - Distribution 必须通过标准 ``Requires-Dist: iamai...`` 声明所支持的 iamai 版本范围；
@@ -191,8 +196,22 @@ iamai 插件依赖
 - 配置表应分别使用 ``[plugin.<name>]`` 和 ``[adapter.<name>]``。
 - 包依赖交给 Python packaging，运行时加载顺序交给 ``requires`` / ``load_after``。
 
+.. _ext-compatibility-001:
+
+EXT-COMPATIBILITY-001：安装兼容范围
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+可发布扩展必须声明覆盖目标 iamai major 的 ``Requires-Dist``，例如 1.x 扩展使用
+``iamai>=1,<2``。标准 Python resolver 必须在导入和启动前拒绝不满足范围的组合；Runtime 不得用
+第二套自定义 version 字段覆盖 resolver 结论。
+
 发现与错误契约
 --------------
+
+.. _ext-discovery-001:
+
+EXT-DISCOVERY-001：确定性发现
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 配置中的 ``plugins`` / ``adapters`` 是显式启用清单。启用
 ``auto_discover_plugins`` / ``auto_discover_adapters`` 后，运行时才会把对应 group 中其余已安装的
@@ -214,27 +233,61 @@ distribution 发布同名 entry point；运行时不会选择 last-wins 结果�
 错误字符串固定包含 code、group、entry point、排序后的 distribution 标识和原因，便于 CI 及运维系统
 稳定断言。显式加载只检查被请求的入口；自动发现按入口名排序后报告第一个错误。
 
-适配器兼容性规范草案
---------------------
+适配器兼容性规范草案与 1.0 契约
+-------------------------------
+
+.. _ext-adapter-001:
+
+EXT-ADAPTER-001：Adapter metadata
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 第三方适配器包推荐命名 ``iamai-adapter-<platform>``，并通过
-``[project.entry-points."iamai.adapters"]`` 暴露入口。当前不要求强改运行时 API，但适配器必须保持这些契约：
+``[project.entry-points."iamai.adapters"]`` 暴露入口。``Adapter.name``、entry point 名和配置表
+``[adapter.<name>]`` 必须保持一致，公开 conformance helper 必须拒绝缺失或无效的 metadata。
 
-- ``Adapter.start`` 负责启动连接、轮询或 HTTP/WebSocket 服务，并在取消时正常退出。
-- ``Adapter.send_message`` 接收 iamai ``Message`` 或文本，并把它编码成目标平台的出站消息。
-- ``Adapter.call_api`` 暴露平台 API 调用，成功时返回平台响应，失败时抛出可诊断异常或返回明确错误结构。
-- ``Adapter.name``、entry point 名和配置表 ``[adapter.<name>]`` 保持一致。
+.. _ext-adapterconfig-001:
 
-适配器可以像插件一样声明类级 ``config_model``。支持 Pydantic 模型和 dataclass；Runtime 会在
-构造适配器时验证并归一化 ``[adapter.<name>]``，同时把同一模型纳入根配置 Schema。凭据字段必须
-通过字段元数据显式声明 ``json_schema_extra={"writeOnly": True}``，不得依赖字段名猜测。
+EXT-ADAPTERCONFIG-001：Adapter config
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-最小 conformance tests 应覆盖：
+适配器可以声明类级 ``config_model``。支持 Pydantic 模型和 dataclass；Runtime 必须在构造适配器时
+验证并归一化 ``[adapter.<name>]``，同时把同一模型纳入根配置 Schema。凭据字段必须通过字段 metadata
+显式声明 ``json_schema_extra={"writeOnly": True}``，不得依赖字段名猜测。
 
-- inbound event normalize：平台事件必须归一化成稳定的 ``Event`` 字段。
-- outbound message encode：文本、基础消息段和目标对象必须编码正确。
-- API call response：成功响应、平台错误和超时都要有测试。
-- 错误处理：鉴权失败、非法 payload、网络失败不能静默吞掉。
+.. _ext-event-001:
+
+EXT-EVENT-001：inbound normalization
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+平台入站事件必须归一化为具有非空 ``id``、``adapter``、``platform`` 和 ``type`` 的稳定 ``Event``；
+消息事件必须携带可验证的 ``Message``。helper 验证调用方产生的 Event，不要求框架新增统一
+``normalize()`` 方法。
+
+.. _ext-outbound-001:
+
+EXT-OUTBOUND-001：outbound send 与 API
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``Adapter.send_message`` 必须接受 iamai ``Message`` 或文本并编码目标平台消息；``Adapter.call_api``
+必须在成功时返回可验证的平台响应，在平台错误、网络错误或超时时给出明确失败。返回检查 probe 必须
+是同步布尔结果，异步调用方必须先 await 实际发送或 API 调用。
+
+.. _ext-error-001:
+
+EXT-ERROR-001：错误语义
+~~~~~~~~~~~~~~~~~~~~~~~
+
+鉴权失败、非法 payload、网络失败和启动失败不得静默吞掉。conformance helper 必须验证异常类型、
+消息和原异常 identity；``CancelledError`` 必须继续传播，启动失败后必须完成自清理。
+
+.. _ext-lifecycle-001:
+
+EXT-LIFECYCLE-001：Adapter lifecycle
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``Adapter.start`` 必须启动连接、轮询或 HTTP/WebSocket 服务，并在取消时正常退出。``close()`` 必须
+可幂等调用。正常停止顺序与 Runtime 一致：先调用 ``close()``，若 ``start()`` 仍在运行，再取消接收
+任务；成功、取消和启动失败路径都不得泄漏资源。
 
 适配器包可以直接依赖 ``iamai.testing.adapters`` 中的 helper 来表达这些最低契约。
 
@@ -248,18 +301,81 @@ distribution 发布同名 entry point；运行时不会选择 last-wins 结果�
   响应；helper 不要求框架新增统一的 ``normalize`` 方法。
 - ``assert_adapter_error`` 和 ``assert_adapter_start_failure`` 验证异常类型、消息、原异常传播和失败清理。
 - ``assert_adapter_lifecycle``、``assert_adapter_cancellation`` 和 ``assert_adapter_can_close`` 验证启动、
-  幂等关闭与取消。正常停止顺序与 Runtime 一致：先调用 ``close()``，若 ``start()`` 仍在运行，再取消
-  接收任务。
+  幂等关闭与取消。
 
-plugin helper 包括 ``assert_plugin_metadata``、``assert_plugin_config``、
-``assert_plugin_dependencies``、``assert_plugin_handler``、``assert_plugin_permission``、
-``assert_plugin_lifecycle`` 和 ``assert_plugin_startup_failure_cleanup``。生命周期 helper 默认使用一秒
-超时；``ready``、``clean`` 和 ``cleanup`` probe 必须返回明确的布尔值，避免没有 ``return`` 的检查被
-误判为成功。
+.. _ext-plugin-001:
+
+EXT-PLUGIN-001：Plugin metadata
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``assert_plugin_metadata`` 必须验证名称、描述、priority 与 state scope 等公开 metadata；无效 state
+scope 必须失败，不能在 Runtime 启动后再猜测。
+
+.. _ext-pluginconfig-001:
+
+EXT-PLUGINCONFIG-001：Plugin config
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``assert_plugin_config`` 必须对 Pydantic 与 dataclass ``config_model`` 使用与 Runtime 相同的归一化
+语义，并保留配置失败原因。
+
+.. _ext-dependency-001:
+
+EXT-DEPENDENCY-001：Plugin dependency
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``assert_plugin_dependencies`` 必须验证 ``requires``、``optional_requires``、``load_before`` 和
+``load_after``，并拒绝自相矛盾的排序声明。
+
+.. _ext-handler-001:
+
+EXT-HANDLER-001：Plugin handler
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``assert_plugin_handler`` 必须从 Plugin 注册表中发现唯一的目标 handler，并验证其 Plugin binding、
+函数名和可选 kind metadata。该 helper 只返回经过验证的 ``BoundHandler``，不执行 handler，也不承诺
+验证业务副作用或返回值；执行语义由第三方项目自己的集成测试负责。
+
+.. _ext-permission-001:
+
+EXT-PERMISSION-001：Plugin permission
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``assert_plugin_permission`` 必须对已绑定 handler 的 permission 执行 allow/deny evaluation，并在实际
+结果和预期不同时失败。handler discovery/binding 与 permission evaluation 是两个独立检查步骤。
+
+.. _ext-pluginlifecycle-001:
+
+EXT-PLUGINLIFECYCLE-001：Plugin lifecycle
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``assert_plugin_lifecycle`` 和 ``assert_plugin_startup_failure_cleanup`` 必须验证 startup、shutdown、
+取消和启动失败清理。生命周期 helper 默认使用一秒超时；``ready``、``clean`` 和 ``cleanup`` probe
+必须返回明确的布尔值，避免没有 ``return`` 的检查被误判为成功。
 
 仓库内的可安装 reference adapter/plugin wheel 在隔离环境中运行以上公开 helper。第三方项目可以按
 相同方式在自己的 CI 中导入 ``iamai.testing``，并把公开 CI run 或测试报告 URL 作为社区商店的
 ``conformance_evidence``。
+
+.. _cfg-schema-001:
+
+CFG-SCHEMA-001：版本化配置 Schema
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``iamai.CONFIG_SCHEMA_CONTRACT_VERSION`` 与 ``iamai.CONFIG_SCHEMA_ID`` 标识独立的配置 Schema
+契约。Schema 必须保留明确默认值、稳定顺序和显式 ``writeOnly`` 标记，不得执行 default factory
+或读取运行时 secret。
+配置 Schema 版本独立于 Python 公共 API 版本和序列化 wire 版本；改变其中一条版本轴不得隐式改变
+另外两条。
+
+.. _cfg-equivalence-001:
+
+CFG-EQUIVALENCE-001：Schema 出口等价
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``build_config_schema()``、无参 ``iamai config-schema``、认证后的 management API ``GET /schema``
+和 ``Runtime.config_schema()`` 对相同扩展集合必须输出相等的 Schema。配置了 Python extension path 时，
+CLI 与 Runtime 必须基于同一扩展集合生成结果。
 
 插件与 Agent 工具安全声明
 -------------------------
@@ -314,7 +430,7 @@ WebUI 后续作为独立插件或独立项目，不进入核心 runtime。
 - ``package`` 或 ``repository``：至少填写一个。
 - ``entry_points``：如果是可安装插件或适配器，填写 ``iamai.plugins`` 或 ``iamai.adapters``。
 - ``iamai_requires``：第三方插件和适配器填写已发布包的标准 ``Requires-Dist`` iamai 范围，
-  例如 ``iamai>=0.4,<0.5``。
+  例如 ``iamai>=1,<2``。
 - ``conformance_evidence``：第三方插件和适配器至少填写一条公开可复核的 CI、测试报告或
   命令输出 URL；``agent_tool`` 不强制兼容范围或 conformance evidence。
 - ``runtime_capabilities``：声明运行时能力，例如 ``network:http``、``storage:sqlite``、``agent:tool``。

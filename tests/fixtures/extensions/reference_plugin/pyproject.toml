@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Installable reference plugin used by the iamai test suite."
 requires-python = ">=3.11"
 dependencies = [
-    "iamai>=0.3,<0.5",
+    "iamai>=1.0.0rc1,<2",
 ]
 
 [project.entry-points."iamai.plugins"]

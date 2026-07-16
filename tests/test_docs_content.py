@@ -86,6 +86,42 @@ def test_public_api_lifecycle_reference_contains_v1_normative_rules() -> None:
     assert execution_spec.count(":doc:`public-api-lifecycle`") == 2
 
 
+def test_v1_public_api_docs_cover_compatibility_policy_and_migration() -> None:
+    conformance = _read("docs/reference/public-api-conformance.rst")
+    deprecation = _read("docs/reference/deprecation-policy.rst")
+    migration = _read("docs/guides/migration-0.3-to-1.0.rst")
+    reference_index = _read("docs/reference/index.rst")
+    guides_index = _read("docs/guides/index.rst")
+
+    assert "public-api-conformance" in reference_index
+    assert "deprecation-policy" in reference_index
+    assert "migration-0.3-to-1.0" in guides_index
+
+    assert "PUBLIC_API_CONTRACT_VERSION" in conformance
+    assert "CONFIG_SCHEMA_CONTRACT_VERSION" in conformance
+    assert "SERIALIZATION_CONTRACT_VERSION" in conformance
+    assert "public-api-conformance.csv" in conformance
+    assert "Stable at 1.0.0" in conformance
+    assert "Provisional" in conformance
+    assert "RC-VALIDATE-001" in conformance
+
+    assert "IamaiDeprecationWarning" in deprecation
+    assert "FutureWarning" in deprecation
+    assert "两个后续 minor release" in deprecation
+    assert "180 天" in deprecation
+    assert "下一个" in deprecation
+    assert "安全与法律例外" in deprecation
+
+    assert "MIG-COVERAGE-001" in migration
+    assert "v0.3.0" in migration
+    assert "1.0.0rc1" in migration
+    assert "Event.to_payload()" in migration
+    assert "Requires-Dist" in migration
+    assert "ExtensionDiscoveryError.code" in migration
+    assert "ContextInvalidatedError" in migration
+    assert "iamai.testing" in migration
+
+
 def test_ecosystem_submission_surfaces_carry_admission_evidence_fields() -> None:
     browser = _read("docs/_static/iamai-store.js")
     issue_template = _read(".github/ISSUE_TEMPLATE/ecosystem-submission.yml")
@@ -103,6 +139,12 @@ def test_ecosystem_submission_surfaces_carry_admission_evidence_fields() -> None
     assert "required: true" in evidence_section
     assert "``iamai_requires``" in tutorial
     assert "``conformance_evidence``" in tutorial
+    assert "iamai>=1,<2" in tutorial
+    assert "iamai>=1,<2" in iamai_section
+    assert 'placeholder: "iamai>=1,<2"' in browser
+    assert "iamai>=0.4,<0.5" not in tutorial
+    assert "iamai>=0.4,<0.5" not in iamai_section
+    assert "iamai>=0.4,<0.5" not in browser
 
 
 def test_ecosystem_browser_executes_admission_contracts() -> None:

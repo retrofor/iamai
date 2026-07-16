@@ -10,6 +10,7 @@ from typing import Any
 
 from iamai.adapter import Adapter
 from iamai.event import Event
+from iamai.message import Message
 
 
 class AdapterConformanceError(AssertionError):
@@ -32,6 +33,7 @@ def assert_adapter_config(
     """Construct an adapter and assert a subset of its normalized config."""
     if not isinstance(adapter_cls, type) or not issubclass(adapter_cls, Adapter):
         raise AdapterConformanceError("adapter_cls must be an Adapter subclass")
+    _assert_non_empty_string(adapter_cls.name, path="adapter.name", trimmed=True)
     adapter = adapter_cls(runtime, dict(config or {}))
     if expected is not None:
         _assert_mapping_subset(adapter.config, expected, path="adapter.config")
@@ -47,14 +49,14 @@ def assert_adapter_event(
     """Assert that an inbound event has the minimum normalized fields."""
     if not isinstance(event, Event):
         raise AdapterConformanceError("normalized inbound value must be an Event")
+    _assert_non_empty_string(event.id, path="event.id")
+    _assert_non_empty_string(event.adapter, path="event.adapter")
+    _assert_non_empty_string(event.platform, path="event.platform")
+    _assert_non_empty_string(event.type, path="event.type")
+    if not isinstance(event.message, Message):
+        raise AdapterConformanceError("event.message must be a Message")
     if adapter is not None and event.adapter != adapter:
         raise AdapterConformanceError(f"event.adapter must be {adapter!r}")
-    if not event.adapter:
-        raise AdapterConformanceError("event.adapter is required")
-    if not event.type:
-        raise AdapterConformanceError("event.type is required")
-    if not event.message.segments and not event.raw:
-        raise AdapterConformanceError("event.message or event.raw is required")
     for field, expected in (expected_fields or {}).items():
         if not hasattr(event, field):
             raise AdapterConformanceError(f"event has no field {field!r}")
@@ -230,6 +232,13 @@ def _assert_expected_value(actual: Any, expected: Any, *, path: str) -> None:
         return
     if actual != expected:
         raise AdapterConformanceError(f"{path} must be {expected!r}, got {actual!r}")
+
+
+def _assert_non_empty_string(value: object, *, path: str, trimmed: bool = False) -> None:
+    if not isinstance(value, str) or not value:
+        raise AdapterConformanceError(f"{path} must be a non-empty string")
+    if trimmed and value != value.strip():
+        raise AdapterConformanceError(f"{path} must be a non-empty trimmed string")
 
 
 def _assert_mapping_subset(

@@ -19,7 +19,7 @@
 
    **接入与上线**
       平台适配、Webhook、运维、安全和质量门禁。
-      :doc:`adapters` · :doc:`operations`
+      :doc:`adapters` · :doc:`operations` · :doc:`migration-0.3-to-1.0`
 
    **生态方向**
       和主流 Runtime/Agent 框架对比，明确 iamai 的定位、路线图和设计决策。
@@ -38,5 +38,6 @@
    adapters
    agent-runtime
    operations
+   migration-0.3-to-1.0
    ecosystem-comparison
    roadmap

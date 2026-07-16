@@ -11,8 +11,8 @@
 
    **运行与配置**
       CLI、配置项、质量门禁和部署前检查。
-      :doc:`cli` · :doc:`configuration` · :doc:`public-api-lifecycle` ·
-      :doc:`quality-gates`
+      :doc:`cli` · :doc:`configuration` · :doc:`public-api-conformance` ·
+      :doc:`deprecation-policy` · :doc:`quality-gates`
 
    **插件与规则**
       可发布扩展、规则引擎、权限和 handler 匹配。
@@ -33,6 +33,8 @@
    extensions
    serialization-contract
    public-api-lifecycle
+   public-api-conformance
+   deprecation-policy
    post-v0.3-execution-spec
    docs-i18n-versions
    rules

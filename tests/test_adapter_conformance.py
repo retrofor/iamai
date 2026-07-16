@@ -66,6 +66,14 @@ class ConfiguredAdapter(ConformingAdapter):
     config_model = AdapterConfig
 
 
+class BlankNameAdapter(ConformingAdapter):
+    name = "  "
+
+
+class PaddedNameAdapter(ConformingAdapter):
+    name = " demo "
+
+
 class LifecycleAdapter(ConformingAdapter):
     def __init__(self, runtime: Runtime) -> None:
         super().__init__(runtime)
@@ -171,6 +179,35 @@ def test_adapter_conformance_helpers_reject_incomplete_event() -> None:
         assert_adapter_event(event)
 
 
+@pytest.mark.parametrize("field", ["id", "adapter", "platform", "type"])
+def test_adapter_event_rejects_empty_required_fields(field: str) -> None:
+    values = {
+        "id": "evt-1",
+        "adapter": "demo",
+        "platform": "demo",
+        "type": "message",
+    }
+    values[field] = ""
+    event = Event(**values)
+
+    with pytest.raises(AdapterConformanceError, match=rf"event\.{field}"):
+        assert_adapter_event(event)
+
+
+def test_adapter_event_requires_message_instance() -> None:
+    event = Event(id="evt-1", adapter="demo", platform="demo", type="message")
+    event.message = "hello"  # type: ignore[assignment]
+
+    with pytest.raises(AdapterConformanceError, match="event.message must be a Message"):
+        assert_adapter_event(event)
+
+
+def test_adapter_event_accepts_empty_message_and_raw() -> None:
+    event = Event(id="evt-1", adapter="demo", platform="demo", type="notice")
+
+    assert_adapter_event(event)
+
+
 def test_adapter_config_constructs_and_checks_normalized_subset(tmp_path: Path) -> None:
     adapter = assert_adapter_config(
         ConfiguredAdapter,
@@ -181,6 +218,15 @@ def test_adapter_config_constructs_and_checks_normalized_subset(tmp_path: Path) 
 
     assert isinstance(adapter, ConfiguredAdapter)
     assert isinstance(adapter.config_obj, AdapterConfig)
+
+
+@pytest.mark.parametrize("adapter_cls", [BlankNameAdapter, PaddedNameAdapter])
+def test_adapter_config_rejects_invalid_effective_name(
+    adapter_cls: type[Adapter],
+    tmp_path: Path,
+) -> None:
+    with pytest.raises(AdapterConformanceError, match="adapter.name"):
+        assert_adapter_config(adapter_cls, _make_runtime(tmp_path))
 
 
 def test_adapter_config_reports_nested_mismatch(tmp_path: Path) -> None:

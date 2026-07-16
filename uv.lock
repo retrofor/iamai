@@ -712,7 +712,7 @@ wheels = [
 
 [[package]]
 name = "iamai"
-version = "0.3.0"
+version = "1.0.0rc1"
 source = { editable = "." }
 dependencies = [
     { name = "loguru" },
