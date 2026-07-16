@@ -102,7 +102,16 @@ def _load_json_object(payload: str | bytes | bytearray) -> dict[str, Any]:
             "$",
             "serialized payload must be a JSON object",
         )
-    _validate_json_value(value, path="$")
+    try:
+        _validate_json_value(value, path="$")
+    except SerializationContractError as error:
+        if error.code == "nesting_too_deep":
+            raise SerializationContractError(
+                "nesting_too_deep",
+                "$",
+                "JSON nesting exceeds the public contract limit",
+            ) from error
+        raise
     return value
 
 
