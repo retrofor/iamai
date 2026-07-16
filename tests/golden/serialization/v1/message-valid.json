@@ -1,0 +1,28 @@
+{
+  "contract_version": "1.0",
+  "segments": [
+    {
+      "kind": "text",
+      "data": {
+        "text": "hello 世界"
+      }
+    },
+    {
+      "kind": "custom",
+      "data": {
+        "count": 42,
+        "enabled": true,
+        "missing": null,
+        "huge_integer": 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,
+        "ratio": 0.125,
+        "nested": {
+          "items": [
+            1,
+            false,
+            null
+          ]
+        }
+      }
+    }
+  ]
+}

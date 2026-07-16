@@ -1,0 +1,178 @@
+[
+  {
+    "name": "message contract version is required",
+    "target": "message",
+    "payload": {
+      "segments": []
+    },
+    "code": "missing_field",
+    "path": "$.contract_version"
+  },
+  {
+    "name": "message contract version must be major.minor",
+    "target": "message",
+    "payload": {
+      "contract_version": "1",
+      "segments": []
+    },
+    "code": "invalid_contract_version",
+    "path": "$.contract_version"
+  },
+  {
+    "name": "message contract major must be supported",
+    "target": "message",
+    "payload": {
+      "contract_version": "2.0",
+      "segments": []
+    },
+    "code": "unsupported_contract_version",
+    "path": "$.contract_version"
+  },
+  {
+    "name": "message segments must be an array",
+    "target": "message",
+    "payload": {
+      "contract_version": "1.0",
+      "segments": {}
+    },
+    "code": "expected_array",
+    "path": "$.segments"
+  },
+  {
+    "name": "message segment kind is required",
+    "target": "message",
+    "payload": {
+      "contract_version": "1.0",
+      "segments": [
+        {
+          "data": {}
+        }
+      ]
+    },
+    "code": "missing_field",
+    "path": "$.segments[0].kind"
+  },
+  {
+    "name": "message segment kind cannot be empty",
+    "target": "message",
+    "payload": {
+      "contract_version": "1.0",
+      "segments": [
+        {
+          "kind": "",
+          "data": {}
+        }
+      ]
+    },
+    "code": "empty_string",
+    "path": "$.segments[0].kind"
+  },
+  {
+    "name": "message segment data must be an object",
+    "target": "message",
+    "payload": {
+      "contract_version": "1.0",
+      "segments": [
+        {
+          "kind": "text",
+          "data": []
+        }
+      ]
+    },
+    "code": "expected_object",
+    "path": "$.segments[0].data"
+  },
+  {
+    "name": "message segment must be an object",
+    "target": "message",
+    "payload": {
+      "contract_version": "1.0",
+      "segments": ["text"]
+    },
+    "code": "expected_object",
+    "path": "$.segments[0]"
+  },
+  {
+    "name": "event required strings cannot be coerced",
+    "target": "event",
+    "payload": {
+      "contract_version": "1.0",
+      "id": 42,
+      "adapter": "reference",
+      "platform": "test",
+      "type": "message",
+      "message": {
+        "contract_version": "1.0",
+        "segments": []
+      }
+    },
+    "code": "expected_string",
+    "path": "$.id"
+  },
+  {
+    "name": "event optional strings cannot be coerced",
+    "target": "event",
+    "payload": {
+      "contract_version": "1.0",
+      "id": "event-001",
+      "adapter": "reference",
+      "platform": "test",
+      "type": "message",
+      "detail_type": 42,
+      "message": {
+        "contract_version": "1.0",
+        "segments": []
+      }
+    },
+    "code": "expected_string",
+    "path": "$.detail_type"
+  },
+  {
+    "name": "event message is required",
+    "target": "event",
+    "payload": {
+      "contract_version": "1.0",
+      "id": "event-001",
+      "adapter": "reference",
+      "platform": "test",
+      "type": "message"
+    },
+    "code": "missing_field",
+    "path": "$.message"
+  },
+  {
+    "name": "event raw must be an object",
+    "target": "event",
+    "payload": {
+      "contract_version": "1.0",
+      "id": "event-001",
+      "adapter": "reference",
+      "platform": "test",
+      "type": "message",
+      "message": {
+        "contract_version": "1.0",
+        "segments": []
+      },
+      "raw": []
+    },
+    "code": "expected_object",
+    "path": "$.raw"
+  },
+  {
+    "name": "nested message version is reported at the event path",
+    "target": "event",
+    "payload": {
+      "contract_version": "1.0",
+      "id": "event-001",
+      "adapter": "reference",
+      "platform": "test",
+      "type": "message",
+      "message": {
+        "contract_version": "2.0",
+        "segments": []
+      }
+    },
+    "code": "unsupported_contract_version",
+    "path": "$.message.contract_version"
+  }
+]

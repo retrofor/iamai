@@ -39,6 +39,20 @@ def test_extensions_reference_contains_public_extension_specs() -> None:
     assert "``Requires-Dist``" in content
 
 
+def test_serialization_reference_contains_v1_contract_rules() -> None:
+    content = _read("docs/reference/serialization-contract.rst")
+
+    assert "``SERIALIZATION_CONTRACT_VERSION``" in content
+    assert '``contract_version`` 必须是 ``"1.0"``' in content
+    assert "未知字段" in content
+    assert "标准 JSON 类型" in content
+    assert "IEEE-754 binary64" in content
+    assert "``Event.to_payload()``" in content
+    assert "``Event.from_payload()``" in content
+    assert "同一 major" in content
+    assert "legacy normalization" in content
+
+
 def test_ecosystem_submission_surfaces_carry_admission_evidence_fields() -> None:
     browser = _read("docs/_static/iamai-store.js")
     issue_template = _read(".github/ISSUE_TEMPLATE/ecosystem-submission.yml")

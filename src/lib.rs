@@ -13,13 +13,13 @@ static EVENT_COUNTER: AtomicU64 = AtomicU64::new(1);
 #[derive(Clone, Debug, Default, Serialize, Deserialize)]
 struct Segment {
     kind: String,
-    data: BTreeMap<String, String>,
+    data: BTreeMap<String, Value>,
 }
 
 impl Segment {
     fn text(text: String) -> Self {
         let mut data = BTreeMap::new();
-        data.insert("text".to_owned(), text);
+        data.insert("text".to_owned(), Value::String(text));
         Self {
             kind: "text".to_owned(),
             data,
@@ -71,7 +71,7 @@ impl CoreMessage {
 
     fn push(&mut self, kind: String, data_json: Option<&str>) -> PyResult<()> {
         let data = if let Some(raw) = data_json {
-            parse_string_map(raw)?
+            parse_value_map(raw)?
         } else {
             BTreeMap::new()
         };
@@ -111,7 +111,7 @@ impl CoreMessage {
                 .map(|segment| {
                     json!({
                         "type": segment.kind,
-                        "data": segment.data,
+                        "data": stringified_data(&segment.data),
                     })
                 })
                 .collect(),
@@ -262,14 +262,14 @@ fn parse_json(payload: &str) -> PyResult<Value> {
     serde_json::from_str(payload).map_err(|err| PyValueError::new_err(err.to_string()))
 }
 
-fn parse_string_map(payload: &str) -> PyResult<BTreeMap<String, String>> {
+fn parse_value_map(payload: &str) -> PyResult<BTreeMap<String, Value>> {
     let value = parse_json(payload)?;
     let object = value
         .as_object()
         .ok_or_else(|| PyValueError::new_err("segment data must be a JSON object"))?;
     Ok(object
         .iter()
-        .map(|(key, value)| (key.clone(), value_to_string(value)))
+        .map(|(key, value)| (key.clone(), value.clone()))
         .collect())
 }
 
@@ -296,7 +296,7 @@ fn segment_from_json(value: &Value) -> PyResult<Segment> {
         .and_then(Value::as_object)
         .map(|map| {
             map.iter()
-                .map(|(key, value)| (key.clone(), value_to_string(value)))
+                .map(|(key, value)| (key.clone(), value.clone()))
                 .collect::<BTreeMap<_, _>>()
         })
         .unwrap_or_default();
@@ -314,7 +314,7 @@ fn onebot11_segment_from_json(value: &Value) -> PyResult<Segment> {
         .and_then(Value::as_object)
         .map(|map| {
             map.iter()
-                .map(|(key, value)| (key.clone(), value_to_string(value)))
+                .map(|(key, value)| (key.clone(), Value::String(value_to_string(value))))
                 .collect::<BTreeMap<_, _>>()
         })
         .unwrap_or_default();
@@ -335,14 +335,24 @@ fn value_to_string(value: &Value) -> String {
     }
 }
 
+fn stringified_data(data: &BTreeMap<String, Value>) -> BTreeMap<String, String> {
+    data.iter()
+        .map(|(key, value)| (key.clone(), value_to_string(value)))
+        .collect()
+}
+
 fn segment_plain_text(segment: &Segment) -> String {
     match segment.kind.as_str() {
-        "text" => segment.data.get("text").cloned().unwrap_or_default(),
+        "text" => segment
+            .data
+            .get("text")
+            .map(value_to_string)
+            .unwrap_or_default(),
         "at" => segment
             .data
             .get("qq")
             .or_else(|| segment.data.get("user_id"))
-            .map(|target| format!("@{target}"))
+            .map(|target| format!("@{}", value_to_string(target)))
             .unwrap_or_default(),
         _ => String::new(),
     }
@@ -350,19 +360,23 @@ fn segment_plain_text(segment: &Segment) -> String {
 
 fn segment_render_text(segment: &Segment) -> String {
     match segment.kind.as_str() {
-        "text" => segment.data.get("text").cloned().unwrap_or_default(),
+        "text" => segment
+            .data
+            .get("text")
+            .map(value_to_string)
+            .unwrap_or_default(),
         "at" => segment
             .data
             .get("qq")
             .or_else(|| segment.data.get("user_id"))
-            .map(|target| format!("@{target}"))
+            .map(|target| format!("@{}", value_to_string(target)))
             .unwrap_or_else(|| "@unknown".to_owned()),
         "image" => {
             let target = segment
                 .data
                 .get("file")
                 .or_else(|| segment.data.get("url"))
-                .cloned()
+                .map(value_to_string)
                 .unwrap_or_else(|| "image".to_owned());
             format!("[image:{target}]")
         }
@@ -430,6 +444,83 @@ mod tests {
 
         assert_eq!(plain, "hello @42");
         assert_eq!(rendered, "hello @42[image:photo.png]");
+    }
+
+    #[test]
+    fn segment_data_preserves_json_types_on_round_trip() {
+        let payload = json!([
+            {
+                "kind": "custom",
+                "data": {
+                    "text": "legacy",
+                    "count": 42,
+                    "enabled": true,
+                    "missing": null,
+                    "nested": {"items": [1, false, null]},
+                },
+            },
+        ]);
+
+        let message = CoreMessage::from_value(payload.clone()).unwrap();
+
+        assert_eq!(Value::Array(message.segments_to_json()), payload);
+    }
+
+    #[test]
+    fn segment_data_preserves_arbitrary_precision_numbers() {
+        let payload = serde_json::from_str::<Value>(
+            r#"[{"kind":"custom","data":{"huge":10000000000000000000000000000000000000000}}]"#,
+        )
+        .unwrap();
+
+        let message = CoreMessage::from_value(payload.clone()).unwrap();
+
+        assert_eq!(Value::Array(message.segments_to_json()), payload);
+    }
+
+    #[test]
+    fn onebot_segment_data_remains_string_normalized() {
+        let payload = json!([
+            {
+                "type": "custom",
+                "data": {
+                    "text": "legacy",
+                    "count": 42,
+                    "enabled": true,
+                    "missing": null,
+                    "nested": {"items": [1, false, null]},
+                },
+            },
+        ]);
+
+        let segments = parse_onebot11_segments(&payload);
+        let round_trip = Value::Array(
+            segments
+                .iter()
+                .map(|segment| {
+                    json!({
+                        "type": segment.kind,
+                        "data": segment.data,
+                    })
+                })
+                .collect(),
+        );
+
+        assert_eq!(
+            round_trip,
+            json!([
+                {
+                    "type": "custom",
+                    "data": {
+                        "text": "legacy",
+                        "count": "42",
+                        "enabled": "true",
+                        "missing": "",
+                        "nested": "{\"items\":[1,false,null]}",
+                    },
+                },
+            ])
+        );
     }
 
     #[test]

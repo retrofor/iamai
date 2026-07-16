@@ -60,6 +60,7 @@ from .rules import (
     word_in,
 )
 from .runtime import ExtensionDiscoveryError, Runtime
+from .serialization import SERIALIZATION_CONTRACT_VERSION, SerializationContractError
 from .session import SessionManager
 from .state import JsonStateStore, NullStateStore, SqliteStateStore, StateStore
 
@@ -81,6 +82,8 @@ __all__ = [
     "StateStore",
     "ToolRegistry",
     "Runtime",
+    "SERIALIZATION_CONTRACT_VERSION",
+    "SerializationContractError",
     "ConfigValidationError",
     "CONFIG_SCHEMA_CONTRACT_VERSION",
     "CONFIG_SCHEMA_ID",
