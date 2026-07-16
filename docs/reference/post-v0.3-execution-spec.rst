@@ -196,9 +196,9 @@ Schema contract v1
 * 定义 ``Event`` 和 ``Message`` 的版本化序列化形式、必需/可选字段、未知字段和 round-trip 规则。
   规范正文见 :doc:`serialization-contract`。
 * 定义 ``Runtime``、``Adapter`` 和 ``Plugin`` 的启动、正常关闭、取消、失败清理、reload 和
-  handler admission 顺序。
+  handler admission 顺序。规范正文见 :doc:`public-api-lifecycle`。
 * 单独定义 ``Context`` 的事件作用域、回复路由、依赖注入和失效语义；``Context`` 不拥有 runtime
-  lifecycle。
+  lifecycle。规范正文见 :doc:`public-api-lifecycle`。
 * 公开 schema/contract version，并用兼容性测试证明已支持的演进规则。
 * 建立规范条款到自动测试或人工检查的一一对应 conformance matrix。
 * 定义 public symbol、配置 key、entry point 和序列化字段的弃用警告机制、最短支持窗口和删除规则。

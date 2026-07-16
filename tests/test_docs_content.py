@@ -53,6 +53,39 @@ def test_serialization_reference_contains_v1_contract_rules() -> None:
     assert "legacy normalization" in content
 
 
+def test_public_api_lifecycle_reference_contains_v1_normative_rules() -> None:
+    content = _read("docs/reference/public-api-lifecycle.rst")
+    index = _read("docs/reference/index.rst")
+    execution_spec = _read("docs/reference/post-v0.3-execution-spec.rst")
+
+    normative_ids = {
+        "LIF-START-001",
+        "LIF-START-002",
+        "LIF-ADAPTER-001",
+        "LIF-SHUTDOWN-001",
+        "LIF-RELOAD-001",
+        "LIF-RELOAD-002",
+        "LIF-RELOAD-003",
+        "LIF-RELOAD-004",
+        "LIF-ORDER-001",
+        "CTX-SCOPE-001",
+        "CTX-ROUTE-001",
+        "CTX-DI-001",
+        "CTX-DI-002",
+        "CTX-INVALID-001",
+        "CTX-LIFECYCLE-001",
+    }
+    for normative_id in normative_ids:
+        assert normative_id in content
+    assert "原始异常" in content
+    assert "handler_shutdown_timeout_seconds" in content
+    assert "ContextInvalidatedError" in content
+    assert "Depends(use_cache=False)" in content
+    assert "Context 不拥有生命周期" in content
+    assert "public-api-lifecycle" in index
+    assert execution_spec.count(":doc:`public-api-lifecycle`") == 2
+
+
 def test_ecosystem_submission_surfaces_carry_admission_evidence_fields() -> None:
     browser = _read("docs/_static/iamai-store.js")
     issue_template = _read(".github/ISSUE_TEMPLATE/ecosystem-submission.yml")

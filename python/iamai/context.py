@@ -2,12 +2,16 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
 from collections.abc import Callable
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any
 
 from .event import Event
 from .message import Message
+
+
+class ContextInvalidatedError(RuntimeError):
+    """Raised when runtime-bound operations use a stale handler context."""
 
 
 @dataclass(slots=True)
@@ -20,6 +24,25 @@ class Context:
     event: Event
     handler: "BoundHandler"
     matches: dict[str, Any] = field(default_factory=dict)
+    _generation: int | None = field(default=None, repr=False)
+
+    def __post_init__(self) -> None:
+        if self._generation is None:
+            self._generation = self.runtime._handler_generation
+
+    @property
+    def is_valid(self) -> bool:
+        """Return whether this context still belongs to the active runtime generation."""
+        return (
+            self._generation == self.runtime._handler_generation
+            and not self.runtime._stop_event.is_set()
+        )
+
+    def _assert_current(self) -> None:
+        if not self.is_valid:
+            raise ContextInvalidatedError(
+                "context is no longer valid because the runtime generation changed"
+            )
 
     @property
     def text(self) -> str:
@@ -40,32 +63,39 @@ class Context:
     @property
     def config(self) -> dict[str, Any]:
         """Return this plugin's validated configuration mapping."""
+        self._assert_current()
         return self.plugin.config
 
     @property
     def state(self) -> dict[str, Any]:
         """Return this plugin's private state mapping."""
+        self._assert_current()
         return self.plugin.state
 
     @property
     def shared_state(self) -> dict[str, Any]:
         """Return the runtime-wide shared state mapping."""
+        self._assert_current()
         return self.runtime.state
 
     async def reply(self, message: str | Message) -> Any:
         """Send a reply to the event's default target."""
+        self._assert_current()
         return await self.adapter.send_message(Message.ensure(message), event=self.event)
 
     async def send(self, message: str | Message, *, target: Any | None = None) -> Any:
         """Send a message to an explicit adapter target."""
+        self._assert_current()
         return await self.adapter.send_message(Message.ensure(message), target=target)
 
     async def call_api(self, action: str, **params: Any) -> Any:
         """Call an API action on the current adapter."""
+        self._assert_current()
         return await self.adapter.call_api(action, **params)
 
     async def reload_plugins(self) -> None:
         """Schedule a plugin reload after the current handler completes."""
+        self._assert_current()
         self.runtime.request_plugin_reload()
 
     async def wait_for_message(
@@ -75,6 +105,7 @@ class Context:
         rule: Callable[["Context"], Any] | None = None,
     ) -> "Context":
         """Wait for the next message in the same session."""
+        self._assert_current()
         if rule is None:
             prefixes = self.runtime.command_prefixes()
 

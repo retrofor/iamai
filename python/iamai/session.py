@@ -8,6 +8,8 @@ from collections import OrderedDict
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Callable
 
+from .context import ContextInvalidatedError
+
 
 @dataclass(slots=True)
 class Waiter:
@@ -81,6 +83,8 @@ class SessionManager:
         rule: Callable[["Context"], Any] | None = None,
     ) -> "Context":
         """Wait for a future context in the same session."""
+        if not _context_is_valid(ctx):
+            raise ContextInvalidatedError("cannot wait with an invalidated context")
         loop = asyncio.get_running_loop()
         waiter = Waiter(
             key=key or self.session_key(ctx),
@@ -90,12 +94,26 @@ class SessionManager:
         self._prune_backlog()
         backlog = self._backlog.get(waiter.key, [])
         for item in list(backlog):
+            if not _context_is_valid(item.context):
+                backlog.remove(item)
+                continue
             if rule is not None:
                 result = rule(item.context)
                 if asyncio.iscoroutine(result):
                     result = await result
                 if not result:
                     continue
+            if not _context_is_valid(ctx):
+                raise ContextInvalidatedError(
+                    "context was invalidated while evaluating the session rule"
+                )
+            if not _context_is_valid(item.context):
+                current_backlog = self._backlog.get(waiter.key)
+                if current_backlog is not None and item in current_backlog:
+                    current_backlog.remove(item)
+                    if not current_backlog:
+                        self._backlog.pop(waiter.key, None)
+                continue
             current_backlog = self._backlog.get(waiter.key)
             if current_backlog is None or item not in current_backlog:
                 continue
@@ -112,6 +130,8 @@ class SessionManager:
 
     async def consume(self, ctx: "Context") -> bool:
         """Deliver a context to the first waiter that accepts it."""
+        if not _context_is_valid(ctx):
+            return False
         key = self.session_key(ctx)
         for waiter in list(self._waiters):
             if waiter.key != key or waiter.future.done():
@@ -122,6 +142,8 @@ class SessionManager:
                     result = await result
                 if not result:
                     continue
+            if not _context_is_valid(ctx):
+                return False
             if waiter.future.done() or waiter not in self._waiters:
                 continue
             waiter.future.set_result(ctx)
@@ -139,9 +161,19 @@ class SessionManager:
     def _prune_backlog(self) -> None:
         cutoff = self._clock() - self._backlog_ttl_seconds
         for key, items in list(self._backlog.items()):
-            items[:] = [item for item in items if item.created_at >= cutoff]
+            items[:] = [
+                item
+                for item in items
+                if item.created_at >= cutoff and _context_is_valid(item.context)
+            ]
             if not items:
                 self._backlog.pop(key, None)
+
+    def discard_stale_contexts(self) -> int:
+        """Discard backlog entries invalidated by a runtime lifecycle transition."""
+        before = sum(len(items) for items in self._backlog.values())
+        self._prune_backlog()
+        return before - sum(len(items) for items in self._backlog.values())
 
     def cancel(self, key: str | None = None) -> int:
         """Cancel waiters, optionally scoped to a single key."""
@@ -162,3 +194,7 @@ class SessionManager:
 
 if TYPE_CHECKING:
     from .context import Context
+
+
+def _context_is_valid(ctx: "Context") -> bool:
+    return bool(getattr(ctx, "is_valid", True))
