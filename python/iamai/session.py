@@ -123,7 +123,12 @@ class SessionManager:
             return item.context
         self._waiters.append(waiter)
         try:
-            return await asyncio.wait_for(waiter.future, timeout=timeout)
+            delivered: Context = await asyncio.wait_for(waiter.future, timeout=timeout)
+            if not _context_is_valid(ctx) or not _context_is_valid(delivered):
+                raise ContextInvalidatedError(
+                    "context was invalidated before the session waiter resumed"
+                )
+            return delivered
         finally:
             if waiter in self._waiters:
                 self._waiters.remove(waiter)

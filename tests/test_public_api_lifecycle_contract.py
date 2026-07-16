@@ -995,6 +995,26 @@ def test_async_session_rules_cannot_deliver_contexts_across_generations(
     asyncio.run(scenario())
 
 
+def test_session_waiter_revalidates_context_before_returning(tmp_path: Path) -> None:
+    async def scenario() -> None:
+        trace: list[str] = []
+        runtime = _make_runtime(tmp_path)
+        plugin = TracePlugin(runtime, "plugin", trace)
+        adapter = TraceAdapter(runtime, trace)
+        waiting_ctx = _make_context(runtime, plugin, adapter)
+        incoming_ctx = _make_context(runtime, plugin, adapter)
+        waiter = asyncio.create_task(runtime.sessions.wait_for(waiting_ctx, timeout=1.0))
+        await asyncio.sleep(0)
+
+        assert await runtime.sessions.consume(incoming_ctx) is True
+        runtime._handler_generation += 1
+
+        with pytest.raises(ContextInvalidatedError):
+            await waiter
+
+    asyncio.run(scenario())
+
+
 def test_lifecycle_cancellation_records_dropped_work(tmp_path: Path) -> None:
     async def scenario() -> None:
         runtime = _make_runtime(tmp_path)
