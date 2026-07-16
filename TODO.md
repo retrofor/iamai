@@ -16,7 +16,7 @@ Status values:
 | Workstream | Status | Evidence | Blocker / last verified / resume condition |
 | --- | --- | --- | --- |
 | 0. Specification baseline | `DONE` | [PR #445](https://github.com/retrofor/iamai/pull/445); [post-merge CI](https://github.com/retrofor/iamai/actions/runs/29400584855); [CodeQL](https://github.com/retrofor/iamai/actions/runs/29400584086) | Completed 2026-07-15 |
-| 1. FOSSA governance | `BLOCKED_EXTERNAL` | [PR #446](https://github.com/retrofor/iamai/pull/446); [baseline](docs/reference/fossa-governance-baseline.rst); [#436 recheck](https://github.com/retrofor/iamai/issues/436#issuecomment-4989820286) | Last verified 2026-07-16; FOSSA still targets `master` and the environment has no CLI, token, or login; resume with project-admin login or API key |
+| 1. FOSSA governance | `BLOCKED_EXTERNAL` | [PR #446](https://github.com/retrofor/iamai/pull/446); [baseline](docs/reference/fossa-governance-baseline.rst); [#436 permission/API recheck](https://github.com/retrofor/iamai/issues/436#issuecomment-4990648437) | Last verified 2026-07-16; FOSSA still targets `master`; resume with a Full credential or UI session granting project View/Edit and `SetPolicy` |
 | 2. Low-risk dependencies | `DONE` | [#437](https://github.com/retrofor/iamai/pull/437), [#439](https://github.com/retrofor/iamai/pull/439), [#441](https://github.com/retrofor/iamai/pull/441), [#442](https://github.com/retrofor/iamai/pull/442), [#443](https://github.com/retrofor/iamai/pull/443); [final CI](https://github.com/retrofor/iamai/actions/runs/29404149717) | Completed 2026-07-15 at [`dev@47e4b8a`](https://github.com/retrofor/iamai/commit/47e4b8a7a671ce82826c6f4e1238ec255cff1506) |
 | 3. Gated dependencies | `DONE` | [#438](https://github.com/retrofor/iamai/pull/438), [release rehearsal](https://github.com/retrofor/iamai/actions/runs/29404691605), [#449](https://github.com/retrofor/iamai/pull/449), [#440](https://github.com/retrofor/iamai/pull/440), [final CI](https://github.com/retrofor/iamai/actions/runs/29407069117), [CodeQL](https://github.com/retrofor/iamai/actions/runs/29407068347) | Completed 2026-07-15 at [`dev@44a237a`](https://github.com/retrofor/iamai/commit/44a237a7c75fb0ca52ac87a0fed862b6186968ae) |
 | 4. Version 0.4 contract | `DONE` | [#435](https://github.com/retrofor/iamai/issues/435); [0.4-A PR #451](https://github.com/retrofor/iamai/pull/451); [0.4-B PR #453](https://github.com/retrofor/iamai/pull/453); [0.4-C PR #454](https://github.com/retrofor/iamai/pull/454); [metadata follow-up PR #460](https://github.com/retrofor/iamai/pull/460); [post-merge CI](https://github.com/retrofor/iamai/actions/runs/29485373909); [CodeQL](https://github.com/retrofor/iamai/actions/runs/29485371056) | Completed 2026-07-16 at [`dev@a2aaa6d`](https://github.com/retrofor/iamai/commit/a2aaa6d2e25744e7a172d221ae177a8b190597f6) after resolving the actionable #454 review thread |
@@ -31,11 +31,12 @@ Status values:
 
 Tracking: [#436](https://github.com/retrofor/iamai/issues/436)
 
-- [x] Confirm whether a FOSSA project-admin login or API token is available: none is present in the current environment.
+- [x] Confirm whether a usable FOSSA Full credential or UI session is available: none is present in the current environment.
 - [ ] Repoint the FOSSA project and revision analysis from `master` to `dev`.
-- [ ] Confirm the project license is SPDX `MIT` and remove the phantom AGPL conclusion.
-- [ ] Change the project policy from `Single-Binary Distribution` to `Standard Bundle`.
-- [ ] Export the current issue inventory with dependency, version, license, policy, locator, and disposition.
+- [ ] Confirm the exact `dev` revision detects first-party SPDX `MIT` and has no unexplained AGPL matches.
+- [ ] Change the project policy from `Single-Binary Distribution` to `Standard Bundle Distribution`.
+- [ ] Export active and ignored issue inventories with dependency, version, license, policy, locator, status,
+  waiver/ignore reason, and disposition.
 - [ ] Resolve, allow, or time-bound waive every current finding.
 - [ ] Verify one `dev` revision and one PR revision; attach evidence to #436.
 - [ ] Remove or replace the v0.3.0 waiver before 2026-08-15.

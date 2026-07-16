@@ -32,35 +32,44 @@ GitHub issue、pull request、CI run 和外部合规系统保存完成证据。
 目标
 ~~~~
 
-让 FOSSA 分析真实默认分支 ``dev``、读取项目 MIT 许可证，并产生可以逐项审计的
-当前 revision 结果。跟踪项为 `GitHub issue #436 <https://github.com/retrofor/iamai/issues/436>`_。
+让 FOSSA 分析真实默认分支 ``dev``、确认该精确 revision 的 first-party license 扫描结果为 MIT，
+并产生可以逐项审计的当前 revision 结果。跟踪项为
+`GitHub issue #436 <https://github.com/retrofor/iamai/issues/436>`_。
 
 必须完成
 ~~~~~~~~
 
 * FOSSA 项目 source revision 从旧 ``master`` 改为 ``dev``。
-* 项目许可证识别为 SPDX ``MIT``，不再出现无法由当前 manifest、lockfile 或源码解释的
-  phantom AGPL 结论。
-* 项目策略从旧 ``Single-Binary Distribution`` 调整为适合本项目发布形态的 ``Standard Bundle``。
-* 导出当前 revision 的全部 issue 清单，至少包含 dependency、version、license、policy、
-  locator 和处置结论。
+* 精确 ``dev`` revision 的 first-party license 结果包含 SPDX ``MIT``，不再出现无法由当前
+  manifest、lockfile、匹配路径或源码解释的 phantom AGPL 结论。FOSSA project settings 没有可直接
+  设置的 source-license 字段，不能用设置一个标签代替 revision 证据。
+* 项目策略从旧 ``Single-Binary Distribution`` 调整为适合本项目发布形态的
+  ``Standard Bundle Distribution``。
+* 分别导出当前 revision 的 active 和 ignored issue 清单，至少包含 dependency、version、license、
+  policy、locator、状态、忽略或豁免理由和处置结论。
 * 对真实问题执行升级、移除、策略允许或具名书面豁免；任何豁免必须有范围和失效日期。
+  只有证明路径不属于发布物或 first-party source，并保留过滤前后 match inventory 时，才可使用 scan
+  path filter。Dependency correction/conclusion 不能代替 project source-license 证据。
 * 在一个 ``dev`` revision 和一个 pull request revision 上取得可复现结果。
 * 在结果稳定前，``License Compliance`` 不得加入 ``dev`` 的 required checks。
 
 完成定义
 ~~~~~~~~
 
-FOSSA revision、清单和 GitHub status URL 均指向 ``dev``；所有 findings 已清零或逐项处置；
+FOSSA revision、清单和 GitHub status URL 均指向 ``dev``；当前 revision 的 first-party license
+结果为 MIT 且没有未处置的 AGPL 匹配；所有 findings 已清零或逐项处置；
 证据链接写入 `#436 <https://github.com/retrofor/iamai/issues/436>`_，现有 ``v0.3.0`` 豁免在
 2026-08-15 前关闭或被新的具名决策替代。
 
 外部阻塞
 ~~~~~~~~
 
-修改 FOSSA 项目和读取 issue 明细需要项目管理员登录或 API token。没有这些权限时，执行者必须
-记录公开可验证的 project/status 信息、凭据探测结果和恢复条件，然后将本工作流标记为
-``BLOCKED_EXTERNAL``，不能猜测 11 条 issue 的内容。
+读取完整 issue 明细需要带项目 View 权限的 FOSSA Full credential 或 UI session；修改 default/tracked
+branch 需要项目 Edit 权限；应用目标 policy 还需要 ``SetPolicy``。这些权限不一定要求 organization
+admin；跨项目 dependency license correction 可能需要 organization Admin 或 Editor。Push-Only token、
+GitHub App 和仓库内配置不能替代。没有这些权限时，执行者必须记录公开
+可验证的 project/revision/status 信息、凭据探测结果和恢复条件，然后将本工作流标记为
+``BLOCKED_EXTERNAL``，不能根据摘要计数猜测 finding 内容或处置状态。
 
 工作流 2：低风险依赖升级
 -------------------------
