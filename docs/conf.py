@@ -89,11 +89,11 @@ html_theme_options = {
     "navigation_with_keys": True,
     "sidebar_hide_name": False,
     "light_css_variables": {
-        "color-brand-primary": "#0f766e",
-        "color-brand-content": "#0d9488",
+        "color-brand-primary": "#c2412d",
+        "color-brand-content": "#b93825",
     },
     "dark_css_variables": {
         "color-brand-primary": "#5eead4",
-        "color-brand-content": "#2dd4bf",
+        "color-brand-content": "#6ee7c4",
     },
 }
