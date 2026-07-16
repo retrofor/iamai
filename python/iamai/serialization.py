@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from decimal import Decimal
+from decimal import Decimal, DecimalException
 import json
 import math
 import re
@@ -14,6 +14,9 @@ SERIALIZATION_CONTRACT_VERSION = "1.0"
 _CONTRACT_VERSION_PATTERN = re.compile(r"^(?P<major>0|[1-9][0-9]*)\.(?P<minor>0|[1-9][0-9]*)$")
 _SUPPORTED_CONTRACT_MAJOR = SERIALIZATION_CONTRACT_VERSION.partition(".")[0]
 _MAX_JSON_NESTING = 100
+_MAX_INTEGER_DIGITS = 4096
+_MAX_FRACTIONAL_LITERAL_LENGTH = 128
+_MAX_INTEGER_ABS = 10**_MAX_INTEGER_DIGITS
 
 
 class SerializationContractError(ValueError):
@@ -51,8 +54,21 @@ def _load_json_object(payload: str | bytes | bytearray) -> dict[str, Any]:
         )
 
     def parse_binary64(value: str) -> float:
-        decimal_value = Decimal(value)
-        digits = list(decimal_value.as_tuple().digits)
+        if len(value) > _MAX_FRACTIONAL_LITERAL_LENGTH:
+            raise SerializationContractError(
+                "invalid_number",
+                "$",
+                "fractional JSON number literal exceeds 128 characters",
+            )
+        try:
+            decimal_value = Decimal(value)
+            digits = list(decimal_value.as_tuple().digits)
+        except DecimalException as error:
+            raise SerializationContractError(
+                "invalid_number",
+                "$",
+                "fractional JSON number is outside the supported decimal syntax",
+            ) from error
         while digits and digits[-1] == 0:
             digits.pop()
         if len(digits) > 17:
@@ -69,6 +85,16 @@ def _load_json_object(payload: str | bytes | bytearray) -> dict[str, Any]:
                 "fractional JSON number is outside the finite binary64 range",
             )
         return parsed
+
+    def parse_integer(value: str) -> int:
+        digits = value.removeprefix("-")
+        if len(digits) > _MAX_INTEGER_DIGITS:
+            raise SerializationContractError(
+                "invalid_number",
+                "$",
+                "integer JSON number literal exceeds 4096 digits",
+            )
+        return int(value)
 
     def reject_duplicate(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
         result: dict[str, Any] = {}
@@ -88,6 +114,7 @@ def _load_json_object(payload: str | bytes | bytearray) -> dict[str, Any]:
             object_pairs_hook=reject_duplicate,
             parse_constant=reject_constant,
             parse_float=parse_binary64,
+            parse_int=parse_integer,
         )
     except SerializationContractError:
         raise
@@ -209,7 +236,15 @@ def _validate_json_value(
             path,
             f"JSON nesting exceeds {_MAX_JSON_NESTING} levels",
         )
-    if value is None or isinstance(value, (str, bool, int)):
+    if value is None or isinstance(value, (str, bool)):
+        return
+    if isinstance(value, int):
+        if not -_MAX_INTEGER_ABS < value < _MAX_INTEGER_ABS:
+            raise SerializationContractError(
+                "invalid_number",
+                path,
+                "JSON integers support at most 4096 decimal digits",
+            )
         return
     if isinstance(value, float):
         if not math.isfinite(value):

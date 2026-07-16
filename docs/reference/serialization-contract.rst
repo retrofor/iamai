@@ -36,10 +36,10 @@ Message 的 canonical payload 是一个对象：
 ``contract_version`` 和 ``segments`` 都是必需字段。``contract_version`` 必须是 ``"1.0"``
 或 reader 支持的同一 major 版本；``segments`` 必须是数组。每个 segment 必须是对象，包含非空
 字符串 ``kind`` 和对象 ``data``。未知 ``kind`` 合法，``data`` 中的未知 key 以及 string、number、
-boolean、null、array、object 等标准 JSON 类型必须按下述数值域原样保留。整数支持任意精度；带小数
-点或指数的 number 使用有限 IEEE-754 binary64，输入最多 17 位有效十进制数字，且不得上溢或下溢。
-超出该数值域的文本以 ``invalid_number`` 拒绝，不会静默量化。segment 的顺序属于契约，对象 key
-顺序不属于契约。
+boolean、null、array、object 等标准 JSON 类型必须按下述数值域原样保留。整数支持最多 4096 位十进制
+数字；带小数点或指数的 number 使用有限 IEEE-754 binary64，文本最长 128 个字符、最多 17 位有效
+十进制数字，且不得上溢或下溢。超出该数值域或文本上限的输入以 ``invalid_number`` 拒绝，不会静默
+量化，也不会先构造无界大数。segment 的顺序属于契约，对象 key 顺序不属于契约。
 
 Event payload
 -------------

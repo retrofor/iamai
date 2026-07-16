@@ -140,6 +140,62 @@ def test_json_reader_rejects_fractional_numbers_outside_binary64_contract(
     assert caught.value.path == "$"
 
 
+@pytest.mark.parametrize(
+    "number",
+    [
+        "0." + "1" * 200,
+        "1" * 4097,
+        "-" + "1" * 4097,
+        "1e" + "9" * 126,
+        "-1e" + "9" * 125,
+    ],
+)
+def test_json_reader_rejects_oversized_number_literals_before_conversion(
+    number: str,
+) -> None:
+    payload = f'{{"contract_version":"1.0","segments":[{{"kind":"number","data":{{"value":{number}}}}}]}}'
+
+    with pytest.raises(SerializationContractError) as caught:
+        Message.from_json(payload)
+
+    assert caught.value.code == "invalid_number"
+    assert caught.value.path == "$"
+
+
+@pytest.mark.parametrize("value", [10**4095, -(10**4095)])
+def test_integer_contract_accepts_4096_digit_boundary(value: int) -> None:
+    payload = _golden("message-valid.json")
+    payload["segments"][1]["data"]["boundary"] = value
+
+    message = Message.from_payload(payload)
+
+    assert message.to_payload()["segments"][1]["data"]["boundary"] == value
+    assert Message.from_json(message.to_json()).to_payload() == message.to_payload()
+
+
+@pytest.mark.parametrize("value", [10**4096, -(10**4096)])
+def test_mapping_reader_and_writer_reject_integers_over_4096_digits(value: int) -> None:
+    payload = _golden("message-valid.json")
+    payload["segments"][1]["data"]["oversized"] = value
+
+    with pytest.raises(SerializationContractError) as payload_error:
+        Message.from_payload(payload)
+    assert payload_error.value.code == "invalid_number"
+    assert payload_error.value.path == "$.segments[1].data.oversized"
+
+    event = Event(
+        id="event-001",
+        adapter="reference",
+        platform="test",
+        type="notice",
+        raw={"oversized": value},
+    )
+    with pytest.raises(SerializationContractError) as writer_error:
+        event.to_json()
+    assert writer_error.value.code == "invalid_number"
+    assert writer_error.value.path == "$.raw.oversized"
+
+
 @pytest.mark.parametrize("value", [math.nan, math.inf, -math.inf])
 def test_python_payload_and_writer_reject_nonfinite_numbers(value: float) -> None:
     payload = _golden("message-valid.json")
