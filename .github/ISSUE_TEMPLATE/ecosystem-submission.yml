@@ -67,8 +67,8 @@ body:
     id: iamai_requires
     attributes:
       label: iamai compatibility range
-      description: Copy the standard Requires-Dist value published by a plugin or adapter, for example iamai>=0.4,<0.5. For other types, enter Not applicable.
-      placeholder: iamai>=0.4,<0.5
+      description: Copy the standard Requires-Dist value published by a plugin or adapter, for example iamai>=1,<2. For other types, enter Not applicable.
+      placeholder: iamai>=1,<2
     validations:
       required: true
   - type: textarea

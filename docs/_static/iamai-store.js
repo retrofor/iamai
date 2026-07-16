@@ -56,7 +56,7 @@
       package: "Python 包名",
       repository: "仓库 URL",
       iamaiRequires: "iamai 兼容范围",
-      iamaiRequiresHelp: "填写包元数据中的 Requires-Dist 值，例如 iamai>=0.4,<0.5。",
+      iamaiRequiresHelp: "填写包元数据中的 Requires-Dist 值，例如 iamai>=1,<2。",
       conformanceEvidence: "Conformance evidence",
       conformanceEvidenceHelp: "每行一个可复核的 CI、测试报告或命令输出 URL。",
       sourceUrl: "源码 URL",
@@ -119,7 +119,7 @@
       package: "Python package",
       repository: "Repository URL",
       iamaiRequires: "iamai compatibility range",
-      iamaiRequiresHelp: "Use the package metadata Requires-Dist value, for example iamai>=0.4,<0.5.",
+      iamaiRequiresHelp: "Use the package metadata Requires-Dist value, for example iamai>=1,<2.",
       conformanceEvidence: "Conformance evidence",
       conformanceEvidenceHelp: "Use one reviewable CI, test report, or command-output URL per line.",
       sourceUrl: "Source URL",
@@ -529,7 +529,7 @@
               ${field("package", t("package"), { placeholder: "iamai-plugin-echo" })}
               ${field("repository", t("repository"), { placeholder: "https://github.com/you/iamai-plugin-echo" })}
               ${field("iamai_requires", t("iamaiRequires"), {
-      placeholder: "iamai>=0.4,<0.5",
+      placeholder: "iamai>=1,<2",
       help: t("iamaiRequiresHelp"),
     })}
               ${field("source_url", t("sourceUrl"), { placeholder: "https://github.com/you/iamai-plugin-echo" })}

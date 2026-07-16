@@ -200,15 +200,19 @@ Schema contract v1
 * 单独定义 ``Context`` 的事件作用域、回复路由、依赖注入和失效语义；``Context`` 不拥有 runtime
   lifecycle。规范正文见 :doc:`public-api-lifecycle`。
 * 公开 schema/contract version，并用兼容性测试证明已支持的演进规则。
-* 建立规范条款到自动测试或人工检查的一一对应 conformance matrix。
+  三条独立版本轴及 stable/provisional 边界见 :doc:`public-api-conformance`。
+* 建立规范条款到自动测试或人工检查的一一对应 conformance matrix，正文和可机读 CSV 见
+  :doc:`public-api-conformance`。
 * 定义 public symbol、配置 key、entry point 和序列化字段的弃用警告机制、最短支持窗口和删除规则。
-* 发布最后一个 ``0.x`` 到 ``1.0`` 的迁移指南，列出所有有意 breaking changes。
+  规范正文见 :doc:`deprecation-policy`。
+* 发布最后一个 ``0.x`` 到 ``1.0`` 的迁移指南，列出所有有意 breaking changes。迁移步骤见
+  :doc:`../guides/migration-0.3-to-1.0`。
 
 完成定义
 ~~~~~~~~
 
 版本化规范、golden tests、生命周期 contract tests、conformance matrix、弃用政策和迁移指南全部进入
-``dev``，并在 1.0 RC 构建上通过。
+``dev``，并在 ``1.0.0rc1`` 精确 head 的非发布 release rehearsal 上通过。
 
 工作流 6：needs-info issue 收敛
 --------------------------------

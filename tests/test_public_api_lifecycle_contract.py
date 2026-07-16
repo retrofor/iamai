@@ -89,6 +89,7 @@ class TraceAdapter(Adapter):
         self.trace = trace
         self.failure = failure
         self.close_failure = close_failure
+        self.started = asyncio.Event()
         self.release = asyncio.Event()
         self.closed = False
         self.sent: list[dict[str, Any]] = []
@@ -96,6 +97,7 @@ class TraceAdapter(Adapter):
 
     async def start(self) -> None:
         self.trace.append("start:adapter")
+        self.started.set()
         if self.failure is not None:
             raise self.failure
         await self.release.wait()
@@ -203,6 +205,118 @@ def _make_context(runtime: Runtime, plugin: Plugin, adapter: Adapter) -> Context
         handler=handler,
         matches={"command": "demo", "args": "one two", "captured": "match"},
     )
+
+
+def test_successful_cold_start_orders_plugins_before_adapters_and_is_idempotent(
+    tmp_path: Path,
+) -> None:
+    async def scenario() -> None:
+        trace: list[str] = []
+        load_calls: list[str] = []
+        runtime = _make_runtime(tmp_path)
+        first = TracePlugin(runtime, "first", trace)
+        second = TracePlugin(runtime, "second", trace)
+        adapter = TraceAdapter(runtime, trace)
+
+        def load_plugins() -> None:
+            load_calls.append("plugins")
+            runtime._set_plugins([first, second], [])
+
+        def load_adapters() -> None:
+            load_calls.append("adapters")
+            runtime._set_adapters([adapter], {adapter.name: adapter}, [])
+
+        runtime.load_plugins = load_plugins  # type: ignore[method-assign]
+        runtime.load_adapters = load_adapters  # type: ignore[method-assign]
+
+        serve_task = asyncio.create_task(runtime.serve())
+        await asyncio.wait_for(adapter.started.wait(), timeout=1)
+
+        assert load_calls == ["plugins", "adapters"]
+        assert trace == ["start:first", "start:second", "start:adapter"]
+
+        await runtime.bootstrap()
+        assert load_calls == ["plugins", "adapters"]
+        assert trace == ["start:first", "start:second", "start:adapter"]
+
+        await runtime.stop()
+        await serve_task
+        assert trace == [
+            "start:first",
+            "start:second",
+            "start:adapter",
+            "close:adapter",
+            "stop:second",
+            "stop:first",
+        ]
+
+    asyncio.run(scenario())
+
+
+def test_plugin_dependency_and_middleware_order_is_stable(tmp_path: Path) -> None:
+    class AlphaPlugin(Plugin):
+        name = "alpha"
+
+        @middleware(priority=50, phase="before")
+        async def before(self) -> None:
+            return None
+
+    class BetaPlugin(Plugin):
+        name = "beta"
+        requires = ("foundation",)
+
+        @middleware(priority=50, phase="before")
+        async def before(self) -> None:
+            return None
+
+    class FoundationPlugin(Plugin):
+        name = "foundation"
+
+        @middleware(priority=50, phase="before")
+        async def before(self) -> None:
+            return None
+
+    runtime = _make_runtime(tmp_path)
+
+    def descriptor(
+        plugin_cls: type[Plugin],
+        *,
+        source_index: int,
+        priority: int,
+    ) -> runtime_module.PluginDescriptor:
+        return runtime_module.PluginDescriptor(
+            name=plugin_cls.name or plugin_cls.__name__.lower(),
+            plugin_cls=plugin_cls,
+            ref=plugin_cls.__name__,
+            source_index=source_index,
+            priority=priority,
+            description="",
+            requires=plugin_cls.requires,
+            optional_requires=plugin_cls.optional_requires,
+            load_after=plugin_cls.load_after,
+            load_before=plugin_cls.load_before,
+        )
+
+    ordered_descriptors = runtime._resolve_plugin_order(
+        [
+            descriptor(BetaPlugin, source_index=0, priority=1),
+            descriptor(FoundationPlugin, source_index=2, priority=100),
+            descriptor(AlphaPlugin, source_index=1, priority=50),
+        ]
+    )
+    plugins = [item.plugin_cls(runtime) for item in ordered_descriptors]
+    for load_index, plugin in enumerate(plugins):
+        plugin.load_index = load_index
+
+    assert [item.name for item in ordered_descriptors] == [
+        "alpha",
+        "foundation",
+        "beta",
+    ]
+    assert [
+        callback.__self__.plugin_name
+        for callback in runtime._collect_middlewares(plugins)["before"]
+    ] == ["alpha", "foundation", "beta"]
 
 
 def test_bootstrap_failure_rolls_back_started_plugins_and_preserves_error(

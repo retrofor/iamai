@@ -24,6 +24,7 @@ from typing import Any, Callable
 from .adapter import Adapter
 from .config import load_config, redact_config_value
 from .config_schema import build_config_schema
+from .contract import ADAPTER_ENTRY_POINT_GROUP, PLUGIN_ENTRY_POINT_GROUP
 from .context import Context
 from .di import Depends
 from .event import Event
@@ -53,8 +54,6 @@ BUILTIN_PLUGINS = {
 
 DEFAULT_BUILTIN_PLUGINS = ("management",)
 MIDDLEWARE_PHASES = ("before", "around", "after", "error")
-PLUGIN_ENTRY_POINT_GROUP = "iamai.plugins"
-ADAPTER_ENTRY_POINT_GROUP = "iamai.adapters"
 
 
 class ExtensionDiscoveryError(RuntimeError):
