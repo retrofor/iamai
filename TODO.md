@@ -16,12 +16,12 @@ Status values:
 | Workstream | Status | Evidence | Blocker / last verified / resume condition |
 | --- | --- | --- | --- |
 | 0. Specification baseline | `DONE` | [PR #445](https://github.com/retrofor/iamai/pull/445); [post-merge CI](https://github.com/retrofor/iamai/actions/runs/29400584855); [CodeQL](https://github.com/retrofor/iamai/actions/runs/29400584086) | Completed 2026-07-15 |
-| 1. FOSSA governance | `BLOCKED_EXTERNAL` | [PR #446](https://github.com/retrofor/iamai/pull/446); [baseline](docs/reference/fossa-governance-baseline.rst); [#436 update](https://github.com/retrofor/iamai/issues/436#issuecomment-4978607129) | Last verified 2026-07-15; no FOSSA CLI, token, or login; resume with project-admin login or API key |
+| 1. FOSSA governance | `BLOCKED_EXTERNAL` | [PR #446](https://github.com/retrofor/iamai/pull/446); [baseline](docs/reference/fossa-governance-baseline.rst); [#436 recheck](https://github.com/retrofor/iamai/issues/436#issuecomment-4989820286) | Last verified 2026-07-16; FOSSA still targets `master` and the environment has no CLI, token, or login; resume with project-admin login or API key |
 | 2. Low-risk dependencies | `DONE` | [#437](https://github.com/retrofor/iamai/pull/437), [#439](https://github.com/retrofor/iamai/pull/439), [#441](https://github.com/retrofor/iamai/pull/441), [#442](https://github.com/retrofor/iamai/pull/442), [#443](https://github.com/retrofor/iamai/pull/443); [final CI](https://github.com/retrofor/iamai/actions/runs/29404149717) | Completed 2026-07-15 at [`dev@47e4b8a`](https://github.com/retrofor/iamai/commit/47e4b8a7a671ce82826c6f4e1238ec255cff1506) |
 | 3. Gated dependencies | `DONE` | [#438](https://github.com/retrofor/iamai/pull/438), [release rehearsal](https://github.com/retrofor/iamai/actions/runs/29404691605), [#449](https://github.com/retrofor/iamai/pull/449), [#440](https://github.com/retrofor/iamai/pull/440), [final CI](https://github.com/retrofor/iamai/actions/runs/29407069117), [CodeQL](https://github.com/retrofor/iamai/actions/runs/29407068347) | Completed 2026-07-15 at [`dev@44a237a`](https://github.com/retrofor/iamai/commit/44a237a7c75fb0ca52ac87a0fed862b6186968ae) |
-| 4. Version 0.4 contract | `DONE` | [#435](https://github.com/retrofor/iamai/issues/435); [0.4-A PR #451](https://github.com/retrofor/iamai/pull/451); [0.4-B PR #453](https://github.com/retrofor/iamai/pull/453); [0.4-C PR #454](https://github.com/retrofor/iamai/pull/454); [post-merge CI](https://github.com/retrofor/iamai/actions/runs/29467188102); [CodeQL](https://github.com/retrofor/iamai/actions/runs/29467187810) | Completed 2026-07-16 at [`dev@3a83c9f`](https://github.com/retrofor/iamai/commit/3a83c9f986f25e9522b6cfa1dcddb11b12845f13) |
-| 5. Version 1.0 contract | `DONE` | [#434](https://github.com/retrofor/iamai/issues/434); [v1.0-A PR #455](https://github.com/retrofor/iamai/pull/455); [v1.0-B PR #456](https://github.com/retrofor/iamai/pull/456); [v1.0-C PR #457](https://github.com/retrofor/iamai/pull/457); [merge `e561a7c`](https://github.com/retrofor/iamai/commit/e561a7c8435d76b0c4a126f42139b4c3775051ef); [post-merge CI](https://github.com/retrofor/iamai/actions/runs/29475632781); [CodeQL](https://github.com/retrofor/iamai/actions/runs/29475632294); [RC rehearsal](https://github.com/retrofor/iamai/actions/runs/29475678341); [artifact evidence](https://github.com/retrofor/iamai/issues/434#issuecomment-4988808112) | Completed 2026-07-16; final ledger SHA receives a second exact-head RC gate before #434 closes |
-| 6. needs-info closure | `TODO` | Issues #294, #295, #297, #306 | Time-triggered exception: execute after 2026-07-29 23:59 UTC even if workstreams 4-5 remain active |
+| 4. Version 0.4 contract | `DONE` | [#435](https://github.com/retrofor/iamai/issues/435); [0.4-A PR #451](https://github.com/retrofor/iamai/pull/451); [0.4-B PR #453](https://github.com/retrofor/iamai/pull/453); [0.4-C PR #454](https://github.com/retrofor/iamai/pull/454); [metadata follow-up PR #460](https://github.com/retrofor/iamai/pull/460); [post-merge CI](https://github.com/retrofor/iamai/actions/runs/29485373909); [CodeQL](https://github.com/retrofor/iamai/actions/runs/29485371056) | Completed 2026-07-16 at [`dev@a2aaa6d`](https://github.com/retrofor/iamai/commit/a2aaa6d2e25744e7a172d221ae177a8b190597f6) after resolving the actionable #454 review thread |
+| 5. Version 1.0 contract | `DONE` | [#434](https://github.com/retrofor/iamai/issues/434); [v1.0-A PR #455](https://github.com/retrofor/iamai/pull/455); [v1.0-B PR #456](https://github.com/retrofor/iamai/pull/456); [v1.0-C PR #457](https://github.com/retrofor/iamai/pull/457); [ledger PR #458](https://github.com/retrofor/iamai/pull/458); [post-merge CI](https://github.com/retrofor/iamai/actions/runs/29476469346); [CodeQL](https://github.com/retrofor/iamai/actions/runs/29476468746); [final exact-head RC rehearsal](https://github.com/retrofor/iamai/actions/runs/29476523367); [closure evidence](https://github.com/retrofor/iamai/issues/434#issuecomment-4988890101) | Contract acceptance completed 2026-07-16 at [`dev@b6b47ae`](https://github.com/retrofor/iamai/commit/b6b47ae19ec2446cc598ade71afbacfcf8388c84); any release tag still requires a fresh exact-head rehearsal after final version and ledger changes |
+| 6. needs-info closure | `BLOCKED_EXTERNAL` | [#294 clarification](https://github.com/retrofor/iamai/issues/294#issuecomment-4977531567), [#295 clarification](https://github.com/retrofor/iamai/issues/295#issuecomment-4977531779), [#297 clarification](https://github.com/retrofor/iamai/issues/297#issuecomment-4977532019), [#306 clarification](https://github.com/retrofor/iamai/issues/306#issuecomment-4977531163) | Last verified 2026-07-16; the deadline has not passed; resume after 2026-07-29 23:59 UTC |
 
 ## 0. Specification baseline
 
@@ -72,6 +72,7 @@ Tracking: [#435](https://github.com/retrofor/iamai/issues/435)
 - [x] 0.4-C: publish adapter and plugin conformance helpers.
 - [x] 0.4-C: run the helpers against both reference distributions in isolated environments.
 - [x] Document ecosystem admission evidence; #435 closes through PR #454 when merged.
+- [x] Reject invalid explicit plugin names through PR #460 and resolve the actionable #454 review thread.
 
 ## 5. Version 1.0 public API contract
 
@@ -85,7 +86,8 @@ Tracking: [#434](https://github.com/retrofor/iamai/issues/434)
 - [x] Publish the normative conformance matrix through PR #457.
 - [x] Publish the deprecation policy and minimum support window through PR #457.
 - [x] Publish the final 0.x to 1.0 migration guide through PR #457.
-- [x] Validate the complete contract against a 1.0 RC; close #434 after the final ledger SHA passes the same external gate.
+- [x] Validate the complete contract against a 1.0 RC through the initial exact-head rehearsal.
+- [x] Rerun the 18-job non-publishing rehearsal at final ledger SHA `b6b47ae`, attach the evidence, and close #434.
 
 ## 6. needs-info issue closure
 
@@ -100,4 +102,5 @@ Deadline: 2026-07-29 23:59 UTC.
 ## Cross-cutting verification
 
 - [x] Recheck GitHub Dependabot alerts after dependency-graph recomputation: 0 open alerts on 2026-07-16; none dismissed manually.
-- [ ] Keep `dev` protection, release evidence, and the working tree clean after every merge.
+- [x] Verify the latest completed merge at `dev@a2aaa6d`: required checks and CodeQL green, branch protection intact, and working tree clean.
+- [ ] Repeat the protection, release-evidence, and clean-tree check after every future merge.
