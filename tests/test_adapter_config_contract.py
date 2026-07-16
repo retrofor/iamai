@@ -80,6 +80,16 @@ def test_onebot_legacy_paths_normalize_without_stringifying_none(tmp_path: Path)
     assert defaulted.path_api != "None"
 
 
+def test_onebot_explicit_empty_paths_remain_explicit(tmp_path: Path) -> None:
+    adapter = OneBot11Adapter(
+        _make_runtime(tmp_path),
+        {"path_event": "", "path_api": ""},
+    )
+
+    assert adapter.path_event == ""
+    assert adapter.path_api == ""
+
+
 def test_load_config_normalizes_terminal_and_onebot_aliases(tmp_path: Path) -> None:
     config_path = tmp_path / "config.toml"
     config_path.write_text(
