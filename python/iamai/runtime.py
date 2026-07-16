@@ -23,6 +23,7 @@ from typing import Any, Callable
 
 from .adapter import Adapter
 from .config import load_config, redact_config_value
+from .config_schema import build_config_schema
 from .context import Context
 from .di import Depends
 from .event import Event
@@ -114,6 +115,16 @@ class PluginDescriptor:
 
 
 @dataclass(frozen=True, slots=True)
+class _AdapterDescriptor:
+    """Resolved adapter metadata used for construction and schema export."""
+
+    name: str
+    adapter_cls: type[Adapter]
+    ref: str
+    is_builtin: bool = False
+
+
+@dataclass(frozen=True, slots=True)
 class _HandlerJob:
     ctx: Context
     handler: BoundHandler
@@ -134,6 +145,7 @@ class Runtime:
         self.dependencies: dict[str, Any] = {}
         self._typed_dependencies: dict[type[Any], Any] = {}
         self._adapter_map: dict[str, Adapter] = {}
+        self._adapter_descriptors: list[_AdapterDescriptor] = []
         self._plugin_map: dict[str, Plugin] = {}
         self._plugin_descriptors: list[PluginDescriptor] = []
         self._plugin_descriptor_map: dict[str, PluginDescriptor] = {}
@@ -314,10 +326,37 @@ class Runtime:
 
     def get_plugin_schema(self, plugin_name: str) -> dict[str, Any] | None:
         """Return a plugin configuration JSON schema, if available."""
+        self._apply_python_paths()
         descriptor = self._plugin_descriptor_map.get(plugin_name)
+        if descriptor is None:
+            descriptor = next(
+                (
+                    item
+                    for item in self._discover_plugin_descriptors()
+                    if item.name == plugin_name
+                ),
+                None,
+            )
         if descriptor is None:
             return None
         return plugin_config_schema(descriptor.plugin_cls)
+
+    def config_schema(self) -> dict[str, Any]:
+        """Return the versioned root configuration JSON Schema."""
+        self._apply_python_paths()
+        adapter_descriptors = self._adapter_descriptors or self._discover_adapter_descriptors()
+        plugin_descriptors = self._plugin_descriptors or self._resolve_plugin_order(
+            self._discover_plugin_descriptors()
+        )
+        return build_config_schema(
+            adapters={
+                descriptor.name: descriptor.adapter_cls
+                for descriptor in adapter_descriptors
+            },
+            plugins={
+                descriptor.name: descriptor.plugin_cls for descriptor in plugin_descriptors
+            },
+        )
 
     def list_plugin_traces(self) -> list[dict[str, Any]]:
         """Return trace payloads exposed by loaded plugins."""
@@ -519,6 +558,7 @@ class Runtime:
         old_descriptors = self._plugin_descriptors
         old_adapters = self.adapters
         old_adapter_map = self._adapter_map
+        old_adapter_descriptors = self._adapter_descriptors
 
         try:
             self.config = load_config(config_path)
@@ -532,7 +572,7 @@ class Runtime:
                 for plugin in new_plugins:
                     await plugin.startup()
                     started_plugins.append(plugin)
-                new_adapters, adapter_map = self._build_adapters()
+                new_adapters, adapter_map, adapter_descriptors = self._build_adapters()
             except Exception:
                 for plugin in reversed(started_plugins):
                     with contextlib.suppress(Exception):
@@ -542,13 +582,14 @@ class Runtime:
                 self.state_store = old_state_store
                 self._plugin_descriptors = old_descriptors
                 self._adapter_map = old_adapter_map
+                self._adapter_descriptors = old_adapter_descriptors
                 self._refresh_runtime_dependencies()
                 self._apply_python_paths()
                 raise
 
             self._configure_runtime_limits()
             self._set_plugins(new_plugins, descriptors)
-            self._set_adapters(new_adapters, adapter_map)
+            self._set_adapters(new_adapters, adapter_map, adapter_descriptors)
             if self._serving:
                 await self._stop_adapters(adapters=old_adapters)
                 self._start_adapters()
@@ -854,12 +895,24 @@ class Runtime:
 
     def load_adapters(self) -> None:
         """Load adapters from the current configuration."""
-        adapters, adapter_map = self._build_adapters()
-        self._set_adapters(adapters, adapter_map)
+        adapters, adapter_map, descriptors = self._build_adapters()
+        self._set_adapters(adapters, adapter_map, descriptors)
 
-    def _build_adapters(self) -> tuple[list[Adapter], dict[str, Adapter]]:
+    def _build_adapters(
+        self,
+    ) -> tuple[list[Adapter], dict[str, Adapter], list[_AdapterDescriptor]]:
         adapters: list[Adapter] = []
         adapter_map: dict[str, Adapter] = {}
+        descriptors = self._discover_adapter_descriptors()
+        for descriptor in descriptors:
+            adapter_cls = descriptor.adapter_cls
+            adapter = adapter_cls(self, self.get_adapter_config(descriptor.name))
+            adapters.append(adapter)
+            adapter_map[adapter.name] = adapter
+        return adapters, adapter_map, descriptors
+
+    def _discover_adapter_descriptors(self) -> list[_AdapterDescriptor]:
+        descriptors: list[_AdapterDescriptor] = []
         for ref in self._configured_adapter_refs():
             resolved = self._resolve_adapter_ref(str(ref))
             if resolved.entry_point is None:
@@ -870,10 +923,17 @@ class Runtime:
                     expected=Adapter,
                     kind="Adapter",
                 )
-            adapter = adapter_cls(self, self.get_adapter_config(adapter_cls.name))
-            adapters.append(adapter)
-            adapter_map[adapter.name] = adapter
-        return adapters, adapter_map
+            name = adapter_cls.name or adapter_cls.__name__.lower()
+            descriptors.append(
+                _AdapterDescriptor(
+                    name=name,
+                    adapter_cls=adapter_cls,
+                    ref=resolved.ref,
+                    is_builtin=str(ref) in BUILTIN_ADAPTERS,
+                )
+            )
+        self._assert_unique_adapter_names(descriptors)
+        return descriptors
 
     def _configured_adapter_refs(self) -> list[str]:
         refs = [str(ref) for ref in self.runtime_config.get("adapters", [])]
@@ -883,9 +943,15 @@ class Runtime:
                     refs.append(name)
         return refs
 
-    def _set_adapters(self, adapters: list[Adapter], adapter_map: dict[str, Adapter]) -> None:
+    def _set_adapters(
+        self,
+        adapters: list[Adapter],
+        adapter_map: dict[str, Adapter],
+        descriptors: list[_AdapterDescriptor],
+    ) -> None:
         self.adapters = adapters
         self._adapter_map = adapter_map
+        self._adapter_descriptors = descriptors
 
     def _refresh_runtime_dependencies(self) -> None:
         self.register_dependency("runtime", self, annotation=Runtime)
@@ -1286,6 +1352,17 @@ class Runtime:
             if ref is not None:
                 raise ValueError(
                     f"duplicate plugin name {descriptor.name!r} found in {ref!r} and {descriptor.ref!r}"
+                )
+            owners[descriptor.name] = descriptor.ref
+
+    def _assert_unique_adapter_names(self, descriptors: list[_AdapterDescriptor]) -> None:
+        owners: dict[str, str] = {}
+        for descriptor in descriptors:
+            ref = owners.get(descriptor.name)
+            if ref is not None:
+                raise ValueError(
+                    f"duplicate adapter name {descriptor.name!r} found in "
+                    f"{ref!r} and {descriptor.ref!r}"
                 )
             owners[descriptor.name] = descriptor.ref
 
@@ -1872,16 +1949,11 @@ def check_config(path: str | Path) -> dict[str, Any]:
 
 
 def dump_config_schema(path: str | Path, plugin_name: str | None = None) -> dict[str, Any]:
-    """Return JSON schemas for all plugin configs or one selected plugin."""
+    """Return the root config schema or one selected plugin schema."""
     runtime = Runtime.from_config_file(path)
-    runtime.load_plugins()
     if plugin_name is not None:
         return runtime.get_plugin_schema(plugin_name) or {}
-    return {
-        info["name"]: schema
-        for info in runtime.list_plugins()
-        if (schema := runtime.get_plugin_schema(info["name"])) is not None
-    }
+    return runtime.config_schema()
 
 
 def _entry_points_by_name(group: str) -> dict[str, tuple[_InstalledEntryPoint, ...]]:

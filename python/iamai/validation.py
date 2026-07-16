@@ -1,16 +1,28 @@
-"""Pydantic and dataclass-backed plugin configuration validation helpers."""
+"""Pydantic and dataclass-backed extension configuration helpers."""
 
 from __future__ import annotations
 
-from dataclasses import MISSING, asdict, fields, is_dataclass
+from dataclasses import asdict, is_dataclass
 from typing import Any
 
-from pydantic import BaseModel
+from pydantic import BaseModel, TypeAdapter
 from pydantic import ValidationError as PydanticValidationError
 
 
-class PluginConfigValidationError(ValueError):
+class ExtensionConfigValidationError(ValueError):
+    """Raised when an extension configuration payload does not match its model."""
+
+    pass
+
+
+class PluginConfigValidationError(ExtensionConfigValidationError):
     """Raised when a plugin configuration payload does not match its model."""
+
+    pass
+
+
+class AdapterConfigValidationError(ExtensionConfigValidationError):
+    """Raised when an adapter configuration payload does not match its model."""
 
     pass
 
@@ -21,59 +33,79 @@ def validate_plugin_config(
     raw_config: dict[str, Any] | None,
 ) -> tuple[dict[str, Any], Any | None]:
     """Validate plugin config and return normalized data plus the model instance."""
-    raw = dict(raw_config or {})
-    model = getattr(plugin_cls, "config_model", None)
-    if model is None:
-        return raw, None
+    return _validate_extension_config(
+        plugin_cls,
+        plugin_name,
+        raw_config,
+        kind="plugin",
+        error_type=PluginConfigValidationError,
+    )
 
-    try:
-        if isinstance(model, type) and issubclass(model, BaseModel):
-            config_obj = model.model_validate(raw)
-            return config_obj.model_dump(mode="python"), config_obj
-        if isinstance(model, type) and is_dataclass(model):
-            dataclass_config = model(**raw)
-            return asdict(dataclass_config), dataclass_config
-    except PydanticValidationError as exc:
-        raise PluginConfigValidationError(
-            f"invalid config for plugin {plugin_name!r}: {exc}"
-        ) from exc
-    except Exception as exc:
-        raise PluginConfigValidationError(
-            f"invalid config for plugin {plugin_name!r}: {exc}"
-        ) from exc
 
-    raise TypeError(
-        f"unsupported config_model for plugin {plugin_name!r}: {model!r}"
+def validate_adapter_config(
+    adapter_cls: type[Any],
+    adapter_name: str,
+    raw_config: dict[str, Any] | None,
+) -> tuple[dict[str, Any], Any | None]:
+    """Validate adapter config and return normalized data plus the model instance."""
+    return _validate_extension_config(
+        adapter_cls,
+        adapter_name,
+        raw_config,
+        kind="adapter",
+        error_type=AdapterConfigValidationError,
     )
 
 
 def plugin_config_schema(plugin_cls: type[Any]) -> dict[str, Any] | None:
-    """Return a JSON Schema-like mapping for a plugin config model."""
+    """Return the JSON Schema for a plugin config model."""
     model = getattr(plugin_cls, "config_model", None)
     if model is None:
         return None
-    if isinstance(model, type) and issubclass(model, BaseModel):
-        return model.model_json_schema()
-    if isinstance(model, type) and is_dataclass(model):
-        properties: dict[str, Any] = {}
-        required: list[str] = []
-        for item in fields(model):
-            properties[item.name] = {"title": item.name, "type": _schema_type(item.type)}
-            if item.default is MISSING and item.default_factory is MISSING:
-                required.append(item.name)
-        return {"type": "object", "properties": properties, "required": required}
-    return {"type": "object", "description": f"Unsupported config model: {model!r}"}
+    try:
+        return config_model_schema(model)
+    except TypeError:
+        return {"type": "object", "description": f"Unsupported config model: {model!r}"}
 
 
-def _schema_type(annotation: Any) -> str:
-    if annotation in (str, "str"):
-        return "string"
-    if annotation in (int, "int"):
-        return "integer"
-    if annotation in (float, "float"):
-        return "number"
-    if annotation in (bool, "bool"):
-        return "boolean"
-    if annotation in (list, "list"):
-        return "array"
-    return "object"
+def config_model_schema(model: Any) -> dict[str, Any]:
+    """Return a validation-mode JSON Schema without instantiating the model."""
+    if not _is_supported_config_model(model):
+        raise TypeError(f"unsupported config model: {model!r}")
+    return TypeAdapter(model).json_schema(mode="validation")
+
+
+def _validate_extension_config(
+    extension_cls: type[Any],
+    extension_name: str,
+    raw_config: dict[str, Any] | None,
+    *,
+    kind: str,
+    error_type: type[ExtensionConfigValidationError],
+) -> tuple[dict[str, Any], Any | None]:
+    raw = dict(raw_config or {})
+    model = getattr(extension_cls, "config_model", None)
+    if model is None:
+        return raw, None
+
+    if not _is_supported_config_model(model):
+        raise TypeError(f"unsupported config_model for {kind} {extension_name!r}: {model!r}")
+
+    try:
+        config_obj = TypeAdapter(model).validate_python(raw)
+        if isinstance(config_obj, BaseModel):
+            return config_obj.model_dump(mode="python"), config_obj
+        if is_dataclass(config_obj) and not isinstance(config_obj, type):
+            return asdict(config_obj), config_obj
+    except PydanticValidationError as exc:
+        raise error_type(f"invalid config for {kind} {extension_name!r}: {exc}") from exc
+    except Exception as exc:
+        raise error_type(f"invalid config for {kind} {extension_name!r}: {exc}") from exc
+
+    raise TypeError(f"unsupported config_model for {kind} {extension_name!r}: {model!r}")
+
+
+def _is_supported_config_model(model: Any) -> bool:
+    return isinstance(model, type) and (
+        issubclass(model, BaseModel) or is_dataclass(model)
+    )

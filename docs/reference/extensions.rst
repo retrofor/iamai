@@ -225,6 +225,10 @@ distribution 发布同名 entry point；运行时不会选择 last-wins 结果�
 - ``Adapter.call_api`` 暴露平台 API 调用，成功时返回平台响应，失败时抛出可诊断异常或返回明确错误结构。
 - ``Adapter.name``、entry point 名和配置表 ``[adapter.<name>]`` 保持一致。
 
+适配器可以像插件一样声明类级 ``config_model``。支持 Pydantic 模型和 dataclass；Runtime 会在
+构造适配器时验证并归一化 ``[adapter.<name>]``，同时把同一模型纳入根配置 Schema。凭据字段必须
+通过字段元数据显式声明 ``json_schema_extra={"writeOnly": True}``，不得依赖字段名猜测。
+
 最小 conformance tests 应覆盖：
 
 - inbound event normalize：平台事件必须归一化成稳定的 ``Event`` 字段。
@@ -265,7 +269,7 @@ Agent tool 必须额外声明：
 - ``/handlers``：已注册 handler、匹配条件、优先级和所属插件。
 - ``/sessions``：活跃 session 摘要和清理入口。
 - ``/state``：状态后端检查和安全的只读诊断。
-- ``/schema``：导出的配置 schema、插件配置 schema 和生态字段 schema。
+- ``/schema``：与无参 CLI ``config-schema`` 完全一致的版本化根配置 Schema。
 
 WebUI 后续作为独立插件或独立项目，不进入核心 runtime。
 

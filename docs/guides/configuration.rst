@@ -87,14 +87,24 @@ iamai 使用 TOML 配置，并在启动前做结构化校验。配置系统的�
 配置 Schema
 -----------
 
-插件声明 ``config_model`` 后，可以导出 JSON Schema：
+Runtime、适配器和插件配置可以导出为一份版本化的 JSON Schema：
 
 .. code-block:: bash
 
    uv run python -m iamai --config config.toml config-schema
    uv run python -m iamai --config config.toml config-schema greeting
 
-这适合放进文档、CI 或内部平台表单生成流程。
+无插件参数时，命令输出 Draft 2020-12 根 Schema，固定包含 ``runtime``、``logging``、
+``state``、``adapter`` 和 ``plugin`` 五个表。第二种写法保留为兼容入口，只输出指定插件的
+配置 Schema。
+
+根 payload 使用稳定 ``$id`` 和 ``x-iamai-contract-version``。适配器或插件声明 Pydantic
+模型或 dataclass ``config_model`` 后，其字段、默认值和显式约束会进入对应子 Schema；没有
+模型的扩展仍以开放对象出现。凭据字段由模型显式标注 ``writeOnly: true``，生成器只读取类元数据，
+不会读取或导出当前配置中的 secret 值。
+
+这份合同适合用于文档、CI、编辑器提示和内部平台表单生成。启用 ``management_api`` 插件时，
+认证后的 ``GET /schema`` 返回与无参 CLI 相同的根 payload。
 
 推荐实践
 --------
