@@ -102,5 +102,5 @@ Deadline: 2026-07-29 23:59 UTC.
 ## Cross-cutting verification
 
 - [x] Recheck GitHub Dependabot alerts after dependency-graph recomputation: 0 open alerts on 2026-07-16; none dismissed manually.
-- [x] Verify the latest completed merge at `dev@a2aaa6d`: required checks and CodeQL green, branch protection intact, and working tree clean.
-- [ ] Repeat the protection, release-evidence, and clean-tree check after every future merge.
+- [x] Verify the latest implementation merge preceding this ledger at `dev@a2aaa6d`: required checks and CodeQL green, branch protection intact, and working tree clean.
+- [ ] Repeat the protection, release-evidence, and clean-tree check after every future implementation merge.
