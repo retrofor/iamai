@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/retrofor/iamai/92336af67d4af6e288caa845b88bf2d26a17a9b2/docs/_static/brand/iamai-logo.svg" alt="iamai runtime mark" width="128">
+  <img src="https://raw.githubusercontent.com/retrofor/iamai/dev/docs/_static/brand/iamai-logo.svg" alt="iamai runtime mark" width="128">
 </p>
 
 <h1 align="center">iamai</h1>
