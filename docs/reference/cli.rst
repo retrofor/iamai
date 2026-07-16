@@ -37,7 +37,12 @@ CLI 参考
    iamai --config config.toml config-schema
    iamai --config config.toml config-schema echo
 
-如果插件声明了 Pydantic ``config_model``，这里会输出 JSON Schema。
+无插件参数时输出版本化的根配置 JSON Schema，其中包含 runtime、logging、state、adapter 和
+plugin 表。指定插件名时，继续输出该插件的单独配置 Schema，供现有工具兼容使用。
+
+根 Schema 的 ``$id`` 是 ``urn:iamai:config-schema:v1:root``，合同版本位于
+``x-iamai-contract-version``。同一配置加载的扩展集合与 management API ``GET /schema``
+输出完全一致。
 
 内置管理命令
 ------------

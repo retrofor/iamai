@@ -3,6 +3,11 @@
 from .adapter import Adapter
 from .agent import AgentError, AgentTrace, Guardrail, LLMClient, LLMConfig, ToolRegistry
 from .config import ConfigValidationError
+from .config_schema import (
+    CONFIG_SCHEMA_CONTRACT_VERSION,
+    CONFIG_SCHEMA_ID,
+    build_config_schema,
+)
 from .context import Context
 from .di import Depends, depends
 from .event import Event
@@ -77,6 +82,8 @@ __all__ = [
     "ToolRegistry",
     "Runtime",
     "ConfigValidationError",
+    "CONFIG_SCHEMA_CONTRACT_VERSION",
+    "CONFIG_SCHEMA_ID",
     "Context",
     "Depends",
     "Event",
@@ -132,6 +139,7 @@ __all__ = [
     "when_all",
     "when_any",
     "word_in",
+    "build_config_schema",
 ]
 
 on_command = command

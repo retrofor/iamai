@@ -8,7 +8,15 @@ from pathlib import Path
 from typing import Any
 
 import tomli
-from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator, model_validator
+from pydantic import (
+    AliasChoices,
+    BaseModel,
+    ConfigDict,
+    Field,
+    ValidationError,
+    field_validator,
+    model_validator,
+)
 
 from .core import merge_dicts
 from .net import is_loopback_host
@@ -79,16 +87,22 @@ class RuntimeConfigModel(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     log_level: str = "INFO"
-    command_prefixes: list[str] = Field(default_factory=lambda: ["/"])
-    adapters: list[str] = Field(default_factory=list)
-    plugins: list[str] = Field(default_factory=list)
-    plugin_dirs: list[str] = Field(default_factory=list)
-    python_paths: list[str] = Field(default_factory=list)
+    command_prefixes: list[str] = Field(
+        default_factory=lambda: ["/"],
+        json_schema_extra={"default": ["/"]},
+    )
+    adapters: list[str] = Field(default_factory=list, json_schema_extra={"default": []})
+    plugins: list[str] = Field(default_factory=list, json_schema_extra={"default": []})
+    plugin_dirs: list[str] = Field(default_factory=list, json_schema_extra={"default": []})
+    python_paths: list[str] = Field(default_factory=list, json_schema_extra={"default": []})
     auto_discover_plugins: bool = False
     auto_discover_adapters: bool = False
-    superusers: list[str] = Field(default_factory=list)
+    superusers: list[str] = Field(default_factory=list, json_schema_extra={"default": []})
     builtin_plugins: list[str] | bool | None = None
-    disable_builtin_plugins: list[str] = Field(default_factory=list)
+    disable_builtin_plugins: list[str] = Field(
+        default_factory=list,
+        json_schema_extra={"default": []},
+    )
     hot_reload: HotReloadConfig | bool = False
     allow_external_paths: bool = False
     max_concurrent_handlers: int = 64
@@ -143,6 +157,31 @@ class RuntimeConfigModel(BaseModel):
         return float(value)
 
 
+class TerminalConfigModel(BaseModel):
+    """Validated ``[adapter.terminal]`` configuration."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    prompt: str = "iamai> "
+    self_id: str = "terminal-runtime"
+    user_id: str = "terminal-user"
+    channel_id: str = "terminal"
+    exit_commands: list[str] = Field(
+        default_factory=lambda: ["/quit", "/exit", ":q"],
+        json_schema_extra={"default": ["/quit", "/exit", ":q"]},
+    )
+    output_prefix: str = "runtime> "
+
+    @field_validator("exit_commands", mode="before")
+    @classmethod
+    def _normalize_exit_commands(cls, value: Any) -> list[str]:
+        if value is None:
+            return ["/quit", "/exit", ":q"]
+        if not isinstance(value, list):
+            raise TypeError("exit_commands must be a list")
+        return [str(item) for item in value]
+
+
 class OneBot11ConfigModel(BaseModel):
     """Validated ``[adapter.onebot11]`` configuration."""
 
@@ -153,10 +192,19 @@ class OneBot11ConfigModel(BaseModel):
     host: str = "127.0.0.1"
     port: int = 8080
     path: str = "/onebot/v11/ws"
-    path_event: str | None = None
-    path_api: str | None = None
-    api_base_url: str = "http://127.0.0.1:5700"
-    access_token: str = ""
+    path_event: str | None = Field(
+        default=None,
+        validation_alias=AliasChoices("path_event", "event_path"),
+    )
+    path_api: str | None = Field(
+        default=None,
+        validation_alias=AliasChoices("path_api", "api_path"),
+    )
+    api_base_url: str = Field(
+        default="http://127.0.0.1:5700",
+        validation_alias=AliasChoices("api_base_url", "api_url"),
+    )
+    access_token: str = Field(default="", json_schema_extra={"writeOnly": True})
     allow_query_token: bool = False
     allow_insecure_no_token: bool = False
     platform: str = "qq"
@@ -229,11 +277,11 @@ class WebhookConfigModel(BaseModel):
     port: int = 8090
     path: str = "/webhook"
     platform: str = "webhook"
-    access_token: str = ""
+    access_token: str = Field(default="", json_schema_extra={"writeOnly": True})
     allow_insecure_no_token: bool = False
     allow_query_token: bool = False
     signature_provider: str = "generic"
-    signature_secret: str = ""
+    signature_secret: str = Field(default="", json_schema_extra={"writeOnly": True})
     signature_header: str = "x-iamai-signature"
     signature_prefix: str = "sha256="
     timestamp_header: str = "x-iamai-timestamp"
@@ -243,9 +291,15 @@ class WebhookConfigModel(BaseModel):
     read_timeout: float = 10.0
     max_body_bytes: int = 1_048_576
     allow_event_reply_url: bool = False
-    reply_url_allowlist: list[str] = Field(default_factory=list)
+    reply_url_allowlist: list[str] = Field(
+        default_factory=list,
+        json_schema_extra={"default": []},
+    )
     allow_private_reply_hosts: bool = False
-    allowed_reply_schemes: list[str] = Field(default_factory=lambda: ["https"])
+    allowed_reply_schemes: list[str] = Field(
+        default_factory=lambda: ["https"],
+        json_schema_extra={"default": ["https"]},
+    )
 
     @field_validator("port", "max_body_bytes", "timestamp_tolerance_seconds")
     @classmethod
@@ -302,7 +356,7 @@ class TelegramConfigModel(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
-    token: str = ""
+    token: str = Field(default="", json_schema_extra={"writeOnly": True})
     api_base_url: str = "https://api.telegram.org"
     platform: str = "telegram"
     poll_timeout: int = 30
@@ -310,7 +364,10 @@ class TelegramConfigModel(BaseModel):
     reconnect_interval: float = 3.0
     limit: int = 100
     offset: int | None = None
-    allowed_updates: list[str] = Field(default_factory=lambda: ["message"])
+    allowed_updates: list[str] = Field(
+        default_factory=lambda: ["message"],
+        json_schema_extra={"default": ["message"]},
+    )
 
     @field_validator("poll_timeout", "limit")
     @classmethod
@@ -463,6 +520,10 @@ def _validate_adapter_config(raw: Any) -> dict[str, Any]:
         raise TypeError("adapter section must be a table")
 
     data = copy.deepcopy(raw)
+    if "terminal" in data:
+        data["terminal"] = TerminalConfigModel.model_validate(data["terminal"]).model_dump(
+            mode="python"
+        )
     if "onebot11" in data:
         data["onebot11"] = OneBot11ConfigModel.model_validate(data["onebot11"]).model_dump(
             mode="python"

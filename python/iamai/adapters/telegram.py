@@ -7,6 +7,7 @@ from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any
 
 from ..adapter import Adapter
+from ..config import TelegramConfigModel
 from ..core import new_event_id
 from ..event import Event
 from ..httpio import request_json
@@ -17,6 +18,7 @@ class TelegramAdapter(Adapter):
     """Adapter for Telegram Bot API long polling."""
 
     name = "telegram"
+    config_model = TelegramConfigModel
 
     def __init__(self, runtime: "Runtime", config: dict[str, Any] | None = None) -> None:
         super().__init__(runtime, config)

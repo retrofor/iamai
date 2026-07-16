@@ -7,6 +7,7 @@ from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any
 
 from ..adapter import Adapter
+from ..config import WebhookConfigModel
 from ..core import new_event_id
 from ..event import Event
 from ..httpio import HttpError, HttpRequest, HttpResponse, SimpleHttpServer, request_json
@@ -19,6 +20,7 @@ class WebhookAdapter(Adapter):
     """Generic HTTP webhook adapter with optional signed requests and replies."""
 
     name = "webhook"
+    config_model = WebhookConfigModel
 
     def __init__(self, runtime: "Runtime", config: dict[str, Any] | None = None) -> None:
         super().__init__(runtime, config)

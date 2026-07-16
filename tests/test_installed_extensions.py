@@ -137,12 +137,121 @@ def test_installed_entry_points_support_explicit_and_opt_in_auto_discovery(
         """
 import importlib
 import iamai
+import asyncio
 import json
 import os
 from pathlib import Path
 import sys
 
-from iamai import Runtime
+from iamai import Context, Message, Runtime
+from iamai.testing import (
+    assert_adapter_api_result,
+    assert_adapter_can_close,
+    assert_adapter_cancellation,
+    assert_adapter_config,
+    assert_adapter_error,
+    assert_adapter_event,
+    assert_adapter_lifecycle,
+    assert_adapter_send_result,
+    assert_adapter_start_failure,
+    assert_plugin_config,
+    assert_plugin_dependencies,
+    assert_plugin_handler,
+    assert_plugin_lifecycle,
+    assert_plugin_metadata,
+    assert_plugin_permission,
+    assert_plugin_startup_failure_cleanup,
+)
+
+
+async def run_conformance(runtime, plugin, adapter):
+    plugin_module = importlib.import_module(plugin.__class__.__module__)
+    adapter_module = importlib.import_module(adapter.__class__.__module__)
+
+    configured_adapter = assert_adapter_config(
+        adapter.__class__,
+        runtime,
+        config={"access_token": "fixture-secret"},
+        expected={"endpoint": "https://example.invalid/events"},
+    )
+    event = configured_adapter.normalize(
+        {
+            "id": "evt-installed",
+            "channel_id": "room",
+            "user_id": "allowed",
+            "text": "hello from wheel",
+        }
+    )
+    assert_adapter_event(
+        event,
+        adapter="reference_adapter",
+        expected_fields={"channel_id": "room", "text": "hello from wheel"},
+    )
+    assert_adapter_send_result(
+        await configured_adapter.send_message(Message("pong"), event=event),
+        expected={"target": "room", "text": "pong"},
+    )
+    assert_adapter_api_result(
+        await configured_adapter.call_api("ping", value=1),
+        expected={"action": "ping", "params": {"value": 1}},
+    )
+    await assert_adapter_error(
+        configured_adapter.call_api("fail"),
+        error_type=adapter_module.ReferenceAdapterError,
+        match="forced reference API failure",
+    )
+    await assert_adapter_can_close(configured_adapter)
+
+    lifecycle_adapter = adapter.__class__(runtime)
+    await assert_adapter_lifecycle(
+        lifecycle_adapter,
+        ready=lifecycle_adapter.started.is_set,
+        clean=lambda: lifecycle_adapter.closed,
+    )
+    cancellation_adapter = adapter.__class__(runtime)
+    await assert_adapter_cancellation(
+        cancellation_adapter,
+        ready=cancellation_adapter.started.is_set,
+        clean=lambda: cancellation_adapter.closed,
+    )
+    failing_adapter = adapter_module.ReferenceFailingAdapter(runtime)
+    await assert_adapter_start_failure(
+        failing_adapter,
+        error_type=adapter_module.ReferenceAdapterError,
+        match="forced reference startup failure",
+        clean=lambda: not failing_adapter.resource_open,
+    )
+
+    assert_plugin_metadata(plugin.__class__)
+    assert_plugin_dependencies(plugin.__class__)
+    plugin_config, plugin_config_obj = assert_plugin_config(
+        plugin.__class__,
+        {"greeting": "hello from conformance"},
+    )
+    assert plugin_config["greeting"] == "hello from conformance"
+    assert plugin_config_obj.greeting == "hello from conformance"
+    handler = assert_plugin_handler(plugin, "handle", kind="message")
+    context = Context(
+        runtime=runtime,
+        adapter=adapter,
+        plugin=plugin,
+        event=event,
+        handler=handler,
+    )
+    await assert_plugin_permission(handler, context, expected=True)
+
+    lifecycle_plugin = plugin.__class__(runtime)
+    await assert_plugin_lifecycle(
+        lifecycle_plugin,
+        cleanup=lambda: not lifecycle_plugin.active,
+    )
+    failing_plugin = plugin_module.ReferenceFailingPlugin(runtime)
+    await assert_plugin_startup_failure_cleanup(
+        failing_plugin,
+        cleanup=lambda: not failing_plugin.active,
+        expected_exception=RuntimeError,
+    )
+    return {"adapter": True, "plugin": True}
 
 
 def load(mode: str) -> dict[str, object]:
@@ -171,6 +280,8 @@ def load(mode: str) -> dict[str, object]:
         "mode": mode,
         "plugins": [item.plugin_name for item in runtime.plugins],
         "adapters": [item.name for item in runtime.adapters],
+        "schema": runtime.config_schema(),
+        "conformance": asyncio.run(run_conformance(runtime, plugin, adapter)),
         "plugin_module": str(Path(plugin_module.__file__).resolve()),
         "adapter_module": str(Path(adapter_module.__file__).resolve()),
     }
@@ -196,10 +307,14 @@ print(
         tmp_path,
         "run",
         "--isolated",
+        "--refresh-package",
+        "iamai",
         "--no-editable",
         "--no-default-groups",
         "--frozen",
         "--project",
+        str(PROJECT_ROOT),
+        "--with",
         str(PROJECT_ROOT),
         "--with",
         str(extension_wheels["reference_plugin"]),
@@ -218,10 +333,26 @@ print(
     for run in payload["runs"]:
         assert run["plugins"] == ["reference_plugin"]
         assert run["adapters"] == ["reference_adapter"]
+        assert run["conformance"] == {"adapter": True, "plugin": True}
         assert any(Path(run["plugin_module"]).is_relative_to(path) for path in site_packages)
         assert any(Path(run["adapter_module"]).is_relative_to(path) for path in site_packages)
         assert str(FIXTURES_ROOT) not in run["plugin_module"]
         assert str(FIXTURES_ROOT) not in run["adapter_module"]
+        schema = run["schema"]
+        plugin_schema = schema["properties"]["plugin"]["properties"]["reference_plugin"]
+        adapter_schema = schema["properties"]["adapter"]["properties"]["reference_adapter"]
+        assert plugin_schema["$id"] == ("urn:iamai:config-schema:v1:plugin:reference_plugin")
+        assert plugin_schema["properties"]["greeting"]["default"] == (
+            "hello from the installed plugin"
+        )
+        assert plugin_schema["properties"]["credential"]["writeOnly"] is True
+        assert "writeOnly" not in plugin_schema["properties"]["max_tokens"]
+        assert adapter_schema["$id"] == ("urn:iamai:config-schema:v1:adapter:reference_adapter")
+        assert adapter_schema["properties"]["endpoint"]["default"] == (
+            "https://example.invalid/events"
+        )
+        assert adapter_schema["properties"]["access_token"]["writeOnly"] is True
+        assert "writeOnly" not in adapter_schema["properties"]["token_hint"]
 
 
 def test_standard_resolver_rejects_incompatible_iamai_requirement(

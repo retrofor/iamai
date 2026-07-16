@@ -6,6 +6,7 @@ import json
 import sys
 from pathlib import Path
 from typing import Any
+from urllib.parse import parse_qs, urlsplit
 
 import pytest
 
@@ -57,6 +58,10 @@ def _entry(entry_id: str = "plugin.echo") -> dict[str, Any]:
 def _submission(entry_id: str = "plugin.echo") -> dict[str, Any]:
     payload = _entry(entry_id)
     payload["verification"] = ["community"]
+    payload["iamai_requires"] = "iamai>=0.4,<0.5"
+    payload["conformance_evidence"] = [
+        "https://github.com/example/iamai-plugin-echo/actions/runs/123"
+    ]
     return payload
 
 
@@ -68,6 +73,13 @@ def test_store_entry_adds_default_install_command_and_search_text() -> None:
     assert "echo plugin" in payload["search_text"]
     assert payload["runtime_capabilities"] == ["network:http"]
     assert payload["sort_rank"] == 30
+
+
+def test_store_entry_keeps_new_admission_fields_optional_for_existing_registry() -> None:
+    entry = StoreEntry.model_validate(_entry())
+
+    assert entry.iamai_requires is None
+    assert entry.conformance_evidence == []
 
 
 def test_load_store_index_validates_entries_and_unique_ids(tmp_path: Path) -> None:
@@ -117,13 +129,86 @@ def test_store_submission_builds_community_registry_entry() -> None:
     assert entry.verification == ["community"]
     assert entry.package == "iamai-plugin-echo"
     assert entry.security_notes == "No credentials required."
+    assert entry.iamai_requires == "iamai>=0.4,<0.5"
+    assert entry.conformance_evidence == [
+        "https://github.com/example/iamai-plugin-echo/actions/runs/123"
+    ]
 
 
 def test_store_submission_rejects_maintainer_verification_badges() -> None:
-    payload = _entry()
+    payload = _submission()
     payload["verification"] = ["community", "official"]
 
     with pytest.raises(ValueError, match="maintainer review"):
+        StoreSubmission.model_validate(payload)
+
+
+@pytest.mark.parametrize("extension_type", ["plugin", "adapter"])
+def test_store_submission_requires_admission_evidence_for_extensions(
+    extension_type: str,
+) -> None:
+    payload = _submission(f"{extension_type}.demo")
+    payload["type"] = extension_type
+    payload.pop("iamai_requires")
+
+    with pytest.raises(ValueError, match="iamai_requires is required"):
+        StoreSubmission.model_validate(payload)
+
+    payload["iamai_requires"] = "iamai>=0.4,<0.5"
+    payload["conformance_evidence"] = []
+    with pytest.raises(ValueError, match="conformance_evidence is required"):
+        StoreSubmission.model_validate(payload)
+
+
+def test_store_submission_does_not_require_admission_evidence_for_agent_tools() -> None:
+    payload = _submission("agent_tool.demo")
+    payload["type"] = "agent_tool"
+    payload.pop("iamai_requires")
+    payload.pop("conformance_evidence")
+
+    submission = StoreSubmission.model_validate(payload)
+
+    assert submission.iamai_requires is None
+    assert submission.conformance_evidence == []
+
+
+def test_store_submission_rejects_non_http_conformance_evidence() -> None:
+    payload = _submission()
+    payload["conformance_evidence"] = ["pytest tests/test_echo.py"]
+
+    with pytest.raises(ValueError, match="evidence URL"):
+        StoreSubmission.model_validate(payload)
+
+
+@pytest.mark.parametrize(
+    "evidence_url",
+    [
+        "https://user:secret@github.com/example/actions/runs/123",
+        "https://github.com/example/actions/runs/123\nsecret",
+        "https://localhost/actions/runs/123",
+        "https://127.0.0.1/actions/runs/123",
+        "https://192.168.1.5/actions/runs/123",
+        "https://100.64.0.1/actions/runs/123",
+        "https://192.0.2.1/actions/runs/123",
+        "https://[::ffff:127.0.0.1]/actions/runs/123",
+        "https://[ff02::1]/actions/runs/123",
+        "https://8.8.8.8/actions/runs/123",
+        "https://0177.0.0.1/actions/runs/123",
+        "https://0x7f.0.0.1/actions/runs/123",
+        "https://127.1/actions/runs/123",
+        "https://foo..com/actions/runs/123",
+        "https://-foo.com/actions/runs/123",
+        "https://foo_.com/actions/runs/123",
+        "https://ci.example.test/report/123",
+    ],
+)
+def test_store_submission_requires_public_credential_free_evidence(
+    evidence_url: str,
+) -> None:
+    payload = _submission()
+    payload["conformance_evidence"] = [evidence_url]
+
+    with pytest.raises(ValueError, match="evidence URL"):
         StoreSubmission.model_validate(payload)
 
 
@@ -148,6 +233,9 @@ def test_store_submission_issue_body_contains_registry_json() -> None:
 
     assert "```json" in body
     assert '"id": "plugin.echo"' in body
+    assert '"iamai_requires": "iamai>=0.4,<0.5"' in body
+    assert '"conformance_evidence": [' in body
+    assert "Requires-Dist metadata" in body
     assert "Verification badges are assigned by maintainers only" in body
 
 
@@ -156,10 +244,31 @@ def test_store_submission_issue_url_targets_configured_repo() -> None:
 
     url = build_submission_issue_url("retrofor/iamai", submission)
 
-    assert url.startswith("https://github.com/retrofor/iamai/issues/new?")
-    assert "template=ecosystem-submission.yml" in url
-    assert "%5BEcosystem%5D+Echo+Plugin" in url
-    assert "runtime_capabilities=network%3Ahttp" in url
+    parsed = urlsplit(url)
+    query = parse_qs(parsed.query)
+
+    assert parsed.netloc == "github.com"
+    assert parsed.path == "/retrofor/iamai/issues/new"
+    assert query["template"] == ["ecosystem-submission.yml"]
+    assert query["title"] == ["[Ecosystem] Echo Plugin"]
+    assert query["runtime_capabilities"] == ["network:http"]
+    assert query["iamai_requires"] == ["iamai>=0.4,<0.5"]
+    assert query["conformance_evidence"] == [
+        "https://github.com/example/iamai-plugin-echo/actions/runs/123"
+    ]
+
+
+def test_non_extension_issue_url_prefills_required_fields_as_not_applicable() -> None:
+    payload = _submission("agent_tool.demo")
+    payload["type"] = "agent_tool"
+    payload.pop("iamai_requires")
+    payload.pop("conformance_evidence")
+    submission = StoreSubmission.model_validate(payload)
+
+    query = parse_qs(urlsplit(build_submission_issue_url("retrofor/iamai", submission)).query)
+
+    assert query["iamai_requires"] == ["Not applicable"]
+    assert query["conformance_evidence"] == ["Not applicable"]
 
 
 def test_store_submit_directive_outputs_submission_mount() -> None:

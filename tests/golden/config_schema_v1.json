@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:iamai:config-schema:v1:root",
+  "x-iamai-contract-version": "1",
+  "type": "object",
+  "property_order": [
+    "runtime",
+    "logging",
+    "state",
+    "adapter",
+    "plugin"
+  ],
+  "property_ids": {
+    "runtime": "urn:iamai:config-schema:v1:runtime",
+    "logging": "urn:iamai:config-schema:v1:logging",
+    "state": "urn:iamai:config-schema:v1:state",
+    "adapter": "urn:iamai:config-schema:v1:adapter",
+    "plugin": "urn:iamai:config-schema:v1:plugin"
+  },
+  "additionalProperties": true
+}
