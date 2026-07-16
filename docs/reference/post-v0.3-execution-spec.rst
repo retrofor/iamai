@@ -194,6 +194,7 @@ Schema contract v1
 ~~~~~~~~
 
 * 定义 ``Event`` 和 ``Message`` 的版本化序列化形式、必需/可选字段、未知字段和 round-trip 规则。
+  规范正文见 :doc:`serialization-contract`。
 * 定义 ``Runtime``、``Adapter`` 和 ``Plugin`` 的启动、正常关闭、取消、失败清理、reload 和
   handler admission 顺序。
 * 单独定义 ``Context`` 的事件作用域、回复路由、依赖注入和失效语义；``Context`` 不拥有 runtime

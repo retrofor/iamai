@@ -1,0 +1,18 @@
+{
+  "contract_version": "1.0",
+  "id": "event-minimal",
+  "adapter": "reference",
+  "platform": "test",
+  "type": "notice",
+  "detail_type": null,
+  "sub_type": null,
+  "user_id": null,
+  "channel_id": null,
+  "guild_id": null,
+  "self_id": null,
+  "message": {
+    "contract_version": "1.0",
+    "segments": []
+  },
+  "raw": {}
+}

@@ -7,6 +7,20 @@ from collections.abc import Iterable, Mapping
 from typing import Any, cast
 
 from .core import CoreMessage
+from .serialization import (
+    SERIALIZATION_CONTRACT_VERSION,
+    SerializationContractError,
+    _canonical_json,
+    _child_path,
+    _copy_json_value,
+    _load_json_object,
+    _require_array,
+    _require_contract_version,
+    _require_field,
+    _require_object,
+    _require_string,
+    _validate_json_value,
+)
 
 
 class Message:
@@ -35,6 +49,28 @@ class Message:
     def from_onebot11(cls, payload: Any) -> "Message":
         """Create a message from a OneBot11 message payload."""
         return cls(core=CoreMessage.from_onebot11_json(json.dumps(payload)))
+
+    @classmethod
+    def from_payload(cls, payload: Mapping[str, Any]) -> "Message":
+        """Build a message from a versioned serialization-contract payload."""
+        return cls._from_payload_at_path(payload, path="$")
+
+    @classmethod
+    def _from_payload_at_path(cls, payload: Mapping[str, Any], *, path: str) -> "Message":
+        normalized = _message_payload_segments(payload, path=path)
+        try:
+            return cls(normalized)
+        except (TypeError, ValueError) as error:
+            raise SerializationContractError(
+                "invalid_message",
+                _child_path(path, "segments"),
+                str(error),
+            ) from error
+
+    @classmethod
+    def from_json(cls, payload: str | bytes | bytearray) -> "Message":
+        """Build a message from strict JSON using the serialization contract."""
+        return cls.from_payload(_load_json_object(payload))
 
     @property
     def core(self) -> CoreMessage:
@@ -74,6 +110,18 @@ class Message:
         """Convert the message into OneBot11 segment dictionaries."""
         return cast(list[dict[str, Any]], json.loads(self._core.to_onebot11_json()))
 
+    def to_payload(self) -> dict[str, Any]:
+        """Return the canonical versioned serialization-contract payload."""
+        segments = _normalize_segments(self.segments, path="$.segments")
+        return {
+            "contract_version": SERIALIZATION_CONTRACT_VERSION,
+            "segments": segments,
+        }
+
+    def to_json(self) -> str:
+        """Return canonical strict JSON for this message."""
+        return _canonical_json(self.to_payload())
+
     def copy(self) -> "Message":
         """Return a copy of this message."""
         return Message(core=self._core.copy())
@@ -91,3 +139,39 @@ class Message:
 
     def __repr__(self) -> str:
         return f"Message({self.render_text()!r})"
+
+
+def _message_payload_segments(payload: Mapping[str, Any], *, path: str) -> list[dict[str, Any]]:
+    object_payload = _require_object(payload, path=path)
+    _validate_json_value(object_payload, path=path)
+    _require_contract_version(object_payload, path=path)
+    segments_path = _child_path(path, "segments")
+    segments = _require_array(
+        _require_field(object_payload, "segments", path=path),
+        path=segments_path,
+    )
+    return _normalize_segments(segments, path=segments_path)
+
+
+def _normalize_segments(segments: list[Any], *, path: str) -> list[dict[str, Any]]:
+    normalized: list[dict[str, Any]] = []
+    for index, segment in enumerate(segments):
+        segment_path = f"{path}[{index}]"
+        object_segment = _require_object(segment, path=segment_path)
+        kind = _require_string(
+            _require_field(object_segment, "kind", path=segment_path),
+            path=_child_path(segment_path, "kind"),
+            non_empty=True,
+        )
+        data_path = _child_path(segment_path, "data")
+        data = _require_object(
+            _require_field(object_segment, "data", path=segment_path),
+            path=data_path,
+        )
+        normalized.append(
+            {
+                "kind": kind,
+                "data": _copy_json_value(data, path=data_path),
+            }
+        )
+    return normalized

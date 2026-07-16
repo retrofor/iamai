@@ -30,6 +30,7 @@
    cli
    configuration
    extensions
+   serialization-contract
    post-v0.3-execution-spec
    docs-i18n-versions
    rules

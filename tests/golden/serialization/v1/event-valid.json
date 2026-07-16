@@ -1,0 +1,49 @@
+{
+  "contract_version": "1.0",
+  "id": "event-001",
+  "adapter": "reference",
+  "platform": "test",
+  "type": "message",
+  "detail_type": "private",
+  "sub_type": null,
+  "user_id": "user-42",
+  "channel_id": null,
+  "guild_id": null,
+  "self_id": "bot-1",
+  "message": {
+    "contract_version": "1.0",
+    "segments": [
+      {
+        "kind": "text",
+        "data": {
+          "text": "hello 世界"
+        }
+      },
+      {
+        "kind": "custom",
+        "data": {
+          "count": 42,
+          "enabled": true,
+          "missing": null,
+          "nested": {
+            "items": [
+              1,
+              false,
+              null
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "raw": {
+    "attempt": 3,
+    "enabled": true,
+    "metadata": {
+      "labels": [
+        "alpha",
+        null
+      ]
+    }
+  }
+}
