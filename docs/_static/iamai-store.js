@@ -55,6 +55,10 @@
       summaryHelp: "保持简短；这段文本会直接显示在社区商店卡片上。",
       package: "Python 包名",
       repository: "仓库 URL",
+      iamaiRequires: "iamai 兼容范围",
+      iamaiRequiresHelp: "填写包元数据中的 Requires-Dist 值，例如 iamai>=0.4,<0.5。",
+      conformanceEvidence: "Conformance evidence",
+      conformanceEvidenceHelp: "每行一个可复核的 CI、测试报告或命令输出 URL。",
       sourceUrl: "源码 URL",
       docsUrl: "文档 URL",
       homepageUrl: "主页 URL",
@@ -78,6 +82,8 @@
       nameRequired: "展示名称为必填项。",
       summaryRequired: "简介为必填项，且不能超过 180 字。",
       packageOrRepoRequired: "请至少填写 Python 包名或仓库 URL。",
+      iamaiRequiresRequired: "plugin 和 adapter 条目必须填写 iamai 兼容范围。",
+      conformanceEvidenceRequired: "plugin 和 adapter 条目必须提供至少一条 conformance evidence URL。",
       securityRequired: "plugin、adapter 和 agent_tool 条目必须填写安全声明。",
       permissionRequired: "agent_tool 条目必须填写权限说明。",
       absoluteUrlRequired: "必须是绝对 http(s) URL。",
@@ -112,6 +118,10 @@
       summaryHelp: "Keep this short; it appears directly on the ecosystem card.",
       package: "Python package",
       repository: "Repository URL",
+      iamaiRequires: "iamai compatibility range",
+      iamaiRequiresHelp: "Use the package metadata Requires-Dist value, for example iamai>=0.4,<0.5.",
+      conformanceEvidence: "Conformance evidence",
+      conformanceEvidenceHelp: "Use one reviewable CI, test report, or command-output URL per line.",
       sourceUrl: "Source URL",
       docsUrl: "Docs URL",
       homepageUrl: "Homepage URL",
@@ -135,6 +145,8 @@
       nameRequired: "Display name is required.",
       summaryRequired: "Summary is required and must be 180 characters or fewer.",
       packageOrRepoRequired: "Provide at least a Python package or a repository URL.",
+      iamaiRequiresRequired: "plugin and adapter entries must provide an iamai compatibility range.",
+      conformanceEvidenceRequired: "plugin and adapter entries must provide at least one conformance evidence URL.",
       securityRequired: "Security statement is required for plugin, adapter, and agent_tool entries.",
       permissionRequired: "Permission notes are required for agent_tool entries.",
       absoluteUrlRequired: "must be an absolute http(s) URL.",
@@ -177,6 +189,51 @@
       .split(/[\n,]/)
       .map((item) => item.trim())
       .filter(Boolean);
+  }
+
+  function splitLines(value) {
+    return String(value || "")
+      .split(/\r?\n/)
+      .map((item) => item.trim())
+      .filter(Boolean);
+  }
+
+  function isPublicHttpUrl(value) {
+    if (!value || /\s/.test(value)) {
+      return false;
+    }
+    let parsed;
+    try {
+      parsed = new URL(value);
+    } catch (_error) {
+      return false;
+    }
+    if (!["http:", "https:"].includes(parsed.protocol) || parsed.username || parsed.password) {
+      return false;
+    }
+    const hostname = parsed.hostname.replace(/^\[|\]$/g, "").replace(/\.$/, "").toLowerCase();
+    if (!hostname) {
+      return false;
+    }
+    if ([".local", ".localhost", ".invalid", ".test", ".example"].some(
+      (suffix) => hostname.endsWith(suffix),
+    )) {
+      return false;
+    }
+    const ipv4 = hostname.match(/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/);
+    if (ipv4) {
+      return false;
+    }
+    if (hostname.includes(":")) {
+      return false;
+    }
+    if (hostname.length > 253) {
+      return false;
+    }
+    const labels = hostname.split(".");
+    return labels.length >= 2 && labels.every(
+      (label) => /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/.test(label),
+    );
   }
 
   function parseEntryPoints(value) {
@@ -471,6 +528,10 @@
             <div class="iamai-store-submit__grid">
               ${field("package", t("package"), { placeholder: "iamai-plugin-echo" })}
               ${field("repository", t("repository"), { placeholder: "https://github.com/you/iamai-plugin-echo" })}
+              ${field("iamai_requires", t("iamaiRequires"), {
+      placeholder: "iamai>=0.4,<0.5",
+      help: t("iamaiRequiresHelp"),
+    })}
               ${field("source_url", t("sourceUrl"), { placeholder: "https://github.com/you/iamai-plugin-echo" })}
               ${field("docs_url", t("docsUrl"), { placeholder: "https://example.com/docs" })}
               ${field("homepage_url", t("homepageUrl"), { placeholder: "https://example.com" })}
@@ -485,6 +546,10 @@
               ${textarea("entry_points", t("entryPoints"), {
       placeholder: "plugin:echo=iamai_plugin_echo:EchoPlugin\nadapter:acme=iamai_adapter_acme:AcmeAdapter",
       help: t("entryPointsHelp"),
+    })}
+              ${textarea("conformance_evidence", t("conformanceEvidence"), {
+      placeholder: "https://github.com/you/project/actions/runs/123",
+      help: t("conformanceEvidenceHelp"),
     })}
             </div>
             ${textarea("config_example", t("configExample"), { placeholder: "[plugin.echo]\nenabled = true" })}
@@ -528,6 +593,8 @@
       tags: splitList(data.get("tags")),
       platforms: splitList(data.get("platforms")),
       requires: splitList(data.get("requires")),
+      iamai_requires: data.get("iamai_requires"),
+      conformance_evidence: splitLines(data.get("conformance_evidence")),
       runtime_capabilities: splitList(data.get("runtime_capabilities")),
       docs_url: data.get("docs_url"),
       source_url: data.get("source_url"),
@@ -552,6 +619,12 @@
     if (!entry.package && !entry.repository) {
       errors.push(t("packageOrRepoRequired"));
     }
+    if (["plugin", "adapter"].includes(entry.type) && !entry.iamai_requires) {
+      errors.push(t("iamaiRequiresRequired"));
+    }
+    if (["plugin", "adapter"].includes(entry.type) && !(entry.conformance_evidence || []).length) {
+      errors.push(t("conformanceEvidenceRequired"));
+    }
     if (["plugin", "adapter", "agent_tool"].includes(entry.type) && !entry.security_notes) {
       errors.push(t("securityRequired"));
     }
@@ -561,6 +634,11 @@
     ["repository", "source_url", "docs_url", "homepage_url"].forEach((key) => {
       if (entry[key] && !/^https?:\/\/[^/]+\S*$/.test(entry[key])) {
         errors.push(`${key} ${t("absoluteUrlRequired")}`);
+      }
+    });
+    (entry.conformance_evidence || []).forEach((url) => {
+      if (!isPublicHttpUrl(url)) {
+        errors.push(`conformance_evidence ${t("absoluteUrlRequired")}`);
       }
     });
     return errors;
@@ -580,6 +658,8 @@
       "",
       "- [ ] Package or repository is reachable.",
       "- [ ] Entry points match published package metadata when applicable.",
+      "- [ ] iamai_requires matches the package's published Requires-Dist metadata.",
+      "- [ ] Conformance evidence is public and reproducible when required.",
       "- [ ] No secrets, private endpoints, or unsafe install steps are included.",
       "- [ ] Verification badges are assigned by maintainers only.",
     ].join("\n");
@@ -588,6 +668,8 @@
   function buildIssueUrl(container, entry) {
     const repo = container.dataset.githubRepo;
     const template = container.dataset.issueTemplate || "ecosystem-submission.yml";
+    const requiresConformance = ["plugin", "adapter"].includes(entry.type);
+    const notApplicable = "Not applicable";
     const params = new URLSearchParams({
       template,
       title: `[Ecosystem] ${entry.name}`,
@@ -597,6 +679,9 @@
       summary: entry.summary || "",
       package_name: entry.package || "",
       repository_url: entry.repository || "",
+      iamai_requires: entry.iamai_requires || (requiresConformance ? "" : notApplicable),
+      conformance_evidence: (entry.conformance_evidence || []).join("\n") ||
+        (requiresConformance ? "" : notApplicable),
       runtime_capabilities: (entry.runtime_capabilities || []).join(", "),
       security_notes: entry.security_notes || "",
       permission_notes: entry.permission_notes || "",

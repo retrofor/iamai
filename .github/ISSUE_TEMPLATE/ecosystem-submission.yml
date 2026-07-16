@@ -63,6 +63,22 @@ body:
       label: Repository URL
       description: Required unless this entry is package-only.
       placeholder: https://github.com/you/iamai-plugin-echo
+  - type: input
+    id: iamai_requires
+    attributes:
+      label: iamai compatibility range
+      description: Copy the standard Requires-Dist value published by a plugin or adapter, for example iamai>=0.4,<0.5. For other types, enter Not applicable.
+      placeholder: iamai>=0.4,<0.5
+    validations:
+      required: true
+  - type: textarea
+    id: conformance_evidence
+    attributes:
+      label: Conformance evidence
+      description: Add at least one public CI run, test report, or command-output URL for a plugin or adapter, one per line. For other types, enter Not applicable.
+      placeholder: https://github.com/you/iamai-plugin-echo/actions/runs/123
+    validations:
+      required: true
   - type: textarea
     id: runtime_capabilities
     attributes:
@@ -99,6 +115,8 @@ body:
         - label: This submission contains no secrets, private endpoints, or unsafe install steps.
           required: true
         - label: I declared network access, credential needs, dangerous actions, and Agent tool permissions where applicable.
+          required: true
+        - label: For a plugin or adapter, the compatibility range matches published Requires-Dist metadata and the conformance evidence is publicly reviewable.
           required: true
         - label: I understand verification badges are assigned by iamai maintainers after review.
           required: true
