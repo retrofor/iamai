@@ -326,6 +326,7 @@ class Runtime:
 
     def get_plugin_schema(self, plugin_name: str) -> dict[str, Any] | None:
         """Return a plugin configuration JSON schema, if available."""
+        self._apply_python_paths()
         descriptor = self._plugin_descriptor_map.get(plugin_name)
         if descriptor is None:
             descriptor = next(

@@ -323,3 +323,50 @@ token = "configured-token-that-must-not-appear"
     assert actual == expected
     assert actual["properties"]["token"]["writeOnly"] is True
     assert "configured-token-that-must-not-appear" not in json.dumps(actual)
+
+
+def test_cli_plugin_selector_applies_configured_python_paths(
+    tmp_path: Path,
+    monkeypatch: Any,
+    capsys: Any,
+) -> None:
+    extension_dir = tmp_path / "selector_extensions"
+    extension_dir.mkdir()
+    (extension_dir / "selector_plugin.py").write_text(
+        """
+from pydantic import BaseModel
+
+from iamai import Plugin
+
+
+class SelectorConfig(BaseModel):
+    label: str = "loaded-from-python-path"
+
+
+class SelectorPlugin(Plugin):
+    name = "selector_plugin"
+    config_model = SelectorConfig
+""".lstrip(),
+        encoding="utf-8",
+    )
+    config_path = tmp_path / "selector.toml"
+    config_path.write_text(
+        """
+[runtime]
+adapters = []
+plugins = ["selector_plugin:SelectorPlugin"]
+python_paths = ["selector_extensions"]
+builtin_plugins = false
+""".lstrip(),
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        ["iamai", "--config", str(config_path), "config-schema", "selector_plugin"],
+    )
+    main()
+    actual = json.loads(capsys.readouterr().out)
+
+    assert actual["properties"]["label"]["default"] == "loaded-from-python-path"
