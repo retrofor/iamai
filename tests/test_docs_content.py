@@ -39,6 +39,26 @@ def test_extensions_reference_contains_public_extension_specs() -> None:
     assert "``Requires-Dist``" in content
 
 
+def test_fossa_governance_docs_preserve_permission_and_evidence_boundaries() -> None:
+    baseline = _read("docs/reference/fossa-governance-baseline.rst")
+    execution_spec = _read("docs/reference/post-v0.3-execution-spec.rst")
+    todo = _read("TODO.md")
+
+    assert "不得直接输出或先保存" in baseline
+    assert "| jq '{locator, public, default_branch, tracking_branches," in baseline
+    assert "``status=active``" in baseline
+    assert "``status=ignored``" in baseline
+    assert "过滤前后的 match inventory" in baseline
+    assert "不能把 correction 的组织级权限要求套用到 dispute" in baseline
+    assert "项目 View 权限" in execution_spec
+    assert "项目 Edit 权限" in execution_spec
+    assert "``SetPolicy``" in execution_spec
+    assert "Push-Only token" in execution_spec
+    assert "``Standard Bundle Distribution``" in execution_spec
+    assert "source-license 字段" in execution_spec
+    assert "active and ignored issue inventories" in todo
+
+
 def test_serialization_reference_contains_v1_contract_rules() -> None:
     content = _read("docs/reference/serialization-contract.rst")
 
