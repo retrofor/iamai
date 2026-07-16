@@ -241,6 +241,55 @@ def test_no_argument_cli_schema_exactly_matches_runtime_schema(
     assert json.loads(capsys.readouterr().out) == expected
 
 
+def test_cli_schema_applies_configured_python_paths(
+    tmp_path: Path,
+    monkeypatch: Any,
+    capsys: Any,
+) -> None:
+    extension_dir = tmp_path / "extensions"
+    extension_dir.mkdir()
+    (extension_dir / "path_plugin.py").write_text(
+        """
+from pydantic import BaseModel
+
+from iamai import Plugin
+
+
+class PathConfig(BaseModel):
+    enabled: bool = True
+
+
+class PathPlugin(Plugin):
+    name = "path_plugin"
+    config_model = PathConfig
+""".lstrip(),
+        encoding="utf-8",
+    )
+    config_path = tmp_path / "config.toml"
+    config_path.write_text(
+        """
+[runtime]
+adapters = []
+plugins = ["path_plugin:PathPlugin"]
+python_paths = ["extensions"]
+builtin_plugins = false
+""".lstrip(),
+        encoding="utf-8",
+    )
+
+    expected = Runtime.from_config_file(config_path)
+    expected.load_plugins()
+
+    monkeypatch.setattr(sys, "argv", ["iamai", "--config", str(config_path), "config-schema"])
+    main()
+    actual = json.loads(capsys.readouterr().out)
+
+    assert actual == expected.config_schema()
+    assert actual["properties"]["plugin"]["properties"]["path_plugin"]["properties"][
+        "enabled"
+    ]["default"] is True
+
+
 def test_cli_plugin_selector_remains_backward_compatible(
     tmp_path: Path,
     monkeypatch: Any,

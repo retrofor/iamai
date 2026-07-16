@@ -342,6 +342,7 @@ class Runtime:
 
     def config_schema(self) -> dict[str, Any]:
         """Return the versioned root configuration JSON Schema."""
+        self._apply_python_paths()
         adapter_descriptors = self._adapter_descriptors or self._discover_adapter_descriptors()
         plugin_descriptors = self._plugin_descriptors or self._resolve_plugin_order(
             self._discover_plugin_descriptors()
