@@ -224,6 +224,40 @@ def test_runtime_schema_uses_metadata_only_and_never_leaks_configured_secrets(
     assert sentinel not in serialized
 
 
+def test_build_config_schema_exactly_matches_runtime_schema_for_loaded_extensions(
+    tmp_path: Path,
+) -> None:
+    runtime = Runtime(
+        {
+            "runtime": {
+                "adapters": ["onebot11", "telegram", "webhook"],
+                "plugins": ["management_api"],
+                "builtin_plugins": False,
+            },
+            "adapter": {
+                "onebot11": {"access_token": "schema-equivalence-secret"},
+                "telegram": {"token": "schema-equivalence-secret"},
+                "webhook": {"access_token": "schema-equivalence-secret"},
+            },
+            "plugin": {
+                "management_api": {"token": "schema-equivalence-secret"}
+            },
+            "state": {},
+            "__meta__": {"root_dir": str(tmp_path)},
+        },
+        base_path=tmp_path,
+    )
+    runtime.load_plugins()
+    runtime.load_adapters()
+
+    expected = build_config_schema(
+        adapters={adapter.name: type(adapter) for adapter in runtime.adapters},
+        plugins={plugin.plugin_name: type(plugin) for plugin in runtime.plugins},
+    )
+
+    assert runtime.config_schema() == expected
+
+
 def test_no_argument_cli_schema_exactly_matches_runtime_schema(
     tmp_path: Path,
     monkeypatch: Any,

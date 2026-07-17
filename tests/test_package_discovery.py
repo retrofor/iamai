@@ -61,6 +61,10 @@ class _AlphaPlugin(Plugin):
     name = "alpha"
 
 
+class _BetaPlugin(Plugin):
+    name = "beta"
+
+
 class _ZetaPlugin(Plugin):
     name = "zeta"
 
@@ -93,6 +97,10 @@ class _AdapterFixture(Adapter):
 
 class _AlphaAdapter(_AdapterFixture):
     name = "alpha_adapter"
+
+
+class _BetaAdapter(_AdapterFixture):
+    name = "beta_adapter"
 
 
 class _ZetaAdapter(_AdapterFixture):
@@ -697,3 +705,162 @@ def test_auto_discovery_order_is_deterministic_across_groups(
         "alpha_adapter",
         "zeta_adapter",
     ]
+
+
+def test_auto_discovery_appends_sorted_entries_without_reordering_explicit_references(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    _install_entry_points(
+        monkeypatch,
+        _FakeEntryPoint(
+            "alpha",
+            f"{__name__}:_AlphaPlugin",
+            group="iamai.plugins",
+            distribution="alpha-plugin",
+            loaded=_AlphaPlugin,
+        ),
+        _FakeEntryPoint(
+            "zeta",
+            f"{__name__}:_ZetaPlugin",
+            group="iamai.plugins",
+            distribution="zeta-plugin",
+            loaded=_ZetaPlugin,
+        ),
+        _FakeEntryPoint(
+            "beta",
+            f"{__name__}:_BetaPlugin",
+            group="iamai.plugins",
+            distribution="beta-plugin",
+            loaded=_BetaPlugin,
+        ),
+        _FakeEntryPoint(
+            "alpha_adapter",
+            f"{__name__}:_AlphaAdapter",
+            group="iamai.adapters",
+            distribution="alpha-adapter",
+            loaded=_AlphaAdapter,
+        ),
+        _FakeEntryPoint(
+            "zeta_adapter",
+            f"{__name__}:_ZetaAdapter",
+            group="iamai.adapters",
+            distribution="zeta-adapter",
+            loaded=_ZetaAdapter,
+        ),
+        _FakeEntryPoint(
+            "beta_adapter",
+            f"{__name__}:_BetaAdapter",
+            group="iamai.adapters",
+            distribution="beta-adapter",
+            loaded=_BetaAdapter,
+        ),
+    )
+    runtime = Runtime(
+        _make_config(
+            tmp_path,
+            plugins=["zeta", "beta"],
+            adapters=["zeta_adapter", "beta_adapter"],
+        ),
+        base_path=tmp_path,
+    )
+    runtime.config["runtime"]["auto_discover_plugins"] = True
+    runtime.config["runtime"]["auto_discover_adapters"] = True
+
+    runtime.load_plugins()
+    runtime.load_adapters()
+
+    assert [plugin.plugin_name for plugin in runtime.plugins] == [
+        "zeta",
+        "beta",
+        "alpha",
+    ]
+    assert [adapter.name for adapter in runtime.adapters] == [
+        "zeta_adapter",
+        "beta_adapter",
+        "alpha_adapter",
+    ]
+
+
+def test_explicit_loading_ignores_unrequested_broken_entry_points(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    _install_entry_points(
+        monkeypatch,
+        _FakeEntryPoint(
+            "alpha",
+            f"{__name__}:_AlphaPlugin",
+            group="iamai.plugins",
+            distribution="alpha-plugin",
+            loaded=_AlphaPlugin,
+        ),
+        _FakeEntryPoint(
+            "broken_plugin",
+            "broken_plugin:BrokenPlugin",
+            group="iamai.plugins",
+            distribution="broken-plugin",
+            error=ImportError("unrequested plugin dependency is missing"),
+        ),
+        _FakeEntryPoint(
+            "alpha_adapter",
+            f"{__name__}:_AlphaAdapter",
+            group="iamai.adapters",
+            distribution="alpha-adapter",
+            loaded=_AlphaAdapter,
+        ),
+        _FakeEntryPoint(
+            "broken_adapter",
+            "broken_adapter:BrokenAdapter",
+            group="iamai.adapters",
+            distribution="broken-adapter",
+            error=ImportError("unrequested adapter dependency is missing"),
+        ),
+    )
+    runtime = Runtime(
+        _make_config(tmp_path, plugins=["alpha"], adapters=["alpha_adapter"]),
+        base_path=tmp_path,
+    )
+
+    runtime.load_plugins()
+    runtime.load_adapters()
+
+    assert [plugin.plugin_name for plugin in runtime.plugins] == ["alpha"]
+    assert [adapter.name for adapter in runtime.adapters] == ["alpha_adapter"]
+
+
+def test_auto_discovery_reports_first_error_in_entry_point_name_order(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    _install_entry_points(
+        monkeypatch,
+        _FakeEntryPoint(
+            "zeta_broken",
+            "zeta_broken:BrokenPlugin",
+            group="iamai.plugins",
+            distribution="zeta-broken-plugin",
+            error=ImportError("zeta dependency is missing"),
+        ),
+        _FakeEntryPoint(
+            "alpha_broken",
+            "alpha_broken:BrokenPlugin",
+            group="iamai.plugins",
+            distribution="alpha-broken-plugin",
+            error=ImportError("alpha dependency is missing"),
+        ),
+    )
+    runtime = Runtime(_make_config(tmp_path), base_path=tmp_path)
+    runtime.config["runtime"]["auto_discover_plugins"] = True
+
+    with pytest.raises(Exception) as exc_info:
+        runtime.load_plugins()
+
+    _assert_discovery_error(
+        exc_info.value,
+        code="load_failed",
+        group="iamai.plugins",
+        entry_point="alpha_broken",
+        distributions=("alpha-broken-plugin==1.0.0",),
+        reason="entry point load raised ImportError: alpha dependency is missing",
+    )

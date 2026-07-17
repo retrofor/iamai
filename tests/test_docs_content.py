@@ -57,6 +57,9 @@ def test_fossa_governance_docs_preserve_permission_and_evidence_boundaries() -> 
     assert "``Standard Bundle Distribution``" in execution_spec
     assert "source-license 字段" in execution_spec
     assert "active and ignored issue inventories" in todo
+    assert "Blocking owner: retrofor FOSSA project/organization owners" in todo
+    assert "At the release-candidate freeze" in todo
+    assert "after every future implementation merge" not in todo
 
 
 def test_serialization_reference_contains_v1_contract_rules() -> None:
