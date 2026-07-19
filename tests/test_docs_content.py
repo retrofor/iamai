@@ -137,7 +137,7 @@ def test_v1_public_api_docs_cover_compatibility_policy_and_migration() -> None:
 
     assert "MIG-COVERAGE-001" in migration
     assert "v0.3.0" in migration
-    assert "1.0.0rc1" in migration
+    assert "iamai==1.0.0" in migration
     assert "Event.to_payload()" in migration
     assert "Requires-Dist" in migration
     assert "ExtensionDiscoveryError.code" in migration
