@@ -16,7 +16,7 @@ Status values:
 | Workstream | Status | Evidence | Blocker / last verified / resume condition |
 | --- | --- | --- | --- |
 | 0. Specification baseline | `DONE` | [PR #445](https://github.com/retrofor/iamai/pull/445); [post-merge CI](https://github.com/retrofor/iamai/actions/runs/29400584855); [CodeQL](https://github.com/retrofor/iamai/actions/runs/29400584086) | Completed 2026-07-15 |
-| 1. FOSSA governance | `BLOCKED_EXTERNAL` | [PR #446](https://github.com/retrofor/iamai/pull/446); [baseline](docs/reference/fossa-governance-baseline.rst); [#436 latest gate recheck](https://github.com/retrofor/iamai/issues/436#issuecomment-5042576430) | Blocking owner: retrofor FOSSA project/organization owners; last verified 2026-07-22; project/tracking branch, one `dev` revision, and PR #467 are analyzed, but the target policy, exact latest-`dev` analysis, full inventories/dispositions, and waiver retirement remain incomplete |
+| 1. FOSSA governance | `BLOCKED_EXTERNAL` | [PR #446](https://github.com/retrofor/iamai/pull/446); [baseline](docs/reference/fossa-governance-baseline.rst); [#436 latest gate recheck](https://github.com/retrofor/iamai/issues/436#issuecomment-5042576430) | Blocking owner: retrofor FOSSA project/organization owners; last verified 2026-07-22; project/tracking branch, exact `dev@50db02b`, and PR #467 are analyzed, but the target policy, full inventories/dispositions, and waiver retirement remain incomplete |
 | 2. Low-risk dependencies | `DONE` | [#437](https://github.com/retrofor/iamai/pull/437), [#439](https://github.com/retrofor/iamai/pull/439), [#441](https://github.com/retrofor/iamai/pull/441), [#442](https://github.com/retrofor/iamai/pull/442), [#443](https://github.com/retrofor/iamai/pull/443), [#464](https://github.com/retrofor/iamai/pull/464); [post-#464 CI](https://github.com/retrofor/iamai/actions/runs/29556409168); [CodeQL](https://github.com/retrofor/iamai/actions/runs/29556408804) | Original batch completed 2026-07-15; follow-up #464 verified 2026-07-17 at [`dev@be678ba`](https://github.com/retrofor/iamai/commit/be678ba70c8f90904839845cc977460b55dd3719) |
 | 3. Gated dependencies | `DONE` | [#438](https://github.com/retrofor/iamai/pull/438), [release rehearsal](https://github.com/retrofor/iamai/actions/runs/29404691605), [#449](https://github.com/retrofor/iamai/pull/449), [#440](https://github.com/retrofor/iamai/pull/440), [final CI](https://github.com/retrofor/iamai/actions/runs/29407069117), [CodeQL](https://github.com/retrofor/iamai/actions/runs/29407068347) | Completed 2026-07-15 at [`dev@44a237a`](https://github.com/retrofor/iamai/commit/44a237a7c75fb0ca52ac87a0fed862b6186968ae) |
 | 4. Version 0.4 contract | `DONE` | [#435](https://github.com/retrofor/iamai/issues/435); [0.4-A PR #451](https://github.com/retrofor/iamai/pull/451); [0.4-B PR #453](https://github.com/retrofor/iamai/pull/453); [0.4-C PR #454](https://github.com/retrofor/iamai/pull/454); [metadata follow-up PR #460](https://github.com/retrofor/iamai/pull/460); [post-merge CI](https://github.com/retrofor/iamai/actions/runs/29485373909); [CodeQL](https://github.com/retrofor/iamai/actions/runs/29485371056) | Completed 2026-07-16 at [`dev@a2aaa6d`](https://github.com/retrofor/iamai/commit/a2aaa6d2e25744e7a172d221ae177a8b190597f6) after resolving the actionable #454 review thread |
@@ -33,15 +33,16 @@ Tracking: [#436](https://github.com/retrofor/iamai/issues/436)
 
 - [x] Confirm whether a usable FOSSA Full credential or UI session is available: none is present in the current environment.
 - [x] Repoint the FOSSA project and revision analysis from `master` to `dev`; public evidence records
-  `default_branch=dev`, `tracking_branches=[dev]`, and a completed analysis for exact `dev@25de8d`.
-- [x] Confirm analyzed `dev@25de8d` detects first-party SPDX `MIT`, exposes no AGPL license entry, and reports
+  `default_branch=dev`, `tracking_branches` includes `dev`, and a completed analysis for exact `dev@50db02b`.
+- [x] Confirm analyzed `dev@50db02b` detects first-party SPDX `MIT`, exposes no AGPL license entry, and reports
   zero public unresolved counts; full active/ignored inventories remain a separate release gate below.
-- [ ] Analyze the exact latest `dev` release revision and confirm FOSSA `last_analyzed_revision` matches it.
+- [x] Analyze exact `dev@50db02b` and confirm FOSSA `last_analyzed_revision`, project head, `dev` reference,
+  and GitHub `License Compliance` status all match; repeat after future release-input changes.
 - [ ] Change the project policy from `Single-Binary Distribution` to `Standard Bundle Distribution`.
 - [ ] Export active and ignored issue inventories with dependency, version, license, policy, locator, status,
   waiver/ignore reason, and disposition.
 - [ ] Resolve, allow, or time-bound waive every current finding.
-- [x] Verify one `dev` revision (`25de8d`) and one PR revision ([#467](https://github.com/retrofor/iamai/pull/467),
+- [x] Verify one `dev` revision (`50db02b`) and one PR revision ([#467](https://github.com/retrofor/iamai/pull/467),
   `d9da203`); attach the evidence to [#436](https://github.com/retrofor/iamai/issues/436#issuecomment-5042576430).
 - [ ] Remove or replace the v0.3.0 waiver before 2026-08-15.
 - [ ] Close #436 only after the spec completion definition is met.
