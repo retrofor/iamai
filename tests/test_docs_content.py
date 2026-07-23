@@ -249,8 +249,9 @@ def test_roadmap_contains_versioned_design_decisions() -> None:
 
     assert "``0.1``" in content
     assert "``0.2``" in content
-    assert "``0.3``" in content
-    assert "``1.0``" in content
+    assert "``0.3``\n   |latest-stable|" in content
+    assert "``0.4``\n   |implemented|" in content
+    assert "``1.0``\n   |release-candidate|" in content
     assert "WebUI 不进入核心" in content
 
 
