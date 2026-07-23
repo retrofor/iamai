@@ -15,27 +15,35 @@
    社区商店和管理命令。
 
 ``0.3``
-   |current| 提供 tool registry、agent permission、审计 trace、MCP gateway、管理 HTTP API 和多种 Agent runtime
-   示例；同时为 handler 并发和 Session backlog 加入可配置资源边界。
+   |latest-stable| ``v0.3.0`` 提供 tool registry、agent permission、审计 trace、MCP gateway、管理 HTTP API
+   和多种 Agent runtime 示例；同时为 handler 并发和 Session backlog 加入可配置资源边界。
 
 ``0.4``
-   |planned| 稳定第三方适配器与插件的独立包发布规范，扩展 conformance tests，并提供配置 schema 导出。
-   WebUI 不进入核心；如果需要 UI，应作为独立插件或独立项目调用管理 API。
+   |implemented| 第三方适配器与插件的独立包发布规范、扩展 conformance tests 和配置 schema 导出已进入
+   ``dev``，并纳入 ``1.0`` 发布线，不单独承诺 ``v0.4.0`` tag。WebUI 不进入核心；如果需要 UI，
+   应作为独立插件或独立项目调用管理 API。
 
 ``1.0``
-   |planned| 冻结核心公共 API，发布兼容性规范，并明确 ``0.x`` 到 ``1.x`` 的迁移窗口。
+   |release-candidate| 核心公共 API、兼容性规范和 ``0.x`` 到 ``1.x`` 迁移窗口已形成并通过 RC 验证，
+   当前仍是候选契约。
+   ``dev`` 当前为 ``1.0.0rc1``；稳定版仍需完成 `发布治理 #436
+   <https://github.com/retrofor/iamai/issues/436>`_ 和最终精确 revision 验证。
 
 .. |shipped| raw:: html
 
    <span class="iamai-status-pill">shipped</span>
 
-.. |current| raw:: html
+.. |latest-stable| raw:: html
 
-   <span class="iamai-status-pill">current</span>
+   <span class="iamai-status-pill">latest stable</span>
 
-.. |planned| raw:: html
+.. |implemented| raw:: html
 
-   <span class="iamai-status-pill">planned</span>
+   <span class="iamai-status-pill">implemented</span>
+
+.. |release-candidate| raw:: html
+
+   <span class="iamai-status-pill">release candidate</span>
 
 设计决策
 --------
