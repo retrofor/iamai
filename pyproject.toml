@@ -40,6 +40,14 @@ bindings = "pyo3"
 line-length = 100
 target-version = "py311"
 
+# Pin the lint rule set explicitly. Without an explicit `select`, ruff's default
+# rules can change between releases, which made a routine ruff upgrade (0.15 -> 0.16,
+# dependabot PR #476) report 200+ pre-existing findings across docs/, examples/, and
+# python/. Fixing the set keeps lint results stable across ruff upgrades; revisit this
+# list deliberately when we want to adopt more rules.
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+
 [tool.mypy]
 python_version = "3.11"
 files = [
