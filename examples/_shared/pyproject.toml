@@ -6,6 +6,6 @@ readme = "README.md"
 license = "MIT"
 requires-python = ">=3.11"
 dependencies = [
-    "openai>=1.76,<2",
+    "openai>=1.76,<4",
     "pydantic>=2.11,<3",
 ]
