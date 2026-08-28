@@ -1,8 +1,8 @@
 从 0.3.0 迁移到 1.0
 ====================
 
-本指南以 ``v0.3.0`` 和 ``1.0.0`` 的公开代码、配置与测试为基线。``1.0.0rc1`` 已完成候选验证；
-稳定承诺从 ``1.0.0`` 正式发布起生效。升级前先固定版本、运行完整测试，再逐项处理下列已确认的
+本指南以 ``v0.3.0`` 和 ``1.0.0rc1`` 的公开代码、配置与测试为基线。``1.0.0rc1`` 是候选版本；
+稳定承诺从 ``1.0.0`` 正式发布起生效。升级前先固定 RC、运行完整测试，再逐项处理下列已确认的
 变化或非变化结论。
 
 .. _mig-coverage-001:
@@ -10,7 +10,7 @@
 MIG-COVERAGE-001：有意变化必须可迁移
 --------------------------------------
 
-#. **顶层 API 没有删除 0.3 symbol。** ``v0.3.0`` 的 ``iamai.__all__`` 名称在 1.0 中仍可导入，
+#. **顶层 API 没有删除 0.3 symbol。** ``v0.3.0`` 的 ``iamai.__all__`` 名称在 1.0 候选中仍可导入，
    ``on_command``、``on_message``、``on_event`` 仍是原有别名。新增 symbol 由
    ``PUBLIC_API_CONTRACT_VERSION`` 和 golden manifest 管理。Agent Runtime 的 ``AgentError``、
    ``AgentTrace``、``Guardrail``、``LLMClient``、``LLMConfig``、``ToolRegistry`` 仍是 provisional，
@@ -78,12 +78,12 @@ MIG-COVERAGE-001：有意变化必须可迁移
 升级检查
 --------
 
-#. 将测试环境升级到 ``iamai==1.0.0``，但生产依赖暂时保留回滚锁定。
+#. 将测试环境升级到 ``iamai==1.0.0rc1``，但生产依赖暂时保留回滚锁定。
 #. 把持久化/队列边界迁移到 versioned payload，并用真实历史样本做 round-trip。
 #. 在隔离环境构建并安装每个第三方 extension wheel，运行 ``iamai.testing`` conformance helper。
 #. 运行 ``iamai config-schema``，清理未知配置 key，并确认 secret 只通过 ``writeOnly`` metadata 暴露。
 #. 测试 startup failure、Adapter failure、reload、shutdown 与持有旧 Context 的后台任务。
-#. 完整 CI 通过后再切到 ``iamai>=1,<2``，并保留可回滚到已验证旧版本的锁定记录。
+#. 完整 CI 通过后再切到 ``iamai>=1,<2``；正式版发布后从 RC 切换到 ``1.0.0``。
 
 兼容与弃用
 ----------
