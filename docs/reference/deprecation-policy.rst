@@ -2,7 +2,7 @@
 ==================
 
 本政策适用于在 :doc:`public-api-conformance` 中声明为稳定的 Python symbol、配置 key、entry-point
-group 和序列化字段。``1.0.0rc1`` 用它验证流程；对外兼容承诺从 ``1.0.0`` 正式发布起生效。
+group 和序列化字段。该政策已通过 ``1.0.0rc1`` 验证；对外兼容承诺从 ``1.0.0`` 正式发布起生效。
 
 .. _dep-warning-001:
 
