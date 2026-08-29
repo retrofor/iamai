@@ -6,6 +6,12 @@ Event 与 Message 序列化契约
 ``iamai.SERIALIZATION_CONTRACT_VERSION`` 标识。条款中的“必须”“不得”和“仅”是规范性要求；
 每条要求使用稳定 ID，验证映射见 :doc:`public-api-conformance`。
 
+.. note::
+
+   Provisional ``iamai.harness`` 使用独立版本的 Harness JSONL 来保存 Experiment 与 Trajectory。
+   它不读取或写入 ``SERIALIZATION_CONTRACT_VERSION``，也不属于本契约；Harness artifact 格式可以
+   在 ``1.x`` 内独立迭代，而不会改变稳定 Event/Message wire format。
+
 .. _ser-version-001:
 
 SER-VERSION-001：稳定入口与版本

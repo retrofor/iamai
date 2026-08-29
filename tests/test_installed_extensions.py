@@ -144,6 +144,17 @@ from pathlib import Path
 import sys
 
 from iamai import Context, Message, Runtime
+from iamai.harness import (
+    Action,
+    ExactEvaluator,
+    Experiment,
+    JsonlTrajectoryStore,
+    LookupEnvironment,
+    ScriptedAgent,
+    Task,
+    Trial,
+    TrialConfig,
+)
 from iamai.testing import (
     assert_adapter_api_result,
     assert_adapter_can_close,
@@ -254,6 +265,41 @@ async def run_conformance(runtime, plugin, adapter):
     return {"adapter": True, "plugin": True}
 
 
+async def run_harness():
+    path = Path("installed-harness.jsonl")
+    result = await Experiment(
+        experiment_id="installed-harness",
+        version="1",
+        baseline="baseline",
+        provenance={"distribution": "installed"},
+        trials={
+            "baseline": (
+                Trial(
+                    task=Task(id="installed-task", input=None),
+                    agent=ScriptedAgent(
+                        [Action.finish("done")],
+                        name="installed-agent",
+                        version="1",
+                    ),
+                    environment=LookupEnvironment(
+                        {},
+                        name="installed-environment",
+                        version="1",
+                    ),
+                    evaluator=ExactEvaluator("done", version="1"),
+                    config=TrialConfig(trial_id="installed-trial", max_actions=1),
+                ),
+            )
+        },
+    ).run(JsonlTrajectoryStore(path))
+    loaded = JsonlTrajectoryStore(path).load()
+    return {
+        "complete": result.complete,
+        "round_trip": loaded == result,
+        "status": result.results["baseline"][0].status.value,
+    }
+
+
 def load(mode: str) -> dict[str, object]:
     explicit = mode == "explicit"
     config = {
@@ -297,6 +343,7 @@ print(
             ],
             "iamai_module": str(Path(iamai.__file__).resolve()),
             "runs": [load("explicit"), load("auto")],
+            "harness": asyncio.run(run_harness()),
         }
     )
 )
@@ -330,6 +377,11 @@ print(
     iamai_module = Path(payload["iamai_module"])
     assert any(iamai_module.is_relative_to(path) for path in site_packages)
     assert not iamai_module.is_relative_to(PROJECT_SOURCE_ROOT)
+    assert payload["harness"] == {
+        "complete": True,
+        "round_trip": True,
+        "status": "completed",
+    }
     for run in payload["runs"]:
         assert run["plugins"] == ["reference_plugin"]
         assert run["adapters"] == ["reference_adapter"]

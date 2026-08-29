@@ -14,8 +14,13 @@
       :doc:`architecture` · :doc:`configuration`
 
    **构建业务能力**
-      插件、状态、会话和 Agent Runtime 的实践路径。
+      插件、状态、会话和消息侧 Agent helpers 的实践路径。
       :doc:`plugins` · :doc:`state-and-sessions` · :doc:`agent-runtime`
+
+   **运行研究 Trial**
+      用 headless Harness 组合 Task、Agent、Environment、Trajectory 与 Evaluation，并把持久化 Experiment
+      保存为可校验的 JSONL。
+      :doc:`research-harness` · :doc:`roadmap`
 
    **接入与上线**
       平台适配、Webhook、运维、安全和质量门禁。
@@ -37,6 +42,7 @@
    state-and-sessions
    adapters
    agent-runtime
+   research-harness
    operations
    migration-0.3-to-1.0
    ecosystem-comparison

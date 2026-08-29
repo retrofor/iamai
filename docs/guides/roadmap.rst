@@ -1,8 +1,8 @@
 路线图与设计决策
 ================
 
-这页把 :doc:`ecosystem-comparison` 的定位落到工程顺序。目标不是把 iamai 做成全功能平台，
-而是稳定一个安全、可测试、可嵌入的 Python + Rust runtime/agent runtime。
+这页把 :doc:`ecosystem-comparison` 的定位落到工程顺序。``1.0`` 已经稳定消息 Runtime；
+后续工作在不改变这些语义的前提下，把 iamai 演进为可复现的通用 Agent 研究 Harness。
 
 版本路线图
 ----------
@@ -15,35 +15,60 @@
    社区商店和管理命令。
 
 ``0.3``
-   |latest-stable| ``v0.3.0`` 提供 tool registry、agent permission、审计 trace、MCP gateway、管理 HTTP API
+   |shipped| ``v0.3.0`` 提供 tool registry、agent permission、审计 trace、MCP gateway、管理 HTTP API
    和多种 Agent runtime 示例；同时为 handler 并发和 Session backlog 加入可配置资源边界。
 
 ``0.4``
-   |implemented| 第三方适配器与插件的独立包发布规范、扩展 conformance tests 和配置 schema 导出已进入
-   ``dev``，并纳入 ``1.0`` 发布线，不单独承诺 ``v0.4.0`` tag。WebUI 不进入核心；如果需要 UI，
+   |integrated| 第三方适配器与插件的独立包发布规范、扩展 conformance tests 和配置 schema 导出
+   已纳入 ``1.0`` 发布线，没有单独发布 ``v0.4.0`` tag。WebUI 不进入核心；如果需要 UI，
    应作为独立插件或独立项目调用管理 API。
 
 ``1.0``
-   |release-candidate| 核心公共 API、兼容性规范和 ``0.x`` 到 ``1.x`` 迁移窗口已形成并通过 RC 验证，
-   当前仍是候选契约。
-   ``dev`` 当前为 ``1.0.0rc1``；稳定版仍需完成 `发布治理 #436
-   <https://github.com/retrofor/iamai/issues/436>`_ 和最终精确 revision 验证。
+   |shipped| ``v1.0.0`` 已发布。Runtime、Event、Context、SessionManager、Adapter、Plugin、
+   序列化格式、生命周期规则和扩展兼容性组成稳定的 ``1.x`` 合同。
 
 .. |shipped| raw:: html
 
    <span class="iamai-status-pill">shipped</span>
 
-.. |latest-stable| raw:: html
+.. |integrated| raw:: html
 
-   <span class="iamai-status-pill">latest stable</span>
+   <span class="iamai-status-pill">integrated</span>
 
 .. |implemented| raw:: html
 
    <span class="iamai-status-pill">implemented</span>
 
-.. |release-candidate| raw:: html
+能力里程碑（非版本承诺）
+------------------------
 
-   <span class="iamai-status-pill">release candidate</span>
+这些里程碑表达依赖顺序，不承诺版本号或日期。AGI 是研究方向，不是其中任意一项完成后的产品声明。
+
+语义与兼容性基线
+   保留 ``Runtime``、``Event``、``SessionManager`` 等 ``1.x`` 名称的既有含义；Harness 能力只进入
+   provisional 的 ``iamai.harness``，不从顶层 ``iamai`` 重新导出。
+
+Headless Trial
+   |implemented| 第一条 ``Task → Agent → Environment → Trajectory → Evaluation`` 垂直切片已经形成：
+   无消息平台依赖、有界 Action 预算、确定性基线组件、失败与取消归因、不可变 Trajectory 和无副作用 Replay。
+
+受控执行
+   在 Action 数量之外增加时间、token、费用和工具预算，并把审批、能力声明、隔离执行和取消传播变成
+   可验证策略。
+
+持久化 Experiment
+   |implemented| 第一条 JSONL 垂直切片已保存不可变 Experiment plan、调用方 provenance、variant/baseline
+   标签、Trial start marker 与完整终态 Trajectory；支持完整性链、显式尾修复、已提交 Trial 的幂等恢复、
+   start-only Trial 防重跑、计划冲突检测和 single-writer 纪律。聚合基线统计、artifact manifest、跨
+   Experiment 查询和 schema migration 仍属后续工作。
+
+消息桥接
+   通过独立桥接把稳定消息 Runtime 作为一种 Environment 接入；``Event`` 不改名为 Observation，
+   ``SessionManager`` 也不承担 Trial 存储职责。
+
+离线学习闭环
+   在可复现 Experiment 之上研究数据筛选、策略检查点、回归评测和离线改进。任何“更通用”的结论都必须
+   明确 Task/Environment 分布、种子、预算、版本和基线。
 
 设计决策
 --------
@@ -61,8 +86,8 @@
    审核字段和审计 trace，不承诺完整隔离沙箱。
 
 管理面先 API 后 UI
-   候选端点包括 ``/health``、``/metrics``、``/adapters``、``/plugins``、``/sessions``、``/state``、
-   ``/schema``。WebUI 可以消费这些 API，但不绑定核心 runtime。
+   已有管理命令和观测接口继续保持窄合同；新增 HTTP 管理端点必须先定义权限与生命周期语义。
+   WebUI 可以消费这些 API，但不绑定核心 Runtime。
 
 Rust 只承接纯数据热路径
    消息段转换、规则字段匹配、签名校验和事件 schema validation 可以逐步下沉到 Rust。网络生命周期、

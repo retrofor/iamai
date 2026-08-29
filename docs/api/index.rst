@@ -10,3 +10,15 @@ API 参考
    :imported-members:
    :undoc-members:
    :show-inheritance:
+
+Provisional research Harness
+----------------------------
+
+``iamai.harness`` 是独立的 provisional interface，不从顶层 ``iamai`` 重新导出，也不属于稳定的
+``1.x`` 消息合同。它当前提供 headless Trial、Replay、版本化 Experiment 和 JSONL Trajectory Store。
+
+.. automodule:: iamai.harness
+   :members:
+   :imported-members:
+   :undoc-members:
+   :show-inheritance:

@@ -56,6 +56,33 @@ behavior that changes; Rust accelerates selected message and normalization paths
 > **Stable contract:** `v1.0.0` is the current 1.x compatibility line. Third-party extensions
 > should declare `iamai>=1,<2` and run the public conformance helpers before release.
 
+## General-agent research harness
+
+iamai is evolving beyond its stable messaging Runtime toward recorded, replayable experiments on
+increasingly general agents. The provisional `iamai.harness` namespace now provides the first
+headless, model-independent slice:
+
+```text
+Task → Agent → Environment → Trajectory → Evaluation
+```
+
+It runs bounded Trials, records immutable causal Trajectories, attributes failure and cancellation,
+and can replay results without repeating Agent decisions or Environment effects. The included
+`ScriptedAgent`, `LookupEnvironment`, and `ExactEvaluator` are deterministic baselines; they do not
+require a chat platform or an LLM.
+
+Versioned `Experiment` plans can group explicit baseline and candidate variants. A
+`JsonlTrajectoryStore` persists the plan, caller-declared provenance, Trial start markers, and full
+terminal Trajectories as integrity-checked JSONL, then resumes already committed Trials without
+repeating their effects. A start-only interrupted Trial is never re-executed automatically; other
+never-started Trials in the same plan may continue and the result remains explicitly incomplete.
+
+This namespace is deliberately not re-exported from top-level `iamai` and is not part of the stable
+1.x messaging contract yet. AGI is the research north star, not a shipped capability: progress must
+name the task/environment distribution, seeds, budgets, component versions, and baseline. See the
+[research harness guide](https://github.com/retrofor/iamai/blob/dev/docs/guides/research-harness.rst)
+and [roadmap](https://github.com/retrofor/iamai/blob/dev/docs/guides/roadmap.rst).
+
 ## Run a real message through it
 
 Install the stable runtime in your own project:
@@ -184,6 +211,7 @@ ambiguously, and exposes reusable adapter/plugin conformance helpers for package
 | Inspect public Python classes and functions | [API reference source](https://github.com/retrofor/iamai/tree/dev/docs/api) |
 | Publish or discover an extension | [Community store](https://github.com/retrofor/iamai/blob/dev/docs/community/store.rst) |
 | Compare iamai with platform and agent frameworks | [Ecosystem comparison](https://github.com/retrofor/iamai/blob/dev/docs/guides/ecosystem-comparison.rst) |
+| Run a recorded, replayable headless agent Trial | [Research harness guide](https://github.com/retrofor/iamai/blob/dev/docs/guides/research-harness.rst) |
 
 ## Development
 

@@ -21,6 +21,8 @@ def test_ecosystem_comparison_contains_matrix_and_roadmap_link() -> None:
     assert "iamai-table-scroll" in content
     assert "差距到实现" in content
     assert ":doc:`roadmap`" in content
+    assert ":doc:`research-harness`" in content
+    assert "AGI 只是研究北极星" in content
 
 
 def test_extensions_reference_contains_public_extension_specs() -> None:
@@ -74,6 +76,8 @@ def test_serialization_reference_contains_v1_contract_rules() -> None:
     assert "``Event.from_payload()``" in content
     assert "同一 major" in content
     assert "legacy normalization" in content
+    assert "Harness JSONL" in content
+    assert "不属于本契约" in content
 
 
 def test_public_api_lifecycle_reference_contains_v1_normative_rules() -> None:
@@ -249,10 +253,47 @@ def test_roadmap_contains_versioned_design_decisions() -> None:
 
     assert "``0.1``" in content
     assert "``0.2``" in content
-    assert "``0.3``\n   |latest-stable|" in content
-    assert "``0.4``\n   |implemented|" in content
-    assert "``1.0``\n   |release-candidate|" in content
+    assert "``1.0``\n   |shipped|" in content
+    assert "能力里程碑（非版本承诺）" in content
+    assert "Headless Trial" in content
+    assert "持久化 Experiment" in content
+    assert "持久化 Experiment\n   |implemented|" in content
+    assert "消息桥接" in content
     assert "WebUI 不进入核心" in content
+
+
+def test_research_harness_docs_define_the_provisional_trial_boundary() -> None:
+    content = _read("docs/guides/research-harness.rst")
+    guides_index = _read("docs/guides/index.rst")
+    api_index = _read("docs/api/index.rst")
+    concepts = _read("docs/concepts.rst")
+    readme = _read("README.md")
+    readme_zh = _read("README.zh.md")
+
+    assert "Task → Agent → Environment → Trajectory → Evaluation" in content
+    assert "iamai.harness" in content
+    assert "provisional" in content
+    assert "completed" in content
+    assert "budget_exhausted" in content
+    assert "failed" in content
+    assert "cancelled" in content
+    assert "Replay" in content
+    assert "Re-execution" in content
+    assert "Experiment(" in content
+    assert "JsonlTrajectoryStore" in content
+    assert "repair_tail" in content
+    assert "single writer" in content
+    assert "独立的 provisional 格式版本" in content
+    assert "interrupted" in content
+    assert "research-harness" in guides_index
+    assert "持久化 Experiment" in guides_index
+    assert "iamai.harness" in api_index
+    assert "provisional" in api_index
+    assert "Trajectory Store" in concepts
+    assert "General-agent research harness" in readme
+    assert "JSONL" in readme
+    assert "通用 Agent 研究 Harness" in readme_zh
+    assert "JSONL" in readme_zh
 
 
 def test_community_page_contains_blog_and_store_sections() -> None:

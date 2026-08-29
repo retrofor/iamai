@@ -224,20 +224,27 @@ iamai 当前不需要追求“大而全平台”。下一步优先补齐最能�
 差异化定位
 ----------
 
-iamai 应该定位为：
+``iamai 1.0`` 的已发布定位是：
 
-   一个安全、可测试、可嵌入的 Python + Rust runtime/agent runtime。它不替用户隐藏工程边界，而是把协议、
-   插件、规则、状态、权限、审计和 Agent 工具调用的边界做清楚。
+   一个安全、可测试、可嵌入的 Python + Rust 消息 Runtime。它不替用户隐藏工程边界，而是把协议、
+   插件、规则、状态、权限与审计边界做清楚。
+
+post-1.0 的架构方向是 :doc:`research-harness`：在不重定义稳定消息类型的前提下，建立 headless、
+record-first 的通用 Agent 研究 Harness。消息 Runtime 以后可以通过桥接成为一种 Environment，
+但 Harness 执行模型本身不构造或使用 Adapter、Plugin、Event、SessionManager 或某个 LLM provider。
 
 这和几个方向不同：
 
 - 不是 NoneBot 的生态替代品，而是更强调配置、观测和 Rust 数据核心的小型工程 runtime。
 - 不是 Koishi/AstrBot/LangBot 那样的全功能平台，而是可以被平台、服务和私有系统嵌入的库。
-- 不是 OpenClaw/Hermes 那样“先 agent 后 runtime”的自主 agent，而是先保证消息入口、权限和审计可靠，再逐步接入
-  agent workflow。
+- 不是 OpenClaw/Hermes 那样面向单个自主 Agent 产品的封装；Harness 优先保证 Task、Environment、
+  Trajectory、Evaluation、预算和基线被显式记录、可审计、可回放、可比较。只有组件与外部依赖都
+  确定且版本一致时，同一规范的 Re-execution 才应产生相同结果。
 
 短期结论
 --------
 
-iamai 的路线应该是：安全、可测试、可嵌入的 Python + Rust runtime/agent runtime。核心保持小而稳定；
-协议边界、生态发布、安全声明和 Agent 工具权限先规范化；WebUI 后续作为独立插件或独立项目，不进入核心。
+稳定消息 Runtime 继续遵守 ``1.x`` 合同；新增研究能力进入 provisional 的 ``iamai.harness``。
+短期顺序是先完成可回放的 headless Trial，再扩展受控执行、持久化 Experiment 与消息桥接。
+AGI 只是研究北极星，能力结论必须明确 Task/Environment 分布、seed、预算、组件版本和基线；
+WebUI 仍作为独立插件或独立项目，不进入核心。具体里程碑见 :doc:`roadmap`。
