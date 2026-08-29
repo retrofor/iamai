@@ -2,7 +2,7 @@
 
 All notable changes to iamai are documented in this file.
 
-## [1.0.0] - Unreleased
+## [1.0.0] - 2026-08-29
 
 ### Added
 
