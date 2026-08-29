@@ -26,10 +26,33 @@ FrozenJsonValue: TypeAlias = (
 
 TRAJECTORY_FORMAT_VERSION = "1"
 HARNESS_CONFIGURATION_VERSION = "1"
+_MAX_JSON_NESTING_DEPTH = 128
 
 
-def _freeze_json(value: object, *, path: str = "$") -> FrozenJsonValue:
-    if value is None or isinstance(value, (bool, int, str)):
+def _freeze_json(
+    value: object,
+    *,
+    path: str = "$",
+    _depth: int = 0,
+) -> FrozenJsonValue:
+    if _depth > _MAX_JSON_NESTING_DEPTH:
+        raise ValueError(
+            f"{path} exceeds the maximum JSON nesting depth "
+            f"of {_MAX_JSON_NESTING_DEPTH}"
+        )
+    if value is None or isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        try:
+            value.encode("utf-8")
+        except UnicodeEncodeError as exc:
+            raise ValueError(f"{path} contains a string that is not valid Unicode") from exc
+        return value
+    if isinstance(value, int):
+        try:
+            json.dumps(value, allow_nan=False)
+        except ValueError as exc:
+            raise ValueError(f"{path} contains a JSON integer that is too large") from exc
         return value
     if isinstance(value, float):
         if not math.isfinite(value):
@@ -40,11 +63,25 @@ def _freeze_json(value: object, *, path: str = "$") -> FrozenJsonValue:
         for key, item in value.items():
             if not isinstance(key, str):
                 raise TypeError(f"{path} must contain string object keys")
-            frozen[key] = _freeze_json(item, path=f"{path}.{key}")
+            try:
+                key.encode("utf-8")
+            except UnicodeEncodeError as exc:
+                raise ValueError(
+                    f"{path} contains an object key that is not valid Unicode"
+                ) from exc
+            frozen[key] = _freeze_json(
+                item,
+                path=f"{path}.{key}",
+                _depth=_depth + 1,
+            )
         return MappingProxyType(frozen)
     if isinstance(value, (list, tuple)):
         return tuple(
-            _freeze_json(item, path=f"{path}[{index}]")
+            _freeze_json(
+                item,
+                path=f"{path}[{index}]",
+                _depth=_depth + 1,
+            )
             for index, item in enumerate(value)
         )
     raise TypeError(f"{path} must contain only JSON-compatible values")
@@ -88,6 +125,7 @@ class Task:
             raise TypeError("task id must be a string")
         if not self.id.strip():
             raise ValueError("task id cannot be empty")
+        _freeze_json(self.id, path="$.task.id")
         object.__setattr__(self, "input", _freeze_json(self.input, path="$.task.input"))
 
 
@@ -104,12 +142,15 @@ class TrialConfig:
             raise TypeError("trial_id must be a string")
         if not self.trial_id.strip():
             raise ValueError("trial id cannot be empty")
+        _freeze_json(self.trial_id, path="$.trial_config.trial_id")
         if isinstance(self.seed, bool) or not isinstance(self.seed, int):
             raise TypeError("seed must be an integer")
+        _freeze_json(self.seed, path="$.trial_config.seed")
         if isinstance(self.max_actions, bool) or not isinstance(self.max_actions, int):
             raise TypeError("max_actions must be an integer")
         if self.max_actions <= 0:
             raise ValueError("max_actions must be greater than zero")
+        _freeze_json(self.max_actions, path="$.trial_config.max_actions")
 
 
 class TrialStatus(str, Enum):
@@ -144,6 +185,7 @@ class Action:
             raise TypeError("action name must be a string")
         if not self.name.strip():
             raise ValueError("action name cannot be empty")
+        _freeze_json(self.name, path="$.action.name")
         if not isinstance(self.is_final, bool):
             raise TypeError("action is_final must be a bool")
         object.__setattr__(
@@ -208,6 +250,11 @@ class Evaluation:
             raise ValueError("Evaluation evaluator cannot be empty")
         if not isinstance(self.evaluator_version, str) or not self.evaluator_version.strip():
             raise ValueError("Evaluation evaluator_version cannot be empty")
+        _freeze_json(self.evaluator, path="$.evaluation.evaluator")
+        _freeze_json(
+            self.evaluator_version,
+            path="$.evaluation.evaluator_version",
+        )
         object.__setattr__(self, "score", score)
 
 
@@ -226,8 +273,10 @@ class TrajectoryRecord:
             or self.sequence < 0
         ):
             raise ValueError("Trajectory record sequence must be a non-negative integer")
+        _freeze_json(self.sequence, path="$.trajectory.record.sequence")
         if not isinstance(self.kind, str) or not self.kind.strip():
             raise ValueError("Trajectory record kind cannot be empty")
+        _freeze_json(self.kind, path="$.trajectory.record.kind")
         payload = _freeze_json(self.payload, path="$.trajectory.record.payload")
         if not isinstance(payload, Mapping):
             raise TypeError("Trajectory record payload must be an object")
@@ -251,10 +300,13 @@ class Trajectory:
             raise ValueError("Trajectory format version cannot be empty")
         if not isinstance(self.trial_id, str) or not self.trial_id.strip():
             raise ValueError("Trajectory trial id cannot be empty")
+        _freeze_json(self.format_version, path="$.trajectory.format_version")
+        _freeze_json(self.trial_id, path="$.trajectory.trial_id")
         if not isinstance(self.task, Task):
             raise TypeError("Trajectory task must be a Task")
         if isinstance(self.seed, bool) or not isinstance(self.seed, int):
             raise TypeError("Trajectory seed must be an integer")
+        _freeze_json(self.seed, path="$.trajectory.seed")
         configuration = _freeze_json(
             self.configuration,
             path="$.trajectory.configuration",
@@ -266,6 +318,7 @@ class Trajectory:
             raise TypeError("Trajectory records must contain TrajectoryRecord values")
         if not isinstance(self.config_hash, str) or not self.config_hash.strip():
             raise ValueError("Trajectory configuration hash cannot be empty")
+        _freeze_json(self.config_hash, path="$.trajectory.config_hash")
         object.__setattr__(self, "configuration", configuration)
         object.__setattr__(self, "records", records)
 
@@ -284,8 +337,10 @@ class TrialFailure:
             value = getattr(self, field_name)
             if not isinstance(value, str) or not value.strip():
                 raise ValueError(f"TrialFailure {field_name} cannot be empty")
+            _freeze_json(value, path=f"$.trial_failure.{field_name}")
         if not isinstance(self.message, str):
             raise TypeError("TrialFailure message must be a string")
+        _freeze_json(self.message, path="$.trial_failure.message")
 
 
 @dataclass(frozen=True, slots=True)
@@ -302,6 +357,7 @@ class TrialResult:
     def __post_init__(self) -> None:
         if not isinstance(self.trial_id, str) or not self.trial_id.strip():
             raise ValueError("TrialResult trial_id cannot be empty")
+        _freeze_json(self.trial_id, path="$.trial_result.trial_id")
         if not isinstance(self.status, TrialStatus):
             raise TypeError("TrialResult status must be a TrialStatus")
         if not isinstance(self.trajectory, Trajectory):

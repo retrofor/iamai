@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import asyncio
 from collections.abc import Awaitable, Mapping
-from typing import Protocol, TypeVar
+from typing import Protocol, TypeVar, cast
 
 from ._model import (
     HARNESS_CONFIGURATION_VERSION,
@@ -33,9 +33,11 @@ _AwaitedT = TypeVar("_AwaitedT")
 
 def _safe_exception_message(error: Exception) -> str:
     try:
-        return str(error)
+        message = str(error)
+        message.encode("utf-8")
     except Exception:
         return f"<{type(error).__name__} message unavailable>"
+    return message
 
 
 class _Agent(Protocol):
@@ -62,6 +64,21 @@ class _Environment(Protocol):
     async def reset(self, task: Task, *, seed: int) -> Observation: ...
 
     async def step(self, action: Action, *, seed: int, action_index: int) -> Transition: ...
+
+
+class _ControlledEnvironment(_Environment, Protocol):
+    async def _step_with_audit(
+        self,
+        action: Action,
+        *,
+        trial_id: str,
+        seed: int,
+        action_index: int,
+    ) -> Transition: ...
+
+    def _drain_trajectory_records(
+        self,
+    ) -> tuple[tuple[str, Mapping[str, FrozenJsonValue]], ...]: ...
 
 
 class _Evaluator(Protocol):
@@ -181,6 +198,9 @@ class Trial:
             task=task,
             configuration=configuration,
         )
+        bind_trial = getattr(environment, "_bind_trial", None)
+        if callable(bind_trial):
+            bind_trial(config.trial_id)
 
     @property
     def task(self) -> Task:
@@ -262,11 +282,28 @@ class Trial:
         phase: str,
         operation: str,
     ) -> _AwaitedT:
+        operation_task = asyncio.ensure_future(awaitable)
         try:
-            return await awaitable
+            result = await operation_task
         except asyncio.CancelledError:
-            self._cancel(phase=phase, operation=operation)
+            current = asyncio.current_task()
+            if current is not None and current.cancelling() > 0:
+                self._cancel(phase=phase, operation=operation)
+                raise
+            raise RuntimeError(
+                f"{operation} raised CancelledError without caller cancellation"
+            ) from None
+        except BaseException:
+            current = asyncio.current_task()
+            if current is not None and current.cancelling() > 0:
+                self._cancel(phase=phase, operation=operation)
+                raise asyncio.CancelledError from None
             raise
+        current = asyncio.current_task()
+        if current is not None and current.cancelling() > 0:
+            self._cancel(phase=phase, operation=operation)
+            raise asyncio.CancelledError
+        return result
 
     def _validate_evaluation_identity(self, evaluation: Evaluation) -> None:
         if (
@@ -276,6 +313,32 @@ class Trial:
             raise ValueError(
                 "Evaluation identity must match the declared Evaluator name and version"
             )
+
+    async def _step_environment(
+        self,
+        action: Action,
+        *,
+        action_index: int,
+    ) -> Transition:
+        step_with_audit = getattr(self.environment, "_step_with_audit", None)
+        drain = getattr(self.environment, "_drain_trajectory_records", None)
+        if not callable(step_with_audit) or not callable(drain):
+            return await self.environment.step(
+                action,
+                seed=self.config.seed,
+                action_index=action_index,
+            )
+        controlled = cast(_ControlledEnvironment, self.environment)
+        try:
+            return await controlled._step_with_audit(
+                action,
+                trial_id=self.config.trial_id,
+                seed=self.config.seed,
+                action_index=action_index,
+            )
+        finally:
+            for kind, payload in controlled._drain_trajectory_records():
+                self._trajectory.append(kind, payload)
 
     async def run(self) -> TrialResult:
         """Run the Trial to a terminating Transition and Evaluation."""
@@ -325,11 +388,7 @@ class Trial:
                 )
             try:
                 transition = await self._await_phase(
-                    self.environment.step(
-                        action,
-                        seed=self.config.seed,
-                        action_index=action_index,
-                    ),
+                    self._step_environment(action, action_index=action_index),
                     phase="environment",
                     operation="environment.step",
                 )

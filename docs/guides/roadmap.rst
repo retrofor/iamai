@@ -53,8 +53,10 @@ Headless Trial
    无消息平台依赖、有界 Action 预算、确定性基线组件、失败与取消归因、不可变 Trajectory 和无副作用 Replay。
 
 受控执行
-   在 Action 数量之外增加时间、token、费用和工具预算，并把审批、能力声明、隔离执行和取消传播变成
-   可验证策略。
+   |implemented| 第一条受控异步 Tool 垂直切片已提供冻结声明与 schema 子集、静态 default-deny Policy、
+   绑定单次请求的 Approval、Tool attempt 预算、基于 reservation 的 token/费用上限、每次调用的协作式
+   timeout，以及 ``tool.call.outcome`` 审计证据。OS/进程/网络沙箱、Trial 总时限、远程持久审批、
+   独立 usage meter、分布式预算、effect rollback 和外部 exactly-once 仍属后续工作。
 
 持久化 Experiment
    |implemented| 第一条 JSONL 垂直切片已保存不可变 Experiment plan、调用方 provenance、variant/baseline

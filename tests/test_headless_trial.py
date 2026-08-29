@@ -272,6 +272,33 @@ def test_public_trajectory_constructors_freeze_nested_mappings() -> None:
         record.payload["new"] = "value"  # type: ignore[index]
 
 
+def test_public_json_values_reject_excessive_nesting() -> None:
+    nested: object = "leaf"
+    for _ in range(129):
+        nested = [nested]
+
+    with pytest.raises(ValueError, match="maximum JSON nesting depth"):
+        Task(id="too-deep", input=nested)
+    with pytest.raises(ValueError, match="not valid Unicode"):
+        TrialConfig(trial_id="\ud800")
+    with pytest.raises(ValueError, match="JSON integer that is too large"):
+        TrajectoryRecord(
+            sequence=10**5000,
+            kind="trial.started",
+            payload={},
+        )
+    with pytest.raises(ValueError, match="JSON integer that is too large"):
+        Trajectory(
+            format_version="1",
+            trial_id="huge-seed",
+            task=Task(id="huge-seed", input=None),
+            seed=10**5000,
+            configuration={},
+            config_hash="sha256:fixture",
+            records=(),
+        )
+
+
 def test_public_trial_result_freezes_direct_final_output() -> None:
     async def scenario() -> None:
         original = await _capital_trial().run()
@@ -289,6 +316,13 @@ def test_public_trial_result_freezes_direct_final_output() -> None:
         assert direct.final_output["parts"] == ("Paris",)
 
     asyncio.run(scenario())
+
+
+def test_harness_json_rejects_lone_unicode_surrogates() -> None:
+    with pytest.raises(ValueError, match="valid Unicode"):
+        Action.finish("\ud800")
+    with pytest.raises(ValueError, match="valid Unicode"):
+        Task(id="invalid-unicode-key", input={"\udfff": "value"})
 
 
 def test_cancellation_records_terminal_state_and_propagates() -> None:
@@ -343,6 +377,39 @@ def test_cancellation_records_terminal_state_and_propagates() -> None:
         assert replayed.status is TrialStatus.CANCELLED
         assert replayed.evaluation is None
         assert replayed.failure is None
+
+    asyncio.run(scenario())
+
+
+def test_phase_callback_self_cancellation_is_an_attributed_failure() -> None:
+    class SelfCancellingAgent:
+        name = "self-cancelling-agent"
+        version = "1"
+        configuration: dict[str, object] = {}
+
+        async def decide(self, *args: object, **kwargs: object) -> Action:
+            del args, kwargs
+            raise asyncio.CancelledError
+
+    async def scenario() -> None:
+        result = await Trial(
+            task=Task(id="self-cancelling-agent", input=None),
+            agent=SelfCancellingAgent(),
+            environment=LookupEnvironment(
+                {},
+                name="self-cancelling-agent-environment",
+                version="1",
+            ),
+            evaluator=ExactEvaluator(None, version="1"),
+            config=TrialConfig(trial_id="self-cancelling-agent-1", max_actions=1),
+        ).run()
+
+        assert result.status is TrialStatus.FAILED
+        assert result.failure is not None
+        assert result.failure.phase == "agent"
+        assert result.failure.code == "agent_decide_error"
+        assert result.failure.exception_type == "RuntimeError"
+        assert replay(result.trajectory) == result
 
     asyncio.run(scenario())
 
@@ -436,6 +503,20 @@ def test_trial_records_budget_exhaustion_as_an_evaluated_result() -> None:
             "trial.terminated",
         ]
         assert result.trajectory.records[-1].payload["status"] == "budget_exhausted"
+
+        records = list(result.trajectory.records)
+        budget_index = next(
+            index
+            for index, record in enumerate(records)
+            if record.kind == "budget.exhausted"
+        )
+        records[budget_index] = replace(
+            records[budget_index],
+            payload={"max_actions": True},
+        )
+        tampered = replace(result.trajectory, records=tuple(records))
+        with pytest.raises(ValueError, match="invalid Trajectory causal order"):
+            replay(tampered)
 
     asyncio.run(scenario())
 
@@ -768,6 +849,37 @@ def test_unprintable_exception_still_produces_one_terminal_failure() -> None:
             "trial.failure",
             "trial.terminated",
         ]
+
+    asyncio.run(scenario())
+
+
+def test_noncanonical_exception_message_still_produces_terminal_failure() -> None:
+    class FailingAgent:
+        name = "noncanonical-failure-agent"
+        version = "1"
+        configuration: dict[str, object] = {}
+
+        async def decide(self, *args: object, **kwargs: object) -> Action:
+            del args, kwargs
+            raise ValueError("\ud800")
+
+    async def scenario() -> None:
+        result = await Trial(
+            task=Task(id="noncanonical-failure", input=None),
+            agent=FailingAgent(),
+            environment=LookupEnvironment(
+                {},
+                name="noncanonical-failure-environment",
+                version="1",
+            ),
+            evaluator=ExactEvaluator(None, version="1"),
+            config=TrialConfig(trial_id="trial-noncanonical-failure", max_actions=1),
+        ).run()
+
+        assert result.status is TrialStatus.FAILED
+        assert result.failure is not None
+        assert result.failure.message == "<ValueError message unavailable>"
+        assert replay(result.trajectory) == result
 
     asyncio.run(scenario())
 

@@ -56,6 +56,26 @@ _Avoid_: Tool call, command, response
 The committed outcome of applying an Action to an Environment, including the next Observation and termination state.
 _Avoid_: Callback result, event
 
+**Tool Specification**:
+A frozen, versioned declaration for one asynchronous Tool, including its supported input schema, permission label, runtime capability claims, approval requirement, and token or cost reservation. Its metadata enables validation and audit; it does not isolate the implementation.
+_Avoid_: Runtime ToolRegistry entry, sandbox policy
+
+**Tool Call**:
+One non-final Action presented to a Controlled Tool Environment as an invocation attempt. It may be rejected before matching a Tool Specification; its Harness-visible outcome does not prove that an external effect occurred exactly once.
+_Avoid_: Plugin command, final answer
+
+**Execution Policy**:
+A versioned, static, default-deny declaration over Tool names, permission labels, and declared runtime capabilities. It is not the stable Runtime Permission, dynamic authorization, or containment.
+_Avoid_: Permission, sandbox, policy engine
+
+**Approval**:
+An Approver decision hash-bound to one Tool invocation through a fresh request nonce, Trial Action, Tool Specification, arguments, Execution Policy, Execution Budget, and reservation. It is not blanket permission or proof of safety.
+_Avoid_: Permission grant, safety check
+
+**Execution Budget**:
+Run-scoped Tool-attempt and reservation ceilings plus a per-call cooperative timeout shared by approval and Tool execution. It is not a Trial-wide deadline, an independently verified bill, or external-effect rollback.
+_Avoid_: Trial budget, billing guarantee
+
 **Trajectory**:
 The append-only, causally ordered evidence of a Trial. It records decision-relevant inputs and committed outcomes so the Trial can be audited and replayed without claiming access to hidden reasoning.
 _Avoid_: Trace, transcript, log

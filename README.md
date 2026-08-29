@@ -47,7 +47,7 @@ iamai puts a small, explicit runtime between those two worlds:
 | **Platform edge** | Adapters normalize Terminal, OneBot, Telegram, and Webhook traffic into `Event` and `Message` objects. |
 | **Application code** | Plugins use `Context`, commands, rules, permissions, dependency injection, middleware, state, and sessions. |
 | **Runtime lifecycle** | Discovery, startup, shutdown, reload, rollback, configuration, and observability have documented behavior. |
-| **Agent execution** | Optional model calls, tools, approvals, traces, and guardrails sit behind the same permission and audit boundaries. |
+| **Agent execution** | Optional model calls, Tool metadata, approval hooks, traces, and example guardrails remain explicit and auditable. |
 
 iamai is a runtime, not an all-in-one bot dashboard. It does not require an LLM, hide the
 network boundary, or force application code into a platform-specific SDK. Python owns the
@@ -76,6 +76,18 @@ Versioned `Experiment` plans can group explicit baseline and candidate variants.
 terminal Trajectories as integrity-checked JSONL, then resumes already committed Trials without
 repeating their effects. A start-only interrupted Trial is never re-executed automatically; other
 never-started Trials in the same plan may continue and the result remains explicitly incomplete.
+
+For declared asynchronous Tools, `ControlledToolEnvironment` adds strict `ToolSpec` input
+validation, a static default-deny `ExecutionPolicy`, approvals bound to one exact request, and
+run-scoped reservation ledgers for Tool calls, tokens, and integer cost microunits. Each handled
+non-final Action records a `tool.call.outcome`; final Actions still terminate through the
+Environment without becoming Tool calls.
+
+These controls apply only to declared Harness Tool calls.
+They are not an OS, process, or network sandbox, a proof of safety, or an exactly-once guarantee.
+`tool_timeout_seconds` is a cooperative
+per-call timeout shared by approval and Tool execution, while `ToolResult` usage remains a trusted
+report from the Tool adapter rather than an independently verified provider bill.
 
 This namespace is deliberately not re-exported from top-level `iamai` and is not part of the stable
 1.x messaging contract yet. AGI is the research north star, not a shipped capability: progress must

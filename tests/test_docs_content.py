@@ -256,6 +256,7 @@ def test_roadmap_contains_versioned_design_decisions() -> None:
     assert "``1.0``\n   |shipped|" in content
     assert "能力里程碑（非版本承诺）" in content
     assert "Headless Trial" in content
+    assert "受控执行\n   |implemented|" in content
     assert "持久化 Experiment" in content
     assert "持久化 Experiment\n   |implemented|" in content
     assert "消息桥接" in content
@@ -294,6 +295,60 @@ def test_research_harness_docs_define_the_provisional_trial_boundary() -> None:
     assert "JSONL" in readme
     assert "通用 Agent 研究 Harness" in readme_zh
     assert "JSONL" in readme_zh
+
+
+def test_controlled_execution_docs_define_scope_and_non_guarantees() -> None:
+    content = _read("docs/guides/research-harness.rst")
+    roadmap = _read("docs/guides/roadmap.rst")
+    api_index = _read("docs/api/index.rst")
+    context = _read("CONTEXT.md")
+    adr = _read("docs/adr/0002-controlled-tool-environment.md")
+    readme = _read("README.md")
+    readme_zh = _read("README.zh.md")
+
+    public_names = (
+        "ToolSpec",
+        "ToolResult",
+        "ExecutionPolicy",
+        "ExecutionBudget",
+        "ApprovalRequest",
+        "ApprovalDecision",
+        "Approver",
+        "ToolCallStatus",
+        "ControlledToolEnvironment",
+    )
+    for name in public_names:
+        assert name in content
+        assert name in api_index
+
+    for status in (
+        "succeeded",
+        "invalid",
+        "denied",
+        "budget_exhausted",
+        "timed_out",
+        "failed",
+        "cancelled",
+    ):
+        assert f"``{status}``" in content
+
+    assert "iamai-json-schema-subset-1" in content
+    assert "tool.call.outcome" in content
+    assert "request nonce" in content
+    assert "tool_timeout_seconds" in content
+    assert "它不是 Trial 总时限" in content
+    assert "usage_exceeded_reservation" in content
+    assert "不是 OS、进程、文件系统、网络或凭据沙箱" in content
+    assert "exactly-once" in content
+    assert "受控执行\n   |implemented|" in roadmap
+    assert "OS/进程/网络沙箱" in roadmap
+    assert "Execution Policy" in context
+    assert "It is not the stable Runtime Permission" in context
+    assert adr.startswith("---\nstatus: accepted\n---")
+    assert "one Trial" in adr
+    assert "external exactly-once" in adr
+    assert "not an OS, process, or network sandbox" in readme
+    assert "不提供 OS、进程或网络沙箱" in readme_zh
 
 
 def test_community_page_contains_blog_and_store_sections() -> None:

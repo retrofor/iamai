@@ -146,12 +146,17 @@ import sys
 from iamai import Context, Message, Runtime
 from iamai.harness import (
     Action,
+    ControlledToolEnvironment,
     ExactEvaluator,
     Experiment,
+    ExecutionBudget,
+    ExecutionPolicy,
     JsonlTrajectoryStore,
-    LookupEnvironment,
     ScriptedAgent,
     Task,
+    Tool,
+    ToolResult,
+    ToolSpec,
     Trial,
     TrialConfig,
 )
@@ -266,6 +271,13 @@ async def run_conformance(runtime, plugin, adapter):
 
 
 async def run_harness():
+    async def installed_tool(arguments):
+        return ToolResult(
+            output=arguments["value"],
+            tokens=1,
+            cost_microunits=2,
+        )
+
     path = Path("installed-harness.jsonl")
     result = await Experiment(
         experiment_id="installed-harness",
@@ -277,26 +289,64 @@ async def run_harness():
                 Trial(
                     task=Task(id="installed-task", input=None),
                     agent=ScriptedAgent(
-                        [Action.finish("done")],
+                        [
+                            Action.invoke("installed-tool", {"value": "observed"}),
+                            Action.finish("done"),
+                        ],
                         name="installed-agent",
                         version="1",
                     ),
-                    environment=LookupEnvironment(
-                        {},
+                    environment=ControlledToolEnvironment(
+                        tools=(
+                            Tool(
+                                ToolSpec(
+                                    name="installed-tool",
+                                    version="1",
+                                    input_schema={
+                                        "type": "object",
+                                        "properties": {"value": {"type": "string"}},
+                                        "required": ["value"],
+                                        "additionalProperties": False,
+                                    },
+                                    permission_name="installed.read",
+                                    reserved_tokens=1,
+                                    reserved_cost_microunits=2,
+                                ),
+                                installed_tool,
+                            ),
+                        ),
+                        policy=ExecutionPolicy(
+                            version="1",
+                            allowed_tools=("installed-tool",),
+                            allowed_permissions=("installed.read",),
+                        ),
+                        budget=ExecutionBudget(
+                            max_tool_calls=1,
+                            max_tokens=1,
+                            max_cost_microunits=2,
+                            tool_timeout_seconds=1,
+                            currency="USD",
+                            pricing_version="installed-fixture-1",
+                        ),
                         name="installed-environment",
                         version="1",
                     ),
                     evaluator=ExactEvaluator("done", version="1"),
-                    config=TrialConfig(trial_id="installed-trial", max_actions=1),
+                    config=TrialConfig(trial_id="installed-trial", max_actions=2),
                 ),
             )
         },
     ).run(JsonlTrajectoryStore(path))
     loaded = JsonlTrajectoryStore(path).load()
+    trajectory = result.results["baseline"][0].trajectory
+    tool_outcome = next(
+        record for record in trajectory.records if record.kind == "tool.call.outcome"
+    )
     return {
         "complete": result.complete,
         "round_trip": loaded == result,
         "status": result.results["baseline"][0].status.value,
+        "tool_status": tool_outcome.payload["status"],
     }
 
 
@@ -381,6 +431,7 @@ print(
         "complete": True,
         "round_trip": True,
         "status": "completed",
+        "tool_status": "succeeded",
     }
     for run in payload["runs"]:
         assert run["plugins"] == ["reference_plugin"]
