@@ -1,13 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 320" role="img" aria-labelledby="title desc">
   <title id="title">iamai</title>
-  <desc id="desc">iamai wordmark with input and output paths surrounding a central runtime.</desc>
+  <desc id="desc">iamai gateway mark and mirrored wordmark.</desc>
 
   <g transform="translate(40 40) scale(.46875)">
     <rect x="0" y="0" width="512" height="512" rx="126" fill="#17212b"/>
-    <path d="M190 150 112 256l78 106" fill="none" stroke="#ff5c45" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="m322 150 78 106-78 106" fill="none" stroke="#2dd4a3" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="256" cy="164" r="27" fill="#f8fafc"/>
-    <path d="M256 226v126" fill="none" stroke="#f8fafc" stroke-width="54" stroke-linecap="round"/>
+    <g fill="none" stroke-width="44" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M190 138h-24c-30 0-50 20-50 50v136c0 30 20 50 50 50h24" stroke="#ff5c45"/>
+      <path d="M84 256h32" stroke="#ff5c45"/>
+      <path d="M322 138h24c30 0 50 20 50 50v136c0 30-20 50-50 50h-24" stroke="#2dd4a3"/>
+      <path d="M396 256h32" stroke="#2dd4a3"/>
+    </g>
+    <circle cx="256" cy="170" r="25" fill="#f8fafc"/>
+    <path d="M256 230v112" fill="none" stroke="#f8fafc" stroke-width="50" stroke-linecap="round"/>
   </g>
-  <text x="328" y="211" fill="#17212b" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="128" font-weight="760" letter-spacing="0">iam<tspan fill="#e8462f">ai</tspan></text>
+  <text x="328" y="211" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="128" font-weight="760" letter-spacing="-3"><tspan fill="#e8462f">ia</tspan><tspan fill="#17212b">m</tspan><tspan fill="#159b7a">ai</tspan></text>
 </svg>
