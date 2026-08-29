@@ -6,7 +6,10 @@ import re
 import tomli
 
 ROOT = Path(__file__).resolve().parents[1]
-SETUP_UV_ACTION = "astral-sh/setup-uv@v8.3.2"
+_SETUP_UV_USES_PATTERN = re.compile(r"uses:\s*astral-sh/setup-uv@(?P<ref>\S+)")
+# A bare floating major tag (e.g. ``@v8``) tracks whatever the newest major release
+# is, so the resolved action can change without any change in this repository.
+_SETUP_UV_FLOATING_MAJOR_PATTERN = re.compile(r"^v\d+$")
 _RELEASE_VERSION_PATTERN = re.compile(
     r"^(?P<major>0|[1-9]\d*)\."
     r"(?P<minor>0|[1-9]\d*)\."
@@ -95,10 +98,18 @@ def test_tag_workflow_owns_the_github_and_pypi_release() -> None:
 
 
 def test_workflows_pin_setup_uv_to_a_resolvable_release_tag() -> None:
+    # Assert the invariant (every setup-uv step is pinned to one consistent,
+    # resolvable tag) rather than any specific version, so dependabot bumps such as
+    # v8.3.2 -> v9.0.0 do not require editing this test.
+    refs: list[str] = []
     for path in (".github/workflows/check.yml", ".github/workflows/release.yml"):
         workflow = (ROOT / path).read_text(encoding="utf-8")
-        assert SETUP_UV_ACTION in workflow
-        assert "astral-sh/setup-uv@v8\n" not in workflow
+        refs.extend(_SETUP_UV_USES_PATTERN.findall(workflow))
+    assert refs, "expected at least one astral-sh/setup-uv usage in CI workflows"
+    assert len(set(refs)) == 1, f"setup-uv pin must be consistent across workflows: {refs}"
+    assert not _SETUP_UV_FLOATING_MAJOR_PATTERN.match(refs[0]), (
+        f"setup-uv must be pinned to a resolvable release tag, not floating major {refs[0]}"
+    )
 
 
 def test_pre_commit_ci_has_a_repository_configuration() -> None:
