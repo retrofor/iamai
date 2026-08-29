@@ -2,7 +2,7 @@
 
 All notable changes to iamai are documented in this file.
 
-## [1.0.0rc1] - 2026-07-16
+## [1.0.0] - 2026-08-29
 
 ### Added
 
@@ -54,5 +54,5 @@ All notable changes to iamai are documented in this file.
 - Fixed plugin loading on Windows paths and tightened example runtime type safety.
 - Fixed example LLM environment precedence, extra request body validation, and test-time log pollution.
 
-[1.0.0rc1]: https://github.com/retrofor/iamai/compare/v0.3.0...v1.0.0rc1
+[1.0.0]: https://github.com/retrofor/iamai/compare/v0.3.0...v1.0.0
 [0.3.0]: https://github.com/retrofor/iamai/releases/tag/v0.3.0

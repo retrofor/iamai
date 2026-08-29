@@ -1,9 +1,9 @@
 1.0 公共 API 与 Conformance Matrix
 ===================================
 
-本页定义 iamai 1.0 的公共兼容边界，并把所有规范条款映射到验证证据。当前 ``1.0.0rc1`` 是
-**1.0 候选契约**；表中的稳定承诺在 ``1.0.0`` 正式发布时生效。RC 期间如需修订，必须同步更新
-规范、迁移指南、golden manifest 和矩阵，不能把未说明的变化带入正式版。
+本页定义 iamai 1.0 的公共兼容边界，并把所有规范条款映射到验证证据。``1.0.0rc1`` 已完成候选
+契约验证；``1.0.0`` 正式发布后，表中的稳定承诺生效。后续修订必须同步更新规范、迁移指南、
+golden manifest 和矩阵，不能把未说明的变化带入稳定版本。
 
 .. _api-version-001:
 
@@ -38,8 +38,8 @@ API-SURFACE-001：稳定与 provisional symbol
 -------------------------------------------
 
 ``tests/golden/public_api_v1.json`` 是 1.0 顶层 public symbol 的机器可读快照。``iamai.__all__`` 中
-除下表 provisional 项之外的 symbol 是 1.0 稳定候选；``on_command``、``on_message`` 和
-``on_event`` 别名也属于稳定候选。未进入 ``iamai.__all__`` 的模块内部名称不构成兼容承诺。
+除下表 provisional 项之外的 symbol 是 1.0 稳定接口；``on_command``、``on_message`` 和
+``on_event`` 别名也属于稳定接口。未进入 ``iamai.__all__`` 的模块内部名称不构成兼容承诺。
 
 .. list-table:: 顶层公共状态
    :header-rows: 1
