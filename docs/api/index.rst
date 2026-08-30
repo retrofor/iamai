@@ -10,3 +10,19 @@ API 参考
    :imported-members:
    :undoc-members:
    :show-inheritance:
+
+Provisional research Harness
+----------------------------
+
+``iamai.harness`` 是独立的 provisional interface，不从顶层 ``iamai`` 重新导出，也不属于稳定的
+``1.x`` 消息合同。它当前提供 headless Trial、Replay、版本化 Experiment、JSONL Trajectory Store，
+以及受控 Tool interface：``ToolSpec``、``Tool``、``ToolResult``、``ExecutionPolicy``、
+``ExecutionBudget``、``ApprovalRequest``、``ApprovalDecision``、``Approver``、``ToolCallStatus`` 和
+``ControlledToolEnvironment``。Harness ``ExecutionPolicy`` 不复用稳定消息 Runtime 的
+``Permission`` 或 ``ToolRegistry``，``ControlledToolEnvironment`` 也不是隔离沙箱。
+
+.. automodule:: iamai.harness
+   :members:
+   :imported-members:
+   :undoc-members:
+   :show-inheritance:

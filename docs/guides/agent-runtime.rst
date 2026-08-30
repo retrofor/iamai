@@ -1,9 +1,10 @@
-Agent Runtime
-=============
+Agent Runtime helpers（1.0）
+==============================
 
-iamai 内置的 agent runtime 是一组轻量工具，不是完整 agent 平台。它主要服务 examples 中的
-ReAct、Planner/Executor、Supervisor 等模式，让示例能共享模型配置、工具注册、trace 和简单
-guardrail。
+这一页描述 ``1.0`` 消息示例使用的 provisional 模型与工具 helpers，不是完整 Agent 平台，
+也不是新的 ``iamai.harness``。它们主要服务 examples 中的 ReAct、Planner/Executor、Supervisor
+等模式，让 Plugin 共享模型配置、工具注册、trace 和简单 guardrail。需要运行、记录和比较 headless
+Trial 时，请改读 :doc:`research-harness`。
 
 核心对象
 --------
@@ -56,6 +57,7 @@ guardrail。
 设计边界
 --------
 
+- ``Runtime`` 始终指稳定的消息生命周期 host；不要用它指代 Harness 或 Trial executor。
 - 把业务逻辑放回插件，把 agent runtime 当作能力模块。
 - 工具保持窄权限、显式输入和可枚举描述。
 - 保留 trace，不要让模型调用成为纯黑盒。

@@ -46,13 +46,45 @@ iamai 在平台与业务之间放置一个小而明确的运行时：
 | **平台边缘** | Adapter 把 Terminal、OneBot、Telegram 和 Webhook 流量归一化为 `Event` 与 `Message`。 |
 | **业务代码** | Plugin 只使用 `Context`、命令、规则、权限、依赖注入、中间件、状态和会话。 |
 | **运行时生命周期** | 扩展发现、启动、关闭、重载、回滚、配置与可观测性都有明确合同。 |
-| **Agent 执行** | 可选的模型调用、工具、审批、trace 和 guardrail 复用同一套权限与审计边界。 |
+| **Agent 执行** | 可选的模型调用、Tool 声明、审批 hook、trace 和示例 guardrail 保持显式、可审计。 |
 
 iamai 是运行时，不是大而全的机器人控制台。它不强制使用 LLM，不隐藏网络边界，也不要求
 业务代码绑定某个平台 SDK。经常变化的行为留在 Python；选定的消息与归一化路径由 Rust 加速。
 
 > **稳定合同：** `v1.0.0` 是当前 1.x 兼容线。第三方扩展应声明 `iamai>=1,<2`，并在发布前
 > 运行公开 conformance helpers。
+
+## 通用 Agent 研究 Harness
+
+iamai 正在稳定消息 Runtime 之外，建立面向更通用 Agent 的可记录、可回放实验执行面。provisional 的
+`iamai.harness` 已提供第一条与模型无关、无需消息平台的 headless 垂直切片：
+
+```text
+Task → Agent → Environment → Trajectory → Evaluation
+```
+
+它运行有界 Trial，记录不可变因果 Trajectory，归因失败与取消，并能在不重复 Agent 决策或
+Environment 副作用的情况下 Replay。内置的 `ScriptedAgent`、`LookupEnvironment` 与
+`ExactEvaluator` 是确定性基线，不要求聊天平台或 LLM。
+
+版本化 `Experiment` plan 可以组织显式 baseline 与 candidate variant。`JsonlTrajectoryStore`
+把 plan、调用方声明的 provenance、Trial start marker 和完整终态 Trajectory 保存为带完整性校验的
+JSONL，并在恢复时跳过已经提交的 Trial，不重复其副作用。只有 start marker 的 interrupted Trial
+不会被自动重跑；同一 plan 中其它从未开始的 Trial 仍可继续，返回结果会明确保持 incomplete。
+
+对于声明后的异步 Tool，`ControlledToolEnvironment` 提供严格的 `ToolSpec` 输入校验、静态
+default-deny `ExecutionPolicy`、绑定单次精确请求的审批，以及按 run 计算的 Tool 调用、token 和
+整数费用微单位 reservation ledger。每个被处理的非 final Action 都会记录 `tool.call.outcome`；
+final Action 仍通过 Environment 终止，不会变成 Tool 调用。
+
+这些控制只适用于声明后的 Harness Tool 调用，不提供 OS、进程或网络沙箱，不证明调用安全，也不保证
+外部副作用 exactly-once。`tool_timeout_seconds` 是由审批和 Tool 执行共享的单次协作式 timeout；
+`ToolResult` usage 仍是 Tool adapter 提供的可信报告，不是独立核验过的 provider 账单。
+
+该 namespace 尚未从顶层 `iamai` 重新导出，也尚未进入稳定的 1.x 消息合同。AGI 是研究方向，
+不是已交付能力；任何进展结论都必须明确 Task/Environment 分布、seed、预算、组件版本和基线。
+详见[研究 Harness 指南](https://github.com/retrofor/iamai/blob/dev/docs/guides/research-harness.rst)与
+[路线图](https://github.com/retrofor/iamai/blob/dev/docs/guides/roadmap.rst)。
 
 ## 跑通一条真实消息链路
 
@@ -179,6 +211,7 @@ conformance helpers。
 | 查看公开 Python 类与函数 | [API 参考源码](https://github.com/retrofor/iamai/tree/dev/docs/api) |
 | 发布或发现扩展 | [社区商店](https://github.com/retrofor/iamai/blob/dev/docs/community/store.rst) |
 | 对比 iamai 与平台型、Agent 型框架 | [生态对比](https://github.com/retrofor/iamai/blob/dev/docs/guides/ecosystem-comparison.rst) |
+| 运行可记录、可回放的 headless Agent Trial | [研究 Harness 指南](https://github.com/retrofor/iamai/blob/dev/docs/guides/research-harness.rst) |
 
 ## 开发
 

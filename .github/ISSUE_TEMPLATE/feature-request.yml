@@ -7,7 +7,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        iamai keeps the core focused on a safe, testable runtime. Platform integrations and model-specific capabilities normally belong in external packages.
+        iamai keeps the stable messaging core focused and testable. General-agent research changes belong in the provisional harness; platform integrations and model-specific capabilities normally belong in external packages.
 
   - type: textarea
     id: problem
@@ -23,6 +23,7 @@ body:
       label: Proposed ownership boundary
       options:
         - Core runtime or public API
+        - Provisional research harness
         - Official adapter or plugin
         - External ecosystem package
         - Documentation or example

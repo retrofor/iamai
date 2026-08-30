@@ -3,6 +3,15 @@
 
 这一页先解释 iamai 的词汇。理解这些概念后，再读教程和 API 会更顺。
 
+两套执行面
+----------
+
+``1.x`` 的 ``Runtime``、``Event`` 与 ``SessionManager`` 属于稳定消息执行面。provisional 的
+``iamai.harness`` 使用 Task、Agent、Environment、Trajectory 与 Evaluation 运行 headless Trial，
+并由 Experiment 与 Trajectory Store 保存可比较的计划和证据。两套词汇不会互相改名：Event 不是
+Observation，消息 StateStore 不是 Trajectory Store，SessionManager 也不是 Trial store。研究执行面见
+:doc:`guides/research-harness`。
+
 Runtime
 ---
 
