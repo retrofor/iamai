@@ -154,11 +154,13 @@ from iamai.harness import (
     JsonlTrajectoryStore,
     ScriptedAgent,
     Task,
+    TaskDistributionManifest,
     Tool,
     ToolResult,
     ToolSpec,
     Trial,
     TrialConfig,
+    compare_experiment,
 )
 from iamai.testing import (
     assert_adapter_api_result,
@@ -278,66 +280,81 @@ async def run_harness():
             cost_microunits=2,
         )
 
+    def installed_trial(trial_id, agent_name):
+        return Trial(
+            task=Task(id="installed-task", input=None),
+            agent=ScriptedAgent(
+                [
+                    Action.invoke("installed-tool", {"value": "observed"}),
+                    Action.finish("done"),
+                ],
+                name=agent_name,
+                version="1",
+            ),
+            environment=ControlledToolEnvironment(
+                tools=(
+                    Tool(
+                        ToolSpec(
+                            name="installed-tool",
+                            version="1",
+                            input_schema={
+                                "type": "object",
+                                "properties": {"value": {"type": "string"}},
+                                "required": ["value"],
+                                "additionalProperties": False,
+                            },
+                            permission_name="installed.read",
+                            reserved_tokens=1,
+                            reserved_cost_microunits=2,
+                        ),
+                        installed_tool,
+                    ),
+                ),
+                policy=ExecutionPolicy(
+                    version="1",
+                    allowed_tools=("installed-tool",),
+                    allowed_permissions=("installed.read",),
+                ),
+                budget=ExecutionBudget(
+                    max_tool_calls=1,
+                    max_tokens=1,
+                    max_cost_microunits=2,
+                    tool_timeout_seconds=1,
+                    currency="USD",
+                    pricing_version="installed-fixture-1",
+                ),
+                name="installed-environment",
+                version="1",
+            ),
+            evaluator=ExactEvaluator("done", version="1"),
+            config=TrialConfig(trial_id=trial_id, max_actions=2),
+        )
+
+    distribution = TaskDistributionManifest(
+        suite_id="installed-suite",
+        version="1",
+        split="test",
+        case_ids=("installed-task/seed-0",),
+        sampling_rule="ordered-full-set-v1",
+    )
     path = Path("installed-harness.jsonl")
     result = await Experiment(
         experiment_id="installed-harness",
         version="1",
         baseline="baseline",
-        provenance={"distribution": "installed"},
+        task_distribution=distribution,
+        provenance={"runner": "installed-wheel"},
         trials={
             "baseline": (
-                Trial(
-                    task=Task(id="installed-task", input=None),
-                    agent=ScriptedAgent(
-                        [
-                            Action.invoke("installed-tool", {"value": "observed"}),
-                            Action.finish("done"),
-                        ],
-                        name="installed-agent",
-                        version="1",
-                    ),
-                    environment=ControlledToolEnvironment(
-                        tools=(
-                            Tool(
-                                ToolSpec(
-                                    name="installed-tool",
-                                    version="1",
-                                    input_schema={
-                                        "type": "object",
-                                        "properties": {"value": {"type": "string"}},
-                                        "required": ["value"],
-                                        "additionalProperties": False,
-                                    },
-                                    permission_name="installed.read",
-                                    reserved_tokens=1,
-                                    reserved_cost_microunits=2,
-                                ),
-                                installed_tool,
-                            ),
-                        ),
-                        policy=ExecutionPolicy(
-                            version="1",
-                            allowed_tools=("installed-tool",),
-                            allowed_permissions=("installed.read",),
-                        ),
-                        budget=ExecutionBudget(
-                            max_tool_calls=1,
-                            max_tokens=1,
-                            max_cost_microunits=2,
-                            tool_timeout_seconds=1,
-                            currency="USD",
-                            pricing_version="installed-fixture-1",
-                        ),
-                        name="installed-environment",
-                        version="1",
-                    ),
-                    evaluator=ExactEvaluator("done", version="1"),
-                    config=TrialConfig(trial_id="installed-trial", max_actions=2),
-                ),
-            )
+                installed_trial("installed-baseline", "installed-baseline-agent"),
+            ),
+            "candidate": (
+                installed_trial("installed-candidate", "installed-candidate-agent"),
+            ),
         },
     ).run(JsonlTrajectoryStore(path))
     loaded = JsonlTrajectoryStore(path).load()
+    comparison = compare_experiment(loaded, candidate="candidate")
     trajectory = result.results["baseline"][0].trajectory
     tool_outcome = next(
         record for record in trajectory.records if record.kind == "tool.call.outcome"
@@ -347,6 +364,9 @@ async def run_harness():
         "round_trip": loaded == result,
         "status": result.results["baseline"][0].status.value,
         "tool_status": tool_outcome.payload["status"],
+        "distribution_round_trip": loaded.task_distribution == distribution,
+        "comparison_pairs": comparison.total_pairs,
+        "comparison_delta": comparison.pass_rate_delta,
     }
 
 
@@ -432,6 +452,9 @@ print(
         "round_trip": True,
         "status": "completed",
         "tool_status": "succeeded",
+        "distribution_round_trip": True,
+        "comparison_pairs": 1,
+        "comparison_delta": 0.0,
     }
     for run in payload["runs"]:
         assert run["plugins"] == ["reference_plugin"]

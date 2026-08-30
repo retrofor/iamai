@@ -72,6 +72,12 @@ Environment 副作用的情况下 Replay。内置的 `ScriptedAgent`、`LookupEn
 JSONL，并在恢复时跳过已经提交的 Trial，不重复其副作用。只有 start marker 的 interrupted Trial
 不会被自动重跑；同一 plan 中其它从未开始的 Trial 仍可继续，返回结果会明确保持 incomplete。
 
+配对实验评证由 `TaskDistributionManifest` 在执行前登记 suite、split、有序 case ID 与 sampling rule，
+并把 plan 限定为一个 baseline 和一个 candidate。`compare_experiment` 只接受完整且经过
+`JsonlTrajectoryStore` 校验的结果，按固定分母返回只读的 `TrialComparison` 与
+`ExperimentComparison`；failed 和 budget-exhausted Trial 也保留在分母中。comparison hash 是
+描述性证据的稳定标识与完整性检查，不是签名、显著性检验，也不能证明声明分布之外的泛化。
+
 对于声明后的异步 Tool，`ControlledToolEnvironment` 提供严格的 `ToolSpec` 输入校验、静态
 default-deny `ExecutionPolicy`、绑定单次精确请求的审批，以及按 run 计算的 Tool 调用、token 和
 整数费用微单位 reservation ledger。每个被处理的非 final Action 都会记录 `tool.call.outcome`；

@@ -408,3 +408,23 @@ def _evaluation_payload(evaluation: Evaluation) -> Mapping[str, FrozenJsonValue]
         evaluator=evaluation.evaluator,
         evaluator_version=evaluation.evaluator_version,
     )
+
+
+def _trajectory_hash(trajectory: Trajectory) -> str:
+    payload = _frozen_object(
+        format_version=trajectory.format_version,
+        trial_id=trajectory.trial_id,
+        task={"id": trajectory.task.id, "input": trajectory.task.input},
+        seed=trajectory.seed,
+        configuration=trajectory.configuration,
+        config_hash=trajectory.config_hash,
+        records=[
+            {
+                "sequence": record.sequence,
+                "kind": record.kind,
+                "payload": record.payload,
+            }
+            for record in trajectory.records
+        ],
+    )
+    return _configuration_hash(payload)

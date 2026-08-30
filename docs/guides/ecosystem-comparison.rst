@@ -245,6 +245,7 @@ record-first 的通用 Agent 研究 Harness。消息 Runtime 以后可以通过�
 --------
 
 稳定消息 Runtime 继续遵守 ``1.x`` 合同；新增研究能力进入 provisional 的 ``iamai.harness``。
-短期顺序是先完成可回放的 headless Trial，再扩展受控执行、持久化 Experiment 与消息桥接。
+当前已完成 headless Trial、受控执行、持久化 Experiment 与配对实验评证；下一步是 Policy-backed Agent
+和跨分布评测套件，消息桥接作为并行集成轨推进。
 AGI 只是研究北极星，能力结论必须明确 Task/Environment 分布、seed、预算、组件版本和基线；
 WebUI 仍作为独立插件或独立项目，不进入核心。具体里程碑见 :doc:`roadmap`。

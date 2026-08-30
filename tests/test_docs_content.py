@@ -351,6 +351,45 @@ def test_controlled_execution_docs_define_scope_and_non_guarantees() -> None:
     assert "不提供 OS、进程或网络沙箱" in readme_zh
 
 
+def test_paired_experiment_evidence_docs_define_scope_and_non_guarantees() -> None:
+    content = _read("docs/guides/research-harness.rst")
+    roadmap = _read("docs/guides/roadmap.rst")
+    api_index = _read("docs/api/index.rst")
+    context = _read("CONTEXT.md")
+    adr = _read("docs/adr/0003-paired-experiment-evidence-protocol.md")
+    readme = _read("README.md")
+    readme_zh = _read("README.zh.md")
+
+    public_names = (
+        "TaskDistributionManifest",
+        "TrialComparison",
+        "ExperimentComparison",
+        "compare_experiment",
+    )
+    for name in public_names:
+        assert name in content
+        assert name in api_index
+
+    assert "Paired Experiment Evidence Protocol" in content
+    assert "exactly one baseline and one candidate" in content
+    assert "JsonlTrajectoryStore-verified" in content
+    assert "jsonl_verified" in content
+    assert "固定分母" in content
+    assert "baseline_trajectory_hash" in content
+    assert "comparison_format_version" in content
+    assert "不是签名、可信时间戳或真实性证明" in content
+    assert "逐 Action 的 write-ahead log" in content
+    assert "配对实验评证协议\n   |implemented|" in roadmap
+    assert "Policy-backed Agent" in roadmap
+    assert "Task Distribution Manifest" in context
+    assert "Experiment Comparison" in context
+    assert adr.startswith("---\nstatus: accepted\n---")
+    assert "descriptive evidence" in adr
+    assert "does not establish statistical significance" in adr
+    assert "paired experiment evidence" in readme
+    assert "配对实验评证" in readme_zh
+
+
 def test_community_page_contains_blog_and_store_sections() -> None:
     content = _read("docs/community/index.rst")
 

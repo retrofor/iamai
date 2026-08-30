@@ -77,6 +77,14 @@ terminal Trajectories as integrity-checked JSONL, then resumes already committed
 repeating their effects. A start-only interrupted Trial is never re-executed automatically; other
 never-started Trials in the same plan may continue and the result remains explicitly incomplete.
 
+For paired experiment evidence, a `TaskDistributionManifest` pre-registers the suite, split,
+ordered case IDs, and sampling rule together with exactly one baseline and one candidate.
+`compare_experiment` accepts only a complete, `JsonlTrajectoryStore`-verified result and returns
+read-only `TrialComparison` and `ExperimentComparison` values over the fixed denominator, including
+failed and budget-exhausted Trials. The resulting hashes are stable identifiers and integrity checks
+for descriptive evidence; they are not signatures, statistical significance tests, or proof of
+generalization beyond the declared distribution.
+
 For declared asynchronous Tools, `ControlledToolEnvironment` adds strict `ToolSpec` input
 validation, a static default-deny `ExecutionPolicy`, approvals bound to one exact request, and
 run-scoped reservation ledgers for Tool calls, tokens, and integer cost microunits. Each handled

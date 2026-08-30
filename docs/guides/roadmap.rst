@@ -2,7 +2,7 @@
 ================
 
 这页把 :doc:`ecosystem-comparison` 的定位落到工程顺序。``1.0`` 已经稳定消息 Runtime；
-后续工作在不改变这些语义的前提下，把 iamai 演进为可复现的通用 Agent 研究 Harness。
+后续工作在不改变这些语义的前提下，把 iamai 演进为可审计、可回放、可比较的通用 Agent 研究 Harness。
 
 版本路线图
 ----------
@@ -43,6 +43,16 @@
 ------------------------
 
 这些里程碑表达依赖顺序，不承诺版本号或日期。AGI 是研究方向，不是其中任意一项完成后的产品声明。
+依赖不是纯线性：受控执行和消息桥接都是独立 Environment 轨；离线学习必须同时建立在版本化 Agent policy 和可信评测
+分布之上。
+
+.. code-block:: text
+
+   Headless Trial
+   ├── Policy-backed Agent ─────────────────────────────────────┐
+   ├── Persistent Experiment → Paired evidence → Generalization suites ─┴── Offline learning
+   ├── Controlled execution (independent Environment track)
+   └── Messaging bridge (parallel Environment track)
 
 语义与兼容性基线
    保留 ``Runtime``、``Event``、``SessionManager`` 等 ``1.x`` 名称的既有含义；Harness 能力只进入
@@ -61,16 +71,33 @@ Headless Trial
 持久化 Experiment
    |implemented| 第一条 JSONL 垂直切片已保存不可变 Experiment plan、调用方 provenance、variant/baseline
    标签、Trial start marker 与完整终态 Trajectory；支持完整性链、显式尾修复、已提交 Trial 的幂等恢复、
-   start-only Trial 防重跑、计划冲突检测和 single-writer 纪律。聚合基线统计、artifact manifest、跨
-   Experiment 查询和 schema migration 仍属后续工作。
+   start-only Trial 防重跑、计划冲突检测和 single-writer 纪律。artifact manifest、跨 Experiment 查询和
+   schema migration 仍属后续工作。
+
+配对实验评证协议
+   |implemented| ``TaskDistributionManifest`` 把 suite、split、有序 case 和 sampling rule 预登记进 plan；
+   manifest plan 只允许一个 baseline 与一个 candidate，并在 slot 层校验除 Agent 外的可比性。
+   ``compare_experiment`` 只从完整、Store 校验后的结果产生固定分母的 ``TrialComparison`` 与
+   ``ExperimentComparison``，显式报告每种终态、pass rate 和有 Evaluation 的配对 score delta。
+   这是描述性证据，不是签名、显著性检验或跨分布泛化证明。
+
+Policy-backed Agent
+   从 Headless Trial 的 Agent interface 冻结 policy checkpoint：模型与 provider 声明、prompt/tool-use
+   policy、memory policy、context shaping 和版本化配置必须进入 Trial provenance。该层先建立可替换的
+   policy interface 与确定性 fixture，再接远程模型；它不依赖某一种 Environment，也不会把某个 provider
+   SDK 固化为 Harness 核心。
+
+泛化评测套件
+   在 paired evidence 之上定义多个独立 Task/Environment distribution、污染与迁移检查、重复 seed、
+   不确定性报告和回归门禁。任何“更通用”的结论必须跨预登记分布成立，不能从单一 comparison hash 推导。
 
 消息桥接
    通过独立桥接把稳定消息 Runtime 作为一种 Environment 接入；``Event`` 不改名为 Observation，
-   ``SessionManager`` 也不承担 Trial 存储职责。
+   ``SessionManager`` 也不承担 Trial 存储职责。该分支可以与 Policy-backed Agent 和评测套件并行推进。
 
 离线学习闭环
-   在可复现 Experiment 之上研究数据筛选、策略检查点、回归评测和离线改进。任何“更通用”的结论都必须
-   明确 Task/Environment 分布、种子、预算、版本和基线。
+   只有 Policy-backed Agent、泛化评测套件和可追踪 checkpoint 都落地后，才研究数据筛选、回归评测与
+   离线改进。任何“更通用”的结论都必须明确 Task/Environment 分布、种子、预算、版本和基线。
 
 设计决策
 --------

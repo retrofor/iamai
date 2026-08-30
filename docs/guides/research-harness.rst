@@ -267,6 +267,18 @@ request binding 与记录内 ledger 的一致性。它不会重新调用 Agent�
 Policy、clock 或价格系统，也不能证明原外部 effect 真实发生。Re-execution 则是使用同一规范开始一个
 新的 Trial；只有所有参与组件和依赖都确定时，Re-execution 才应产生相同结果。
 
+Record-first 的三个层级
+-----------------------
+
+``Trial`` 在进程内按因果顺序追加 Trajectory record；这是执行状态机的证据顺序，不是逐 Action 的 write-ahead log，
+也不保证进程崩溃前的中间 Action 已落盘。``Experiment`` 与
+``JsonlTrajectoryStore`` 会在任何 Trial effect 前持久化 plan，并在每个 Trial 运行前持久化
+``trial.started``；终态 Trajectory 则在整个 Trial 完成后一次提交。``compare_experiment`` 不执行任何
+Agent、Environment 或 Evaluator，也不写 artifact，只从 Store 校验后的完整结果构造纯投影。
+
+因此这里的 record-first 表示“先声明、再执行、从记录推导结论”，并不承诺外部 effect exactly-once、
+逐步 durable checkpoint 或 mid-Trial resume。
+
 持久化 Experiment
 ------------------
 
@@ -287,8 +299,10 @@ Trajectory；status、Evaluation 与 failure 都由 :func:`~iamai.harness.replay
        LookupEnvironment,
        ScriptedAgent,
        Task,
+       TaskDistributionManifest,
        Trial,
        TrialConfig,
+       compare_experiment,
    )
 
 
@@ -316,6 +330,13 @@ Trajectory；status、Evaluation 与 failure 都由 :func:`~iamai.harness.replay
            experiment_id="capitals",
            version="1",
            baseline="baseline",
+           task_distribution=TaskDistributionManifest(
+               suite_id="capital-suite",
+               version="1",
+               split="test",
+               case_ids=("capital-of-france/seed-7",),
+               sampling_rule="ordered-full-set-v1",
+           ),
            provenance={"source_revision": "abc123"},
            trials={
                "baseline": (candidate("baseline-7", "Lyon"),),
@@ -328,8 +349,44 @@ Trajectory；status、Evaluation 与 failure 都由 :func:`~iamai.harness.replay
        assert result.results["candidate"][0].evaluation.passed
        assert JsonlTrajectoryStore("runs/capitals.jsonl").load() == result
 
+       comparison = compare_experiment(result, candidate="candidate")
+       assert comparison.total_pairs == 1
+       assert comparison.pass_rate_delta == 1.0
+       assert comparison.mean_score_delta == 1.0
+
 
    asyncio.run(compare())
+
+Paired Experiment Evidence Protocol
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``TaskDistributionManifest`` 在 Trial 开始前把 suite ID、suite version、split、有序且唯一的 case ID，
+以及 sampling rule 纳入 plan hash。带 manifest 的 plan 必须预登记 exactly one baseline and one candidate；
+两侧 slot 数量、case 顺序、Task、seed、Environment、Evaluator 和预算必须一致，只允许 Agent 声明不同。
+这避免跑完后删掉失败 case、改变分母或从多个 candidate 中挑选最好结果。
+
+``compare_experiment(result, candidate=...)`` 只接受 complete、JsonlTrajectoryStore-verified 的
+``ExperimentResult``。这里的 verified 表示当前支持路径已经校验 canonical JSON、exact schema、行链、
+plan/spec/Trajectory hash、声明 provenance 和 Replay；公开重建的 ``ExperimentResult``、不完整结果或
+legacy manifest-less plan 都不能进入比较。``ExperimentResult.jsonl_verified`` 可读取这项资格；
+``dataclasses.replace`` 或公开构造得到的新对象不会继承它，并且不会与 verified result 相等。
+``TrialComparison`` 与 ``ExperimentComparison`` 是只读返回类型，不能由公共构造器拼装。
+
+比较的固定分母是 manifest 中的全部 case。``failed``、``budget_exhausted`` 与 ``cancelled`` 不会被
+静默丢弃；每种 ``TrialStatus`` 都有 count 与 rate，pass rate 也始终除以全部 pair。score delta 只在
+baseline 与 candidate 两侧都有 Evaluation 时形成，``paired_score_count`` 明确报告实际有多少 score pair，
+``mean_score_delta`` 在没有 score pair 时为 ``None``。comparison hash 绑定 plan hash、manifest hash、
+每个 case projection、两侧完整 Trajectory hash 和全部描述性统计；pair 中的
+``baseline_trajectory_hash`` / ``candidate_trajectory_hash`` 与 JSONL 的 ``trajectory_digest`` 一致，
+因此指标相同但运行证据不同的比较不会共享同一个 comparison hash。公开的
+``comparison_format_version`` 标识 hash preimage 与聚合语义版本，当前为 ``"1"``。
+
+这些结果是 declared distribution 上的 descriptive evidence。它不估计置信区间，不做显著性或多重比较
+校正，不证明因果改进、suite 代表性、数据无污染或跨分布泛化。``sampling_rule`` 与 ``split`` 都只是
+调用方声明，Harness 不执行抽样或验证 split 隔离。正 score delta 是否代表改进由 Evaluator 的方向语义
+决定；不同 case 使用异质 score scale 时，``mean_score_delta`` 可能只有算术意义。Store 的 verified 和 comparison hash
+不是签名、可信时间戳或真实性证明；能写 artifact 的恶意主体仍可从头伪造一条自洽记录。调用方需要保护
+artifact、固定源代码与依赖版本，并在更广的结论前增加独立评测设计。
 
 恢复与完整性语义
 ~~~~~~~~~~~~~~~~
@@ -377,7 +434,7 @@ variant 顺序、baseline、Task、seed、预算、组件声明和调用方 prov
 - 每个 Trial 必须创建独立的 ``ControlledToolEnvironment``。Tool 与 Approver 是受信任的进程内 Python；
   Harness 记录其声明但不自动指纹化实现，也不独立核验 ToolResult usage、provider 账单或外部 effect。
 - Tool schema 是固定的 JSON 子集；远程 ``$ref``、schema default/coercion 和完整 JSON Schema 尚未加入。
-- 当前 Store 是单文件本地 JSONL；跨 Experiment 查询、artifact manifest、统计汇总、schema migration、
+- 当前 Store 是单文件本地 JSONL；跨 Experiment 查询、artifact manifest、推断统计、schema migration、
   mid-Trial resume、远程持久审批、分布式预算、沙箱、模型 provider、学习器和消息桥接尚未加入。
 - 恢复合同面向预先存在父目录上的本地文件系统与进程中断/末行撕裂；不声明断电、NFS、共享挂载或
   多主机 writer 的持久性保证。

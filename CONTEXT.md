@@ -24,9 +24,21 @@ _Avoid_: Trial session, episode store
 The headless execution system that runs and records Experiments and Trials. It is independent from the stable messaging Runtime, which may host a messaging Environment.
 _Avoid_: Agent runtime, bot framework
 
+**Record-first**:
+The discipline of declaring comparison inputs before effects and treating persisted Trajectories as the source for later projections. A Trial first records an in-process causal sequence; an Experiment Store durably records the plan and Trial boundary markers; comparisons are pure projections from verified stored evidence. It does not imply per-Action durable write-ahead logging.
+_Avoid_: Event sourcing, exactly-once execution
+
 **Experiment**:
-A versioned comparison plan and its collected results over one or more Trials. Its task distribution, seeds, budgets, Agent versions, Environment versions, Evaluations, baselines, and caller-declared provenance are explicit.
+A versioned comparison plan and its collected results over one or more Trials. It freezes Trial seeds, budgets, Agent versions, Environment versions, Evaluators, an optional baseline, and caller-declared provenance. An Experiment using the paired evidence protocol additionally pre-registers a Task Distribution Manifest with exactly one baseline and one candidate.
 _Avoid_: Benchmark run, test batch
+
+**Task Distribution Manifest**:
+A versioned, hash-bound, caller-declared Task suite, split, ordered unique case IDs, and sampling rule. It fixes which cases form the denominator before a paired Experiment runs; it does not load a dataset, execute sampling, or prove that the suite is representative or uncontaminated.
+_Avoid_: Dataset, benchmark result
+
+**Paired Experiment Evidence Protocol**:
+The pre-registration, Agent-only pairing, complete-denominator, and pure-projection rules for comparing exactly one candidate with one baseline inside one persisted Experiment.
+_Avoid_: AGI evaluation, generality score
 
 **Trial**:
 One bounded attempt by an Agent to complete a Task in an Environment under a fixed seed, budget, and configuration.
@@ -81,12 +93,20 @@ The append-only, causally ordered evidence of a Trial. It records decision-relev
 _Avoid_: Trace, transcript, log
 
 **Trajectory Store**:
-Append-only persistence for versioned Experiment plans, Trial start markers, and immutable terminal Trajectories. It validates provenance and Replay before projecting results; it is not the messaging StateStore or SessionManager.
+Append-only persistence for versioned Experiment plans, Trial start markers, and immutable terminal Trajectories. It validates canonical schemas, hash chains, provenance, and Replay before projecting results; it is not the messaging StateStore or SessionManager, a signature authority, or a trusted timestamp service.
 _Avoid_: StateStore, SessionManager, log database
 
 **Evaluation**:
-A versioned judgment derived from a committed Trajectory under the selected Evaluator's declared criteria.
+A versioned judgment derived from a committed Trajectory under the selected Evaluator's declared criteria. Evaluation values are evidence for declared cases, not an AGI score or a generalization claim.
 _Avoid_: Reward, assertion, score only
+
+**Trial Comparison**:
+A read-only paired projection for one pre-registered case, binding the baseline and candidate Trajectory hashes, statuses, Evaluations, and score delta to their case projection hash.
+_Avoid_: Independent sample, winner
+
+**Experiment Comparison**:
+A read-only, hash-bound descriptive aggregate over every case in one Task Distribution Manifest. Its fixed denominator includes failed and budget-exhausted pairs; it does not establish uncertainty, statistical significance, causality, or cross-distribution generalization.
+_Avoid_: Benchmark score, proof of improvement
 
 **Replay**:
 Reconstruction of Trial projections and Evaluation from an existing Trajectory without repeating Agent decisions or external effects.

@@ -1,0 +1,19 @@
+---
+status: accepted
+---
+
+# Pre-register paired experiment evidence
+
+The Harness will use a Paired Experiment Evidence Protocol for its first supported comparison artifact. A `TaskDistributionManifest` binds a versioned suite, split, ordered unique case IDs, and sampling rule into the `ExperimentPlan`. A plan carrying that manifest must contain exactly one baseline and one candidate. At each case position, the two Trial specifications must have the same Task, seed, Environment, Evaluator, and budgets; only the Agent declaration may differ.
+
+This restriction is intentional. Allowing an operator to remove failed cases, change the denominator, or choose one of several candidates after observing outcomes would make the resulting aggregate a post-hoc claim. Broader multi-candidate studies require a future protocol that pre-registers contrasts and handles multiple comparisons.
+
+`JsonlTrajectoryStore` is the supported evidence boundary. It persists the plan before Trial effects, a start marker before each Trial, and the complete terminal Trajectory after the Trial. Loading verifies canonical JSON, exact owned schemas, the entry chain, plan and specification hashes, Trajectory provenance, and Replay. `compare_experiment` accepts only a complete result produced by that verified load path, exposed as `ExperimentResult.jsonl_verified`. Publicly constructed or `dataclasses.replace`-created `ExperimentResult` values do not inherit eligibility and do not compare equal to a verified result. `TrialComparison` and `ExperimentComparison` are read-only result types without supported public constructors.
+
+The comparison denominator is every case in the manifest. Failed, cancelled, and budget-exhausted pairs remain visible in status counts and rates instead of being dropped. Pass rates use the full denominator. A score delta exists only where both sides have an Evaluation, and the aggregate reports the paired score count separately. Each pair carries the baseline and candidate full-Trajectory hashes used by the JSONL artifact. The comparison hash binds those hashes together with the plan hash, manifest hash, case projections, an explicit `comparison_format_version`, and derived descriptive statistics, so metric-identical but evidentially different runs do not alias and future aggregate semantics can take a new version.
+
+The persistence levels remain explicit. Trial records establish in-process causal order but are not a per-Action durable write-ahead log. The Store durably establishes plan, Trial-start, and terminal-Trajectory boundaries. Comparison is a pure projection and performs neither execution nor persistence.
+
+These outputs are descriptive evidence for the declared distribution. The manifest fields are caller declarations: the Harness neither executes the sampling rule nor verifies split isolation. A positive score delta means improvement only when the Evaluator defines that direction, and averaging heterogeneous score scales may have only arithmetic meaning. The protocol does not establish statistical significance, uncertainty, causality, dataset representativeness, contamination freedom, or generalization to another Task or Environment distribution. Hashes detect inconsistent content; they are not signatures, trusted timestamps, anti-rollback protection, or proof that an artifact existed before an outcome was known. An actor able to fabricate the entire artifact can create a self-consistent history. External effects also remain outside any exactly-once guarantee.
+
+The consequence is a deliberately narrow but auditable comparison surface. Future uncertainty estimates, repeated-seed designs, generalization suites, signed artifact manifests, and multi-candidate contrasts must extend the protocol explicitly instead of changing the meaning of this first format.

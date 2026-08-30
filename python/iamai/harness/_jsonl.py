@@ -16,7 +16,9 @@ from typing import BinaryIO, Iterator, cast
 from ._experiment import (
     ExperimentPlan,
     ExperimentResult,
+    TaskDistributionManifest,
     _TrialSlot,
+    _registered_experiment_result,
     _trajectory_spec,
 )
 from ._model import (
@@ -26,7 +28,9 @@ from ._model import (
     TrajectoryRecord,
     TrialResult,
     _configuration_hash,
+    _freeze_json,
     _thaw_json,
+    _trajectory_hash,
 )
 from ._replay import replay
 
@@ -36,6 +40,37 @@ MAX_JSONL_RECORD_BYTES = 16 * 1024 * 1024
 _ACTIVE_WRITERS: set[Path] = set()
 _ACTIVE_READERS: dict[Path, int] = {}
 _ACTIVE_WRITERS_GUARD = threading.Lock()
+
+_ENTRY_CHAIN_FIELDS = {
+    "record_type",
+    "store_format_version",
+    "entry_sequence",
+    "previous_entry_digest",
+    "entry_digest",
+}
+_PLAN_ENTRY_FIELDS = _ENTRY_CHAIN_FIELDS | {"plan", "plan_hash"}
+_TRIAL_ENTRY_FIELDS = _ENTRY_CHAIN_FIELDS | {
+    "experiment_id",
+    "plan_hash",
+    "variant",
+    "position",
+    "trial_id",
+    "spec_hash",
+}
+_COMMITTED_ENTRY_FIELDS = _TRIAL_ENTRY_FIELDS | {
+    "trajectory",
+    "trajectory_digest",
+}
+_TRAJECTORY_FIELDS = {
+    "format_version",
+    "trial_id",
+    "task",
+    "seed",
+    "configuration",
+    "config_hash",
+    "records",
+}
+_TRAJECTORY_SPEC_FIELDS = _TRAJECTORY_FIELDS - {"records"}
 
 
 def _lock_stream(stream: BinaryIO) -> None:
@@ -218,6 +253,7 @@ def _validate_entry_chain(
             isinstance(entry_sequence, bool)
             or not isinstance(entry_sequence, int)
             or entry_sequence != expected_sequence
+            or "previous_entry_digest" not in entry
             or entry.get("previous_entry_digest") != previous_digest
             or not isinstance(entry_digest, str)
             or entry_digest != _digest(digest_payload)
@@ -256,15 +292,36 @@ def _object(value: object, *, field: str) -> Mapping[str, object]:
     return value
 
 
+def _require_exact_fields(
+    value: Mapping[str, object],
+    expected: set[str],
+    *,
+    field: str,
+) -> None:
+    if set(value) != expected:
+        raise ValueError(f"JSONL Store {field} fields are invalid")
+
+
 def _trajectory_from_payload(value: object) -> Trajectory:
     payload = _object(value, field="Trajectory")
+    _require_exact_fields(payload, _TRAJECTORY_FIELDS, field="Trajectory")
     task_payload = _object(payload.get("task"), field="Trajectory task")
+    _require_exact_fields(
+        task_payload,
+        {"id", "input"},
+        field="Trajectory task",
+    )
     records_payload = payload.get("records")
     if not isinstance(records_payload, list):
         raise ValueError("JSONL Trajectory records must be an array")
     records: list[TrajectoryRecord] = []
     for raw_record in records_payload:
         record = _object(raw_record, field="Trajectory record")
+        _require_exact_fields(
+            record,
+            {"sequence", "kind", "payload"},
+            field="Trajectory record",
+        )
         records.append(
             TrajectoryRecord(
                 sequence=record.get("sequence"),  # type: ignore[arg-type]
@@ -544,7 +601,7 @@ class JsonlTrajectoryStore:
                 "trial_id": trajectory.trial_id,
                 "spec_hash": spec_hash,
                 "trajectory": trajectory_payload,
-                "trajectory_digest": _digest(trajectory_payload),
+                "trajectory_digest": _trajectory_hash(trajectory),
             }
         )
 
@@ -615,12 +672,41 @@ class JsonlTrajectoryStore:
         manifest = entries[0]
         if manifest.get("record_type") != "experiment.plan":
             raise ValueError("JSONL Store must start with an Experiment plan")
+        _require_exact_fields(
+            manifest,
+            _PLAN_ENTRY_FIELDS,
+            field="Experiment plan entry",
+        )
         if manifest.get("store_format_version") != EXPERIMENT_STORE_FORMAT_VERSION:
             raise ValueError("unsupported JSONL Store format version")
         plan_payload = _object(manifest.get("plan"), field="Experiment plan")
         stored_plan_hash = manifest.get("plan_hash")
         if not isinstance(stored_plan_hash, str):
             raise ValueError("JSONL Store Experiment plan hash is invalid")
+        frozen_plan_payload = _freeze_json(
+            plan_payload,
+            path="$.experiment.plan",
+        )
+        if not isinstance(frozen_plan_payload, Mapping):
+            raise AssertionError("Experiment plan did not freeze as an object")
+        if _configuration_hash(frozen_plan_payload) != stored_plan_hash:
+            raise ValueError(
+                "JSONL Store Experiment plan payload hash does not match"
+            )
+        expected_plan_fields = {
+            "experiment_id",
+            "version",
+            "baseline",
+            "provenance",
+            "variants",
+        }
+        if "task_distribution" in plan_payload:
+            expected_plan_fields.add("task_distribution")
+        _require_exact_fields(
+            plan_payload,
+            expected_plan_fields,
+            field="Experiment plan",
+        )
         experiment_id = plan_payload.get("experiment_id")
         version = plan_payload.get("version")
         baseline = plan_payload.get("baseline")
@@ -635,10 +721,58 @@ class JsonlTrajectoryStore:
         if not isinstance(variants_payload, list) or not variants_payload:
             raise ValueError("JSONL Store Experiment variants are invalid")
 
+        task_distribution: TaskDistributionManifest | None = None
+        if "task_distribution" in plan_payload:
+            distribution_payload = _object(
+                plan_payload.get("task_distribution"),
+                field="Experiment Task distribution",
+            )
+            expected_distribution_fields = {
+                "manifest_format_version",
+                "suite_id",
+                "version",
+                "split",
+                "case_ids",
+                "sampling_rule",
+                "manifest_hash",
+            }
+            if set(distribution_payload) != expected_distribution_fields:
+                raise ValueError(
+                    "JSONL Store Experiment Task distribution fields are invalid"
+                )
+            case_ids = distribution_payload.get("case_ids")
+            if not isinstance(case_ids, list):
+                raise ValueError(
+                    "JSONL Store Experiment Task distribution case_ids are invalid"
+                )
+            task_distribution = TaskDistributionManifest(
+                suite_id=distribution_payload.get("suite_id"),  # type: ignore[arg-type]
+                version=distribution_payload.get("version"),  # type: ignore[arg-type]
+                split=distribution_payload.get("split"),  # type: ignore[arg-type]
+                case_ids=tuple(case_ids),
+                sampling_rule=distribution_payload.get(  # type: ignore[arg-type]
+                    "sampling_rule"
+                ),
+            )
+            if (
+                distribution_payload.get("manifest_format_version")
+                != task_distribution._payload.get("manifest_format_version")
+                or distribution_payload.get("manifest_hash")
+                != task_distribution.manifest_hash
+            ):
+                raise ValueError(
+                    "JSONL Store Experiment Task distribution hash is invalid"
+                )
+
         trial_specs: dict[str, tuple[Trajectory, ...]] = {}
         slots: dict[tuple[str, int], tuple[str, str]] = {}
         for raw_variant in variants_payload:
             variant_payload = _object(raw_variant, field="Experiment variant")
+            _require_exact_fields(
+                variant_payload,
+                {"name", "trials"},
+                field="Experiment variant",
+            )
             variant = variant_payload.get("name")
             raw_trials = variant_payload.get("trials")
             if not isinstance(variant, str) or not isinstance(raw_trials, list):
@@ -648,8 +782,18 @@ class JsonlTrajectoryStore:
             specs: list[Trajectory] = []
             for raw_slot in raw_trials:
                 slot_payload = _object(raw_slot, field="Experiment Trial slot")
+                _require_exact_fields(
+                    slot_payload,
+                    {"position", "spec", "spec_hash"},
+                    field="Experiment Trial slot",
+                )
                 position = slot_payload.get("position")
                 spec = _object(slot_payload.get("spec"), field="Experiment Trial spec")
+                _require_exact_fields(
+                    spec,
+                    _TRAJECTORY_SPEC_FIELDS,
+                    field="Experiment Trial spec",
+                )
                 spec_hash = slot_payload.get("spec_hash")
                 trial_id = spec.get("trial_id")
                 if (
@@ -674,6 +818,7 @@ class JsonlTrajectoryStore:
             version=version,
             trial_specs=trial_specs,
             baseline=baseline,
+            task_distribution=task_distribution,
             provenance=cast(Mapping[str, FrozenJsonValue], provenance),
         )
         if plan.plan_hash != stored_plan_hash:
@@ -689,6 +834,15 @@ class JsonlTrajectoryStore:
             record_type = entry.get("record_type")
             if record_type not in {"trial.started", "trajectory.committed"}:
                 raise ValueError(f"invalid JSONL Store record type at {self.path}:{line_number}")
+            _require_exact_fields(
+                entry,
+                (
+                    _TRIAL_ENTRY_FIELDS
+                    if record_type == "trial.started"
+                    else _COMMITTED_ENTRY_FIELDS
+                ),
+                field=f"{record_type} entry",
+            )
             if entry.get("store_format_version") != EXPERIMENT_STORE_FORMAT_VERSION:
                 raise ValueError("unsupported JSONL Store format version")
             if (
@@ -723,13 +877,17 @@ class JsonlTrajectoryStore:
             if entry.get("trajectory_digest") != _digest(trajectory_payload):
                 raise ValueError("JSONL Store Trajectory digest does not match")
             trajectory = _trajectory_from_payload(trajectory_payload)
+            if entry.get("trajectory_digest") != _trajectory_hash(trajectory):
+                raise ValueError(
+                    "JSONL Store Trajectory canonical digest does not match"
+                )
             if _configuration_hash(_trajectory_spec(trajectory)) != declared_slot[1]:
                 raise ValueError("JSONL Store Trajectory provenance does not match its plan")
             result = replay(trajectory)
             committed_trial_ids.add(trial_id)
             collected[variant].append((position, result))
 
-        return ExperimentResult(
+        return _registered_experiment_result(
             plan=plan,
             results={
                 variant: tuple(
