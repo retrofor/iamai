@@ -13,7 +13,13 @@ from ._controlled import (
     ToolResult,
     ToolSpec,
 )
-from ._experiment import Experiment, ExperimentPlan, ExperimentResult
+from ._evidence import ExperimentComparison, TrialComparison, compare_experiment
+from ._experiment import (
+    Experiment,
+    ExperimentPlan,
+    ExperimentResult,
+    TaskDistributionManifest,
+)
 from ._jsonl import JsonlTrajectoryStore
 from ._model import (
     Action,
@@ -40,6 +46,7 @@ __all__ = [
     "Evaluation",
     "ExactEvaluator",
     "Experiment",
+    "ExperimentComparison",
     "ExperimentPlan",
     "ExperimentResult",
     "ExecutionBudget",
@@ -49,11 +56,13 @@ __all__ = [
     "Observation",
     "ScriptedAgent",
     "Task",
+    "TaskDistributionManifest",
     "Tool",
     "ToolCallStatus",
     "ToolResult",
     "ToolSpec",
     "Trial",
+    "TrialComparison",
     "TrialConfig",
     "TrialFailure",
     "TrialResult",
@@ -61,5 +70,6 @@ __all__ = [
     "Trajectory",
     "TrajectoryRecord",
     "Transition",
+    "compare_experiment",
     "replay",
 ]

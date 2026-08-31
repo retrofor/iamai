@@ -19,7 +19,7 @@
 
    **运行研究 Trial**
       用 headless Harness 组合 Task、Agent、Environment、Trajectory 与 Evaluation，并把持久化 Experiment
-      保存为可校验的 JSONL。
+      保存为可校验的 JSONL，再从预登记分布生成固定分母的配对证据。
       :doc:`research-harness` · :doc:`roadmap`
 
    **接入与上线**

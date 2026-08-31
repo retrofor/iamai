@@ -15,6 +15,7 @@ from ._model import (
     Trajectory,
     TrialResult,
     _configuration_hash,
+    _evaluation_payload,
     _freeze_json,
     _frozen_object,
 )
@@ -23,6 +24,75 @@ from ._trial import Trial, _configuration_snapshot
 
 if TYPE_CHECKING:
     from ._jsonl import JsonlTrajectoryStore
+
+
+TASK_DISTRIBUTION_MANIFEST_FORMAT_VERSION = "1"
+COMPARISON_PROJECTION_VERSION = "1"
+_JSONL_EVIDENCE_REGISTRATION = object()
+
+
+@dataclass(frozen=True, slots=True)
+class TaskDistributionManifest:
+    """Pre-registered identity and case order for one Task distribution."""
+
+    suite_id: str
+    version: str
+    split: str
+    case_ids: tuple[str, ...]
+    sampling_rule: str
+    manifest_hash: str = field(init=False)
+    _payload: Mapping[str, FrozenJsonValue] = field(
+        init=False,
+        repr=False,
+        compare=False,
+    )
+
+    def __post_init__(self) -> None:
+        for field_name in ("suite_id", "version", "split", "sampling_rule"):
+            value = getattr(self, field_name)
+            if not isinstance(value, str) or not value.strip():
+                raise ValueError(
+                    f"TaskDistributionManifest {field_name} cannot be empty"
+                )
+            _freeze_json(value, path=f"$.task_distribution.{field_name}")
+        raw_case_ids: object = self.case_ids
+        if isinstance(raw_case_ids, (str, bytes)) or not isinstance(
+            raw_case_ids, Sequence
+        ):
+            raise TypeError(
+                "TaskDistributionManifest case_ids must be a sequence of strings"
+            )
+        case_ids = tuple(raw_case_ids)
+        if not case_ids:
+            raise ValueError("TaskDistributionManifest case_ids cannot be empty")
+        for case_id in case_ids:
+            if not isinstance(case_id, str) or not case_id.strip():
+                raise ValueError(
+                    "TaskDistributionManifest case_ids must contain non-empty strings"
+                )
+            _freeze_json(case_id, path="$.task_distribution.case_ids[]")
+        if len(set(case_ids)) != len(case_ids):
+            raise ValueError("TaskDistributionManifest case_ids must be unique")
+        payload = _frozen_object(
+            manifest_format_version=TASK_DISTRIBUTION_MANIFEST_FORMAT_VERSION,
+            suite_id=self.suite_id,
+            version=self.version,
+            split=self.split,
+            case_ids=case_ids,
+            sampling_rule=self.sampling_rule,
+        )
+        object.__setattr__(self, "case_ids", case_ids)
+        object.__setattr__(self, "_payload", payload)
+        object.__setattr__(self, "manifest_hash", _configuration_hash(payload))
+
+
+def _task_distribution_payload(
+    manifest: TaskDistributionManifest,
+) -> Mapping[str, FrozenJsonValue]:
+    return _frozen_object(
+        **dict(manifest._payload),
+        manifest_hash=manifest.manifest_hash,
+    )
 
 
 def _trajectory_spec(trajectory: Trajectory) -> Mapping[str, FrozenJsonValue]:
@@ -36,6 +106,48 @@ def _trajectory_spec(trajectory: Trajectory) -> Mapping[str, FrozenJsonValue]:
     )
 
 
+def _comparison_projection(
+    trajectory: Trajectory,
+    *,
+    case_id: str,
+) -> Mapping[str, FrozenJsonValue]:
+    trial_configuration = dict(trajectory.configuration)
+    trial_configuration.pop("agent", None)
+    return _frozen_object(
+        comparison_projection_version=COMPARISON_PROJECTION_VERSION,
+        case_id=case_id,
+        format_version=trajectory.format_version,
+        task={"id": trajectory.task.id, "input": trajectory.task.input},
+        seed=trajectory.seed,
+        trial_configuration=trial_configuration,
+    )
+
+
+def _trial_result_projection(
+    result: TrialResult,
+) -> Mapping[str, FrozenJsonValue]:
+    evaluation = (
+        None if result.evaluation is None else _evaluation_payload(result.evaluation)
+    )
+    failure = (
+        None
+        if result.failure is None
+        else _frozen_object(
+            phase=result.failure.phase,
+            code=result.failure.code,
+            exception_type=result.failure.exception_type,
+            message=result.failure.message,
+        )
+    )
+    return _frozen_object(
+        trial_id=result.trial_id,
+        status=result.status.value,
+        final_output=result.final_output,
+        evaluation=evaluation,
+        failure=failure,
+    )
+
+
 @dataclass(frozen=True, slots=True)
 class ExperimentPlan:
     """Immutable, serializable specification for one comparison Experiment."""
@@ -45,6 +157,10 @@ class ExperimentPlan:
     trial_specs: Mapping[str, tuple[Trajectory, ...]]
     baseline: str | None
     provenance: Mapping[str, JsonValue | FrozenJsonValue] = field(default_factory=dict)
+    task_distribution: TaskDistributionManifest | None = field(
+        default=None,
+        kw_only=True,
+    )
     plan_hash: str = field(init=False)
     _payload: Mapping[str, FrozenJsonValue] = field(
         init=False,
@@ -113,21 +229,70 @@ class ExperimentPlan:
 
         if self.baseline is not None and self.baseline not in frozen_variants:
             raise ValueError("ExperimentPlan baseline must name a planned variant")
+        task_distribution = self.task_distribution
+        if task_distribution is not None:
+            if not isinstance(task_distribution, TaskDistributionManifest):
+                raise TypeError(
+                    "ExperimentPlan task_distribution must be a "
+                    "TaskDistributionManifest or None"
+                )
+            if self.baseline is None:
+                raise ValueError(
+                    "ExperimentPlan with a Task distribution must declare a baseline"
+                )
+            if len(frozen_variants) != 2:
+                raise ValueError(
+                    "ExperimentPlan with a Task distribution must contain exactly "
+                    "one baseline and one candidate"
+                )
+            baseline_specs = frozen_variants[self.baseline]
+            if len(baseline_specs) != len(task_distribution.case_ids):
+                raise ValueError(
+                    "TaskDistributionManifest case_ids must match every variant slot"
+                )
+            for variant, specs in frozen_variants.items():
+                if len(specs) != len(task_distribution.case_ids):
+                    raise ValueError(
+                        "TaskDistributionManifest case_ids must match every variant slot"
+                    )
+                for position, (baseline_spec, candidate_spec) in enumerate(
+                    zip(baseline_specs, specs, strict=True)
+                ):
+                    case_id = task_distribution.case_ids[position]
+                    baseline_projection_hash = _configuration_hash(
+                        _comparison_projection(baseline_spec, case_id=case_id)
+                    )
+                    candidate_projection_hash = _configuration_hash(
+                        _comparison_projection(candidate_spec, case_id=case_id)
+                    )
+                    if baseline_projection_hash != candidate_projection_hash:
+                        raise ValueError(
+                            "ExperimentPlan Task distribution slots must differ only "
+                            f"by Agent declaration: {variant}[{position}]"
+                        )
         provenance = _freeze_json(
             self.provenance,
             path="$.experiment.provenance",
         )
         if not isinstance(provenance, Mapping):
             raise TypeError("ExperimentPlan provenance must be an object")
+        payload_values: dict[str, object] = {
+            "experiment_id": self.experiment_id,
+            "version": self.version,
+            "baseline": self.baseline,
+            "provenance": provenance,
+            "variants": variant_payloads,
+        }
+        if task_distribution is not None:
+            payload_values["task_distribution"] = _task_distribution_payload(
+                task_distribution
+            )
         payload = _frozen_object(
-            experiment_id=self.experiment_id,
-            version=self.version,
-            baseline=self.baseline,
-            provenance=provenance,
-            variants=variant_payloads,
+            **payload_values,
         )
         object.__setattr__(self, "trial_specs", MappingProxyType(frozen_variants))
         object.__setattr__(self, "provenance", provenance)
+        object.__setattr__(self, "task_distribution", task_distribution)
         object.__setattr__(self, "_payload", payload)
         object.__setattr__(self, "plan_hash", _configuration_hash(payload))
 
@@ -159,6 +324,11 @@ class ExperimentResult:
     plan: ExperimentPlan
     results: Mapping[str, tuple[TrialResult, ...]]
     started_trial_ids: Mapping[str, tuple[str, ...]]
+    _evidence_registration: object | None = field(
+        default=None,
+        init=False,
+        repr=False,
+    )
 
     def __post_init__(self) -> None:
         if not isinstance(self.plan, ExperimentPlan):
@@ -195,7 +365,10 @@ class ExperimentResult:
                     raise ValueError(
                         "ExperimentResult Trial does not match its planned provenance"
                     )
-                if replay(result.trajectory) != result:
+                replayed = replay(result.trajectory)
+                if _configuration_hash(
+                    _trial_result_projection(replayed)
+                ) != _configuration_hash(_trial_result_projection(result)):
                     raise ValueError(
                         "ExperimentResult projection does not match its Trajectory"
                     )
@@ -226,6 +399,10 @@ class ExperimentResult:
         return self.plan.baseline
 
     @property
+    def task_distribution(self) -> TaskDistributionManifest | None:
+        return self.plan.task_distribution
+
+    @property
     def plan_hash(self) -> str:
         return self.plan.plan_hash
 
@@ -241,6 +418,34 @@ class ExperimentResult:
             for variant, trial_ids in self.planned_trial_ids.items()
         )
 
+    @property
+    def jsonl_verified(self) -> bool:
+        """Return whether the result came from the supported JSONL verification path."""
+        return self._evidence_registration is _JSONL_EVIDENCE_REGISTRATION
+
+
+def _registered_experiment_result(
+    *,
+    plan: ExperimentPlan,
+    results: Mapping[str, tuple[TrialResult, ...]],
+    started_trial_ids: Mapping[str, tuple[str, ...]],
+) -> ExperimentResult:
+    result = ExperimentResult(
+        plan=plan,
+        results=results,
+        started_trial_ids=started_trial_ids,
+    )
+    object.__setattr__(
+        result,
+        "_evidence_registration",
+        _JSONL_EVIDENCE_REGISTRATION,
+    )
+    return result
+
+
+def _is_registered_experiment_result(result: ExperimentResult) -> bool:
+    return result.jsonl_verified
+
 
 class Experiment:
     """Run and persist an explicit set of comparison Trial variants."""
@@ -252,6 +457,7 @@ class Experiment:
         version: str,
         trials: Mapping[str, Sequence[Trial]],
         baseline: str | None = None,
+        task_distribution: TaskDistributionManifest | None = None,
         provenance: Mapping[str, JsonValue] | None = None,
     ) -> None:
         if not isinstance(trials, Mapping) or not trials:
@@ -283,6 +489,7 @@ class Experiment:
             version=version,
             trial_specs=specs_by_variant,
             baseline=baseline,
+            task_distribution=task_distribution,
             provenance={} if provenance is None else provenance,
         )
 
@@ -301,6 +508,10 @@ class Experiment:
     @property
     def baseline(self) -> str | None:
         return self.plan.baseline
+
+    @property
+    def task_distribution(self) -> TaskDistributionManifest | None:
+        return self.plan.task_distribution
 
     @property
     def plan_hash(self) -> str:
@@ -329,7 +540,9 @@ class Experiment:
             evaluator=slot.trial.evaluator,
             max_actions=slot.trial.config.max_actions,
         )
-        if live_configuration != planned_spec.configuration:
+        if _configuration_hash(live_configuration) != _configuration_hash(
+            planned_spec.configuration
+        ):
             raise ValueError(
                 "planned Trial declarations drifted: "
                 f"{slot.trial.config.trial_id}"

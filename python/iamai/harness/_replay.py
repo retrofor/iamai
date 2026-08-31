@@ -76,7 +76,7 @@ def _require_exact_fields(
     field_name: str,
 ) -> None:
     if set(declaration) != expected:
-        raise _causal_error(f"controlled {field_name} fields are invalid")
+        raise _causal_error(f"{field_name} fields are invalid")
 
 
 def _non_negative_record_int(value: FrozenJsonValue, *, field_name: str) -> int:
@@ -465,6 +465,17 @@ def _validate_configuration(
     trajectory: Trajectory,
 ) -> Mapping[str, FrozenJsonValue]:
     configuration = trajectory.configuration
+    _require_exact_fields(
+        configuration,
+        {
+            "harness_configuration_version",
+            "agent",
+            "environment",
+            "evaluator",
+            "max_actions",
+        },
+        field_name="configuration",
+    )
     if (
         configuration.get("harness_configuration_version")
         != HARNESS_CONFIGURATION_VERSION
@@ -475,6 +486,11 @@ def _validate_configuration(
         declared = configuration.get(role)
         if not isinstance(declared, Mapping):
             raise ValueError(f"Trajectory configuration is missing declared {role}")
+        _require_exact_fields(
+            declared,
+            {"name", "version", "config"},
+            field_name=f"{role} declaration",
+        )
         name = declared.get("name")
         version = declared.get("version")
         component_config = declared.get("config")
@@ -751,17 +767,39 @@ def _validate_causal_order(
         raise _causal_error(
             f"{status.value} must place {marker_kind} immediately before termination"
         )
+    marker_fields = {
+        TrialStatus.COMPLETED: {
+            "passed",
+            "score",
+            "evaluator",
+            "evaluator_version",
+        },
+        TrialStatus.BUDGET_EXHAUSTED: {
+            "passed",
+            "score",
+            "evaluator",
+            "evaluator_version",
+        },
+        TrialStatus.FAILED: {"phase", "code", "exception_type", "message"},
+        TrialStatus.CANCELLED: {"phase", "operation"},
+    }[status]
+    _require_exact_fields(
+        marker.payload,
+        marker_fields,
+        field_name=f"{marker_kind} payload",
+    )
     body = middle[:-1]
 
     reset_seen = bool(body and body[0].kind == "environment.reset")
     if reset_seen and "observation" not in body[0].payload:
         raise _causal_error("Environment reset observation is missing")
-    if reset_seen and controlled:
+    if reset_seen:
         _require_exact_fields(
             body[0].payload,
             {"observation"},
             field_name="reset evidence",
         )
+    if reset_seen and controlled:
         reset_hash = _configuration_hash(
             _frozen_object(value=body[0].payload.get("observation"))
         )
@@ -787,6 +825,11 @@ def _validate_causal_order(
         if record.kind == "agent.action":
             if not reset_seen or pending_action or terminated or budget_exhausted:
                 raise _causal_error("Agent Action is outside an active Environment state")
+            _require_exact_fields(
+                record.payload,
+                {"name", "payload", "is_final"},
+                field_name="Agent Action payload",
+            )
             name = record.payload.get("name")
             is_final = record.payload.get("is_final")
             if (
@@ -998,17 +1041,17 @@ def _validate_causal_order(
         if record.kind == "environment.transition":
             if not pending_action or terminated or budget_exhausted:
                 raise _causal_error("Environment Transition has no pending Agent Action")
+            _require_exact_fields(
+                record.payload,
+                {"observation", "terminated", "output"},
+                field_name="Environment Transition",
+            )
             transition_terminated = record.payload.get("terminated")
             if not isinstance(transition_terminated, bool):
                 raise _causal_error("Environment Transition termination flag is invalid")
             if "observation" not in record.payload or "output" not in record.payload:
                 raise _causal_error("Environment Transition payload is incomplete")
             if controlled:
-                _require_exact_fields(
-                    record.payload,
-                    {"observation", "terminated", "output"},
-                    field_name="Environment Transition",
-                )
                 if pending_action_final:
                     if pending_tool_outcome is not None or not transition_terminated:
                         raise _causal_error(
@@ -1261,6 +1304,11 @@ def replay(trajectory: Trajectory) -> TrialResult:
         raise ValueError("Trajectory record sequence must be contiguous from zero")
     if trajectory.records[0].kind != "trial.started":
         raise ValueError("Trajectory must start with trial.started")
+    _require_exact_fields(
+        trajectory.records[0].payload,
+        set(),
+        field_name="Trial start payload",
+    )
     terminal_records = [
         record for record in trajectory.records if record.kind == "trial.terminated"
     ]
@@ -1274,6 +1322,17 @@ def replay(trajectory: Trajectory) -> TrialResult:
         status = TrialStatus(status_value)
     except ValueError as exc:
         raise ValueError(f"unsupported terminal Trial status: {status_value}") from exc
+    terminal_fields = {
+        TrialStatus.COMPLETED: {"status"},
+        TrialStatus.BUDGET_EXHAUSTED: {"status"},
+        TrialStatus.FAILED: {"status", "phase"},
+        TrialStatus.CANCELLED: {"status", "phase", "operation"},
+    }[status]
+    _require_exact_fields(
+        terminal_records[0].payload,
+        terminal_fields,
+        field_name="Trial termination payload",
+    )
     final_output = _validate_causal_order(trajectory, status)
 
     evaluation_records = [
