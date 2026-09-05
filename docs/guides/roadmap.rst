@@ -82,10 +82,11 @@ Headless Trial
    这是描述性证据，不是签名、显著性检验或跨分布泛化证明。
 
 Policy-backed Agent
-   从 Headless Trial 的 Agent interface 冻结 policy checkpoint：模型与 provider 声明、prompt/tool-use
-   policy、memory policy、context shaping 和版本化配置必须进入 Trial provenance。该层先建立可替换的
-   policy interface 与确定性 fixture，再接远程模型；它不依赖某一种 Environment，也不会把某个 provider
-   SDK 固化为 Harness 核心。
+   |implemented| 第一条 provider-neutral policy checkpoint 垂直切片已提供冻结、hash-bound 的
+   ``PolicyCheckpoint``、可替换 ``AgentPolicy``、``PolicyAgent`` 和确定性 ``ScriptedPolicy``；声明通过
+   现有 Agent configuration 进入 Trial、Experiment 和 JSONL evidence。checkpoint 是调用方声明，
+   不提供 provider/model attestation，也不保存凭据。remote provider adapter、model fingerprinting、
+   更强的外部真实性证明、泛化评测、离线学习和消息桥接仍属后续工作。
 
 泛化评测套件
    在 paired evidence 之上定义多个独立 Task/Environment distribution、污染与迁移检查、重复 seed、

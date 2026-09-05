@@ -64,6 +64,93 @@ Event、SessionManager 或任何 LLM provider，也不会从顶层 ``iamai`` 重
 
    asyncio.run(main())
 
+Policy-backed Agent
+-------------------
+
+``PolicyCheckpoint`` 为 Experiment reproducibility evidence 冻结决策相关的调用方声明：适用时的
+provider/model、prompt/tool-use policy、memory policy、context shaping 与版本化配置。
+``PolicyAgent`` 把 checkpoint 和可替换的 ``AgentPolicy`` implementation declaration 放入现有 Agent
+configuration；``checkpoint_hash`` 与 Trial ``config_hash`` 使用相同的 canonical JSON 语义，因此声明会
+自然进入 Experiment spec/plan hash 和 ``JsonlTrajectoryStore``，无需新增格式或 provenance 系统。
+
+``ScriptedPolicy`` 是 provider-neutral、offline、deterministic fixture。它按 Trial 传入的
+``action_index`` 选择 Action，没有隐藏 cursor，同一个实例可以用于多个 Trial：
+
+.. code-block:: python
+
+   import asyncio
+
+   from iamai.harness import (
+       Action,
+       ExactEvaluator,
+       LookupEnvironment,
+       PolicyAgent,
+       PolicyCheckpoint,
+       ScriptedPolicy,
+       Task,
+       Trial,
+       TrialConfig,
+   )
+
+
+   checkpoint = PolicyCheckpoint(
+       checkpoint_id="capital-policy",
+       version="1",
+       provider=None,
+       model=None,
+       prompt_policy={"template_version": "fixture-1"},
+       tool_policy={"allowed_actions": ["lookup", "final"]},
+       memory_policy={"kind": "none"},
+       context_policy={"kind": "full-observation"},
+       configuration={"fixture": True},
+   )
+   agent = PolicyAgent(
+       ScriptedPolicy(
+           [
+               Action.invoke("lookup", {"key": "france"}),
+               Action.finish("Paris"),
+           ],
+           name="scripted-policy",
+           version="1",
+       ),
+       checkpoint,
+       name="capital-policy-agent",
+       version="1",
+   )
+
+
+   async def policy_main() -> None:
+       result = await Trial(
+           task=Task(id="capital-of-france", input={"question": "Capital?"}),
+           agent=agent,
+           environment=LookupEnvironment(
+               {"france": "Paris"},
+               name="country-capitals",
+               version="1",
+           ),
+           evaluator=ExactEvaluator("Paris", version="1"),
+           config=TrialConfig(trial_id="policy-trial", seed=7, max_actions=2),
+       ).run()
+       assert result.evaluation is not None and result.evaluation.passed
+
+
+   asyncio.run(policy_main())
+
+两个 paired Experiment slot 可以保持 Task、seed、Environment、Evaluator 和预算相同，仅使用不同的
+``PolicyCheckpoint`` 作为 baseline/candidate Agent declaration。现有 Agent-only pairing 会接受这种
+差异；plan 与 JSONL round trip 保存完整 checkpoint，``compare_experiment`` 仍从持久证据投影结果。
+``replay`` 只读取 Trajectory，不会重新调用 AgentPolicy 或 provider。
+
+checkpoint 是 caller-declared metadata，不是 provider attestation。``checkpoint_hash`` is not an
+attestation, signature, trusted timestamp, model fingerprint, or proof of actual provider/model,
+prompt, memory, or tool-policy execution. checkpoint is not a secret store；不得写入 API key、access token、
+credential 或 private secret，因为 Experiment 和 JSONL evidence 可能持久化整个声明。
+
+``AgentPolicy != ExecutionPolicy``。``AgentPolicy`` 只实现 Agent decision；``tool_policy`` 也只是行为
+provenance metadata。Tool 的 allow/deny、Approval 与预算仍由 ``ControlledToolEnvironment`` 和
+``ExecutionPolicy`` 执行。remote provider integration、prompt engine、memory system 和 provider
+attestation 不在当前垂直切片中。
+
 受控 Tool 执行
 --------------------
 
