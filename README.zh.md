@@ -78,6 +78,11 @@ JSONL，并在恢复时跳过已经提交的 Trial，不重复其副作用。只
 `ExperimentComparison`；failed 和 budget-exhausted Trial 也保留在分母中。comparison hash 是
 描述性证据的稳定标识与完整性检查，不是签名、显著性检验，也不能证明声明分布之外的泛化。
 
+Policy-backed Agent 现在可以把 provider-neutral、调用方声明的 `PolicyCheckpoint` 绑定进同一条 Trial、
+Experiment 与 JSONL provenance 路径。checkpoint 只记录非秘密 policy metadata 并提供 canonical 完整性
+hash；它不是 attestation、provider/model 身份证明、prompt 或 Tool enforcement，也不是 secret store。
+远程 provider 集成仍属后续工作。
+
 对于声明后的异步 Tool，`ControlledToolEnvironment` 提供严格的 `ToolSpec` 输入校验、静态
 default-deny `ExecutionPolicy`、绑定单次精确请求的审批，以及按 run 计算的 Tool 调用、token 和
 整数费用微单位 reservation ledger。每个被处理的非 final Action 都会记录 `tool.call.outcome`；

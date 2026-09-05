@@ -21,6 +21,13 @@ Provisional research Harness
 ``ControlledToolEnvironment``。Harness ``ExecutionPolicy`` 不复用稳定消息 Runtime 的
 ``Permission`` 或 ``ToolRegistry``，``ControlledToolEnvironment`` 也不是隔离沙箱。
 
+Policy-backed Agent 接口包括 ``PolicyCheckpoint``、``AgentPolicy``、``PolicyAgent`` 和
+``ScriptedPolicy``。provider-neutral 的 checkpoint 把调用方声明的 Agent policy metadata 通过现有
+Agent configuration 绑定进 Trial/Experiment configuration hash 和 JSONL evidence；
+``checkpoint_hash`` 是内容完整性标识，不是签名、可信时间戳、provider/model identity attestation 或
+实际模型执行证明。``AgentPolicy != ExecutionPolicy``：前者提供 Agent decision implementation，
+后者仍负责 ``ControlledToolEnvironment`` 中真正的 Tool allow/deny。
+
 配对实验评证接口包括 ``TaskDistributionManifest``、``TrialComparison``、
 ``ExperimentComparison`` 与 ``compare_experiment``。manifest 预登记 exactly one baseline and one
 candidate 的固定 case 分布；manifest 字段是调用方声明，Harness 不执行 sampling rule。

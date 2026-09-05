@@ -85,6 +85,11 @@ failed and budget-exhausted Trials. The resulting hashes are stable identifiers 
 for descriptive evidence; they are not signatures, statistical significance tests, or proof of
 generalization beyond the declared distribution.
 
+Policy-backed Agents can now bind a provider-neutral, caller-declared `PolicyCheckpoint` into the
+same Trial, Experiment, and JSONL provenance path. The checkpoint records non-secret policy metadata
+and exposes a canonical integrity hash; it is not an attestation, provider/model identity proof,
+prompt or Tool enforcement mechanism, or secret store. Remote provider integration remains future work.
+
 For declared asynchronous Tools, `ControlledToolEnvironment` adds strict `ToolSpec` input
 validation, a static default-deny `ExecutionPolicy`, approvals bound to one exact request, and
 run-scoped reservation ledgers for Tool calls, tokens, and integer cost microunits. Each handled

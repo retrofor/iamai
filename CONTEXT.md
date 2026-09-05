@@ -117,5 +117,5 @@ A fresh Trial using the same declared specification. It produces the same result
 _Avoid_: Replay
 
 **Policy Checkpoint**:
-An immutable version of the Agent behavior selected for an Experiment, including the model, prompts, memory policy, and action policy that affect decisions.
-_Avoid_: Latest model, mutable agent state
+An immutable, hash-bound, caller-declared version of decision-relevant Agent behavior selected for an Experiment. It records provider/model identity when applicable, prompt and tool-use policy, memory policy, context shaping, and versioned configuration. It is not provider attestation or a secret container.
+_Avoid_: Latest model, mutable agent state, credential store, verified provider identity
