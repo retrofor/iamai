@@ -34,11 +34,13 @@ from ._model import (
     TrajectoryRecord,
     Transition,
 )
+from ._policy import AgentPolicy, PolicyAgent, PolicyCheckpoint, ScriptedPolicy
 from ._replay import replay
 from ._trial import Trial
 
 __all__ = [
     "Action",
+    "AgentPolicy",
     "ApprovalDecision",
     "ApprovalRequest",
     "Approver",
@@ -54,7 +56,10 @@ __all__ = [
     "JsonlTrajectoryStore",
     "LookupEnvironment",
     "Observation",
+    "PolicyAgent",
+    "PolicyCheckpoint",
     "ScriptedAgent",
+    "ScriptedPolicy",
     "Task",
     "TaskDistributionManifest",
     "Tool",

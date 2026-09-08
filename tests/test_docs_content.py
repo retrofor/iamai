@@ -390,6 +390,40 @@ def test_paired_experiment_evidence_docs_define_scope_and_non_guarantees() -> No
     assert "配对实验评证" in readme_zh
 
 
+def test_policy_backed_agent_docs_define_provenance_and_non_guarantees() -> None:
+    content = _read("docs/guides/research-harness.rst")
+    roadmap = _read("docs/guides/roadmap.rst")
+    api_index = _read("docs/api/index.rst")
+    context = _read("CONTEXT.md")
+    adr = _read("docs/adr/0004-policy-backed-agent-checkpoint.md")
+    readme = _read("README.md")
+    readme_zh = _read("README.zh.md")
+
+    public_names = (
+        "PolicyCheckpoint",
+        "AgentPolicy",
+        "PolicyAgent",
+        "ScriptedPolicy",
+    )
+    for name in public_names:
+        assert name in content
+        assert name in api_index
+
+    assert "checkpoint_hash" in content
+    assert "checkpoint_hash" in api_index
+    assert "provider-neutral" in content
+    assert "Policy-backed Agent\n   |implemented|" in roadmap
+    assert "caller-declared" in context
+    assert "not provider attestation" in context
+    assert adr.startswith("---\nstatus: accepted\n---")
+    assert "not an attestation" in adr
+    assert "not a secret store" in adr
+    assert "AgentPolicy" in adr and "ExecutionPolicy" in adr
+    assert "AgentPolicy != ExecutionPolicy" in content
+    assert "Remote provider integration remains future work" in readme
+    assert "远程 provider 集成仍属后续工作" in readme_zh
+
+
 def test_community_page_contains_blog_and_store_sections() -> None:
     content = _read("docs/community/index.rst")
 

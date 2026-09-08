@@ -1038,7 +1038,12 @@ def test_timeout_and_callback_failure_are_recoverable_environment_outcomes() -> 
         invalid_usage_effects += 1
         return ToolResult(output=None, tokens=10**5000)
 
-    def environment(name: str, handler: object) -> ControlledToolEnvironment:
+    def environment(
+        name: str,
+        handler: object,
+        *,
+        timeout: float = 1,
+    ) -> ControlledToolEnvironment:
         return ControlledToolEnvironment(
             tools=(
                 Tool(
@@ -1064,7 +1069,7 @@ def test_timeout_and_callback_failure_are_recoverable_environment_outcomes() -> 
                 max_tool_calls=1,
                 max_tokens=0,
                 max_cost_microunits=0,
-                tool_timeout_seconds=0.01,
+                tool_timeout_seconds=timeout,
                 currency="USD",
                 pricing_version="fixture-1",
             ),
@@ -1072,7 +1077,13 @@ def test_timeout_and_callback_failure_are_recoverable_environment_outcomes() -> 
             version="1",
         )
 
-    async def run(name: str, handler: object, trial_id: str) -> object:
+    async def run(
+        name: str,
+        handler: object,
+        trial_id: str,
+        *,
+        timeout: float = 1,
+    ) -> object:
         return await Trial(
             task=Task(id=trial_id, input=None),
             agent=ScriptedAgent(
@@ -1080,13 +1091,13 @@ def test_timeout_and_callback_failure_are_recoverable_environment_outcomes() -> 
                 name=f"{name}-agent",
                 version="1",
             ),
-            environment=environment(name, handler),
+            environment=environment(name, handler, timeout=timeout),
             evaluator=ExactEvaluator("recovered", version="1"),
             config=TrialConfig(trial_id=trial_id, max_actions=2),
         ).run()
 
     async def scenario() -> None:
-        timed_out = await run("slow", slow, "timeout-1")
+        timed_out = await run("slow", slow, "timeout-1", timeout=0.01)
         failed = await run("broken", broken, "failure-1")
         base_failed = await run("broken-base", broken_base, "base-failure-1")
         provider_failed = await run(

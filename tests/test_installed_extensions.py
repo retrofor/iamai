@@ -152,7 +152,9 @@ from iamai.harness import (
     ExecutionBudget,
     ExecutionPolicy,
     JsonlTrajectoryStore,
-    ScriptedAgent,
+    PolicyAgent,
+    PolicyCheckpoint,
+    ScriptedPolicy,
     Task,
     TaskDistributionManifest,
     Tool,
@@ -281,13 +283,27 @@ async def run_harness():
         )
 
     def installed_trial(trial_id, agent_name):
+        checkpoint = PolicyCheckpoint(
+            checkpoint_id=f"{agent_name}-checkpoint",
+            version="1",
+            prompt_policy={"template_version": "installed-fixture-1"},
+            tool_policy={"allowed_actions": ["installed-tool", "final"]},
+            memory_policy={"kind": "none"},
+            context_policy={"kind": "full-observation"},
+            configuration={"fixture": True},
+        )
         return Trial(
             task=Task(id="installed-task", input=None),
-            agent=ScriptedAgent(
-                [
-                    Action.invoke("installed-tool", {"value": "observed"}),
-                    Action.finish("done"),
-                ],
+            agent=PolicyAgent(
+                ScriptedPolicy(
+                    [
+                        Action.invoke("installed-tool", {"value": "observed"}),
+                        Action.finish("done"),
+                    ],
+                    name=f"{agent_name}-policy",
+                    version="1",
+                ),
+                checkpoint,
                 name=agent_name,
                 version="1",
             ),
@@ -359,6 +375,8 @@ async def run_harness():
     tool_outcome = next(
         record for record in trajectory.records if record.kind == "tool.call.outcome"
     )
+    loaded_agent = loaded.plan.trial_specs["baseline"][0].configuration["agent"]
+    loaded_checkpoint = loaded_agent["config"]["policy_checkpoint"]
     return {
         "complete": result.complete,
         "round_trip": loaded == result,
@@ -367,6 +385,10 @@ async def run_harness():
         "distribution_round_trip": loaded.task_distribution == distribution,
         "comparison_pairs": comparison.total_pairs,
         "comparison_delta": comparison.pass_rate_delta,
+        "checkpoint_round_trip": (
+            loaded_checkpoint["checkpoint_id"] == "installed-baseline-agent-checkpoint"
+            and loaded_checkpoint["checkpoint_hash"].startswith("sha256:")
+        ),
     }
 
 
@@ -455,6 +477,7 @@ print(
         "distribution_round_trip": True,
         "comparison_pairs": 1,
         "comparison_delta": 0.0,
+        "checkpoint_round_trip": True,
     }
     for run in payload["runs"]:
         assert run["plugins"] == ["reference_plugin"]
